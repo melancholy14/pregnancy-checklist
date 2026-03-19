@@ -1,0 +1,47 @@
+# Docs Index
+
+## 폴더 구조
+
+```text
+docs/
+├── plan/      기획 문서
+├── data/      데이터셋 (seed JSON)
+├── specs/     기능별 상세 스펙
+├── infra/     인프라 / 아키텍처
+└── logs/      Phase별 개발 기록
+```
+
+## plan/
+
+| 파일                              | 내용                          |
+| --------------------------------- | ----------------------------- |
+| `plan.md`                         | 전체 개발 단계 계획 (Phase 0~5) |
+| `pregnancy-prep-service-prd-v2.md` | 서비스 PRD                   |
+
+## data/
+
+| 파일                               | 내용                          |
+| ---------------------------------- | ----------------------------- |
+| `checklist_dataset.md`             | 출산 준비 체크리스트 seed (120개) |
+| `pregnancy_timeline_dataset.md`    | 주차별 타임라인 seed (27개)   |
+| `pregnancy_week_timeline_dataset.md` | 임신 1~40주 이벤트 데이터   |
+
+## specs/
+
+| 파일                        | 내용                        |
+| --------------------------- | --------------------------- |
+| `babyfair_crawler_spec.md`  | 베이비페어 크롤러 스펙       |
+| `babyfair_data_pipeline.md` | 베이비페어 데이터 파이프라인 |
+
+## infra/
+
+| 파일               | 내용              |
+| ------------------ | ----------------- |
+| `architecture.md`  | 시스템 아키텍처   |
+| `gcp-deployment.md` | GCP 배포 가이드  |
+
+## logs/
+
+| 파일        | 내용                  |
+| ----------- | --------------------- |
+| `0_init.md` | Phase 0 초기 세팅 기록 |
