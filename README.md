@@ -22,7 +22,7 @@
 
 ## 아키텍처
 
-```
+```text
 User → Cloud Run (Next.js App) → Google Cloud Storage (JSON Data)
 ```
 
@@ -32,12 +32,12 @@ User → Cloud Run (Next.js App) → Google Cloud Storage (JSON Data)
 
 ## 핵심 데이터
 
-| 데이터 | 설명 | GCS 경로 |
-|--------|------|----------|
+| 데이터     | 설명                                               | GCS 경로                            |
+| ---------- | -------------------------------------------------- | ----------------------------------- |
 | 체크리스트 | 출산 준비 항목 ~120개 (병원/가방/신생아/산후/행정) | `checklist/v1/checklist_items.json` |
-| 타임라인 | 임신 4~40주 주차별 준비 행동 가이드 | `timeline/v1/timeline_items.json` |
-| 베이비페어 | 연도별 베이비페어 일정 (크롤링 + 검수) | `babyfair/2026/events.json` |
-| 영상 | 유튜브 영상 큐레이션 | `videos/v1/videos.json` |
+| 타임라인   | 임신 4~40주 주차별 준비 행동 가이드                | `timeline/v1/timeline_items.json`   |
+| 베이비페어 | 연도별 베이비페어 일정 (크롤링 + 검수)             | `babyfair/2026/events.json`         |
+| 영상       | 유튜브 영상 큐레이션                               | `videos/v1/videos.json`             |
 
 ## 문서 목록 (`docs/`)
 
@@ -52,6 +52,7 @@ User → Cloud Run (Next.js App) → Google Cloud Storage (JSON Data)
 | [babyfair_crawler_spec.md](docs/babyfair_crawler_spec.md) | 베이비페어 크롤러 상세 스펙 |
 | [babyfair_data_pipeline.md](docs/babyfair_data_pipeline.md) | 베이비페어 데이터 수집 파이프라인 |
 | [README_pregnancy_prep_docs.md](docs/README_pregnancy_prep_docs.md) | 문서 인덱스 및 권장 구현 순서 |
+| [plan.md](docs/plan.md) | 전체 개발 계획 (초기 세팅 → 개발 → 운영 배포) |
 
 ## 구현 순서 (권장)
 
