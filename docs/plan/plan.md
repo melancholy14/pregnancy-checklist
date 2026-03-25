@@ -1,8 +1,9 @@
 # 개발 계획서 (plan.md)
 
 **서비스**: 출산 준비 체크리스트 웹 서비스
-**스택**: Next.js (Fullstack) + TypeScript + TailwindCSS + shadcn/ui + GCP
-**목표**: 로컬에서 mock 데이터로 완성 → 인프라 연결 → 운영 배포
+**스택 (PoC)**: Next.js (Static Export) + TypeScript + TailwindCSS + shadcn/ui + GitHub Pages
+**스택 (운영)**: Next.js (Fullstack) + TypeScript + TailwindCSS + shadcn/ui + GCP
+**목표**: PoC → gh-pages 무료 배포 검증 → 인프라 연결 → 운영 배포
 
 ---
 
@@ -10,15 +11,21 @@
 
 | Phase | 환경 | 내용 | 산출물 |
 | ----- | ---- | ---- | ------ |
-| 0 | 로컬 | 프로젝트 초기 세팅 | Next.js 앱 뼈대, mock 데이터 |
-| 1 | 로컬 | 핵심 기능 개발 | 체크리스트, 타임라인, 체중기록, 영상 |
+| 0 | 로컬 | 프로젝트 초기 세팅 | Next.js static export 뼈대, 정적 JSON 데이터 |
+| 1 | 로컬 → gh-pages | 핵심 기능 개발 + PoC 배포 | 체크리스트(커스텀), 타임라인(커스텀), 체중기록, 영상 |
 | 2 | 로컬 | 베이비페어 크롤러 & Admin UI | 크롤러, 검수 UI |
-| 3 | 로컬 | SEO & 품질 | SEO, 성능, 광고 슬롯 |
+| 3 | 로컬 | SEO & 품질 | SEO(static HTML 빌드 내장), 성능, 광고 슬롯 |
 | 4 | GCP | 인프라 세팅 | GCS, Cloud Run, Secret Manager |
 | 5 | GCP | 운영 배포 | Docker, CI/CD, Cloud Scheduler |
 
-> **로컬 개발 원칙**: GCS 없이 `src/data/` 로컬 JSON 파일로 동작.
-> API Routes는 데이터 소스를 추상화해 mock ↔ GCS 전환이 환경변수 하나로 된다.
+> **PoC 원칙**: 서버 불필요. `src/data/` JSON을 클라이언트에서 직접 `import`해서 사용.
+> API Routes 없음. 사용자 상태(체크, 커스텀 항목, 체중)는 전부 LocalStorage(Zustand persist).
+> Next.js `output: 'export'`로 빌드 → 정적 HTML 생성 → gh-pages 무료 배포.
+>
+> **SEO**: React(Vite/CRA)는 SPA라 SEO를 위해 별도 SSG 설정이 필요하지만,
+> Next.js static export는 빌드 시 각 페이지의 HTML을 미리 생성하므로 SEO가 자연스럽게 해결됨.
+>
+> **운영 전환**: Phase 4에서 `output: 'export'` 제거 + API Routes 추가 + GCS 연결.
 
 ---
 
@@ -53,9 +60,24 @@ npm install recharts
 npm install date-fns
 ```
 
-> `@google-cloud/storage`는 Phase 4에서 추가. 로컬에선 불필요.
+> `@google-cloud/storage`는 Phase 4에서 추가. PoC에선 불필요.
 
-### 0-3. 폴더 구조
+### 0-3. Static Export 설정 (`next.config.ts`)
+
+```ts
+// next.config.ts  — PoC: 정적 HTML 빌드 → gh-pages 배포
+const nextConfig = {
+  output: 'export',
+  // gh-pages 배포 시 repo 이름이 basePath가 됨 (예: /pregnancy-checklist)
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH ?? '',
+  images: { unoptimized: true }, // static export는 Image Optimization 서버 불필요
+};
+export default nextConfig;
+```
+
+> **운영 전환 시**: `output: 'export'` 제거 → standalone 모드로 변경 (Phase 5).
+
+### 0-4. 폴더 구조
 
 ```text
 src/
@@ -65,17 +87,8 @@ src/
 │   ├── timeline/page.tsx
 │   ├── babyfair/page.tsx
 │   ├── weight/page.tsx
-│   ├── videos/page.tsx
-│   ├── admin/
-│   │   └── babyfair/page.tsx         # 관리자 검수 UI
-│   └── api/
-│       ├── checklist/route.ts
-│       ├── timeline/route.ts
-│       ├── babyfair-events/route.ts
-│       ├── videos/route.ts
-│       └── admin/
-│           ├── crawl/babyfair/route.ts
-│           └── babyfair-events/[id]/route.ts
+│   └── videos/page.tsx
+│   # api/ 없음 — PoC는 서버 없이 JSON 직접 import
 ├── components/
 │   ├── ui/                           # shadcn components
 │   ├── checklist/
@@ -83,18 +96,18 @@ src/
 │   ├── babyfair/
 │   ├── weight/
 │   └── layout/
-├── data/                             # ← 로컬 mock JSON (Phase 0에서 생성)
+├── data/                             # 정적 JSON (빌드에 포함)
 │   ├── checklist_items.json
 │   ├── timeline_items.json
 │   ├── babyfair_events.json
 │   └── videos.json
 ├── lib/
-│   ├── data-source.ts                # ← mock/GCS 분기 핵심 모듈
 │   ├── week-calculator.ts
 │   └── date-utils.ts
 ├── store/
 │   ├── useDueDateStore.ts
-│   ├── useChecklistStore.ts
+│   ├── useChecklistStore.ts          # 기본 체크 상태 + 커스텀 항목 추가/삭제
+│   ├── useTimelineStore.ts           # 커스텀 타임라인 항목 추가/삭제
 │   └── useWeightStore.ts
 └── types/
     ├── checklist.ts
@@ -103,53 +116,27 @@ src/
     └── video.ts
 ```
 
-### 0-4. Mock 데이터 준비 (`src/data/`)
+### 0-5. 정적 데이터 로딩 방식
 
-`docs/checklist_dataset.md`, `docs/pregnancy_timeline_dataset.md` 안의 JSON 블록을
-그대로 추출해서 파일로 저장.
-
-```bash
-src/data/checklist_items.json     # checklist_dataset.md 의 JSON 배열
-src/data/timeline_items.json      # pregnancy_timeline_dataset.md 의 JSON 배열
-src/data/babyfair_events.json     # 빈 배열 [] 로 시작, 크롤러 완성 후 채움
-src/data/videos.json              # 수동 큐레이션 또는 빈 배열로 시작
-```
-
-### 0-5. 데이터 소스 추상화 (`src/lib/data-source.ts`)
-
-로컬(mock)과 GCS를 환경변수 하나로 분기. API Routes는 이 함수만 호출하면 된다.
+API Routes 없이 컴포넌트에서 JSON을 직접 `import` 한다.
 
 ```ts
-// DATA_SOURCE=local  → src/data/ 에서 읽음  (기본값, 로컬 개발)
-// DATA_SOURCE=gcs    → GCS 버킷에서 읽음    (운영)
-
-export async function fetchData<T>(path: string): Promise<T> {
-  if (process.env.DATA_SOURCE === 'gcs') {
-    return fetchFromGCS<T>(path);       // Phase 4에서 구현
-  }
-  return fetchFromLocal<T>(path);       // 로컬 JSON 파일 읽기
-}
-
-async function fetchFromLocal<T>(path: string): Promise<T> {
-  const fs = await import('fs/promises');
-  const filePath = `${process.cwd()}/src/data/${path}`;
-  const content = await fs.readFile(filePath, 'utf-8');
-  return JSON.parse(content) as T;
-}
+// 예시: 체크리스트 페이지
+import checklistItems from '@/data/checklist_items.json';
+import timelineItems from '@/data/timeline_items.json';
 ```
+
+JSON을 static import하면 빌드 시 번들에 포함되어 별도 네트워크 요청 없이 동작한다.
+`tsconfig.json`에 `"resolveJsonModule": true` 필요 (Next.js 기본 활성화).
 
 ### 0-6. 환경변수
 
 ```bash
 # .env.local (로컬 개발 — 커밋 안 함)
-DATA_SOURCE=local
-ADMIN_SECRET=local-dev-secret
+NEXT_PUBLIC_BASE_PATH=
 
 # .env.example (커밋)
-DATA_SOURCE=local
-GCS_BUCKET_NAME=
-YOUTUBE_API_KEY=
-ADMIN_SECRET=
+NEXT_PUBLIC_BASE_PATH=   # gh-pages 배포 시: /pregnancy-checklist
 ```
 
 ### 0-7. 타입 정의 (`src/types/`)
@@ -163,6 +150,7 @@ export type ChecklistItem = {
   categoryName: string;
   recommendedWeek: number;
   priority: 'high' | 'medium' | 'low';
+  isCustom?: boolean; // 유저가 직접 추가한 항목
 };
 
 // timeline.ts
@@ -171,6 +159,7 @@ export type TimelineItem = {
   title: string;
   description: string;
   category: string;
+  isCustom?: boolean; // 유저가 직접 추가한 항목
 };
 
 // babyfair.ts
@@ -188,31 +177,21 @@ export type BabyfairEvent = {
 
 ---
 
-## Phase 1. 핵심 기능 개발 (로컬)
+## Phase 1. 핵심 기능 개발 (로컬 → gh-pages PoC 배포)
 
-모든 기능은 `DATA_SOURCE=local` 상태에서 동작 확인.
+PoC는 서버 없이 동작. 모든 데이터는 정적 JSON import, 사용자 상태는 LocalStorage.
 
-### 1-1. API Routes
-
-| Route | 역할 | 캐시 (운영 시) |
-| ----- | ---- | -------------- |
-| `GET /api/checklist` | checklist_items.json 반환 | 24h |
-| `GET /api/timeline` | timeline_items.json 반환 | 24h |
-| `GET /api/babyfair-events` | year, city, status 필터 지원 | 6h |
-| `GET /api/videos` | videos.json 반환 | 24h |
+### 1-1. 데이터 로딩 (API Routes 없음)
 
 ```ts
-// app/api/checklist/route.ts
-import { fetchData } from '@/lib/data-source';
-import { ChecklistItem } from '@/types/checklist';
-
-export async function GET() {
-  const items = await fetchData<ChecklistItem[]>('checklist_items.json');
-  return Response.json(items);
-}
+// 각 페이지/컴포넌트에서 직접 import
+import checklistItems from '@/data/checklist_items.json';
+import timelineItems from '@/data/timeline_items.json';
+import babyfairEvents from '@/data/babyfair_events.json';
+import videos from '@/data/videos.json';
 ```
 
-> 캐시 설정은 Phase 4(GCS 연결) 이후에 `next: { revalidate }` 추가.
+> API Routes는 Phase 4(GCP 운영) 전환 시 추가. PoC에선 불필요.
 
 ### 1-2. Due Date Input & 주차 계산 (`src/lib/week-calculator.ts`)
 
@@ -236,12 +215,18 @@ export function calcPregnancyWeek(dueDate: Date, today: Date): number {
 - 현재 임신 주차 기준 "지금 해야 할 항목" 하이라이트 (`recommendedWeek` 기반)
 - 체크 상태 LocalStorage 저장 (Zustand persist)
 - 전체 / 카테고리별 진행률 표시
+- **커스텀 항목 추가/삭제**: 유저가 원하는 카테고리에 직접 항목 추가 가능.
+  커스텀 항목은 `useChecklistStore`에 `customItems` 배열로 저장 (LocalStorage persist).
+  기본 항목(`isCustom` 없음)은 삭제 불가, 커스텀 항목만 삭제 가능.
 
 ### 1-4. 타임라인
 
 - 임신 주차별 카드 리스트
 - 현재 주차 자동 스크롤
 - 완료(지난 주차) / 현재 / 예정 시각적 구분
+- **커스텀 항목 추가/삭제**: 특정 주차에 메모/할일을 직접 추가 가능.
+  커스텀 항목은 `useTimelineStore`에 저장 (LocalStorage persist).
+  기본 항목은 삭제 불가, 커스텀 항목만 삭제 가능.
 
 ### 1-5. 베이비페어
 

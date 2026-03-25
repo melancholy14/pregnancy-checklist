@@ -52,16 +52,8 @@ src/
 │   ├── timeline/
 │   ├── babyfair/
 │   ├── weight/
-│   ├── videos/
-│   ├── admin/babyfair/
-│   └── api/
-│       ├── checklist/
-│       ├── timeline/
-│       ├── babyfair-events/
-│       ├── videos/
-│       └── admin/
-│           ├── crawl/babyfair/
-│           └── babyfair-events/[id]/
+│   └── videos/
+│   # api/ 없음 — PoC는 서버 없이 JSON 직접 import
 ├── components/
 │   ├── ui/          # shadcn 컴포넌트
 │   ├── checklist/
@@ -69,7 +61,7 @@ src/
 │   ├── babyfair/
 │   ├── weight/
 │   └── layout/
-├── data/            # 로컬 mock JSON
+├── data/            # 정적 JSON (빌드에 포함)
 ├── lib/
 ├── store/
 └── types/
@@ -77,28 +69,38 @@ src/
 
 ---
 
-### 0-4. Mock 데이터 (`src/data/`)
+### 0-4. Static Export 설정 (`next.config.ts`)
+
+```ts
+// PoC: 정적 HTML 빌드 → gh-pages 배포
+const nextConfig = {
+  output: 'export',
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH ?? '',
+  images: { unoptimized: true },
+};
+export default nextConfig;
+```
+
+gh-pages 배포 시 `NEXT_PUBLIC_BASE_PATH=/pregnancy-checklist` 설정.
+
+---
+
+### 0-5. 정적 데이터 (`src/data/`)
 
 docs/data/ 내 데이터셋 문서에서 JSON 추출 → 파일 저장
 
 | 파일 | 내용 | 초기값 |
-|------|------|--------|
+| ---- | ---- | ------ |
 | `checklist_items.json` | 출산 준비 항목 120개 | checklist_dataset.md 추출 |
 | `timeline_items.json` | 주차별 타임라인 27개 | pregnancy_timeline_dataset.md 추출 |
 | `babyfair_events.json` | 베이비페어 행사 | `[]` (Phase 2에서 채움) |
 | `videos.json` | 영상 큐레이션 | `[]` (수동 큐레이션 예정) |
 
----
-
-### 0-5. 데이터 소스 추상화 (`src/lib/data-source.ts`)
+컴포넌트에서 직접 `import`해서 사용. API Routes 불필요.
 
 ```ts
-// DATA_SOURCE=local  → src/data/ 에서 읽음  (기본값)
-// DATA_SOURCE=gcs    → GCS 버킷에서 읽음    (Phase 4)
-export async function fetchData<T>(path: string): Promise<T>
+import checklistItems from '@/data/checklist_items.json';
 ```
-
-환경변수 하나(`DATA_SOURCE`)로 local ↔ GCS 전환. API Route 코드 변경 없음.
 
 ---
 
@@ -108,32 +110,35 @@ export async function fetchData<T>(path: string): Promise<T>
 - `.env.example` — 템플릿 (커밋)
 
 ```env
-DATA_SOURCE=local
-ADMIN_SECRET=local-dev-secret
+NEXT_PUBLIC_BASE_PATH=
+# gh-pages 배포 시: NEXT_PUBLIC_BASE_PATH=/pregnancy-checklist
 ```
 
 ---
 
 ### 0-7. 타입 정의 (`src/types/`)
 
-| 파일 | 타입 |
-|------|------|
-| `checklist.ts` | `ChecklistItem` |
-| `timeline.ts` | `TimelineItem` |
-| `babyfair.ts` | `BabyfairEvent` |
-| `video.ts` | `VideoItem` |
+| 파일 | 타입 | 비고 |
+| ---- | ---- | ---- |
+| `checklist.ts` | `ChecklistItem` | `isCustom?: boolean` 포함 |
+| `timeline.ts` | `TimelineItem` | `isCustom?: boolean` 포함 |
+| `babyfair.ts` | `BabyfairEvent` | - |
+| `video.ts` | `VideoItem` | - |
 
 ---
 
 ## 검증
 
 ```bash
-npm run build  # ✅ 정상 통과
+npm run build  # ✅ 정상 통과 (output: 'export' 모드)
 ```
 
-빌드 출력:
-- `/` → Static prerendered
-- `/_not-found` → Static prerendered
+빌드 출력 (`out/` 디렉토리):
+
+- `/` → Static HTML
+- `/_not-found` → Static HTML
+
+gh-pages 배포: `out/` 디렉토리를 `gh-pages` 브랜치에 푸시.
 
 ---
 
