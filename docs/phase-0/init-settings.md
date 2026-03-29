@@ -151,3 +151,17 @@ gh-pages 배포: `out/` 디렉토리를 `gh-pages` 브랜치에 푸시.
 rm node_modules/.bin/next
 ln -s ../next/dist/bin/next node_modules/.bin/next
 ```
+
+---
+
+## 후속 변경 사항
+
+> Figma 디자인 이전 과정에서 발생한 변경사항은 [figma-design.md](figma-design.md) 참조.
+
+주요 변경:
+
+- UI 프리미티브: `@base-ui/react` → `@radix-ui/*` + shadcn/ui (Figma 이전 시 변경, 유지 결정)
+- 폰트: Geist → Poppins (Figma 디자인 반영)
+- Zustand store 4개 구현 완료 (`src/store/`)
+- 주차 계산 유틸리티 추가 (`src/lib/week-calculator.ts`)
+- Static export 설정 복원 (`output: 'export'`, `basePath`)

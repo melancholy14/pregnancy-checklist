@@ -1,65 +1,111 @@
-import Image from "next/image";
+"use client";
+
+import { useState, useEffect } from "react";
+import { ListChecks, Clock, Users, Scale, Video } from "lucide-react";
+import Link from "next/link";
+import { useDueDateStore } from "@/store/useDueDateStore";
+import { calcPregnancyWeek } from "@/lib/week-calculator";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 export default function Home() {
+  const { dueDate, setDueDate } = useDueDateStore();
+  const [currentWeek, setCurrentWeek] = useState<number | null>(null);
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
+
+  useEffect(() => {
+    if (hydrated && dueDate) {
+      setCurrentWeek(calcPregnancyWeek(new Date(dueDate)));
+    }
+  }, [hydrated, dueDate]);
+
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const date = e.target.value;
+    setDueDate(date);
+  };
+
+  const features = [
+    { icon: ListChecks, label: "체크리스트", color: "#FFD6E0", path: "/checklist" },
+    { icon: Clock, label: "타임라인", color: "#E8D5F5", path: "/timeline" },
+    { icon: Users, label: "베이비페어", color: "#D5F0E8", path: "/baby-fair" },
+    { icon: Scale, label: "체중 기록", color: "#FFE8D0", path: "/weight" },
+    { icon: Video, label: "영상", color: "#FFF8D0", path: "/videos" },
+  ];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="min-h-screen pb-24 px-4">
+      {/* Hero Section */}
+      <div className="pt-12 pb-8 text-center">
+        <div className="mb-6 relative">
+          <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-[#FFD6E0] via-[#E8D5F5] to-[#D5F0E8] flex items-center justify-center">
+            <div className="text-6xl">🤰</div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+        <h1 className="mb-2">출산 준비 체크리스트</h1>
+        <p className="text-gray-500">소중한 아기를 위한 완벽한 준비</p>
+      </div>
+
+      {/* Due Date Card */}
+      <div className="max-w-md mx-auto mb-8">
+        <Card className="rounded-3xl shadow-lg border-0">
+          <CardContent className="p-6">
+            <label className="block mb-3 text-center">출산 예정일을 입력하세요</label>
+            <input
+              type="date"
+              value={hydrated ? (dueDate ?? "") : ""}
+              onChange={handleDateChange}
+              className="w-full px-4 py-3 bg-gray-50 rounded-full border-0 text-center"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            {hydrated && currentWeek !== null && (
+              <div className="mt-4 text-center">
+                <Badge className="bg-[#FFD6E0] text-[#4A4A4A] px-6 py-3 rounded-full text-lg border-0 hover:bg-[#FFD6E0]">
+                  현재 임신 <strong>{currentWeek}주</strong>
+                </Badge>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Feature Grid */}
+      <div className="max-w-2xl mx-auto">
+        <div className="grid grid-cols-2 gap-4">
+          {features.map((feature) => {
+            const Icon = feature.icon;
+            return (
+              <Link
+                key={feature.label}
+                href={feature.path}
+                className="no-underline"
+              >
+                <Card className="rounded-3xl shadow-md hover:shadow-xl transition-all border-0 h-full">
+                  <CardContent className="p-6 flex flex-col items-center gap-3 group">
+                    <div
+                      className="w-16 h-16 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform"
+                      style={{ backgroundColor: feature.color }}
+                    >
+                      <Icon size={28} strokeWidth={2} color="#4A4A4A" />
+                    </div>
+                    <span className="text-center">{feature.label}</span>
+                  </CardContent>
+                </Card>
+              </Link>
+            );
+          })}
         </div>
-      </main>
+      </div>
+
+      {/* Motivational Text */}
+      <div className="max-w-md mx-auto mt-8 text-center">
+        <p className="text-gray-400 text-sm">
+          출산은 인생에서 가장 특별한 순간입니다<br />
+          함께 준비해요! 💕
+        </p>
+      </div>
     </div>
   );
 }
