@@ -1,1 +1,82 @@
-[]
+[
+  {
+    "slug": "seoul-babyfair-2026-04",
+    "name": "서울 베이비페어",
+    "venue_name": "코엑스 Hall A",
+    "city": "서울",
+    "start_date": "2026-04-10",
+    "end_date": "2026-04-12",
+    "official_url": "",
+    "review_status": "approved"
+  },
+  {
+    "slug": "busan-babyfair-2026-04",
+    "name": "부산 임산부 & 육아용품 박람회",
+    "venue_name": "벡스코 제1전시장",
+    "city": "부산",
+    "start_date": "2026-04-18",
+    "end_date": "2026-04-20",
+    "official_url": "",
+    "review_status": "approved"
+  },
+  {
+    "slug": "daegu-babyfair-2026-05",
+    "name": "대구 베이비 & 키즈페어",
+    "venue_name": "엑스코 동관",
+    "city": "대구",
+    "start_date": "2026-05-02",
+    "end_date": "2026-05-04",
+    "official_url": "",
+    "review_status": "approved"
+  },
+  {
+    "slug": "incheon-babyfair-2026-05",
+    "name": "인천 맘&베이비 박람회",
+    "venue_name": "송도컨벤시아",
+    "city": "인천",
+    "start_date": "2026-05-15",
+    "end_date": "2026-05-17",
+    "official_url": "",
+    "review_status": "approved"
+  },
+  {
+    "slug": "gyeonggi-babyfair-2026-05",
+    "name": "경기 베이비페어",
+    "venue_name": "킨텍스 제2전시장",
+    "city": "경기",
+    "start_date": "2026-05-24",
+    "end_date": "2026-05-26",
+    "official_url": "",
+    "review_status": "approved"
+  },
+  {
+    "slug": "gwangju-babyfair-2026-06",
+    "name": "광주 임산부 용품전",
+    "venue_name": "김대중컨벤션센터",
+    "city": "광주",
+    "start_date": "2026-06-06",
+    "end_date": "2026-06-08",
+    "official_url": "",
+    "review_status": "approved"
+  },
+  {
+    "slug": "gangnam-babyfair-2026-06",
+    "name": "강남 프리미엄 베이비페어",
+    "venue_name": "강남 코엑스 Hall D",
+    "city": "서울",
+    "start_date": "2026-06-13",
+    "end_date": "2026-06-15",
+    "official_url": "",
+    "review_status": "approved"
+  },
+  {
+    "slug": "daejeon-babyfair-2026-06",
+    "name": "대전 베이비&맘 페스티벌",
+    "venue_name": "대전컨벤션센터",
+    "city": "대전",
+    "start_date": "2026-06-20",
+    "end_date": "2026-06-22",
+    "official_url": "",
+    "review_status": "approved"
+  }
+]
