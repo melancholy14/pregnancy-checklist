@@ -3,7 +3,7 @@
 > Generated from: [PRD v2](../plan/pregnancy-prep-service-prd-v2.md), [전체 계획서](../plan/plan.md)
 > Phase 0 기록: [init-settings.md](../phase-0/init-settings.md), [figma-design.md](../phase-0/figma-design.md)
 > Date: 2026-03-19 (Updated: 2026-03-29)
-> Status: Ready
+> Status: 🔄 구현 진행 중
 
 ## Overview
 
@@ -288,6 +288,10 @@ npm install @next/third-parties
   - `page.tsx`: `import videos from '@/data/videos.json'` → props로 전달
   - `VideosContainer.tsx`: 카테고리별 탭 3개 (임산부 운동 / 출산 준비 / 신생아 케어)
   - `VideoCard.tsx`: YouTube iframe embed + 제목 + 설명. 빈 배열 시 empty state
+  - 영상 데이터 수집: YouTube Data API v3 `search.list` 엔드포인트로 태그 기반 검색
+    - 검색 태그: `임산부 운동`, `출산 준비`, `신생아 케어` 등 카테고리별 키워드
+    - PoC에서는 수동 큐레이션 → `videos.json` 직접 편집
+    - Phase 4 이후: API 자동 수집 + Admin 검수 파이프라인
 - **Verify:** empty state 표시, 탭 UI 렌더링
 
 ### Step 9: 홈 대시보드 완성

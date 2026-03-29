@@ -212,6 +212,38 @@ pregnancy_week = (today - pregnancy_start) / 7
 -   출산 준비
 -   신생아 케어
 
+### 영상 수집 전략
+
+YouTube Data API v3의 `search.list` 엔드포인트를 사용하여 태그 기반으로 영상 목록을 수집한다.
+
+**검색 태그 (카테고리별)**
+
+| 카테고리 | 검색 태그 | 필터 |
+| -------- | --------- | ---- |
+| 임산부 운동 | `임산부 운동`, `임산부 요가`, `임산부 스트레칭`, `임산부 케겔` | `videoDuration=medium`, `relevanceLanguage=ko` |
+| 출산 준비 | `출산 준비`, `출산 과정`, `출산 호흡법`, `제왕절개` | `videoDuration=medium`, `relevanceLanguage=ko` |
+| 신생아 케어 | `신생아 케어`, `신생아 목욕`, `모유 수유`, `신생아 돌봄` | `videoDuration=medium`, `relevanceLanguage=ko` |
+
+**수집 프로세스**
+
+1. 카테고리별 태그로 YouTube API 검색 (최대 10개/카테고리)
+2. 결과를 `src/data/videos.json`에 저장 (id, title, youtube_id, category, description, thumbnail)
+3. PoC에서는 수동 큐레이션 → `videos.json` 직접 편집
+4. Phase 4 이후: API 자동 수집 + Admin 검수 파이프라인
+
+**API 호출 예시**
+
+```
+GET https://www.googleapis.com/youtube/v3/search
+  ?part=snippet
+  &q=임산부+운동
+  &type=video
+  &videoDuration=medium
+  &relevanceLanguage=ko
+  &maxResults=10
+  &key={YOUTUBE_API_KEY}
+```
+
 ------------------------------------------------------------------------
 
 # 6. Tech Stack

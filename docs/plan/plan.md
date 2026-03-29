@@ -12,7 +12,7 @@
 | Phase | 환경 | 내용 | 예상 기간 | 상태 |
 | ----- | ---- | ---- | --------- | ---- |
 | 0 | 로컬 | 초기 세팅 + Figma 디자인 이전 | 2주 (완료: ~2026-03-29) | ✅ 완료 |
-| 1 | 로컬 → gh-pages | 핵심 기능 + PoC 배포 + GA4/Ads | 3~4주 (목표: ~2026-04-27) | 🔜 진행 예정 |
+| 1 | 로컬 → gh-pages | 핵심 기능 + PoC 배포 + GA4/Ads | 3~4주 (목표: ~2026-04-27) | 🔄 구현 진행 중 |
 | 2 | 로컬 | 베이비페어 크롤러 & Admin UI | 2주 | |
 | 3 | 로컬 | SEO & 품질 | 1~2주 | |
 | 4 | GCP | 인프라 세팅 | 1주 | |
@@ -256,6 +256,8 @@ export function calcPregnancyWeek(dueDate: Date, today: Date): number {
 
 - 카테고리별 탭 (임산부 운동 / 출산 준비 / 신생아 케어)
 - YouTube embed (`videos.json` 기반)
+- 영상 수집: YouTube Data API v3 `search.list`로 태그 기반 검색 (상세: [PRD v2 §5 Video Content](pregnancy-prep-service-prd-v2.md))
+- PoC에서는 수동 큐레이션 → `videos.json` 직접 편집. Phase 4 이후 API 자동 수집
 
 ### 1-8. Google Analytics 4 (GA4)
 
