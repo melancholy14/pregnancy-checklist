@@ -403,13 +403,19 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 
 **추적 이벤트 (기본 + 커스텀):**
 
-| 이벤트 | 설명 |
-| ------ | ---- |
-| `page_view` | GA4 기본 (자동 수집) |
-| `due_date_set` | 출산 예정일 입력 |
-| `checklist_check` | 체크리스트 항목 체크/해제 |
-| `custom_item_add` | 커스텀 항목 추가 |
-| `weight_log` | 체중 기록 입력 |
+| 이벤트 | 설명 | 파라미터 |
+| ------ | ---- | -------- |
+| `page_view` | GA4 기본 (자동 수집) | — |
+| `due_date_set` | 출산 예정일 입력 (핵심 퍼널) | `pregnancy_week` |
+| `checklist_check` | 체크리스트 항목 체크/해제 | `category`, `item_id`, `checked` |
+| `custom_item_add` | 커스텀 항목 추가 | `target` (checklist/timeline), `category` |
+| `custom_item_remove` | 커스텀 항목 삭제 | `target`, `item_id` |
+| `weight_log` | 체중 기록 입력 | `pregnancy_week` |
+| `category_tab_switch` | 체크리스트 카테고리 탭 전환 | `category` |
+| `timeline_scroll_depth` | 타임라인 스크롤 도달 주차 | `max_week_visible` |
+| `outbound_click` | 외부 링크 클릭 (베이비페어 공식 URL) | `url`, `event_name` |
+| `onboarding_banner_click` | 예정일 유도 배너 클릭 | `source_page` |
+| `data_export` | 데이터 내보내기 클릭 (Phase 1 이후) | — |
 
 ### 1-9. Google AdSense
 
@@ -451,6 +457,21 @@ export function AdUnit({ slot, format = 'auto' }: {
 | 체크리스트 카테고리 사이 | 1 | 스크롤 중 자연스러운 위치 |
 | 타임라인 카드 사이 | 1 | 주차 카드 5~10개마다 삽입 |
 | 체중 기록 차트 하단 | 1 | 차트 확인 후 자연스러운 위치 |
+
+### 1-10. 개인정보처리방침 & 서비스 약관
+
+AdSense 승인 및 GA4 사용의 필수 요건. 배포 전 반드시 준비.
+
+- `/privacy` — 개인정보처리방침 (정적 페이지)
+- `/terms` — 서비스 이용약관 (정적 페이지)
+- 공통 푸터에 링크 배치
+- 상세 요구사항: [PRD v2 §11](pregnancy-prep-service-prd-v2.md)
+
+### 1-11. 의료 면책 고지
+
+- 공통 푸터: "본 서비스는 의료적 조언을 제공하지 않습니다" 문구
+- 체중 기록 페이지: 권장 범위 참조선 옆 출처 + 면책 문구
+- 상세 전략: [PRD v2 §13](pregnancy-prep-service-prd-v2.md)
 
 ---
 
