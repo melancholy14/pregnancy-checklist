@@ -7,4 +7,5 @@ export type TimelineItem = {
   priority: 'high' | 'medium' | 'low';
   linked_checklist_ids?: string[];
   seo_slug?: string;
+  isCustom?: boolean;
 };

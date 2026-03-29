@@ -79,3 +79,6 @@ User → Cloud Run (Next.js App) → Google Cloud Storage (JSON Data)
 | 3 | SEO & 품질 | ⬜ |
 | 4 | GCP 인프라 세팅 | ⬜ |
 | 5 | 운영 배포 & CI/CD | ⬜ |
+
+## 디자인
+The original project is available at https://www.figma.com/design/35OqjFauyykAf3Hr2LKhf7/Pregnancy-Preparation-Web-App.

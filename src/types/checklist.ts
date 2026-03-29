@@ -5,4 +5,5 @@ export type ChecklistItem = {
   categoryName: string;
   recommendedWeek: number;
   priority: 'high' | 'medium' | 'low';
+  isCustom?: boolean;
 };
