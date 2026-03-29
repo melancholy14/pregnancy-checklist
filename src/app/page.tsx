@@ -1,41 +1,19 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { ListChecks, Clock, Users, Scale, Video } from "lucide-react";
 import Link from "next/link";
-import { useDueDateStore } from "@/store/useDueDateStore";
-import { calcPregnancyWeek } from "@/lib/week-calculator";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { DueDateInput } from "@/components/home/DueDateInput";
+
+const features = [
+  { icon: ListChecks, label: "체크리스트", color: "#FFD6E0", path: "/checklist" },
+  { icon: Clock, label: "타임라인", color: "#E8D5F5", path: "/timeline" },
+  { icon: Users, label: "베이비페어", color: "#D5F0E8", path: "/baby-fair" },
+  { icon: Scale, label: "체중 기록", color: "#FFE8D0", path: "/weight" },
+  { icon: Video, label: "영상", color: "#FFF8D0", path: "/videos" },
+];
 
 export default function Home() {
-  const { dueDate, setDueDate } = useDueDateStore();
-  const [currentWeek, setCurrentWeek] = useState<number | null>(null);
-  const [hydrated, setHydrated] = useState(false);
-
-  useEffect(() => {
-    setHydrated(true);
-  }, []);
-
-  useEffect(() => {
-    if (hydrated && dueDate) {
-      setCurrentWeek(calcPregnancyWeek(new Date(dueDate)));
-    }
-  }, [hydrated, dueDate]);
-
-  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const date = e.target.value;
-    setDueDate(date);
-  };
-
-  const features = [
-    { icon: ListChecks, label: "체크리스트", color: "#FFD6E0", path: "/checklist" },
-    { icon: Clock, label: "타임라인", color: "#E8D5F5", path: "/timeline" },
-    { icon: Users, label: "베이비페어", color: "#D5F0E8", path: "/baby-fair" },
-    { icon: Scale, label: "체중 기록", color: "#FFE8D0", path: "/weight" },
-    { icon: Video, label: "영상", color: "#FFF8D0", path: "/videos" },
-  ];
-
   return (
     <div className="min-h-screen pb-24 px-4">
       {/* Hero Section */}
@@ -51,24 +29,7 @@ export default function Home() {
 
       {/* Due Date Card */}
       <div className="max-w-md mx-auto mb-8">
-        <Card className="rounded-3xl shadow-lg border-0">
-          <CardContent className="p-6">
-            <label className="block mb-3 text-center">출산 예정일을 입력하세요</label>
-            <input
-              type="date"
-              value={hydrated ? (dueDate ?? "") : ""}
-              onChange={handleDateChange}
-              className="w-full px-4 py-3 bg-gray-50 rounded-full border-0 text-center"
-            />
-            {hydrated && currentWeek !== null && (
-              <div className="mt-4 text-center">
-                <Badge className="bg-[#FFD6E0] text-[#4A4A4A] px-6 py-3 rounded-full text-lg border-0 hover:bg-[#FFD6E0]">
-                  현재 임신 <strong>{currentWeek}주</strong>
-                </Badge>
-              </div>
-            )}
-          </CardContent>
-        </Card>
+        <DueDateInput />
       </div>
 
       {/* Feature Grid */}
