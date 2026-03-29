@@ -8,7 +8,8 @@ docs/
 ├── data/      데이터셋 (seed JSON)
 ├── specs/     기능별 상세 스펙
 ├── infra/     인프라 / 아키텍처
-└── logs/      Phase별 개발 기록
+├── phase-0/   Phase 0 개발 기록
+└── phase-1/   Phase 1 개발 계획
 ```
 
 ## plan/
@@ -40,8 +41,15 @@ docs/
 | `architecture.md`  | 시스템 아키텍처   |
 | `gcp-deployment.md` | GCP 배포 가이드  |
 
-## logs/
+## phase-0/
 
-| 파일        | 내용                  |
-| ----------- | --------------------- |
-| `0_init.md` | Phase 0 초기 세팅 기록 |
+| 파일                | 내용                              |
+| ------------------- | --------------------------------- |
+| `init-settings.md`  | Phase 0 초기 세팅 기록             |
+| `figma-design.md`   | Figma 디자인 이전 + shadcn 전환 기록 |
+
+## phase-1/
+
+| 파일       | 내용                          |
+| ---------- | ----------------------------- |
+| `plan.md`  | Phase 1 핵심 기능 개발 계획    |
