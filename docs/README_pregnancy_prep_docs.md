@@ -32,6 +32,7 @@ docs/
 | --------------------------- | --------------------------- |
 | `babyfair_crawler_spec.md`  | 베이비페어 크롤러 스펙       |
 | `babyfair_data_pipeline.md` | 베이비페어 데이터 파이프라인 |
+| `technical-debt.md`         | 기술적 보완 사항 (18개 항목) |
 
 ## infra/
 
