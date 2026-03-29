@@ -1,6 +1,9 @@
 # Pregnancy Timeline Dataset
 
-Version: 0.1  
+> **정본 (Canonical)**: 이 문서가 타임라인 데이터의 정본이다.
+> 코드 반영: `src/data/timeline_items.json` (24개 항목)
+
+Version: 0.1
 Target reader: Codex / AI coding agent / content engineer
 
 이 문서는 출산 예정일 기반 개인화 타임라인의 초기 seed dataset을 정의한다.

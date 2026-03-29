@@ -9,14 +9,17 @@
 
 ## 전체 단계 요약
 
-| Phase | 환경 | 내용 | 산출물 | 상태 |
-| ----- | ---- | ---- | ------ | ---- |
-| 0 | 로컬 | 프로젝트 초기 세팅 + Figma 디자인 이전 | Next.js static export 뼈대, 정적 JSON, Zustand store, shadcn/ui 전환, E2E 테스트 | ✅ 완료 |
-| 1 | 로컬 → gh-pages | 핵심 기능 개발 + PoC 배포 + Analytics/Ads | 체크리스트(커스텀), 타임라인(커스텀), 체중기록, 영상, GA4, Google Ads | 🔜 진행 예정 |
-| 2 | 로컬 | 베이비페어 크롤러 & Admin UI | 크롤러, 검수 UI | |
-| 3 | 로컬 | SEO & 품질 | SEO, 성능 최적화 | |
-| 4 | GCP | 인프라 세팅 | GCS, Cloud Run, Secret Manager | |
-| 5 | GCP | 운영 배포 | Docker, CI/CD, Cloud Scheduler | |
+| Phase | 환경 | 내용 | 예상 기간 | 상태 |
+| ----- | ---- | ---- | --------- | ---- |
+| 0 | 로컬 | 초기 세팅 + Figma 디자인 이전 | 2주 (완료: ~2026-03-29) | ✅ 완료 |
+| 1 | 로컬 → gh-pages | 핵심 기능 + PoC 배포 + GA4/Ads | 3~4주 (목표: ~2026-04-27) | 🔜 진행 예정 |
+| 2 | 로컬 | 베이비페어 크롤러 & Admin UI | 2주 | |
+| 3 | 로컬 | SEO & 품질 | 1~2주 | |
+| 4 | GCP | 인프라 세팅 | 1주 | |
+| 5 | GCP | 운영 배포 | 1주 | |
+
+> **PoC 검증 기간**: Phase 1 배포 후 4주간 KPI 측정 → Go/No-Go 판단 (PRD §2 참조).
+> Phase 2 착수는 Go 판단 이후. 예상 일정: 2026년 5월 말.
 
 > **PoC 원칙**: 서버 불필요. `src/data/` JSON을 클라이언트에서 직접 `import`해서 사용.
 > API Routes 없음. 사용자 상태(체크, 커스텀 항목, 체중)는 전부 LocalStorage(Zustand persist).
@@ -159,10 +162,14 @@ export type ChecklistItem = {
 
 // timeline.ts
 export type TimelineItem = {
+  id: string;
   week: number;
   title: string;
   description: string;
-  category: string;
+  type: 'prep' | 'shopping' | 'admin' | 'education' | 'wellbeing';
+  priority: 'high' | 'medium' | 'low';
+  linked_checklist_ids?: string[];
+  seo_slug?: string;
   isCustom?: boolean; // 유저가 직접 추가한 항목
 };
 
@@ -273,13 +280,19 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 
 **추적 이벤트 (기본 + 커스텀):**
 
-| 이벤트 | 설명 |
-| ------ | ---- |
-| `page_view` | GA4 기본 (자동 수집) |
-| `due_date_set` | 출산 예정일 입력 |
-| `checklist_check` | 체크리스트 항목 체크/해제 |
-| `custom_item_add` | 커스텀 항목 추가 |
-| `weight_log` | 체중 기록 입력 |
+| 이벤트 | 설명 | 파라미터 |
+| ------ | ---- | -------- |
+| `page_view` | GA4 기본 (자동 수집) | — |
+| `due_date_set` | 출산 예정일 입력 (핵심 퍼널) | `pregnancy_week` |
+| `checklist_check` | 체크리스트 항목 체크/해제 | `category`, `item_id`, `checked` |
+| `custom_item_add` | 커스텀 항목 추가 | `target` (checklist/timeline), `category` |
+| `custom_item_remove` | 커스텀 항목 삭제 | `target`, `item_id` |
+| `weight_log` | 체중 기록 입력 | `pregnancy_week` |
+| `category_tab_switch` | 체크리스트 카테고리 탭 전환 | `category` |
+| `timeline_scroll_depth` | 타임라인 스크롤 도달 주차 | `max_week_visible` |
+| `outbound_click` | 외부 링크 클릭 (베이비페어 공식 URL) | `url`, `event_name` |
+| `onboarding_banner_click` | 예정일 유도 배너 클릭 | `source_page` |
+| `data_export` | 데이터 내보내기 클릭 (Phase 1 이후) | — |
 
 ### 1-9. Google AdSense
 
@@ -322,11 +335,30 @@ export function AdUnit({ slot, format = 'auto' }: {
 | 타임라인 카드 사이 | 1 | 주차 카드 5~10개마다 삽입 |
 | 체중 기록 차트 하단 | 1 | 차트 확인 후 자연스러운 위치 |
 
+### 1-10. 개인정보처리방침 & 서비스 약관
+
+AdSense 승인 및 GA4 사용의 필수 요건. 배포 전 반드시 준비.
+
+- `/privacy` — 개인정보처리방침 (정적 페이지)
+- `/terms` — 서비스 이용약관 (정적 페이지)
+- 공통 푸터에 링크 배치
+- 상세 요구사항: [PRD v2 §11](pregnancy-prep-service-prd-v2.md)
+
+### 1-11. 의료 면책 고지
+
+- 공통 푸터: "본 서비스는 의료적 조언을 제공하지 않습니다" 문구
+- 체중 기록 페이지: 권장 범위 참조선 옆 출처 + 면책 문구
+- 상세 전략: [PRD v2 §13](pregnancy-prep-service-prd-v2.md)
+
 ---
 
 ## Phase 2. 베이비페어 크롤러 & Admin UI (로컬)
 
 > 상세 스펙: [babyfair_crawler_spec.md](../specs/babyfair_crawler_spec.md)
+
+> **기술 제약**: Phase 1까지 `output: 'export'`(정적 빌드) 모드이므로 API Routes 사용 불가.
+> Phase 2의 크롤러와 Admin 검수는 **CLI + 로컬 스크립트** 방식으로 운영한다.
+> Admin API Routes는 Phase 4(GCP 전환) 이후에 추가.
 
 ### 2-1. 크롤러 (`scripts/crawl-babyfair.ts`)
 
@@ -347,21 +379,34 @@ npx ts-node scripts/crawl-babyfair.ts --mode=full
 - 장소: `코엑스/COEX/서울 코엑스` → `COEX` 통일
 - Confidence score 산출 (0.0 ~ 1.0)
 
-### 2-3. Admin 검수 UI (`/admin/babyfair`)
+### 2-3. Admin 검수 (CLI 기반)
 
-- 인증: `ADMIN_SECRET` 헤더 검증
-- 검수 목록: raw 원본 vs normalized 비교 뷰
-- 액션: approve / reject / edit
-- approve → `babyfair_events.json`에 반영 (로컬) / GCS 업로드 (운영)
+> Phase 2에서는 서버 없이 CLI 스크립트로 검수. Admin Web UI는 Phase 4 이후.
 
-### 2-4. 내부 Admin API Routes
+- `scripts/review-babyfair.ts` — 터미널 기반 검수 도구
+  - pending 목록 출력 (raw 원본 vs normalized 비교)
+  - approve / reject / edit 입력
+  - approve → `src/data/babyfair_events.json`에 자동 반영
+  - 변경 후 `npm run build && npm run deploy`로 gh-pages 재배포
 
-| Route | 역할 |
-| ----- | ---- |
-| `POST /api/admin/crawl/babyfair/full` | 크롤러 full 실행 |
-| `POST /api/admin/crawl/babyfair/incremental` | 크롤러 incremental 실행 |
-| `POST /api/admin/babyfair-events/[id]/approve` | 이벤트 승인 |
-| `POST /api/admin/babyfair-events/[id]/reject` | 이벤트 거부 |
+```bash
+# 검수 실행
+npx ts-node scripts/review-babyfair.ts
+
+# 승인 후 재배포
+npm run build && npm run deploy
+```
+
+### 2-4. Admin API Routes (Phase 4 이후)
+
+> `output: 'export'` 제거 후 서버 모드에서 추가. Phase 2에서는 미구현.
+
+| Route | 역할 | 시점 |
+| ----- | ---- | ---- |
+| `POST /api/admin/crawl/babyfair/full` | 크롤러 full 실행 | Phase 4+ |
+| `POST /api/admin/crawl/babyfair/incremental` | 크롤러 incremental 실행 | Phase 4+ |
+| `POST /api/admin/babyfair-events/[id]/approve` | 이벤트 승인 | Phase 4+ |
+| `POST /api/admin/babyfair-events/[id]/reject` | 이벤트 거부 | Phase 4+ |
 
 ---
 

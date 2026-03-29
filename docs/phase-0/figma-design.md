@@ -241,7 +241,7 @@ src/
 │   └── ui/                         # shadcn/ui (49개)
 ├── data/                           # 정적 JSON (복원)
 │   ├── checklist_items.json        # 120개 항목
-│   ├── timeline_items.json         # 27개 항목
+│   ├── timeline_items.json         # 24개 항목
 │   ├── babyfair_events.json        # [] (Phase 2에서 채움)
 │   └── videos.json                 # [] (수동 큐레이션 예정)
 ├── hooks/

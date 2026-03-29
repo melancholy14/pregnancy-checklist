@@ -24,8 +24,7 @@ docs/
 | 파일                               | 내용                          |
 | ---------------------------------- | ----------------------------- |
 | `checklist_dataset.md`             | 출산 준비 체크리스트 seed (120개) |
-| `pregnancy_timeline_dataset.md`    | 주차별 타임라인 seed (27개)   |
-| `pregnancy_week_timeline_dataset.md` | 임신 1~40주 이벤트 데이터   |
+| `pregnancy_timeline_dataset.md`    | 주차별 타임라인 seed (24개, 정본)   |
 
 ## specs/
 
