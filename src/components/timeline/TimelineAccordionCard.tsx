@@ -122,74 +122,66 @@ export function TimelineAccordionCard({
                 </div>
               </div>
             ) : (
-              <CollapsibleTrigger asChild disabled={!hasChecklist}>
-                <button
-                  className={`w-full text-left p-4 ${hasChecklist ? "cursor-pointer" : "cursor-default"}`}
-                  type="button"
-                >
-                  <div className="flex items-start justify-between gap-2">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <h3 className="text-[15px] font-medium">{item.title}</h3>
-                        {item.isCustom && (
-                          <Badge className="bg-[#E4D6F0]/40 text-[#6B5A80] text-[10px] px-1.5 py-0 rounded border-0 hover:bg-[#E4D6F0]/40">
-                            내 항목
-                          </Badge>
-                        )}
-                      </div>
-                      {item.description && (
-                        <p className="text-sm text-muted-foreground">{item.description}</p>
-                      )}
-                      {/* 체크리스트 요약 */}
-                      {hasChecklist && (
-                        <div className="flex items-center gap-2 mt-2">
-                          <ChevronDown
-                            size={14}
-                            className={`text-muted-foreground transition-transform duration-200 ${
-                              isOpen ? "rotate-180" : ""
-                            }`}
-                          />
-                          <span className="text-xs text-muted-foreground">
-                            체크리스트 {totalCount}개
-                            {checkedCount > 0 && (
-                              <span className="ml-1 text-[#2D6B4F]">
-                                ({checkedCount}/{totalCount} 완료)
-                              </span>
-                            )}
-                          </span>
-                        </div>
-                      )}
-                      {!hasChecklist && (
-                        <p className="text-xs text-muted-foreground mt-2">준비 항목 없음</p>
+              <div className="flex items-start justify-between gap-2 p-4">
+                <CollapsibleTrigger asChild disabled={!hasChecklist}>
+                  <button
+                    className={`flex-1 text-left ${hasChecklist ? "cursor-pointer" : "cursor-default"}`}
+                    type="button"
+                  >
+                    <div className="flex items-center gap-2 mb-1">
+                      <h3 className="text-[15px] font-medium">{item.title}</h3>
+                      {item.isCustom && (
+                        <Badge className="bg-[#E4D6F0]/40 text-[#6B5A80] text-[10px] px-1.5 py-0 rounded border-0 hover:bg-[#E4D6F0]/40">
+                          내 항목
+                        </Badge>
                       )}
                     </div>
-                    {item.isCustom && (
-                      <div className="flex items-center gap-1 shrink-0">
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setIsEditing(true);
-                          }}
-                          className="p-1 rounded-lg text-[#9CA0A4] hover:text-[#6B5A80] hover:bg-[#E4D6F0]/20 transition-colors"
-                          aria-label="수정"
-                        >
-                          <Pencil size={14} />
-                        </button>
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            removeCustomItem(item.id);
-                          }}
-                          className="p-1 rounded-lg text-[#9CA0A4] hover:text-red-400 hover:bg-red-50 transition-colors"
-                          aria-label="삭제"
-                        >
-                          <Trash2 size={16} />
-                        </button>
+                    {item.description && (
+                      <p className="text-sm text-muted-foreground">{item.description}</p>
+                    )}
+                    {/* 체크리스트 요약 */}
+                    {hasChecklist && (
+                      <div className="flex items-center gap-2 mt-2">
+                        <ChevronDown
+                          size={14}
+                          className={`text-muted-foreground transition-transform duration-200 ${
+                            isOpen ? "rotate-180" : ""
+                          }`}
+                        />
+                        <span className="text-xs text-muted-foreground">
+                          체크리스트 {totalCount}개
+                          {checkedCount > 0 && (
+                            <span className="ml-1 text-[#2D6B4F]">
+                              ({checkedCount}/{totalCount} 완료)
+                            </span>
+                          )}
+                        </span>
                       </div>
                     )}
+                    {!hasChecklist && (
+                      <p className="text-xs text-muted-foreground mt-2">준비 항목 없음</p>
+                    )}
+                  </button>
+                </CollapsibleTrigger>
+                {item.isCustom && (
+                  <div className="flex items-center gap-1 shrink-0">
+                    <button
+                      onClick={() => setIsEditing(true)}
+                      className="p-1 rounded-lg text-[#9CA0A4] hover:text-[#6B5A80] hover:bg-[#E4D6F0]/20 transition-colors"
+                      aria-label="수정"
+                    >
+                      <Pencil size={14} />
+                    </button>
+                    <button
+                      onClick={() => removeCustomItem(item.id)}
+                      className="p-1 rounded-lg text-[#9CA0A4] hover:text-red-400 hover:bg-red-50 transition-colors"
+                      aria-label="삭제"
+                    >
+                      <Trash2 size={16} />
+                    </button>
                   </div>
-                </button>
-              </CollapsibleTrigger>
+                )}
+              </div>
             )}
 
             {/* Expandable checklist */}

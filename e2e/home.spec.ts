@@ -29,28 +29,27 @@ test.describe("홈 페이지", () => {
 
       await page.locator('input[type="date"]').fill(dateStr);
       await expect(page.getByText(/현재 임신/)).toBeVisible();
-      // 대시보드: 체크리스트 진행률
+      // 대시보드: 체크리스트 진행률 (링크가 /timeline으로 변경됨)
       await expect(page.getByText("체크리스트 진행률")).toBeVisible();
       // D-day 카드
       await expect(page.getByText("D-day")).toBeVisible();
     });
 
-    test("5개 기능 카드가 보인다", async ({ page }) => {
-      // 무엇을: 하단 기능 그리드에 5개 링크가 있는지
-      // 왜: 주요 기능 접근 경로
+    test("4개 기능 카드가 보인다", async ({ page }) => {
+      // 무엇을: 하단 기능 그리드에 4개 링크가 있는지
+      // 왜: Phase 1.5에서 체크리스트 카드 제거 (타임라인에 통합)
       const grid = page.locator(".grid");
-      await expect(grid.getByRole("link", { name: "체크리스트" })).toBeVisible();
       await expect(grid.getByRole("link", { name: "타임라인" })).toBeVisible();
       await expect(grid.getByRole("link", { name: "베이비페어" })).toBeVisible();
       await expect(grid.getByRole("link", { name: "체중 기록" })).toBeVisible();
       await expect(grid.getByRole("link", { name: "영상" })).toBeVisible();
     });
 
-    test("기능 카드 클릭 시 해당 페이지로 이동한다", async ({ page }) => {
+    test("타임라인 카드 클릭 시 /timeline으로 이동한다", async ({ page }) => {
       // 무엇을: 기능 카드가 올바른 경로로 라우팅되는지
       // 왜: 네비게이션 정상 동작 확인
-      await page.getByRole("link", { name: "체크리스트" }).first().click();
-      await expect(page).toHaveURL("/checklist");
+      await page.getByRole("link", { name: "타임라인" }).first().click();
+      await expect(page).toHaveURL("/timeline");
     });
   });
 
@@ -82,7 +81,7 @@ test.describe("홈 페이지", () => {
       await expect(page.getByRole("heading", { name: "출산 준비 체크리스트" })).toBeVisible();
       await expect(page.locator('input[type="date"]')).toBeVisible();
       const grid = page.locator(".grid");
-      await expect(grid.getByRole("link", { name: "체크리스트" })).toBeVisible();
+      await expect(grid.getByRole("link", { name: "타임라인" })).toBeVisible();
     });
   });
 });

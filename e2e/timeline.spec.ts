@@ -10,12 +10,12 @@ test.describe("타임라인 페이지", () => {
       // 무엇을: 타임라인 페이지 기본 UI
       // 왜: 페이지 정상 진입 확인
       await expect(page.getByRole("heading", { name: "임신 타임라인" })).toBeVisible();
-      await expect(page.getByText("주차별 중요한 순간들을 확인하세요")).toBeVisible();
+      await expect(page.getByText("주차별 일정과 체크리스트를 한눈에 확인하세요")).toBeVisible();
     });
 
     test("JSON 기반 타임라인 항목들이 주차순으로 표시된다", async ({ page }) => {
       // 무엇을: timeline_items.json의 항목들이 카드로 렌더링되는지
-      // 왜: Phase 1에서 마일스톤 5개 → 30+ 개별 카드로 전환됨
+      // 왜: 기본 데이터 정상 렌더링 확인
       await expect(page.getByText("임신 확인 후 기본 일정 잡기")).toBeVisible();
       await expect(page.getByText("4주", { exact: true })).toBeVisible();
     });
@@ -27,21 +27,21 @@ test.describe("타임라인 페이지", () => {
     });
 
     test("커스텀 항목을 추가할 수 있다", async ({ page }) => {
-      // 무엇을: FAB → 폼 → 항목 추가 전체 흐름
-      // 왜: Phase 1 핵심 신규 기능
+      // 무엇을: FAB → 통합 폼 → 타임라인 항목 추가 전체 흐름
+      // 왜: 커스텀 항목 추가 기능 검증
       await page.locator('button[aria-label="항목 추가"]').click();
 
-      // 폼 표시 확인
-      await expect(page.getByPlaceholder("할 일을 입력하세요")).toBeVisible();
+      // 통합 폼에서 "일정" 유형 선택
+      await page.locator('input[value="timeline"]').click();
+      await expect(page.getByPlaceholder("일정을 입력하세요")).toBeVisible();
 
       // 주차 + 제목 입력 후 추가
       await page.locator('input[type="number"]').fill("20");
-      await page.getByPlaceholder("할 일을 입력하세요").fill("테스트 타임라인 항목");
-      await page.getByRole("button", { name: "추가", exact: true }).click();
+      await page.getByPlaceholder("일정을 입력하세요").fill("테스트 타임라인 항목");
+      await page.getByRole("button", { name: "추가하기" }).click();
 
       // 추가된 항목 확인
       await expect(page.getByText("테스트 타임라인 항목")).toBeVisible();
-      // 내 항목 배지
       await expect(page.getByText("내 항목")).toBeVisible();
     });
 
@@ -50,9 +50,10 @@ test.describe("타임라인 페이지", () => {
       // 왜: 기본 항목은 보호, 커스텀만 삭제 가능
       // 먼저 추가
       await page.locator('button[aria-label="항목 추가"]').click();
+      await page.locator('input[value="timeline"]').click();
       await page.locator('input[type="number"]').fill("15");
-      await page.getByPlaceholder("할 일을 입력하세요").fill("삭제 테스트");
-      await page.getByRole("button", { name: "추가", exact: true }).click();
+      await page.getByPlaceholder("일정을 입력하세요").fill("삭제 테스트");
+      await page.getByRole("button", { name: "추가하기" }).click();
 
       await expect(page.getByText("삭제 테스트")).toBeVisible();
 
@@ -69,7 +70,7 @@ test.describe("타임라인 페이지", () => {
       // 무엇을: 제목 없이 추가 버튼이 비활성화되는지
       // 왜: 빈 항목 방지
       await page.locator('button[aria-label="항목 추가"]').click();
-      const addButton = page.getByRole("button", { name: "추가", exact: true });
+      const addButton = page.getByRole("button", { name: "추가하기" });
       await expect(addButton).toBeDisabled();
     });
 
