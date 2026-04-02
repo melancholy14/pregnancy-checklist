@@ -21,17 +21,17 @@ export function TimelineCard({ milestone, isCurrent }: TimelineCardProps) {
     <div className="relative pl-20">
       {/* Badge */}
       <div
-        className={`absolute left-0 w-16 h-16 rounded-full flex items-center justify-center shadow-lg transition-all ${
+        className={`absolute left-0 w-16 h-16 rounded-2xl flex items-center justify-center shadow-md transition-all border border-black/4 ${
           isCurrent ? "scale-110 ring-4 ring-white" : ""
         }`}
         style={{ backgroundColor: milestone.color }}
       >
-        <Icon size={28} color="#4A4A4A" strokeWidth={2} />
+        <Icon size={26} color="#2D3436" strokeWidth={1.8} />
       </div>
 
       {/* Week Badge */}
       <Badge
-        className="absolute left-16 top-0 rounded-full text-sm shadow-sm border-0 text-[#4A4A4A]"
+        className="absolute left-16 top-0 rounded-lg text-sm border border-black/4 text-[#2D3436] font-medium"
         style={{ backgroundColor: milestone.color }}
       >
         {milestone.week}주
@@ -39,8 +39,8 @@ export function TimelineCard({ milestone, isCurrent }: TimelineCardProps) {
 
       {/* Card */}
       <Card
-        className={`rounded-2xl shadow-md mt-10 transition-all border-0 ${
-          isCurrent ? "ring-2 ring-offset-2" : ""
+        className={`rounded-xl shadow-sm mt-10 transition-all border ${
+          isCurrent ? "ring-2 ring-offset-2 border-black/4" : "border-black/4"
         }`}
         style={
           isCurrent
@@ -54,7 +54,7 @@ export function TimelineCard({ milestone, isCurrent }: TimelineCardProps) {
             {milestone.tasks.map((task, i) => (
               <li
                 key={i}
-                className="flex items-start gap-2 text-sm text-gray-600"
+                className="flex items-start gap-2.5 text-sm text-muted-foreground"
               >
                 <span
                   className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0"

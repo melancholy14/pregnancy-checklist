@@ -9,15 +9,16 @@ interface ProgressSummaryProps {
 
 export function ProgressSummary({ checked, total, percent }: ProgressSummaryProps) {
   return (
-    <Card className="rounded-3xl shadow-md mb-6 border-0">
+    <Card className="rounded-2xl shadow-md mb-6 border border-black/4">
       <CardContent className="p-6">
-        <div className="flex justify-between items-center mb-2">
-          <span>전체 진행률</span>
-          <span className="text-lg">
-            <strong>{checked}</strong>/{total} 완료
+        <div className="flex justify-between items-center mb-3">
+          <span className="text-sm text-muted-foreground">전체 진행률</span>
+          <span className="text-base tabular-nums">
+            <strong>{checked}</strong>
+            <span className="text-muted-foreground">/{total}</span> 완료
           </span>
         </div>
-        <Progress value={percent} className="h-3 bg-gray-100" />
+        <Progress value={percent} className="h-2.5 bg-muted" />
       </CardContent>
     </Card>
   );

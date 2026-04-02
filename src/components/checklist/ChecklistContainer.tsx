@@ -74,10 +74,10 @@ export function ChecklistContainer({ items }: ChecklistContainerProps) {
                 <TabsTrigger
                   key={category}
                   value={category}
-                  className="px-6 py-3 rounded-full whitespace-nowrap shadow-sm border-0 bg-white text-gray-600 hover:bg-gray-50 data-[state=active]:bg-[#FFD6E0] data-[state=active]:text-[#4A4A4A] data-[state=active]:shadow-sm h-auto flex-none"
+                  className="px-5 py-2.5 rounded-xl whitespace-nowrap border border-black/4 bg-white text-[#7C8084] hover:bg-muted data-[state=active]:bg-[#F0C8D2]/40 data-[state=active]:text-[#2D3436] data-[state=active]:border-[#F0C8D2]/30 h-auto flex-none transition-all duration-200"
                 >
                   {CATEGORY_MAP[category]}
-                  <span className="ml-2 text-xs opacity-70">
+                  <span className="ml-2 text-xs opacity-60">
                     {hydrated ? prog.checked : 0}/{prog.total}
                   </span>
                 </TabsTrigger>
@@ -87,7 +87,7 @@ export function ChecklistContainer({ items }: ChecklistContainerProps) {
 
           {categories.map((category) => (
             <TabsContent key={category} value={category}>
-              <div className="space-y-3">
+              <div className="space-y-2.5">
                 {getItemsByCategory(category).map((item) => (
                   <ChecklistItem
                     key={item.id}
