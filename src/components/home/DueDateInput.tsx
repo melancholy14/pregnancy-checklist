@@ -26,18 +26,18 @@ export function DueDateInput() {
   };
 
   return (
-    <Card className="rounded-3xl shadow-lg border-0">
+    <Card className="rounded-2xl shadow-md border border-black/4">
       <CardContent className="p-6">
-        <label className="block mb-3 text-center">출산 예정일을 입력하세요</label>
+        <label className="block mb-3 text-center text-sm">출산 예정일을 입력하세요</label>
         <input
           type="date"
           value={hydrated ? (dueDate ?? "") : ""}
           onChange={handleDateChange}
-          className="w-full px-4 py-3 bg-gray-50 rounded-full border-0 text-center"
+          className="w-full px-4 py-3 bg-input-background rounded-xl border border-black/6 text-center focus:outline-none focus:ring-2 focus:ring-[#F0C8D2]/50 transition-shadow"
         />
         {hydrated && currentWeek !== null && (
           <div className="mt-4 text-center">
-            <Badge className="bg-[#FFD6E0] text-[#4A4A4A] px-6 py-3 rounded-full text-lg border-0 hover:bg-[#FFD6E0]">
+            <Badge className="bg-[#F0C8D2]/60 text-[#2D3436] px-6 py-3 rounded-xl text-lg border-0 hover:bg-[#F0C8D2]/60">
               현재 임신 <strong>{currentWeek}주</strong>
             </Badge>
           </div>

@@ -20,7 +20,7 @@ export function WeightForm({ onSubmit, onClose }: WeightFormProps) {
   };
 
   return (
-    <Card className="rounded-3xl shadow-md mb-6 border-0">
+    <Card className="rounded-2xl shadow-md mb-6 border border-black/4">
       <CardContent className="p-6">
         <div className="flex justify-between items-center mb-4">
           <h3>새 기록 추가</h3>
@@ -28,7 +28,7 @@ export function WeightForm({ onSubmit, onClose }: WeightFormProps) {
             variant="ghost"
             size="icon"
             onClick={onClose}
-            className="rounded-full bg-gray-100 hover:bg-gray-200"
+            className="rounded-xl bg-muted hover:bg-muted/80"
           >
             <X size={18} />
           </Button>
@@ -40,7 +40,7 @@ export function WeightForm({ onSubmit, onClose }: WeightFormProps) {
               type="date"
               value={newDate}
               onChange={(e) => setNewDate(e.target.value)}
-              className="w-full px-4 py-3 bg-gray-50 rounded-2xl border-0"
+              className="w-full px-4 py-3 bg-input-background rounded-xl border border-black/6 focus:outline-none focus:ring-2 focus:ring-[#F0C8D2]/50 transition-shadow"
             />
           </div>
           <div>
@@ -51,12 +51,12 @@ export function WeightForm({ onSubmit, onClose }: WeightFormProps) {
               value={newWeight}
               onChange={(e) => setNewWeight(e.target.value)}
               placeholder="예: 62.5"
-              className="w-full px-4 py-3 bg-gray-50 rounded-2xl border-0"
+              className="w-full px-4 py-3 bg-input-background rounded-xl border border-black/6 focus:outline-none focus:ring-2 focus:ring-[#F0C8D2]/50 transition-shadow"
             />
           </div>
           <Button
             onClick={handleAdd}
-            className="w-full py-3 bg-[#FFD6E0] rounded-full hover:bg-[#ffcad5] text-[#4A4A4A] h-auto"
+            className="w-full py-3 bg-[#F0C8D2] rounded-xl hover:bg-[#e8bec8] text-[#2D3436] h-auto transition-colors duration-200"
           >
             추가
           </Button>

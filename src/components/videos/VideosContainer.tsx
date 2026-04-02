@@ -132,7 +132,7 @@ export function VideosContainer() {
     <div className="min-h-screen pb-24 px-4">
       <div className="max-w-5xl mx-auto pt-8">
         <h1 className="mb-2 text-center">영상 콘텐츠</h1>
-        <p className="text-center text-gray-500 mb-8">
+        <p className="text-center text-muted-foreground mb-8">
           임신과 육아에 도움되는 영상 모음
         </p>
 
@@ -143,7 +143,7 @@ export function VideosContainer() {
               <TabsTrigger
                 key={category}
                 value={category}
-                className="px-6 py-3 rounded-full shadow-sm border-0 bg-white text-gray-600 hover:bg-gray-50 data-[state=active]:bg-[#FFD6E0] data-[state=active]:text-[#4A4A4A] data-[state=active]:shadow-sm h-auto flex-none"
+                className="px-5 py-2.5 rounded-xl border border-black/4 bg-white text-[#7C8084] hover:bg-muted data-[state=active]:bg-[#F0C8D2]/40 data-[state=active]:text-[#2D3436] data-[state=active]:border-[#F0C8D2]/30 h-auto flex-none transition-all duration-200"
               >
                 {category}
               </TabsTrigger>
@@ -162,10 +162,9 @@ export function VideosContainer() {
         </Tabs>
 
         {/* Info Card */}
-        <Card className="mt-12 rounded-3xl shadow-md border-0 bg-gradient-to-r from-[#D5F0E8] to-[#FFE8D0]">
+        <Card className="mt-12 rounded-2xl shadow-md border border-black/4 bg-linear-to-r from-[#C0DCD0]/40 to-[#ECD2BE]/40">
           <CardContent className="p-6 text-center">
-            <div className="text-3xl mb-2">📺</div>
-            <p className="text-sm text-gray-700">
+            <p className="text-sm text-muted-foreground">
               실제 영상 재생은 YouTube로 연결됩니다
             </p>
           </CardContent>

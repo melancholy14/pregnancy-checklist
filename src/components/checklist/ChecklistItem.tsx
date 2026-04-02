@@ -11,8 +11,8 @@ interface ChecklistItemProps {
 export function ChecklistItem({ item, isChecked, onToggle }: ChecklistItemProps) {
   return (
     <Card
-      className={`rounded-2xl shadow-sm cursor-pointer transition-all hover:shadow-md border-0 ${
-        isChecked ? "bg-[#D5F0E8]/30" : "bg-white"
+      className={`rounded-xl cursor-pointer transition-all duration-200 hover:shadow-md border ${
+        isChecked ? "bg-[#C0DCD0]/20 border-[#C0DCD0]/30" : "bg-white border-black/4"
       }`}
       onClick={onToggle}
     >
@@ -21,12 +21,12 @@ export function ChecklistItem({ item, isChecked, onToggle }: ChecklistItemProps)
           <Checkbox
             checked={isChecked}
             onCheckedChange={onToggle}
-            className="size-7 rounded-full border-2 data-[state=checked]:bg-[#D5F0E8] data-[state=checked]:border-[#D5F0E8] data-[state=checked]:text-[#4A4A4A] border-gray-300"
+            className="size-6 rounded-lg border-2 data-[state=checked]:bg-[#C0DCD0] data-[state=checked]:border-[#C0DCD0] data-[state=checked]:text-[#2D3436] border-gray-200"
             onClick={(e) => e.stopPropagation()}
           />
           <span
-            className={`flex-1 ${
-              isChecked ? "line-through text-gray-400" : "text-gray-700"
+            className={`flex-1 text-[15px] ${
+              isChecked ? "line-through text-[#7C8084]" : "text-foreground"
             }`}
           >
             {item.title}

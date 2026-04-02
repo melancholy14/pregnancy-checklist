@@ -17,8 +17,8 @@ export function BottomNav() {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-md border-t border-gray-100 px-2 py-2 z-50" style={{ boxShadow: "0 -4px 12px rgba(0, 0, 0, 0.05)" }}>
-      <div className="max-w-screen-xl mx-auto flex justify-around items-center">
+    <nav className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-xl border-t border-black/4 px-2 py-2 z-50">
+      <div className="max-w-7xl mx-auto flex justify-around items-center">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = pathname === item.path;
@@ -27,14 +27,14 @@ export function BottomNav() {
             <Link
               key={item.path}
               href={item.path}
-              className={`flex flex-col items-center gap-1 px-4 py-2 rounded-full transition-all ${
+              className={`flex flex-col items-center gap-1 px-3 py-2 rounded-2xl transition-all duration-200 ${
                 isActive
-                  ? "bg-[#FFD6E0] text-[#4A4A4A]"
-                  : "text-gray-500 hover:text-gray-700"
+                  ? "bg-[#F0C8D2]/40 text-[#2D3436]"
+                  : "text-[#7C8084] hover:text-[#2D3436]"
               }`}
             >
-              <Icon size={20} strokeWidth={isActive ? 2.5 : 2} />
-              <span className="text-xs">{item.label}</span>
+              <Icon size={20} strokeWidth={isActive ? 2.2 : 1.8} />
+              <span className="text-[11px] font-medium">{item.label}</span>
             </Link>
           );
         })}
