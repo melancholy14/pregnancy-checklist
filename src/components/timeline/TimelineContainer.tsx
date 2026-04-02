@@ -1,59 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Calendar, Baby, Heart, Package, FileText } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Plus } from "lucide-react";
 import { useDueDateStore } from "@/store/useDueDateStore";
 import { useTimelineStore } from "@/store/useTimelineStore";
 import { calcPregnancyWeek } from "@/lib/week-calculator";
 import { Card, CardContent } from "@/components/ui/card";
 import type { TimelineItem } from "@/types/timeline";
 import { TimelineCard } from "./TimelineCard";
-
-interface Milestone {
-  week: number;
-  icon: React.ComponentType<{ size?: number; color?: string; strokeWidth?: number }>;
-  color: string;
-  title: string;
-  tasks: string[];
-}
-
-const milestones: Milestone[] = [
-  {
-    week: 12,
-    icon: Heart,
-    color: "#F0C8D2",
-    title: "초기 검진",
-    tasks: ["산부인과 첫 방문", "기본 혈액 검사", "초음파 검사"],
-  },
-  {
-    week: 20,
-    icon: Baby,
-    color: "#D4C4E4",
-    title: "중기 검사",
-    tasks: ["정밀 초음파", "성별 확인 가능", "태동 느끼기 시작"],
-  },
-  {
-    week: 28,
-    icon: Calendar,
-    color: "#C0DCD0",
-    title: "후기 준비",
-    tasks: ["임신성 당뇨 검사", "출산 교육 수강", "산후조리원 예약"],
-  },
-  {
-    week: 32,
-    icon: Package,
-    color: "#ECD2BE",
-    title: "출산 준비",
-    tasks: ["출산 가방 준비", "신생아 용품 구매", "카시트 설치"],
-  },
-  {
-    week: 36,
-    icon: FileText,
-    color: "#E8E2C6",
-    title: "최종 점검",
-    tasks: ["매주 검진", "출산 계획 확정", "긴급 연락망 정리"],
-  },
-];
+import { TimelineAddForm } from "./TimelineAddForm";
 
 interface TimelineContainerProps {
   items: TimelineItem[];
@@ -61,22 +16,42 @@ interface TimelineContainerProps {
 
 export function TimelineContainer({ items }: TimelineContainerProps) {
   const { dueDate } = useDueDateStore();
-  const { customItems } = useTimelineStore();
-  const [currentWeek, setCurrentWeek] = useState<number | null>(null);
+  const { customItems, removeCustomItem } = useTimelineStore();
   const [hydrated, setHydrated] = useState(false);
+  const [showAddForm, setShowAddForm] = useState(false);
+  const currentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setHydrated(true);
   }, []);
 
-  useEffect(() => {
-    if (hydrated && dueDate) {
-      setCurrentWeek(calcPregnancyWeek(new Date(dueDate)));
-    }
+  const currentWeek = useMemo(() => {
+    if (!hydrated || !dueDate) return null;
+    return calcPregnancyWeek(new Date(dueDate));
   }, [hydrated, dueDate]);
 
+  const allItems = useMemo(() => {
+    return [...items, ...customItems].sort((a, b) => a.week - b.week);
+  }, [items, customItems]);
+
+  // 현재 주차로 자동 스크롤
+  useEffect(() => {
+    if (hydrated && currentWeek && currentRef.current) {
+      setTimeout(() => {
+        currentRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 300);
+    }
+  }, [hydrated, currentWeek]);
+
+  const getStatus = (week: number): "past" | "current" | "future" => {
+    if (!currentWeek) return "future";
+    if (week < currentWeek - 1) return "past";
+    if (week <= currentWeek + 1) return "current";
+    return "future";
+  };
+
   return (
-    <div className="min-h-screen pb-24 px-4 bg-linear-to-b from-[#FAF8F6] to-white">
+    <div className="min-h-screen pb-24 px-4 bg-linear-to-b from-[#FFFAF7] to-white">
       <div className="max-w-2xl mx-auto pt-8">
         <h1 className="mb-2 text-center">임신 타임라인</h1>
         <p className="text-center text-muted-foreground mb-8">
@@ -94,24 +69,25 @@ export function TimelineContainer({ items }: TimelineContainerProps) {
           </Card>
         )}
 
+        {showAddForm && <TimelineAddForm onClose={() => setShowAddForm(false)} />}
+
         {/* Timeline */}
         <div className="relative">
           {/* Vertical Line */}
-          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-linear-to-b from-[#F0C8D2] via-[#D4C4E4] to-[#E8E2C6] opacity-60" />
+          <div className="absolute left-7 top-0 bottom-0 w-0.5 bg-linear-to-b from-[#FFD4DE] via-[#E4D6F0] to-[#FFF4D4] opacity-60" />
 
-          <div className="space-y-8">
-            {milestones.map((milestone) => {
-              const isCurrent =
-                currentWeek != null &&
-                currentWeek >= milestone.week - 2 &&
-                currentWeek <= milestone.week + 2;
-
+          <div className="space-y-6">
+            {allItems.map((item) => {
+              const status = getStatus(item.week);
+              const isCurrent = status === "current";
               return (
-                <TimelineCard
-                  key={milestone.week}
-                  milestone={milestone}
-                  isCurrent={isCurrent}
-                />
+                <div key={item.id} ref={isCurrent ? currentRef : undefined}>
+                  <TimelineCard
+                    item={item}
+                    status={status}
+                    onDelete={item.isCustom ? () => removeCustomItem(item.id) : undefined}
+                  />
+                </div>
               );
             })}
           </div>
@@ -119,13 +95,22 @@ export function TimelineContainer({ items }: TimelineContainerProps) {
 
         {/* Final Message */}
         <div className="mt-12 text-center">
-          <div className="inline-block bg-linear-to-r from-[#F0C8D2]/60 to-[#D4C4E4]/60 rounded-2xl px-8 py-5 shadow-md border border-black/4">
+          <div className="inline-block bg-linear-to-r from-[#FFD4DE]/60 to-[#E4D6F0]/60 rounded-2xl px-8 py-5 shadow-md border border-black/4">
             <div className="text-4xl mb-2">👶</div>
             <div className="text-sm text-foreground">
               40주차: 소중한 아기와의 만남!
             </div>
           </div>
         </div>
+
+        {/* FAB: 커스텀 항목 추가 */}
+        <button
+          onClick={() => setShowAddForm(true)}
+          className="fixed bottom-24 right-6 w-14 h-14 rounded-2xl bg-[#E4D6F0] shadow-lg flex items-center justify-center hover:bg-[#E4D6F0]/80 hover:shadow-xl transition-all duration-200 z-10"
+          aria-label="항목 추가"
+        >
+          <Plus size={24} color="#3D4447" />
+        </button>
       </div>
     </div>
   );

@@ -6,13 +6,13 @@ import { Badge } from "@/components/ui/badge";
 import type { BabyfairEvent } from "@/types/babyfair";
 
 const CITY_COLORS: Record<string, string> = {
-  서울: "#F0C8D2",
-  부산: "#D4C4E4",
-  대구: "#C0DCD0",
-  인천: "#ECD2BE",
-  경기: "#E8E2C6",
-  광주: "#F0C8D2",
-  대전: "#C0DCD0",
+  서울: "#FFD4DE",
+  부산: "#E4D6F0",
+  대구: "#D0EDE2",
+  인천: "#FFE0CC",
+  경기: "#FFF4D4",
+  광주: "#FFD4DE",
+  대전: "#D0EDE2",
 };
 
 function formatDateRange(startDate: string, endDate: string): string {
@@ -28,7 +28,7 @@ interface BabyfairCardProps {
 }
 
 export function BabyfairCard({ event }: BabyfairCardProps) {
-  const color = CITY_COLORS[event.city] ?? "#F0C8D2";
+  const color = CITY_COLORS[event.city] ?? "#FFD4DE";
 
   return (
     <Card className="rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-black/4 group hover:-translate-y-0.5">
@@ -36,7 +36,7 @@ export function BabyfairCard({ event }: BabyfairCardProps) {
         {/* City Badge */}
         <div className="flex justify-between items-start mb-4">
           <Badge
-            className="rounded-lg text-sm border border-black/4 px-3 py-1 text-[#2D3436] font-medium"
+            className="rounded-lg text-sm border border-black/4 px-3 py-1 text-[#3D4447] font-medium"
             style={{ backgroundColor: color }}
           >
             {event.city}

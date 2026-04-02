@@ -353,6 +353,27 @@ AdSense 승인 및 GA4 사용의 필수 요건. 배포 전 반드시 준비.
 - 체중 기록 페이지: 권장 범위 참조선 옆 출처 + 면책 문구
 - 상세 전략: [PRD v2 §13](pregnancy-prep-service-prd-v2.md)
 
+### 1-12. 홈 대시보드
+
+- 예정일 설정 시: 현재 주차 + 남은 일수, 체크리스트 진행률, 이번 주 타임라인 미리보기
+- 예정일 미설정 시: 예정일 입력 유도 화면
+- 각 섹션에서 해당 페이지로 이동 링크
+
+### 1-13. 온보딩 플로우
+
+- 예정일 미입력 시: 서비스 소개 + 예정일 입력 폼 중앙 노출
+- 체크리스트/타임라인 페이지: 상단 유도 배너 (`DueDateBanner`)
+- 예정일 없이도 전체 항목 열람 가능 (차단하지 않음)
+- 예정일 입력 완료 시 배너 미표시
+- 예정일 첫 입력 시: "데이터는 이 브라우저에만 저장됩니다" 토스트 1회 표시
+
+### 1-14. gh-pages 배포
+
+- `npm run build` → `out/` 디렉토리 생성 (static export)
+- `gh-pages` 패키지로 `out/` → gh-pages 브랜치 배포
+- GitHub Actions로 `main` push 시 자동 배포
+- 배포 URL: `https://<username>.github.io/pregnancy-checklist`
+
 ---
 
 ## Phase 2. 베이비페어 크롤러 & Admin UI (로컬)

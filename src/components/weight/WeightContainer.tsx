@@ -40,7 +40,7 @@ export function WeightContainer() {
         </p>
 
         {/* Chart */}
-        <WeightChart data={chartData} />
+        <WeightChart data={chartData} baseWeight={entries.length >= 2 ? entries[0].weight : undefined} />
 
         {/* Add Form */}
         {showAddForm && (
@@ -93,10 +93,10 @@ export function WeightContainer() {
         {!showAddForm && (
           <Button
             onClick={() => setShowAddForm(true)}
-            className="fixed bottom-24 right-6 w-14 h-14 bg-[#F0C8D2] rounded-2xl shadow-lg hover:bg-[#e8bec8] hover:scale-105 transition-all duration-200"
+            className="fixed bottom-24 right-6 w-14 h-14 bg-[#FFD4DE] rounded-2xl shadow-lg hover:bg-[#f5cada] hover:scale-105 transition-all duration-200"
             size="icon"
           >
-            <Plus size={24} strokeWidth={2.2} color="#2D3436" />
+            <Plus size={24} strokeWidth={2.2} color="#3D4447" />
           </Button>
         )}
       </div>

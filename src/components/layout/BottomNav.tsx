@@ -29,8 +29,8 @@ export function BottomNav() {
               href={item.path}
               className={`flex flex-col items-center gap-1 px-3 py-2 rounded-2xl transition-all duration-200 ${
                 isActive
-                  ? "bg-[#F0C8D2]/40 text-[#2D3436]"
-                  : "text-[#7C8084] hover:text-[#2D3436]"
+                  ? "bg-[#FFD4DE]/40 text-[#3D4447]"
+                  : "text-[#9CA0A4] hover:text-[#3D4447]"
               }`}
             >
               <Icon size={20} strokeWidth={isActive ? 2.2 : 1.8} />
