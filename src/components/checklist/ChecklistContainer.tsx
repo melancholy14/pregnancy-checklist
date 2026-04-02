@@ -45,27 +45,37 @@ export function ChecklistContainer({ items }: ChecklistContainerProps) {
     return [...items, ...customItems];
   }, [items, customItems]);
 
-  const getItemsByCategory = (category: string) =>
-    allItems.filter((item) => item.category === category);
+  const itemsByCategory = useMemo(() => {
+    const map: Record<string, ChecklistItemType[]> = {};
+    for (const cat of categories) {
+      map[cat] = allItems.filter((item) => item.category === cat);
+    }
+    return map;
+  }, [allItems]);
 
-  const getTotalProgress = () => {
+  const progress = useMemo(() => {
     const total = allItems.length;
     const checked = allItems.filter((i) => checkedIds.includes(i.id)).length;
     return { total, checked };
-  };
+  }, [allItems, checkedIds]);
 
-  const getCategoryProgress = (category: string) => {
-    const categoryItems = getItemsByCategory(category);
-    const checked = categoryItems.filter((i) => checkedIds.includes(i.id)).length;
-    return { total: categoryItems.length, checked };
-  };
+  const categoryProgress = useMemo(() => {
+    const map: Record<string, { total: number; checked: number }> = {};
+    for (const cat of categories) {
+      const catItems = itemsByCategory[cat] || [];
+      map[cat] = {
+        total: catItems.length,
+        checked: catItems.filter((i) => checkedIds.includes(i.id)).length,
+      };
+    }
+    return map;
+  }, [itemsByCategory, checkedIds]);
 
   const isHighlighted = (item: ChecklistItemType) => {
     if (!currentWeek || item.recommendedWeek === 0) return false;
     return Math.abs(item.recommendedWeek - currentWeek) <= 1;
   };
 
-  const progress = getTotalProgress();
   const progressPercent =
     hydrated && progress.total > 0
       ? (progress.checked / progress.total) * 100
@@ -92,7 +102,7 @@ export function ChecklistContainer({ items }: ChecklistContainerProps) {
         <Tabs value={activeCategory} onValueChange={setActiveCategory}>
           <TabsList className="flex gap-2 overflow-x-auto pb-4 mb-6 bg-transparent h-auto p-0 w-full">
             {categories.map((category) => {
-              const prog = getCategoryProgress(category);
+              const prog = categoryProgress[category];
               return (
                 <TabsTrigger
                   key={category}
@@ -111,7 +121,7 @@ export function ChecklistContainer({ items }: ChecklistContainerProps) {
           {categories.map((category) => (
             <TabsContent key={category} value={category}>
               <div className="space-y-2.5">
-                {getItemsByCategory(category).map((item) => (
+                {(itemsByCategory[category] || []).map((item) => (
                   <ChecklistItem
                     key={item.id}
                     item={item}

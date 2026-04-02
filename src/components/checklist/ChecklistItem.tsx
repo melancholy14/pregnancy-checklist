@@ -4,10 +4,10 @@ import { Badge } from "@/components/ui/badge";
 import { Trash2 } from "lucide-react";
 import type { ChecklistItem as ChecklistItemType } from "@/types/checklist";
 
-const PRIORITY_STYLES: Record<string, { bg: string; text: string; label: string }> = {
-  high: { bg: "bg-[#FFD4DE]/60", text: "text-[#B04060]", label: "높음" },
-  medium: { bg: "bg-[#FFF4D4]/60", text: "text-[#8B7520]", label: "보통" },
-  low: { bg: "bg-[#D0EDE2]/60", text: "text-[#2D6B4F]", label: "낮음" },
+const PRIORITY_STYLES: Record<string, { className: string; label: string }> = {
+  high: { className: "bg-[#FFD4DE]/60 text-[#B04060] hover:bg-[#FFD4DE]/60", label: "높음" },
+  medium: { className: "bg-[#FFF4D4]/60 text-[#8B7520] hover:bg-[#FFF4D4]/60", label: "보통" },
+  low: { className: "bg-[#D0EDE2]/60 text-[#2D6B4F] hover:bg-[#D0EDE2]/60", label: "낮음" },
 };
 
 interface ChecklistItemProps {
@@ -19,7 +19,7 @@ interface ChecklistItemProps {
 }
 
 export function ChecklistItem({ item, isChecked, isHighlighted, onToggle, onDelete }: ChecklistItemProps) {
-  const priority = PRIORITY_STYLES[item.priority] ?? PRIORITY_STYLES.medium;
+  const priority = PRIORITY_STYLES[item.priority] || PRIORITY_STYLES.medium;
 
   return (
     <Card
@@ -48,7 +48,7 @@ export function ChecklistItem({ item, isChecked, isHighlighted, onToggle, onDele
             {item.title}
           </span>
           <div className="flex items-center gap-2 shrink-0">
-            <Badge className={`${priority.bg} ${priority.text} text-[11px] px-2 py-0.5 rounded-md border-0 hover:${priority.bg}`}>
+            <Badge className={`${priority.className} text-[11px] px-2 py-0.5 rounded-md border-0`}>
               {priority.label}
             </Badge>
             {item.isCustom && onDelete && (

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState, useRef } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ListChecks, Clock, Users, Scale, Video, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
@@ -28,22 +28,26 @@ export default function Home() {
   const { dueDate } = useDueDateStore();
   const { checkedIds, customItems } = useChecklistStore();
   const [hydrated, setHydrated] = useState(false);
-  const prevDueDateRef = useRef<string | null>(null);
 
   useEffect(() => {
     setHydrated(true);
   }, []);
 
-  // 예정일 첫 입력 시 토스트 표시
+  // 예정일 첫 입력 시 토스트 표시 (1회만)
   useEffect(() => {
-    if (!hydrated) return;
-    if (dueDate && prevDueDateRef.current === null && dueDate !== prevDueDateRef.current) {
-      toast("데이터는 이 브라우저에만 저장됩니다", {
-        description: "다른 기기에서는 데이터가 공유되지 않아요",
-        duration: 4000,
-      });
+    if (!hydrated || !dueDate) return;
+    try {
+      const hasShown = localStorage.getItem("due-date-toast-shown");
+      if (!hasShown) {
+        toast("데이터는 이 브라우저에만 저장됩니다", {
+          description: "다른 기기에서는 데이터가 공유되지 않아요",
+          duration: 4000,
+        });
+        localStorage.setItem("due-date-toast-shown", "true");
+      }
+    } catch {
+      // localStorage 접근 불가 시 무시 (시크릿 모드 등)
     }
-    prevDueDateRef.current = dueDate;
   }, [hydrated, dueDate]);
 
   const currentWeek = useMemo(() => {

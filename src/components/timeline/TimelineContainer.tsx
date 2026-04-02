@@ -77,11 +77,14 @@ export function TimelineContainer({ items }: TimelineContainerProps) {
           <div className="absolute left-7 top-0 bottom-0 w-0.5 bg-linear-to-b from-[#FFD4DE] via-[#E4D6F0] to-[#FFF4D4] opacity-60" />
 
           <div className="space-y-6">
-            {allItems.map((item) => {
+            {(() => {
+              let firstCurrentAssigned = false;
+              return allItems.map((item) => {
               const status = getStatus(item.week);
-              const isCurrent = status === "current";
+              const shouldRef = status === "current" && !firstCurrentAssigned;
+              if (shouldRef) firstCurrentAssigned = true;
               return (
-                <div key={item.id} ref={isCurrent ? currentRef : undefined}>
+                <div key={item.id} ref={shouldRef ? currentRef : undefined}>
                   <TimelineCard
                     item={item}
                     status={status}
@@ -89,7 +92,8 @@ export function TimelineContainer({ items }: TimelineContainerProps) {
                   />
                 </div>
               );
-            })}
+            });
+            })()}
           </div>
         </div>
 

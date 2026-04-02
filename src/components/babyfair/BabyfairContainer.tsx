@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import type { BabyfairEvent } from "@/types/babyfair";
@@ -11,7 +12,7 @@ interface BabyfairContainerProps {
 }
 
 export function BabyfairContainer({ events }: BabyfairContainerProps) {
-  const today = new Date().toISOString().split("T")[0];
+  const [today] = useState(() => new Date().toISOString().split("T")[0]);
 
   const cities = useMemo(() => {
     const set = new Set(events.map((e) => e.city));
