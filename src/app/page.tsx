@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { ListChecks, Clock, Users, Scale, Video, ChevronRight } from "lucide-react";
+import { Clock, Users, Scale, Video, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
 import { Card, CardContent } from "@/components/ui/card";
@@ -17,7 +17,6 @@ import type { ChecklistItem } from "@/types/checklist";
 import type { TimelineItem } from "@/types/timeline";
 
 const features = [
-  { icon: ListChecks, label: "체크리스트", color: "#FFD4DE", path: "/checklist" },
   { icon: Clock, label: "타임라인", color: "#E4D6F0", path: "/timeline" },
   { icon: Users, label: "베이비페어", color: "#D0EDE2", path: "/baby-fair" },
   { icon: Scale, label: "체중 기록", color: "#FFE0CC", path: "/weight" },
@@ -127,7 +126,7 @@ export default function Home() {
           </div>
 
           {/* Checklist Progress */}
-          <Link href="/checklist" className="no-underline block">
+          <Link href="/timeline" className="no-underline block">
             <Card className="rounded-2xl border border-black/4 hover:shadow-md transition-shadow">
               <CardContent className="p-4">
                 <div className="flex justify-between items-center mb-2">

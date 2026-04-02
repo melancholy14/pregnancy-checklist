@@ -1,6 +1,6 @@
 "use client";
 
-import { Home, ListChecks, Calendar, Users, Scale, Video } from "lucide-react";
+import { Home, Calendar, Scale, Ellipsis } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -9,11 +9,9 @@ export function BottomNav() {
 
   const navItems = [
     { path: "/", icon: Home, label: "홈" },
-    { path: "/checklist", icon: ListChecks, label: "체크리스트" },
     { path: "/timeline", icon: Calendar, label: "타임라인" },
-    { path: "/baby-fair", icon: Users, label: "베이비페어" },
     { path: "/weight", icon: Scale, label: "체중" },
-    { path: "/videos", icon: Video, label: "영상" },
+    { path: "/videos", icon: Ellipsis, label: "더보기" },
   ];
 
   return (

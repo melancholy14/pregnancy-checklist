@@ -4,21 +4,30 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Plus } from "lucide-react";
 import { useDueDateStore } from "@/store/useDueDateStore";
 import { useTimelineStore } from "@/store/useTimelineStore";
+import { useChecklistStore } from "@/store/useChecklistStore";
 import { calcPregnancyWeek } from "@/lib/week-calculator";
+import { getChecklistByWeek, getUnassignedChecklist } from "@/lib/checklist-week-map";
 import { Card, CardContent } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
 import type { TimelineItem } from "@/types/timeline";
-import { TimelineCard } from "./TimelineCard";
-import { TimelineAddForm } from "./TimelineAddForm";
+import type { ChecklistItem } from "@/types/checklist";
+import { TimelineAccordionCard } from "./TimelineAccordionCard";
+import { UnifiedAddForm } from "./UnifiedAddForm";
+import { CategoryFilter } from "./CategoryFilter";
+import { WeekChecklistSection } from "./WeekChecklistSection";
 
 interface TimelineContainerProps {
-  items: TimelineItem[];
+  timelineItems: TimelineItem[];
+  checklistItems: ChecklistItem[];
 }
 
-export function TimelineContainer({ items }: TimelineContainerProps) {
+export function TimelineContainer({ timelineItems, checklistItems }: TimelineContainerProps) {
   const { dueDate } = useDueDateStore();
-  const { customItems, removeCustomItem } = useTimelineStore();
+  const { customItems: customTimelineItems } = useTimelineStore();
+  const { checkedIds, customItems: customChecklistItems } = useChecklistStore();
   const [hydrated, setHydrated] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
+  const [activeCategory, setActiveCategory] = useState("all");
   const currentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -30,9 +39,41 @@ export function TimelineContainer({ items }: TimelineContainerProps) {
     return calcPregnancyWeek(new Date(dueDate));
   }, [hydrated, dueDate]);
 
-  const allItems = useMemo(() => {
-    return [...items, ...customItems].sort((a, b) => a.week - b.week);
-  }, [items, customItems]);
+  const allTimelineItems = useMemo(() => {
+    return [...timelineItems, ...customTimelineItems].sort((a, b) => a.week - b.week);
+  }, [timelineItems, customTimelineItems]);
+
+  const weekChecklistMap = useMemo(() => {
+    return getChecklistByWeek(allTimelineItems, checklistItems, customChecklistItems);
+  }, [allTimelineItems, checklistItems, customChecklistItems]);
+
+  const unassignedChecklist = useMemo(() => {
+    return getUnassignedChecklist(customChecklistItems);
+  }, [customChecklistItems]);
+
+  // 카테고리 필터 적용
+  const getFilteredChecklist = (items: ChecklistItem[]): ChecklistItem[] => {
+    if (activeCategory === "all") return items;
+    return items.filter((item) => item.category === activeCategory);
+  };
+
+  // 전체 진행률
+  const allChecklistItems = useMemo(() => {
+    return [...checklistItems, ...customChecklistItems];
+  }, [checklistItems, customChecklistItems]);
+
+  const progress = useMemo(() => {
+    const total = allChecklistItems.length;
+    const checked = allChecklistItems.filter((i) => checkedIds.includes(i.id)).length;
+    return { total, checked, percent: total > 0 ? (checked / total) * 100 : 0 };
+  }, [allChecklistItems, checkedIds]);
+
+  // 카테고리 필터 적용 시 체크리스트가 없는 주차를 숨길지 여부
+  const hasFilteredChecklist = (week: number): boolean => {
+    if (activeCategory === "all") return true;
+    const items = weekChecklistMap.get(week) ?? [];
+    return items.some((item) => item.category === activeCategory);
+  };
 
   // 현재 주차로 자동 스크롤
   useEffect(() => {
@@ -54,12 +95,13 @@ export function TimelineContainer({ items }: TimelineContainerProps) {
     <div className="min-h-screen pb-24 px-4 bg-linear-to-b from-[#FFFAF7] to-white">
       <div className="max-w-2xl mx-auto pt-8">
         <h1 className="mb-2 text-center">임신 타임라인</h1>
-        <p className="text-center text-muted-foreground mb-8">
-          주차별 중요한 순간들을 확인하세요
+        <p className="text-center text-muted-foreground mb-6">
+          주차별 일정과 체크리스트를 한눈에 확인하세요
         </p>
 
+        {/* 현재 주차 카드 */}
         {hydrated && currentWeek !== null && (
-          <Card className="rounded-2xl shadow-md mb-8 border border-black/4">
+          <Card className="rounded-2xl shadow-md mb-4 border border-black/4">
             <CardContent className="p-4 text-center">
               <span className="text-sm text-muted-foreground">현재</span>
               <div className="text-2xl mt-1">
@@ -69,7 +111,29 @@ export function TimelineContainer({ items }: TimelineContainerProps) {
           </Card>
         )}
 
-        {showAddForm && <TimelineAddForm onClose={() => setShowAddForm(false)} />}
+        {/* 전체 진행률 */}
+        {hydrated && (
+          <Card className="rounded-2xl shadow-md mb-6 border border-black/4">
+            <CardContent className="p-4">
+              <div className="flex justify-between items-center mb-2">
+                <span className="text-sm text-muted-foreground">전체 진행률</span>
+                <span className="text-sm tabular-nums">
+                  <strong>{progress.checked}</strong>
+                  <span className="text-muted-foreground">/{progress.total}</span> 완료
+                </span>
+              </div>
+              <Progress value={progress.percent} className="h-2 bg-muted" />
+            </CardContent>
+          </Card>
+        )}
+
+        {/* 카테고리 필터 */}
+        <div className="mb-6">
+          <CategoryFilter activeCategory={activeCategory} onCategoryChange={setActiveCategory} />
+        </div>
+
+        {/* 통합 추가 폼 */}
+        {showAddForm && <UnifiedAddForm onClose={() => setShowAddForm(false)} />}
 
         {/* Timeline */}
         <div className="relative">
@@ -79,23 +143,44 @@ export function TimelineContainer({ items }: TimelineContainerProps) {
           <div className="space-y-6">
             {(() => {
               let firstCurrentAssigned = false;
-              return allItems.map((item) => {
-              const status = getStatus(item.week);
-              const shouldRef = status === "current" && !firstCurrentAssigned;
-              if (shouldRef) firstCurrentAssigned = true;
-              return (
-                <div key={item.id} ref={shouldRef ? currentRef : undefined}>
-                  <TimelineCard
-                    item={item}
-                    status={status}
-                    onDelete={item.isCustom ? () => removeCustomItem(item.id) : undefined}
-                  />
-                </div>
-              );
-            });
+              return allTimelineItems
+                .filter((item) => activeCategory === "all" || hasFilteredChecklist(item.week))
+                .map((item) => {
+                  const status = getStatus(item.week);
+                  const shouldRef = status === "current" && !firstCurrentAssigned;
+                  if (shouldRef) firstCurrentAssigned = true;
+                  const weekChecklist = getFilteredChecklist(weekChecklistMap.get(item.week) ?? []);
+
+                  return (
+                    <div key={item.id} ref={shouldRef ? currentRef : undefined}>
+                      <TimelineAccordionCard
+                        item={item}
+                        status={status}
+                        checklistItems={weekChecklist}
+                        checkedIds={hydrated ? checkedIds : []}
+                        defaultOpen={status === "current"}
+                      />
+                    </div>
+                  );
+                });
             })()}
           </div>
         </div>
+
+        {/* 기타 섹션 (주차 미지정) */}
+        {hydrated && unassignedChecklist.length > 0 && activeCategory === "all" && (
+          <div className="mt-8">
+            <div className="flex items-center gap-2 mb-3 pl-2">
+              <span className="text-base">📦</span>
+              <h2 className="text-[15px] font-medium text-muted-foreground">기타 (주차 미지정)</h2>
+            </div>
+            <Card className="rounded-xl border border-black/4">
+              <CardContent className="p-2">
+                <WeekChecklistSection items={unassignedChecklist} checkedIds={checkedIds} />
+              </CardContent>
+            </Card>
+          </div>
+        )}
 
         {/* Final Message */}
         <div className="mt-12 text-center">
