@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import type { BabyfairEvent } from "@/types/babyfair";
