@@ -7,15 +7,8 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { useChecklistStore } from "@/store/useChecklistStore";
+import { CATEGORY_OPTIONS } from "@/lib/constants";
 import type { ChecklistItem } from "@/types/checklist";
-
-const CATEGORY_OPTIONS: { value: ChecklistItem["category"]; label: string }[] = [
-  { value: "hospital", label: "병원 준비" },
-  { value: "hospital_bag", label: "출산 가방" },
-  { value: "baby_items", label: "신생아 준비" },
-  { value: "postpartum", label: "산후 준비" },
-  { value: "admin", label: "행정 준비" },
-];
 
 const CATEGORY_COLORS: Record<string, string> = {
   hospital: "#FFD4DE",
@@ -126,12 +119,20 @@ export function WeekChecklistSection({ items, checkedIds }: WeekChecklistSection
         return (
           <div
             key={item.id}
+            role="button"
+            tabIndex={0}
             className={`flex items-center gap-3 p-3 rounded-xl transition-all duration-200 cursor-pointer ${
               isChecked
                 ? "bg-[#D0EDE2]/15"
                 : "hover:bg-muted/50"
             }`}
             onClick={() => toggle(item.id)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                toggle(item.id);
+              }
+            }}
           >
             <Checkbox
               checked={isChecked}

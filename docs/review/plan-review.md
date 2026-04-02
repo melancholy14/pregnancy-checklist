@@ -99,3 +99,72 @@
 | Warning | 5건 |
 | Suggestion | 2건 |
 | 빌드 | 성공 (수정 후 1회) |
+
+---
+---
+
+# Phase 1.5: 타임라인 + 체크리스트 통합 코드 리뷰
+
+## 리뷰 대상 파일
+
+- `src/lib/checklist-week-map.ts`
+- `src/components/timeline/TimelineAccordionCard.tsx`
+- `src/components/timeline/WeekChecklistSection.tsx`
+- `src/components/timeline/UnifiedAddForm.tsx`
+- `src/components/timeline/CategoryFilter.tsx`
+- `src/store/useChecklistStore.ts`
+- `src/store/useTimelineStore.ts`
+- `src/components/timeline/TimelineContainer.tsx`
+- `src/app/timeline/page.tsx`
+- `src/app/checklist/page.tsx`
+- `src/components/layout/BottomNav.tsx`
+- `src/app/page.tsx`
+
+총 12개 파일 (docs/implementation/plan-impl.md 기준)
+
+---
+
+## Critical 이슈 (즉시 수정 완료)
+
+없음.
+
+---
+
+## Warning (수정 권장)
+
+### 1. WeekChecklistSection.tsx — `<div onClick>` 접근성 패턴
+- **위치**: `src/components/timeline/WeekChecklistSection.tsx:127-134`
+- **문제**: 체크리스트 항목을 감싸는 `<div>` 요소에 `onClick` 핸들러와 `cursor-pointer`가 있으나, `role="button"`, `tabIndex={0}`, `onKeyDown` 속성이 없어 키보드 사용자가 접근·실행 불가. 내부에 Checkbox가 있어 체크 자체는 키보드로 가능하지만, div 클릭 영역이 별도 인터랙션으로 동작함.
+- **권장 수정**: div에 `role="button"`, `tabIndex={0}`, Enter/Space 키 핸들러 추가, 또는 전체를 `<button>` 요소로 변경.
+
+### 2. TimelineContainer.tsx — `getFilteredChecklist` 매 렌더 재생성
+- **위치**: `src/components/timeline/TimelineContainer.tsx:55-58`
+- **문제**: `getFilteredChecklist` 함수가 렌더 함수 본문에 정의되어 매 렌더마다 새로 생성됨. 이 함수가 `.map()` 내부에서 호출되면서 매번 새 배열 참조를 생성 → `TimelineAccordionCard`에 전달되는 `checklistItems` prop이 매 렌더마다 변경되어 불필요한 리렌더링 유발 가능.
+- **권장 수정**: `useCallback`으로 감싸거나, `activeCategory` 의존성을 포함한 `useMemo`로 필터링된 Map 전체를 미리 계산.
+
+### 3. TimelineContainer.tsx — `getStatus` / `hasFilteredChecklist` 매 렌더 재생성
+- **위치**: `src/components/timeline/TimelineContainer.tsx:72-76, 87-92`
+- **문제**: 두 함수 모두 렌더 본문에서 재생성됨. `getStatus`는 `currentWeek`에만 의존하고, `hasFilteredChecklist`는 `activeCategory`와 `weekChecklistMap`에만 의존하므로 `useCallback`으로 안정화 가능.
+- **권장 수정**: `useCallback`으로 래핑하여 의존성이 변경되지 않으면 동일 참조 유지.
+
+---
+
+## Suggestion (개선 아이디어)
+
+### 1. CATEGORY_OPTIONS 상수 중복
+- `CategoryFilter.tsx`, `WeekChecklistSection.tsx`, `UnifiedAddForm.tsx` 3개 파일에서 동일한 `CATEGORY_OPTIONS` 배열이 각각 정의됨. 공유 상수 파일(`src/lib/constants.ts` 등)로 추출하면 유지보수 시 한 곳만 수정하면 됨.
+
+### 2. TimelineContainer.tsx — 자동 스크롤 setTimeout
+- **위치**: `src/components/timeline/TimelineContainer.tsx:81-83`
+- 300ms 고정 딜레이 대신 `requestAnimationFrame` 또는 `IntersectionObserver` 사용을 고려할 수 있음. 현재 구현도 동작하지만 렌더 타이밍에 따라 스크롤이 실패할 가능성이 있음.
+
+---
+
+## 요약
+
+| 구분 | 건수 |
+|------|------|
+| Critical | 0건 |
+| Warning | 3건 |
+| Suggestion | 2건 |
+| 빌드 | 미실행 (Critical 없음) |

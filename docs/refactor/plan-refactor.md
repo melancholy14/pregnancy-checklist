@@ -60,3 +60,56 @@
 ## 빌드 결과
 
 성공 (1회)
+
+---
+---
+
+# Phase 1.5 리팩토링
+
+## 리팩토링한 파일 목록
+
+- `src/lib/constants.ts` (신규)
+- `src/components/timeline/CategoryFilter.tsx`
+- `src/components/timeline/WeekChecklistSection.tsx`
+- `src/components/timeline/UnifiedAddForm.tsx`
+- `src/components/timeline/TimelineContainer.tsx`
+
+---
+
+## 작업별 내용
+
+### 1. CATEGORY_OPTIONS 공유 상수 추출
+- **출처**: 추가 판단 (Suggestion)
+- **무엇을**: `CategoryFilter.tsx`, `WeekChecklistSection.tsx`, `UnifiedAddForm.tsx` 3개 파일에서 동일하게 정의된 `CATEGORY_OPTIONS` 배열을 `src/lib/constants.ts`로 추출. `CategoryFilter`용 "전체" 옵션이 포함된 `CATEGORY_FILTER_OPTIONS`도 함께 제공.
+- **왜**: 카테고리 추가/변경 시 3곳을 동시에 수정해야 하는 유지보수 리스크 제거.
+
+### 2. WeekChecklistSection — div onClick 접근성 개선
+- **출처**: Warning 항목
+- **무엇을**: 체크리스트 항목 래퍼 `<div>`에 `role="button"`, `tabIndex={0}`, `onKeyDown` (Enter/Space) 핸들러 추가.
+- **왜**: 키보드 사용자가 Tab으로 항목에 포커스하고 Enter/Space로 체크 토글 가능하도록 접근성 보장.
+
+### 3. TimelineContainer — getFilteredChecklist useCallback 안정화
+- **출처**: Warning 항목
+- **무엇을**: `getFilteredChecklist` 함수를 `useCallback(fn, [activeCategory])`으로 래핑.
+- **왜**: 매 렌더마다 새 함수 참조가 생성되어 `.map()` 내부에서 호출 시 항상 새 배열을 반환, 자식 컴포넌트에 불필요한 리렌더링 유발 방지.
+
+### 4. TimelineContainer — getStatus / hasFilteredChecklist useCallback 안정화
+- **출처**: Warning 항목
+- **무엇을**: `getStatus`를 `useCallback(fn, [currentWeek])`으로, `hasFilteredChecklist`를 `useCallback(fn, [activeCategory, weekChecklistMap])`으로 래핑.
+- **왜**: 의존성이 변경되지 않으면 동일 참조를 유지하여 렌더링 안정성 향상.
+
+---
+
+## 변경 전/후 구조 요약
+
+| 항목 | 변경 전 | 변경 후 |
+|------|---------|---------|
+| CATEGORY_OPTIONS 정의 위치 | 3개 파일 각각 | `src/lib/constants.ts` 1곳 |
+| 접근성 키보드 지원 | div onClick만 | role + tabIndex + onKeyDown |
+| 렌더 함수 재생성 | 3개 함수 매 렌더 재생성 | useCallback으로 안정화 |
+
+---
+
+## 빌드 결과
+
+성공 (1회)

@@ -1,15 +1,6 @@
 "use client";
 
-import type { ChecklistItem } from "@/types/checklist";
-
-const CATEGORY_OPTIONS: { value: ChecklistItem["category"] | "all"; label: string }[] = [
-  { value: "all", label: "전체" },
-  { value: "hospital", label: "병원 준비" },
-  { value: "hospital_bag", label: "출산 가방" },
-  { value: "baby_items", label: "신생아 준비" },
-  { value: "postpartum", label: "산후 준비" },
-  { value: "admin", label: "행정 준비" },
-];
+import { CATEGORY_FILTER_OPTIONS } from "@/lib/constants";
 
 interface CategoryFilterProps {
   activeCategory: string;
@@ -19,7 +10,7 @@ interface CategoryFilterProps {
 export function CategoryFilter({ activeCategory, onCategoryChange }: CategoryFilterProps) {
   return (
     <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-      {CATEGORY_OPTIONS.map((opt) => {
+      {CATEGORY_FILTER_OPTIONS.map((opt) => {
         const isActive = activeCategory === opt.value;
         return (
           <button

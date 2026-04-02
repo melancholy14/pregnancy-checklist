@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Plus } from "lucide-react";
 import { useDueDateStore } from "@/store/useDueDateStore";
 import { useTimelineStore } from "@/store/useTimelineStore";
@@ -52,10 +52,13 @@ export function TimelineContainer({ timelineItems, checklistItems }: TimelineCon
   }, [customChecklistItems]);
 
   // 카테고리 필터 적용
-  const getFilteredChecklist = (items: ChecklistItem[]): ChecklistItem[] => {
-    if (activeCategory === "all") return items;
-    return items.filter((item) => item.category === activeCategory);
-  };
+  const getFilteredChecklist = useCallback(
+    (items: ChecklistItem[]): ChecklistItem[] => {
+      if (activeCategory === "all") return items;
+      return items.filter((item) => item.category === activeCategory);
+    },
+    [activeCategory]
+  );
 
   // 전체 진행률
   const allChecklistItems = useMemo(() => {
@@ -69,11 +72,14 @@ export function TimelineContainer({ timelineItems, checklistItems }: TimelineCon
   }, [allChecklistItems, checkedIds]);
 
   // 카테고리 필터 적용 시 체크리스트가 없는 주차를 숨길지 여부
-  const hasFilteredChecklist = (week: number): boolean => {
-    if (activeCategory === "all") return true;
-    const items = weekChecklistMap.get(week) ?? [];
-    return items.some((item) => item.category === activeCategory);
-  };
+  const hasFilteredChecklist = useCallback(
+    (week: number): boolean => {
+      if (activeCategory === "all") return true;
+      const items = weekChecklistMap.get(week) ?? [];
+      return items.some((item) => item.category === activeCategory);
+    },
+    [activeCategory, weekChecklistMap]
+  );
 
   // 현재 주차로 자동 스크롤
   useEffect(() => {
@@ -84,12 +90,15 @@ export function TimelineContainer({ timelineItems, checklistItems }: TimelineCon
     }
   }, [hydrated, currentWeek]);
 
-  const getStatus = (week: number): "past" | "current" | "future" => {
-    if (!currentWeek) return "future";
-    if (week < currentWeek - 1) return "past";
-    if (week <= currentWeek + 1) return "current";
-    return "future";
-  };
+  const getStatus = useCallback(
+    (week: number): "past" | "current" | "future" => {
+      if (!currentWeek) return "future";
+      if (week < currentWeek - 1) return "past";
+      if (week <= currentWeek + 1) return "current";
+      return "future";
+    },
+    [currentWeek]
+  );
 
   return (
     <div className="min-h-screen pb-24 px-4 bg-linear-to-b from-[#FFFAF7] to-white">

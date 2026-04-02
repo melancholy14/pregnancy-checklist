@@ -5,15 +5,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useChecklistStore } from "@/store/useChecklistStore";
 import { useTimelineStore } from "@/store/useTimelineStore";
+import { CATEGORY_OPTIONS } from "@/lib/constants";
 import type { ChecklistItem } from "@/types/checklist";
-
-const CATEGORY_OPTIONS: { value: ChecklistItem["category"]; label: string }[] = [
-  { value: "hospital", label: "병원 준비" },
-  { value: "hospital_bag", label: "출산 가방" },
-  { value: "baby_items", label: "신생아 준비" },
-  { value: "postpartum", label: "산후 준비" },
-  { value: "admin", label: "행정 준비" },
-];
 
 type ItemType = "timeline" | "checklist";
 
