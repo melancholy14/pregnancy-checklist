@@ -22,9 +22,10 @@ interface ChecklistAddFormProps {
 export function ChecklistAddForm({ activeCategory, onClose }: ChecklistAddFormProps) {
   const { addCustomItem } = useChecklistStore();
   const [title, setTitle] = useState("");
-  const [category, setCategory] = useState<ChecklistItem["category"]>(
-    (activeCategory as ChecklistItem["category"]) || "hospital"
-  );
+  const [category, setCategory] = useState<ChecklistItem["category"]>(() => {
+    const valid = CATEGORY_OPTIONS.some((c) => c.value === activeCategory);
+    return valid ? (activeCategory as ChecklistItem["category"]) : "hospital";
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
