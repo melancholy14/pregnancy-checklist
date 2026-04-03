@@ -173,7 +173,11 @@ export function TimelineAccordionCard({
                       <Pencil size={14} />
                     </button>
                     <button
-                      onClick={() => removeCustomItem(item.id)}
+                      onClick={() => {
+                        if (window.confirm("이 항목을 삭제하시겠습니까?")) {
+                          removeCustomItem(item.id);
+                        }
+                      }}
                       className="p-1 rounded-lg text-[#9CA0A4] hover:text-red-400 hover:bg-red-50 transition-colors"
                       aria-label="삭제"
                     >

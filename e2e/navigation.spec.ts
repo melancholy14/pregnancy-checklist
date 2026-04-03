@@ -5,15 +5,16 @@ test.describe("하단 네비게이션", () => {
     await page.goto("/");
   });
 
-  test("4개 네비게이션 항목이 보인다", async ({ page }) => {
-    // 무엇을: Phase 1.5에서 4탭으로 축소된 네비게이션 확인
-    // 왜: 체크리스트 탭 제거, 통합 페이지로 대체
+  test("5개 네비게이션 항목이 보인다", async ({ page }) => {
+    // 무엇을: Phase 1.5에서 5탭으로 재구성된 네비게이션 확인
+    // 왜: 홈 Feature Grid과 네비게이션 탭 일치 (체크리스트→베이비페어, 더보기→영상)
     const nav = page.locator("nav");
     await expect(nav).toBeVisible();
     await expect(nav.getByText("홈")).toBeVisible();
     await expect(nav.getByText("타임라인")).toBeVisible();
+    await expect(nav.getByText("베이비페어")).toBeVisible();
     await expect(nav.getByText("체중")).toBeVisible();
-    await expect(nav.getByText("더보기")).toBeVisible();
+    await expect(nav.getByText("영상")).toBeVisible();
   });
 
   test("네비게이션으로 페이지 이동이 된다", async ({ page }) => {

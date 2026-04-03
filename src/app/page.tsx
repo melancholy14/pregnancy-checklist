@@ -10,6 +10,7 @@ import { Progress } from "@/components/ui/progress";
 import { DueDateInput } from "@/components/home/DueDateInput";
 import { useDueDateStore } from "@/store/useDueDateStore";
 import { useChecklistStore } from "@/store/useChecklistStore";
+import { useTimelineStore } from "@/store/useTimelineStore";
 import { calcPregnancyWeek } from "@/lib/week-calculator";
 import checklistItems from "@/data/checklist_items.json";
 import timelineItems from "@/data/timeline_items.json";
@@ -26,6 +27,7 @@ const features = [
 export default function Home() {
   const { dueDate } = useDueDateStore();
   const { checkedIds, customItems } = useChecklistStore();
+  const { customItems: customTimelineItems } = useTimelineStore();
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
@@ -67,10 +69,11 @@ export default function Home() {
 
   const thisWeekTimeline = useMemo(() => {
     if (!currentWeek) return [];
-    return (timelineItems as TimelineItem[]).filter(
+    const allTimeline = [...(timelineItems as TimelineItem[]), ...customTimelineItems];
+    return allTimeline.filter(
       (item) => Math.abs(item.week - currentWeek) <= 1
     );
-  }, [currentWeek]);
+  }, [currentWeek, customTimelineItems]);
 
   const daysLeft = useMemo(() => {
     if (!dueDate) return null;

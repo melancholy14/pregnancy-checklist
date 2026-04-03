@@ -83,6 +83,17 @@ test.describe("Phase 1.5: 타임라인 + 체크리스트 통합", () => {
       await page.getByRole("button", { name: "전체" }).click();
     });
 
+    test("행정 준비 카테고리 선택 시 지자체 안내 문구가 표시된다", async ({ page }) => {
+      // 무엇을: 행정 준비 필터 선택 시 지자체 확인 안내가 보이는지
+      // 왜: 행정 항목은 거주 지역마다 다르므로 안내 필수
+      await page.getByRole("button", { name: "행정 준비" }).click();
+      await expect(page.getByText(/거주 지자체에 따라 다를 수 있습니다/)).toBeVisible();
+
+      // 다른 카테고리 선택 시 안내 사라짐
+      await page.getByRole("button", { name: "전체" }).click();
+      await expect(page.getByText(/거주 지자체에 따라 다를 수 있습니다/)).not.toBeVisible();
+    });
+
     test("통합 폼으로 체크리스트를 추가할 수 있다", async ({ page }) => {
       // 무엇을: FAB → 통합 폼 → 할 일 추가 전체 흐름
       // 왜: 통합 폼이 체크리스트/타임라인 모두 커버하는지 확인
@@ -182,9 +193,9 @@ test.describe("Phase 1.5: 타임라인 + 체크리스트 통합", () => {
       await expect(page.getByText("수정 후 체크리스트")).toBeVisible();
     });
 
-    test("커스텀 항목을 삭제할 수 있다", async ({ page }) => {
-      // 무엇을: 커스텀 타임라인 항목 삭제
-      // 왜: 기존 삭제 기능이 통합 후에도 동작하는지
+    test("커스텀 항목을 삭제할 수 있다 (확인 다이얼로그 수락)", async ({ page }) => {
+      // 무엇을: 커스텀 타임라인 항목 삭제 시 확인 다이얼로그 → 수락 → 삭제
+      // 왜: 삭제 실수 방지를 위한 확인 다이얼로그 + 수락 시 정상 삭제
       await page.locator('button[aria-label="항목 추가"]').click();
       await page.locator('input[value="timeline"]').click();
       await page.locator('input[type="number"]').fill("15");
@@ -193,10 +204,34 @@ test.describe("Phase 1.5: 타임라인 + 체크리스트 통합", () => {
 
       await expect(page.getByText("삭제 테스트 항목")).toBeVisible();
 
+      // confirm 다이얼로그 수락 설정
+      page.on("dialog", (dialog) => dialog.accept());
+
       const card = page.locator('[data-slot="card"]').filter({ hasText: "삭제 테스트 항목" });
       await card.locator('button[aria-label="삭제"]').click();
 
       await expect(page.getByText("삭제 테스트 항목")).not.toBeVisible();
+    });
+
+    test("커스텀 항목 삭제 시 취소하면 항목이 유지된다", async ({ page }) => {
+      // 무엇을: 삭제 확인 다이얼로그에서 취소 시 항목이 그대로 남는지
+      // 왜: 실수 삭제 방지 기능 검증
+      await page.locator('button[aria-label="항목 추가"]').click();
+      await page.locator('input[value="timeline"]').click();
+      await page.locator('input[type="number"]').fill("15");
+      await page.getByPlaceholder("일정을 입력하세요").fill("삭제 취소 테스트");
+      await page.getByRole("button", { name: "추가하기" }).click();
+
+      await expect(page.getByText("삭제 취소 테스트")).toBeVisible();
+
+      // confirm 다이얼로그 거절 설정
+      page.on("dialog", (dialog) => dialog.dismiss());
+
+      const card = page.locator('[data-slot="card"]').filter({ hasText: "삭제 취소 테스트" });
+      await card.locator('button[aria-label="삭제"]').click();
+
+      // 취소했으므로 항목이 여전히 존재
+      await expect(page.getByText("삭제 취소 테스트")).toBeVisible();
     });
 
     test("마지막에 40주 메시지가 보인다", async ({ page }) => {
@@ -252,15 +287,17 @@ test.describe("Phase 1.5: 타임라인 + 체크리스트 통합", () => {
       await expect(page).toHaveURL(/\/timeline/);
     });
 
-    test("하단 네비게이션이 4개 탭이다", async ({ page }) => {
-      // 무엇을: 홈/타임라인/체중/더보기 4개 탭만 표시되는지
-      // 왜: 체크리스트 탭 제거, 통합 페이지로 대체
+    test("하단 네비게이션이 5개 탭이다", async ({ page }) => {
+      // 무엇을: 홈/타임라인/베이비페어/체중/영상 5개 탭이 표시되는지
+      // 왜: 홈 Feature Grid과 네비게이션 일치. 체크리스트→베이비페어, 더보기→영상
       const nav = page.locator("nav");
       await expect(nav.getByText("홈")).toBeVisible();
       await expect(nav.getByText("타임라인")).toBeVisible();
+      await expect(nav.getByText("베이비페어")).toBeVisible();
       await expect(nav.getByText("체중")).toBeVisible();
-      await expect(nav.getByText("더보기")).toBeVisible();
+      await expect(nav.getByText("영상")).toBeVisible();
       await expect(nav.getByText("체크리스트")).not.toBeVisible();
+      await expect(nav.getByText("더보기")).not.toBeVisible();
     });
 
     test("온보딩 배너: 예정일 미입력 시 DueDateBanner 표시", async ({ page }) => {

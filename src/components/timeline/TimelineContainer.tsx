@@ -139,6 +139,13 @@ export function TimelineContainer({ timelineItems, checklistItems }: TimelineCon
         {/* 카테고리 필터 */}
         <div className="mb-6">
           <CategoryFilter activeCategory={activeCategory} onCategoryChange={setActiveCategory} />
+          {activeCategory === "admin" && (
+            <div className="mt-3 px-4 py-3 rounded-xl bg-[#FFF4D4]/40 border border-[#FFF4D4]/60">
+              <p className="text-xs text-[#8B7520] leading-relaxed">
+                행정 관련 항목은 거주 지자체에 따라 다를 수 있습니다. 정확한 정보는 주민센터 또는 정부24를 확인해주세요.
+              </p>
+            </div>
+          )}
         </div>
 
         {/* 통합 추가 폼 */}
