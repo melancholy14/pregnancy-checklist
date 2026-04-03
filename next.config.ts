@@ -4,7 +4,6 @@ import type { NextConfig } from "next";
 // 운영 전환 시: output: 'export' 제거 → standalone 모드 (Phase 5)
 const nextConfig: NextConfig = {
   output: "export",
-  basePath: process.env.NEXT_PUBLIC_BASE_PATH ?? "",
   images: { unoptimized: true },
 };
 

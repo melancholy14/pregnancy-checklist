@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "deploy": "NEXT_PUBLIC_BASE_PATH=/pregnancy-checklist NEXT_PUBLIC_GA_MEASUREMENT_ID=G-HT96X27T4K NEXT_PUBLIC_FEEDBACK_FORM_URL=https://forms.gle/iZrqyAd2LtTm7Gtm7 NEXT_PUBLIC_ADSENSE_CLIENT_ID=ca-pub-6022771079735605 next build && touch out/.nojekyll && gh-pages -d out --dotfiles"
+    "deploy": "NEXT_PUBLIC_GA_MEASUREMENT_ID=G-HT96X27T4K NEXT_PUBLIC_FEEDBACK_FORM_URL=https://forms.gle/iZrqyAd2LtTm7Gtm7 NEXT_PUBLIC_ADSENSE_CLIENT_ID=ca-pub-6022771079735605 next build && touch out/.nojekyll && echo 'pregnancy-checklist.com' > out/CNAME && gh-pages -d out --dotfiles"
   },
   "dependencies": {
     "@next/third-parties": "^16.2.2",

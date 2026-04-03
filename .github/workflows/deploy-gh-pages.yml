@@ -24,8 +24,9 @@ jobs:
 
       - name: Build
         env:
-          NEXT_PUBLIC_BASE_PATH: /pregnancy-checklist
           NEXT_PUBLIC_GA_MEASUREMENT_ID: ${{ secrets.GA_MEASUREMENT_ID }}
+          NEXT_PUBLIC_ADSENSE_CLIENT_ID: ${{ secrets.ADSENSE_CLIENT_ID }}
+          NEXT_PUBLIC_FEEDBACK_FORM_URL: ${{ secrets.FEEDBACK_FORM_URL }}
         run: npm run build
 
       - name: Deploy to gh-pages
@@ -33,3 +34,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out
+          cname: pregnancy-checklist.com
