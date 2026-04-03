@@ -124,6 +124,17 @@ test.describe("홈 페이지", () => {
     });
   });
 
+  test.describe("피드백 배너", () => {
+    test("피드백 배너 링크가 새 탭으로 열리도록 설정되어 있다", async ({ page }) => {
+      // 무엇을: 피드백 링크의 target="_blank" 속성 확인
+      // 왜: 사용자가 현재 페이지를 벗어나지 않도록
+      const feedbackLink = page.getByRole("link", { name: "의견을 들려주세요" });
+      await expect(feedbackLink).toBeVisible();
+      await expect(feedbackLink).toHaveAttribute("target", "_blank");
+      await expect(feedbackLink).toHaveAttribute("rel", /noopener/);
+    });
+  });
+
   test.describe("온보딩 / 미입력 상태", () => {
     test("예정일 미입력 시 입력 유도 카드가 표시된다", async ({ page }) => {
       // 무엇을: 예정일 없이 방문 시 유도 안내가 보이는지
