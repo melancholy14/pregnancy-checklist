@@ -15,6 +15,9 @@ export function getChecklistByWeek(
   const allChecklist = [...checklistItems, ...customChecklistItems];
   const weekMap = new Map<number, ChecklistItem[]>();
 
+  // linked_checklist_ids로 이미 배정된 항목 ID를 추적
+  const assignedIds = new Set<string>();
+
   // 1) linked_checklist_ids가 있으면 우선 사용
   for (const timeline of timelineItems) {
     if (timeline.linked_checklist_ids?.length) {
@@ -23,12 +26,16 @@ export function getChecklistByWeek(
       );
       const existing = weekMap.get(timeline.week) ?? [];
       weekMap.set(timeline.week, [...existing, ...linked]);
+      for (const item of linked) {
+        assignedIds.add(item.id);
+      }
     }
   }
 
-  // 2) recommendedWeek 기반으로 나머지 매핑
+  // 2) recommendedWeek 기반으로 나머지 매핑 (이미 linked로 배정된 항목은 건너뜀)
   for (const item of allChecklist) {
     if (item.recommendedWeek === 0) continue;
+    if (assignedIds.has(item.id)) continue;
     const weekItems = weekMap.get(item.recommendedWeek) ?? [];
     if (!weekItems.find((w) => w.id === item.id)) {
       weekMap.set(item.recommendedWeek, [...weekItems, item]);
