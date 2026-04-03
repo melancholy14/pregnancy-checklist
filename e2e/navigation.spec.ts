@@ -19,9 +19,9 @@ test.describe("하단 네비게이션", () => {
 
   test("네비게이션으로 페이지 이동이 된다", async ({ page }) => {
     await page.locator("nav").getByText("타임라인").click();
-    await expect(page).toHaveURL("/timeline");
+    await expect(page).toHaveURL(/\/timeline/);
 
     await page.locator("nav").getByText("홈").click();
-    await expect(page).toHaveURL("/");
+    await expect(page).toHaveURL(/\/(pregnancy-checklist\/?)?$/);
   });
 });

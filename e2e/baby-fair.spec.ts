@@ -15,9 +15,10 @@ test.describe("베이비페어 페이지", () => {
     test("도시 필터 버튼들이 표시된다", async ({ page }) => {
       // 무엇을: 전체 + 각 도시 필터 버튼 표시
       // 왜: 도시별 필터 기능 정상 렌더링
-      await expect(page.getByRole("button", { name: "전체" })).toBeVisible();
-      await expect(page.getByRole("button", { name: "서울", exact: true })).toBeVisible();
-      await expect(page.getByRole("button", { name: "부산" })).toBeVisible();
+      const filters = page.getByRole("group", { name: "도시 필터" });
+      await expect(filters.getByRole("button", { name: "전체" })).toBeVisible();
+      await expect(filters.getByRole("button", { name: "서울", exact: true })).toBeVisible();
+      await expect(filters.getByRole("button", { name: "부산" })).toBeVisible();
     });
 
     test("예정/지난 행사 탭이 표시된다", async ({ page }) => {
@@ -37,7 +38,8 @@ test.describe("베이비페어 페이지", () => {
     test("도시 필터 클릭 시 해당 도시 행사만 표시된다", async ({ page }) => {
       // 무엇을: 도시 필터로 이벤트가 정상 필터링되는지
       // 왜: 필터 기능 정상 동작 검증
-      await page.getByRole("button", { name: "부산" }).click();
+      const filters = page.getByRole("group", { name: "도시 필터" });
+      await filters.getByRole("button", { name: "부산" }).click();
       await expect(page.getByText("코베 부산 베이비페어 1차")).toBeVisible();
       // 서울 이벤트는 안 보여야 함
       await expect(page.getByText("제49회 베페(BeFe) 베이비페어")).not.toBeVisible();
@@ -46,8 +48,9 @@ test.describe("베이비페어 페이지", () => {
     test("전체 필터로 돌아오면 모든 행사가 표시된다", async ({ page }) => {
       // 무엇을: 전체 필터로 복귀 시 모든 이벤트 표시
       // 왜: 필터 해제 동작 확인
-      await page.getByRole("button", { name: "부산" }).click();
-      await page.getByRole("button", { name: "전체" }).click();
+      const filters = page.getByRole("group", { name: "도시 필터" });
+      await filters.getByRole("button", { name: "부산" }).click();
+      await filters.getByRole("button", { name: "전체" }).click();
       await expect(page.getByText("제49회 베페(BeFe) 베이비페어")).toBeVisible();
       await expect(page.getByText("코베 부산 베이비페어 1차")).toBeVisible();
     });
@@ -57,6 +60,47 @@ test.describe("베이비페어 페이지", () => {
       // 왜: 유용한 부가 정보 제공
       await expect(page.getByText("참관 팁")).toBeVisible();
       await expect(page.getByText(/사전 등록/)).toBeVisible();
+    });
+  });
+
+  test.describe("외부 링크 팝업", () => {
+    test("행사 카드 클릭 시 외부 이동 확인 팝업이 표시된다", async ({ page }) => {
+      // 무엇을: 카드 클릭 → AlertDialog 팝업 표시
+      // 왜: 외부 사이트 이동 전 사용자 확인 필수
+      await page.getByText("제49회 베페(BeFe) 베이비페어").click();
+      await expect(page.getByRole("alertdialog")).toBeVisible();
+      await expect(page.getByText("공식 홈페이지로 이동합니다")).toBeVisible();
+    });
+
+    test("팝업에서 취소 클릭 시 팝업이 닫힌다", async ({ page }) => {
+      // 무엇을: 취소 버튼으로 팝업 닫기
+      // 왜: 의도치 않은 외부 이동 방지
+      await page.getByText("제49회 베페(BeFe) 베이비페어").click();
+      await expect(page.getByRole("alertdialog")).toBeVisible();
+      await page.getByRole("button", { name: "취소" }).click();
+      await expect(page.getByRole("alertdialog")).not.toBeVisible();
+    });
+
+    test("팝업에서 이동 클릭 시 새 탭이 열린다", async ({ page, context }) => {
+      // 무엇을: 이동 버튼 클릭 시 window.open으로 새 탭 열기
+      // 왜: 현재 페이지 유지 + 공식 사이트 새 탭 이동
+      await page.getByText("제49회 베페(BeFe) 베이비페어").click();
+      await expect(page.getByRole("alertdialog")).toBeVisible();
+
+      const [newPage] = await Promise.all([
+        context.waitForEvent("page"),
+        page.getByRole("button", { name: "이동" }).click(),
+      ]);
+      expect(newPage.url()).toContain("befe.co.kr");
+      await newPage.close();
+    });
+
+    test("팝업 타이틀에 행사명이 표시된다", async ({ page }) => {
+      // 무엇을: AlertDialog 타이틀이 클릭한 행사명인지
+      // 왜: 어떤 행사의 홈페이지로 이동하는지 사용자에게 명확히 전달
+      await page.getByText("제49회 베페(BeFe) 베이비페어").click();
+      const dialog = page.getByRole("alertdialog");
+      await expect(dialog.getByText("제49회 베페(BeFe) 베이비페어")).toBeVisible();
     });
   });
 

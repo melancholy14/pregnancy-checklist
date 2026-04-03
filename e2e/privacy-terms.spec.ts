@@ -25,11 +25,11 @@ test.describe("개인정보처리방침 & 서비스 약관", () => {
       // 왜: 법적 페이지 접근성 필수
       await page.goto("/");
       await page.getByRole("link", { name: "개인정보처리방침" }).click();
-      await expect(page).toHaveURL("/privacy");
+      await expect(page).toHaveURL(/\/privacy/);
 
       await page.goto("/");
       await page.getByRole("link", { name: "서비스 이용약관" }).click();
-      await expect(page).toHaveURL("/terms");
+      await expect(page).toHaveURL(/\/terms/);
     });
   });
 

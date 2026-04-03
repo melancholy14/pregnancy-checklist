@@ -67,7 +67,7 @@ export function BabyfairContainer({ events }: BabyfairContainerProps) {
                   ))}
                 </select>
               )}
-              <div className="flex gap-1.5 overflow-x-auto">
+              <div className="flex gap-1.5 overflow-x-auto" role="group" aria-label="도시 필터">
                 {cities.map((city) => (
                   <button
                     key={city}
