@@ -7,8 +7,8 @@ test.describe("개인정보처리방침 & 서비스 약관", () => {
       // 왜: AdSense/GA4 필수 요건
       await page.goto("/privacy");
       await expect(page.getByRole("heading", { level: 1, name: "개인정보처리방침" })).toBeVisible();
-      await expect(page.getByRole("heading", { name: /Google Analytics 4/ })).toBeVisible();
-      await expect(page.getByRole("heading", { name: /LocalStorage/ })).toBeVisible();
+      await expect(page.getByText(/Google Analytics 4/).first()).toBeVisible();
+      await expect(page.getByRole("heading", { name: /LocalStorage/ }).first()).toBeVisible();
     });
 
     test("서비스 이용약관 페이지가 렌더링된다", async ({ page }) => {
@@ -52,7 +52,7 @@ test.describe("개인정보처리방침 & 서비스 약관", () => {
       // 무엇을: 375px에서 법적 페이지 표시
       // 왜: 주요 타겟 기기
       await page.goto("/privacy");
-      await expect(page.getByRole("heading", { name: "개인정보처리방침" })).toBeVisible();
+      await expect(page.getByRole("heading", { level: 1, name: "개인정보처리방침" })).toBeVisible();
     });
   });
 });

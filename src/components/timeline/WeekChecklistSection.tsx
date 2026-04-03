@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Pencil, Trash2 } from "lucide-react";
+import { Pencil } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { useChecklistStore } from "@/store/useChecklistStore";
 import { CATEGORY_OPTIONS } from "@/lib/constants";
 import type { ChecklistItem } from "@/types/checklist";
+import { DeleteConfirmDialog } from "./DeleteConfirmDialog";
 
 const CATEGORY_COLORS: Record<string, string> = {
   hospital: "#FFD4DE",
@@ -165,18 +166,9 @@ export function WeekChecklistSection({ items, checkedIds }: WeekChecklistSection
                 >
                   <Pencil size={14} />
                 </button>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    if (window.confirm("이 항목을 삭제하시겠습니까?")) {
-                      removeCustomItem(item.id);
-                    }
-                  }}
-                  className="p-1 rounded-lg text-[#9CA0A4] hover:text-red-400 hover:bg-red-50 transition-colors"
-                  aria-label="삭제"
-                >
-                  <Trash2 size={14} />
-                </button>
+                <span onClick={(e) => e.stopPropagation()}>
+                  <DeleteConfirmDialog onConfirm={() => removeCustomItem(item.id)} iconSize={14} />
+                </span>
               </div>
             )}
           </div>

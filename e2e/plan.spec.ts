@@ -194,7 +194,7 @@ test.describe("Phase 1.5: 타임라인 + 체크리스트 통합", () => {
     });
 
     test("커스텀 항목을 삭제할 수 있다 (확인 다이얼로그 수락)", async ({ page }) => {
-      // 무엇을: 커스텀 타임라인 항목 삭제 시 확인 다이얼로그 → 수락 → 삭제
+      // 무엇을: 커스텀 타임라인 항목 삭제 시 AlertDialog → 삭제 버튼 → 삭제
       // 왜: 삭제 실수 방지를 위한 확인 다이얼로그 + 수락 시 정상 삭제
       await page.locator('button[aria-label="항목 추가"]').click();
       await page.locator('input[value="timeline"]').click();
@@ -204,17 +204,19 @@ test.describe("Phase 1.5: 타임라인 + 체크리스트 통합", () => {
 
       await expect(page.getByText("삭제 테스트 항목")).toBeVisible();
 
-      // confirm 다이얼로그 수락 설정
-      page.on("dialog", (dialog) => dialog.accept());
-
+      // AlertDialog 트리거 클릭
       const card = page.locator('[data-slot="card"]').filter({ hasText: "삭제 테스트 항목" });
       await card.locator('button[aria-label="삭제"]').click();
+
+      // AlertDialog가 열리고 "삭제" 버튼 클릭
+      await expect(page.getByText("이 항목을 삭제하시겠습니까?")).toBeVisible();
+      await page.locator('[data-slot="alert-dialog-content"]').getByRole("button", { name: "삭제" }).click();
 
       await expect(page.getByText("삭제 테스트 항목")).not.toBeVisible();
     });
 
     test("커스텀 항목 삭제 시 취소하면 항목이 유지된다", async ({ page }) => {
-      // 무엇을: 삭제 확인 다이얼로그에서 취소 시 항목이 그대로 남는지
+      // 무엇을: 삭제 AlertDialog에서 취소 시 항목이 그대로 남는지
       // 왜: 실수 삭제 방지 기능 검증
       await page.locator('button[aria-label="항목 추가"]').click();
       await page.locator('input[value="timeline"]').click();
@@ -224,11 +226,13 @@ test.describe("Phase 1.5: 타임라인 + 체크리스트 통합", () => {
 
       await expect(page.getByText("삭제 취소 테스트")).toBeVisible();
 
-      // confirm 다이얼로그 거절 설정
-      page.on("dialog", (dialog) => dialog.dismiss());
-
+      // AlertDialog 트리거 클릭
       const card = page.locator('[data-slot="card"]').filter({ hasText: "삭제 취소 테스트" });
       await card.locator('button[aria-label="삭제"]').click();
+
+      // AlertDialog에서 "취소" 클릭
+      await expect(page.getByText("이 항목을 삭제하시겠습니까?")).toBeVisible();
+      await page.locator('[data-slot="alert-dialog-content"]').getByRole("button", { name: "취소" }).click();
 
       // 취소했으므로 항목이 여전히 존재
       await expect(page.getByText("삭제 취소 테스트")).toBeVisible();

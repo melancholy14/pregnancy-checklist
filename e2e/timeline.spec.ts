@@ -57,9 +57,10 @@ test.describe("타임라인 페이지", () => {
 
       await expect(page.getByText("삭제 테스트")).toBeVisible();
 
-      // 삭제 - 커스텀 항목이 포함된 카드에서 삭제 버튼 찾기
+      // 삭제 - AlertDialog 트리거 클릭 후 삭제 버튼 클릭
       const card = page.locator('[data-slot="card"]').filter({ hasText: "삭제 테스트" });
       await card.locator('button[aria-label="삭제"]').click();
+      await page.locator('[data-slot="alert-dialog-content"]').getByRole("button", { name: "삭제" }).click();
 
       await expect(page.getByText("삭제 테스트")).not.toBeVisible();
     });

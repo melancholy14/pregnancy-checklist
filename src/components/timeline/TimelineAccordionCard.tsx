@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, Pencil, Trash2 } from "lucide-react";
+import { ChevronDown, Pencil } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -10,6 +10,7 @@ import { useTimelineStore } from "@/store/useTimelineStore";
 import type { TimelineItem } from "@/types/timeline";
 import type { ChecklistItem } from "@/types/checklist";
 import { WeekChecklistSection } from "./WeekChecklistSection";
+import { DeleteConfirmDialog } from "./DeleteConfirmDialog";
 
 const TYPE_COLORS: Record<string, string> = {
   prep: "#FFD4DE",
@@ -172,17 +173,7 @@ export function TimelineAccordionCard({
                     >
                       <Pencil size={14} />
                     </button>
-                    <button
-                      onClick={() => {
-                        if (window.confirm("이 항목을 삭제하시겠습니까?")) {
-                          removeCustomItem(item.id);
-                        }
-                      }}
-                      className="p-1 rounded-lg text-[#9CA0A4] hover:text-red-400 hover:bg-red-50 transition-colors"
-                      aria-label="삭제"
-                    >
-                      <Trash2 size={16} />
-                    </button>
+                    <DeleteConfirmDialog onConfirm={() => removeCustomItem(item.id)} />
                   </div>
                 )}
               </div>

@@ -71,15 +71,17 @@ export function TimelineContainer({ timelineItems, checklistItems }: TimelineCon
     return { total, checked, percent: total > 0 ? (checked / total) * 100 : 0 };
   }, [allChecklistItems, checkedIds]);
 
-  // 카테고리 필터 적용 시 체크리스트가 없는 주차를 숨길지 여부
-  const hasFilteredChecklist = useCallback(
-    (week: number): boolean => {
-      if (activeCategory === "all") return true;
-      const items = weekChecklistMap.get(week) ?? [];
-      return items.some((item) => item.category === activeCategory);
-    },
-    [activeCategory, weekChecklistMap]
-  );
+  // 카테고리 필터 적용 시 체크리스트가 없는 주차를 숨길지 여부 (미리 계산)
+  const filteredWeekSet = useMemo(() => {
+    if (activeCategory === "all") return null; // null = 전체 표시
+    const set = new Set<number>();
+    for (const [week, items] of weekChecklistMap) {
+      if (items.some((item) => item.category === activeCategory)) {
+        set.add(week);
+      }
+    }
+    return set;
+  }, [activeCategory, weekChecklistMap]);
 
   // 현재 주차로 자동 스크롤
   useEffect(() => {
@@ -160,7 +162,7 @@ export function TimelineContainer({ timelineItems, checklistItems }: TimelineCon
             {(() => {
               let firstCurrentAssigned = false;
               return allTimelineItems
-                .filter((item) => activeCategory === "all" || hasFilteredChecklist(item.week))
+                .filter((item) => filteredWeekSet === null || filteredWeekSet.has(item.week))
                 .map((item) => {
                   const status = getStatus(item.week);
                   const shouldRef = status === "current" && !firstCurrentAssigned;

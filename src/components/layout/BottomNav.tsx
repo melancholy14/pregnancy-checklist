@@ -32,7 +32,7 @@ export function BottomNav() {
                   : "text-[#9CA0A4] hover:text-[#3D4447]"
               }`}
             >
-              <Icon size={20} strokeWidth={isActive ? 2.2 : 1.8} />
+              <Icon size={20} strokeWidth={isActive ? 2.2 : 1.8} color={isActive ? "#3D4447" : "#9CA0A4"} />
               <span className="text-[11px] font-medium">{item.label}</span>
             </Link>
           );
