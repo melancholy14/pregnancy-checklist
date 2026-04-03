@@ -6,8 +6,8 @@ import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "출산 준비 체크리스트",
-  description: "임산부를 위한 출산 준비 체크리스트, 주차별 타임라인, 베이비페어 일정 제공",
+  title: "출산 준비 체크리스트 - 임신 주차별 준비 가이드",
+  description: "임신 주차에 맞춘 출산 준비 체크리스트, 타임라인, 베이비페어 일정을 한눈에 확인하세요.",
 };
 
 export default function RootLayout({
@@ -17,6 +17,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
+      <head>
+        {process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID && (
+          <meta name="google-adsense-account" content={process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID} />
+        )}
+      </head>
       <body>
         <div className="min-h-screen">
           {children}

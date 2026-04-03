@@ -13,6 +13,10 @@ export function Footer() {
         <Link href="/terms" className="underline underline-offset-2 hover:text-foreground transition-colors">
           서비스 이용약관
         </Link>
+        <span>|</span>
+        <Link href="/about" className="underline underline-offset-2 hover:text-foreground transition-colors">
+          서비스 소개
+        </Link>
       </div>
     </footer>
   );
