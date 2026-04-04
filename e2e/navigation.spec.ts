@@ -13,8 +13,8 @@ test.describe("하단 네비게이션", () => {
     await expect(nav.getByText("홈")).toBeVisible();
     await expect(nav.getByText("타임라인")).toBeVisible();
     await expect(nav.getByText("베이비페어")).toBeVisible();
-    await expect(nav.getByText("체중")).toBeVisible();
     await expect(nav.getByText("영상")).toBeVisible();
+    await expect(nav.getByText("정보")).toBeVisible();
   });
 
   test("네비게이션으로 페이지 이동이 된다", async ({ page }) => {

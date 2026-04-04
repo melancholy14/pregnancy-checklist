@@ -13,27 +13,27 @@ test.describe("영상 페이지", () => {
       await expect(page.getByText("임신과 육아에 도움되는 영상 모음")).toBeVisible();
     });
 
-    test("카테고리 탭이 표시된다", async ({ page }) => {
-      // 무엇을: 3개 카테고리 탭 렌더링
-      // 왜: videos.json에 데이터가 있으므로 탭 UI가 활성화되어야 함
-      await expect(page.getByRole("tab", { name: "임산부 운동" })).toBeVisible();
-      await expect(page.getByRole("tab", { name: "출산 준비" })).toBeVisible();
-      await expect(page.getByRole("tab", { name: "신생아 케어" })).toBeVisible();
+    test("카테고리 필터 버튼이 표시된다", async ({ page }) => {
+      // 무엇을: 카테고리 필터 버튼 렌더링
+      // 왜: videos.json에 데이터가 있으므로 필터 UI가 활성화되어야 함
+      await expect(page.getByRole("button", { name: "임산부 운동" })).toBeVisible();
+      await expect(page.getByRole("button", { name: "출산 준비" })).toBeVisible();
+      await expect(page.getByRole("button", { name: "신생아 케어" })).toBeVisible();
     });
 
-    test("임산부 운동 카테고리에 영상 카드가 표시된다", async ({ page }) => {
-      // 무엇을: 기본 활성 탭(임산부 운동)에 영상 카드가 보이는지
-      // 왜: videos.json에 exercise 카테고리 3개가 있어야 함
-      await expect(page.getByText("임산부 요가")).toBeVisible();
+    test("기본 뷰에서 영상 카드가 표시된다", async ({ page }) => {
+      // 무엇을: 영상 뷰 기본 상태에서 영상 카드가 보이는지
+      // 왜: 전체 카테고리 영상이 기본 표시되어야 함
+      await expect(page.getByText("임산부 요가 - 허리 통증 완화 & 골반 스트레칭")).toBeVisible();
     });
 
-    test("카테고리 탭 전환이 동작한다", async ({ page }) => {
-      // 무엇을: 탭 클릭 시 해당 카테고리 영상이 표시되는지
+    test("카테고리 필터 전환이 동작한다", async ({ page }) => {
+      // 무엇을: 카테고리 버튼 클릭 시 해당 카테고리 영상이 표시되는지
       // 왜: 카테고리별 필터링 기능 검증
-      await page.getByRole("tab", { name: "출산 준비" }).click();
+      await page.getByRole("button", { name: "출산 준비" }).click();
       await expect(page.getByText("출산 가방 준비 총정리")).toBeVisible();
 
-      await page.getByRole("tab", { name: "신생아 케어" }).click();
+      await page.getByRole("button", { name: "신생아 케어" }).click();
       await expect(page.getByText("신생아 목욕시키는 방법")).toBeVisible();
     });
 
@@ -65,7 +65,7 @@ test.describe("영상 페이지", () => {
     test("모바일: 영상 카드가 정상 렌더링된다", async ({ page }) => {
       // 무엇을: 375px에서 영상 카드 표시
       // 왜: 주요 타겟 기기
-      await expect(page.getByRole("tab", { name: "임산부 운동" })).toBeVisible();
+      await expect(page.getByRole("button", { name: "임산부 운동" })).toBeVisible();
       await expect(page.locator('a[href*="youtube.com/watch"]').first()).toBeVisible();
     });
   });

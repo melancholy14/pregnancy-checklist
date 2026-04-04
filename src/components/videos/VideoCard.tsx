@@ -4,9 +4,10 @@ import type { VideoItem } from "@/types/video";
 
 interface VideoCardProps {
   video: VideoItem;
+  channelName?: string;
 }
 
-export function VideoCard({ video }: VideoCardProps) {
+export function VideoCard({ video, channelName }: VideoCardProps) {
   const thumbnailUrl = `https://img.youtube.com/vi/${video.youtube_id}/mqdefault.jpg`;
 
   return (
@@ -35,6 +36,9 @@ export function VideoCard({ video }: VideoCardProps) {
         {/* Info */}
         <CardContent className="p-4">
           <h4 className="line-clamp-2 leading-snug text-[15px]">{video.title}</h4>
+          {channelName && (
+            <p className="mt-1 text-xs text-muted-foreground">{channelName}</p>
+          )}
           {video.description && (
             <p className="mt-1 text-sm text-muted-foreground line-clamp-2">{video.description}</p>
           )}

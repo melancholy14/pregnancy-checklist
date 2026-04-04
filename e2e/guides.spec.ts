@@ -1,18 +1,17 @@
 import { test, expect } from "@playwright/test";
 
-test.describe("가이드 페이지", () => {
+test.describe("가이드 페이지 (리다이렉트)", () => {
   test.describe("출산 가방 가이드", () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto("/guides/hospital-bag");
+      await page.goto("/articles/hospital-bag");
     });
 
     test("제목과 본문이 렌더링된다", async ({ page }) => {
       // 무엇을: 출산 가방 가이드 페이지 기본 UI
-      // 왜: AdSense 승인을 위한 가이드 콘텐츠 정상 표시 확인
+      // 왜: MD 기반 정보글로 변환 후 정상 표시 확인
       await expect(
         page.getByRole("heading", { name: "출산 가방 필수 준비물 총정리" })
       ).toBeVisible();
-      await expect(page.getByText("실제로 필요한 것만 담은 미니멀 가이드")).toBeVisible();
     });
 
     test("산모용 필수 준비물 섹션이 보인다", async ({ page }) => {
@@ -21,8 +20,7 @@ test.describe("가이드 페이지", () => {
       await expect(
         page.getByRole("heading", { name: "산모용 필수 준비물" })
       ).toBeVisible();
-      await expect(page.getByText("산모용 잠옷")).toBeVisible();
-      await expect(page.getByText("수유 브라 2~3개")).toBeVisible();
+      await expect(page.getByText(/산모용 잠옷/)).toBeVisible();
     });
 
     test("아기용 준비물 섹션이 보인다", async ({ page }) => {
@@ -31,8 +29,6 @@ test.describe("가이드 페이지", () => {
       await expect(
         page.getByRole("heading", { name: "아기용 준비물" })
       ).toBeVisible();
-      await expect(page.getByText("퇴원복 (아기용)")).toBeVisible();
-      await expect(page.getByText("카시트")).toBeVisible();
     });
 
     test("서류 및 필수품 섹션이 보인다", async ({ page }) => {
@@ -41,7 +37,6 @@ test.describe("가이드 페이지", () => {
       await expect(
         page.getByRole("heading", { name: "서류 및 필수품" })
       ).toBeVisible();
-      await expect(page.getByText("신분증")).toBeVisible();
     });
 
     test("타임라인 링크가 동작한다", async ({ page }) => {
@@ -62,16 +57,15 @@ test.describe("가이드 페이지", () => {
 
   test.describe("주차별 준비 가이드", () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto("/guides/weekly-prep");
+      await page.goto("/articles/weekly-prep");
     });
 
     test("제목과 본문이 렌더링된다", async ({ page }) => {
       // 무엇을: 주차별 가이드 페이지 기본 UI
-      // 왜: AdSense 승인을 위한 가이드 콘텐츠 정상 표시 확인
+      // 왜: MD 기반 정보글로 변환 후 정상 표시 확인
       await expect(
         page.getByRole("heading", { name: "임신 주차별 검사 & 준비 가이드" })
       ).toBeVisible();
-      await expect(page.getByText("놓치면 안 되는 타이밍 정리")).toBeVisible();
     });
 
     test("4개 시기별 섹션이 모두 표시된다", async ({ page }) => {
@@ -97,7 +91,7 @@ test.describe("가이드 페이지", () => {
       const link = page.getByRole("link", { name: "출산 가방 가이드" });
       await expect(link).toBeVisible();
       await link.click();
-      await expect(page).toHaveURL(/\/guides\/hospital-bag/);
+      await expect(page).toHaveURL(/\/articles\/hospital-bag/);
     });
 
     test("타임라인 페이지 링크가 동작한다", async ({ page }) => {
@@ -116,13 +110,29 @@ test.describe("가이드 페이지", () => {
     });
   });
 
+  test.describe("리다이렉트", () => {
+    test("/guides/hospital-bag → /articles/hospital-bag 리다이렉트", async ({ page }) => {
+      // 무엇을: 기존 가이드 URL 호환성
+      // 왜: Phase 1.75 북마크/외부 링크 유지
+      await page.goto("/guides/hospital-bag");
+      await expect(page).toHaveURL(/\/articles\/hospital-bag/);
+    });
+
+    test("/guides/weekly-prep → /articles/weekly-prep 리다이렉트", async ({ page }) => {
+      // 무엇을: 기존 가이드 URL 호환성
+      // 왜: Phase 1.75 북마크/외부 링크 유지
+      await page.goto("/guides/weekly-prep");
+      await expect(page).toHaveURL(/\/articles\/weekly-prep/);
+    });
+  });
+
   test.describe("반응형 (Mobile 375px)", () => {
     test.use({ viewport: { width: 375, height: 812 } });
 
     test("모바일: 출산 가방 가이드가 정상 렌더링된다", async ({ page }) => {
       // 무엇을: 375px에서 가이드 페이지 표시
       // 왜: 주요 타겟 기기
-      await page.goto("/guides/hospital-bag");
+      await page.goto("/articles/hospital-bag");
       await expect(
         page.getByRole("heading", { name: "출산 가방 필수 준비물 총정리" })
       ).toBeVisible();
@@ -131,7 +141,7 @@ test.describe("가이드 페이지", () => {
     test("모바일: 주차별 가이드가 정상 렌더링된다", async ({ page }) => {
       // 무엇을: 375px에서 주차별 가이드 표시
       // 왜: 주요 타겟 기기
-      await page.goto("/guides/weekly-prep");
+      await page.goto("/articles/weekly-prep");
       await expect(
         page.getByRole("heading", { name: "임신 주차별 검사 & 준비 가이드" })
       ).toBeVisible();

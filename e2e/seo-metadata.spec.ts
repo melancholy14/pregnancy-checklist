@@ -54,8 +54,8 @@ test.describe("SEO 메타데이터 & OG 태그", () => {
       { path: "/", canonical: "https://pregnancy-checklist.com" },
       { path: "/timeline", canonical: "https://pregnancy-checklist.com/timeline" },
       { path: "/baby-fair", canonical: "https://pregnancy-checklist.com/baby-fair" },
-      { path: "/guides/hospital-bag", canonical: "https://pregnancy-checklist.com/guides/hospital-bag" },
-      { path: "/guides/weekly-prep", canonical: "https://pregnancy-checklist.com/guides/weekly-prep" },
+      { path: "/articles/hospital-bag", canonical: "https://pregnancy-checklist.com/articles/hospital-bag" },
+      { path: "/articles/weekly-prep", canonical: "https://pregnancy-checklist.com/articles/weekly-prep" },
     ];
 
     for (const { path, canonical } of pages) {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Clock, Users, Scale, Video, ChevronRight } from "lucide-react";
+import { Clock, Users, Scale, Video, FileText, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { toast } from "sonner";
@@ -23,6 +23,7 @@ const features = [
   { icon: Users, label: "베이비페어", color: "#D0EDE2", path: "/baby-fair" },
   { icon: Scale, label: "체중 기록", color: "#FFE0CC", path: "/weight" },
   { icon: Video, label: "영상", color: "#FFF4D4", path: "/videos" },
+  { icon: FileText, label: "정보", color: "#E0F0FF", path: "/articles" },
 ];
 
 export function HomeContent() {

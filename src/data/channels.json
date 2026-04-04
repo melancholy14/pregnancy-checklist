@@ -1,0 +1,58 @@
+[
+  {
+    "id": "channel_001",
+    "youtube_channel_id": "UCDnz-jMCaMPi2ZiGCJquSrg",
+    "name": "요가소풍",
+    "description": "임산부와 초보맘을 위한 요가·스트레칭 전문 채널",
+    "category": "exercise",
+    "thumbnail_url": "https://yt3.ggpht.com/ytc/AIdro_mQqMOBBR_0CYmDGz9YCVrXRzlIyGSQnlPWEbf2Eg=s88-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    "id": "channel_002",
+    "youtube_channel_id": "UCwyMOepKSfGkfeDzMH5x1dw",
+    "name": "땅끄부부",
+    "description": "임산부 운동과 건강한 임신 생활 정보를 전하는 채널",
+    "category": "exercise",
+    "thumbnail_url": "https://yt3.ggpht.com/ytc/AIdro_kzGl44D1Jb9x7v0NCh-P0QxA_EK9kZqCWCN2IfkQ=s88-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    "id": "channel_003",
+    "youtube_channel_id": "UCIwQ0wSi_MRk6gMSN-Ey3dA",
+    "name": "핏블리",
+    "description": "임산부 필라테스와 체형 관리 전문 운동 채널",
+    "category": "exercise",
+    "thumbnail_url": "https://yt3.ggpht.com/ytc/AIdro_lVRDoGl3GS5pNqsWl5b-A5_4fWkF3x5dVwEVCkXA=s88-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    "id": "channel_004",
+    "youtube_channel_id": "UCjgQVIq0vo_QV4TMeQDcRbg",
+    "name": "슈퍼맘 시니",
+    "description": "출산 경험담과 실용적인 준비물 리뷰를 전하는 육아 채널",
+    "category": "birth_prep",
+    "thumbnail_url": "https://yt3.ggpht.com/ytc/AIdro_n7oD7Pzqf8HFy2Y3LQr6B7C0NQw3l5f_DXVmhVHQ=s88-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    "id": "channel_005",
+    "youtube_channel_id": "UC3bRhcqt5YD_0D45oVAisfw",
+    "name": "닥터프렌즈",
+    "description": "산부인과 전문의가 알려주는 임신·출산 의학 정보",
+    "category": "birth_prep",
+    "thumbnail_url": "https://yt3.ggpht.com/ytc/AIdro_mCO3k7RUy-Q4S3QLDx6RZ4PKrKDB7Y5aSBfGXjRQ=s88-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    "id": "channel_006",
+    "youtube_channel_id": "UCcAkWaEsm2s9K1dEftawJw",
+    "name": "보건쌤",
+    "description": "간호사 출신 육아 전문가의 신생아 케어 가이드",
+    "category": "newborn_care",
+    "thumbnail_url": "https://yt3.ggpht.com/ytc/AIdro_lNLMx7_yB1M3RQKpkPBV_Tz8FJF5V_HnE3x8LMmA=s88-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    "id": "channel_007",
+    "youtube_channel_id": "UC_ZkKPnMACcz4iGRKTsB5kA",
+    "name": "하정훈의 육아이야기",
+    "description": "소아과 전문의가 알려주는 신생아 발달과 수면 교육",
+    "category": "newborn_care",
+    "thumbnail_url": "https://yt3.ggpht.com/ytc/AIdro_khW5Sic7oD0sMO8AW5R_b8q3kK7gKGJ0FY_ZG7Bw=s88-c-k-c0x00ffffff-no-rj"
+  }
+]

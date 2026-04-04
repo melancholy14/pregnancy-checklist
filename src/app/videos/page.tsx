@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import videos from "@/data/videos.json";
-import type { VideoItem } from "@/types/video";
+import channels from "@/data/channels.json";
+import type { VideoItem, ChannelItem } from "@/types/video";
 import { VideosContainer } from "@/components/videos/VideosContainer";
 import { BASE_URL } from "@/lib/constants";
 
@@ -18,5 +19,10 @@ export const metadata: Metadata = {
 };
 
 export default function VideosPage() {
-  return <VideosContainer items={videos as VideoItem[]} />;
+  return (
+    <VideosContainer
+      items={videos as VideoItem[]}
+      channels={channels as ChannelItem[]}
+    />
+  );
 }

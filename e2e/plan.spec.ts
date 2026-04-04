@@ -292,14 +292,14 @@ test.describe("Phase 1.5: 타임라인 + 체크리스트 통합", () => {
     });
 
     test("하단 네비게이션이 5개 탭이다", async ({ page }) => {
-      // 무엇을: 홈/타임라인/베이비페어/체중/영상 5개 탭이 표시되는지
-      // 왜: 홈 Feature Grid과 네비게이션 일치. 체크리스트→베이비페어, 더보기→영상
+      // 무엇을: 홈/타임라인/베이비페어/영상/정보 5개 탭이 표시되는지
+      // 왜: Phase 2에서 체중→정보 교체. Feature Grid과 네비게이션 일치
       const nav = page.locator("nav");
       await expect(nav.getByText("홈")).toBeVisible();
       await expect(nav.getByText("타임라인")).toBeVisible();
       await expect(nav.getByText("베이비페어")).toBeVisible();
-      await expect(nav.getByText("체중")).toBeVisible();
       await expect(nav.getByText("영상")).toBeVisible();
+      await expect(nav.getByText("정보")).toBeVisible();
       await expect(nav.getByText("체크리스트")).not.toBeVisible();
       await expect(nav.getByText("더보기")).not.toBeVisible();
     });

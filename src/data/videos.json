@@ -5,7 +5,10 @@
     "youtube_id": "COhRLDSvJYQ",
     "category": "exercise",
     "categoryName": "임산부 운동",
-    "description": "임신 중 허리 통증을 줄여주는 안전한 요가 동작을 따라해보세요."
+    "subcategory": "yoga",
+    "subcategoryName": "요가",
+    "description": "임신 중 허리 통증을 줄여주는 안전한 요가 동작을 따라해보세요.",
+    "channel_id": "channel_001"
   },
   {
     "id": "video_002",
@@ -13,7 +16,10 @@
     "youtube_id": "hQMBDFGMwGQ",
     "category": "exercise",
     "categoryName": "임산부 운동",
-    "description": "날씨와 상관없이 집에서 안전하게 할 수 있는 임산부 걷기 운동입니다."
+    "subcategory": "walking",
+    "subcategoryName": "걷기",
+    "description": "날씨와 상관없이 집에서 안전하게 할 수 있는 임산부 걷기 운동입니다.",
+    "channel_id": "channel_002"
   },
   {
     "id": "video_003",
@@ -21,54 +27,141 @@
     "youtube_id": "AZYzBGZzrz4",
     "category": "exercise",
     "categoryName": "임산부 운동",
-    "description": "임신 중기부터 후기까지 할 수 있는 부종 완화 스트레칭입니다."
+    "subcategory": "stretching",
+    "subcategoryName": "스트레칭",
+    "description": "임신 중기부터 후기까지 할 수 있는 부종 완화 스트레칭입니다.",
+    "channel_id": "channel_001"
   },
   {
     "id": "video_004",
+    "title": "임산부 필라테스 - 코어 강화 & 자세 교정",
+    "youtube_id": "JkVHrA5o23o",
+    "category": "exercise",
+    "categoryName": "임산부 운동",
+    "subcategory": "pilates",
+    "subcategoryName": "필라테스",
+    "description": "임신 중에도 안전하게 할 수 있는 필라테스 동작 모음입니다.",
+    "channel_id": "channel_003"
+  },
+  {
+    "id": "video_005",
+    "title": "임산부 요가 - 숙면을 위한 저녁 루틴",
+    "youtube_id": "sY8AQKZ1hXo",
+    "category": "exercise",
+    "categoryName": "임산부 운동",
+    "subcategory": "yoga",
+    "subcategoryName": "요가",
+    "description": "잠들기 전 긴장을 풀어주는 임산부 요가 루틴입니다.",
+    "channel_id": "channel_001"
+  },
+  {
+    "id": "video_006",
     "title": "출산 가방 준비 총정리 - 실제 사용한 것만 추천",
     "youtube_id": "0vMIK0bCPHo",
     "category": "birth_prep",
     "categoryName": "출산 준비",
-    "description": "실제 출산을 경험한 엄마가 알려주는 출산 가방 필수 준비물 리스트입니다."
+    "subcategory": "hospital_bag",
+    "subcategoryName": "출산가방",
+    "description": "실제 출산을 경험한 엄마가 알려주는 출산 가방 필수 준비물 리스트입니다.",
+    "channel_id": "channel_004"
   },
   {
-    "id": "video_005",
+    "id": "video_007",
     "title": "산부인과 의사가 알려주는 순산을 위한 준비",
     "youtube_id": "7Jcj9V_s4iE",
     "category": "birth_prep",
     "categoryName": "출산 준비",
-    "description": "산부인과 전문의가 설명하는 출산 과정과 순산을 위한 팁입니다."
+    "subcategory": "delivery_info",
+    "subcategoryName": "분만정보",
+    "description": "산부인과 전문의가 설명하는 출산 과정과 순산을 위한 팁입니다.",
+    "channel_id": "channel_005"
   },
   {
-    "id": "video_006",
+    "id": "video_008",
     "title": "제왕절개 vs 자연분만 - 장단점 비교 총정리",
     "youtube_id": "vM9mXlCqBwY",
     "category": "birth_prep",
     "categoryName": "출산 준비",
-    "description": "분만 방식별 장단점을 객관적으로 비교한 정보 영상입니다."
+    "subcategory": "delivery_info",
+    "subcategoryName": "분만정보",
+    "description": "분만 방식별 장단점을 객관적으로 비교한 정보 영상입니다.",
+    "channel_id": "channel_005"
   },
   {
-    "id": "video_007",
+    "id": "video_009",
+    "title": "임신 중 꼭 받아야 할 검사 총정리",
+    "youtube_id": "LVf5Cr4M-F8",
+    "category": "birth_prep",
+    "categoryName": "출산 준비",
+    "subcategory": "prenatal_care",
+    "subcategoryName": "산전관리",
+    "description": "임신 주차별 필수 검사와 선택 검사를 알기 쉽게 정리했습니다.",
+    "channel_id": "channel_005"
+  },
+  {
+    "id": "video_010",
+    "title": "출산 준비물 리스트 - 꼭 필요한 것 vs 안 쓰는 것",
+    "youtube_id": "2VWkfeN3EQI",
+    "category": "birth_prep",
+    "categoryName": "출산 준비",
+    "subcategory": "hospital_bag",
+    "subcategoryName": "출산가방",
+    "description": "실제 출산 후 정말 쓴 것과 안 쓴 것을 솔직하게 구분했습니다.",
+    "channel_id": "channel_004"
+  },
+  {
+    "id": "video_011",
     "title": "신생아 목욕시키는 방법 - 산후조리원에서 배우는 법",
     "youtube_id": "Pi0BNiJHFjg",
     "category": "newborn_care",
     "categoryName": "신생아 케어",
-    "description": "신생아 첫 목욕부터 배꼽 관리까지 단계별로 알려드립니다."
+    "subcategory": "bathing",
+    "subcategoryName": "목욕",
+    "description": "신생아 첫 목욕부터 배꼽 관리까지 단계별로 알려드립니다.",
+    "channel_id": "channel_006"
   },
   {
-    "id": "video_008",
+    "id": "video_012",
     "title": "모유수유 자세와 젖물리기 - 초보맘 필수 가이드",
     "youtube_id": "qWPklbN-bNA",
     "category": "newborn_care",
     "categoryName": "신생아 케어",
-    "description": "올바른 모유수유 자세와 아기가 편하게 젖을 물 수 있는 방법을 안내합니다."
+    "subcategory": "feeding",
+    "subcategoryName": "수유",
+    "description": "올바른 모유수유 자세와 아기가 편하게 젖을 물 수 있는 방법을 안내합니다.",
+    "channel_id": "channel_006"
   },
   {
-    "id": "video_009",
+    "id": "video_013",
     "title": "신생아 재우기 - 수면 교육 기초와 안전한 수면 환경",
     "youtube_id": "d0sR5OvKYNQ",
     "category": "newborn_care",
     "categoryName": "신생아 케어",
-    "description": "신생아 수면 패턴 이해와 안전한 수면 환경 만드는 방법입니다."
+    "subcategory": "sleep",
+    "subcategoryName": "수면",
+    "description": "신생아 수면 패턴 이해와 안전한 수면 환경 만드는 방법입니다.",
+    "channel_id": "channel_007"
+  },
+  {
+    "id": "video_014",
+    "title": "신생아 발달 - 0~3개월 아기의 성장 과정",
+    "youtube_id": "sTb-yK1KZhI",
+    "category": "newborn_care",
+    "categoryName": "신생아 케어",
+    "subcategory": "development",
+    "subcategoryName": "발달",
+    "description": "출생 후 3개월까지 아기가 어떻게 성장하는지 알려드립니다.",
+    "channel_id": "channel_007"
+  },
+  {
+    "id": "video_015",
+    "title": "분유 수유 가이드 - 혼합수유와 분유 선택 팁",
+    "youtube_id": "qrDXSnesd-E",
+    "category": "newborn_care",
+    "categoryName": "신생아 케어",
+    "subcategory": "feeding",
+    "subcategoryName": "수유",
+    "description": "분유 수유 방법과 혼합수유 시 주의사항을 정리했습니다.",
+    "channel_id": "channel_006"
   }
 ]
