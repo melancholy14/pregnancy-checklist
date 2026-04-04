@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { Clock, Users, Scale, Video, ChevronRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { toast } from "sonner";
 import { Card, CardContent } from "@/components/ui/card";
@@ -90,8 +91,8 @@ export function HomeContent() {
       {/* Hero Section */}
       <div className="pt-14 pb-8 text-center">
         <div className="mb-8 relative">
-          <div className="w-24 h-24 mx-auto rounded-full bg-linear-to-br from-[#FFD4DE] via-[#E4D6F0] to-[#D0EDE2] flex items-center justify-center shadow-lg">
-            <div className="text-5xl">🤰</div>
+          <div className="w-24 h-24 mx-auto rounded-full bg-linear-to-br from-[#FFD4DE] via-[#E4D6F0] to-[#D0EDE2] flex items-center justify-center shadow-lg overflow-hidden">
+            <Image src="/home.png" alt="출산 준비" width={96} height={96} className="object-cover" />
           </div>
         </div>
         <h1 className="mb-3">출산 준비 체크리스트</h1>
