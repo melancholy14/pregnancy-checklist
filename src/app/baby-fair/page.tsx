@@ -20,6 +20,14 @@ export const metadata: Metadata = {
 export const metadata: Metadata = {
   title: "베이비페어 일정 모음 - 출산 준비 체크리스트",
   description: "전국 베이비페어 일정, 장소, 공식 링크를 한곳에서 확인하세요.",
+  alternates: {
+    canonical: `${BASE_URL}/baby-fair`,
+  },
+  openGraph: {
+    title: "베이비페어 일정 모음",
+    description: "전국 베이비페어 일정, 장소, 공식 링크를 한곳에서 확인하세요.",
+    url: `${BASE_URL}/baby-fair`,
+  },
 };
 
 export default function BabyFairPage() {

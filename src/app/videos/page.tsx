@@ -18,11 +18,6 @@ export const metadata: Metadata = {
   },
 };
 
-export const metadata: Metadata = {
-  title: "임산부 추천 영상 모음 - 출산 준비 체크리스트",
-  description: "임산부 운동, 출산 준비, 신생아 케어 관련 추천 영상을 모아봤습니다.",
-};
-
 export default function VideosPage() {
   return (
     <VideosContainer

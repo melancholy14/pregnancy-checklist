@@ -20,11 +20,6 @@ export const metadata: Metadata = {
   },
 };
 
-export const metadata: Metadata = {
-  title: "임신 주차별 타임라인 & 체크리스트 - 출산 준비 체크리스트",
-  description: "4주부터 40주까지, 주차별로 준비해야 할 항목을 체크리스트와 함께 확인하세요.",
-};
-
 export default function TimelinePage() {
   return (
     <>
