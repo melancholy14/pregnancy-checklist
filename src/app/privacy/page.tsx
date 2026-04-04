@@ -1,7 +1,17 @@
 import type { Metadata } from "next";
+import { BASE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "개인정보처리방침 - 출산 준비 체크리스트",
+  description: "출산 준비 체크리스트 서비스의 개인정보처리방침입니다.",
+  alternates: {
+    canonical: `${BASE_URL}/privacy`,
+  },
+  openGraph: {
+    title: "개인정보처리방침 - 출산 준비 체크리스트",
+    description: "출산 준비 체크리스트 서비스의 개인정보처리방침입니다.",
+    url: `${BASE_URL}/privacy`,
+  },
 };
 
 export default function PrivacyPage() {

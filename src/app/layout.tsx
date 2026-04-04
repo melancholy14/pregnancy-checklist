@@ -3,11 +3,25 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { Toaster } from "sonner";
 import { BottomNav } from "@/components/layout/BottomNav";
 import { Footer } from "@/components/layout/Footer";
+import { BASE_URL, OG_IMAGE } from "@/lib/constants";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
   title: "출산 준비 체크리스트 - 임신 주차별 준비 가이드",
   description: "임신 주차에 맞춘 출산 준비 체크리스트, 타임라인, 베이비페어 일정을 한눈에 확인하세요.",
+  openGraph: {
+    title: "출산 준비 체크리스트 - 임신 주차별 준비 가이드",
+    description: "임신 주차에 맞춘 출산 준비 체크리스트, 타임라인, 베이비페어 일정을 한눈에 확인하세요.",
+    url: BASE_URL,
+    siteName: "출산 준비 체크리스트",
+    locale: "ko_KR",
+    type: "website",
+    images: [OG_IMAGE],
+  },
+  alternates: {
+    canonical: BASE_URL,
+  },
 };
 
 export default function RootLayout({

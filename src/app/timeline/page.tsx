@@ -5,10 +5,19 @@ import type { TimelineItem } from "@/types/timeline";
 import type { ChecklistItem } from "@/types/checklist";
 import { TimelineContainer } from "@/components/timeline/TimelineContainer";
 import { DueDateBanner } from "@/components/home/DueDateBanner";
+import { BASE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "임신 주차별 타임라인 & 체크리스트 - 출산 준비 체크리스트",
   description: "4주부터 40주까지, 주차별로 준비해야 할 항목을 체크리스트와 함께 확인하세요.",
+  alternates: {
+    canonical: `${BASE_URL}/timeline`,
+  },
+  openGraph: {
+    title: "임신 주차별 타임라인 & 체크리스트",
+    description: "4주부터 40주까지, 주차별로 준비해야 할 항목을 체크리스트와 함께 확인하세요.",
+    url: `${BASE_URL}/timeline`,
+  },
 };
 
 export default function TimelinePage() {

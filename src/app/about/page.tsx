@@ -1,8 +1,17 @@
 import type { Metadata } from "next";
+import { BASE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "서비스 소개 - 출산 준비 체크리스트",
   description: "출산 준비 체크리스트 서비스의 소개와 연락처입니다.",
+  alternates: {
+    canonical: `${BASE_URL}/about`,
+  },
+  openGraph: {
+    title: "서비스 소개 - 출산 준비 체크리스트",
+    description: "출산 준비 체크리스트 서비스의 소개와 연락처입니다.",
+    url: `${BASE_URL}/about`,
+  },
 };
 
 export default function AboutPage() {

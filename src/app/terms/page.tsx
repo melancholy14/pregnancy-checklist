@@ -1,7 +1,17 @@
 import type { Metadata } from "next";
+import { BASE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "서비스 이용약관 - 출산 준비 체크리스트",
+  description: "출산 준비 체크리스트 서비스의 이용약관입니다.",
+  alternates: {
+    canonical: `${BASE_URL}/terms`,
+  },
+  openGraph: {
+    title: "서비스 이용약관 - 출산 준비 체크리스트",
+    description: "출산 준비 체크리스트 서비스의 이용약관입니다.",
+    url: `${BASE_URL}/terms`,
+  },
 };
 
 export default function TermsPage() {

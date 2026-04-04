@@ -1,5 +1,14 @@
 import type { ChecklistItem } from "@/types/checklist";
 
+export const BASE_URL = "https://pregnancy-checklist.com";
+
+export const OG_IMAGE = {
+  url: "/og-image.png",
+  width: 1200,
+  height: 630,
+  alt: "출산 준비 체크리스트",
+} as const;
+
 export const CATEGORY_OPTIONS: { value: ChecklistItem["category"]; label: string }[] = [
   { value: "hospital", label: "병원 준비" },
   { value: "hospital_bag", label: "출산 가방" },
