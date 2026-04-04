@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
+import remarkGfm from "remark-gfm";
 import html from "remark-html";
 import type { ArticleMeta, Article } from "@/types/article";
 
@@ -48,7 +49,7 @@ export async function getArticleBySlug(
 
   const raw = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(raw);
-  const result = await remark().use(html).process(content);
+  const result = await remark().use(remarkGfm).use(html).process(content);
 
   return {
     ...parseArticleMeta(data),

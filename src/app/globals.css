@@ -139,6 +139,224 @@
   --shadow-xl: 0 8px 12px rgba(0,0,0,0.04), 0 20px 40px rgba(0,0,0,0.07);
 }
 
+/* Article prose – editorial reading experience */
+.article-prose {
+  --prose-heading: #3D4447;
+  --prose-body: #52585C;
+  --prose-muted: #7A7F83;
+  --prose-accent: #6B5A80;
+  --prose-accent-bg: #E4D6F0;
+  --prose-divider: #F0EBE6;
+  --prose-surface: #FFF8F4;
+  --prose-tip-bg: #FFF4ED;
+  --prose-tip-border: #FFD4B8;
+  color: var(--prose-body);
+  font-size: 0.9375rem;
+  line-height: 1.85;
+  letter-spacing: -0.008em;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.article-prose > * + * {
+  margin-top: 1.25em;
+}
+
+/* Headings */
+.article-prose h2 {
+  color: var(--prose-heading);
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  margin-top: 2.5em;
+  margin-bottom: 0.25em;
+  padding-bottom: 0.5em;
+  border-bottom: 1.5px solid var(--prose-divider);
+}
+
+.article-prose h2:first-child {
+  margin-top: 0;
+}
+
+.article-prose h3 {
+  color: var(--prose-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  margin-top: 2em;
+  margin-bottom: 0.15em;
+}
+
+/* Paragraphs */
+.article-prose p {
+  margin-top: 0.75em;
+  margin-bottom: 0;
+}
+
+/* Lists */
+.article-prose ul,
+.article-prose ol {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.article-prose li {
+  position: relative;
+  padding-left: 1.5em;
+  margin-top: 0.6em;
+}
+
+.article-prose ul > li::before {
+  content: '';
+  position: absolute;
+  left: 0.15em;
+  top: 0.65em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--prose-accent-bg);
+  box-shadow: 0 0 0 2px #F4EEF8;
+}
+
+.article-prose ol {
+  counter-reset: ol-counter;
+}
+
+.article-prose ol > li {
+  counter-increment: ol-counter;
+}
+
+.article-prose ol > li::before {
+  content: counter(ol-counter);
+  position: absolute;
+  left: 0;
+  top: -0.05em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--prose-accent);
+  background: #F4EEF8;
+  width: 1.35em;
+  height: 1.35em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  line-height: 1;
+}
+
+.article-prose li strong {
+  color: var(--prose-heading);
+  font-weight: 600;
+}
+
+/* em dash separator in list items */
+.article-prose li strong + br,
+.article-prose li strong ~ * {
+  color: var(--prose-body);
+}
+
+/* Strong */
+.article-prose strong {
+  color: var(--prose-heading);
+  font-weight: 600;
+}
+
+/* Links */
+.article-prose a {
+  color: var(--prose-accent);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid #E4D6F0;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.article-prose a:hover {
+  border-bottom-color: var(--prose-accent);
+}
+
+/* Blockquotes */
+.article-prose blockquote {
+  position: relative;
+  margin: 1.75em 0;
+  padding: 1em 1.25em;
+  background: var(--prose-tip-bg);
+  border: none;
+  border-left: 3px solid var(--prose-tip-border);
+  border-radius: 0 0.75rem 0.75rem 0;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  color: var(--prose-body);
+}
+
+.article-prose blockquote p {
+  margin: 0;
+}
+
+.article-prose blockquote strong {
+  color: #B8734A;
+  font-weight: 600;
+}
+
+/* Tables */
+.article-prose table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.875rem;
+  margin-top: 1.5em;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid var(--prose-divider);
+}
+
+.article-prose thead th {
+  background: var(--prose-surface);
+  color: var(--prose-heading);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.75em 1em;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--prose-divider);
+}
+
+.article-prose tbody td {
+  padding: 0.7em 1em;
+  color: var(--prose-body);
+  border-bottom: 1px solid #FAF5F0;
+}
+
+.article-prose tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.article-prose tbody tr:hover {
+  background: #FFFCFA;
+}
+
+/* Horizontal rule */
+.article-prose hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--prose-divider), transparent);
+  margin: 2.5em 0;
+}
+
+/* Code inline */
+.article-prose code {
+  background: #F4EEF8;
+  color: var(--prose-accent);
+  font-size: 0.85em;
+  padding: 0.15em 0.4em;
+  border-radius: 0.3em;
+  font-weight: 500;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
