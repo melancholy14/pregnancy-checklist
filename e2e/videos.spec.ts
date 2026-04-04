@@ -17,24 +17,24 @@ test.describe("영상 페이지", () => {
       // 무엇을: 카테고리 필터 버튼 렌더링
       // 왜: videos.json에 데이터가 있으므로 필터 UI가 활성화되어야 함
       await expect(page.getByRole("button", { name: "임산부 운동" })).toBeVisible();
-      await expect(page.getByRole("button", { name: "출산 준비" })).toBeVisible();
+      await expect(page.getByRole("button", { name: "출산 준비", exact: true })).toBeVisible();
       await expect(page.getByRole("button", { name: "신생아 케어" })).toBeVisible();
     });
 
     test("기본 뷰에서 영상 카드가 표시된다", async ({ page }) => {
       // 무엇을: 영상 뷰 기본 상태에서 영상 카드가 보이는지
       // 왜: 전체 카테고리 영상이 기본 표시되어야 함
-      await expect(page.getByText("임산부 요가 - 허리 통증 완화 & 골반 스트레칭")).toBeVisible();
+      await expect(page.getByText("임산부 스트레칭 + 유무산소 운동 20분")).toBeVisible();
     });
 
     test("카테고리 필터 전환이 동작한다", async ({ page }) => {
       // 무엇을: 카테고리 버튼 클릭 시 해당 카테고리 영상이 표시되는지
       // 왜: 카테고리별 필터링 기능 검증
-      await page.getByRole("button", { name: "출산 준비" }).click();
-      await expect(page.getByText("출산 가방 준비 총정리")).toBeVisible();
+      await page.getByRole("button", { name: "출산 준비", exact: true }).click();
+      await expect(page.getByText("산부인과의사가 자연분만을 권하는 진짜 이유")).toBeVisible();
 
       await page.getByRole("button", { name: "신생아 케어" }).click();
-      await expect(page.getByText("신생아 목욕시키는 방법")).toBeVisible();
+      await expect(page.getByText("신생아 목욕 방법 (with 쁘리마쥬)")).toBeVisible();
     });
 
     test("영상 카드가 YouTube 링크를 가진다", async ({ page }) => {

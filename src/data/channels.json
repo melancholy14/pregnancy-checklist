@@ -1,58 +1,245 @@
 [
   {
     "id": "channel_001",
-    "youtube_channel_id": "UCDnz-jMCaMPi2ZiGCJquSrg",
-    "name": "요가소풍",
-    "description": "임산부와 초보맘을 위한 요가·스트레칭 전문 채널",
-    "category": "exercise",
-    "thumbnail_url": "https://yt3.ggpht.com/ytc/AIdro_mQqMOBBR_0CYmDGz9YCVrXRzlIyGSQnlPWEbf2Eg=s88-c-k-c0x00ffffff-no-rj"
+    "youtube_channel_id": "UC6t0ees15Lp0gyrLrAyLeJQ",
+    "name": "하정훈의 삐뽀삐뽀 119 소아과",
+    "description": "소아청소년과 전문의 하정훈 원장이 운영하는 대표 육아 채널. 신생아 건강, 수면, 수유 정보 제공.",
+    "category": "newborn_care",
+    "handle": "@하정훈의삐뽀삐뽀119소",
+    "thumbnail_url": "https://yt3.googleusercontent.com/ytc/AIdro_l7w-A0kB7-I22WePYZSzeJ0fJp84qw8WGUop8xNWeoh0w=s900-c-k-c0x00ffffff-no-rj"
   },
   {
     "id": "channel_002",
-    "youtube_channel_id": "UCwyMOepKSfGkfeDzMH5x1dw",
-    "name": "땅끄부부",
-    "description": "임산부 운동과 건강한 임신 생활 정보를 전하는 채널",
-    "category": "exercise",
-    "thumbnail_url": "https://yt3.ggpht.com/ytc/AIdro_kzGl44D1Jb9x7v0NCh-P0QxA_EK9kZqCWCN2IfkQ=s88-c-k-c0x00ffffff-no-rj"
+    "youtube_channel_id": "UC08tP3KIyCK9vYNZm5qQuiw",
+    "name": "서울아산병원",
+    "description": "서울아산병원 공식 채널. 임신 관리, 임산부 운동, 신생아 관리 등 병원 교육 콘텐츠 제공.",
+    "category": "birth_prep",
+    "handle": "@AsanMedicalCenter",
+    "thumbnail_url": "https://yt3.googleusercontent.com/ytc/AIdro_kYRq6NY5QjOJ3bnKJe5clNtjr50gitxmrM0KJb0gOiqhc=s900-c-k-c0x00ffffff-no-rj"
   },
   {
     "id": "channel_003",
-    "youtube_channel_id": "UCIwQ0wSi_MRk6gMSN-Ey3dA",
-    "name": "핏블리",
-    "description": "임산부 필라테스와 체형 관리 전문 운동 채널",
-    "category": "exercise",
-    "thumbnail_url": "https://yt3.ggpht.com/ytc/AIdro_lVRDoGl3GS5pNqsWl5b-A5_4fWkF3x5dVwEVCkXA=s88-c-k-c0x00ffffff-no-rj"
+    "youtube_channel_id": "UCq1tdFBQNN47kESigh9Xd1A",
+    "name": "서울대병원tv",
+    "description": "서울대학교병원 공식 채널. 산부인과·소아과 의료진이 임신 관리와 출산 준비 정보를 제공.",
+    "category": "birth_prep",
+    "handle": "@snuhtv",
+    "thumbnail_url": "https://yt3.googleusercontent.com/RxwkDop_UPvHAaJfilC_3CzmRbGCTFKPVWCUwJzhO2X8p_9oIZ6FuiQWCSZd3zyGK-wvmMybQJo=s900-c-k-c0x00ffffff-no-rj"
   },
   {
     "id": "channel_004",
-    "youtube_channel_id": "UCjgQVIq0vo_QV4TMeQDcRbg",
-    "name": "슈퍼맘 시니",
-    "description": "출산 경험담과 실용적인 준비물 리뷰를 전하는 육아 채널",
+    "youtube_channel_id": "UCHDoVNV6NkgjuiCyLIMmdqQ",
+    "name": "차병원 CHA Medical Center",
+    "description": "차병원 그룹 공식 채널. 난임, 임신, 출산 준비, 신생아 케어 정보를 의료진이 설명.",
     "category": "birth_prep",
-    "thumbnail_url": "https://yt3.ggpht.com/ytc/AIdro_n7oD7Pzqf8HFy2Y3LQr6B7C0NQw3l5f_DXVmhVHQ=s88-c-k-c0x00ffffff-no-rj"
+    "handle": "@chahospital",
+    "thumbnail_url": "https://yt3.googleusercontent.com/MPA0nfh7lBwTwIiI5Znd2S-Ig2_zBlauCuSoBShk5ArGK-tzvcsYLMtmq59LqPaqc-vhtU3PrA=s900-c-k-c0x00ffffff-no-rj"
   },
   {
     "id": "channel_005",
-    "youtube_channel_id": "UC3bRhcqt5YD_0D45oVAisfw",
-    "name": "닥터프렌즈",
-    "description": "산부인과 전문의가 알려주는 임신·출산 의학 정보",
+    "youtube_channel_id": "UCWEy8OzjiXqsqSxXWDYiw6g",
+    "name": "VillageBaby (베이비빌리)",
+    "description": "임신·육아 앱 BabyBilly에서 운영하는 채널. 임신 주차별 정보와 신생아 케어 교육 제공.",
     "category": "birth_prep",
-    "thumbnail_url": "https://yt3.ggpht.com/ytc/AIdro_mCO3k7RUy-Q4S3QLDx6RZ4PKrKDB7Y5aSBfGXjRQ=s88-c-k-c0x00ffffff-no-rj"
+    "handle": "@villagebaby",
+    "thumbnail_url": "https://yt3.googleusercontent.com/ytc/AIdro_l5oT5oSv6pus_5lr-swTADCEQAlgDhxXPc5kDJPhCtwCw=s900-c-k-c0x00ffffff-no-rj"
   },
   {
     "id": "channel_006",
-    "youtube_channel_id": "UCcAkWaEsm2s9K1dEftawJw",
-    "name": "보건쌤",
-    "description": "간호사 출신 육아 전문가의 신생아 케어 가이드",
-    "category": "newborn_care",
-    "thumbnail_url": "https://yt3.ggpht.com/ytc/AIdro_lNLMx7_yB1M3RQKpkPBV_Tz8FJF5V_HnE3x8LMmA=s88-c-k-c0x00ffffff-no-rj"
+    "youtube_channel_id": "UCpgoxljexZ23-K5dN0-6hVA",
+    "name": "우리동네산부인과, 우리동산",
+    "description": "산부인과 전문의 3인이 운영하는 여성건강 채널. 임신·출산·산부인과 지식을 의학적 근거 기반으로 전달.",
+    "category": "birth_prep",
+    "handle": "@wooridongsan",
+    "thumbnail_url": "https://yt3.googleusercontent.com/3j1bc0-_Tp6mKqSOocWS4IvXJnqyJi0COH0e7gu5qCqLaSKasMrAol_0TFOq_uRm2f2pSyoo=s900-c-k-c0x00ffffff-no-rj"
   },
   {
     "id": "channel_007",
-    "youtube_channel_id": "UC_ZkKPnMACcz4iGRKTsB5kA",
-    "name": "하정훈의 육아이야기",
-    "description": "소아과 전문의가 알려주는 신생아 발달과 수면 교육",
+    "youtube_channel_id": "UC-FZjF-oF0Cvq699UNcG5Tg",
+    "name": "맘똑티비",
+    "description": "분만실·산부인과 경력 간호사, 국제 모유수유전문가(IBCLC)의 임신·출산·모유수유·육아 채널.",
+    "category": "birth_prep",
+    "handle": "@smartmom_tv",
+    "thumbnail_url": "https://yt3.googleusercontent.com/ytc/AIdro_migKag1DqIBZdiZiPJ86XzT6garIkMnA01H4suiJsbAw=s160-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    "id": "channel_008",
+    "youtube_channel_id": "UC_AfDhGrbbL6CKr5nxx_Fow",
+    "name": "삐뽀삐뽀 정유미 TV",
+    "description": "소아청소년과전문의 정유미. 모유수유, 이유식, 성장 발달 등 광고 없이 운영.",
     "category": "newborn_care",
-    "thumbnail_url": "https://yt3.ggpht.com/ytc/AIdro_khW5Sic7oD0sMO8AW5R_b8q3kK7gKGJ0FY_ZG7Bw=s88-c-k-c0x00ffffff-no-rj"
+    "handle": "@Dr.YMChung",
+    "thumbnail_url": "https://yt3.googleusercontent.com/TZ8OrS7iKuXU2dKMlFfOp3QZWiqfUFkz0kuGSl1dCAjpAHIjL0mYE5BTofPPlx5MZ0PnJeD28Q=s160-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    "id": "channel_009",
+    "youtube_channel_id": "UC36Wcr0fy23W643DhG_U7HQ",
+    "name": "권향화 원장의 다울아이TV",
+    "description": "육아일타강사 권향화 원장의 신생아 케어, 모유수유, 수면교육 채널.",
+    "category": "newborn_care",
+    "handle": "@daulbebe",
+    "thumbnail_url": "https://yt3.googleusercontent.com/ytc/AIdro_lXByGXWtKR2qqKKcJfID0gQZc0IVqmpRNtYRzX5_qXyDI=s160-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    "id": "channel_010",
+    "youtube_channel_id": "UCzg1Ive5NEVKeTEfiopLSUA",
+    "name": "이화여자대학교 의료원",
+    "description": "이화여대 의료원 공식 채널. 임산부 운동, 건강 관리 교육 콘텐츠 제공.",
+    "category": "exercise",
+    "handle": "@EwhaUnivMedicalCenter",
+    "thumbnail_url": "https://yt3.googleusercontent.com/s-fAP3cmXAlNu_II83kILVaea2LpnI8hesdeNAlUtPY2fLBfyMpSg7RvPsjFn6chE-H4VE6Nt6g=s900-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    "id": "channel_011",
+    "youtube_channel_id": "UCgA16a_336coWiOKs_c_5Qg",
+    "name": "모나요가",
+    "description": "임산부 요가 전문 채널. 짐볼 요가, 분만촉진운동 등 임산부 맞춤 요가 제공.",
+    "category": "exercise",
+    "handle": "@beyoumona",
+    "thumbnail_url": "https://yt3.googleusercontent.com/pSnwt_YrC115ietkq2vvXSI7B-iQH6Q6ohqlQ_1NfrF2i89OWLKaqEXXAChfDKLycO9s30NPmQ=s900-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    "id": "channel_012",
+    "youtube_channel_id": "UCRrZ5RYIalHLiHq5ftzxM6A",
+    "name": "빵느",
+    "description": "물리치료사 출신 홈트레이닝 채널. 임산부 스트레칭, 통증 완화 운동 콘텐츠 제공.",
+    "category": "exercise",
+    "handle": "@bbangneu",
+    "thumbnail_url": "https://yt3.googleusercontent.com/xkezT06kxIAn_eFmPYgboFDM1QfxEIQVX1QCzXiUCIZngEo7NL80rXUE--0MSEcNeU8zcyFMYA=s900-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    "id": "channel_013",
+    "youtube_channel_id": "UCrYh7Ny8UtXRfpETsPuozKw",
+    "name": "압구정 호산병원",
+    "description": "산부인과 전문 병원 채널. 자연분만, 제왕절개, 분만 호흡법 등 출산 정보 제공.",
+    "category": "birth_prep",
+    "handle": "@호산병원",
+    "thumbnail_url": "https://yt3.googleusercontent.com/fP0MjoNfkP6LkzOC5rtVmvE6GBhe4YCxT_3mt2QFSdPjzWnMioDeGWC0JPjKwq0AEdsbDEuK0Q=s900-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    "id": "channel_014",
+    "youtube_channel_id": "UCjegsOAf5nOCfLfMpLyNj0A",
+    "name": "나는의사다",
+    "description": "의사들이 운영하는 의학 정보 채널. 분만, 산부인과 관련 영상 제공.",
+    "category": "birth_prep",
+    "handle": "@nadoctor",
+    "thumbnail_url": "https://yt3.googleusercontent.com/TvsYL_fEDqUVwOPeSNOVLCqD-Lc9pqIS_0nGB-WyNtyt7m3EeISaxPZTzNfSvj6iRz1FlpQw=s900-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    "id": "channel_015",
+    "youtube_channel_id": "UCGJsOy0oOSrSKjM69_0WaIg",
+    "name": "샤인킴",
+    "description": "임산부 전문 운동 채널. 전신근력, 코어발란스, 체력유지 루틴 제공.",
+    "category": "exercise",
+    "handle": "@ShineKimFitness",
+    "thumbnail_url": "https://yt3.googleusercontent.com/6AIuH1G1ZEDbBBatT-Q6zawre77zXe4zquPRRJQ92XNfdm82Dc1udbYIxoz2Nge6J776lwFBe5w=s900-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    "id": "channel_016",
+    "youtube_channel_id": "UCcgjyBHwE6WVa27_TwJhtvw",
+    "name": "쉬즈메디병원",
+    "description": "수원 산부인과 병원 채널. 산모교실, 분만 운동법 등 산전 교육 콘텐츠 제공.",
+    "category": "birth_prep",
+    "handle": "@shesmedi",
+    "thumbnail_url": "https://yt3.googleusercontent.com/ytc/AIdro_mKrffeuzyRrk-1ReXr087FKJnXGZwwWo9vtbm1RMpWwQ=s900-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    "id": "channel_017",
+    "youtube_channel_id": "UC-HbwnfdbV5bxNdVkXdAEMw",
+    "name": "교육간호사 윤경아",
+    "description": "신생아 돌봄 전문 간호사 채널. 신생아 목욕, 케어 실습 영상 제공.",
+    "category": "newborn_care",
+    "handle": "@violettayoon5923",
+    "thumbnail_url": "https://yt3.googleusercontent.com/ytc/AIdro_kSgzsn-PaGdvyWXb6AMhFa1gscZpG84RXiatevNLqmSu1hqWQ=s900-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    "id": "channel_018",
+    "youtube_channel_id": "UCLdiWtQQZvuj4u15COsjnJg",
+    "name": "현대해상",
+    "description": "현대해상 공식 채널. 맘클라스 임산부 요가 시리즈 등 콘텐츠 제공.",
+    "category": "exercise",
+    "handle": "@hi_hdhs",
+    "thumbnail_url": "https://yt3.googleusercontent.com/G8RT_5IYZTgg_fewQWZbjX6UgwcG54BvtYzDPZo_sBiw73RNwv9-CMcJ9m05KsOOoWABO_fHcw=s900-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    "id": "channel_019",
+    "youtube_channel_id": "UCf0ppOOACGRuI-Rf-nJ6SKA",
+    "name": "THE HYUNDAI CULTURE",
+    "description": "현대백화점 문화 채널. 임산부 요가 하우투 클라쓰 시리즈 제공.",
+    "category": "exercise",
+    "handle": "@thehyundaiculture",
+    "thumbnail_url": "https://yt3.googleusercontent.com/7jpBtXy0IRJ2q78SJZvVLzN6wdGfi9OaWc1RgZRY8i4nZKOREjDB9owQGU_DjTBwzqr65JsWzA=s900-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    "id": "channel_020",
+    "youtube_channel_id": "UCvYlRE7WLivYrdUCQTgpCLA",
+    "name": "안녕, 한빛",
+    "description": "한빛여성병원 채널. 자연분만 성공을 위한 임산부 요가 콘텐츠 제공.",
+    "category": "exercise",
+    "handle": "@한빛여성병원",
+    "thumbnail_url": "https://yt3.googleusercontent.com/b0q2kEoOBzfiGlVzEp3yQ7Wl85YTaPaYAoP2WKsV2-JqKlIRN4vJa9V_7UTZI5Qzy-VIs0Gzjg=s900-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    "id": "channel_021",
+    "youtube_channel_id": "UCdy3v5Ftz5LutQXzb7v12Dw",
+    "name": "산소형제TV",
+    "description": "산부인과 의사 형제 채널. 출산 준비, 배우자 역할 등 실전 정보 제공.",
+    "category": "birth_prep",
+    "handle": "@o2brothersTV",
+    "thumbnail_url": "https://yt3.googleusercontent.com/6-X6m48LPJqUfqQQVjEFEyPNOLB8NWsNNxMWwpeae8xgeQ5MM50jPyPTzBp_vA5jaY7nurlksnE=s900-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    "id": "channel_022",
+    "youtube_channel_id": "UCm1j3kuVJXQBoTJznKeIG8A",
+    "name": "오키부부",
+    "description": "육아 브이로그 채널. 산후조리원 리뷰, 출산 경험 공유.",
+    "category": "birth_prep",
+    "handle": "@Okee_bubu",
+    "thumbnail_url": "https://yt3.googleusercontent.com/7sL6ROs1KntUusyseHnLoUOkSgcTgXTIZ3UTb__ipSczBW2wV28Z4QDCkvpaDpyclTclCl6nLpc=s900-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    "id": "channel_023",
+    "youtube_channel_id": "UCA12PSvVDVYEVYNJzmERnew",
+    "name": "마이리틀타이거",
+    "description": "육아 채널. 출산용품·아기용품 리뷰, 예산 절약 팁 제공.",
+    "category": "birth_prep",
+    "handle": "@mylittletiger_official",
+    "thumbnail_url": "https://yt3.googleusercontent.com/ytc/AIdro_mrABPuQh1ho-WGzce72dzY2n5QA_diknmZHb1Z2CFCvg=s900-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    "id": "channel_024",
+    "youtube_channel_id": "UCekKpVdwlb4Epz5TANwd4xw",
+    "name": "세인트마리여성병원",
+    "description": "여성 전문 병원 채널. 신생아 배꼽 관리, 산후 케어 영상 제공.",
+    "category": "newborn_care",
+    "handle": "@stmary00",
+    "thumbnail_url": "https://yt3.googleusercontent.com/tSvtlSvPZlBQr95kEemN5gbcLrA8SD3N4gONLg8l0OZHezxcKUrsZzCBbXFEOMmSm9eWCc-BPw=s900-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    "id": "channel_025",
+    "youtube_channel_id": "UC1VcClsI09WYrCUak9x7xtg",
+    "name": "하이담",
+    "description": "신생아·영유아 전문 케어 채널. 아기 울음 구별법, 신생아 돌봄 팁 제공.",
+    "category": "newborn_care",
+    "handle": "@hayidam",
+    "thumbnail_url": "https://yt3.googleusercontent.com/qVatdTBLqoSbViDS_zE-P69NycXBcnrJCC01fn6h1s6WcQgudsT0G3keNM-p4XpxFSpolKV1FQk=s900-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    "id": "channel_026",
+    "youtube_channel_id": "UC-woZsctXZLnJOG-Tu6TZ5g",
+    "name": "우리동네 어린이병원, 우리어린이",
+    "description": "소아과 전문 채널. 영아산통, 신생아 발달, 예방접종 등 의학 정보 제공.",
+    "category": "newborn_care",
+    "handle": "@woorikidss",
+    "thumbnail_url": "https://yt3.googleusercontent.com/to9AUl-k_uPu4BeI503-IECMulBVh6LD6uUy4rexdYhqAFskSHyjGY2ujEJeOfWzNI0SIpVLk4E=s900-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    "id": "channel_027",
+    "youtube_channel_id": "UCFxrFgmFGjKJGSwTDaKxlsw",
+    "name": "mamsclass (맘스클래스)",
+    "description": "산부인과 전문의와 간호사가 출연하는 임신·출산 교육 콘텐츠 중심 채널.",
+    "category": "birth_prep",
+    "handle": "@mamsclass",
+    "thumbnail_url": "https://yt3.googleusercontent.com/ytc/AIdro_nyq0B7pVhSxORJMYBzwLKlFuW8Gt19ipo9HrG9rdk=s900-c-k-c0x00ffffff-no-rj"
   }
 ]
