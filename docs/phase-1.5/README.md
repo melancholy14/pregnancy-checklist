@@ -1,10 +1,11 @@
-# Phase 1.5: 타임라인 + 체크리스트 통합
+# Phase 1.5: PoC 고도화 (기능 통합 + AdSense 기초 준비)
 
-> 작성일: 2026-04-02 | 업데이트: 2026-04-03 | 작성자: Claude Code
+> 작성일: 2026-04-02 | 업데이트: 2026-04-04 | 작성자: Claude Code
+> **Note**: Phase 1.75(AdSense 승인 준비)를 Phase 1.5로 병합 (2026-04-04)
 
 ## 개요
 
-Phase 1에서 별도 페이지로 구현된 타임라인(`/timeline`)과 체크리스트(`/checklist`)를 하나의 통합 페이지로 병합한다. 사용자가 "28주에 뭘 준비해야 하지?"에 답을 얻으려면 2개 페이지를 오가야 했던 문제를 해결하고, `TimelineItem.linked_checklist_ids`와 `ChecklistItem.recommendedWeek` 데이터 연결을 UI에서 활용한다.
+Phase 1에서 별도 페이지로 구현된 타임라인(`/timeline`)과 체크리스트(`/checklist`)를 하나의 통합 페이지로 병합하고, AdSense 승인을 위한 SEO 기반 작업 + 콘텐츠 보완을 수행한다.
 
 ---
 
@@ -146,3 +147,47 @@ Phase 1.5 기본 구현 완료 후 기획 검증에서 발견된 5가지 보완 
 | **전체** | **71 passed / 0 failed** |
 
 📊 상세 리포트: `playwright-report/index.html`
+
+---
+
+## Part B: AdSense 기초 준비 (구 Phase 1.75)
+
+> 완료일: 2026-04-04
+
+### 완료 조건 충족 여부
+
+| # | 조건 | 상태 | 비고 |
+|---|------|------|------|
+| 1 | 커스텀 도메인 + HTTPS | ✅ | `pregnancy-checklist.com` |
+| 2 | `/sitemap.xml` 정상 노출 | ✅ | `force-static` |
+| 3 | `/robots.txt` 정상 노출 | ✅ | `force-static` |
+| 4 | `/about` 서비스 소개 | ✅ | Phase 1.5에서 완료 |
+| 5 | 메타데이터 + OG + canonical | ✅ | 10개 페이지 |
+| 6 | 영상 6개 이상 | ✅ | 9개 (카테고리별 3개) |
+| 7 | 가이드 콘텐츠 2개 | ✅ | hospital-bag, weekly-prep |
+| 8 | 빌드 성공 | ✅ | 15개 정적 HTML |
+| 9 | E2E 테스트 통과 | ✅ | 111개 전부 통과 |
+
+### 신규 파일 (6개)
+
+- `src/components/home/HomeContent.tsx`
+- `src/app/guides/hospital-bag/page.tsx`
+- `src/app/guides/weekly-prep/page.tsx`
+- `public/og-image.png`
+- `e2e/guides.spec.ts` (14개 테스트)
+- `e2e/seo-metadata.spec.ts` (17개 테스트)
+
+### 수정 파일 (12개)
+
+- `src/app/layout.tsx` — metadataBase, OG, canonical
+- `src/app/page.tsx` — Server Component 전환
+- 6개 페이지 — OG + canonical 메타데이터
+- `src/app/sitemap.ts` — 가이드 URL 추가
+- `src/lib/constants.ts` — BASE_URL, OG_IMAGE
+- `src/data/videos.json` — 9개 영상 데이터
+- `e2e/videos.spec.ts` — 데이터 기반 테스트로 업데이트
+
+### 최종 테스트 결과
+
+- **총 111개 테스트** (기존 80 + 신규 31)
+- **전부 통과** (52.7s)
