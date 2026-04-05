@@ -12,7 +12,7 @@ interface ArticleDetailProps {
 export function ArticleDetail({ article }: ArticleDetailProps) {
   return (
     <div className="min-h-screen pb-24 px-4">
-      <article className="max-w-2xl mx-auto pt-8">
+      <article className="pt-8">
         <Link
           href="/articles"
           className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-[#3D4447] mb-6 no-underline"

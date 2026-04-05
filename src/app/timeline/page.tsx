@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 export default function TimelinePage() {
   return (
     <>
-      <div className="max-w-2xl mx-auto px-4 pt-8">
+      <div className="px-4 pt-8">
         <DueDateBanner />
       </div>
       <TimelineContainer

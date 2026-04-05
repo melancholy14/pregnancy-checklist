@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="min-h-screen pb-24 px-4">
-      <div className="max-w-2xl mx-auto pt-8 prose prose-sm">
+      <div className="pt-8 prose prose-sm">
         <h1 className="text-center text-xl mb-8">서비스 소개</h1>
 
         <h2 className="text-base mt-6 mb-3">출산 준비 체크리스트란?</h2>

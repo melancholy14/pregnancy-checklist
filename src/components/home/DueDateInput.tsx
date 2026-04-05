@@ -27,7 +27,7 @@ export function DueDateInput() {
 
   return (
     <Card className="rounded-2xl shadow-md border border-black/4">
-      <CardContent className="p-6">
+      <CardContent className="p-5">
         <label className="block mb-3 text-center text-sm">출산 예정일을 입력하세요</label>
         <input
           type="date"

@@ -21,7 +21,7 @@ export function WeightForm({ onSubmit, onClose }: WeightFormProps) {
 
   return (
     <Card className="rounded-2xl shadow-md mb-6 border border-black/4">
-      <CardContent className="p-6">
+      <CardContent className="p-5">
         <div className="flex justify-between items-center mb-4">
           <h3>새 기록 추가</h3>
           <Button

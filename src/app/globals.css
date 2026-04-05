@@ -369,6 +369,14 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  .fab-bottom-safe {
+    bottom: calc(6rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .bottom-nav-safe {
+    padding-bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
   html {
     font-size: var(--font-size);
   }

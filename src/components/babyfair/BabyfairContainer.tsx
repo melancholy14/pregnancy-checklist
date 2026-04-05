@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
+import { ChevronDown } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -13,6 +14,9 @@ interface BabyfairContainerProps {
 
 export function BabyfairContainer({ events }: BabyfairContainerProps) {
   const [today] = useState(() => new Date().toISOString().split("T")[0]);
+  const [citiesExpanded, setCitiesExpanded] = useState(false);
+  const [citiesOverflow, setCitiesOverflow] = useState(false);
+  const citiesRef = useRef<HTMLDivElement>(null);
 
   const cities = useMemo(() => {
     const set = new Set(events.map((e) => e.city));
@@ -28,6 +32,11 @@ export function BabyfairContainer({ events }: BabyfairContainerProps) {
   const [selectedYear, setSelectedYear] = useState("전체");
   const [tab, setTab] = useState<"upcoming" | "ended">("upcoming");
 
+  useEffect(() => {
+    const el = citiesRef.current;
+    if (el) setCitiesOverflow(el.scrollHeight > el.clientHeight + 4);
+  }, [cities]);
+
   const filtered = useMemo(() => {
     return events.filter((e) => {
       if (selectedCity !== "전체" && e.city !== selectedCity) return false;
@@ -40,7 +49,7 @@ export function BabyfairContainer({ events }: BabyfairContainerProps) {
 
   return (
     <div className="min-h-screen pb-24 px-4">
-      <div className="max-w-4xl mx-auto pt-8">
+      <div className="pt-8">
         <h1 className="mb-2 text-center">베이비페어 일정</h1>
         <p className="text-center text-muted-foreground mb-6">
           전국 베이비페어 행사 안내
@@ -67,20 +76,40 @@ export function BabyfairContainer({ events }: BabyfairContainerProps) {
                   ))}
                 </select>
               )}
-              <div className="flex gap-1.5 overflow-x-auto" role="group" aria-label="도시 필터">
-                {cities.map((city) => (
+              <div>
+                <div
+                  ref={citiesRef}
+                  className={`flex flex-wrap gap-1.5 overflow-hidden transition-[max-height] duration-300 ${
+                    citiesExpanded ? "max-h-[500px]" : "max-h-[5.5rem]"
+                  }`}
+                >
+                  {cities.map((city) => (
+                    <button
+                      key={city}
+                      onClick={() => setSelectedCity(city)}
+                      className={`px-4 py-2 rounded-xl text-sm whitespace-nowrap border transition-all ${
+                        selectedCity === city
+                          ? "bg-[#D0EDE2]/40 border-[#D0EDE2]/30 text-[#3D4447]"
+                          : "bg-white border-black/4 text-[#9CA0A4] hover:bg-muted"
+                      }`}
+                    >
+                      {city}
+                    </button>
+                  ))}
+                </div>
+                {citiesOverflow && (
                   <button
-                    key={city}
-                    onClick={() => setSelectedCity(city)}
-                    className={`px-4 py-2 rounded-xl text-sm whitespace-nowrap border transition-all ${
-                      selectedCity === city
-                        ? "bg-[#D0EDE2]/40 border-[#D0EDE2]/30 text-[#3D4447]"
-                        : "bg-white border-black/4 text-[#9CA0A4] hover:bg-muted"
-                    }`}
+                    type="button"
+                    onClick={() => setCitiesExpanded((v) => !v)}
+                    className="flex items-center gap-1 mt-2 text-xs text-[#9CA0A4] hover:text-[#3D4447] transition-colors"
                   >
-                    {city}
+                    {citiesExpanded ? "접기" : "더보기"}
+                    <ChevronDown
+                      size={14}
+                      className={`transition-transform duration-200 ${citiesExpanded ? "rotate-180" : ""}`}
+                    />
                   </button>
-                ))}
+                )}
               </div>
             </div>
 
@@ -89,13 +118,13 @@ export function BabyfairContainer({ events }: BabyfairContainerProps) {
               <TabsList className="flex gap-2 mb-6 bg-transparent h-auto p-0">
                 <TabsTrigger
                   value="upcoming"
-                  className="px-5 py-2.5 rounded-xl border border-black/4 bg-white text-[#9CA0A4] data-[state=active]:bg-[#D0EDE2]/40 data-[state=active]:text-[#3D4447] data-[state=active]:border-[#D0EDE2]/30 h-auto transition-all"
+                  className="px-4 py-2 rounded-xl border border-black/4 bg-white text-[#9CA0A4] data-[state=active]:bg-[#D0EDE2]/40 data-[state=active]:text-[#3D4447] data-[state=active]:border-[#D0EDE2]/30 h-auto transition-all"
                 >
                   예정 행사
                 </TabsTrigger>
                 <TabsTrigger
                   value="ended"
-                  className="px-5 py-2.5 rounded-xl border border-black/4 bg-white text-[#9CA0A4] data-[state=active]:bg-[#D0EDE2]/40 data-[state=active]:text-[#3D4447] data-[state=active]:border-[#D0EDE2]/30 h-auto transition-all"
+                  className="px-4 py-2 rounded-xl border border-black/4 bg-white text-[#9CA0A4] data-[state=active]:bg-[#D0EDE2]/40 data-[state=active]:text-[#3D4447] data-[state=active]:border-[#D0EDE2]/30 h-auto transition-all"
                 >
                   지난 행사
                 </TabsTrigger>

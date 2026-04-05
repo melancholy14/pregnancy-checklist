@@ -45,7 +45,7 @@ export default function RootLayout({
       </head>
     <html lang="ko" className={poppins.className}>
       <body>
-        <div className="min-h-screen">
+        <div className="min-h-screen max-w-2xl mx-auto">
           {children}
           <Footer />
           <BottomNav />

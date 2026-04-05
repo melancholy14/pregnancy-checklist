@@ -104,7 +104,7 @@ export function TimelineContainer({ timelineItems, checklistItems }: TimelineCon
 
   return (
     <div className="min-h-screen pb-24 px-4 bg-linear-to-b from-[#FFFAF7] to-white">
-      <div className="max-w-2xl mx-auto pt-8">
+      <div className="pt-8">
         <h1 className="mb-2 text-center">임신 타임라인</h1>
         <p className="text-center text-muted-foreground mb-6">
           주차별 일정과 체크리스트를 한눈에 확인하세요
@@ -213,7 +213,7 @@ export function TimelineContainer({ timelineItems, checklistItems }: TimelineCon
         {/* FAB: 커스텀 항목 추가 */}
         <button
           onClick={() => setShowAddForm(true)}
-          className="fixed bottom-24 right-6 w-14 h-14 rounded-2xl bg-[#E4D6F0] shadow-lg flex items-center justify-center hover:bg-[#E4D6F0]/80 hover:shadow-xl transition-all duration-200 z-10"
+          className="fixed fab-bottom-safe right-6 w-14 h-14 rounded-2xl bg-[#E4D6F0] shadow-lg flex items-center justify-center hover:bg-[#E4D6F0]/80 hover:shadow-xl transition-all duration-200 z-10"
           aria-label="항목 추가"
         >
           <Plus size={24} color="#3D4447" />

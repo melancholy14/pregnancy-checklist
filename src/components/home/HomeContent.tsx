@@ -102,13 +102,13 @@ export function HomeContent() {
       </div>
 
       {/* Due Date Card */}
-      <div className="max-w-md mx-auto mb-8">
+      <div className="mb-8">
         <DueDateInput />
       </div>
 
       {/* Dashboard (예정일 입력 시) */}
       {hasDueDate && (
-        <div className="max-w-md mx-auto space-y-4 mb-8">
+        <div className="space-y-4 mb-8">
           {/* Week & Days Left */}
           <div className="grid grid-cols-2 gap-3">
             <Card className="rounded-2xl border border-black/4">
@@ -162,7 +162,7 @@ export function HomeContent() {
                       <div key={item.id} className="flex items-center gap-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#E4D6F0] shrink-0" />
                         <span className="text-sm truncate">{item.title}</span>
-                        <Badge className="bg-[#E4D6F0]/40 text-[#6B5A80] text-[10px] px-1.5 py-0 rounded border-0 hover:bg-[#E4D6F0]/40 shrink-0">
+                        <Badge className="bg-[#E4D6F0]/40 text-[#6B5A80] text-xs px-2 py-0.5 rounded-lg border-0 hover:bg-[#E4D6F0]/40 shrink-0">
                           {item.week}주
                         </Badge>
                       </div>
@@ -177,7 +177,7 @@ export function HomeContent() {
 
       {/* 예정일 미입력 시 안내 */}
       {hydrated && !dueDate && (
-        <div className="max-w-md mx-auto mb-8 text-center">
+        <div className="mb-8 text-center">
           <Card className="rounded-2xl border border-[#FFF4D4]/50 bg-[#FFF4D4]/10">
             <CardContent className="p-6">
               <p className="text-sm text-[#8B7520]">
@@ -189,7 +189,7 @@ export function HomeContent() {
       )}
 
       {/* Feature Grid */}
-      <div className="max-w-2xl mx-auto">
+      <div>
         <div className="grid grid-cols-2 gap-4">
           {features.map((feature) => {
             const Icon = feature.icon;
@@ -213,7 +213,7 @@ export function HomeContent() {
       </div>
 
       {/* Motivational Text */}
-      <div className="max-w-md mx-auto mt-10 text-center">
+      <div className="mt-10 text-center">
         <p className="text-muted-foreground text-sm">
           출산은 인생에서 가장 특별한 순간입니다
         </p>
@@ -221,7 +221,7 @@ export function HomeContent() {
 
       {/* Feedback Banner */}
       {process.env.NEXT_PUBLIC_FEEDBACK_FORM_URL && (
-        <div className="max-w-md mx-auto mt-6 text-center">
+        <div className="mt-6 text-center">
           <p className="text-muted-foreground text-xs">
             더 나은 서비스를 위해{" "}
             <a

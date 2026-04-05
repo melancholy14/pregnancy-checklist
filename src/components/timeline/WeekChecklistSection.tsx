@@ -149,7 +149,7 @@ export function WeekChecklistSection({ items, checkedIds }: WeekChecklistSection
               {item.title}
             </span>
             <Badge
-              className="text-[10px] px-1.5 py-0 rounded border-0 shrink-0"
+              className="text-xs px-2 py-0.5 rounded-lg border-0 shrink-0"
               style={{ backgroundColor: `${catColor}40`, color: "#3D4447" }}
             >
               {item.categoryName}
@@ -161,13 +161,13 @@ export function WeekChecklistSection({ items, checkedIds }: WeekChecklistSection
                     e.stopPropagation();
                     startEdit(item);
                   }}
-                  className="p-1 rounded-lg text-[#9CA0A4] hover:text-[#6B5A80] hover:bg-[#E4D6F0]/20 transition-colors"
+                  className="p-2 rounded-lg text-[#9CA0A4] hover:text-[#6B5A80] hover:bg-[#E4D6F0]/20 transition-colors"
                   aria-label="수정"
                 >
-                  <Pencil size={14} />
+                  <Pencil size={16} />
                 </button>
                 <span onClick={(e) => e.stopPropagation()}>
-                  <DeleteConfirmDialog onConfirm={() => removeCustomItem(item.id)} iconSize={14} />
+                  <DeleteConfirmDialog onConfirm={() => removeCustomItem(item.id)} iconSize={16} />
                 </span>
               </div>
             )}

@@ -9,7 +9,7 @@ interface CategoryFilterProps {
 
 export function CategoryFilter({ activeCategory, onCategoryChange }: CategoryFilterProps) {
   return (
-    <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+    <div className="flex flex-wrap gap-2">
       {CATEGORY_FILTER_OPTIONS.map((opt) => {
         const isActive = activeCategory === opt.value;
         return (
