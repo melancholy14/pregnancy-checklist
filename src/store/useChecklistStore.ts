@@ -7,6 +7,7 @@ interface ChecklistState {
   customItems: ChecklistItem[];
   toggle: (id: string) => void;
   addCustomItem: (item: ChecklistItem) => void;
+  updateCustomItem: (id: string, updates: Partial<Omit<ChecklistItem, 'id' | 'isCustom'>>) => void;
   removeCustomItem: (id: string) => void;
   initFromLocalStorage: () => void;
 }
@@ -25,6 +26,12 @@ export const useChecklistStore = create<ChecklistState>()(
       addCustomItem: (item) =>
         set((state) => ({
           customItems: [...state.customItems, { ...item, isCustom: true }],
+        })),
+      updateCustomItem: (id, updates) =>
+        set((state) => ({
+          customItems: state.customItems.map((item) =>
+            item.id === id ? { ...item, ...updates } : item
+          ),
         })),
       removeCustomItem: (id) =>
         set((state) => ({

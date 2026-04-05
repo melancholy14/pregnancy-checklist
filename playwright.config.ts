@@ -11,7 +11,7 @@ export default defineConfig({
     trace: "off",
   },
   webServer: {
-    command: "npx serve out -l 3000",
+    command: "ln -sfn . out/pregnancy-checklist && npx serve out -l 3000",
     port: 3000,
     reuseExistingServer: true,
   },

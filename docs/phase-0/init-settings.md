@@ -92,7 +92,7 @@ docs/data/ 내 데이터셋 문서에서 JSON 추출 → 파일 저장
 | 파일 | 내용 | 초기값 |
 | ---- | ---- | ------ |
 | `checklist_items.json` | 출산 준비 항목 120개 | checklist_dataset.md 추출 |
-| `timeline_items.json` | 주차별 타임라인 27개 | pregnancy_timeline_dataset.md 추출 |
+| `timeline_items.json` | 주차별 타임라인 24개 | pregnancy_timeline_dataset.md 추출 |
 | `babyfair_events.json` | 베이비페어 행사 | `[]` (Phase 2에서 채움) |
 | `videos.json` | 영상 큐레이션 | `[]` (수동 큐레이션 예정) |
 

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
 
 @import 'tailwindcss' source(none);
 @source '../**/*.{js,ts,jsx,tsx}';
@@ -9,43 +9,43 @@
 
 :root {
   --font-size: 16px;
-  --background: #FFF8F5;
-  --foreground: #4A4A4A;
+  --background: #FFFAF7;
+  --foreground: #3D4447;
 
-  /* Pastel color palette */
-  --pastel-pink: #FFD6E0;
-  --pastel-lavender: #E8D5F5;
-  --pastel-mint: #D5F0E8;
-  --pastel-peach: #FFE8D0;
-  --pastel-yellow: #FFF8D0;
+  /* Bright pastel palette */
+  --pastel-pink: #FFD4DE;
+  --pastel-lavender: #E4D6F0;
+  --pastel-mint: #D0EDE2;
+  --pastel-peach: #FFE0CC;
+  --pastel-yellow: #FFF4D4;
 
   --card: #ffffff;
-  --card-foreground: #4A4A4A;
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: #FFD6E0;
-  --primary-foreground: #4A4A4A;
-  --secondary: #E8D5F5;
-  --secondary-foreground: #4A4A4A;
-  --muted: #F5F5F5;
-  --muted-foreground: #8A8A8A;
-  --accent: #D5F0E8;
-  --accent-foreground: #4A4A4A;
-  --destructive: #FF6B8A;
+  --card-foreground: #3D4447;
+  --popover: #ffffff;
+  --popover-foreground: #3D4447;
+  --primary: #FFD4DE;
+  --primary-foreground: #3D4447;
+  --secondary: #E4D6F0;
+  --secondary-foreground: #3D4447;
+  --muted: #F8F6F4;
+  --muted-foreground: #9CA0A4;
+  --accent: #D0EDE2;
+  --accent-foreground: #3D4447;
+  --destructive: #F07088;
   --destructive-foreground: #ffffff;
-  --border: rgba(0, 0, 0, 0.06);
+  --border: rgba(0, 0, 0, 0.05);
   --input: transparent;
-  --input-background: #ffffff;
-  --switch-background: #E0E0E0;
-  --font-weight-medium: 500;
+  --input-background: #FFFBF8;
+  --switch-background: #E4E2E0;
+  --font-weight-medium: 600;
   --font-weight-normal: 400;
-  --ring: #FFD6E0;
-  --chart-1: #FFD6E0;
-  --chart-2: #E8D5F5;
-  --chart-3: #D5F0E8;
-  --chart-4: #FFE8D0;
-  --chart-5: #FFF8D0;
-  --radius: 1rem;
+  --ring: #FFD4DE;
+  --chart-1: #FFD4DE;
+  --chart-2: #E4D6F0;
+  --chart-3: #D0EDE2;
+  --chart-4: #FFE0CC;
+  --chart-5: #FFF4D4;
+  --radius: 0.875rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: #030213;
@@ -132,16 +132,241 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.03), 0 1px 3px rgba(0,0,0,0.02);
+  --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 8px rgba(0,0,0,0.03);
+  --shadow-md: 0 2px 4px rgba(0,0,0,0.03), 0 6px 16px rgba(0,0,0,0.04);
+  --shadow-lg: 0 4px 6px rgba(0,0,0,0.03), 0 12px 28px rgba(0,0,0,0.05);
+  --shadow-xl: 0 8px 12px rgba(0,0,0,0.04), 0 20px 40px rgba(0,0,0,0.07);
+}
+
+/* Article prose – editorial reading experience */
+.article-prose {
+  --prose-heading: #3D4447;
+  --prose-body: #52585C;
+  --prose-muted: #7A7F83;
+  --prose-accent: #6B5A80;
+  --prose-accent-bg: #E4D6F0;
+  --prose-divider: #F0EBE6;
+  --prose-surface: #FFF8F4;
+  --prose-tip-bg: #FFF4ED;
+  --prose-tip-border: #FFD4B8;
+  color: var(--prose-body);
+  font-size: 0.9375rem;
+  line-height: 1.85;
+  letter-spacing: -0.008em;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.article-prose > * + * {
+  margin-top: 1.25em;
+}
+
+/* Headings */
+.article-prose h2 {
+  color: var(--prose-heading);
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  margin-top: 2.5em;
+  margin-bottom: 0.25em;
+  padding-bottom: 0.5em;
+  border-bottom: 1.5px solid var(--prose-divider);
+}
+
+.article-prose h2:first-child {
+  margin-top: 0;
+}
+
+.article-prose h3 {
+  color: var(--prose-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  margin-top: 2em;
+  margin-bottom: 0.15em;
+}
+
+/* Paragraphs */
+.article-prose p {
+  margin-top: 0.75em;
+  margin-bottom: 0;
+}
+
+/* Lists */
+.article-prose ul,
+.article-prose ol {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.article-prose li {
+  position: relative;
+  padding-left: 1.5em;
+  margin-top: 0.6em;
+}
+
+.article-prose ul > li::before {
+  content: '';
+  position: absolute;
+  left: 0.15em;
+  top: 0.65em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--prose-accent-bg);
+  box-shadow: 0 0 0 2px #F4EEF8;
+}
+
+.article-prose ol {
+  counter-reset: ol-counter;
+}
+
+.article-prose ol > li {
+  counter-increment: ol-counter;
+}
+
+.article-prose ol > li::before {
+  content: counter(ol-counter);
+  position: absolute;
+  left: 0;
+  top: -0.05em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--prose-accent);
+  background: #F4EEF8;
+  width: 1.35em;
+  height: 1.35em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  line-height: 1;
+}
+
+.article-prose li strong {
+  color: var(--prose-heading);
+  font-weight: 600;
+}
+
+/* em dash separator in list items */
+.article-prose li strong + br,
+.article-prose li strong ~ * {
+  color: var(--prose-body);
+}
+
+/* Strong */
+.article-prose strong {
+  color: var(--prose-heading);
+  font-weight: 600;
+}
+
+/* Links */
+.article-prose a {
+  color: var(--prose-accent);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid #E4D6F0;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.article-prose a:hover {
+  border-bottom-color: var(--prose-accent);
+}
+
+/* Blockquotes */
+.article-prose blockquote {
+  position: relative;
+  margin: 1.75em 0;
+  padding: 1em 1.25em;
+  background: var(--prose-tip-bg);
+  border: none;
+  border-left: 3px solid var(--prose-tip-border);
+  border-radius: 0 0.75rem 0.75rem 0;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  color: var(--prose-body);
+}
+
+.article-prose blockquote p {
+  margin: 0;
+}
+
+.article-prose blockquote strong {
+  color: #B8734A;
+  font-weight: 600;
+}
+
+/* Tables */
+.article-prose table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.875rem;
+  margin-top: 1.5em;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid var(--prose-divider);
+}
+
+.article-prose thead th {
+  background: var(--prose-surface);
+  color: var(--prose-heading);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.75em 1em;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--prose-divider);
+}
+
+.article-prose tbody td {
+  padding: 0.7em 1em;
+  color: var(--prose-body);
+  border-bottom: 1px solid #FAF5F0;
+}
+
+.article-prose tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.article-prose tbody tr:hover {
+  background: #FFFCFA;
+}
+
+/* Horizontal rule */
+.article-prose hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--prose-divider), transparent);
+  margin: 2.5em 0;
+}
+
+/* Code inline */
+.article-prose code {
+  background: #F4EEF8;
+  color: var(--prose-accent);
+  font-size: 0.85em;
+  padding: 0.15em 0.4em;
+  border-radius: 0.3em;
+  font-weight: 500;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', sans-serif;
   }
 
   body {
     @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   html {
@@ -150,37 +375,40 @@
 
   h1 {
     font-size: var(--text-2xl);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: -0.025em;
   }
 
   h2 {
     font-size: var(--text-xl);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
   }
 
   h3 {
     font-size: var(--text-lg);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
+    font-weight: 600;
+    line-height: 1.45;
+    letter-spacing: -0.01em;
   }
 
   h4 {
     font-size: var(--text-base);
-    font-weight: var(--font-weight-medium);
+    font-weight: 600;
     line-height: 1.5;
   }
 
   label {
     font-size: var(--text-base);
-    font-weight: var(--font-weight-medium);
+    font-weight: 500;
     line-height: 1.5;
   }
 
   button {
     font-size: var(--text-base);
-    font-weight: var(--font-weight-medium);
+    font-weight: 600;
     line-height: 1.5;
   }
 
