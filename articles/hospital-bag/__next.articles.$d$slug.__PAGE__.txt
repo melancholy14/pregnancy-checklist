@@ -50,5 +50,5 @@
 <blockquote>
 <p>본 가이드는 일반적인 출산 준비 정보를 정리한 것이며, 개인의 건강 상태에 따라 다를 수 있습니다. 정확한 의료 정보는 담당 의료진과 상담하시기 바랍니다.</p>
 </blockquote>
-0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"출산 가방 필수 준비물 총정리","description":"출산 가방에 꼭 넣어야 할 준비물을 산모용, 아기용, 서류로 나눠 정리했습니다. 실제 필요한 것만 담은 미니멀 가이드.","slug":"hospital-bag","tags":["출산준비","출산가방","병원준비"],"date":"2026-04-04","content":"$3"}}],[["$","script","script-0",{"src":"/_next/static/chunks/0nmg-g-mj1352.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/0w0412nbnq_jy.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"NP0-puVKLzipBTEc94uoK"}
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"출산 가방 필수 준비물 총정리","description":"출산 가방에 꼭 넣어야 할 준비물을 산모용, 아기용, 서류로 나눠 정리했습니다. 실제 필요한 것만 담은 미니멀 가이드.","slug":"hospital-bag","tags":["출산준비","출산가방","병원준비"],"date":"2026-04-04","content":"$3"}}],[["$","script","script-0",{"src":"/_next/static/chunks/0nmg-g-mj1352.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/0w0412nbnq_jy.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"lGOCHM0N6Bd_PRdI3M6st"}
 6:null

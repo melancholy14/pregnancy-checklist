@@ -67,5 +67,5 @@
 <blockquote>
 <p>본 가이드는 일반적인 산후조리원 선택 정보를 정리한 것이며, 시설별 운영 방침은 다를 수 있습니다. 방문 투어 시 직접 확인하시기 바랍니다.</p>
 </blockquote>
-0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"산후조리원 선택 가이드","description":"산후조리원 선택 시 확인해야 할 항목, 예약 시기, 비용 비교 등 실전 가이드입니다.","slug":"postpartum-care","tags":["산후관리","산후조리원","출산준비"],"date":"2026-04-04","content":"$3"}}],[["$","script","script-0",{"src":"/_next/static/chunks/0nmg-g-mj1352.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/0w0412nbnq_jy.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"NP0-puVKLzipBTEc94uoK"}
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"산후조리원 선택 가이드","description":"산후조리원 선택 시 확인해야 할 항목, 예약 시기, 비용 비교 등 실전 가이드입니다.","slug":"postpartum-care","tags":["산후관리","산후조리원","출산준비"],"date":"2026-04-04","content":"$3"}}],[["$","script","script-0",{"src":"/_next/static/chunks/0nmg-g-mj1352.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/0w0412nbnq_jy.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"lGOCHM0N6Bd_PRdI3M6st"}
 6:null

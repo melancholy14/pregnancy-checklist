@@ -74,7 +74,7 @@
 <blockquote>
 <p>본 가이드는 일반적인 임신·출산 준비 정보를 정리한 것이며, 개인의 건강 상태에 따라 다를 수 있습니다. 검사 일정과 의료 관련 사항은 반드시 담당 의료진과 상담하시기 바랍니다.</p>
 </blockquote>
-0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"임신 주차별 검사 & 준비 가이드","description":"임신 초기부터 출산까지, 주차별로 해야 할 검사와 준비 사항을 시기별로 정리했습니다.","slug":"weekly-prep","tags":["임신초기","검사","주차별","출산준비"],"date":"2026-04-04","content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"NP0-puVKLzipBTEc94uoK"}
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"임신 주차별 검사 & 준비 가이드","description":"임신 초기부터 출산까지, 주차별로 해야 할 검사와 준비 사항을 시기별로 정리했습니다.","slug":"weekly-prep","tags":["임신초기","검사","주차별","출산준비"],"date":"2026-04-04","content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"lGOCHM0N6Bd_PRdI3M6st"}
 4:["$","script","script-0",{"src":"/_next/static/chunks/0nmg-g-mj1352.js","async":true}]
 5:["$","script","script-1",{"src":"/_next/static/chunks/0w0412nbnq_jy.js","async":true}]
 6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
