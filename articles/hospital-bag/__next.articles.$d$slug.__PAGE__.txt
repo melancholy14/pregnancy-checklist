@@ -1,54 +1,193 @@
 1:"$Sreact.fragment"
-2:I[93406,["/_next/static/chunks/0dw0tjizsi4zc.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/17c44j55r7eh-.js","/_next/static/chunks/0nmg-g-mj1352.js","/_next/static/chunks/0w0412nbnq_jy.js"],"ArticleDetail"]
-4:I[97367,["/_next/static/chunks/0dw0tjizsi4zc.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/17c44j55r7eh-.js"],"OutletBoundary"]
-5:"$Sreact.suspense"
-3:T10c0,<p>출산 가방은 보통 <strong>임신 32~33주</strong>부터 준비하기 시작하고, <strong>36주까지 완료</strong>하는 것을 권장합니다. 인터넷에 돌아다니는 리스트는 수십 가지지만, 실제로 병원에서 쓰는 물품은 생각보다 적습니다. 여기서는 "꼭 필요한 것"과 "있으면 좋은 것"을 구분해서 정리했습니다.</p>
-<h2>산모용 필수 준비물</h2>
-<p>병원 입원 기간은 자연분만 2<del>3일, 제왕절개 4</del>5일 정도입니다. 이 기간 동안 편하게 지낼 수 있는 물품 위주로 챙기세요.</p>
+2:I[93406,["/_next/static/chunks/0g8wunpct24zu.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/17c44j55r7eh-.js","/_next/static/chunks/18bk-6ycliz6u.js","/_next/static/chunks/0w0412nbnq_jy.js"],"ArticleDetail"]
+7:I[97367,["/_next/static/chunks/0g8wunpct24zu.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/17c44j55r7eh-.js"],"OutletBoundary"]
+8:"$Sreact.suspense"
+3:T1c2a,<p>"출산 가방, 대체 뭘 넣어야 하지?"
+임신 후기에 접어들면 누구나 한 번쯤 하는 고민이에요.
+인터넷을 검색하면 수십 가지 목록이 쏟아지지만,
+실제 병원에서 쓰는 물품은 생각보다 많지 않아요.
+대한산부인과학회에서는 임신 36주 이전에
+입원 준비물을 미리 챙겨둘 것을 권고하고 있어요.
+여기서는 "꼭 필요한 것"과 "있으면 좋은 것"을 구분해,
+실제로 필요한 최소한의 리스트를 정리해봤어요.</p>
+<h2>출산 가방 준비물 한눈에 보기</h2>
+<p>아래 표는 카테고리별 필수 준비물과 수량을 정리한 거예요.
+병원마다 제공 물품이 다르므로,
+분만 병원에 사전 문의 후 체크해보세요.</p>
+<table>
+<thead>
+<tr>
+<th>카테고리</th>
+<th>필수 준비물</th>
+<th>권장 수량</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>산모 의류</td>
+<td>산모용 잠옷 (앞트임)</td>
+<td>2–3벌</td>
+<td>수유 편의를 위해 앞트임 디자인 권장</td>
+</tr>
+<tr>
+<td>산모 의류</td>
+<td>산모 속옷 (일회용)</td>
+<td>10장 이상</td>
+<td>오로 대비, 일회용이 편리</td>
+</tr>
+<tr>
+<td>산모 의류</td>
+<td>수유 브라</td>
+<td>2–3개</td>
+<td>출산 직후 모유수유 시작에 대비</td>
+</tr>
+<tr>
+<td>위생용품</td>
+<td>산모 패드</td>
+<td>1–2팩</td>
+<td>병원 제공 여부 사전 확인</td>
+</tr>
+<tr>
+<td>위생용품</td>
+<td>세면도구 세트</td>
+<td>1세트</td>
+<td>칫솔, 치약, 세안제, 보습 로션</td>
+</tr>
+<tr>
+<td>아기용</td>
+<td>퇴원복</td>
+<td>1벌</td>
+<td>계절에 맞는 배냇저고리 또는 우주복</td>
+</tr>
+<tr>
+<td>아기용</td>
+<td>속싸개</td>
+<td>3–5장</td>
+<td>퇴원 및 산후조리원에서 지속 사용</td>
+</tr>
+<tr>
+<td>아기용</td>
+<td>카시트</td>
+<td>1개</td>
+<td>자가용 퇴원 시 법적 필수 (도로교통법)</td>
+</tr>
+<tr>
+<td>서류</td>
+<td>신분증, 보험카드, 산모수첩</td>
+<td>각 1개씩</td>
+<td>입원 수속 및 보험 청구용</td>
+</tr>
+</tbody>
+</table>
+<h2>산모용 준비물 상세</h2>
+<p>병원 입원 기간은 자연분만 기준 1–2일,
+제왕절개 기준 4–5일 정도예요
+(대한산부인과학회 권고).
+이 기간 동안 편하게 지낼 수 있는
+물품 위주로 챙기는 게 좋아요.</p>
+<p><strong>필수 항목:</strong></p>
 <ul>
-<li><strong>산모용 잠옷 2~3벌</strong> — 수유가 편한 앞트임 디자인이 좋습니다. 병원에서 제공하는 환자복이 불편할 수 있으니 미리 준비하세요.</li>
-<li><strong>산모 속옷 5~6장</strong> — 출산 후 오로가 나오므로 일회용 속옷이 편리합니다.</li>
-<li><strong>수유 브라 2~3개</strong> — 출산 직후부터 모유수유를 시작하므로 반드시 필요합니다.</li>
-<li><strong>산모 패드</strong> — 병원에서 제공하기도 하지만, 넉넉하게 준비하는 것이 안심됩니다.</li>
-<li><strong>슬리퍼</strong> — 병실과 복도를 오갈 때 필요합니다. 미끄럽지 않은 것으로 준비하세요.</li>
-<li><strong>세면도구</strong> — 칫솔, 치약, 세안제, 보습 로션 등 기본 세면용품을 챙기세요.</li>
+<li><strong>산모용 잠옷</strong> — 수유가 편한 앞트임 디자인을
+추천해요. 병원 환자복이 불편할 수 있으니
+2–3벌 준비해두세요.</li>
+<li><strong>산모 속옷</strong> — 출산 후 오로(자궁에서 나오는
+분비물)가 나오므로 일회용 속옷 10장 이상
+준비하는 걸 추천해요.
+입원 기간뿐 아니라 산후조리원에서도
+계속 사용해요.</li>
+<li><strong>수유 브라</strong> — 출산 직후부터 모유수유를
+시작하게 되므로 미리 준비하는 게 좋아요.</li>
+<li><strong>산모 패드</strong> — 병원에서 제공하는 경우도 있지만,
+넉넉하게 준비하면 안심이에요.</li>
+<li><strong>슬리퍼</strong> — 병실과 복도를 오갈 때 필요해요.
+미끄럽지 않은 제품을 선택하세요.</li>
 </ul>
-<h2>있으면 좋은 산모 용품</h2>
+<p><strong>있으면 좋은 항목:</strong></p>
 <ul>
-<li><strong>유두 보호 크림</strong> — 수유 초기 유두 갈라짐 방지에 큰 도움이 됩니다.</li>
-<li><strong>개인 물컵/빨대컵</strong> — 진통 중이나 수술 후 누워서 물 마시기 편합니다.</li>
-<li><strong>간식 및 에너지바</strong> — 진통이 길어질 경우를 대비해 가벼운 간식을 준비하세요.</li>
-<li><strong>헤어밴드/머리끈</strong> — 긴 머리라면 세수나 수유 시 유용합니다.</li>
-<li><strong>립밤</strong> — 병원 건조한 환경에서 입술이 트기 쉽습니다.</li>
+<li><strong>유두 보호 크림</strong> — 수유 초기 유두 갈라짐
+방지에 도움이 돼요.</li>
+<li><strong>빨대컵</strong> — 진통 중이나 수술 후
+누워서 물을 마시기 편해요.</li>
+<li><strong>간식 및 에너지바</strong> — 진통이 길어질 경우를
+대비해 가벼운 간식을 챙기세요.</li>
+<li><strong>립밤</strong> — 병원의 건조한 환경에서
+입술이 쉽게 틀 수 있어요.</li>
 </ul>
-<h2>아기용 준비물</h2>
-<p>병원에서 대부분의 아기 용품을 제공하지만, 퇴원 시 꼭 필요한 것들이 있습니다.</p>
+<h2>아기용 준비물 상세</h2>
+<p>병원에서 입원 중 아기 용품 대부분을 제공하지만,
+퇴원 시 꼭 필요한 것들은 미리 준비해야 해요.</p>
 <ul>
-<li><strong>퇴원복 (아기용)</strong> — 계절에 맞는 배냇저고리 또는 우주복을 준비하세요.</li>
-<li><strong>속싸개</strong> — 신생아는 감싸주면 안정감을 느낍니다. 퇴원 시에도 필요합니다.</li>
-<li><strong>카시트</strong> — 퇴원 시 자가용을 이용한다면 카시트는 법적으로 필수입니다. 미리 차량에 설치해두세요.</li>
+<li><strong>퇴원복</strong> — 계절에 맞는 배냇저고리 또는
+우주복을 준비하세요. 여름에는 얇은 면 소재,
+겨울에는 기모 소재가 적합해요.</li>
+<li><strong>속싸개</strong> — 신생아를 감싸주면 안정감을 느끼는
+것으로 알려져 있어요.
+퇴원 시뿐 아니라 산후조리원에서도
+수유·수면 시 지속적으로 사용하므로
+3–5장 준비하는 걸 추천해요.</li>
+<li><strong>카시트</strong> — 퇴원 시 자가용을 이용한다면
+도로교통법에 따라 카시트 장착이 의무예요.
+출산 전 차량에 미리 설치하고
+작동법을 익혀두는 게 좋아요.
+신생아용은 뒤보기 장착이 원칙이며,
+KC 또는 ECE 인증 제품을 추천해요.</li>
 </ul>
-<h2>서류 및 필수품</h2>
+<p>아기의 피부가 예민한 경우
+퇴원복 소재 선택이 고민될 수 있어요.
+피부 트러블이 지속된다면
+소아청소년과 전문의와 상담하는 게 좋아요.</p>
+<h2>서류 및 기타 필수품</h2>
 <p>서류는 깜빡하기 쉬우니 가방에 미리 넣어두세요.</p>
 <ul>
-<li><strong>신분증</strong> — 입원 수속에 반드시 필요합니다.</li>
-<li><strong>건강보험증/보험 카드</strong> — 실비 청구를 위해 필요합니다.</li>
-<li><strong>산모수첩</strong> — 산전 검사 기록이 담겨 있어 분만 시 참고됩니다.</li>
-<li><strong>휴대폰 충전기 + 긴 케이블</strong> — 병실 콘센트 위치가 침대에서 먼 경우가 많습니다.</li>
+<li><strong>신분증</strong> — 입원 수속에 필요해요.</li>
+<li><strong>건강보험증 / 실비보험 카드</strong> — 퇴원 후
+보험 청구를 위해 필요해요.</li>
+<li><strong>산모수첩</strong> — 산전 검사 기록이 담겨 있어
+분만 시 의료진이 참고해요.</li>
+<li><strong>휴대폰 충전기 + 긴 케이블</strong> — 병실 콘센트가
+침대에서 먼 경우가 많으므로,
+2m 이상 긴 케이블을 추천해요.</li>
 </ul>
 <h2>준비 시기별 체크포인트</h2>
+<p>출산 가방은 한꺼번에 준비하기보다
+주차별로 나눠서 챙기면 부담이 줄어들어요.</p>
 <ul>
-<li><strong>32~33주</strong> — 산모 잠옷, 속옷, 수유 브라, 산모 패드 등 의류 위주로 시작</li>
+<li><strong>32–33주</strong> — 산모 잠옷, 속옷, 수유 브라,
+산모 패드 등 의류 위주로 시작</li>
 <li><strong>34주</strong> — 세면도구, 보습제, 개인용품 추가</li>
-<li><strong>35주</strong> — 서류, 충전기, 퇴원복(산모+아기) 넣기</li>
-<li><strong>36주</strong> — 최종 점검. 간식, 에너지바 등 유통기한 있는 것은 마지막에 추가</li>
+<li><strong>35주</strong> — 서류, 충전기,
+퇴원복(산모 + 아기) 넣기</li>
+<li><strong>36주</strong> — 최종 점검. 간식, 에너지바 등
+유통기한 있는 것은 마지막에 추가</li>
 </ul>
 <blockquote>
-<p><strong>팁:</strong> 병원마다 제공하는 물품이 다릅니다. 분만 병원에 사전에 문의해서 제공 물품 목록을 확인하면 불필요한 짐을 줄일 수 있습니다. 분만실 가방 규정(크기 제한 등)도 함께 확인하세요.</p>
+<p><strong>팁:</strong> 분만 병원에 사전 문의하여
+제공 물품 목록을 확인하면
+불필요한 짐을 줄일 수 있어요.
+분만실 가방 규정(크기 제한 등)도 함께 확인하세요.
+제왕절개 예정이라면 입원 기간이 길어지므로
+속옷과 패드를 여유 있게 준비하는 게 좋아요.</p>
 </blockquote>
-<p><a href="/timeline">주차별 타임라인에서 전체 준비 일정 확인하기 →</a></p>
+<p>준비물별 예상 비용이 궁금하다면
+<a href="/articles/baby-items-cost">출산 준비물 예상 비용 총정리</a>를
+참고해보세요.</p>
+<p>주차별 전체 준비 일정은
+<a href="/articles/weekly-prep">임신 주차별 검사 &#x26; 준비 가이드</a>에서
+확인할 수 있어요.</p>
+<h2>참고 자료</h2>
+<ul>
+<li>대한산부인과학회, 「산전·산후 관리 가이드라인」</li>
+<li>보건복지부, 「임산부를 위한 출산 준비 안내」</li>
+<li>도로교통법 제50조 (어린이 보호장구 착용 의무)</li>
+</ul>
+<hr>
 <blockquote>
-<p>본 가이드는 일반적인 출산 준비 정보를 정리한 것이며, 개인의 건강 상태에 따라 다를 수 있습니다. 정확한 의료 정보는 담당 의료진과 상담하시기 바랍니다.</p>
+<p>⚠️ 이 글은 일반적인 육아 정보를 제공하며, 의학적 조언을 대체하지 않습니다.
+아이의 건강 문제는 소아청소년과 전문의와 상담하세요.</p>
 </blockquote>
-0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"출산 가방 필수 준비물 총정리","description":"출산 가방에 꼭 넣어야 할 준비물을 산모용, 아기용, 서류로 나눠 정리했습니다. 실제 필요한 것만 담은 미니멀 가이드.","slug":"hospital-bag","tags":["출산준비","출산가방","병원준비"],"date":"2026-04-04","content":"$3"}}],[["$","script","script-0",{"src":"/_next/static/chunks/0nmg-g-mj1352.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/0w0412nbnq_jy.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"lGOCHM0N6Bd_PRdI3M6st"}
-6:null
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"출산 가방 필수 준비물 총정리","description":"출산 가방에 꼭 넣어야 할 준비물을 산모용, 아기용, 서류로 나눠 정리했어요. 준비 시기별 체크포인트와 병원 제공 물품 확인 팁까지, 실제 필요한 것만 담은 미니멀 가이드예요.","slug":"hospital-bag","tags":["출산준비","출산가방","병원준비"],"date":"2026-04-04","content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"gRLiqRzLO8ZF-FSbcH-wH"}
+4:["$","script","script-0",{"src":"/_next/static/chunks/18bk-6ycliz6u.js","async":true}]
+5:["$","script","script-1",{"src":"/_next/static/chunks/0w0412nbnq_jy.js","async":true}]
+6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
+9:null

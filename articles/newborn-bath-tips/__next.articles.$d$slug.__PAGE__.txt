@@ -1,10 +1,20 @@
 1:"$Sreact.fragment"
-2:I[93406,["/_next/static/chunks/0dw0tjizsi4zc.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/17c44j55r7eh-.js","/_next/static/chunks/0nmg-g-mj1352.js","/_next/static/chunks/0w0412nbnq_jy.js"],"ArticleDetail"]
-4:I[97367,["/_next/static/chunks/0dw0tjizsi4zc.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/17c44j55r7eh-.js"],"OutletBoundary"]
-5:"$Sreact.suspense"
-3:T147f,<p>처음 아기를 목욕시키는 날, 손이 떨리는 건 당연합니다. 작고 미끄러운 아기를 물에 넣는다는 것 자체가 두렵지만, 준비와 순서만 알면 신생아 목욕은 부모와 아기 모두에게 따뜻한 교감 시간이 됩니다.</p>
+2:I[93406,["/_next/static/chunks/0g8wunpct24zu.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/17c44j55r7eh-.js","/_next/static/chunks/18bk-6ycliz6u.js","/_next/static/chunks/0w0412nbnq_jy.js"],"ArticleDetail"]
+7:I[97367,["/_next/static/chunks/0g8wunpct24zu.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/17c44j55r7eh-.js"],"OutletBoundary"]
+8:"$Sreact.suspense"
+3:T1a2f,<p>처음 아기를 목욕시키는 날,
+손이 떨리는 건 당연해요.
+작고 미끄러운 아기를 물에 넣는다는 것 자체가
+두렵지만, 준비와 순서만 알면
+신생아 목욕은 부모와 아기 모두에게
+따뜻한 교감 시간이 돼요.
+대한소아청소년과학회에서는 신생아 목욕 시
+적정 수온과 시간을 지키는 것이
+피부 보호에 중요하다고 안내하고 있어요.</p>
 <h2>신생아 목욕 시작 시기와 빈도</h2>
-<p>목욕 방식은 배꼽(탯줄) 상태에 따라 나뉩니다.</p>
+<p>목욕 방식은 배꼽(탯줄) 상태에 따라 나뉘어요.
+WHO에서는 탯줄이 완전히 탈락하고 건조될 때까지
+통목욕을 피하는 것을 권고하고 있어요.</p>
 <table>
 <thead>
 <tr>
@@ -16,21 +26,21 @@
 </thead>
 <tbody>
 <tr>
-<td>탯줄 탈락 전 (생후 1~3주)</td>
+<td>탯줄 탈락 전 (생후 1–3주)</td>
 <td>부분 목욕 (스펀지 목욕)</td>
 <td>매일 가볍게</td>
 <td>배꼽에 물이 닿지 않게</td>
 </tr>
 <tr>
-<td>탯줄 탈락 후~생후 1개월</td>
+<td>탯줄 탈락 후–생후 1개월</td>
 <td>통목욕 시작</td>
-<td>주 2~3회</td>
+<td>주 2–3회</td>
 <td>피부 건조 방지 위해 매일은 피하기</td>
 </tr>
 <tr>
-<td>생후 1~3개월</td>
+<td>생후 1–3개월</td>
 <td>통목욕</td>
-<td>주 3~4회</td>
+<td>주 3–4회</td>
 <td>여름철 땀이 많으면 매일 가능</td>
 </tr>
 <tr>
@@ -41,49 +51,131 @@
 </tr>
 </tbody>
 </table>
-<p>부분 목욕은 젖은 가제 수건으로 얼굴, 목 주름, 겨드랑이, 기저귀 부위를 닦아주는 방식입니다. 목욕 빈도가 고민된다면 소아청소년과 전문의와 상담하는 것이 좋습니다.</p>
+<p>부분 목욕은 젖은 가제 수건으로
+얼굴, 목 주름, 겨드랑이, 기저귀 부위를
+닦아주는 방식이에요.
+아기마다 피부 상태가 다르므로,
+목욕 빈도가 고민된다면
+소아청소년과 전문의와 상담하는 게 좋아요.</p>
 <h2>목욕 준비물 체크리스트</h2>
-<p>목욕 중에는 아기에게서 손을 뗄 수 없으므로 <strong>시작 전 모든 준비물을 손 닿는 곳에</strong> 배치하세요.</p>
+<p>목욕 중에는 아기에게서 절대 손을 뗄 수 없으므로,
+<strong>시작 전 모든 준비물을 손 닿는 곳에</strong>
+배치하는 것이 중요해요.</p>
 <ul>
-<li><strong>아기 욕조</strong> — 신생아용 욕조 또는 목욕 지지대</li>
-<li><strong>물 온도계</strong> — 적정 온도 <strong>37~38도</strong> 확인용</li>
-<li><strong>가제 수건 2~3장</strong> — 얼굴과 몸을 닦을 때 사용</li>
+<li><strong>아기 욕조</strong> — 신생아용 욕조 또는 목욕 지지대.
+미끄럼 방지 기능이 있으면 더 안전해요.</li>
+<li><strong>물 온도계</strong> — 적정 온도 <strong>37–38도</strong> 확인용.
+대한소아청소년과학회에서 권장하는 수온이에요.</li>
+<li><strong>가제 수건 2–3장</strong> — 얼굴과 몸을 닦을 때 사용.
+면 100% 소재를 추천해요.</li>
 <li><strong>큰 타올</strong> — 목욕 후 바로 감싸줄 용도</li>
-<li><strong>아기 전용 세정제</strong> — 약산성, 무향 저자극 제품 권장</li>
-<li><strong>기저귀와 옷</strong> — 미리 펼쳐두면 목욕 후 빠르게 입힐 수 있습니다</li>
-<li><strong>보습제</strong> — 목욕 직후 3분 이내에 바르면 피부 수분 유지에 효과적</li>
+<li><strong>아기 전용 세정제</strong> — 약산성(pH 5.5 전후),
+무향 저자극 제품이 좋아요
+(대한피부과학회 권고).</li>
+<li><strong>기저귀와 옷</strong> — 미리 펼쳐두면
+목욕 후 빠르게 입힐 수 있어요</li>
+<li><strong>보습제</strong> — 목욕 직후 3분 이내에 바르면
+피부 수분 유지에 효과적인 것으로
+알려져 있어요</li>
 </ul>
+<p>목욕 용품 비용이 궁금하다면
+<a href="/articles/baby-items-cost">출산 준비물 예상 비용 총정리</a>에서
+목욕 및 위생 카테고리를 확인해보세요.</p>
 <h2>5단계 신생아 목욕 순서</h2>
-<p><strong>1단계 — 물 준비</strong>
-욕조에 5<del>8cm 깊이로 미온수(37</del>38도)를 받습니다. 찬물을 먼저 받고 더운 물을 섞으면 화상 위험을 줄일 수 있습니다. 손목 안쪽으로 온도를 한 번 더 확인하세요.</p>
-<p><strong>2단계 — 얼굴 닦기</strong>
-세정제 없이 가제 수건으로 눈(안쪽→바깥쪽), 코, 입, 귀 뒤 순서로 닦습니다. 한 면을 사용한 뒤 깨끗한 면으로 교체합니다.</p>
-<p><strong>3단계 — 머리 감기기</strong>
-한 팔로 아기 몸을 받치고 머리를 손바닥으로 감싸는 풋볼 자세로 안은 뒤, 다른 손으로 물을 적셔 감겨줍니다. 소량의 아기 전용 샴푸를 사용하고 충분히 헹굽니다.</p>
-<p><strong>4단계 — 몸 씻기</strong>
-한 손으로 목과 머리를 받친 채 발부터 천천히 물에 넣습니다. 목 주름, 겨드랑이, 사타구니 등 접히는 부분을 꼼꼼히 씻어줍니다. 전체 시간은 <strong>5~10분 이내</strong>로 짧게 마칩니다.</p>
-<p><strong>5단계 — 목욕 후 관리</strong>
-물에서 꺼내자마자 큰 타올로 감싸 톡톡 두드려 말립니다. 접히는 부분의 물기를 특히 신경 써서 제거한 뒤, 보습제를 바르고 기저귀와 옷을 입혀줍니다.</p>
+<table>
+<thead>
+<tr>
+<th>단계</th>
+<th>항목</th>
+<th>방법</th>
+<th>포인트</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1단계</td>
+<td>물 준비</td>
+<td>욕조에 5–8cm 깊이로 미온수(37–38도)를 받아요. 찬물을 먼저 받고 더운 물을 섞어주세요.</td>
+<td>온도계 확인 후 손목 안쪽으로 한 번 더 체크</td>
+</tr>
+<tr>
+<td>2단계</td>
+<td>얼굴 닦기</td>
+<td>세정제 없이 가제 수건으로 눈(안쪽→바깥쪽), 코, 입, 귀 뒤 순서로 닦아요.</td>
+<td>한 면 사용 후 깨끗한 면으로 교체</td>
+</tr>
+<tr>
+<td>3단계</td>
+<td>머리 감기기</td>
+<td>풋볼 자세로 아기를 안고, 다른 손으로 물을 적셔 감겨줘요. 아기 전용 샴푸를 소량 사용해요.</td>
+<td>충분히 헹궈주세요</td>
+</tr>
+<tr>
+<td>4단계</td>
+<td>몸 씻기</td>
+<td>한 손으로 목과 머리를 받친 채 발부터 천천히 물에 넣어요. 목 주름, 겨드랑이, 사타구니를 꼼꼼히 씻어줘요.</td>
+<td>전체 시간 5–10분 이내</td>
+</tr>
+<tr>
+<td>5단계</td>
+<td>목욕 후 관리</td>
+<td>큰 타올로 감싸 톡톡 두드려 말리고, 보습제를 바른 뒤 기저귀와 옷을 입혀줘요.</td>
+<td>접히는 부분 물기 완전 제거. 탯줄이 있다면 배꼽 소독 후 건조</td>
+</tr>
+</tbody>
+</table>
 <h2>신생아 목욕 주의사항</h2>
 <ul>
-<li><strong>절대 아기를 물 안에 혼자 두지 마세요</strong> — 전화나 초인종이 울려도 아기를 먼저 꺼내 수건으로 감싸고 함께 이동해야 합니다.</li>
-<li><strong>물 온도를 반드시 확인하세요</strong> — 아기가 물에 있는 상태에서 뜨거운 물을 추가하면 화상 위험이 있습니다.</li>
-<li><strong>실내 온도 24~26도를 유지하세요</strong> — 목욕 전 미리 욕실을 따뜻하게 해두면 체온 저하를 예방할 수 있습니다.</li>
-<li><strong>세정제는 매번 쓸 필요 없습니다</strong> — 주 2~3회 사용으로 충분하며, 나머지는 맑은 물로만 씻겨도 됩니다.</li>
-<li><strong>배꼽이 아물지 않았다면 통목욕은 피하세요</strong> — 탯줄이 떨어진 뒤에도 완전히 건조될 때까지 배꼽 부위를 잘 말려주세요.</li>
-<li>피부 발진이나 이상 증상이 지속되면 <strong>소아청소년과 전문의와 상담</strong>하세요.</li>
+<li><strong>절대 아기를 물 안에 혼자 두지 마세요</strong> —
+전화나 초인종이 울려도 아기를 먼저 꺼내
+수건으로 감싸고 함께 이동해야 해요.
+미국소아과학회(AAP)에서도
+목욕 중 보호자의 지속적인 감독을
+강조하고 있어요.</li>
+<li><strong>물 온도를 반드시 확인하세요</strong> —
+아기가 물에 있는 상태에서
+뜨거운 물을 추가하면 화상 위험이 있어요.</li>
+<li><strong>실내 온도 24–26도를 유지하세요</strong> —
+목욕 전 미리 욕실을 따뜻하게 해두면
+체온 저하를 예방할 수 있어요.</li>
+<li><strong>세정제는 매번 쓸 필요 없어요</strong> —
+주 2–3회 사용으로 충분하며,
+나머지는 맑은 물로만 씻겨도 돼요
+(대한피부과학회 권고).</li>
+<li><strong>배꼽이 아물지 않았다면 통목욕은 피하세요</strong> —
+탯줄이 떨어진 뒤에도 완전히 건조될 때까지
+배꼽 부위를 잘 말려주는 것이 중요해요.</li>
+<li>피부 발진이나 이상 증상이 2일 이상 지속되면
+<strong>소아청소년과 전문의와 상담</strong>하는 걸 추천해요.</li>
 </ul>
+<p>신생아 건강 관리가 처음이라면
+<a href="/articles/infant-vaccination-schedule">영유아 예방접종 스케줄</a>
+가이드도 함께 확인해보세요.</p>
 <h2>마무리</h2>
-<p>신생아 목욕은 처음 몇 번이 가장 어렵지만, 금방 익숙해집니다. 아래 세 가지만 기억하세요.</p>
+<p>신생아 목욕은 처음 몇 번이 가장 어렵지만,
+금방 익숙해져요. 아래 세 가지만 기억하세요.</p>
 <ol>
-<li><strong>탯줄 탈락 전에는 부분 목욕</strong>, 탈락 후 통목욕 시작</li>
-<li><strong>물 온도 37~38도</strong>, 목욕 시간 5~10분 이내</li>
-<li>고민이 있다면 <strong>소아청소년과 전문의와 상담</strong></li>
+<li><strong>탯줄 탈락 전에는 부분 목욕</strong>,
+탈락 후 통목욕 시작</li>
+<li><strong>물 온도 37–38도</strong>,
+목욕 시간 5–10분 이내</li>
+<li>고민이 있다면
+<strong>소아청소년과 전문의와 상담</strong></li>
 </ol>
+<h2>참고 자료</h2>
+<ul>
+<li>대한소아청소년과학회, 「신생아 돌봄 가이드」</li>
+<li>대한피부과학회, 「영유아 피부 관리 권고안」</li>
+<li>WHO, <em>Recommendations on Newborn Health</em> (2017)</li>
+<li>미국소아과학회(AAP), <em>Bathing Your Baby</em> (2023)</li>
+</ul>
 <hr>
 <blockquote>
 <p>⚠️ 이 글은 일반적인 육아 정보를 제공하며, 의학적 조언을 대체하지 않습니다.
 아이의 건강 문제는 소아청소년과 전문의와 상담하세요.</p>
 </blockquote>
-0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"신생아 목욕 방법과 주의사항","description":"신생아 목욕 시기, 준비물, 5단계 목욕 순서와 주의사항을 정리했습니다. 초보 부모를 위한 실전 가이드.","slug":"newborn-bath-tips","tags":["신생아","목욕","신생아케어"],"date":"2026-04-04","content":"$3"}}],[["$","script","script-0",{"src":"/_next/static/chunks/0nmg-g-mj1352.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/0w0412nbnq_jy.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"lGOCHM0N6Bd_PRdI3M6st"}
-6:null
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"신생아 목욕 방법과 주의사항","description":"신생아 목욕 시작 시기, 준비물 체크리스트, 5단계 목욕 순서와 주의사항을 정리했어요. 탯줄 탈락 전후 목욕법 차이까지, 초보 부모를 위한 실전 가이드예요.","slug":"newborn-bath-tips","tags":["신생아","목욕","신생아케어"],"date":"2026-04-04","content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"gRLiqRzLO8ZF-FSbcH-wH"}
+4:["$","script","script-0",{"src":"/_next/static/chunks/18bk-6ycliz6u.js","async":true}]
+5:["$","script","script-1",{"src":"/_next/static/chunks/0w0412nbnq_jy.js","async":true}]
+6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
+9:null
