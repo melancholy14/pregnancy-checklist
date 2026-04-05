@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { X } from "lucide-react";
+import { sendGAEvent } from "@/lib/analytics";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -15,6 +16,7 @@ export function WeightForm({ onSubmit, onClose }: WeightFormProps) {
   const handleAdd = () => {
     if (!newDate || !newWeight) return;
     onSubmit(newDate, parseFloat(newWeight));
+    sendGAEvent("weight_log");
     setNewDate("");
     setNewWeight("");
   };

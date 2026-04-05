@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { MapPin, Calendar } from "lucide-react";
 import { toast } from "sonner";
+import { sendGAEvent } from "@/lib/analytics";
 import { format, parseISO } from "date-fns";
 import { ko } from "date-fns/locale";
 import { Card, CardContent } from "@/components/ui/card";
@@ -51,6 +52,7 @@ export function BabyfairCard({ event }: BabyfairCardProps) {
   };
 
   const handleConfirm = () => {
+    sendGAEvent("outbound_click", { url: event.official_url, event_name: event.name });
     const newWindow = window.open(event.official_url, "_blank");
     if (newWindow) {
       newWindow.opener = null;

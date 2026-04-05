@@ -8,6 +8,7 @@ import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { useChecklistStore } from "@/store/useChecklistStore";
 import { CATEGORY_OPTIONS } from "@/lib/constants";
+import { sendGAEvent } from "@/lib/analytics";
 import type { ChecklistItem } from "@/types/checklist";
 import { DeleteConfirmDialog } from "./DeleteConfirmDialog";
 
@@ -127,11 +128,17 @@ export function WeekChecklistSection({ items, checkedIds }: WeekChecklistSection
                 ? "bg-[#D0EDE2]/15"
                 : "hover:bg-muted/50"
             }`}
-            onClick={() => toggle(item.id)}
+            onClick={() => {
+              const willCheck = !checkedIds.includes(item.id);
+              toggle(item.id);
+              sendGAEvent("checklist_check", { category: item.category, item_id: item.id, checked: willCheck });
+            }}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault();
+                const willCheck = !checkedIds.includes(item.id);
                 toggle(item.id);
+                sendGAEvent("checklist_check", { category: item.category, item_id: item.id, checked: willCheck });
               }
             }}
           >

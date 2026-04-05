@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useChecklistStore } from "@/store/useChecklistStore";
 import { useTimelineStore } from "@/store/useTimelineStore";
 import { CATEGORY_OPTIONS } from "@/lib/constants";
+import { sendGAEvent } from "@/lib/analytics";
 import type { ChecklistItem } from "@/types/checklist";
 
 type ItemType = "timeline" | "checklist";
@@ -39,6 +40,7 @@ export function UnifiedAddForm({ onClose }: UnifiedAddFormProps) {
         priority: "medium",
         isCustom: true,
       });
+      sendGAEvent("custom_item_add", { target: "checklist", category });
     } else {
       addTimelineItem({
         id: `custom-timeline-${Date.now()}`,
@@ -49,6 +51,7 @@ export function UnifiedAddForm({ onClose }: UnifiedAddFormProps) {
         priority: "medium",
         isCustom: true,
       });
+      sendGAEvent("custom_item_add", { target: "timeline", category: "prep" });
     }
 
     onClose();
