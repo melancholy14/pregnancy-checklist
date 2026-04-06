@@ -4,6 +4,7 @@ import { Toaster } from "sonner";
 import { Poppins } from "next/font/google";
 import { BottomNav } from "@/components/layout/BottomNav";
 import { Footer } from "@/components/layout/Footer";
+import { StickyHeader } from "@/components/layout/StickyHeader";
 import { BASE_URL, OG_IMAGE } from "@/lib/constants";
 import "./globals.css";
 
@@ -45,6 +46,7 @@ export default function RootLayout({
       </head>
     <html lang="ko" className={poppins.className}>
       <body>
+        <StickyHeader />
         <div className="min-h-screen max-w-2xl mx-auto">
           {children}
           <Footer />
