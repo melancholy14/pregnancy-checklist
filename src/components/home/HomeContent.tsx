@@ -375,22 +375,6 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
         </p>
       </div>
 
-      {/* Feedback Banner */}
-      {process.env.NEXT_PUBLIC_FEEDBACK_FORM_URL && (
-        <div className="mt-6 text-center">
-          <p className="text-muted-foreground text-xs">
-            더 나은 서비스를 위해{" "}
-            <a
-              href={process.env.NEXT_PUBLIC_FEEDBACK_FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline text-[#6B5A80] hover:text-[#6B5A80]/80"
-            >
-              의견을 들려주세요
-            </a>
-          </p>
-        </div>
-      )}
     </div>
   );
 }

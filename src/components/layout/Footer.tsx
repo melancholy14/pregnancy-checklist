@@ -17,6 +17,10 @@ export function Footer() {
         <Link href="/about" className="underline underline-offset-2 hover:text-foreground transition-colors">
           서비스 소개
         </Link>
+        <span>|</span>
+        <Link href="/contact" className="underline underline-offset-2 hover:text-foreground transition-colors">
+          연락처
+        </Link>
       </div>
     </footer>
   );

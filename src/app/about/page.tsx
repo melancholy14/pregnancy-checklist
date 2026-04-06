@@ -3,13 +3,13 @@ import { BASE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "서비스 소개 - 출산 준비 체크리스트",
-  description: "출산 준비 체크리스트 서비스의 소개와 연락처입니다.",
+  description: "출산 준비 체크리스트 서비스를 소개합니다.",
   alternates: {
     canonical: `${BASE_URL}/about`,
   },
   openGraph: {
     title: "서비스 소개 - 출산 준비 체크리스트",
-    description: "출산 준비 체크리스트 서비스의 소개와 연락처입니다.",
+    description: "출산 준비 체크리스트 서비스를 소개합니다.",
     url: `${BASE_URL}/about`,
   },
 };
@@ -61,13 +61,6 @@ export default function AboutPage() {
           있습니다. 정확한 의료 정보는 담당 의료진과 상담하시기 바랍니다.
         </p>
 
-        <h2 className="text-base mt-6 mb-3">연락처</h2>
-        <p className="text-sm text-muted-foreground leading-relaxed">
-          서비스 이용 중 문의사항이나 개선 의견이 있으시면 아래 이메일로 연락해 주세요.
-        </p>
-        <ul className="text-sm text-muted-foreground leading-relaxed list-disc pl-5 mt-2">
-          <li>이메일: melancholy8914@gmail.com</li>
-        </ul>
       </div>
     </div>
   );
