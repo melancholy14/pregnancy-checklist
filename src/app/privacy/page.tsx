@@ -57,13 +57,15 @@ export default function PrivacyPage() {
 
         <h2 className="text-base mt-6 mb-3">3. 개인정보의 처리 목적</h2>
         <p className="text-sm text-muted-foreground leading-relaxed">
-          수집된 정보는 다음의 목적으로만 처리되며, 자동 수집 정보의 처리 근거는
-          서비스 제공 및 개선을 위한 정당한 이익에 해당합니다.
+          수집된 정보는 다음의 목적으로만 처리됩니다. 자동 수집 정보의 처리 근거는
+          「개인정보 보호법」 제15조 제1항 제4호(서비스 제공에 따른 계약 이행) 및
+          제6호(정당한 이익을 위해 필요한 경우로서 정보주체의 권리보다 우선하는 경우)에 해당합니다.
         </p>
         <ul className="text-sm text-muted-foreground leading-relaxed list-disc pl-5 mt-2">
           <li>서비스 이용 통계 분석 및 서비스 개선(Google Analytics 4)</li>
           <li>광고 게재(Google AdSense)</li>
           <li>사용자 편의 기능 제공(LocalStorage를 통한 데이터 보관)</li>
+          <li>임신·육아 관련 정보성 콘텐츠(블로그) 제공</li>
         </ul>
 
         <h2 className="text-base mt-6 mb-3">4. 개인정보의 보유 및 이용 기간</h2>
@@ -96,8 +98,9 @@ export default function PrivacyPage() {
         </ul>
         <p className="text-sm text-muted-foreground leading-relaxed mt-2">
           위 서비스를 통해 수집된 데이터는 해외(미국 등)로 이전될 수 있습니다.
-          Google은 EU-미국 데이터 프라이버시 프레임워크 및 표준계약조항(SCC)을 통해
-          적절한 보호 조치를 적용하고 있습니다.
+          이는 「개인정보 보호법」 제28조의8에 따라 개인정보 처리 위탁에 수반되는 이전에
+          해당하며, Google은 표준계약조항(SCC) 및 추가 보호 조치를 통해 적절한
+          보호 수준을 유지하고 있습니다.
           Google의 개인정보 처리에 대한 자세한 내용은{" "}
           <a
             href="https://policies.google.com/privacy"
@@ -114,8 +117,9 @@ export default function PrivacyPage() {
         <h3 className="text-sm font-semibold mt-4 mb-2">6-1. 쿠키(Cookie)</h3>
         <p className="text-sm text-muted-foreground leading-relaxed">
           본 서비스는 Google Analytics 4 및 Google AdSense 운영을 위해 쿠키를 사용합니다.
-          쿠키는 이용자의 브라우저에 저장되는 작은 텍스트 파일로, 이용자는 브라우저 설정을
-          통해 쿠키 저장을 거부하거나 삭제할 수 있습니다. 다만, 쿠키를 거부할 경우
+          쿠키는 이용자의 브라우저에 저장되는 작은 텍스트 파일로, 서비스 첫 방문 시
+          쿠키 사용에 대한 안내를 제공합니다. 이용자는 브라우저 설정을 통해
+          쿠키 저장을 거부하거나 삭제할 수 있습니다. 다만, 쿠키를 거부할 경우
           맞춤형 광고가 제공되지 않을 수 있습니다.
         </p>
         <p className="text-sm text-muted-foreground leading-relaxed mt-2">
@@ -136,7 +140,8 @@ export default function PrivacyPage() {
 
         <h2 className="text-base mt-6 mb-3">7. 정보주체의 권리 및 행사 방법</h2>
         <p className="text-sm text-muted-foreground leading-relaxed">
-          이용자는 다음과 같은 권리를 행사할 수 있습니다.
+          이용자는 「개인정보 보호법」 제35조~제37조에 따라 다음과 같은 권리를 행사할 수 있으며,
+          운영자는 요청 접수일로부터 10일 이내에 필요한 조치를 취합니다.
         </p>
         <ul className="text-sm text-muted-foreground leading-relaxed list-disc pl-5 mt-2">
           <li>LocalStorage 데이터의 열람, 수정, 삭제: 브라우저 설정 또는 개발자 도구를 통해 직접 가능</li>
@@ -166,29 +171,47 @@ export default function PrivacyPage() {
           </li>
         </ul>
 
-        <h2 className="text-base mt-6 mb-3">8. 개인정보의 안전성 확보 조치</h2>
+        <h2 className="text-base mt-6 mb-3">8. 자동화된 의사결정 및 프로파일링</h2>
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          Google AdSense는 쿠키 기반의 관심사 데이터를 활용하여 이용자에게 맞춤형 광고를
+          자동으로 표시합니다. 이는 이용자의 법적 권리에 중대한 영향을 미치지 않는
+          광고 표시 목적에 한정되며, 이용자는 언제든지{" "}
+          <a
+            href="https://adssettings.google.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#6B5A80] underline"
+          >
+            Google 광고 설정
+          </a>
+          에서 맞춤 광고를 비활성화할 수 있습니다.
+        </p>
+
+        <h2 className="text-base mt-6 mb-3">9. 개인정보의 안전성 확보 조치</h2>
         <p className="text-sm text-muted-foreground leading-relaxed">
           본 서비스는 서버에 개인정보를 저장하지 않으므로, 서버 측 보안 조치 대상이 되는
           개인정보가 없습니다. 웹사이트는 HTTPS를 통해 암호화된 통신을 제공하며,
+          보안 헤더(Content Security Policy 등)를 적용하여 웹 공격을 방지합니다.
           LocalStorage에 저장된 데이터는 동일 출처 정책(Same-Origin Policy)에 의해 보호됩니다.
         </p>
 
-        <h2 className="text-base mt-6 mb-3">9. 아동의 개인정보 보호</h2>
+        <h2 className="text-base mt-6 mb-3">10. 아동의 개인정보 보호</h2>
         <p className="text-sm text-muted-foreground leading-relaxed">
           본 서비스는 만 14세 미만 아동의 개인정보를 수집하지 않으며, 만 14세 미만 아동을
           대상으로 하지 않습니다. 만 14세 미만 아동이 서비스를 이용하는 경우,
           법정대리인의 동의가 필요합니다.
         </p>
 
-        <h2 className="text-base mt-6 mb-3">10. 개인정보처리방침의 변경</h2>
+        <h2 className="text-base mt-6 mb-3">11. 개인정보처리방침의 변경</h2>
         <p className="text-sm text-muted-foreground leading-relaxed">
           본 개인정보처리방침은 법령, 정책 또는 서비스 변경에 따라 수정될 수 있습니다.
           변경 시 시행일 최소 7일 전에 서비스 내 공지사항을 통해 안내합니다.
           중대한 변경 사항의 경우 시행일 최소 30일 전에 공지합니다.
-          이전 버전의 개인정보처리방침은 본 페이지 하단에서 확인하실 수 있습니다.
+          이전 버전의 개인정보처리방침은 본 서비스의 공개 저장소(GitHub) 커밋 이력을 통해
+          확인하실 수 있습니다.
         </p>
 
-        <h2 className="text-base mt-6 mb-3">11. 권익침해 구제 방법</h2>
+        <h2 className="text-base mt-6 mb-3">12. 권익침해 구제 방법</h2>
         <p className="text-sm text-muted-foreground leading-relaxed">
           개인정보 침해에 대한 신고나 상담은 아래 기관에 문의하실 수 있습니다.
         </p>
@@ -199,7 +222,7 @@ export default function PrivacyPage() {
           <li>경찰청 사이버수사국: 182, ecrm.police.go.kr</li>
         </ul>
 
-        <h2 className="text-base mt-6 mb-3">12. 문의</h2>
+        <h2 className="text-base mt-6 mb-3">13. 문의</h2>
         <p className="text-sm text-muted-foreground leading-relaxed">
           개인정보 처리에 관한 문의사항은 아래 연락처로 문의해 주시기 바랍니다.
         </p>
