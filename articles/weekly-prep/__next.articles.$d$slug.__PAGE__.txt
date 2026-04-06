@@ -1,6 +1,6 @@
 1:"$Sreact.fragment"
-2:I[93406,["/_next/static/chunks/0g8wunpct24zu.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/17c44j55r7eh-.js","/_next/static/chunks/18bk-6ycliz6u.js","/_next/static/chunks/0w0412nbnq_jy.js"],"ArticleDetail"]
-7:I[97367,["/_next/static/chunks/0g8wunpct24zu.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/17c44j55r7eh-.js"],"OutletBoundary"]
+2:I[93406,["/_next/static/chunks/0qxhza75f~up2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js","/_next/static/chunks/18bk-6ycliz6u.js","/_next/static/chunks/0w0412nbnq_jy.js"],"ArticleDetail"]
+7:I[97367,["/_next/static/chunks/0qxhza75f~up2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"OutletBoundary"]
 8:"$Sreact.suspense"
 3:T257a,<p>임신 40주 동안 해야 할 검사와 준비 사항은 시기마다 달라요.
 "언제 뭘 해야 하지?" 하는 막연한 불안, 다들 느끼실 거예요.
@@ -209,7 +209,7 @@
 <p>⚠️ 이 글은 일반적인 육아 정보를 제공하며, 의학적 조언을 대체하지 않습니다.
 아이의 건강 문제는 소아청소년과 전문의와 상담하세요.</p>
 </blockquote>
-0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"임신 주차별 검사 & 준비 가이드","description":"임신 초기부터 출산까지, 주차별로 해야 할 검사와 준비 사항을 시기별로 정리했어요. 기형아 검사·임신성 당뇨 검사·GBS 검사 등 놓치기 쉬운 검사 시기와 국민행복카드·산후도우미 등 행정 준비까지 한눈에 확인해보세요.","slug":"weekly-prep","tags":["임신초기","검사","주차별","출산준비"],"date":"2026-04-04","content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"gRLiqRzLO8ZF-FSbcH-wH"}
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"임신 주차별 검사 & 준비 가이드","description":"임신 초기부터 출산까지, 주차별로 해야 할 검사와 준비 사항을 시기별로 정리했어요. 기형아 검사·임신성 당뇨 검사·GBS 검사 등 놓치기 쉬운 검사 시기와 국민행복카드·산후도우미 등 행정 준비까지 한눈에 확인해보세요.","slug":"weekly-prep","tags":["임신초기","검사","주차별","출산준비"],"date":"2026-04-04","content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"W5U8Lq7FJZZk7JJav8KF4"}
 4:["$","script","script-0",{"src":"/_next/static/chunks/18bk-6ycliz6u.js","async":true}]
 5:["$","script","script-1",{"src":"/_next/static/chunks/0w0412nbnq_jy.js","async":true}]
 6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
