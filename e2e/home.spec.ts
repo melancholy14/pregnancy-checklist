@@ -31,42 +31,84 @@ test.describe("홈 페이지", () => {
 
       await page.locator('input[type="date"]').fill(dateStr);
       await expect(page.getByText(/현재 임신/)).toBeVisible();
-      // 대시보드: 체크리스트 진행률 (링크가 /timeline으로 변경됨)
       await expect(page.getByText("체크리스트 진행률")).toBeVisible();
-      // D-day 카드
       await expect(page.getByText("D-day")).toBeVisible();
-    });
-
-    test("4개 기능 카드가 보인다", async ({ page }) => {
-      // 무엇을: 하단 기능 그리드에 4개 링크가 있는지
-      // 왜: Phase 1.5에서 체크리스트 카드 제거 (타임라인에 통합)
-      const grid = page.locator(".grid");
-      await expect(grid.getByRole("link", { name: "타임라인" })).toBeVisible();
-      await expect(grid.getByRole("link", { name: "베이비페어" })).toBeVisible();
-      await expect(grid.getByRole("link", { name: "체중 기록" })).toBeVisible();
-      await expect(grid.getByRole("link", { name: "영상" })).toBeVisible();
-    });
-
-    test("타임라인 카드 클릭 시 /timeline으로 이동한다", async ({ page }) => {
-      // 무엇을: 기능 카드가 올바른 경로로 라우팅되는지
-      // 왜: 네비게이션 정상 동작 확인
-      await page.getByRole("link", { name: "타임라인" }).first().click();
-      await expect(page).toHaveURL(/\/timeline/);
     });
 
     test("예정일 입력 후 이번 주 CTA 카드가 표시된다", async ({ page }) => {
       // 무엇을: 예정일 입력 후 이번 주 할 일 CTA 카드가 체크리스트 미리보기와 함께 나오는지
       // 왜: 홈→타임라인 전환율 향상 CTA의 핵심 동작
-
       const futureDate = new Date();
       futureDate.setDate(futureDate.getDate() + 100);
       const dateStr = futureDate.toISOString().split("T")[0];
       await page.locator('input[type="date"]').fill(dateStr);
       await expect(page.getByText(/현재 임신/)).toBeVisible();
 
-      // CTA 카드 확인
       await expect(page.getByText(/주차에.*할 일/)).toBeVisible();
       await expect(page.getByRole("button", { name: "타임라인에서 확인하기" })).toBeVisible();
+    });
+  });
+
+  test.describe("미니 대시보드 카드", () => {
+    test("4개 미니 대시보드 카드가 렌더링된다", async ({ page }) => {
+      // 무엇을: 기능 메뉴판 대신 미니 대시보드 카드 4개가 보이는지
+      // 왜: Phase 2.5 Step 3 — 메뉴판→미니 대시보드 개편
+      const dashboard = page.locator(".grid.grid-cols-2");
+      await expect(dashboard.getByRole("link", { name: /베이비페어/ })).toBeVisible();
+      await expect(dashboard.getByRole("link", { name: /체중 기록/ })).toBeVisible();
+      await expect(dashboard.getByRole("link", { name: /영상/ })).toBeVisible();
+      await expect(dashboard.getByRole("link", { name: /정보/ })).toBeVisible();
+    });
+
+    test("베이비페어 카드에 다가오는 행사 정보가 표시된다", async ({ page }) => {
+      // 무엇을: 베이비페어 카드에 행사 수 또는 '없습니다' 메시지가 보이는지
+      // 왜: 스냅샷 데이터로 클릭 동기 부여
+      const dashboard = page.locator(".grid.grid-cols-2");
+      await expect(dashboard.getByRole("link", { name: /베이비페어/ })).toBeVisible();
+      const hasEvents = await page.getByText(/다가오는 행사/).isVisible().catch(() => false);
+      const hasNoEvents = await page.getByText(/예정된 베이비페어가 없습니다/).isVisible().catch(() => false);
+      expect(hasEvents || hasNoEvents).toBe(true);
+    });
+
+    test("영상 카드에 총 영상 수와 카테고리가 표시된다", async ({ page }) => {
+      // 무엇을: 영상 카드에 영상 건수와 카테고리 수가 보이는지
+      // 왜: 콘텐츠 볼륨 표시로 탐색 유도
+      const dashboard = page.locator(".grid.grid-cols-2");
+      await expect(dashboard.getByRole("link", { name: /영상/ })).toBeVisible();
+      await expect(page.getByText(/추천 영상/)).toBeVisible();
+      await expect(page.getByText(/카테고리/)).toBeVisible();
+    });
+
+    test("정보 카드에 아티클 정보가 표시된다", async ({ page }) => {
+      // 무엇을: 정보 카드에 최신 글 제목과 총 아티클 수가 보이는지
+      // 왜: 콘텐츠 최신성 표시로 클릭 유도
+      const dashboard = page.locator(".grid.grid-cols-2");
+      await expect(dashboard.getByRole("link", { name: /정보/ })).toBeVisible();
+      await expect(page.getByText(/아티클/)).toBeVisible();
+    });
+
+    test("체중 카드에 시작 안내 또는 최근 기록이 표시된다", async ({ page }) => {
+      // 무엇을: 체중 미기록 시 시작 안내가 보이는지
+      // 왜: 미기록 유저에게도 카드가 의미 있도록
+      const dashboard = page.locator(".grid.grid-cols-2");
+      await expect(dashboard.getByRole("link", { name: /체중 기록/ })).toBeVisible();
+      await expect(page.getByText(/체중 변화를 기록하고 추이를 확인하세요/)).toBeVisible();
+    });
+
+    test("베이비페어 카드 클릭 시 /baby-fair로 이동한다", async ({ page }) => {
+      // 무엇을: 미니 대시보드 카드가 올바른 경로로 라우팅되는지
+      // 왜: 네비게이션 정상 동작 확인
+      const dashboard = page.locator(".grid.grid-cols-2");
+      await dashboard.getByRole("link", { name: /베이비페어/ }).click();
+      await expect(page).toHaveURL(/\/baby-fair/);
+    });
+
+    test("영상 카드 클릭 시 /videos로 이동한다", async ({ page }) => {
+      // 무엇을: 영상 카드 라우팅 확인
+      // 왜: 네비게이션 정상 동작 확인
+      const dashboard = page.locator(".grid.grid-cols-2");
+      await dashboard.getByRole("link", { name: /영상/ }).click();
+      await expect(page).toHaveURL(/\/videos/);
     });
   });
 
@@ -144,13 +186,14 @@ test.describe("홈 페이지", () => {
   test.describe("반응형 (Mobile 375px)", () => {
     test.use({ viewport: { width: 375, height: 812 } });
 
-    test("모바일: 히어로와 기능 카드가 정상 렌더링된다", async ({ page }) => {
+    test("모바일: 히어로와 미니 대시보드 카드가 정상 렌더링된다", async ({ page }) => {
       // 무엇을: 375px 모바일에서 핵심 UI가 보이는지
       // 왜: 타겟 유저(임산부)의 주요 접근 기기
       await expect(page.getByRole("heading", { name: "출산 준비 체크리스트" })).toBeVisible();
       await expect(page.locator('input[type="date"]')).toBeVisible();
-      const grid = page.locator(".grid");
-      await expect(grid.getByRole("link", { name: "타임라인" })).toBeVisible();
+      const dashboard = page.locator(".grid.grid-cols-2");
+      await expect(dashboard.getByRole("link", { name: /베이비페어/ })).toBeVisible();
+      await expect(dashboard.getByRole("link", { name: /체중 기록/ })).toBeVisible();
     });
   });
 });

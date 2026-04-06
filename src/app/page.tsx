@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { HomeContent } from "@/components/home/HomeContent";
+import { getAllArticles } from "@/lib/articles";
 import { BASE_URL, OG_IMAGE } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -17,5 +18,6 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return <HomeContent />;
+  const articles = getAllArticles().map(({ title, slug }) => ({ title, slug }));
+  return <HomeContent articles={articles} />;
 }

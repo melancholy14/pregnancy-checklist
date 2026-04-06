@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Clock, Users, Scale, Video, FileText, ChevronRight, Sparkles } from "lucide-react";
+import { ChevronRight, Sparkles } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { toast } from "sonner";
@@ -10,29 +10,35 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Checkbox } from "@/components/ui/checkbox";
 import { DueDateInput } from "@/components/home/DueDateInput";
+import { DashboardCard } from "@/components/home/DashboardCard";
 import { useDueDateStore } from "@/store/useDueDateStore";
 import { useChecklistStore } from "@/store/useChecklistStore";
 import { useTimelineStore } from "@/store/useTimelineStore";
+import { useWeightStore } from "@/store/useWeightStore";
 import { OnboardingFlow } from "@/components/onboarding/OnboardingFlow";
 import { calcPregnancyWeek } from "@/lib/week-calculator";
 import { getChecklistByWeek } from "@/lib/checklist-week-map";
 import checklistItems from "@/data/checklist_items.json";
 import timelineItems from "@/data/timeline_items.json";
+import babyfairEvents from "@/data/babyfair_events.json";
+import videosData from "@/data/videos.json";
 import type { ChecklistItem } from "@/types/checklist";
 import type { TimelineItem } from "@/types/timeline";
 
-const features = [
-  { icon: Clock, label: "타임라인", color: "#E4D6F0", path: "/timeline" },
-  { icon: Users, label: "베이비페어", color: "#D0EDE2", path: "/baby-fair" },
-  { icon: Scale, label: "체중 기록", color: "#FFE0CC", path: "/weight" },
-  { icon: Video, label: "영상", color: "#FFF4D4", path: "/videos" },
-  { icon: FileText, label: "정보", color: "#E0F0FF", path: "/articles" },
-];
+interface ArticleInfo {
+  title: string;
+  slug: string;
+}
 
-export function HomeContent() {
+export interface HomeContentProps {
+  articles?: ArticleInfo[];
+}
+
+export function HomeContent({ articles = [] }: HomeContentProps) {
   const { dueDate } = useDueDateStore();
   const { checkedIds, customItems } = useChecklistStore();
   const { customItems: customTimelineItems } = useTimelineStore();
+  const { logs: weightLogs } = useWeightStore();
   const [hydrated, setHydrated] = useState(false);
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [returningMessage, setReturningMessage] = useState<string | null>(null);
@@ -118,6 +124,32 @@ export function HomeContent() {
   }, [dueDate]);
 
   const hasDueDate = hydrated && dueDate;
+
+  // Mini dashboard data
+  const upcomingFairs = useMemo(() => {
+    const today = new Date().toISOString().split("T")[0];
+    return babyfairEvents
+      .filter((e) => e.end_date >= today)
+      .sort((a, b) => a.start_date.localeCompare(b.start_date));
+  }, []);
+
+  const videoCategories = useMemo(() => {
+    const cats = new Set(videosData.map((v) => v.categoryName));
+    return cats.size;
+  }, []);
+
+  const latestWeight = useMemo(() => {
+    if (!hydrated || weightLogs.length === 0) return null;
+    const sorted = [...weightLogs].sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
+    const latest = sorted[0];
+    const first = sorted[sorted.length - 1];
+    const diff = sorted.length > 1 ? latest.weight - first.weight : null;
+    return { weight: latest.weight, diff };
+  }, [hydrated, weightLogs]);
+
+  const latestArticle = articles.length > 0 ? articles[0] : null;
 
   if (showOnboarding) {
     return <OnboardingFlow onComplete={() => setShowOnboarding(false)} />;
@@ -244,28 +276,96 @@ export function HomeContent() {
         </div>
       )}
 
-      {/* Feature Grid */}
-      <div>
-        <div className="grid grid-cols-2 gap-4">
-          {features.map((feature) => {
-            const Icon = feature.icon;
-            return (
-              <Link key={feature.label} href={feature.path} className="no-underline">
-                <Card className="rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 border border-black/4 h-full hover:-translate-y-0.5">
-                  <CardContent className="p-6 flex flex-col items-center gap-3 group">
-                    <div
-                      className="w-14 h-14 rounded-2xl flex items-center justify-center group-hover:scale-105 transition-transform duration-300"
-                      style={{ backgroundColor: feature.color }}
-                    >
-                      <Icon size={24} strokeWidth={1.8} color="#3D4447" />
-                    </div>
-                    <span className="text-center text-sm font-medium">{feature.label}</span>
-                  </CardContent>
-                </Card>
-              </Link>
-            );
-          })}
-        </div>
+      {/* Mini Dashboard Cards */}
+      <div className="grid grid-cols-2 gap-3">
+        {/* Baby Fair Card */}
+        <DashboardCard
+          icon="👶"
+          title="베이비페어"
+          href="/baby-fair"
+          color="#D0EDE2"
+          cta="일정 보기"
+        >
+          {upcomingFairs.length > 0 ? (
+            <>
+              <p className="text-sm font-medium">다가오는 행사</p>
+              <p className="text-lg font-semibold">{upcomingFairs.length}건</p>
+              <p className="text-xs text-muted-foreground truncate">
+                {upcomingFairs[0].name} {upcomingFairs[0].start_date.slice(5)}~
+              </p>
+            </>
+          ) : (
+            <p className="text-xs text-muted-foreground">
+              예정된 베이비페어가 없습니다
+            </p>
+          )}
+        </DashboardCard>
+
+        {/* Weight Card */}
+        <DashboardCard
+          icon="⚖️"
+          title="체중 기록"
+          href="/weight"
+          color="#FFE0CC"
+          cta={latestWeight ? "기록하기" : "시작하기"}
+        >
+          {latestWeight ? (
+            <>
+              <p className="text-xs text-muted-foreground">최근</p>
+              <p className="text-lg font-semibold">{latestWeight.weight}kg</p>
+              {latestWeight.diff !== null && (
+                <p className="text-xs text-muted-foreground">
+                  {latestWeight.diff >= 0 ? "+" : ""}
+                  {latestWeight.diff.toFixed(1)}kg from 시작
+                </p>
+              )}
+            </>
+          ) : (
+            <p className="text-xs text-muted-foreground">
+              체중 변화를 기록하고 추이를 확인하세요
+            </p>
+          )}
+        </DashboardCard>
+
+        {/* Video Card */}
+        <DashboardCard
+          icon="🎬"
+          title="영상"
+          href="/videos"
+          color="#FFF4D4"
+          cta="보러가기"
+        >
+          <p className="text-xs text-muted-foreground">추천 영상</p>
+          <p className="text-lg font-semibold">{videosData.length}건</p>
+          <p className="text-xs text-muted-foreground">
+            {videoCategories}개 카테고리
+          </p>
+        </DashboardCard>
+
+        {/* Articles Card */}
+        <DashboardCard
+          icon="📝"
+          title="정보 & 가이드"
+          href="/articles"
+          color="#E0F0FF"
+          cta="읽으러 가기"
+        >
+          {latestArticle ? (
+            <>
+              <p className="text-xs text-muted-foreground">새 글</p>
+              <p className="text-sm font-medium truncate">
+                {latestArticle.title}
+              </p>
+              <p className="text-xs text-muted-foreground">
+                총 {articles.length}개 아티클
+              </p>
+            </>
+          ) : (
+            <p className="text-xs text-muted-foreground">
+              임신·출산 가이드를 확인하세요
+            </p>
+          )}
+        </DashboardCard>
       </div>
 
       {/* Motivational Text */}
