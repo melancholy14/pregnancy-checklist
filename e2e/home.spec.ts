@@ -3,6 +3,8 @@ import { test, expect } from "@playwright/test";
 test.describe("홈 페이지", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
+    await page.evaluate(() => localStorage.setItem("onboarding-completed", "true"));
+    await page.goto("/");
   });
 
   test.describe("Happy Path", () => {

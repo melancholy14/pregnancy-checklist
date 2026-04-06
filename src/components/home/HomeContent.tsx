@@ -12,6 +12,7 @@ import { DueDateInput } from "@/components/home/DueDateInput";
 import { useDueDateStore } from "@/store/useDueDateStore";
 import { useChecklistStore } from "@/store/useChecklistStore";
 import { useTimelineStore } from "@/store/useTimelineStore";
+import { OnboardingFlow } from "@/components/onboarding/OnboardingFlow";
 import { calcPregnancyWeek } from "@/lib/week-calculator";
 import checklistItems from "@/data/checklist_items.json";
 import timelineItems from "@/data/timeline_items.json";
@@ -31,9 +32,16 @@ export function HomeContent() {
   const { checkedIds, customItems } = useChecklistStore();
   const { customItems: customTimelineItems } = useTimelineStore();
   const [hydrated, setHydrated] = useState(false);
+  const [showOnboarding, setShowOnboarding] = useState(false);
 
   useEffect(() => {
     setHydrated(true);
+    try {
+      const completed = localStorage.getItem("onboarding-completed");
+      if (!completed) setShowOnboarding(true);
+    } catch {
+      // localStorage 접근 불가 시 무시
+    }
   }, []);
 
   // 예정일 첫 입력 시 토스트 표시 (1회만)
@@ -86,6 +94,10 @@ export function HomeContent() {
   }, [dueDate]);
 
   const hasDueDate = hydrated && dueDate;
+
+  if (showOnboarding) {
+    return <OnboardingFlow onComplete={() => setShowOnboarding(false)} />;
+  }
 
   return (
     <div className="min-h-screen pb-24 px-4">
