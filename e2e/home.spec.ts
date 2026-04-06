@@ -54,34 +54,19 @@ test.describe("홈 페이지", () => {
       await expect(page).toHaveURL(/\/timeline/);
     });
 
-    test("대시보드 이번 주 할 일에 커스텀 타임라인 항목이 반영된다", async ({ page }) => {
-      // 무엇을: 타임라인에서 추가한 커스텀 항목이 홈 대시보드에 표시되는지
-      // 왜: 대시보드와 타임라인 데이터 정합성 검증
+    test("예정일 입력 후 이번 주 CTA 카드가 표시된다", async ({ page }) => {
+      // 무엇을: 예정일 입력 후 이번 주 할 일 CTA 카드가 체크리스트 미리보기와 함께 나오는지
+      // 왜: 홈→타임라인 전환율 향상 CTA의 핵심 동작
 
-      // 1. 예정일 입력 (현재 주차 계산)
       const futureDate = new Date();
       futureDate.setDate(futureDate.getDate() + 100);
       const dateStr = futureDate.toISOString().split("T")[0];
       await page.locator('input[type="date"]').fill(dateStr);
       await expect(page.getByText(/현재 임신/)).toBeVisible();
 
-      // 2. 타임라인으로 이동하여 현재 주차에 커스텀 항목 추가
-      await page.goto("/timeline");
-      await page.locator('button[aria-label="항목 추가"]').click();
-      await page.locator('input[value="timeline"]').click();
-
-      // 현재 주차 계산 (40주 - 남은 일수/7)
-      const remainingDays = 100;
-      const currentWeek = Math.max(1, 40 - Math.floor(remainingDays / 7));
-      await page.locator('input[type="number"]').fill(String(currentWeek));
-      await page.getByPlaceholder("일정을 입력하세요").fill("대시보드 테스트 항목");
-      await page.getByRole("button", { name: "추가하기" }).click();
-      await expect(page.getByText("대시보드 테스트 항목")).toBeVisible();
-
-      // 3. 홈으로 돌아가서 확인
-      await page.goto("/");
-      await expect(page.getByText("이번 주 할 일")).toBeVisible();
-      await expect(page.getByText("대시보드 테스트 항목")).toBeVisible();
+      // CTA 카드 확인
+      await expect(page.getByText(/주차에.*할 일/)).toBeVisible();
+      await expect(page.getByRole("button", { name: "타임라인에서 확인하기" })).toBeVisible();
     });
   });
 

@@ -1,19 +1,21 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Clock, Users, Scale, Video, FileText, ChevronRight } from "lucide-react";
+import { Clock, Users, Scale, Video, FileText, ChevronRight, Sparkles } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { toast } from "sonner";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { Checkbox } from "@/components/ui/checkbox";
 import { DueDateInput } from "@/components/home/DueDateInput";
 import { useDueDateStore } from "@/store/useDueDateStore";
 import { useChecklistStore } from "@/store/useChecklistStore";
 import { useTimelineStore } from "@/store/useTimelineStore";
 import { OnboardingFlow } from "@/components/onboarding/OnboardingFlow";
 import { calcPregnancyWeek } from "@/lib/week-calculator";
+import { getChecklistByWeek } from "@/lib/checklist-week-map";
 import checklistItems from "@/data/checklist_items.json";
 import timelineItems from "@/data/timeline_items.json";
 import type { ChecklistItem } from "@/types/checklist";
@@ -33,12 +35,24 @@ export function HomeContent() {
   const { customItems: customTimelineItems } = useTimelineStore();
   const [hydrated, setHydrated] = useState(false);
   const [showOnboarding, setShowOnboarding] = useState(false);
+  const [returningMessage, setReturningMessage] = useState<string | null>(null);
 
   useEffect(() => {
     setHydrated(true);
     try {
       const completed = localStorage.getItem("onboarding-completed");
       if (!completed) setShowOnboarding(true);
+
+      // 재방문 유저 웰컴 메시지
+      const lastVisit = localStorage.getItem("last-visit-date");
+      const today = new Date().toISOString().split("T")[0];
+      if (lastVisit && lastVisit !== today) {
+        const checkedCount = JSON.parse(localStorage.getItem("checklist-storage") || "{}").state?.checkedIds?.length;
+        if (checkedCount > 0) {
+          setReturningMessage(`돌아오셨군요! 지난번에 ${checkedCount}개 체크하셨어요 ✨`);
+        }
+      }
+      localStorage.setItem("last-visit-date", today);
     } catch {
       // localStorage 접근 불가 시 무시
     }
@@ -77,13 +91,23 @@ export function HomeContent() {
     return { total, checked, percent: total > 0 ? (checked / total) * 100 : 0 };
   }, [allChecklistItems, checkedIds]);
 
-  const thisWeekTimeline = useMemo(() => {
+  const thisWeekChecklist = useMemo(() => {
     if (!currentWeek) return [];
     const allTimeline = [...(timelineItems as TimelineItem[]), ...customTimelineItems];
-    return allTimeline.filter(
-      (item) => Math.abs(item.week - currentWeek) <= 1
-    );
-  }, [currentWeek, customTimelineItems]);
+    const weekMap = getChecklistByWeek(allTimeline, checklistItems as ChecklistItem[], customItems);
+    // 현재 주차 ± 1 범위의 체크리스트 수집
+    const result: ChecklistItem[] = [];
+    for (const [week, items] of weekMap) {
+      if (Math.abs(week - currentWeek) <= 1) {
+        result.push(...items);
+      }
+    }
+    return result;
+  }, [currentWeek, customTimelineItems, customItems]);
+
+  const thisWeekUnchecked = useMemo(() => {
+    return thisWeekChecklist.filter((item) => !checkedIds.includes(item.id));
+  }, [thisWeekChecklist, checkedIds]);
 
   const daysLeft = useMemo(() => {
     if (!dueDate) return null;
@@ -121,6 +145,14 @@ export function HomeContent() {
       {/* Dashboard (예정일 입력 시) */}
       {hasDueDate && (
         <div className="space-y-4 mb-8">
+          {/* 재방문 유저 웰컴 메시지 */}
+          {returningMessage && (
+            <div className="flex items-center gap-2 px-4 py-3 rounded-2xl bg-[#E4D6F0]/20 border border-[#E4D6F0]/30">
+              <Sparkles size={16} className="text-[#6B5A80] shrink-0" />
+              <span className="text-sm text-[#6B5A80]">{returningMessage}</span>
+            </div>
+          )}
+
           {/* Week & Days Left */}
           <div className="grid grid-cols-2 gap-3">
             <Card className="rounded-2xl border border-black/4">
@@ -160,29 +192,41 @@ export function HomeContent() {
             </Card>
           </Link>
 
-          {/* This Week Timeline */}
-          {thisWeekTimeline.length > 0 && (
-            <Link href="/timeline" className="no-underline block">
-              <Card className="rounded-2xl border border-black/4 hover:shadow-md transition-shadow">
-                <CardContent className="p-4">
-                  <div className="flex justify-between items-center mb-3">
-                    <span className="text-sm text-muted-foreground">이번 주 할 일</span>
-                    <ChevronRight size={16} className="text-muted-foreground" />
-                  </div>
-                  <div className="space-y-2">
-                    {thisWeekTimeline.slice(0, 3).map((item) => (
+          {/* This Week Checklist CTA */}
+          {thisWeekChecklist.length > 0 && (
+            <Card className="rounded-2xl border border-black/4">
+              <CardContent className="p-4">
+                <p className="text-sm font-medium mb-3">
+                  🗓️ {currentWeek}주차에 {thisWeekUnchecked.length > 0 ? `${thisWeekUnchecked.length}가지 할 일이 남았어요` : "모든 할 일을 완료했어요!"}
+                </p>
+                <div className="space-y-2 mb-4">
+                  {thisWeekChecklist.slice(0, 3).map((item) => {
+                    const isChecked = checkedIds.includes(item.id);
+                    return (
                       <div key={item.id} className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#E4D6F0] shrink-0" />
-                        <span className="text-sm truncate">{item.title}</span>
-                        <Badge className="bg-[#E4D6F0]/40 text-[#6B5A80] text-xs px-2 py-0.5 rounded-lg border-0 hover:bg-[#E4D6F0]/40 shrink-0">
-                          {item.week}주
-                        </Badge>
+                        <Checkbox
+                          checked={isChecked}
+                          className="size-4 rounded border-2 data-[state=checked]:bg-[#D0EDE2] data-[state=checked]:border-[#D0EDE2] data-[state=checked]:text-[#3D4447] border-gray-200 pointer-events-none"
+                          tabIndex={-1}
+                          aria-hidden
+                        />
+                        <span className={`text-sm truncate ${isChecked ? "line-through text-muted-foreground" : ""}`}>
+                          {item.title}
+                        </span>
                       </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
+                    );
+                  })}
+                </div>
+                <Link href="/timeline" className="no-underline block">
+                  <Button
+                    className="w-full h-10 rounded-xl bg-[#E4D6F0] text-[#3D4447] hover:bg-[#E4D6F0]/80"
+                    aria-label="타임라인에서 확인하기"
+                  >
+                    타임라인에서 확인하기 →
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
           )}
         </div>
       )}

@@ -1,7 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Plus } from "lucide-react";
+import { Plus, Save } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { useDueDateStore } from "@/store/useDueDateStore";
 import { useTimelineStore } from "@/store/useTimelineStore";
 import { useChecklistStore } from "@/store/useChecklistStore";
@@ -28,6 +29,8 @@ export function TimelineContainer({ timelineItems, checklistItems }: TimelineCon
   const [hydrated, setHydrated] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
   const [activeCategory, setActiveCategory] = useState("all");
+  const [showFirstCheckBanner, setShowFirstCheckBanner] = useState(false);
+  const prevCheckedCountRef = useRef<number | null>(null);
   const currentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -83,6 +86,24 @@ export function TimelineContainer({ timelineItems, checklistItems }: TimelineCon
     return set;
   }, [activeCategory, weekChecklistMap]);
 
+  // 첫 체크 시 인라인 배너 (1회성)
+  useEffect(() => {
+    if (!hydrated) return;
+    const count = checkedIds.length;
+    if (prevCheckedCountRef.current !== null && prevCheckedCountRef.current === 0 && count === 1) {
+      try {
+        const shown = localStorage.getItem("first-check-guide-shown");
+        if (!shown) {
+          setShowFirstCheckBanner(true);
+          localStorage.setItem("first-check-guide-shown", "true");
+        }
+      } catch {
+        // localStorage 접근 불가 시 무시
+      }
+    }
+    prevCheckedCountRef.current = count;
+  }, [hydrated, checkedIds]);
+
   // 현재 주차로 자동 스크롤
   useEffect(() => {
     if (hydrated && currentWeek && currentRef.current) {
@@ -134,6 +155,30 @@ export function TimelineContainer({ timelineItems, checklistItems }: TimelineCon
                 </span>
               </div>
               <Progress value={progress.percent} className="h-2 bg-muted" />
+            </CardContent>
+          </Card>
+        )}
+
+        {/* 첫 체크 인라인 배너 */}
+        {showFirstCheckBanner && (
+          <Card className="rounded-2xl border border-[#D0EDE2]/50 bg-[#D0EDE2]/10 mb-6">
+            <CardContent className="p-4 flex items-start gap-3">
+              <span className="w-9 h-9 rounded-xl bg-[#D0EDE2] flex items-center justify-center shrink-0 mt-0.5">
+                <Save size={18} strokeWidth={1.8} className="text-[#3D4447]" />
+              </span>
+              <div className="flex-1">
+                <p className="text-sm font-medium mb-0.5">체크한 내용은 자동 저장돼요!</p>
+                <p className="text-xs text-muted-foreground">다시 방문해도 기록이 남아있어요</p>
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setShowFirstCheckBanner(false)}
+                className="rounded-lg h-8 text-xs shrink-0"
+                aria-label="배너 닫기"
+              >
+                확인
+              </Button>
             </CardContent>
           </Card>
         )}
