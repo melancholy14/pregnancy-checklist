@@ -307,7 +307,7 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
           title="체중 기록"
           href="/weight"
           color="#FFE0CC"
-          cta={latestWeight ? "기록하기" : "시작하기"}
+          cta={latestWeight ? (latestWeight.diff !== null ? "기록하기" : "추가 기록") : "시작하기"}
         >
           {latestWeight ? (
             <>
@@ -316,13 +316,13 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
               {latestWeight.diff !== null && (
                 <p className="text-xs text-muted-foreground">
                   {latestWeight.diff >= 0 ? "+" : ""}
-                  {latestWeight.diff.toFixed(1)}kg from 시작
+                  {latestWeight.diff.toFixed(1)}kg (처음 대비)
                 </p>
               )}
             </>
           ) : (
             <p className="text-xs text-muted-foreground">
-              체중 변화를 기록하고 추이를 확인하세요
+              아직 기록이 없어요
             </p>
           )}
         </DashboardCard>

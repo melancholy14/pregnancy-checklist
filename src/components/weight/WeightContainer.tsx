@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Plus, X } from "lucide-react";
+import Link from "next/link";
+import { Plus, X, FileText } from "lucide-react";
 import { format, parseISO } from "date-fns";
 import { ko } from "date-fns/locale";
 import { useWeightStore } from "@/store/useWeightStore";
@@ -51,7 +52,7 @@ export function WeightContainer() {
         )}
 
         {/* Weight List */}
-        <div className="space-y-2.5 mb-20">
+        <div className="space-y-2.5">
           {entries.length === 0 && !showAddForm && (
             <div className="text-center py-12 text-muted-foreground">
               <div className="text-5xl mb-4">📊</div>
@@ -88,6 +89,25 @@ export function WeightContainer() {
               </Card>
             ))}
         </div>
+
+        {/* Related Article */}
+        <Link
+          href="/articles/pregnancy-weight-management"
+          className="block mt-6 mb-20 no-underline"
+        >
+          <Card className="rounded-2xl border border-[#FFE0CC]/40 bg-[#FFE0CC]/10 hover:shadow-md transition-shadow">
+            <CardContent className="p-4 flex items-center gap-3">
+              <span className="w-9 h-9 rounded-xl bg-[#FFE0CC] flex items-center justify-center shrink-0">
+                <FileText size={18} strokeWidth={1.8} className="text-[#3D4447]" />
+              </span>
+              <div className="flex-1">
+                <p className="text-sm font-medium text-[#3D4447]">임신 중 체중 관리 가이드</p>
+                <p className="text-xs text-muted-foreground">BMI별 권장 범위부터 안전한 운동법까지</p>
+              </div>
+              <span className="text-muted-foreground text-sm">→</span>
+            </CardContent>
+          </Card>
+        </Link>
 
         {/* FAB */}
         {!showAddForm && (
