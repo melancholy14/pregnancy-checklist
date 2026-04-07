@@ -22,12 +22,23 @@ import type { BabyfairEvent } from "@/types/babyfair";
 
 const CITY_COLORS: Record<string, string> = {
   서울: "#FFD4DE",
+  "서울(마곡)": "#FFD4DE",
   부산: "#E4D6F0",
   대구: "#D0EDE2",
   인천: "#FFE0CC",
   경기: "#FFF4D4",
   광주: "#FFD4DE",
   대전: "#D0EDE2",
+  수원: "#FFF4D4",
+  "수원(광교)": "#FFF4D4",
+  "고양(일산)": "#FFE0CC",
+  청주: "#E4D6F0",
+  창원: "#D0EDE2",
+  김해: "#E4D6F0",
+  경주: "#FFE0CC",
+  강릉: "#D0EDE2",
+  익산: "#FFF4D4",
+  순천: "#FFD4DE",
 };
 
 function formatDateRange(startDate: string, endDate: string): string {
@@ -40,9 +51,10 @@ function formatDateRange(startDate: string, endDate: string): string {
 
 interface BabyfairCardProps {
   event: BabyfairEvent;
+  daysLeft?: number;
 }
 
-export function BabyfairCard({ event }: BabyfairCardProps) {
+export function BabyfairCard({ event, daysLeft }: BabyfairCardProps) {
   const color = CITY_COLORS[event.city] ?? "#FFD4DE";
   const [open, setOpen] = useState(false);
   const hasUrl = !!event.official_url;
@@ -82,14 +94,21 @@ export function BabyfairCard({ event }: BabyfairCardProps) {
         })}
       >
         <CardContent className="p-6">
-          {/* City Badge */}
+          {/* City Badge + D-day */}
           <div className="flex justify-between items-start mb-4">
-            <Badge
-              className="rounded-lg text-sm border border-black/4 px-3 py-1 text-[#3D4447] font-medium"
-              style={{ backgroundColor: color }}
-            >
-              {event.city}
-            </Badge>
+            <div className="flex items-center gap-2">
+              <Badge
+                className="rounded-lg text-sm border border-black/4 px-3 py-1 text-[#3D4447] font-medium"
+                style={{ backgroundColor: color }}
+              >
+                {event.city}
+              </Badge>
+              {daysLeft !== undefined && (
+                <Badge className="rounded-lg text-xs border-0 px-2 py-1 bg-[#D0EDE2] text-[#2D6B4F] font-medium">
+                  {daysLeft === 0 ? "D-Day" : `D-${daysLeft}일 남음`}
+                </Badge>
+              )}
+            </div>
           </div>
 
           {/* Event Name */}

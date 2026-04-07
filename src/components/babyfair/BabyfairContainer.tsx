@@ -8,6 +8,8 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import type { BabyfairEvent } from "@/types/babyfair";
 import { BabyfairCard } from "./BabyfairCard";
 
+type BabyfairTab = "ongoing" | "upcoming" | "ended";
+
 interface BabyfairContainerProps {
   events: BabyfairEvent[];
 }
@@ -30,7 +32,16 @@ export function BabyfairContainer({ events }: BabyfairContainerProps) {
 
   const [selectedCity, setSelectedCity] = useState("전체");
   const [selectedYear, setSelectedYear] = useState("전체");
-  const [tab, setTab] = useState<"upcoming" | "ended">("upcoming");
+
+  const ongoingEvents = useMemo(() => {
+    return events.filter(
+      (e) => e.start_date <= today && e.end_date >= today
+    );
+  }, [events, today]);
+
+  const [tab, setTab] = useState<BabyfairTab>(
+    ongoingEvents.length > 0 ? "ongoing" : "upcoming"
+  );
 
   useEffect(() => {
     const el = citiesRef.current;
@@ -41,8 +52,9 @@ export function BabyfairContainer({ events }: BabyfairContainerProps) {
     return events.filter((e) => {
       if (selectedCity !== "전체" && e.city !== selectedCity) return false;
       if (selectedYear !== "전체" && !e.start_date.startsWith(selectedYear)) return false;
-      if (tab === "upcoming" && e.end_date < today) return false;
-      if (tab === "ended" && e.end_date >= today) return false;
+      if (tab === "ongoing" && !(e.start_date <= today && e.end_date >= today)) return false;
+      if (tab === "upcoming" && !(e.start_date > today)) return false;
+      if (tab === "ended" && !(e.end_date < today)) return false;
       return true;
     });
   }, [events, selectedCity, selectedYear, tab, today]);
@@ -52,7 +64,7 @@ export function BabyfairContainer({ events }: BabyfairContainerProps) {
       <div className="pt-8">
         <h1 className="mb-2 text-center">베이비페어 일정</h1>
         <p className="text-center text-muted-foreground mb-6">
-          전국 베이비페어 행사 안내
+          {new Date().getFullYear()}년 전국 베이비페어 행사 안내
         </p>
 
         {events.length === 0 ? (
@@ -114,13 +126,19 @@ export function BabyfairContainer({ events }: BabyfairContainerProps) {
             </div>
 
             {/* Tabs */}
-            <Tabs value={tab} onValueChange={(v) => setTab(v as "upcoming" | "ended")}>
+            <Tabs value={tab} onValueChange={(v) => setTab(v as BabyfairTab)}>
               <TabsList className="flex gap-2 mb-6 bg-transparent h-auto p-0">
+                <TabsTrigger
+                  value="ongoing"
+                  className="px-4 py-2 rounded-xl border border-black/4 bg-white text-[#9CA0A4] data-[state=active]:bg-[#D0EDE2]/40 data-[state=active]:text-[#3D4447] data-[state=active]:border-[#D0EDE2]/30 h-auto transition-all"
+                >
+                  진행 중{ongoingEvents.length > 0 && ` (${ongoingEvents.length})`}
+                </TabsTrigger>
                 <TabsTrigger
                   value="upcoming"
                   className="px-4 py-2 rounded-xl border border-black/4 bg-white text-[#9CA0A4] data-[state=active]:bg-[#D0EDE2]/40 data-[state=active]:text-[#3D4447] data-[state=active]:border-[#D0EDE2]/30 h-auto transition-all"
                 >
-                  예정 행사
+                  예정
                 </TabsTrigger>
                 <TabsTrigger
                   value="ended"
@@ -129,6 +147,20 @@ export function BabyfairContainer({ events }: BabyfairContainerProps) {
                   지난 행사
                 </TabsTrigger>
               </TabsList>
+
+              <TabsContent value="ongoing">
+                {filtered.length === 0 ? (
+                  <div className="text-center py-8 text-muted-foreground">
+                    <p>현재 진행 중인 행사가 없어요</p>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {filtered.map((event) => (
+                      <BabyfairCard key={event.slug} event={event} daysLeft={Math.ceil((new Date(event.end_date).getTime() - new Date(today).getTime()) / 86400000)} />
+                    ))}
+                  </div>
+                )}
+              </TabsContent>
 
               <TabsContent value="upcoming">
                 {filtered.length === 0 ? (
