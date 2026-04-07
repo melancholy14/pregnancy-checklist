@@ -16,6 +16,9 @@ function parseArticleMeta(data: Record<string, unknown>): ArticleMeta {
     tags: Array.isArray(data.tags) ? data.tags : [],
     date: String(data.date ?? ""),
     updated: data.updated ? String(data.updated) : undefined,
+    linked_timeline_weeks: Array.isArray(data.linked_timeline_weeks)
+      ? data.linked_timeline_weeks.map(Number)
+      : undefined,
   };
 }
 

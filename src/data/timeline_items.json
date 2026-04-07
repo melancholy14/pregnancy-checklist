@@ -7,6 +7,7 @@
     "type": "admin",
     "priority": "high",
     "linked_checklist_ids": [],
+    "linked_article_slugs": ["early-pregnancy-tests"],
     "seo_slug": "week-4"
   },
   {
@@ -27,6 +28,7 @@
     "type": "admin",
     "priority": "high",
     "linked_checklist_ids": ["item_001", "item_003", "item_011", "item_086"],
+    "linked_article_slugs": ["early-pregnancy-tests"],
     "seo_slug": "week-8"
   },
   {
@@ -37,6 +39,7 @@
     "type": "admin",
     "priority": "high",
     "linked_checklist_ids": ["item_087", "item_106"],
+    "linked_article_slugs": ["early-pregnancy-tests"],
     "seo_slug": "week-10"
   },
   {
@@ -47,6 +50,7 @@
     "type": "admin",
     "priority": "high",
     "linked_checklist_ids": ["item_070", "item_092", "item_103"],
+    "linked_article_slugs": ["postpartum-care"],
     "seo_slug": "week-12"
   },
   {
@@ -77,6 +81,7 @@
     "type": "shopping",
     "priority": "medium",
     "linked_checklist_ids": [],
+    "linked_article_slugs": ["baby-items-cost"],
     "seo_slug": "week-18"
   },
   {
@@ -127,6 +132,7 @@
     "type": "prep",
     "priority": "high",
     "linked_checklist_ids": ["item_110", "item_111", "item_068", "item_081"],
+    "linked_article_slugs": ["infant-vaccination-schedule"],
     "seo_slug": "week-28"
   },
   {
@@ -137,6 +143,7 @@
     "type": "prep",
     "priority": "high",
     "linked_checklist_ids": ["item_046", "item_047", "item_065", "item_004", "item_078", "item_079"],
+    "linked_article_slugs": ["newborn-bath-tips"],
     "seo_slug": "week-30"
   },
   {
@@ -147,6 +154,7 @@
     "type": "prep",
     "priority": "high",
     "linked_checklist_ids": ["item_021", "item_024", "item_026", "item_035", "item_043", "item_044", "item_052", "item_053", "item_054", "item_066", "item_075", "item_083", "item_091"],
+    "linked_article_slugs": ["hospital-bag"],
     "seo_slug": "week-32"
   },
   {
@@ -177,6 +185,7 @@
     "type": "prep",
     "priority": "high",
     "linked_checklist_ids": ["item_112", "item_020", "item_019", "item_017", "item_097", "item_098", "item_100", "item_055", "item_080"],
+    "linked_article_slugs": ["hospital-bag"],
     "seo_slug": "week-36"
   },
   {
@@ -187,6 +196,7 @@
     "type": "prep",
     "priority": "high",
     "linked_checklist_ids": ["item_072", "item_074", "item_076", "item_077"],
+    "linked_article_slugs": ["postpartum-diet"],
     "seo_slug": "week-37"
   },
   {

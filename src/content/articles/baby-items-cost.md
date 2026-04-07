@@ -8,6 +8,7 @@ tags:
   - 비용
   - 쇼핑
 date: "2026-04-04"
+linked_timeline_weeks: [18]
 ---
 
 출산 준비를 시작하면

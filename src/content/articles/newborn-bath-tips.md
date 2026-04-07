@@ -8,6 +8,7 @@ tags:
   - 목욕
   - 신생아케어
 date: "2026-04-04"
+linked_timeline_weeks: [30]
 ---
 
 처음 아기를 목욕시키는 날,

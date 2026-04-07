@@ -6,6 +6,7 @@ import type { ChecklistItem } from "@/types/checklist";
 import { TimelineContainer } from "@/components/timeline/TimelineContainer";
 import { DueDateBanner } from "@/components/home/DueDateBanner";
 import { BASE_URL } from "@/lib/constants";
+import { getAllArticles } from "@/lib/articles";
 
 export const metadata: Metadata = {
   title: "임신 주차별 타임라인 & 체크리스트 - 출산 준비 체크리스트",
@@ -21,6 +22,8 @@ export const metadata: Metadata = {
 };
 
 export default function TimelinePage() {
+  const articles = getAllArticles();
+
   return (
     <>
       <div className="px-4 pt-8">
@@ -29,6 +32,7 @@ export default function TimelinePage() {
       <TimelineContainer
         timelineItems={timelineItems as TimelineItem[]}
         checklistItems={checklistItems as ChecklistItem[]}
+        articles={articles}
       />
     </>
   );

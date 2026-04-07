@@ -9,8 +9,10 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { useTimelineStore } from "@/store/useTimelineStore";
 import type { TimelineItem } from "@/types/timeline";
 import type { ChecklistItem } from "@/types/checklist";
+import type { ArticleMeta } from "@/types/article";
 import { WeekChecklistSection } from "./WeekChecklistSection";
 import { DeleteConfirmDialog } from "./DeleteConfirmDialog";
+import { RelatedArticlesLink } from "./RelatedArticlesLink";
 
 const TYPE_COLORS: Record<string, string> = {
   prep: "#FFD4DE",
@@ -25,6 +27,7 @@ interface TimelineAccordionCardProps {
   status: "past" | "current" | "future";
   checklistItems: ChecklistItem[];
   checkedIds: string[];
+  relatedArticles?: ArticleMeta[];
   defaultOpen?: boolean;
 }
 
@@ -33,6 +36,7 @@ export function TimelineAccordionCard({
   status,
   checklistItems,
   checkedIds,
+  relatedArticles = [],
   defaultOpen = false,
 }: TimelineAccordionCardProps) {
   const { removeCustomItem, updateCustomItem } = useTimelineStore();
@@ -186,6 +190,11 @@ export function TimelineAccordionCard({
                   <WeekChecklistSection items={checklistItems} checkedIds={checkedIds} />
                 </div>
               </CollapsibleContent>
+            )}
+
+            {/* Related articles */}
+            {!isEditing && relatedArticles.length > 0 && (
+              <RelatedArticlesLink articles={relatedArticles} />
             )}
           </CardContent>
         </Card>

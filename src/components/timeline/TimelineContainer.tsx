@@ -12,6 +12,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import type { TimelineItem } from "@/types/timeline";
 import type { ChecklistItem } from "@/types/checklist";
+import type { ArticleMeta } from "@/types/article";
 import { TimelineAccordionCard } from "./TimelineAccordionCard";
 import { UnifiedAddForm } from "./UnifiedAddForm";
 import { CategoryFilter } from "./CategoryFilter";
@@ -20,9 +21,10 @@ import { WeekChecklistSection } from "./WeekChecklistSection";
 interface TimelineContainerProps {
   timelineItems: TimelineItem[];
   checklistItems: ChecklistItem[];
+  articles?: ArticleMeta[];
 }
 
-export function TimelineContainer({ timelineItems, checklistItems }: TimelineContainerProps) {
+export function TimelineContainer({ timelineItems, checklistItems, articles = [] }: TimelineContainerProps) {
   const { dueDate } = useDueDateStore();
   const { customItems: customTimelineItems } = useTimelineStore();
   const { checkedIds, customItems: customChecklistItems } = useChecklistStore();
@@ -41,6 +43,14 @@ export function TimelineContainer({ timelineItems, checklistItems }: TimelineCon
     if (!hydrated || !dueDate) return null;
     return calcPregnancyWeek(new Date(dueDate));
   }, [hydrated, dueDate]);
+
+  const articleMap = useMemo(() => {
+    const map = new Map<string, ArticleMeta>();
+    for (const a of articles) {
+      map.set(a.slug, a);
+    }
+    return map;
+  }, [articles]);
 
   const allTimelineItems = useMemo(() => {
     return [...timelineItems, ...customTimelineItems].sort((a, b) => a.week - b.week);
@@ -213,6 +223,9 @@ export function TimelineContainer({ timelineItems, checklistItems }: TimelineCon
                   const shouldRef = status === "current" && !firstCurrentAssigned;
                   if (shouldRef) firstCurrentAssigned = true;
                   const weekChecklist = getFilteredChecklist(weekChecklistMap.get(item.week) ?? []);
+                  const relatedArticles = (item.linked_article_slugs ?? [])
+                    .map((slug) => articleMap.get(slug))
+                    .filter((a): a is ArticleMeta => a !== undefined);
 
                   return (
                     <div key={item.id} ref={shouldRef ? currentRef : undefined}>
@@ -221,6 +234,7 @@ export function TimelineContainer({ timelineItems, checklistItems }: TimelineCon
                         status={status}
                         checklistItems={weekChecklist}
                         checkedIds={hydrated ? checkedIds : []}
+                        relatedArticles={relatedArticles}
                         defaultOpen={status === "current"}
                       />
                     </div>

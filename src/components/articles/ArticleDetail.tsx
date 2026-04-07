@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { Article } from "@/types/article";
+import { TimelineCTA } from "./TimelineCTA";
 
 interface ArticleDetailProps {
   article: Article;
@@ -49,6 +50,10 @@ export function ArticleDetail({ article }: ArticleDetailProps) {
           className="article-prose"
           dangerouslySetInnerHTML={{ __html: article.content }}
         />
+
+        {article.linked_timeline_weeks && article.linked_timeline_weeks.length > 0 && (
+          <TimelineCTA weeks={article.linked_timeline_weeks} />
+        )}
       </article>
     </div>
   );
