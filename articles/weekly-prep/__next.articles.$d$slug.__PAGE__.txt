@@ -1,13 +1,22 @@
 1:"$Sreact.fragment"
-2:I[93406,["/_next/static/chunks/0qxhza75f~up2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js","/_next/static/chunks/18bk-6ycliz6u.js","/_next/static/chunks/0w0412nbnq_jy.js"],"ArticleDetail"]
-7:I[97367,["/_next/static/chunks/0qxhza75f~up2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"OutletBoundary"]
+2:I[93406,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js","/_next/static/chunks/0p3d-p5k~ehe3.js","/_next/static/chunks/0w0412nbnq_jy.js"],"ArticleDetail"]
+7:I[97367,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"OutletBoundary"]
 8:"$Sreact.suspense"
-3:T257a,<p>임신 40주 동안 해야 할 검사와 준비 사항은 시기마다 달라요.
-"언제 뭘 해야 하지?" 하는 막연한 불안, 다들 느끼실 거예요.
-대한산부인과학회와 질병관리청 권고를 기준으로
+3:T3013,<p>임신 40주 동안 해야 할 검사와 준비 사항은 시기마다 달라요.
+"언제 뭘 해야 하지?" 하는 막연한 불안, 다들 느끼실 거예요.</p>
+<p>저 역시 산전검사만 보건소에서 했을 뿐,
+따로 준비한 건 거의 없었어요.
+임신 준비하면서도 막연해서 블로그도 검색하고
+인스타그램을 뒤지면서 뭐가 필요한지
+메모하느라 정신없던 기억이 나요.
+다행히 6주차쯤 산부인과를 검색해서 갔던 터라
+필요한 검사들을 놓치지 않을 수 있었답니다.
+나중에 임신 정보가 유익했던
+인스타그램 계정도 정리해서 공유할게요.</p>
+<p>대한산부인과학회와 질병관리청 권고를 기준으로
 주요 시기별 항목을 정리해봤어요.
 각 항목의 상세 체크리스트는
-<a href="/timeline">타임라인 페이지</a>에서 확인할 수 있어요.</p>
+<a href="https://pregnancy-checklist.com/timeline">타임라인 페이지</a>에서 확인할 수 있어요.</p>
 <h2>시기별 핵심 검사 요약</h2>
 <p>아래 표는 임신 기간 중 놓치기 쉬운 주요 검사를
 시기별로 정리한 거예요.
@@ -76,12 +85,12 @@
 <li><strong>산모수첩 발급</strong> — 산전 검사 기록을 관리하는
 공식 수첩으로, 분만 시에도 의료진이 참고해요.</li>
 <li><strong>엽산 복용 시작</strong> — 임신 초기 태아 신경관 발달에
-중요한 역할을 해요 (질병관리청 권고).
+중요한 역할을 해요 [질병관리청, 2024].
 담당 의사와 상담 후 비타민D, 철분도
 함께 고려하는 게 좋아요.</li>
 </ul>
 <p>임신 초기 검사에 대해 더 자세히 알고 싶다면
-<a href="/articles/early-pregnancy-tests">임신 초기 필수 검사 총정리</a>도
+<a href="https://pregnancy-checklist.com/articles/early-pregnancy-tests">임신 초기 필수 검사 총정리</a>도
 참고해보세요.</p>
 <h3>10–12주: 카드와 검사</h3>
 <ul>
@@ -91,7 +100,7 @@
 <li><strong>1차 기형아 검사 (11–13주)</strong> — 목덜미 투명대(NT) 초음파와
 혈액 검사를 통해 염색체 이상 가능성을 확인해요.
 11–13주 사이에만 가능하므로 일정 관리가
-정말 중요해요 (대한산부인과학회 권고).</li>
+정말 중요해요 [대한산부인과학회, 2023].</li>
 <li><strong>산후조리원 예약</strong> — 인기 있는 곳은 임신 초기에
 이미 마감되는 경우가 많아요.
 12주 전후로 투어 후 예약하는 게 안전해요.</li>
@@ -120,24 +129,33 @@
 분만 병원을 최종 결정해요.</li>
 <li><strong>임신성 당뇨 검사 (24–28주)</strong> — 포도당 부하 검사를
 통해 임신성 당뇨를 선별해요
-(대한산부인과학회 권장 검사).</li>
+[대한산부인과학회, 2023].</li>
 <li><strong>유모차·카시트 비교</strong> — 베이비페어를 활용해
-실물을 비교해보는 걸 추천해요.</li>
+실물을 비교해보는 걸 추천해요.
+출산 준비물 비용이 궁금하다면
+<a href="https://pregnancy-checklist.com/articles/baby-items-cost">아기 용품 비용 총정리</a>도
+참고해보세요.</li>
 <li><strong>산후도우미 검색 및 예약</strong> — 이 시기에 산후도우미
 업체를 비교하고 예약해두는 게 좋아요.
 바우처 신청은 출산 40일 전부터 가능해요
-(보건복지부 산모·신생아 건강관리 지원사업).</li>
+[보건복지부, 2024].</li>
 <li><strong>육아휴직 신청 준비</strong> — 회사 인사팀에 미리 일정을
 공유하고 필요 서류를 확인해두세요.</li>
 </ul>
 <h2>임신 후기 (28–36주): 준비 마무리의 시기</h2>
 <p>본격적으로 출산 준비물을 마무리하고
 병원 이동 계획까지 확정하는 시기예요.</p>
+<p>저는 아직 임신 중기라서 출산 가방을
+본격적으로 준비하진 않았지만,
+주변에서 얻거나 중고로 싸게 살 수 있는 물건들은
+그때그때 준비하고 있어요.
+신생아 시기에 짧게 쓸 물건들이나 장난감은
+중고로 구매해도 충분하답니다.</p>
 <h3>28–30주: 용품 준비 본격화</h3>
 <ul>
 <li><strong>백일해 예방접종 (Tdap)</strong> — 27–36주 사이에 접종하면
 항체가 태아에게 전달되는 것으로 알려져 있어요
-(질병관리청 권고).</li>
+[질병관리청, 2024].</li>
 <li><strong>태동 모니터링 시작</strong> — 하루에 태동 10회 이상
 느껴지는지 확인하는 습관을 시작해보세요.
 태동이 현저히 줄었다면
@@ -151,7 +169,7 @@
 <ul>
 <li><strong>입원 가방 준비 시작</strong> — 산모용, 아기용, 보호자용으로
 나눠서 정리해보세요.
-<a href="/articles/hospital-bag">출산 가방 필수 준비물 총정리</a>도
+<a href="https://pregnancy-checklist.com/articles/hospital-bag">출산 가방 필수 준비물 총정리</a>도
 참고해보세요.</li>
 </ul>
 <ul>
@@ -168,7 +186,7 @@
 </ul>
 <h3>35–36주: 최종 점검</h3>
 <ul>
-<li><strong>카시트 차량 설치</strong> — 퇴원 시 반드시 필요해요.
+<li><strong>카시트 차량 설치</strong> — 퇴원 시 꼭 필요해요.
 설치법을 미리 연습해두는 게 좋아요.</li>
 <li><strong>퇴원복 준비</strong> — 산모용과 아기용 모두
 가방에 넣어두세요.</li>
@@ -185,7 +203,10 @@
 이 시점에서 모든 준비가 완료되어 있으면 이상적이에요.</p>
 <ul>
 <li><strong>퇴원 후 1주일 계획 확정</strong> — 식사, 장보기, 방문 일정을
-구체적으로 정해두세요.</li>
+구체적으로 정해두세요.
+산후조리 식단이 고민이라면
+<a href="https://pregnancy-checklist.com/articles/postpartum-diet">산후조리 식단 완벽 가이드</a>를
+미리 읽어보세요.</li>
 <li><strong>짐 위치·이동 경로·보호자 연락체계 최종 확인</strong> —
 당일 혼란을 줄이기 위해 가족과 함께 점검해보세요.</li>
 <li><strong>일정을 가볍게 유지</strong> — 먼 이동이나 과한 약속은
@@ -198,6 +219,32 @@
 <a href="/timeline">타임라인 페이지</a>에서
 현재 주차에 맞는 항목만 확인하면 돼요.</p>
 </blockquote>
+<h2>자주 묻는 질문</h2>
+<p><strong>Q. 기형아 검사 시기를 놓치면 어떻게 하나요?</strong>
+A. 1차 기형아 검사(NT 초음파)는 11–13주에만 가능해요.
+시기를 놓쳤다면 15–20주 사이에 진행하는
+2차 기형아 검사(쿼드검사)로 대체할 수 있어요.
+담당 의료진과 상담해서 대안 검사를 확인하세요.</p>
+<p><strong>Q. 국민행복카드는 언제 발급받는 게 좋나요?</strong>
+A. 임신 확인 직후(8–10주경) 신청하는 걸 추천해요.
+발급까지 1–2주 소요되므로
+초기 검사 비용 결제에 활용하려면
+빠를수록 유리해요.
+카드사에서 바로 발급해도 좋지만,
+발급만 해도 임신박스 등 여러 혜택을 주는
+사이트도 많으니 검색하고 발급받아 보세요.</p>
+<p><strong>Q. 산후도우미와 산후조리원 중 어떤 걸 선택해야 하나요?</strong>
+A. 둘 다 장단점이 있어요.
+산후조리원은 전문 케어를 받을 수 있지만 비용이 높고,
+산후도우미는 자택에서 도움을 받을 수 있어요.
+가정 상황과 예산에 따라 선택하되,
+산후조리원은 12주 전후, 산후도우미는 20–26주에
+예약해두는 게 좋아요.</p>
+<p><strong>Q. 임신성 당뇨 검사는 공복으로 가야 하나요?</strong>
+A. 검사 방법에 따라 달라요.
+50g 포도당 부하 검사는 공복이 아니어도 되지만,
+75g 검사는 공복이 필요한 경우가 있어요.
+검사 전 병원에 확인하는 게 가장 정확해요.</p>
 <h2>참고 자료</h2>
 <ul>
 <li>질병관리청, 「산전 검사 가이드라인」 (2024)</li>
@@ -209,8 +256,8 @@
 <p>⚠️ 이 글은 일반적인 육아 정보를 제공하며, 의학적 조언을 대체하지 않습니다.
 아이의 건강 문제는 소아청소년과 전문의와 상담하세요.</p>
 </blockquote>
-0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"임신 주차별 검사 & 준비 가이드","description":"임신 초기부터 출산까지, 주차별로 해야 할 검사와 준비 사항을 시기별로 정리했어요. 기형아 검사·임신성 당뇨 검사·GBS 검사 등 놓치기 쉬운 검사 시기와 국민행복카드·산후도우미 등 행정 준비까지 한눈에 확인해보세요.","slug":"weekly-prep","tags":["임신초기","검사","주차별","출산준비"],"date":"2026-04-04","content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"W5U8Lq7FJZZk7JJav8KF4"}
-4:["$","script","script-0",{"src":"/_next/static/chunks/18bk-6ycliz6u.js","async":true}]
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"임신 주차별 검사 & 준비 가이드","description":"임신 초기부터 출산까지, 주차별로 해야 할 검사와 준비 사항을 시기별로 정리했어요. 기형아 검사·임신성 당뇨 검사·GBS 검사 등 놓치기 쉬운 검사 시기와 국민행복카드·산후도우미 등 행정 준비까지 한눈에 확인해보세요.","slug":"weekly-prep","tags":["임신초기","검사","주차별","출산준비"],"date":"2026-04-04","content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"pEDmf7zhEhoDmp5Hs1bqA"}
+4:["$","script","script-0",{"src":"/_next/static/chunks/0p3d-p5k~ehe3.js","async":true}]
 5:["$","script","script-1",{"src":"/_next/static/chunks/0w0412nbnq_jy.js","async":true}]
 6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
 9:null

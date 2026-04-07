@@ -1,6 +1,6 @@
 1:"$Sreact.fragment"
-2:I[93406,["/_next/static/chunks/0qxhza75f~up2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js","/_next/static/chunks/18bk-6ycliz6u.js","/_next/static/chunks/0w0412nbnq_jy.js"],"ArticleDetail"]
-7:I[97367,["/_next/static/chunks/0qxhza75f~up2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"OutletBoundary"]
+2:I[93406,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js","/_next/static/chunks/0p3d-p5k~ehe3.js","/_next/static/chunks/0w0412nbnq_jy.js"],"ArticleDetail"]
+7:I[97367,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"OutletBoundary"]
 8:"$Sreact.suspense"
 3:T1ae9,<p>임신을 확인한 순간부터 12주까지는
 검사와 행정 절차가 집중되는 시기예요.
@@ -165,8 +165,8 @@ HIV, 매독 등</li>
 <p>⚠️ 이 글은 일반적인 육아 정보를 제공하며, 의학적 조언을 대체하지 않습니다.
 아이의 건강 문제는 소아청소년과 전문의와 상담하세요.</p>
 </blockquote>
-0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"임신 초기 필수 검사 총정리","description":"임신 확인부터 12주까지 받아야 할 검사와 행정 절차를 시기별로 정리했어요. 검사 비용, 놓치기 쉬운 포인트까지 초보 임산부를 위한 실전 가이드예요.","slug":"early-pregnancy-tests","tags":["임신초기","검사","병원"],"date":"2026-04-04","content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"W5U8Lq7FJZZk7JJav8KF4"}
-4:["$","script","script-0",{"src":"/_next/static/chunks/18bk-6ycliz6u.js","async":true}]
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"임신 초기 필수 검사 총정리","description":"임신 확인부터 12주까지 받아야 할 검사와 행정 절차를 시기별로 정리했어요. 검사 비용, 놓치기 쉬운 포인트까지 초보 임산부를 위한 실전 가이드예요.","slug":"early-pregnancy-tests","tags":["임신초기","검사","병원"],"date":"2026-04-04","linked_timeline_weeks":[4,8,10],"content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"pEDmf7zhEhoDmp5Hs1bqA"}
+4:["$","script","script-0",{"src":"/_next/static/chunks/0p3d-p5k~ehe3.js","async":true}]
 5:["$","script","script-1",{"src":"/_next/static/chunks/0w0412nbnq_jy.js","async":true}]
 6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
 9:null
