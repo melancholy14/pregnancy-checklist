@@ -18,6 +18,7 @@ import { useWeightStore } from "@/store/useWeightStore";
 import { OnboardingFlow } from "@/components/onboarding/OnboardingFlow";
 import { calcPregnancyWeek } from "@/lib/week-calculator";
 import { getChecklistByWeek } from "@/lib/checklist-week-map";
+import { BRAND_COPY, BRAND_PHASE } from "@/lib/constants";
 import checklistItems from "@/data/checklist_items.json";
 import timelineItems from "@/data/timeline_items.json";
 import babyfairEvents from "@/data/babyfair_events.json";
@@ -165,8 +166,9 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
           </div>
         </div>
         <h1 className="mb-3">출산 준비 체크리스트</h1>
-        <p className="text-muted-foreground">소중한 아기를 위한 완벽한 준비</p>
+        <p className="text-muted-foreground">{BRAND_COPY[BRAND_PHASE].heroSub}</p>
         <div className="mt-6 mx-auto w-12 h-0.5 rounded-full bg-linear-to-r from-[#FFD4DE] to-[#E4D6F0]" />
+        <p className="mt-3 text-xs text-muted-foreground">{BRAND_COPY[BRAND_PHASE].heroCaption}</p>
       </div>
 
       {/* Due Date Card */}
@@ -371,7 +373,7 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
       {/* Motivational Text */}
       <div className="mt-10 text-center">
         <p className="text-muted-foreground text-sm">
-          출산은 인생에서 가장 특별한 순간입니다
+          {BRAND_COPY[BRAND_PHASE].motivation}
         </p>
       </div>
 

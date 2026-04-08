@@ -1,5 +1,27 @@
 import type { ChecklistItem } from "@/types/checklist";
 
+export type BrandPhase = "pregnancy" | "postpartum" | "parenting";
+
+export const BRAND_PHASE: BrandPhase = "pregnancy";
+
+export const BRAND_COPY = {
+  pregnancy: {
+    heroSub: "답답해서 직접 만들었습니다",
+    heroCaption: "초산 임신 중인 개발자의 출산 준비 기록",
+    motivation: "같이 준비하면 덜 막막하니까요",
+  },
+  postpartum: {
+    heroSub: "답답해서 직접 만들었습니다",
+    heroCaption: "초산 개발자의 출산 준비 & 산후조리 기록",
+    motivation: "같이 준비하면 덜 막막하니까요",
+  },
+  parenting: {
+    heroSub: "답답해서 직접 만들었습니다",
+    heroCaption: "초산 개발자의 임신·출산·육아 기록",
+    motivation: "같이 준비하면 덜 막막하니까요",
+  },
+} as const;
+
 export const BASE_URL = "https://pregnancy-checklist.com";
 
 export const OG_IMAGE = {

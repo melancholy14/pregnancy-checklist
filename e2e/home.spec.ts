@@ -12,7 +12,7 @@ test.describe("홈 페이지", () => {
       // 무엇을: 히어로 섹션의 제목과 설명이 보이는지
       // 왜: 서비스 첫 화면의 핵심 요소
       await expect(page.getByRole("heading", { name: "출산 준비 체크리스트" })).toBeVisible();
-      await expect(page.getByText("소중한 아기를 위한 완벽한 준비")).toBeVisible();
+      await expect(page.getByText("답답해서 직접 만들었습니다")).toBeVisible();
     });
 
     test("출산 예정일 입력 카드가 보인다", async ({ page }) => {
