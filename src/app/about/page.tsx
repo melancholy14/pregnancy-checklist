@@ -3,13 +3,13 @@ import { BASE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "서비스 소개 - 출산 준비 체크리스트",
-  description: "출산 준비 체크리스트 서비스를 소개합니다.",
+  description: "초산 임신 중인 개발자가 답답해서 만든 출산 준비 체크리스트입니다.",
   alternates: {
     canonical: `${BASE_URL}/about`,
   },
   openGraph: {
     title: "서비스 소개 - 출산 준비 체크리스트",
-    description: "출산 준비 체크리스트 서비스를 소개합니다.",
+    description: "초산 임신 중인 개발자가 답답해서 만든 출산 준비 체크리스트입니다.",
     url: `${BASE_URL}/about`,
   },
 };

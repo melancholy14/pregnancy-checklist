@@ -16,11 +16,11 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
-  title: "출산 준비 체크리스트 - 임신 주차별 준비 가이드",
-  description: "임신 주차에 맞춘 출산 준비 체크리스트, 타임라인, 베이비페어 일정을 한눈에 확인하세요.",
+  title: "출산 준비 체크리스트 - 초산 개발자가 직접 만든 임신 주차별 가이드",
+  description: "답답해서 직접 만들었습니다. 임신 주차별 체크리스트, 입원가방, 베이비페어, 체중관리까지.",
   openGraph: {
-    title: "출산 준비 체크리스트 - 임신 주차별 준비 가이드",
-    description: "임신 주차에 맞춘 출산 준비 체크리스트, 타임라인, 베이비페어 일정을 한눈에 확인하세요.",
+    title: "출산 준비 체크리스트 - 초산 개발자가 직접 만든 임신 주차별 가이드",
+    description: "답답해서 직접 만들었습니다. 임신 주차별 체크리스트, 입원가방, 베이비페어, 체중관리까지.",
     url: BASE_URL,
     siteName: "출산 준비 체크리스트",
     locale: "ko_KR",
