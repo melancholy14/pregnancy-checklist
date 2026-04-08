@@ -1,37 +1,39 @@
 1:"$Sreact.fragment"
-2:I[26365,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"StickyHeader"]
-3:I[39756,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"default"]
-4:I[37457,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"default"]
-5:I[22016,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],""]
-6:I[44065,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"BottomNav"]
-7:I[46696,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"Toaster"]
-8:I[54576,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"GoogleAnalytics"]
-a:I[97367,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"OutletBoundary"]
+2:I[26365,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"StickyHeader"]
+3:I[39756,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"default"]
+4:I[37457,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"default"]
+5:I[22016,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],""]
+6:I[44065,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"BottomNav"]
+7:I[46696,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"Toaster"]
+8:I[54576,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"GoogleAnalytics"]
+a:I[97367,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"OutletBoundary"]
 b:"$Sreact.suspense"
-e:I[97367,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"ViewportBoundary"]
-10:I[97367,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"MetadataBoundary"]
-12:I[68027,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"default",1]
-:HL["/_next/static/chunks/0bxa4ftvmf8x5.css","style"]
-0:{"P":null,"c":["","articles","pregnancy-weight-management"],"q":"","i":false,"f":[[["",{"children":["articles",{"children":[["slug","pregnancy-weight-management","d",null],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0bxa4ftvmf8x5.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/0~do8j_t4rwoy.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1860zsbcg5z1o.js","async":true,"nonce":"$undefined"}],["$","script","script-2",{"src":"/_next/static/chunks/0vj9c4uwmeuej.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","children":[["$","head",null,{"children":["$","meta",null,{"name":"google-adsense-account","content":"ca-pub-6022771079735605"}]}],["$","body",null,{"children":[["$","$L2",null,{}],["$","div",null,{"className":"min-h-screen max-w-2xl mx-auto","children":[["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"min-h-screen flex items-center justify-center px-4","children":["$","div",null,{"className":"text-center","children":[["$","div",null,{"className":"text-7xl mb-6","children":"🤷‍♀️"}],["$","h1",null,{"className":"mb-3","children":"페이지를 찾을 수 없어요"}],["$","p",null,{"className":"text-muted-foreground mb-8","children":"요청하신 페이지가 존재하지 않습니다"}],["$","$L5",null,{"href":"/","className":"inline-flex items-center gap-2 px-8 py-3 bg-[#FFD4DE] rounded-xl hover:bg-[#f5cada] transition-colors duration-200 text-[#3D4447] font-medium","children":[["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":18,"height":18,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-house","children":[["$","path","5wwlr5",{"d":"M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"}],["$","path","1d0kgt",{"d":"M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"}],"$undefined"]}],["$","span",null,{"children":"홈으로 돌아가기"}]]}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","footer",null,{"className":"pb-28 pt-8 px-4 text-center text-xs text-muted-foreground space-y-2","children":[["$","p",null,{"children":"본 서비스는 의료적 조언을 제공하지 않습니다."}],["$","p",null,{"children":"제공되는 정보는 참고용이며, 정확한 진료는 담당 의사와 상담하세요."}],["$","div",null,{"className":"flex justify-center gap-3 mt-2","children":[["$","$L5",null,{"href":"/privacy","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"개인정보처리방침"}],["$","span",null,{"children":"|"}],["$","$L5",null,{"href":"/terms","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"서비스 이용약관"}],["$","span",null,{"children":"|"}],["$","$L5",null,{"href":"/about","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"서비스 소개"}],["$","span",null,{"children":"|"}],["$","$L5",null,{"href":"/contact","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"연락처"}]]}]]}],["$","$L6",null,{}]]}],["$","$L7",null,{"position":"top-center","richColors":true}],["$","$L8",null,{"gaId":"G-HT96X27T4K"}]]}]]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L9",[["$","script","script-0",{"src":"/_next/static/chunks/0p3d-p5k~ehe3.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/0w0412nbnq_jy.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","$b",null,{"name":"Next.MetadataOutlet","children":"$@c"}]}]]}],{},null,false,null]},null,false,"$@d"]},null,false,"$@d"]},null,false,null],["$","$1","h",{"children":[null,["$","$Le",null,{"children":"$Lf"}],["$","div",null,{"hidden":true,"children":["$","$L10",null,{"children":["$","$b",null,{"name":"Next.Metadata","children":"$L11"}]}]}],null]}],false]],"m":"$undefined","G":["$12",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0bxa4ftvmf8x5.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"pEDmf7zhEhoDmp5Hs1bqA"}
+e:I[97367,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"ViewportBoundary"]
+10:I[97367,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"MetadataBoundary"]
+12:I[68027,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"default",1]
+:HL["/_next/static/chunks/11u.z4n~l-mjf.css","style"]
+0:{"P":null,"c":["","articles","pregnancy-weight-management"],"q":"","i":false,"f":[[["",{"children":["articles",{"children":[["slug","pregnancy-weight-management","d",null],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/11u.z4n~l-mjf.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/0617d91spoky2.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1860zsbcg5z1o.js","async":true,"nonce":"$undefined"}],["$","script","script-2",{"src":"/_next/static/chunks/0vj9c4uwmeuej.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","children":[["$","head",null,{"children":["$","meta",null,{"name":"google-adsense-account","content":"ca-pub-6022771079735605"}]}],["$","body",null,{"children":[["$","$L2",null,{}],["$","div",null,{"className":"min-h-screen max-w-2xl mx-auto","children":[["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"min-h-screen flex items-center justify-center px-4","children":["$","div",null,{"className":"text-center","children":[["$","div",null,{"className":"text-7xl mb-6","children":"🤷‍♀️"}],["$","h1",null,{"className":"mb-3","children":"페이지를 찾을 수 없어요"}],["$","p",null,{"className":"text-muted-foreground mb-8","children":"요청하신 페이지가 존재하지 않습니다"}],["$","$L5",null,{"href":"/","className":"inline-flex items-center gap-2 px-8 py-3 bg-[#FFD4DE] rounded-xl hover:bg-[#f5cada] transition-colors duration-200 text-[#3D4447] font-medium","children":[["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":18,"height":18,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-house","children":[["$","path","5wwlr5",{"d":"M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"}],["$","path","1d0kgt",{"d":"M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"}],"$undefined"]}],["$","span",null,{"children":"홈으로 돌아가기"}]]}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","footer",null,{"className":"pb-28 pt-8 px-4 text-center text-xs text-muted-foreground space-y-2","children":[["$","p",null,{"children":"본 서비스는 의료적 조언을 제공하지 않습니다."}],["$","p",null,{"children":"제공되는 정보는 참고용이며, 정확한 진료는 담당 의사와 상담하세요."}],["$","div",null,{"className":"flex justify-center gap-3 mt-2","children":[["$","$L5",null,{"href":"/privacy","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"개인정보처리방침"}],["$","span",null,{"children":"|"}],["$","$L5",null,{"href":"/terms","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"서비스 이용약관"}],["$","span",null,{"children":"|"}],["$","$L5",null,{"href":"/about","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"서비스 소개"}],["$","span",null,{"children":"|"}],["$","$L5",null,{"href":"/contact","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"연락처"}]]}]]}],["$","$L6",null,{}]]}],["$","$L7",null,{"position":"top-center","richColors":true}],["$","$L8",null,{"gaId":"G-HT96X27T4K"}]]}]]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L9",[["$","script","script-0",{"src":"/_next/static/chunks/0p3d-p5k~ehe3.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/0w0412nbnq_jy.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","$b",null,{"name":"Next.MetadataOutlet","children":"$@c"}]}]]}],{},null,false,null]},null,false,"$@d"]},null,false,"$@d"]},null,false,null],["$","$1","h",{"children":[null,["$","$Le",null,{"children":"$Lf"}],["$","div",null,{"hidden":true,"children":["$","$L10",null,{"children":["$","$b",null,{"name":"Next.Metadata","children":"$L11"}]}]}],null]}],false]],"m":"$undefined","G":["$12",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/11u.z4n~l-mjf.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"g8At2fz9UGFSKe1abBw45"}
 13:[]
 d:"$W13"
-14:I[93406,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js","/_next/static/chunks/0p3d-p5k~ehe3.js","/_next/static/chunks/0w0412nbnq_jy.js"],"ArticleDetail"]
-15:T1809,<p>"나 너무 많이 찐 건 아닐까?"
-임신 중 체중계 위에 올라갈 때마다 드는 걱정,
-많은 분들이 공감하실 거예요.
-체중 증가는 아기가 건강하게 자라고 있다는 신호이지만,
-적정 범위를 아는 것만으로도 불안을 줄일 수 있어요.
-오늘은 임신 중 체중관리에 대해 정리해볼게요.</p>
-<h2>임신 중 체중, 얼마나 늘어야 할까?</h2>
-<p>임신 중 체중 증가량은 임신 전 BMI에 따라 달라져요.
-미국산부인과학회(ACOG)와 WHO가 권장하는
-BMI별 체중 증가 범위는 아래와 같아요.</p>
+14:I[93406,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js","/_next/static/chunks/0p3d-p5k~ehe3.js","/_next/static/chunks/0w0412nbnq_jy.js"],"ArticleDetail"]
+15:T2536,<p>"나 너무 많이 찐 건 아닐까?"
+임신 중 체중계에 올라갈 때마다 드는 걱정,
+많은 분들이 공감하실 거예요.</p>
+<p>먼저 안심부터 드릴게요 —
+체중 증가는 아기가 건강하게 자라고 있다는 신호예요.
+태아, 양수, 태반, 증가한 혈액량까지 합치면
+정상 임신에서도 상당한 체중 증가가 자연스러워요.
+중요한 건 '얼마나 쪘느냐'보다
+<strong>'어떤 속도로 변하고 있느냐'</strong> 예요.</p>
+<h2>임신 중 체중 증가, 어디까지 정상일까?</h2>
+<p>임신 중 권장 체중 증가량은
+임신 전 BMI(체질량지수)에 따라 달라져요.</p>
 <table>
 <thead>
 <tr>
 <th>임신 전 BMI</th>
 <th>분류</th>
-<th>권장 체중 증가량</th>
+<th>권장 총 증가량</th>
 </tr>
 </thead>
 <tbody>
@@ -58,109 +60,181 @@ BMI별 체중 증가 범위는 아래와 같아요.</p>
 </tbody>
 </table>
 <p>이 수치는 단태아(아기 한 명) 기준이에요.
-쌍둥이 임신인 경우 권장량이 달라지므로
-담당 의료진과 상의하는 것을 추천해요
-(ACOG, 2024).</p>
-<h2>시기별 체중 변화 패턴</h2>
-<p>임신 기간 내내 균일하게 체중이 느는 건 아니에요.
-시기별로 자연스러운 변화 패턴이 있답니다
-(ACOG 기준).</p>
-<ul>
-<li><strong>임신 초기 (1–12주)</strong> — 입덧으로 오히려
-체중이 줄기도 해요.
-이 시기엔 0.5–2kg 정도의 증가가 일반적이에요.</li>
-<li><strong>임신 중기 (13–27주)</strong> — 태아 성장이 본격화되면서
-주당 약 0.3–0.5kg씩 증가하는 것이 일반적이에요.
-이 시기가 체중 증가의 주요 구간이에요.</li>
-<li><strong>임신 후기 (28–40주)</strong> — 태아와 양수, 태반 무게로
-체중이 꾸준히 증가하지만,
-마지막 몇 주에는 증가 속도가
-느려지는 경우도 있어요.</li>
-</ul>
-<p>갑자기 1주일에 1kg 이상 체중이 늘거나,
-부종이 심해지면 임신중독증(전자간증)의 징후일 수
-있으므로 즉시 산부인과에 연락하는 게 좋아요
-(대한산부인과학회).</p>
-<h2>건강한 체중관리를 위한 식습관</h2>
-<p>임신 중 식단의 핵심은 '덜 먹기'가 아니라
-'잘 먹기'예요.
-대한산부인과학회는 임신 중 하루 약 300kcal 정도의
-추가 섭취를 권장하고 있어요 (대한산부인과학회).
-이는 밥 반 공기 + 반찬 정도의 양이에요.</p>
-<ul>
-<li><strong>단백질을 충분히</strong> — 살코기, 생선, 달걀, 두부 등을
-매 끼니 포함하는 것이 좋아요.
-태아 성장과 태반 형성에 필수적이에요.</li>
-<li><strong>철분·칼슘 섭취</strong> — 임신 중기 이후 철분 요구량이
-증가해요.
-시금치, 소고기, 우유, 멸치 등을 챙기되,
-철분제는 의료진과 상담 후 복용하는 게 좋아요.</li>
-<li><strong>가공식품과 당분 줄이기</strong> — 빵, 과자, 음료 등
-정제 탄수화물은 급격한 혈당 상승을 유발해요.
-간식은 견과류, 과일, 요거트 등으로
-대체하는 걸 추천해요.</li>
-<li><strong>소식 다빈도</strong> — 한 번에 많이 먹기보다
-하루 4–5회 소량씩 나눠 먹으면
-속 쓰림 예방에도 도움이 돼요.</li>
-</ul>
-<p>임신 중기에 임신성 당뇨 검사를 받게 되는데,
-건강한 식습관은 이 검사 결과에도 긍정적인 영향을
-줄 수 있어요.
-검사 일정이 궁금하다면
-<a href="/articles/weekly-prep">임신 주차별 검사 &#x26; 준비 가이드</a>도
-함께 확인해보세요.</p>
-<h2>임신 중 안전한 운동법</h2>
-<p>적절한 신체 활동은 과도한 체중 증가를 예방하고,
-임신성 당뇨와 임신중독증 위험을 낮추는 데
-도움이 되는 것으로 알려져 있어요 (ACOG, 2024).</p>
-<ul>
-<li><strong>걷기</strong> — 가장 안전하고 쉬운 운동이에요.
-하루 20–30분, 주 3–5회가 적당해요.</li>
-<li><strong>수영·아쿠아로빅</strong> — 관절에 부담이 적고
-부종 완화에도 좋아요.</li>
-<li><strong>임산부 요가·스트레칭</strong> — 유연성 유지와
-스트레스 해소에 효과적이에요.</li>
-<li><strong>피해야 할 운동</strong> — 접촉 스포츠(농구, 축구),
-낙상 위험이 있는 활동(승마, 스키),
-누운 자세에서 오래 하는 운동은
-20주 이후 피하는 것이 좋아요.</li>
-</ul>
-<p>운동 중 어지러움, 출혈, 심한 복통이 느껴지면
-즉시 중단하고 의료진과 상담하세요.
-운동을 시작하기 전 담당 산부인과 의사에게
-운동 가능 여부를 확인하는 것을 추천해요.</p>
-<h2>이런 경우엔 반드시 의료진 상담을</h2>
-<p>아래 상황에서는 체중관리보다 의료 상담이
-우선이에요.</p>
-<ul>
-<li>1주일에 1kg 이상의 급격한 체중 증가</li>
-<li>반대로 체중이 전혀 늘지 않거나 줄어드는 경우</li>
-<li>임신성 당뇨 진단을 받은 경우</li>
-<li>심한 부종(얼굴·손이 붓는 경우)</li>
-<li>임신 전 섭식장애 이력이 있는 경우</li>
-</ul>
-<p>임신 중 체중관리의 목표는 '적게 찌기'가 아니라
-엄마와 아기 모두 건강한 상태를 유지하는 거예요.
-숫자에 너무 집착하기보다,
+쌍둥이 임신은 권장량이 달라지므로
+담당 의료진과 상의하는 게 좋아요 [ACOG, 2024].</p>
+<p>"그럼 지금 내 체중은 정상 범위인 걸까?"
+아래 표에서 현재 주차에 맞는 범위를 확인해보세요.
+<strong>정상체중(BMI 18.5–24.9)</strong> 기준이고,
+BMI에 따라 약간 조정이 필요해요.</p>
+<table>
+<thead>
+<tr>
+<th>시기</th>
+<th>누적 증가 범위 (정상체중 기준)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>12주</td>
+<td>0.5–2kg</td>
+</tr>
+<tr>
+<td>20주</td>
+<td>2–5kg</td>
+</tr>
+<tr>
+<td>28주</td>
+<td>5–9kg</td>
+</tr>
+<tr>
+<td>36주</td>
+<td>9–13kg</td>
+</tr>
+<tr>
+<td>40주</td>
+<td>11.5–16kg</td>
+</tr>
+</tbody>
+</table>
+<p>이 범위는 ACOG 권장 기준을 주차별로 역산한
+대략적인 참고값이에요 [ACOG, 2024].
+개인차가 크니 숫자에 너무 집착하지 말고,
 정기 검진에서 담당 의료진과 함께
-체중 변화를 확인하는 것이 가장 중요해요.
-출산 이후 산후 회복과 영양 관리가 궁금하다면
-<a href="/articles/postpartum-care">산후조리 가이드</a>도
+체중 변화 추세를 확인하는 게 가장 정확해요.</p>
+<p>저는 임신 초기 입덧도 없었는데 뭘 그리 잘 먹었는지 급격히 쪄서 안정기에 들면서는 식단 조절을 했어요.
+처음에는 급격히 찐 것 때문에 걱정되고 스트레스도 많이 받았는데요.
+그래도 의사선생님이 말씀해주신 대로
+탄수화물을 평소보다 줄이고
+소고기 등 단백질 위주로 먹은 덕분에
+지금은 누적 증가 범위가 정상으로 들어갔답니다.</p>
+<h2>주차별 체중 변화 패턴과 자가 확인</h2>
+<p>임신 기간 내내 균일하게 체중이 느는 건 아니에요.
+시기별로 자연스러운 변화 패턴이 있어요
+[ACOG, 2024].</p>
+<p><strong>임신 초기(1–12주)</strong> 에는 입덧으로 오히려
+체중이 줄기도 해요.
+0.5–2kg 정도의 증가가 일반적이고,
+체중이 늘지 않거나 조금 줄었다고 걱정할 필요는 없어요.</p>
+<p><strong>임신 중기(13–27주)</strong> 가 체중 증가의 주요 구간이에요.
+태아 성장이 본격화되면서
+주당 약 0.3–0.5kg씩 증가하는 게 일반적이에요.
+이 시기에 추가로 필요한 열량은 하루 약 300kcal —
+밥 반 공기 + 반찬 하나 정도의 양이에요
+[대한산부인과학회, 2023].</p>
+<p><strong>임신 후기(28–40주)</strong> 에는 태아와 양수, 태반 무게로
+체중이 꾸준히 증가하지만
+마지막 몇 주에는 증가 속도가 느려지기도 해요.</p>
+<h3>심층: 급격한 체중 증가와 임신중독증(전자간증)</h3>
+<p>전자간증(임신중독증)은 임신 20주 이후에
+고혈압과 단백뇨가 함께 나타나는 상태예요.</p>
+<p>전체 임산부의 약 5–8%에서 발생하며,
+방치하면 조산, 태아 성장 제한,
+심한 경우 산모의 간·신장 손상까지 이어질 수 있어요
+[대한산부인과학회, 2023].
+급격한 체중 증가는 체내 수분 저류(부종)의 신호일 수 있어서
+전자간증의 초기 징후로 주의해야 해요.</p>
+<p><strong>1주일에 1kg 이상</strong> 갑자기 체중이 늘거나,
+아래 증상이 동반되면 즉시 산부인과에 연락하세요:</p>
+<ul>
+<li>심한 두통이 지속될 때</li>
+<li>시야가 흐려지거나 번쩍이는 빛이 보일 때</li>
+<li>얼굴·손이 갑자기 심하게 부을 때</li>
+<li>윗배(명치) 통증이 있을 때</li>
+</ul>
+<p>이런 증상 없이 체중이 일시적으로 많이 늘었다면
+수분 섭취나 식이에 의한 것일 수 있으니
+다음 검진에서 의료진에게 확인하면 돼요.</p>
+<h3>심층: 임신성 당뇨와 체중관리 식단</h3>
+<p>임신성 당뇨는 임신 중 처음 발견되거나
+발생하는 포도당 내성 장애예요.</p>
+<p>임산부의 약 10–15%에서 발생하며,
+관리하지 않으면 거대아(4kg 이상), 조산,
+신생아 저혈당 위험이 높아져요
+[대한산부인과학회, 2023].
+체중 증가가 권장 범위를 초과하면
+임신성 당뇨 위험도 올라가기 때문에
+식단 관리가 특히 중요해요.</p>
+<p>24–28주에 포도당 부하 검사를 받게 되는데,
+50g 검사에서 <strong>140mg/dL 미만</strong>이면 정상이에요
+[대한산부인과학회, 2023].
+임신성 당뇨 진단을 받더라도 대부분은
+식이 조절로 혈당을 관리할 수 있어요.
+핵심은 혈당 스파이크를 줄이는 거예요:</p>
+<ul>
+<li><strong>정제 탄수화물(흰 빵, 과자, 음료)을
+잡곡·현미로 대체</strong> — 혈당이 천천히 오르게 해요.</li>
+<li><strong>식사를 하루 4–5회로 나누기</strong> — 한 번에
+많이 먹으면 혈당이 급격히 올라요.</li>
+<li><strong>단백질·채소를 먼저 먹고 탄수화물을 나중에</strong> —
+같은 양을 먹어도 혈당 변동을 줄일 수 있어요.</li>
+</ul>
+<p>검사 일정과 수치 기준이 궁금하다면
+<a href="https://pregnancy-checklist.com/articles/weekly-prep">임신 주차별 검사 &#x26; 준비 가이드</a>도
+함께 확인해보세요.</p>
+<h2>체중관리를 위한 식습관과 운동</h2>
+<p>임신 중 식단의 핵심은 '덜 먹기'가 아니라
+**'잘 먹기'**예요.
+하루 약 300kcal의 추가 섭취가 권장되는데
+[대한산부인과학회, 2023],
+이걸 음식으로 환산하면
+밥 반 공기(150kcal) + 달걀 1개(80kcal) +
+우유 반 잔(60kcal) 정도예요.</p>
+<p>단백질은 매 끼니 챙기는 게 좋아요 —
+살코기, 생선, 달걀, 두부 등이 대표적이에요.
+철분은 임신 중기 이후 요구량이 증가하니
+시금치, 소고기를 챙기되 철분제는 의료진과 상담 후
+복용하세요.</p>
+<p>적절한 운동은 과도한 체중 증가를 예방하고
+임신성 당뇨·전자간증 위험을 낮추는 데
+도움이 돼요 [ACOG, 2024].
+하루 20–30분 걷기(주 3–5회)가 가장 안전하고,
+수영이나 임산부 요가도 좋아요.
+다만 접촉 스포츠나 낙상 위험이 있는 활동,
+20주 이후 누운 자세에서 오래 하는 운동은 피하세요.
+운동 중 어지러움, 출혈, 심한 복통이 느껴지면
+즉시 중단하고 의료진과 상담하세요.</p>
+<p>출산 이후 산후 회복과 영양 관리가 궁금하다면
+<a href="https://pregnancy-checklist.com/articles/postpartum-diet">산후조리 식단 완벽 가이드</a>도
 참고해보세요.</p>
+<h2>자주 묻는 질문</h2>
+<p><strong>Q. 임신 초기에 체중이 줄었는데 괜찮은 건가요?</strong>
+A. 입덧이 심한 경우 초기에 1–2kg 정도
+체중이 줄 수 있어요. 12주 이후 서서히 회복되면
+대부분 문제없지만,
+지속적으로 줄어든다면 담당 의료진과 상담하세요.</p>
+<p><strong>Q. 임신 중 다이어트를 해도 되나요?</strong>
+A. 의도적인 체중 감량은 권장하지 않아요.
+태아 성장에 필요한 영양소가 부족해질 수 있거든요.
+과체중·비만인 경우에도 적정 범위 내 증가를
+목표로 하되, 의료진과 함께 관리하는 게 좋아요.</p>
+<p><strong>Q. 체중이 권장 범위보다 더 늘었는데 어떻게 하나요?</strong>
+A. 이미 늘어난 체중을 줄이려 하기보다는
+앞으로의 증가 속도를 조절하는 데 집중하세요.
+식습관 개선과 걷기 등 가벼운 운동이 도움이 돼요.
+급격한 식이 제한보다는
+담당 의료진과 현실적인 목표를 세우는 걸 추천해요.</p>
+<p><strong>Q. 쌍둥이 임신인데 체중 증가 기준이 다른가요?</strong>
+A. 네, 쌍둥이 임신은 정상체중 기준으로
+약 17–25kg 증가가 권장돼요 [ACOG, 2024].
+단태아 기준과 상당히 다르므로
+반드시 담당 의료진과 개별 목표를 설정하세요.</p>
+<p>임신 중 체중관리의 핵심은 '적게 찌기'가 아니라
+엄마와 아기 모두 건강한 상태를 유지하는 거예요.
+숫자에 집착하기보다 정기 검진에서
+의료진과 함께 변화 추세를 확인하세요.</p>
 <h2>참고 자료</h2>
 <ul>
-<li>미국산부인과학회(ACOG),
-「Weight Gain During Pregnancy」 (2024)</li>
-<li>대한산부인과학회, 「임산부 영양 및 체중관리 권고안」</li>
+<li>ACOG, 「Weight Gain During Pregnancy」 (2024)</li>
+<li>대한산부인과학회, 「임산부 영양 및 체중관리 권고안」 (2023)</li>
 <li>WHO, 「Maternal Nutrition Guidelines」</li>
-<li>질병관리청, 「임산부 건강관리 안내」</li>
+<li>질병관리청, 「임산부 건강관리 안내」 (2024)</li>
 </ul>
 <hr>
 <blockquote>
 <p>⚠️ 이 글은 일반적인 육아 정보를 제공하며, 의학적 조언을 대체하지 않습니다.
 아이의 건강 문제는 소아청소년과 전문의와 상담하세요.</p>
 </blockquote>
-9:["$","$L14",null,{"article":{"title":"임신 기간 중 체중관리 방법","description":"임신 중 적정 체중 증가량은 얼마일까요? BMI별 권장 범위부터 시기별 식습관, 안전한 운동법까지 임산부 체중관리의 모든 것을 정리했어요.","slug":"pregnancy-weight-management","tags":["임신","체중관리","임산부건강"],"date":"2026-04-06","updated":"$undefined","linked_timeline_weeks":[6,24],"content":"$15"}}]
+9:["$","$L14",null,{"article":{"title":"임신 기간 중 체중관리 방법","description":"임신 중 체중 증가, 어디까지 정상일까요? ACOG 기준 BMI별 권장 증가량 표와 주차별 자가 확인표로 내 체중이 정상 범위인지 바로 확인해보세요. 임신중독증(전자간증) 징후, 임신성 당뇨 식단 관리법, 안전한 운동법까지 임산부 체중관리의 모든 것을 정리했어요.","slug":"pregnancy-weight-management","tags":["임신","체중관리","임산부건강","임신중독증"],"date":"2026-04-08","updated":"$undefined","linked_timeline_weeks":[6,24],"content":"$15"}}]
 f:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
 c:null
-11:[["$","title","0",{"children":"임신 기간 중 체중관리 방법 - 출산 준비 체크리스트"}],["$","meta","1",{"name":"description","content":"임신 중 적정 체중 증가량은 얼마일까요? BMI별 권장 범위부터 시기별 식습관, 안전한 운동법까지 임산부 체중관리의 모든 것을 정리했어요."}],["$","link","2",{"rel":"canonical","href":"https://pregnancy-checklist.com/articles/pregnancy-weight-management"}],["$","meta","3",{"property":"og:title","content":"임신 기간 중 체중관리 방법"}],["$","meta","4",{"property":"og:description","content":"임신 중 적정 체중 증가량은 얼마일까요? BMI별 권장 범위부터 시기별 식습관, 안전한 운동법까지 임산부 체중관리의 모든 것을 정리했어요."}],["$","meta","5",{"property":"og:url","content":"https://pregnancy-checklist.com/articles/pregnancy-weight-management"}],["$","meta","6",{"property":"og:image","content":"https://pregnancy-checklist.com/og-image.png"}],["$","meta","7",{"property":"og:image:width","content":"1200"}],["$","meta","8",{"property":"og:image:height","content":"630"}],["$","meta","9",{"property":"og:image:alt","content":"출산 준비 체크리스트"}],["$","meta","10",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","11",{"name":"twitter:title","content":"임신 기간 중 체중관리 방법"}],["$","meta","12",{"name":"twitter:description","content":"임신 중 적정 체중 증가량은 얼마일까요? BMI별 권장 범위부터 시기별 식습관, 안전한 운동법까지 임산부 체중관리의 모든 것을 정리했어요."}],["$","meta","13",{"name":"twitter:image","content":"https://pregnancy-checklist.com/og-image.png"}],["$","meta","14",{"name":"twitter:image:alt","content":"출산 준비 체크리스트"}],["$","meta","15",{"name":"twitter:image:width","content":"1200"}],["$","meta","16",{"name":"twitter:image:height","content":"630"}]]
+11:[["$","title","0",{"children":"임신 기간 중 체중관리 방법 - 출산 준비 체크리스트"}],["$","meta","1",{"name":"description","content":"임신 중 체중 증가, 어디까지 정상일까요? ACOG 기준 BMI별 권장 증가량 표와 주차별 자가 확인표로 내 체중이 정상 범위인지 바로 확인해보세요. 임신중독증(전자간증) 징후, 임신성 당뇨 식단 관리법, 안전한 운동법까지 임산부 체중관리의 모든 것을 정리했어요."}],["$","link","2",{"rel":"canonical","href":"https://pregnancy-checklist.com/articles/pregnancy-weight-management"}],["$","meta","3",{"property":"og:title","content":"임신 기간 중 체중관리 방법"}],["$","meta","4",{"property":"og:description","content":"임신 중 체중 증가, 어디까지 정상일까요? ACOG 기준 BMI별 권장 증가량 표와 주차별 자가 확인표로 내 체중이 정상 범위인지 바로 확인해보세요. 임신중독증(전자간증) 징후, 임신성 당뇨 식단 관리법, 안전한 운동법까지 임산부 체중관리의 모든 것을 정리했어요."}],["$","meta","5",{"property":"og:url","content":"https://pregnancy-checklist.com/articles/pregnancy-weight-management"}],["$","meta","6",{"property":"og:image","content":"https://pregnancy-checklist.com/og-image.png"}],["$","meta","7",{"property":"og:image:width","content":"1200"}],["$","meta","8",{"property":"og:image:height","content":"630"}],["$","meta","9",{"property":"og:image:alt","content":"출산 준비 체크리스트"}],["$","meta","10",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","11",{"name":"twitter:title","content":"임신 기간 중 체중관리 방법"}],["$","meta","12",{"name":"twitter:description","content":"임신 중 체중 증가, 어디까지 정상일까요? ACOG 기준 BMI별 권장 증가량 표와 주차별 자가 확인표로 내 체중이 정상 범위인지 바로 확인해보세요. 임신중독증(전자간증) 징후, 임신성 당뇨 식단 관리법, 안전한 운동법까지 임산부 체중관리의 모든 것을 정리했어요."}],["$","meta","13",{"name":"twitter:image","content":"https://pregnancy-checklist.com/og-image.png"}],["$","meta","14",{"name":"twitter:image:alt","content":"출산 준비 체크리스트"}],["$","meta","15",{"name":"twitter:image:width","content":"1200"}],["$","meta","16",{"name":"twitter:image:height","content":"630"}]]

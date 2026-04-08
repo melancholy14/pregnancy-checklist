@@ -1,6 +1,6 @@
 1:"$Sreact.fragment"
-2:I[93406,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js","/_next/static/chunks/0p3d-p5k~ehe3.js","/_next/static/chunks/0w0412nbnq_jy.js"],"ArticleDetail"]
-7:I[97367,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"OutletBoundary"]
+2:I[93406,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js","/_next/static/chunks/0p3d-p5k~ehe3.js","/_next/static/chunks/0w0412nbnq_jy.js"],"ArticleDetail"]
+7:I[97367,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"OutletBoundary"]
 8:"$Sreact.suspense"
 3:T1dd8,<p>출산 준비를 시작하면
 "도대체 얼마나 들지?"라는 질문이
@@ -312,7 +312,7 @@ KC 또는 ECE 안전 인증 제품을 추천해요.</p>
 <p>⚠️ 이 글은 일반적인 육아 정보를 제공하며, 의학적 조언을 대체하지 않습니다.
 아이의 건강 문제는 소아청소년과 전문의와 상담하세요.</p>
 </blockquote>
-0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"출산 준비물 예상 비용 총정리","description":"출산 준비에 필요한 물품별 예상 비용을 카테고리별로 정리했어요. 2026년 기준 대형 품목부터 소모품까지 최소·평균 비용과 절약 팁을 안내해요.","slug":"baby-items-cost","tags":["출산준비","비용","쇼핑"],"date":"2026-04-04","linked_timeline_weeks":[18],"content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"pEDmf7zhEhoDmp5Hs1bqA"}
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"출산 준비물 예상 비용 총정리","description":"출산 준비에 필요한 물품별 예상 비용을 카테고리별로 정리했어요. 2026년 기준 대형 품목부터 소모품까지 최소·평균 비용과 절약 팁을 안내해요.","slug":"baby-items-cost","tags":["출산준비","비용","쇼핑"],"date":"2026-04-04","linked_timeline_weeks":[18],"content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"g8At2fz9UGFSKe1abBw45"}
 4:["$","script","script-0",{"src":"/_next/static/chunks/0p3d-p5k~ehe3.js","async":true}]
 5:["$","script","script-1",{"src":"/_next/static/chunks/0w0412nbnq_jy.js","async":true}]
 6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]

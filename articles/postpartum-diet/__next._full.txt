@@ -1,45 +1,54 @@
 1:"$Sreact.fragment"
-2:I[26365,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"StickyHeader"]
-3:I[39756,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"default"]
-4:I[37457,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"default"]
-5:I[22016,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],""]
-6:I[44065,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"BottomNav"]
-7:I[46696,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"Toaster"]
-8:I[54576,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"GoogleAnalytics"]
-a:I[97367,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"OutletBoundary"]
+2:I[26365,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"StickyHeader"]
+3:I[39756,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"default"]
+4:I[37457,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"default"]
+5:I[22016,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],""]
+6:I[44065,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"BottomNav"]
+7:I[46696,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"Toaster"]
+8:I[54576,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"GoogleAnalytics"]
+a:I[97367,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"OutletBoundary"]
 b:"$Sreact.suspense"
-e:I[97367,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"ViewportBoundary"]
-10:I[97367,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"MetadataBoundary"]
-12:I[68027,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"default",1]
-:HL["/_next/static/chunks/0bxa4ftvmf8x5.css","style"]
-0:{"P":null,"c":["","articles","postpartum-diet"],"q":"","i":false,"f":[[["",{"children":["articles",{"children":[["slug","postpartum-diet","d",null],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0bxa4ftvmf8x5.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/0~do8j_t4rwoy.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1860zsbcg5z1o.js","async":true,"nonce":"$undefined"}],["$","script","script-2",{"src":"/_next/static/chunks/0vj9c4uwmeuej.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","children":[["$","head",null,{"children":["$","meta",null,{"name":"google-adsense-account","content":"ca-pub-6022771079735605"}]}],["$","body",null,{"children":[["$","$L2",null,{}],["$","div",null,{"className":"min-h-screen max-w-2xl mx-auto","children":[["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"min-h-screen flex items-center justify-center px-4","children":["$","div",null,{"className":"text-center","children":[["$","div",null,{"className":"text-7xl mb-6","children":"🤷‍♀️"}],["$","h1",null,{"className":"mb-3","children":"페이지를 찾을 수 없어요"}],["$","p",null,{"className":"text-muted-foreground mb-8","children":"요청하신 페이지가 존재하지 않습니다"}],["$","$L5",null,{"href":"/","className":"inline-flex items-center gap-2 px-8 py-3 bg-[#FFD4DE] rounded-xl hover:bg-[#f5cada] transition-colors duration-200 text-[#3D4447] font-medium","children":[["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":18,"height":18,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-house","children":[["$","path","5wwlr5",{"d":"M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"}],["$","path","1d0kgt",{"d":"M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"}],"$undefined"]}],["$","span",null,{"children":"홈으로 돌아가기"}]]}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","footer",null,{"className":"pb-28 pt-8 px-4 text-center text-xs text-muted-foreground space-y-2","children":[["$","p",null,{"children":"본 서비스는 의료적 조언을 제공하지 않습니다."}],["$","p",null,{"children":"제공되는 정보는 참고용이며, 정확한 진료는 담당 의사와 상담하세요."}],["$","div",null,{"className":"flex justify-center gap-3 mt-2","children":[["$","$L5",null,{"href":"/privacy","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"개인정보처리방침"}],["$","span",null,{"children":"|"}],["$","$L5",null,{"href":"/terms","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"서비스 이용약관"}],["$","span",null,{"children":"|"}],["$","$L5",null,{"href":"/about","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"서비스 소개"}],["$","span",null,{"children":"|"}],["$","$L5",null,{"href":"/contact","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"연락처"}]]}]]}],["$","$L6",null,{}]]}],["$","$L7",null,{"position":"top-center","richColors":true}],["$","$L8",null,{"gaId":"G-HT96X27T4K"}]]}]]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L9",[["$","script","script-0",{"src":"/_next/static/chunks/0p3d-p5k~ehe3.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/0w0412nbnq_jy.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","$b",null,{"name":"Next.MetadataOutlet","children":"$@c"}]}]]}],{},null,false,null]},null,false,"$@d"]},null,false,"$@d"]},null,false,null],["$","$1","h",{"children":[null,["$","$Le",null,{"children":"$Lf"}],["$","div",null,{"hidden":true,"children":["$","$L10",null,{"children":["$","$b",null,{"name":"Next.Metadata","children":"$L11"}]}]}],null]}],false]],"m":"$undefined","G":["$12",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0bxa4ftvmf8x5.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"pEDmf7zhEhoDmp5Hs1bqA"}
+e:I[97367,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"ViewportBoundary"]
+10:I[97367,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"MetadataBoundary"]
+12:I[68027,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"default",1]
+:HL["/_next/static/chunks/11u.z4n~l-mjf.css","style"]
+0:{"P":null,"c":["","articles","postpartum-diet"],"q":"","i":false,"f":[[["",{"children":["articles",{"children":[["slug","postpartum-diet","d",null],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/11u.z4n~l-mjf.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/0617d91spoky2.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1860zsbcg5z1o.js","async":true,"nonce":"$undefined"}],["$","script","script-2",{"src":"/_next/static/chunks/0vj9c4uwmeuej.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","children":[["$","head",null,{"children":["$","meta",null,{"name":"google-adsense-account","content":"ca-pub-6022771079735605"}]}],["$","body",null,{"children":[["$","$L2",null,{}],["$","div",null,{"className":"min-h-screen max-w-2xl mx-auto","children":[["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"min-h-screen flex items-center justify-center px-4","children":["$","div",null,{"className":"text-center","children":[["$","div",null,{"className":"text-7xl mb-6","children":"🤷‍♀️"}],["$","h1",null,{"className":"mb-3","children":"페이지를 찾을 수 없어요"}],["$","p",null,{"className":"text-muted-foreground mb-8","children":"요청하신 페이지가 존재하지 않습니다"}],["$","$L5",null,{"href":"/","className":"inline-flex items-center gap-2 px-8 py-3 bg-[#FFD4DE] rounded-xl hover:bg-[#f5cada] transition-colors duration-200 text-[#3D4447] font-medium","children":[["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":18,"height":18,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-house","children":[["$","path","5wwlr5",{"d":"M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"}],["$","path","1d0kgt",{"d":"M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"}],"$undefined"]}],["$","span",null,{"children":"홈으로 돌아가기"}]]}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","footer",null,{"className":"pb-28 pt-8 px-4 text-center text-xs text-muted-foreground space-y-2","children":[["$","p",null,{"children":"본 서비스는 의료적 조언을 제공하지 않습니다."}],["$","p",null,{"children":"제공되는 정보는 참고용이며, 정확한 진료는 담당 의사와 상담하세요."}],["$","div",null,{"className":"flex justify-center gap-3 mt-2","children":[["$","$L5",null,{"href":"/privacy","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"개인정보처리방침"}],["$","span",null,{"children":"|"}],["$","$L5",null,{"href":"/terms","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"서비스 이용약관"}],["$","span",null,{"children":"|"}],["$","$L5",null,{"href":"/about","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"서비스 소개"}],["$","span",null,{"children":"|"}],["$","$L5",null,{"href":"/contact","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"연락처"}]]}]]}],["$","$L6",null,{}]]}],["$","$L7",null,{"position":"top-center","richColors":true}],["$","$L8",null,{"gaId":"G-HT96X27T4K"}]]}]]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L9",[["$","script","script-0",{"src":"/_next/static/chunks/0p3d-p5k~ehe3.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/0w0412nbnq_jy.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","$b",null,{"name":"Next.MetadataOutlet","children":"$@c"}]}]]}],{},null,false,null]},null,false,"$@d"]},null,false,"$@d"]},null,false,null],["$","$1","h",{"children":[null,["$","$Le",null,{"children":"$Lf"}],["$","div",null,{"hidden":true,"children":["$","$L10",null,{"children":["$","$b",null,{"name":"Next.Metadata","children":"$L11"}]}]}],null]}],false]],"m":"$undefined","G":["$12",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/11u.z4n~l-mjf.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"g8At2fz9UGFSKe1abBw45"}
 13:[]
 d:"$W13"
-14:I[93406,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js","/_next/static/chunks/0p3d-p5k~ehe3.js","/_next/static/chunks/0w0412nbnq_jy.js"],"ArticleDetail"]
-15:T2a3e,<p>"산후조리 기간에 대체 뭘 먹어야 하는 거죠?"
+14:I[93406,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js","/_next/static/chunks/0p3d-p5k~ehe3.js","/_next/static/chunks/0w0412nbnq_jy.js"],"ArticleDetail"]
+15:T2bdc,<p>"산후조리 기간에 대체 뭘 먹어야 하는 거죠?"
 출산 직후 가장 많이 검색하는 질문 중 하나예요.</p>
-<p>체력 회복, 자궁 수축, 모유 생성이 동시에 이루어지는 이 시기에는
-무엇을 어떻게 먹느냐가 회복 속도를 좌우해요.
+<p>체력 회복, 자궁 수축, 모유 생성이 동시에 이루어지는
+이 시기에는 무엇을 어떻게 먹느냐가
+회복 속도를 좌우해요.
 "잘 먹어야 한다"는 막연한 조언 대신,
-이 글에서는 영양소별 <strong>구체적인 수치</strong>와
-<strong>음식 환산 예시</strong>까지 정리해봤어요.</p>
-<h2>산후조리 식단, 왜 이렇게 중요할까?</h2>
-<p>출산 과정에서 산모는 평균 500mL 이상의 출혈을 경험해요
-(제왕절개 시 약 1,000mL) [대한산부인과학회, 2023].
-철분과 단백질 손실이 크고, 모유수유를 하는 경우
+이 글에서는 <strong>하루 식단 시뮬레이션</strong>으로
+영양소 수치를 실제 음식으로 환산해봤어요.</p>
+<h2>산후조리 식단의 기본 원칙</h2>
+<p>출산 과정에서 산모는 평균 500mL 이상의 출혈을
+경험해요(제왕절개 시 약 1,000mL)
+[대한산부인과학회, 2023].
+철분과 단백질 손실이 크고, 모유수유를 하면
 하루 약 500kcal의 추가 열량이 필요해요
-[보건복지부, 2024].
-이 500kcal는 밥 한 공기(약 300kcal) +
-달걀 1개(약 80kcal) + 우유 한 잔(약 120kcal) 정도예요.</p>
-<p>균형 잡힌 식단은 빈혈 예방, 상처 회복, 산후우울증 완화,
-양질의 모유 생성까지 도움을 줄 수 있어요.
-산후조리 기간은 보통 출산 후 6–8주를 의미하며,
-이 기간의 식단은 단계별로 접근하는 게 좋아요.
+[보건복지부, 2024].</p>
+<p>그래서 산후조리 식단의 핵심은 세 가지예요.</p>
+<ul>
+<li><strong>충분한 열량</strong> — 수유부 기준 하루 약 2,500kcal.
+밥 한 공기(300kcal) + 달걀 1개(80kcal) +
+우유 한 잔(120kcal)이면 추가 500kcal를 채울 수 있어요.</li>
+<li><strong>철분·단백질 집중 보충</strong> — 출혈과 조직 회복으로
+소모된 영양소를 빠르게 채워야 해요.</li>
+<li><strong>소화 부담 최소화</strong> — 특히 1–2주차에는
+부드럽고 따뜻한 음식 위주로 시작하세요.</li>
+</ul>
+<p>균형 잡힌 식단은 빈혈 예방, 상처 회복,
+산후우울증 완화, 양질의 모유 생성까지
+도움을 줄 수 있어요.
 회복 속도나 식단 구성이 걱정된다면
 산부인과 전문의나 영양사 상담을 추천해요.</p>
-<h2>주차별 산모 식단 가이드</h2>
-<p>산후 회복 단계에 따라 소화 능력과 필요 영양소가 달라져요.
-아래 표를 참고해 시기별 식단을 계획해보세요.</p>
+<h2>주차별 식단 변화 가이드</h2>
+<p>산후 회복 단계에 따라 소화 능력과
+필요 영양소가 달라져요.</p>
 <table>
 <thead>
 <tr>
@@ -51,46 +60,56 @@ d:"$W13"
 <tbody>
 <tr>
 <td>1–2주차</td>
-<td>소화 잘 되는 부드러운 음식. 자궁 수축·오로 배출 촉진</td>
+<td>부드럽고 소화 잘 되는 음식. 자궁 수축 촉진</td>
 <td>미역국, 죽, 흰살생선, 따뜻한 채소 수프</td>
 </tr>
 <tr>
 <td>3–4주차</td>
-<td>단백질·철분 보충 강화. 체력 회복에 집중</td>
+<td>단백질·철분 보충 강화. 체력 회복 집중</td>
 <td>소고기 미역국, 달걀 요리, 두부, 시금치나물</td>
 </tr>
 <tr>
 <td>5–6주차</td>
 <td>균형 잡힌 일반식 전환. 다양한 식재료 시도</td>
-<td>잡곡밥, 다양한 단백질 반찬, 견과류, 유제품</td>
+<td>잡곡밥, 견과류, 유제품, 다양한 단백질 반찬</td>
 </tr>
 <tr>
 <td>7–8주차</td>
-<td>일상식 정착. 모유수유 질 유지 + 체중 관리 시작</td>
+<td>일상식 정착. 모유 질 유지 + 체중 관리 시작</td>
 <td>현미밥, 등푸른생선, 샐러드, 요거트</td>
 </tr>
 </tbody>
 </table>
 <p>1–2주차에는 소화 기능이 완전히 회복되지 않은 상태예요.
 기름진 음식이나 자극적인 양념은 피하고,
-3주차부터 식재료를 하나씩 추가해가는 걸 추천해요.
+3주차부터 식재료를 하나씩 추가해가는 게 좋아요.
 제왕절개 산모라면 장 기능 회복이 더 느릴 수 있어서
 1–2주차 기간을 조금 더 길게 잡는 것도 고려해보세요.</p>
-<h2>핵심 영양소별 권장량과 음식 환산표</h2>
-<p>아래 표는 일반 성인 여성과 수유부의 하루 권장량 차이예요.
-수유를 하지 않더라도 산후 회복기에는
-수유부 기준에 가깝게 섭취하는 것을 권장해요
-[보건복지부, 2024].</p>
+<h2>하루 식단 시뮬레이션 — 수유부 영양소 한 번에 채우기</h2>
+<p>먼저 일반 여성과 수유부의 하루 권장량 차이를
+확인해볼게요.</p>
 <table>
 <thead>
 <tr>
 <th>영양소</th>
-<th>일반 성인 여성</th>
-<th>수유부 권장량</th>
+<th>일반 여성</th>
+<th>수유부</th>
 <th>부족 시 대표 증상</th>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>열량</td>
+<td>2,000kcal</td>
+<td>2,500kcal</td>
+<td>체력 저하, 모유량 감소</td>
+</tr>
+<tr>
+<td>단백질</td>
+<td>50g</td>
+<td>70g</td>
+<td>상처 회복 지연, 탈모</td>
+</tr>
 <tr>
 <td>철분</td>
 <td>14mg</td>
@@ -98,130 +117,168 @@ d:"$W13"
 <td>어지러움, 만성 피로</td>
 </tr>
 <tr>
-<td>단백질</td>
-<td>50g</td>
-<td>70g (+20g)</td>
-<td>상처 회복 지연, 탈모</td>
-</tr>
-<tr>
 <td>칼슘</td>
 <td>700mg</td>
-<td>1,000mg (+300mg)</td>
+<td>1,000mg</td>
 <td>다리 경련, 골밀도 저하</td>
-</tr>
-<tr>
-<td>열량</td>
-<td>약 2,000kcal</td>
-<td>약 2,500kcal (+500kcal)</td>
-<td>체력 저하, 모유량 감소</td>
 </tr>
 </tbody>
 </table>
-<h3>철분 — 빈혈 예방의 핵심</h3>
-<p>산후 빈혈은 산모의 약 20–30%에서 나타나요
-[대한산부인과학회, 2023].
-대한산부인과학회에서는 산후 빈혈 예방을 위해
-철분 풍부 식품 섭취와 필요 시 철분제 복용을 권고하고 있어요.
-<strong>하루 철분 14mg을 음식으로 채우는 예시:</strong>
+<p>아래는 3–4주차 수유부 기준 하루 식단 예시예요.
+한 끼 한 끼가 모여 하루 권장량을 채우는 구조이니
+완벽하게 따라 하지 않아도 괜찮아요 —
+큰 틀만 참고하세요.</p>
+<p><strong>아침:</strong> 소고기 미역국 + 잡곡밥 + 달걀프라이 1개
+→ 열량 약 550kcal, 단백질 22g, 철분 4mg</p>
+<p><strong>점심:</strong> 두부 된장찌개 + 잡곡밥 + 시금치나물 +
+멸치볶음
+→ 열량 약 600kcal, 단백질 20g, 칼슘 300mg</p>
+<p><strong>간식:</strong> 우유 1잔 + 견과류 한 줌 + 바나나 1개
+→ 열량 약 350kcal, 칼슘 200mg</p>
+<p><strong>저녁:</strong> 닭가슴살 구이 + 잡곡밥 + 브로콜리 +
+치즈 1장
+→ 열량 약 600kcal, 단백질 28g, 칼슘 250mg</p>
+<p><strong>야식(새벽 수유 후):</strong> 삶은 달걀 1개 + 우유 1잔
+→ 열량 약 200kcal, 단백질 12g, 칼슘 200mg</p>
+<p><strong>하루 합산:</strong> 약 2,300kcal / 단백질 82g / 칼슘 950mg
+나머지는 밥·반찬에 포함된 미량 영양소와
+간식으로 보충할 수 있어요.</p>
+<h3>심층: 산후 빈혈과 철분 — 산모 3명 중 1명이 겪어요</h3>
+<p>산후 빈혈은 출산 후 헤모글로빈 수치가
+10g/dL 미만으로 떨어지는 상태를 말해요.</p>
+<p>산모의 약 20–30%에서 발생할 만큼 흔한데,
+출산 중 출혈과 임신 기간 철분 소모가 겹치기 때문이에요.
+방치하면 만성 피로, 어지러움, 집중력 저하로
+육아 자체가 힘들어질 수 있고,
+산후우울증 위험도 높아지는 것으로 알려져 있어요
+[대한산부인과학회, 2023].</p>
+<p>수유부 철분 권장량은 하루 14mg이지만,
+산후 빈혈이 있으면 의사 처방 하에
+하루 60–120mg 철분제를 복용하기도 해요
+[보건복지부, 2024].
+음식으로 보충하는 것도 중요한데,
 소고기 100g(약 3mg) + 시금치 70g(약 2mg) +
-달걀 2개(약 2.4mg), 나머지는 철분제로 보충.
-부족하면 어지러움, 만성 피로, 숨이 차는 증상이 나타날 수 있어요.</p>
-<h3>단백질 — 조직 회복과 모유 생성</h3>
-<p>수유부는 하루 단백질 70g이 필요해요 — 일반 여성 대비 20g 더 많은 양이에요
-[보건복지부, 2024].
-<strong>70g을 음식으로 채우려면:</strong>
-닭가슴살 100g(약 23g) + 두부 반 모(약 15g) +
-달걀 2개(약 12g) + 우유 한 잔(약 6g), 밥·반찬에서 나머지.
-단백질이 부족하면 상처 회복이 느려지고
-산후 탈모가 심해질 수 있어요.</p>
-<h3>칼슘 — 수유 시 뼈에서 빠져나가요</h3>
-<p>수유부 하루 칼슘 권장량은 1,000mg이에요
+달걀 2개(약 2.4mg)을 매일 챙기고
+나머지는 철분제로 보충하는 방식이 일반적이에요.
+참고로 식품 속 <strong>헴철</strong>(동물성)은
+<strong>비헴철</strong>(식물성)보다 흡수율이 2–3배 높아요.</p>
+<p>출산 후 어지러움이나 숨 찬 증상이 지속된다면
+혈액 검사로 헤모글로빈 수치를 확인하고,
+산부인과 전문의와 철분제 복용 여부를 상담하세요.</p>
+<h3>심층: 수유부 칼슘 — 모유를 만들면 뼈에서 빠져나가요</h3>
+<p>수유 중에는 모유를 통해 하루 약 200–300mg의
+칼슘이 아기에게 전달돼요.
+부족한 칼슘은 산모의 뼈에서 빠져나와 보충되기 때문에
+수유 기간 중 골밀도가 일시적으로 3–5% 감소할 수 있어요
+[대한영양학회, 2020].</p>
+<p>그래서 수유부 하루 칼슘 권장량은
+일반 여성(700mg)보다 300mg 많은 <strong>1,000mg</strong>이에요
 [대한영양학회, 2020].
-일반 여성(700mg) 대비 300mg이나 더 필요하죠.
-<strong>1,000mg을 음식으로 채우려면:</strong>
+1,000mg을 음식으로 채우려면:
 우유 2잔(약 400mg) + 멸치 한 줌 15g(약 150mg) +
-두부 반 모(약 120mg) + 치즈 1장(약 120mg), 나머지는 케일·브로콜리 등으로.
-칼슘이 부족하면 다리에 쥐가 나거나 잇몸 출혈이 생길 수 있으니,
-이런 증상이 있다면 산부인과 전문의와 상담해보세요.</p>
-<h3>오메가-3 — 산후우울증 완화에 도움</h3>
-<p>산후우울증 완화에 도움이 될 수 있다는 연구 결과가 있어요.
-고등어, 연어 같은 등푸른 생선이나 호두가 대표적이고,
-일주일에 2–3회 생선 반찬이면 충분해요.
-오메가-3가 부족하면 기분 저하, 집중력 감소 등이 나타날 수 있어요.</p>
-<h3>수분 — 모유의 약 88%가 물</h3>
-<p>모유수유 중에는 하루 2L 이상의 물이나 따뜻한 차를 마시는 게 좋아요
+두부 반 모(약 120mg) + 치즈 1장(약 120mg),
+나머지는 케일·브로콜리 등 녹색 채소로 보충할 수 있어요.</p>
+<p>다리에 쥐가 자주 나거나 잇몸 출혈이 생긴다면
+칼슘 부족 신호일 수 있어요.
+이런 증상이 있다면 산부인과 전문의와 상담해서
+칼슘 보충제 복용 여부를 확인하세요.
+수유 종료 후에는 골밀도가 자연 회복되는
+경우가 대부분이에요.</p>
+<h2>피해야 할 음식과 대안</h2>
+<p>회복에 방해되거나 모유를 통해
+아기에게 영향을 줄 수 있는 음식이에요.</p>
+<table>
+<thead>
+<tr>
+<th>주의 음식</th>
+<th>이유</th>
+<th>대안</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>카페인(커피·녹차)</td>
+<td>모유 전달 → 아기 수면 방해</td>
+<td>하루 1–2잔(200mg) 이내, 디카페인</td>
+</tr>
+<tr>
+<td>날것·회</td>
+<td>면역 저하기 식중독 위험</td>
+<td>완전히 익힌 생선·해산물</td>
+</tr>
+<tr>
+<td>맵고 자극적인 음식</td>
+<td>소화 부담, 모유 맛 변화</td>
+<td>3주 이후 소량씩 시도</td>
+</tr>
+<tr>
+<td>알코올</td>
+<td>모유 전달 → 아기 발달 영향</td>
+<td>수유 중 삼가, 부득이 시 전문의 상의</td>
+</tr>
+</tbody>
+</table>
+<p>냉동 보관도 적극 활용하세요.
+출산 전에 미역국, 닭가슴살 큐브, 잡곡밥을
+소분해서 냉동해두면 조리 부담을 크게 줄일 수 있어요.
+출산 준비물을 챙길 때 식재료 예산도 함께 잡으면 좋은데,
+<a href="https://pregnancy-checklist.com/articles/baby-items-cost">아기 용품 비용 총정리</a>도
+참고해보세요.</p>
+<p>그리고 혼자 하려고 하지 마세요.
+산모가 직접 조리하면 회복에 방해가 돼요.
+<a href="https://pregnancy-checklist.com/articles/postpartum-care">산후조리원 선택 가이드</a>를
+참고하거나, 산후도우미·가족의 도움을 적극 활용하세요.</p>
+<p>모유수유 중 수분 섭취도 중요해요.
+모유의 약 88%가 수분이기 때문에
+하루 2L 이상의 물이나 따뜻한 차를 마시는 게 좋아요
 [보건복지부, 2024].
-<strong>구체적 실천법:</strong> 수유할 때마다 물 한 컵(약 250mL)을 함께 마시면,
-하루 8회 수유 기준으로 그것만으로 2L를 채울 수 있어요.
-수분이 부족하면 모유량이 줄고 변비가 생기기 쉬워요.</p>
-<h2>산후조리 기간, 이 음식은 주의하세요</h2>
-<p>회복에 방해되거나 모유를 통해 아기에게 영향을 줄 수 있는 음식이에요.</p>
-<ul>
-<li><strong>카페인</strong> — 커피·녹차는 하루 1–2잔(카페인 200mg) 이내로.
-카페인이 모유로 전달되어 아기 수면에 영향을 줄 수 있어요.</li>
-<li><strong>날것·회</strong> — 면역력이 저하된 산후에는 식중독 위험이 높아요. 익힌 음식을 선택하세요.</li>
-<li><strong>맵고 자극적인 음식</strong> — 소화 부담을 주고 모유 맛에 영향을 줄 수 있어요.
-산후 3주 이후부터 소량씩 시도해보는 게 좋아요.</li>
-<li><strong>알코올</strong> — 모유수유 중 음주는 삼가는 것이 원칙이에요.
-부득이한 경우 수유 직후 소량만 허용하되,
-반드시 산부인과 전문의와 상의하세요.</li>
-<li><strong>고열량 간식</strong> — 과도한 당류 섭취는 산후 체중 관리에 불리해요.
-<a href="pregnancy-checklist.com/articles/pregnancy-weight-management">임신 기간 중 체중관리 방법</a>도
-함께 참고해보세요.</li>
-</ul>
-<h2>실전 식단 구성 팁</h2>
-<p>바쁜 산후조리 기간, 이것만 기억하세요.</p>
-<ol>
-<li><strong>미역국 + 단백질 로테이션</strong> —
-소고기, 홍합, 전복, 굴을 번갈아 넣으면
-질리지 않으면서 영양 밀도를 높일 수 있어요.</li>
-<li><strong>소량씩 하루 5–6회</strong> —
-3끼 몰아 먹기보다 소량 다빈도가 소화에 부담이 적어요.
-특히 새벽 수유 후에는 삶은 달걀이나 바나나 정도라도 꼭 챙기세요.</li>
-<li><strong>냉동 보관 적극 활용</strong> — 출산 전에 미역국, 닭가슴살 큐브, 잡곡밥을
-소분해 냉동해두면 조리 부담을 크게 줄여요.
-<a href="pregnancy-checklist.com/articles/baby-items-cost">출산 준비물 예상 비용</a>을
-챙길 때 식재료 예산도 함께 잡으면 좋아요.</li>
-<li><strong>혼자 하려고 하지 마세요</strong> — 산모가 직접 조리하면 회복에 방해가 돼요.
-<a href="pregnancy-checklist.com/articles/postpartum-care">산후조리원 선택 가이드</a>를
-참고하거나, 산후도우미·가족의 도움을 적극 활용하세요.</li>
-</ol>
+수유할 때마다 물 한 컵(250mL)을 함께 마시면
+하루 8회 수유 기준으로 자연스럽게 2L를 채울 수 있어요.</p>
 <h2>자주 묻는 질문</h2>
 <p><strong>Q. 모유수유 중인데 다이어트를 해도 되나요?</strong>
-A. 모유수유 자체가 하루 약 500kcal를 소모하는 활동이에요.
+A. 모유수유 자체가 하루 약 500kcal를 소모해요.
 별도의 식이 제한보다는 균형 잡힌 식단을 유지하면서
-자연스럽게 체중을 관리하는 것을 권장해요.
-급격한 칼로리 제한은 모유 양과 질에 영향을 줄 수 있어요.</p>
+자연스럽게 체중을 관리하는 걸 권장해요.
+급격한 칼로리 제한은 모유 양과 질에 영향을 줄 수 있어요.
+체중 관리가 걱정이라면
+<a href="https://pregnancy-checklist.com/articles/pregnancy-weight-management">임신 체중관리 방법</a>도
+참고해보세요.</p>
 <p><strong>Q. 미역국을 꼭 먹어야 하나요?</strong>
-A. 미역에는 요오드, 철분, 칼슘이 풍부해서 산후 회복에 도움이 되지만,
-미역국이 싫다면 다시마 된장국이나 시금치국으로 대체해도 괜찮아요.
+A. 미역에는 요오드·철분·칼슘이 풍부해서
+산후 회복에 도움이 되지만,
+미역국이 싫다면 다시마 된장국이나
+시금치국으로 대체해도 괜찮아요.
 핵심은 특정 음식이 아니라 영양소 균형이에요.</p>
-<p><strong>Q. 산후조리 중 커피를 아예 못 마시나요?</strong>
-A. 하루 1–2잔(카페인 200mg 이내)은 일반적으로 허용 범위예요.
-다만 아기가 예민하게 반응하는 경우(수면 불안, 보챔)가 있으므로
-아기 패턴을 관찰하면서 조절하는 게 좋아요.</p>
 <p><strong>Q. 철분제를 먹으면 음식에서 철분을 안 챙겨도 되나요?</strong>
 A. 철분제는 보충 수단이지 식품을 대체하지는 않아요.
-식품에 포함된 철분(헴철)은 흡수율이 높고 다른 영양소도 함께 섭취할 수 있어서,
-음식과 철분제를 병행하는 것을 권장해요.
+식품 속 헴철은 흡수율이 높고 다른 영양소도
+함께 섭취할 수 있어서,
+음식과 철분제를 병행하는 게 좋아요.
 복용 시기와 용량은 산부인과 전문의와 상의하세요.</p>
+<p><strong>Q. 산후조리 중 커피를 아예 못 마시나요?</strong>
+A. 하루 1–2잔(카페인 200mg 이내)은
+일반적으로 허용 범위예요.
+다만 아기가 예민하게 반응하면(수면 불안, 보챔)
+양을 줄이거나 디카페인으로 바꿔보세요.</p>
 <p>산후조리 식단은 "특별한 보양식"보다
-<strong>균형 잡힌 일상식을 꾸준히 먹는 것</strong>이 핵심이에요.
-산모마다 체질과 회복 속도가 다르니까,
-몸이 보내는 신호에 귀 기울이면서 무리하지 않는 게 가장 중요해요.</p>
+<strong>매끼 균형 잡힌 일상식을 꾸준히 먹는 것</strong>이
+핵심이에요.
+몸이 보내는 신호에 귀 기울이면서
+무리하지 않는 게 가장 중요해요.</p>
 <h2>참고 자료</h2>
 <ul>
-<li><a href="https://www.mohw.go.kr/menu.es?mid=a10704010100">보건복지부, 「2024 한국인 영양소 섭취기준」</a></li>
-<li><a href="https://www.ksog.org">대한산부인과학회, 「산후 관리 가이드라인」 (2023)</a></li>
-<li><a href="https://www.who.int/publications/i/item/9241209356">WHO, <em>Protein and Amino Acid Requirements in Human Nutrition</em></a></li>
-<li><a href="https://www.kns.or.kr">대한영양학회, 「한국인 영양소 섭취기준 — 수유부」 (2020)</a></li>
+<li>보건복지부, 「2024 한국인 영양소 섭취기준」</li>
+<li>대한산부인과학회, 「산후 관리 가이드라인」 (2023)</li>
+<li>대한영양학회, 「한국인 영양소 섭취기준 — 수유부」 (2020)</li>
+<li>WHO, <em>Protein and Amino Acid Requirements
+in Human Nutrition</em></li>
 </ul>
 <hr>
 <blockquote>
 <p>⚠️ 이 글은 일반적인 육아 정보를 제공하며, 의학적 조언을 대체하지 않습니다.
 아이의 건강 문제는 소아청소년과 전문의와 상담하세요.</p>
 </blockquote>
-9:["$","$L14",null,{"article":{"title":"산후조리 식단 완벽 가이드 | 주차별 영양 관리법","description":"산후조리 식단을 주차별로 정리했어요. 수유부 영양소 권장량, 음식 환산표, 피해야 할 음식, 냉동 보관 팁과 FAQ까지 산후 회복을 돕는 실전 가이드예요.","slug":"postpartum-diet","tags":["산후관리","산모식단","출산준비"],"date":"2026-04-06","updated":"$undefined","linked_timeline_weeks":[37],"content":"$15"}}]
+9:["$","$L14",null,{"article":{"title":"산후조리 식단 완벽 가이드 | 주차별 영양 관리법","description":"산후조리 식단을 주차별로 정리하고, 수유부 하루 식단 시뮬레이션으로 철분 14mg·칼슘 1,000mg·단백질 70g 권장량을 실제 음식으로 환산했어요. 산후 빈혈 예방법, 수유 중 골밀도 관리, 피해야 할 음식과 대안, 냉동 보관 팁까지 산모 회복을 돕는 실전 영양 가이드예요.","slug":"postpartum-diet","tags":["산후관리","산모식단","출산준비","수유부영양"],"date":"2026-04-08","updated":"$undefined","linked_timeline_weeks":[37],"content":"$15"}}]
 f:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
 c:null
-11:[["$","title","0",{"children":"산후조리 식단 완벽 가이드 | 주차별 영양 관리법 - 출산 준비 체크리스트"}],["$","meta","1",{"name":"description","content":"산후조리 식단을 주차별로 정리했어요. 수유부 영양소 권장량, 음식 환산표, 피해야 할 음식, 냉동 보관 팁과 FAQ까지 산후 회복을 돕는 실전 가이드예요."}],["$","link","2",{"rel":"canonical","href":"https://pregnancy-checklist.com/articles/postpartum-diet"}],["$","meta","3",{"property":"og:title","content":"산후조리 식단 완벽 가이드 | 주차별 영양 관리법"}],["$","meta","4",{"property":"og:description","content":"산후조리 식단을 주차별로 정리했어요. 수유부 영양소 권장량, 음식 환산표, 피해야 할 음식, 냉동 보관 팁과 FAQ까지 산후 회복을 돕는 실전 가이드예요."}],["$","meta","5",{"property":"og:url","content":"https://pregnancy-checklist.com/articles/postpartum-diet"}],["$","meta","6",{"property":"og:image","content":"https://pregnancy-checklist.com/og-image.png"}],["$","meta","7",{"property":"og:image:width","content":"1200"}],["$","meta","8",{"property":"og:image:height","content":"630"}],["$","meta","9",{"property":"og:image:alt","content":"출산 준비 체크리스트"}],["$","meta","10",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","11",{"name":"twitter:title","content":"산후조리 식단 완벽 가이드 | 주차별 영양 관리법"}],["$","meta","12",{"name":"twitter:description","content":"산후조리 식단을 주차별로 정리했어요. 수유부 영양소 권장량, 음식 환산표, 피해야 할 음식, 냉동 보관 팁과 FAQ까지 산후 회복을 돕는 실전 가이드예요."}],["$","meta","13",{"name":"twitter:image","content":"https://pregnancy-checklist.com/og-image.png"}],["$","meta","14",{"name":"twitter:image:alt","content":"출산 준비 체크리스트"}],["$","meta","15",{"name":"twitter:image:width","content":"1200"}],["$","meta","16",{"name":"twitter:image:height","content":"630"}]]
+11:[["$","title","0",{"children":"산후조리 식단 완벽 가이드 | 주차별 영양 관리법 - 출산 준비 체크리스트"}],["$","meta","1",{"name":"description","content":"산후조리 식단을 주차별로 정리하고, 수유부 하루 식단 시뮬레이션으로 철분 14mg·칼슘 1,000mg·단백질 70g 권장량을 실제 음식으로 환산했어요. 산후 빈혈 예방법, 수유 중 골밀도 관리, 피해야 할 음식과 대안, 냉동 보관 팁까지 산모 회복을 돕는 실전 영양 가이드예요."}],["$","link","2",{"rel":"canonical","href":"https://pregnancy-checklist.com/articles/postpartum-diet"}],["$","meta","3",{"property":"og:title","content":"산후조리 식단 완벽 가이드 | 주차별 영양 관리법"}],["$","meta","4",{"property":"og:description","content":"산후조리 식단을 주차별로 정리하고, 수유부 하루 식단 시뮬레이션으로 철분 14mg·칼슘 1,000mg·단백질 70g 권장량을 실제 음식으로 환산했어요. 산후 빈혈 예방법, 수유 중 골밀도 관리, 피해야 할 음식과 대안, 냉동 보관 팁까지 산모 회복을 돕는 실전 영양 가이드예요."}],["$","meta","5",{"property":"og:url","content":"https://pregnancy-checklist.com/articles/postpartum-diet"}],["$","meta","6",{"property":"og:image","content":"https://pregnancy-checklist.com/og-image.png"}],["$","meta","7",{"property":"og:image:width","content":"1200"}],["$","meta","8",{"property":"og:image:height","content":"630"}],["$","meta","9",{"property":"og:image:alt","content":"출산 준비 체크리스트"}],["$","meta","10",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","11",{"name":"twitter:title","content":"산후조리 식단 완벽 가이드 | 주차별 영양 관리법"}],["$","meta","12",{"name":"twitter:description","content":"산후조리 식단을 주차별로 정리하고, 수유부 하루 식단 시뮬레이션으로 철분 14mg·칼슘 1,000mg·단백질 70g 권장량을 실제 음식으로 환산했어요. 산후 빈혈 예방법, 수유 중 골밀도 관리, 피해야 할 음식과 대안, 냉동 보관 팁까지 산모 회복을 돕는 실전 영양 가이드예요."}],["$","meta","13",{"name":"twitter:image","content":"https://pregnancy-checklist.com/og-image.png"}],["$","meta","14",{"name":"twitter:image:alt","content":"출산 준비 체크리스트"}],["$","meta","15",{"name":"twitter:image:width","content":"1200"}],["$","meta","16",{"name":"twitter:image:height","content":"630"}]]

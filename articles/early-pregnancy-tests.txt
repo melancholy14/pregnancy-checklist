@@ -1,33 +1,37 @@
 1:"$Sreact.fragment"
-2:I[26365,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"StickyHeader"]
-3:I[39756,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"default"]
-4:I[37457,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"default"]
-5:I[22016,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],""]
-6:I[44065,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"BottomNav"]
-7:I[46696,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"Toaster"]
-8:I[54576,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"GoogleAnalytics"]
-a:I[97367,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"OutletBoundary"]
+2:I[26365,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"StickyHeader"]
+3:I[39756,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"default"]
+4:I[37457,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"default"]
+5:I[22016,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],""]
+6:I[44065,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"BottomNav"]
+7:I[46696,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"Toaster"]
+8:I[54576,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"GoogleAnalytics"]
+a:I[97367,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"OutletBoundary"]
 b:"$Sreact.suspense"
-e:I[97367,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"ViewportBoundary"]
-10:I[97367,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"MetadataBoundary"]
-12:I[68027,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"default",1]
-:HL["/_next/static/chunks/0bxa4ftvmf8x5.css","style"]
-0:{"P":null,"c":["","articles","early-pregnancy-tests"],"q":"","i":false,"f":[[["",{"children":["articles",{"children":[["slug","early-pregnancy-tests","d",null],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0bxa4ftvmf8x5.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/0~do8j_t4rwoy.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1860zsbcg5z1o.js","async":true,"nonce":"$undefined"}],["$","script","script-2",{"src":"/_next/static/chunks/0vj9c4uwmeuej.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","children":[["$","head",null,{"children":["$","meta",null,{"name":"google-adsense-account","content":"ca-pub-6022771079735605"}]}],["$","body",null,{"children":[["$","$L2",null,{}],["$","div",null,{"className":"min-h-screen max-w-2xl mx-auto","children":[["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"min-h-screen flex items-center justify-center px-4","children":["$","div",null,{"className":"text-center","children":[["$","div",null,{"className":"text-7xl mb-6","children":"🤷‍♀️"}],["$","h1",null,{"className":"mb-3","children":"페이지를 찾을 수 없어요"}],["$","p",null,{"className":"text-muted-foreground mb-8","children":"요청하신 페이지가 존재하지 않습니다"}],["$","$L5",null,{"href":"/","className":"inline-flex items-center gap-2 px-8 py-3 bg-[#FFD4DE] rounded-xl hover:bg-[#f5cada] transition-colors duration-200 text-[#3D4447] font-medium","children":[["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":18,"height":18,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-house","children":[["$","path","5wwlr5",{"d":"M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"}],["$","path","1d0kgt",{"d":"M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"}],"$undefined"]}],["$","span",null,{"children":"홈으로 돌아가기"}]]}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","footer",null,{"className":"pb-28 pt-8 px-4 text-center text-xs text-muted-foreground space-y-2","children":[["$","p",null,{"children":"본 서비스는 의료적 조언을 제공하지 않습니다."}],["$","p",null,{"children":"제공되는 정보는 참고용이며, 정확한 진료는 담당 의사와 상담하세요."}],["$","div",null,{"className":"flex justify-center gap-3 mt-2","children":[["$","$L5",null,{"href":"/privacy","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"개인정보처리방침"}],["$","span",null,{"children":"|"}],["$","$L5",null,{"href":"/terms","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"서비스 이용약관"}],["$","span",null,{"children":"|"}],["$","$L5",null,{"href":"/about","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"서비스 소개"}],["$","span",null,{"children":"|"}],["$","$L5",null,{"href":"/contact","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"연락처"}]]}]]}],["$","$L6",null,{}]]}],["$","$L7",null,{"position":"top-center","richColors":true}],["$","$L8",null,{"gaId":"G-HT96X27T4K"}]]}]]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L9",[["$","script","script-0",{"src":"/_next/static/chunks/0p3d-p5k~ehe3.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/0w0412nbnq_jy.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","$b",null,{"name":"Next.MetadataOutlet","children":"$@c"}]}]]}],{},null,false,null]},null,false,"$@d"]},null,false,"$@d"]},null,false,null],["$","$1","h",{"children":[null,["$","$Le",null,{"children":"$Lf"}],["$","div",null,{"hidden":true,"children":["$","$L10",null,{"children":["$","$b",null,{"name":"Next.Metadata","children":"$L11"}]}]}],null]}],false]],"m":"$undefined","G":["$12",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0bxa4ftvmf8x5.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"pEDmf7zhEhoDmp5Hs1bqA"}
+e:I[97367,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"ViewportBoundary"]
+10:I[97367,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"MetadataBoundary"]
+12:I[68027,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"default",1]
+:HL["/_next/static/chunks/11u.z4n~l-mjf.css","style"]
+0:{"P":null,"c":["","articles","early-pregnancy-tests"],"q":"","i":false,"f":[[["",{"children":["articles",{"children":[["slug","early-pregnancy-tests","d",null],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/11u.z4n~l-mjf.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/0617d91spoky2.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1860zsbcg5z1o.js","async":true,"nonce":"$undefined"}],["$","script","script-2",{"src":"/_next/static/chunks/0vj9c4uwmeuej.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","children":[["$","head",null,{"children":["$","meta",null,{"name":"google-adsense-account","content":"ca-pub-6022771079735605"}]}],["$","body",null,{"children":[["$","$L2",null,{}],["$","div",null,{"className":"min-h-screen max-w-2xl mx-auto","children":[["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"min-h-screen flex items-center justify-center px-4","children":["$","div",null,{"className":"text-center","children":[["$","div",null,{"className":"text-7xl mb-6","children":"🤷‍♀️"}],["$","h1",null,{"className":"mb-3","children":"페이지를 찾을 수 없어요"}],["$","p",null,{"className":"text-muted-foreground mb-8","children":"요청하신 페이지가 존재하지 않습니다"}],["$","$L5",null,{"href":"/","className":"inline-flex items-center gap-2 px-8 py-3 bg-[#FFD4DE] rounded-xl hover:bg-[#f5cada] transition-colors duration-200 text-[#3D4447] font-medium","children":[["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":18,"height":18,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-house","children":[["$","path","5wwlr5",{"d":"M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"}],["$","path","1d0kgt",{"d":"M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"}],"$undefined"]}],["$","span",null,{"children":"홈으로 돌아가기"}]]}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","footer",null,{"className":"pb-28 pt-8 px-4 text-center text-xs text-muted-foreground space-y-2","children":[["$","p",null,{"children":"본 서비스는 의료적 조언을 제공하지 않습니다."}],["$","p",null,{"children":"제공되는 정보는 참고용이며, 정확한 진료는 담당 의사와 상담하세요."}],["$","div",null,{"className":"flex justify-center gap-3 mt-2","children":[["$","$L5",null,{"href":"/privacy","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"개인정보처리방침"}],["$","span",null,{"children":"|"}],["$","$L5",null,{"href":"/terms","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"서비스 이용약관"}],["$","span",null,{"children":"|"}],["$","$L5",null,{"href":"/about","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"서비스 소개"}],["$","span",null,{"children":"|"}],["$","$L5",null,{"href":"/contact","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"연락처"}]]}]]}],["$","$L6",null,{}]]}],["$","$L7",null,{"position":"top-center","richColors":true}],["$","$L8",null,{"gaId":"G-HT96X27T4K"}]]}]]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L9",[["$","script","script-0",{"src":"/_next/static/chunks/0p3d-p5k~ehe3.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/0w0412nbnq_jy.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","$b",null,{"name":"Next.MetadataOutlet","children":"$@c"}]}]]}],{},null,false,null]},null,false,"$@d"]},null,false,"$@d"]},null,false,null],["$","$1","h",{"children":[null,["$","$Le",null,{"children":"$Lf"}],["$","div",null,{"hidden":true,"children":["$","$L10",null,{"children":["$","$b",null,{"name":"Next.Metadata","children":"$L11"}]}]}],null]}],false]],"m":"$undefined","G":["$12",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/11u.z4n~l-mjf.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"g8At2fz9UGFSKe1abBw45"}
 13:[]
 d:"$W13"
-14:I[93406,["/_next/static/chunks/0~do8j_t4rwoy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js","/_next/static/chunks/0p3d-p5k~ehe3.js","/_next/static/chunks/0w0412nbnq_jy.js"],"ArticleDetail"]
-15:T1ae9,<p>임신을 확인한 순간부터 12주까지는
-검사와 행정 절차가 집중되는 시기예요.
-"뭘 먼저 해야 하지?" 하는 혼란을 줄이기 위해,
-대한산부인과학회 진료 권고안을 기준으로
-시기별 검사 항목과 함께 처리하면 좋은
-행정 절차를 정리해봤어요.
+14:I[93406,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js","/_next/static/chunks/0p3d-p5k~ehe3.js","/_next/static/chunks/0w0412nbnq_jy.js"],"ArticleDetail"]
+15:T288d,<p>임신을 확인한 순간부터 12주까지는
+검사와 행정 절차가 한꺼번에 몰리는 시기예요.
+"뭘 먼저 해야 하지?" 하는 혼란,
+첫 임신이라면 더욱 클 거예요.</p>
+<p>이 글은 대한산부인과학회 진료 권고안을 기준으로
+4주부터 12주까지 시기별 검사 항목을 정리하고,
+국민행복카드 활용 시 실질 부담액까지 계산해봤어요.
 각 검사의 정확한 시기와 필요 여부는
 담당 의료진과 상담해서 결정하는 게 좋아요.</p>
-<h2>임신 초기 검사 비용 한눈에 보기</h2>
-<p>검사를 계획하기 전 대략적인 비용을 파악해두면
-부담을 줄이는 데 도움이 돼요.
-아래는 2026년 기준 참고용 비용이에요.</p>
+<h2>임신 초기 검사 비용과 실질 부담액</h2>
+<p>검사를 계획하기 전 대략적인 비용을 알아두면
+마음이 한결 편해져요.
+국민행복카드(임신출산 진료비 100만 원 지원)를
+먼저 발급받으면 실질 부담을 크게 줄일 수 있어요.
+카드사 앱에서 신청하면 1–2주 내 발급되니
+8주 전후로 신청해두는 게 좋아요.</p>
 <table>
 <thead>
 <tr>
@@ -35,151 +39,229 @@ d:"$W13"
 <th>시기</th>
 <th>대략적 비용</th>
 <th>보험 적용</th>
+<th>행복카드 후 실질 부담</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>기본 산전 검사 패키지</td>
 <td>8–10주</td>
-<td>10–15만원</td>
+<td>10–15만 원</td>
 <td>일부 적용</td>
+<td>0–5만 원</td>
 </tr>
 <tr>
-<td>1차 기형아 검사 (NT + 혈액)</td>
+<td>1차 기형아 검사 (NT+혈액)</td>
 <td>11–13주</td>
-<td>15–25만원</td>
+<td>15–25만 원</td>
 <td>비급여</td>
+<td>15–25만 원</td>
 </tr>
 <tr>
 <td>NIPT (비침습적 산전 검사)</td>
 <td>10주 이후</td>
-<td>50–80만원</td>
+<td>30–80만 원</td>
 <td>비급여</td>
+<td>30–80만 원</td>
 </tr>
 <tr>
 <td>NT 초음파 단독</td>
 <td>11–13주</td>
-<td>5–10만원</td>
+<td>5–10만 원</td>
+<td>비급여</td>
+<td>5–10만 원</td>
+</tr>
+</tbody>
+</table>
+<p>기본 산전 검사 패키지는 건강보험이 일부 적용되고
+국민행복카드로도 결제할 수 있어서
+실질 부담이 크지 않아요.
+반면 기형아 검사와 NIPT는 비급여라
+행복카드 한도와 별개로 본인 부담이 발생해요.</p>
+<p>저도 임신확인서를 받자마자 카드사 앱을 통해
+국민행복카드를 발급받았어요.
+당시 여러 사이트에서 임산부 혜택을 준다는 걸 모르고
+바로 카드사 앱으로 신청해서 나중에 좀 아까웠어요.
+한번 발급받으면 재발급이 어려우니,
+꼭 여러 사이트에서 비교해보세요.</p>
+<p>병원, 약국 갈 때마다 지원금으로 계산하니
+확실히 덜 부담돼요.
+결제하기 전에는 "바우처로 계산해주세요" 하고
+꼭 말해야 바우처로 계산되니까 잊지 말아주세요.</p>
+<h2>4–8주: 임신 확인과 기본 등록</h2>
+<h3>4–6주: 첫 방문</h3>
+<p>산부인과를 방문해 정식으로 임신을 확인하는 것이
+첫 단계예요.
+임신 테스트기로 양성이 나왔더라도
+자궁외임신 등을 배제하기 위해
+초음파 확인이 필요해요
+[대한산부인과학회, 2023].</p>
+<p>이 시기에 초음파로 자궁 내 임신과
+태낭(아기주머니) 위치를 확인하고,
+혈액 검사(hCG)로 임신 호르몬 수치를 측정해요.
+기초 혈액 검사(혈액형, 빈혈, 간기능,
+갑상선 기능, 풍진 항체 등)도 함께 진행하는
+경우가 많아요.</p>
+<p>이 시기에 정기검진을 받을 산부인과를
+정해두는 걸 추천해요.
+야간 응급 대응, 시설, 의사와의 소통이
+중요한 선택 기준이에요.
+실제 분만 병원은 20주 전후 정밀초음파 결과를
+토대로 최종 확정하게 돼요.</p>
+<h3>6–8주: 심장 박동 확인과 등록</h3>
+<p>6–7주경 초음파로 태아 심장 박동이 확인되면
+출산 예정일(EDC)이 결정돼요.
+이 시점부터 행정 절차를 시작하면 좋아요.</p>
+<ul>
+<li><strong>보건소 임산부 등록</strong> — 엽산·철분제를
+무료로 받을 수 있고, 산모교실이나
+유축기 대여 등 추가 지원도 안내받을 수 있어요.</li>
+<li><strong>산모수첩 발급</strong> — 모든 산전 검사 기록이
+이 수첩에 기록돼요. 분만 시 병원에 제출해요.</li>
+<li><strong>엽산 복용</strong> — 하루 400–800μg이 권장돼요
+[질병관리청, 2024].
+임신 전부터 복용하는 것이 이상적이지만,
+확인 즉시 시작해도 효과가 있어요.</li>
+</ul>
+<h2>8–12주: 종합 검사와 1차 기형아 검사</h2>
+<h3>8–10주: 종합 산전 검사</h3>
+<p>대부분의 산부인과에서 이 시기에
+종합 산전 검사 패키지를 진행해요.
+소변 검사(단백뇨·당뇨), 자궁경부 세포 검사,
+성병 검사(B형간염, C형간염, HIV, 매독),
+혈액형·Rh 인자 검사가 포함돼요.</p>
+<p>갑상선 기능 검사(TSH)도 이 시기에 확인하는 게
+중요해요. 갑상선 이상은 태아 발달에 영향을
+줄 수 있기 때문이에요
+[대한내분비학회, 2023].</p>
+<p>국민행복카드 발급도 아직 안 했다면 이 시기에
+신청하세요.
+임신출산 진료비 100만 원 지원을 받을 수 있어요
+[보건복지부, 2024].</p>
+<h3>심층: 1차 기형아 검사 — 11–13주, 딱 3주만 가능해요</h3>
+<p>1차 기형아 검사(통합선별검사)는
+목덜미 투명대(NT) 초음파와 혈액 검사(PAPP-A,
+free β-hCG)를 결합해
+태아의 염색체 이상 가능성을 선별하는 검사예요.</p>
+<p>이 검사는 <strong>11주 0일–13주 6일, 3주 동안만
+시행할 수 있어요.</strong>
+태아 머리엉덩이길이(CRL)가 45–84mm인 시기에만
+NT 측정이 의미 있기 때문이에요.
+이 시기를 놓치면 동일한 방식으로 재검사가 불가능하고,
+15–20주의 2차 기형아 검사(쿼드검사)로만
+대체할 수 있어요.</p>
+<p>NT 두께가 <strong>3mm 미만</strong>이면 정상 범위로 봐요
+[대한산부인과학회, 2023].
+3mm 이상이면 염색체 이상 위험이 높아지는데,
+비용은 NT 초음파 + 혈액 검사 기준으로
+보통 15–25만 원 내외예요.</p>
+<p>NT 수치가 높게 나왔다면 너무 불안해하지 마세요.
+선별 검사는 '가능성'을 보는 거지 확진이 아니에요.
+담당 의료진과 상담해서 양수검사나 NIPT 같은
+정밀 검사 여부를 결정하면 돼요.</p>
+<h3>심층: NIPT vs 1차 기형아 검사(NT) — 뭐가 다른가요?</h3>
+<p>NIPT(비침습적 산전 검사)는 산모 혈액에서
+태아 DNA 조각(cell-free DNA)을 분석해
+다운증후군 등 염색체 이상을 선별하는 검사예요.</p>
+<p>둘 다 '선별검사'이지 확진이 아니라는 점은 같지만,
+정확도와 비용에서 큰 차이가 있어요.
+NIPT는 다운증후군 선별 정확도가 99% 이상으로
+1차 기형아 검사(약 85–90%)보다 높은 편이에요.
+대신 비용은 30–80만 원으로 병원마다 차이가 커요.</p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>1차 기형아 검사 (NT)</th>
+<th>NIPT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>시기</td>
+<td>11–13주 (3주간만)</td>
+<td>10주 이후</td>
+</tr>
+<tr>
+<td>방법</td>
+<td>NT 초음파 + 혈액</td>
+<td>산모 혈액만 채취</td>
+</tr>
+<tr>
+<td>다운증후군 선별 정확도</td>
+<td>약 85–90%</td>
+<td>99% 이상</td>
+</tr>
+<tr>
+<td>비용</td>
+<td>15–25만 원</td>
+<td>30–80만 원</td>
+</tr>
+<tr>
+<td>보험 적용</td>
+<td>비급여</td>
 <td>비급여</td>
 </tr>
 </tbody>
 </table>
-<blockquote>
-<p>국민행복카드를 먼저 발급받으면
-진료비 부담을 줄일 수 있어요.
-카드사 앱에서 신청하면 1–2주 내 발급돼요.</p>
-</blockquote>
-<h2>4–6주: 임신 확인</h2>
-<p>산부인과를 방문해 <strong>정식으로 임신을 확인</strong>하는 것이
-첫 단계예요. 임신 테스트기로 양성이 나왔더라도,
-자궁외임신 등을 배제하기 위해 초음파 확인이 필요해요
-(대한산부인과학회 권고).</p>
-<ul>
-<li><strong>초음파 검사</strong> — 자궁 내 임신 확인,
-태낭(아기주머니) 위치 확인</li>
-<li><strong>혈액 검사 (hCG)</strong> — 임신 호르몬 수치를 확인해요.
-수치 변화로 정상 임신 여부를 판단해요.</li>
-<li><strong>기초 혈액 검사</strong> — 혈액형, 빈혈, 간기능,
-갑상선 기능, 풍진 항체 등을 확인해요.</li>
-</ul>
-<p>이 시기에 정기검진을 받을 산부인과를
-정해두는 걸 추천해요.
-야간 응급 대응 가능 여부, 시설, 의사와의 소통이
-중요한 선택 기준이에요.
-실제 분만 병원은 20주 전후 정밀초음파 결과를
-토대로 최종 확정하게 돼요.</p>
-<h2>6–8주: 심장 박동 확인</h2>
-<ul>
-<li><strong>심장 박동 확인 초음파</strong> — 6–7주경 태아 심장 박동이
-확인돼요.
-이 시점에서 <strong>출산 예정일(EDC)</strong> 이 결정돼요.</li>
-<li><strong>보건소 임산부 등록</strong> — 등록하면 엽산·철분제를
-무료로 받을 수 있고, 지역별 산모교실,
-유축기 대여 등 추가 지원도 안내받을 수 있어요.</li>
-<li><strong>산모수첩 발급</strong> — 모든 산전 검사 기록이
-이 수첩에 기록돼요.
-분만 시 병원에 제출하게 돼요.</li>
-</ul>
-<h2>8–10주: 종합 산전 검사</h2>
-<p>대부분의 산부인과에서 8–10주에
-<strong>종합 산전 검사 패키지</strong>를 진행해요.</p>
-<ul>
-<li><strong>소변 검사</strong> — 단백뇨, 당뇨 여부 확인</li>
-<li><strong>자궁경부 세포 검사</strong> — 자궁경부암 선별</li>
-<li><strong>성병 검사 (STD)</strong> — B형간염, C형간염,
-HIV, 매독 등</li>
-<li><strong>혈액형 검사 + Rh 인자</strong> — Rh 음성인 경우
-임신 중 추가 관리가 필요할 수 있으므로,
-담당 의료진과 상의하는 게 좋아요.</li>
-<li><strong>갑상선 기능 검사 (TSH)</strong> — 갑상선 이상은
-태아 발달에 영향을 미칠 수 있어
-초기 확인이 중요해요 (대한내분비학회 권고).</li>
-</ul>
-<h3>선택 검사 (담당 의사와 상의)</h3>
-<ul>
-<li><strong>NIPT (비침습적 산전 검사)</strong> — 10주 이후
-가능해요. 태아 DNA를 분석해 다운증후군 등
-염색체 이상을 정밀 선별해요.
-비용이 높지만 정확도가 우수한 것으로
-알려져 있어요. 고위험군 여부와 관계없이
-선택할 수 있으며, 검사 필요성은
-담당 의사와 상담하는 걸 추천해요.</li>
-</ul>
-<h2>10–12주: 행정 절차와 1차 기형아 검사</h2>
-<ul>
-<li><strong>국민행복카드 발급</strong> — 임신출산 진료비 100만원을
-지원받을 수 있어요 (보건복지부).</li>
-<li><strong>1차 기형아 검사 (통합선별검사, 11–13주)</strong> —
-목덜미 투명대(NT) 초음파와 혈액 검사로
-다운증후군, 에드워드증후군 가능성을 선별해요.
-<strong>11–13주 사이 3주간만 가능</strong>하므로
-일정 관리가 정말 중요해요
-(대한산부인과학회 권고).</li>
-<li><strong>산후조리원 예약</strong> — 인기 조리원은 임신 초기에
-마감되는 경우가 많아요.
-12주 전후에 투어 후 예약하는 게 안전해요.
-<a href="/articles/postpartum-care">산후조리원 선택 가이드</a>에서
-선택 기준을 확인할 수 있어요.</li>
-</ul>
-<h3>선택 확진 검사 (담당 의사와 상의)</h3>
-<ul>
-<li><strong>융모막 검사 (CVS)</strong> — 10–12주에 시행하는
-확진 검사예요. 유산 위험이 소폭 있어
-고위험군에서 주로 시행하며,
-담당 의사와 상의 후 결정하는 걸 추천해요.</li>
-</ul>
-<h2>놓치기 쉬운 포인트</h2>
-<ol>
-<li><strong>엽산은 빨리 시작할수록 좋아요</strong> —
-질병관리청에서는 임신 전부터 엽산 복용을
-권고하고 있지만,
-임신 확인 즉시 시작해도 효과가 있어요.</li>
-<li><strong>1차 기형아 검사 시기는 딱 3주</strong> —
-11–13주 사이에만 가능해요.
-12주 정기검진 일정에 맞춰 예약하세요.</li>
-<li><strong>산후조리원은 생각보다 일찍 마감</strong> —
-12주 전후에 투어 후 결정하는 걸 추천해요.</li>
-<li><strong>보건소 등록은 무료 혜택의 시작</strong> —
-엽산·철분제뿐 아니라 추후 산모교실,
-유축기 대여 등 다양한 서비스를
-이용할 수 있어요.</li>
-</ol>
+<p>"NIPT를 하면 1차 기형아 검사를 안 해도 되나요?"
+라는 질문을 많이 하시는데,
+NIPT가 NT 초음파를 완전히 대체하지는 않아요.
+NT 초음파는 염색체 이상 외에도
+심장 기형 등 구조적 이상의 단서를 함께 확인할 수
+있거든요.
+고위험군이거나 비용 부담이 괜찮다면
+두 검사를 병행하는 것도 방법이에요.
+담당 의료진과 본인 상황에 맞는 검사 조합을
+상의하세요.</p>
+<p>산후조리원 예약도 이 시기에 해두는 게 안전해요.
+인기 조리원은 임신 초기에 마감되는 경우가 많거든요.
+<a href="https://pregnancy-checklist.com/articles/postpartum-care">산후조리원 선택 가이드</a>에서
+선택 기준을 확인할 수 있어요.</p>
 <p>임신 초기 이후 출산까지의 전체 흐름이 궁금하다면
-<a href="/articles/weekly-prep">임신 주차별 검사 &#x26; 준비 가이드</a>도
+<a href="https://pregnancy-checklist.com/articles/weekly-prep">임신 주차별 검사 &#x26; 준비 가이드</a>도
 함께 확인해보세요.</p>
+<h2>자주 묻는 질문</h2>
+<p><strong>Q. 1차 기형아 검사 시기를 놓치면 어떻게 하나요?</strong>
+A. 11–13주를 놓쳤다면 15–20주에 진행하는
+2차 기형아 검사(쿼드검사)로 대체할 수 있어요.
+NIPT도 대안이 되니 담당 의료진과 상담해서
+본인에게 맞는 검사 계획을 세우세요.</p>
+<p><strong>Q. NIPT를 하면 기형아 검사를 안 받아도 되나요?</strong>
+A. NIPT는 염색체 이상 선별 정확도가 높지만,
+NT 초음파는 심장 기형 등 구조적 이상 단서도
+함께 확인할 수 있어요.
+가능하면 병행을 권장하지만,
+비용 부담이 크다면 담당 의료진과 상의해서
+우선순위를 정하세요.</p>
+<p><strong>Q. 보건소 임산부 등록은 언제 하는 게 좋나요?</strong>
+A. 산부인과에서 임신이 확인되면 바로 등록하는 게
+좋아요. 등록 즉시 엽산·철분제를 무료로 받을 수
+있고, 산모교실이나 유축기 대여 등
+지역별 추가 지원도 안내받을 수 있어요.</p>
+<p><strong>Q. 국민행복카드로 기형아 검사 비용도 결제할 수 있나요?</strong>
+A. 국민행복카드는 임신·출산 관련 의료비에
+사용할 수 있지만, 기형아 검사나 NIPT는
+비급여 항목이라 카드 한도 내에서 결제 가능 여부가
+병원마다 달라요.
+사전에 병원에 확인하는 게 가장 정확해요.</p>
+<p>임신 초기 12주까지 검사 일정만 잘 잡아두면
+나머지 40주가 한결 편해져요.
+이 글에서 정리한 시기별 체크리스트를 참고해서
+하나씩 처리해보세요.</p>
 <h2>참고 자료</h2>
 <ul>
-<li>대한산부인과학회, 「임신 초기 진료 권고안」</li>
-<li>질병관리청, 「산전 검사 안내」</li>
-<li>국민건강보험공단, 「임신·출산 진료비 지원 제도 안내」</li>
-<li>대한내분비학회, 「갑상선 질환 진료 가이드라인」</li>
+<li>대한산부인과학회, 「임신 초기 진료 권고안」 (2023)</li>
+<li>질병관리청, 「산전 검사 안내」 (2024)</li>
+<li>보건복지부, 「임신·출산 진료비 지원 제도 안내」 (2024)</li>
+<li>대한내분비학회, 「갑상선 질환 진료 가이드라인」 (2023)</li>
 </ul>
 <hr>
 <blockquote>
 <p>⚠️ 이 글은 일반적인 육아 정보를 제공하며, 의학적 조언을 대체하지 않습니다.
 아이의 건강 문제는 소아청소년과 전문의와 상담하세요.</p>
 </blockquote>
-9:["$","$L14",null,{"article":{"title":"임신 초기 필수 검사 총정리","description":"임신 확인부터 12주까지 받아야 할 검사와 행정 절차를 시기별로 정리했어요. 검사 비용, 놓치기 쉬운 포인트까지 초보 임산부를 위한 실전 가이드예요.","slug":"early-pregnancy-tests","tags":["임신초기","검사","병원"],"date":"2026-04-04","updated":"$undefined","linked_timeline_weeks":[4,8,10],"content":"$15"}}]
+9:["$","$L14",null,{"article":{"title":"임신 초기 필수 검사 총정리","description":"임신 확인(4주)부터 12주까지 시기별 필수 검사를 정리했어요. 1차 기형아 검사(NT 초음파) 정상 수치 3mm 해석과 NIPT 정확도 비교, 종합 산전 검사 항목, 국민행복카드 활용 시 실질 부담액 시뮬레이션까지 초보 임산부를 위한 실전 검사 가이드예요.","slug":"early-pregnancy-tests","tags":["임신초기","검사","병원","기형아검사"],"date":"2026-04-08","updated":"$undefined","linked_timeline_weeks":[4,8,10],"content":"$15"}}]
 f:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
 c:null
-11:[["$","title","0",{"children":"임신 초기 필수 검사 총정리 - 출산 준비 체크리스트"}],["$","meta","1",{"name":"description","content":"임신 확인부터 12주까지 받아야 할 검사와 행정 절차를 시기별로 정리했어요. 검사 비용, 놓치기 쉬운 포인트까지 초보 임산부를 위한 실전 가이드예요."}],["$","link","2",{"rel":"canonical","href":"https://pregnancy-checklist.com/articles/early-pregnancy-tests"}],["$","meta","3",{"property":"og:title","content":"임신 초기 필수 검사 총정리"}],["$","meta","4",{"property":"og:description","content":"임신 확인부터 12주까지 받아야 할 검사와 행정 절차를 시기별로 정리했어요. 검사 비용, 놓치기 쉬운 포인트까지 초보 임산부를 위한 실전 가이드예요."}],["$","meta","5",{"property":"og:url","content":"https://pregnancy-checklist.com/articles/early-pregnancy-tests"}],["$","meta","6",{"property":"og:image","content":"https://pregnancy-checklist.com/og-image.png"}],["$","meta","7",{"property":"og:image:width","content":"1200"}],["$","meta","8",{"property":"og:image:height","content":"630"}],["$","meta","9",{"property":"og:image:alt","content":"출산 준비 체크리스트"}],["$","meta","10",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","11",{"name":"twitter:title","content":"임신 초기 필수 검사 총정리"}],["$","meta","12",{"name":"twitter:description","content":"임신 확인부터 12주까지 받아야 할 검사와 행정 절차를 시기별로 정리했어요. 검사 비용, 놓치기 쉬운 포인트까지 초보 임산부를 위한 실전 가이드예요."}],["$","meta","13",{"name":"twitter:image","content":"https://pregnancy-checklist.com/og-image.png"}],["$","meta","14",{"name":"twitter:image:alt","content":"출산 준비 체크리스트"}],["$","meta","15",{"name":"twitter:image:width","content":"1200"}],["$","meta","16",{"name":"twitter:image:height","content":"630"}]]
+11:[["$","title","0",{"children":"임신 초기 필수 검사 총정리 - 출산 준비 체크리스트"}],["$","meta","1",{"name":"description","content":"임신 확인(4주)부터 12주까지 시기별 필수 검사를 정리했어요. 1차 기형아 검사(NT 초음파) 정상 수치 3mm 해석과 NIPT 정확도 비교, 종합 산전 검사 항목, 국민행복카드 활용 시 실질 부담액 시뮬레이션까지 초보 임산부를 위한 실전 검사 가이드예요."}],["$","link","2",{"rel":"canonical","href":"https://pregnancy-checklist.com/articles/early-pregnancy-tests"}],["$","meta","3",{"property":"og:title","content":"임신 초기 필수 검사 총정리"}],["$","meta","4",{"property":"og:description","content":"임신 확인(4주)부터 12주까지 시기별 필수 검사를 정리했어요. 1차 기형아 검사(NT 초음파) 정상 수치 3mm 해석과 NIPT 정확도 비교, 종합 산전 검사 항목, 국민행복카드 활용 시 실질 부담액 시뮬레이션까지 초보 임산부를 위한 실전 검사 가이드예요."}],["$","meta","5",{"property":"og:url","content":"https://pregnancy-checklist.com/articles/early-pregnancy-tests"}],["$","meta","6",{"property":"og:image","content":"https://pregnancy-checklist.com/og-image.png"}],["$","meta","7",{"property":"og:image:width","content":"1200"}],["$","meta","8",{"property":"og:image:height","content":"630"}],["$","meta","9",{"property":"og:image:alt","content":"출산 준비 체크리스트"}],["$","meta","10",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","11",{"name":"twitter:title","content":"임신 초기 필수 검사 총정리"}],["$","meta","12",{"name":"twitter:description","content":"임신 확인(4주)부터 12주까지 시기별 필수 검사를 정리했어요. 1차 기형아 검사(NT 초음파) 정상 수치 3mm 해석과 NIPT 정확도 비교, 종합 산전 검사 항목, 국민행복카드 활용 시 실질 부담액 시뮬레이션까지 초보 임산부를 위한 실전 검사 가이드예요."}],["$","meta","13",{"name":"twitter:image","content":"https://pregnancy-checklist.com/og-image.png"}],["$","meta","14",{"name":"twitter:image:alt","content":"출산 준비 체크리스트"}],["$","meta","15",{"name":"twitter:image:width","content":"1200"}],["$","meta","16",{"name":"twitter:image:height","content":"630"}]]
