@@ -50,6 +50,7 @@ export function TimelineAccordionCard({
   const hasChecklist = checklistItems.length > 0;
   const checkedCount = checklistItems.filter((c) => checkedIds.includes(c.id)).length;
   const totalCount = checklistItems.length;
+  const isWeekComplete = hasChecklist && checkedCount === totalCount;
 
   const saveEdit = () => {
     if (!editTitle.trim()) return;
@@ -134,6 +135,7 @@ export function TimelineAccordionCard({
                     type="button"
                   >
                     <div className="flex items-center gap-2 mb-1">
+                      {isWeekComplete && <span aria-label="완료">✅</span>}
                       <h3 className="text-[15px] font-medium">{item.title}</h3>
                       {item.isCustom && (
                         <Badge className="bg-[#E4D6F0]/40 text-[#6B5A80] text-[10px] px-1.5 py-0 rounded border-0 hover:bg-[#E4D6F0]/40">
@@ -153,14 +155,20 @@ export function TimelineAccordionCard({
                             isOpen ? "rotate-180" : ""
                           }`}
                         />
-                        <span className="text-xs text-muted-foreground">
-                          체크리스트 {totalCount}개
-                          {checkedCount > 0 && (
-                            <span className="ml-1 text-[#2D6B4F]">
-                              ({checkedCount}/{totalCount} 완료)
-                            </span>
-                          )}
-                        </span>
+                        {isWeekComplete ? (
+                          <span className="text-xs text-[#2D6B4F] font-medium">
+                            {item.week}주차 할일을 모두 완료했어요!
+                          </span>
+                        ) : (
+                          <span className="text-xs text-muted-foreground">
+                            체크리스트 {totalCount}개
+                            {checkedCount > 0 && (
+                              <span className="ml-1 text-[#2D6B4F]">
+                                ({checkedCount}/{totalCount} 완료)
+                              </span>
+                            )}
+                          </span>
+                        )}
                       </div>
                     )}
                     {!hasChecklist && (

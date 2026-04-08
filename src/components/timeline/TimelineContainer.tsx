@@ -165,6 +165,17 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
                 </span>
               </div>
               <Progress value={progress.percent} className="h-2 bg-muted" />
+              {progress.percent >= 25 && (
+                <p className="text-xs text-center mt-2 text-[#2D6B4F] font-medium">
+                  {progress.percent >= 100
+                    ? "완벽한 준비 완료! 🎊"
+                    : progress.percent >= 75
+                      ? "거의 다 왔어요!"
+                      : progress.percent >= 50
+                        ? "절반 완료!"
+                        : "순조로운 출발!"}
+                </p>
+              )}
             </CardContent>
           </Card>
         )}
