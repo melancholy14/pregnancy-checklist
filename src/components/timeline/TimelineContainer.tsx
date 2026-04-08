@@ -206,7 +206,7 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
         </div>
 
         {/* 통합 추가 폼 */}
-        {showAddForm && <UnifiedAddForm onClose={() => setShowAddForm(false)} />}
+        {showAddForm && <UnifiedAddForm onClose={() => setShowAddForm(false)} timelineItems={allTimelineItems} />}
 
         {/* Timeline */}
         <div className="relative">
