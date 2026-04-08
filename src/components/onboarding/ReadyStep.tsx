@@ -28,7 +28,7 @@ const infoItems = [
 export function ReadyStep({ onComplete }: ReadyStepProps) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen px-6 text-center">
-      <h1 className="text-2xl mb-8">준비 완료!</h1>
+      <h1 className="text-2xl mb-8">준비 완료! 같이 챙겨봐요</h1>
 
       <ul className="space-y-4 mb-10 text-left w-full max-w-xs">
         {infoItems.map(({ icon: Icon, text, color }) => (

@@ -8,10 +8,10 @@ test.describe("온보딩 플로우", () => {
       await page.goto("/");
 
       // Step 1: 웰컴
-      await expect(page.getByRole("heading", { name: "출산 준비, 빠짐없이 챙기세요" })).toBeVisible();
-      await expect(page.getByText("주차별 맞춤 체크리스트")).toBeVisible();
-      await expect(page.getByText("전국 베이비페어 일정")).toBeVisible();
-      await expect(page.getByText("임신·출산 정보 한곳에")).toBeVisible();
+      await expect(page.getByRole("heading", { name: "안녕하세요!" })).toBeVisible();
+      await expect(page.getByText("주차별로 뭘 해야 하는지 정리")).toBeVisible();
+      await expect(page.getByText("전국 베이비페어 일정 모음")).toBeVisible();
+      await expect(page.getByText("체중 기록 & 출산 정보까지")).toBeVisible();
       await page.getByRole("button", { name: "온보딩 시작하기" }).click();
 
       // Step 2: 예정일 입력
@@ -23,7 +23,7 @@ test.describe("온보딩 플로우", () => {
       await page.getByRole("button", { name: "다음 단계로 이동" }).click();
 
       // Step 3: 데이터 안내
-      await expect(page.getByRole("heading", { name: "준비 완료!" })).toBeVisible();
+      await expect(page.getByRole("heading", { name: "준비 완료! 같이 챙겨봐요" })).toBeVisible();
       await expect(page.getByText("입력한 정보는 이 브라우저에만 저장돼요")).toBeVisible();
       await expect(page.getByText("회원가입 없이 바로 시작!")).toBeVisible();
       await expect(page.getByText("다시 와도 기록이 남아있어요")).toBeVisible();
@@ -46,7 +46,7 @@ test.describe("온보딩 플로우", () => {
       await page.getByRole("button", { name: "예정일 나중에 입력하기" }).click();
 
       // Step 3으로 이동 확인
-      await expect(page.getByRole("heading", { name: "준비 완료!" })).toBeVisible();
+      await expect(page.getByRole("heading", { name: "준비 완료! 같이 챙겨봐요" })).toBeVisible();
       await page.getByRole("button", { name: "체크리스트 보러가기" }).click();
       await page.waitForURL(/\/timeline/);
     });
@@ -65,7 +65,7 @@ test.describe("온보딩 플로우", () => {
       // 홈으로 재방문
       await page.goto("/");
       await expect(page.getByRole("heading", { name: "출산 준비 체크리스트" })).toBeVisible();
-      await expect(page.getByRole("heading", { name: "출산 준비, 빠짐없이 챙기세요" })).not.toBeVisible();
+      await expect(page.getByRole("heading", { name: "안녕하세요!" })).not.toBeVisible();
     });
   });
 
@@ -104,7 +104,7 @@ test.describe("온보딩 플로우", () => {
       await page.goto("/");
 
       await expect(page.getByRole("heading", { name: "출산 준비 체크리스트" })).toBeVisible();
-      await expect(page.getByRole("heading", { name: "출산 준비, 빠짐없이 챙기세요" })).not.toBeVisible();
+      await expect(page.getByRole("heading", { name: "안녕하세요!" })).not.toBeVisible();
     });
 
     test("onboarding-completed 플래그가 없으면 온보딩이 표시된다", async ({ page }) => {
@@ -114,7 +114,7 @@ test.describe("온보딩 플로우", () => {
       await page.evaluate(() => localStorage.removeItem("onboarding-completed"));
       await page.goto("/");
 
-      await expect(page.getByRole("heading", { name: "출산 준비, 빠짐없이 챙기세요" })).toBeVisible();
+      await expect(page.getByRole("heading", { name: "안녕하세요!" })).toBeVisible();
     });
   });
 
@@ -127,7 +127,7 @@ test.describe("온보딩 플로우", () => {
       await page.goto("/");
 
       // Step 1
-      await expect(page.getByRole("heading", { name: "출산 준비, 빠짐없이 챙기세요" })).toBeVisible();
+      await expect(page.getByRole("heading", { name: "안녕하세요!" })).toBeVisible();
       await page.getByRole("button", { name: "온보딩 시작하기" }).click();
 
       // Step 2 — 건너뛰기
@@ -135,7 +135,7 @@ test.describe("온보딩 플로우", () => {
       await page.getByRole("button", { name: "예정일 나중에 입력하기" }).click();
 
       // Step 3
-      await expect(page.getByRole("heading", { name: "준비 완료!" })).toBeVisible();
+      await expect(page.getByRole("heading", { name: "준비 완료! 같이 챙겨봐요" })).toBeVisible();
       await page.getByRole("button", { name: "체크리스트 보러가기" }).click();
 
       await page.waitForURL(/\/timeline/);
