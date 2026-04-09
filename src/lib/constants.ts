@@ -25,6 +25,8 @@ export const BRAND_COPY = {
   },
 } as const;
 
+export const CREATOR_DUE_DATE = "2026-08-15";
+
 export const BASE_URL = "https://pregnancy-checklist.com";
 
 export const OG_IMAGE = {
