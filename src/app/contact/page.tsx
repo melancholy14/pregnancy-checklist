@@ -2,14 +2,16 @@ import type { Metadata } from "next";
 import { BASE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "연락처 - 출산 준비 체크리스트",
-  description: "혼자 만들다 보니 놓치는 것도 많아요. 의견을 들려주세요.",
+  title: "의견 보내기 - 출산 준비 체크리스트",
+  description:
+    "혼자 만들다 보니 놓치는 것도 많아요. 불편한 점이나 추가되면 좋겠는 기능이 있다면 알려주세요.",
   alternates: {
     canonical: `${BASE_URL}/contact`,
   },
   openGraph: {
-    title: "연락처 - 출산 준비 체크리스트",
-    description: "혼자 만들다 보니 놓치는 것도 많아요. 의견을 들려주세요.",
+    title: "의견 보내기 - 출산 준비 체크리스트",
+    description:
+      "혼자 만들다 보니 놓치는 것도 많아요. 불편한 점이나 추가되면 좋겠는 기능이 있다면 알려주세요.",
     url: `${BASE_URL}/contact`,
   },
 };
@@ -17,31 +19,45 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div className="min-h-screen pb-24 px-4">
-      <div className="pt-8 prose prose-sm">
-        <h1 className="text-center text-xl mb-8">연락처</h1>
+      <div className="pt-8 max-w-lg mx-auto">
+        <h1 className="text-center text-xl font-bold mb-8">의견 보내기</h1>
 
-        <h2 className="text-base mt-6 mb-3">피드백</h2>
-        <p className="text-sm text-muted-foreground leading-relaxed">
-          더 나은 서비스를 위해 여러분의 소중한 의견을 기다립니다.
-        </p>
-        {process.env.NEXT_PUBLIC_FEEDBACK_FORM_URL && (
+        {/* 피드백 섹션 */}
+        <section className="mb-8" aria-label="의견 보내기">
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            혼자 만들다 보니 놓치는 것도 많아요.
+          </p>
+          <p className="text-sm text-muted-foreground leading-relaxed mt-3">
+            &quot;이것도 넣어주세요&quot;, &quot;이건 좀 아닌데요&quot; 다
+            환영합니다.
+          </p>
+          {process.env.NEXT_PUBLIC_FEEDBACK_FORM_URL && (
+            <a
+              href={process.env.NEXT_PUBLIC_FEEDBACK_FORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center mt-4 px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+              aria-label="의견 보내기 폼으로 이동"
+            >
+              의견 보내기
+            </a>
+          )}
+        </section>
+
+        {/* 이메일 섹션 */}
+        <section aria-label="이메일 연락">
+          <h2 className="text-base font-semibold mb-3">이메일</h2>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            직접 연락 주셔도 돼요.
+          </p>
           <a
-            href={process.env.NEXT_PUBLIC_FEEDBACK_FORM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block mt-3 px-4 py-2 text-sm bg-[#6B5A80] text-white rounded-lg hover:bg-[#6B5A80]/80 transition-colors"
+            href="mailto:melancholy8914@gmail.com"
+            className="inline-block mt-2 text-sm text-primary hover:underline"
+            aria-label="이메일 보내기"
           >
-            의견을 들려주세요
+            melancholy8914@gmail.com
           </a>
-        )}
-
-        <h2 className="text-base mt-6 mb-3">이메일 문의</h2>
-        <p className="text-sm text-muted-foreground leading-relaxed">
-          서비스 이용 중 문의사항이 있으시면 아래 이메일로 연락해 주세요.
-        </p>
-        <ul className="text-sm text-muted-foreground leading-relaxed list-disc pl-5 mt-2">
-          <li>이메일: melancholy8914@gmail.com</li>
-        </ul>
+        </section>
       </div>
     </div>
   );
