@@ -36,6 +36,14 @@ export const OG_IMAGE = {
   alt: "출산 준비 체크리스트",
 } as const;
 
+export const TIMELINE_TYPE_CONFIG = {
+  prep: { icon: "📦", label: "준비", color: "#FFD4DE" },
+  shopping: { icon: "🛒", label: "쇼핑", color: "#FFF4D4" },
+  admin: { icon: "📋", label: "행정", color: "#E0F0FF" },
+  education: { icon: "📚", label: "교육", color: "#E4D6F0" },
+  wellbeing: { icon: "💚", label: "건강", color: "#D0EDE2" },
+} as const;
+
 export const CATEGORY_OPTIONS: { value: ChecklistItem["category"]; label: string }[] = [
   { value: "hospital", label: "병원 준비" },
   { value: "hospital_bag", label: "출산 가방" },
