@@ -46,6 +46,17 @@ export function ArticleDetail({ article }: ArticleDetailProps) {
 
         <div className="h-px bg-gradient-to-r from-transparent via-[#F0EBE6] to-transparent mb-8" />
 
+        {article.authorNote && (
+          <div className="bg-[#FFF4D4]/15 border border-[#FFF4D4]/40 rounded-xl px-4 py-3.5 mb-8">
+            <p className="text-xs font-medium text-[#8B7520] mb-1.5">
+              💬 만든이의 한마디
+            </p>
+            <p className="text-sm text-[#8B7520] italic leading-relaxed">
+              &ldquo;{article.authorNote}&rdquo;
+            </p>
+          </div>
+        )}
+
         <div
           className="article-prose"
           dangerouslySetInnerHTML={{ __html: article.content }}

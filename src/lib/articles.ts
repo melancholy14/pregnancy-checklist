@@ -19,6 +19,7 @@ function parseArticleMeta(data: Record<string, unknown>): ArticleMeta {
     linked_timeline_weeks: Array.isArray(data.linked_timeline_weeks)
       ? data.linked_timeline_weeks.map(Number)
       : undefined,
+    authorNote: data.authorNote ? String(data.authorNote) : undefined,
   };
 }
 
