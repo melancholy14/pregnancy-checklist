@@ -92,7 +92,7 @@ test.describe("정보글 시스템", () => {
       // 왜: AdSense 승인 기준 (1,000자+)
       const slugs = [
         "hospital-bag",
-        "weekly-prep",
+        "weekly-prenatal-checklist",
         "early-pregnancy-tests",
         "postpartum-care",
         "baby-items-cost",
@@ -121,11 +121,11 @@ test.describe("정보글 시스템", () => {
       await expect(page).toHaveURL(/\/articles\/hospital-bag/);
     });
 
-    test("/guides/weekly-prep → /articles/weekly-prep 리다이렉트", async ({ page }) => {
+    test("/guides/weekly-prenatal-checklist → /articles/weekly-prenatal-checklist 리다이렉트", async ({ page }) => {
       // 무엇을: 기존 가이드 URL에서 정보글 URL로 리다이렉트
       // 왜: 북마크/외부 링크 호환성
-      await page.goto("/guides/weekly-prep");
-      await expect(page).toHaveURL(/\/articles\/weekly-prep/);
+      await page.goto("/guides/weekly-prenatal-checklist");
+      await expect(page).toHaveURL(/\/articles\/weekly-prenatal-checklist/);
     });
   });
 

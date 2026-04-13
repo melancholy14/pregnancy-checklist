@@ -96,7 +96,7 @@ test.describe("아티클 authorNote 카드 (Step 14)", () => {
     }) => {
       // 무엇을: authorNote 미설정 아티클에서 카드 미렌더링 확인
       // 왜: authorNote가 없는 아티클에서 빈 카드가 보이면 안 됨
-      await page.goto("/articles/weekly-prep");
+      await page.goto("/articles/infant-vaccination-schedule");
       await expect(page.getByText("만든이의 한마디")).not.toBeVisible();
     });
 
@@ -128,7 +128,7 @@ test.describe("아티클 authorNote 카드 (Step 14)", () => {
     }) => {
       // 무엇을: 모바일에서도 미설정 아티클의 카드 미렌더링 확인
       // 왜: 반응형에서도 조건부 렌더링 동작 검증
-      await page.goto("/articles/weekly-prep");
+      await page.goto("/articles/infant-vaccination-schedule");
       await expect(page.getByText("만든이의 한마디")).not.toBeVisible();
     });
   });

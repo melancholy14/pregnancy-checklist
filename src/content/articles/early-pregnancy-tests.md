@@ -192,7 +192,7 @@ NT 초음파는 염색체 이상 외에도
 선택 기준을 확인할 수 있어요.
 
 임신 초기 이후 출산까지의 전체 흐름이 궁금하다면
-[임신 주차별 검사 & 준비 가이드](https://pregnancy-checklist.com/articles/weekly-prep)도
+[임신 주차별 검사 & 준비 총정리](https://pregnancy-checklist.com/articles/weekly-prenatal-checklist)도
 함께 확인해보세요.
 
 ## 자주 묻는 질문

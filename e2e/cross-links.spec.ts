@@ -57,9 +57,9 @@ test.describe("타임라인 ↔ 블로그 크로스 링크", () => {
     });
 
     test("linked_timeline_weeks가 없는 아티클에는 CTA가 없다", async ({ page }) => {
-      // 무엇을: weekly-prep에 타임라인 CTA가 없는지
+      // 무엇을: weekly-prenatal-checklist에 타임라인 CTA가 없는지
       // 왜: 매핑이 없는 아티클에는 CTA가 나타나지 않아야 함
-      await page.goto("/articles/weekly-prep");
+      await page.goto("/articles/weekly-prenatal-checklist");
       await expect(page.getByText("타임라인에서 체크하기")).not.toBeVisible();
     });
 

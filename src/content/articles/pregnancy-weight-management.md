@@ -150,7 +150,7 @@ BMI에 따라 약간 조정이 필요해요.
   같은 양을 먹어도 혈당 변동을 줄일 수 있어요.
 
 검사 일정과 수치 기준이 궁금하다면
-[임신 주차별 검사 & 준비 가이드](https://pregnancy-checklist.com/articles/weekly-prep)도
+[임신 주차별 검사 & 준비 총정리](https://pregnancy-checklist.com/articles/weekly-prenatal-checklist)도
 함께 확인해보세요.
 
 ## 체중관리를 위한 식습관과 운동

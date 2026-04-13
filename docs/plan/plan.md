@@ -586,7 +586,7 @@ AdSense 승인을 위한 SEO 기반 작업 + 콘텐츠 보완을 수행.
 - **sitemap.ts + robots.ts**: 정적 사이트맵, 크롤링 허용
 - **메타데이터**: 11개 페이지 고유 title + description + OG + canonical
 - **영상 데이터**: 9개 영상 수동 큐레이션 (카테고리별 3개)
-- **가이드 콘텐츠**: `/guides/hospital-bag`, `/guides/weekly-prep` (각 1,000자+)
+- **가이드 콘텐츠**: `/guides/hospital-bag`, `/guides/weekly-prenatal-checklist` (각 1,000자+)
 
 ### Phase 1.5 완료 실적
 
@@ -630,7 +630,7 @@ AdSense 승인률을 높이기 위한 **콘텐츠 볼륨 + 깊이 확보**.
 | slug | 제목 |
 |------|------|
 | `hospital-bag` | 출산 가방 필수 준비물 총정리 |
-| `weekly-prep` | 임신 주차별 검사 & 준비 가이드 |
+| `weekly-prenatal-checklist` | 임신 주차별 검사 & 준비 가이드 |
 | `early-pregnancy-tests` | 임신 초기 필수 검사 총정리 |
 | `postpartum-care` | 산후조리원 선택 가이드 |
 | `baby-items-cost` | 출산 준비물 예상 비용 총정리 |
