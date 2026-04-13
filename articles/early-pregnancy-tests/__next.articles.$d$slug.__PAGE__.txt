@@ -1,8 +1,8 @@
 1:"$Sreact.fragment"
-2:I[93406,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js","/_next/static/chunks/0p3d-p5k~ehe3.js","/_next/static/chunks/0w0412nbnq_jy.js"],"ArticleDetail"]
-7:I[97367,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"OutletBoundary"]
+2:I[93406,["/_next/static/chunks/0m7.8ple1_ny_.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js","/_next/static/chunks/0k_ntlfs6mua6.js","/_next/static/chunks/0w0412nbnq_jy.js"],"ArticleDetail"]
+7:I[97367,["/_next/static/chunks/0m7.8ple1_ny_.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"OutletBoundary"]
 8:"$Sreact.suspense"
-3:T288d,<p>임신을 확인한 순간부터 12주까지는
+3:T289b,<p>임신을 확인한 순간부터 12주까지는
 검사와 행정 절차가 한꺼번에 몰리는 시기예요.
 "뭘 먼저 해야 하지?" 하는 혼란,
 첫 임신이라면 더욱 클 거예요.</p>
@@ -205,7 +205,7 @@ NT 초음파는 염색체 이상 외에도
 <a href="https://pregnancy-checklist.com/articles/postpartum-care">산후조리원 선택 가이드</a>에서
 선택 기준을 확인할 수 있어요.</p>
 <p>임신 초기 이후 출산까지의 전체 흐름이 궁금하다면
-<a href="https://pregnancy-checklist.com/articles/weekly-prep">임신 주차별 검사 &#x26; 준비 가이드</a>도
+<a href="https://pregnancy-checklist.com/articles/weekly-prenatal-checklist">임신 주차별 검사 &#x26; 준비 총정리</a>도
 함께 확인해보세요.</p>
 <h2>자주 묻는 질문</h2>
 <p><strong>Q. 1차 기형아 검사 시기를 놓치면 어떻게 하나요?</strong>
@@ -247,8 +247,8 @@ A. 국민행복카드는 임신·출산 관련 의료비에
 <p>⚠️ 이 글은 일반적인 육아 정보를 제공하며, 의학적 조언을 대체하지 않습니다.
 아이의 건강 문제는 소아청소년과 전문의와 상담하세요.</p>
 </blockquote>
-0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"임신 초기 필수 검사 총정리","description":"임신 확인(4주)부터 12주까지 시기별 필수 검사를 정리했어요. 1차 기형아 검사(NT 초음파) 정상 수치 3mm 해석과 NIPT 정확도 비교, 종합 산전 검사 항목, 국민행복카드 활용 시 실질 부담액 시뮬레이션까지 초보 임산부를 위한 실전 검사 가이드예요.","slug":"early-pregnancy-tests","tags":["임신초기","검사","병원","기형아검사"],"date":"2026-04-08","linked_timeline_weeks":[4,8,10],"content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"g8At2fz9UGFSKe1abBw45"}
-4:["$","script","script-0",{"src":"/_next/static/chunks/0p3d-p5k~ehe3.js","async":true}]
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"임신 초기 필수 검사 총정리","description":"임신 확인(4주)부터 12주까지 시기별 필수 검사를 정리했어요. 1차 기형아 검사(NT 초음파) 정상 수치 3mm 해석과 NIPT 정확도 비교, 종합 산전 검사 항목, 국민행복카드 활용 시 실질 부담액 시뮬레이션까지 초보 임산부를 위한 실전 검사 가이드예요.","slug":"early-pregnancy-tests","tags":["임신초기","검사","병원","기형아검사"],"date":"2026-04-08","linked_timeline_weeks":[4,8,10],"authorNote":"어떤 검사를 언제 받아야 하는지 너무 헷갈렸어요. 시기별로 깔끔하게 정리해봤습니다.","content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"PeaWMLa-ffudqOX2uXkpC"}
+4:["$","script","script-0",{"src":"/_next/static/chunks/0k_ntlfs6mua6.js","async":true}]
 5:["$","script","script-1",{"src":"/_next/static/chunks/0w0412nbnq_jy.js","async":true}]
 6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
 9:null

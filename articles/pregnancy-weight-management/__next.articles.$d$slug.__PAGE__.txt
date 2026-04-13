@@ -1,8 +1,8 @@
 1:"$Sreact.fragment"
-2:I[93406,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js","/_next/static/chunks/0p3d-p5k~ehe3.js","/_next/static/chunks/0w0412nbnq_jy.js"],"ArticleDetail"]
-7:I[97367,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"OutletBoundary"]
+2:I[93406,["/_next/static/chunks/0m7.8ple1_ny_.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js","/_next/static/chunks/0k_ntlfs6mua6.js","/_next/static/chunks/0w0412nbnq_jy.js"],"ArticleDetail"]
+7:I[97367,["/_next/static/chunks/0m7.8ple1_ny_.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"OutletBoundary"]
 8:"$Sreact.suspense"
-3:T2536,<p>"나 너무 많이 찐 건 아닐까?"
+3:T2544,<p>"나 너무 많이 찐 건 아닐까?"
 임신 중 체중계에 올라갈 때마다 드는 걱정,
 많은 분들이 공감하실 거예요.</p>
 <p>먼저 안심부터 드릴게요 —
@@ -155,7 +155,7 @@ BMI에 따라 약간 조정이 필요해요.</p>
 같은 양을 먹어도 혈당 변동을 줄일 수 있어요.</li>
 </ul>
 <p>검사 일정과 수치 기준이 궁금하다면
-<a href="https://pregnancy-checklist.com/articles/weekly-prep">임신 주차별 검사 &#x26; 준비 가이드</a>도
+<a href="https://pregnancy-checklist.com/articles/weekly-prenatal-checklist">임신 주차별 검사 &#x26; 준비 총정리</a>도
 함께 확인해보세요.</p>
 <h2>체중관리를 위한 식습관과 운동</h2>
 <p>임신 중 식단의 핵심은 '덜 먹기'가 아니라
@@ -220,8 +220,8 @@ A. 네, 쌍둥이 임신은 정상체중 기준으로
 <p>⚠️ 이 글은 일반적인 육아 정보를 제공하며, 의학적 조언을 대체하지 않습니다.
 아이의 건강 문제는 소아청소년과 전문의와 상담하세요.</p>
 </blockquote>
-0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"임신 기간 중 체중관리 방법","description":"임신 중 체중 증가, 어디까지 정상일까요? ACOG 기준 BMI별 권장 증가량 표와 주차별 자가 확인표로 내 체중이 정상 범위인지 바로 확인해보세요. 임신중독증(전자간증) 징후, 임신성 당뇨 식단 관리법, 안전한 운동법까지 임산부 체중관리의 모든 것을 정리했어요.","slug":"pregnancy-weight-management","tags":["임신","체중관리","임산부건강","임신중독증"],"date":"2026-04-08","linked_timeline_weeks":[6,24],"content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"g8At2fz9UGFSKe1abBw45"}
-4:["$","script","script-0",{"src":"/_next/static/chunks/0p3d-p5k~ehe3.js","async":true}]
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"임신 기간 중 체중관리 방법","description":"임신 중 체중 증가, 어디까지 정상일까요? ACOG 기준 BMI별 권장 증가량 표와 주차별 자가 확인표로 내 체중이 정상 범위인지 바로 확인해보세요. 임신중독증(전자간증) 징후, 임신성 당뇨 식단 관리법, 안전한 운동법까지 임산부 체중관리의 모든 것을 정리했어요.","slug":"pregnancy-weight-management","tags":["임신","체중관리","임산부건강","임신중독증"],"date":"2026-04-08","linked_timeline_weeks":[6,24],"authorNote":"체중계 올라갈 때마다 불안해서, 정상 범위가 어디까지인지 정리해봤습니다.","content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"PeaWMLa-ffudqOX2uXkpC"}
+4:["$","script","script-0",{"src":"/_next/static/chunks/0k_ntlfs6mua6.js","async":true}]
 5:["$","script","script-1",{"src":"/_next/static/chunks/0w0412nbnq_jy.js","async":true}]
 6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
 9:null

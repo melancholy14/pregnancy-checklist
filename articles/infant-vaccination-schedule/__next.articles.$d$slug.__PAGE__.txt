@@ -1,6 +1,6 @@
 1:"$Sreact.fragment"
-2:I[93406,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js","/_next/static/chunks/0p3d-p5k~ehe3.js","/_next/static/chunks/0w0412nbnq_jy.js"],"ArticleDetail"]
-7:I[97367,["/_next/static/chunks/0617d91spoky2.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"OutletBoundary"]
+2:I[93406,["/_next/static/chunks/0m7.8ple1_ny_.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js","/_next/static/chunks/0k_ntlfs6mua6.js","/_next/static/chunks/0w0412nbnq_jy.js"],"ArticleDetail"]
+7:I[97367,["/_next/static/chunks/0m7.8ple1_ny_.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"OutletBoundary"]
 8:"$Sreact.suspense"
 3:T170b,<p>아기 수첩을 펼쳐보면 빼곡한 접종 목록에
 막막해지는 건 모든 초보 부모의 공통 경험이에요.
@@ -151,8 +151,8 @@ IPV, Hib, PCV, MMR, 수두, 일본뇌염, A형간염,
 <p>⚠️ 이 글은 일반적인 육아 정보를 제공하며, 의학적 조언을 대체하지 않습니다.
 아이의 건강 문제는 소아청소년과 전문의와 상담하세요.</p>
 </blockquote>
-0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"영유아 예방접종 스케줄 완벽 정리","description":"영유아 예방접종 시기가 헷갈리는 초보 부모를 위한 완벽 가이드예요. 질병관리청 권장 일정 기준으로 출생 직후부터 만 6세까지 월령별 접종 스케줄표, 무료·유료 접종 구분, 접종 전후 체크리스트, 이상 반응 대처법까지 한눈에 정리했어요.","slug":"infant-vaccination-schedule","tags":["예방접종","영유아","건강관리"],"date":"2026-04-05","linked_timeline_weeks":[28],"content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"g8At2fz9UGFSKe1abBw45"}
-4:["$","script","script-0",{"src":"/_next/static/chunks/0p3d-p5k~ehe3.js","async":true}]
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"영유아 예방접종 스케줄 완벽 정리","description":"영유아 예방접종 시기가 헷갈리는 초보 부모를 위한 완벽 가이드예요. 질병관리청 권장 일정 기준으로 출생 직후부터 만 6세까지 월령별 접종 스케줄표, 무료·유료 접종 구분, 접종 전후 체크리스트, 이상 반응 대처법까지 한눈에 정리했어요.","slug":"infant-vaccination-schedule","tags":["예방접종","영유아","건강관리"],"date":"2026-04-05","linked_timeline_weeks":[28],"content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"PeaWMLa-ffudqOX2uXkpC"}
+4:["$","script","script-0",{"src":"/_next/static/chunks/0k_ntlfs6mua6.js","async":true}]
 5:["$","script","script-1",{"src":"/_next/static/chunks/0w0412nbnq_jy.js","async":true}]
 6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
 9:null
