@@ -32,7 +32,7 @@ test.describe("SEO 메타 태그 브랜딩 (Step 11)", () => {
       // 왜: 서브 페이지도 톤 통일
       await page.goto("/about");
       const description = await page.locator('meta[name="description"]').getAttribute("content");
-      expect(description).toContain("답답해서 만든");
+      expect(description).toContain("답답해서 직접 만든");
     });
 
     test("/contact description이 브랜딩 톤으로 변경되었다", async ({ page }) => {
@@ -40,7 +40,7 @@ test.describe("SEO 메타 태그 브랜딩 (Step 11)", () => {
       // 왜: 서브 페이지도 톤 통일
       await page.goto("/contact");
       const description = await page.locator('meta[name="description"]').getAttribute("content");
-      expect(description).toContain("의견을 들려주세요");
+      expect(description).toContain("혼자 만들다 보니");
     });
 
     test("/timeline description이 브랜딩 톤으로 변경되었다", async ({ page }) => {

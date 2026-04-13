@@ -92,7 +92,7 @@ test.describe("홈 페이지", () => {
       // 왜: 미기록 유저에게도 카드가 의미 있도록
       const dashboard = page.locator(".grid.grid-cols-2");
       await expect(dashboard.getByRole("link", { name: /체중 기록/ })).toBeVisible();
-      await expect(page.getByText(/체중 변화를 기록하고 추이를 확인하세요/)).toBeVisible();
+      await expect(page.getByText(/아직 기록이 없어요/)).toBeVisible();
     });
 
     test("베이비페어 카드 클릭 시 /baby-fair로 이동한다", async ({ page }) => {
@@ -112,14 +112,13 @@ test.describe("홈 페이지", () => {
     });
   });
 
-  test.describe("피드백 배너", () => {
-    test("피드백 배너 링크가 새 탭으로 열리도록 설정되어 있다", async ({ page }) => {
-      // 무엇을: 피드백 링크의 target="_blank" 속성 확인
-      // 왜: 사용자가 현재 페이지를 벗어나지 않도록
-      const feedbackLink = page.getByRole("link", { name: "의견을 들려주세요" });
-      await expect(feedbackLink).toBeVisible();
-      await expect(feedbackLink).toHaveAttribute("target", "_blank");
-      await expect(feedbackLink).toHaveAttribute("rel", /noopener/);
+  test.describe("Footer 링크", () => {
+    test("Footer에 연락처 링크가 있다", async ({ page }) => {
+      // 무엇을: Footer에 연락처(의견 보내기) 링크 존재
+      // 왜: 피드백 접근 경로 확인
+      const contactLink = page.getByRole("link", { name: "연락처" });
+      await expect(contactLink).toBeVisible();
+      await expect(contactLink).toHaveAttribute("href", "/contact");
     });
 
     test("대시보드 이번 주 할 일에 커스텀 타임라인 항목이 반영된다", async ({ page }) => {

@@ -6,6 +6,8 @@ test.describe("체중관리 접근성 개선 (Step 7)", () => {
       // 무엇을: 체중 기록 0건일 때 빈 상태 텍스트
       // 왜: PRD에 따른 빈 상태 문구 확인
       await page.goto("/");
+      await page.evaluate(() => localStorage.setItem("onboarding-completed", "true"));
+      await page.goto("/");
       const weightCard = page.locator('a[href="/weight"]');
       await expect(weightCard.getByText("아직 기록이 없어요")).toBeVisible();
       await expect(weightCard.getByText("시작하기")).toBeVisible();
