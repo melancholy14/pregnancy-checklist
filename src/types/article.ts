@@ -5,6 +5,8 @@ export type ArticleMeta = {
   tags: string[];
   date: string;
   updated?: string;
+  linked_timeline_weeks?: number[];
+  authorNote?: string;
 };
 
 export type Article = ArticleMeta & {

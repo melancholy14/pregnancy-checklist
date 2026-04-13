@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <div className="min-h-screen pb-24 px-4">
-      <div className="max-w-2xl mx-auto pt-8 prose prose-sm">
+      <div className="pt-8 prose prose-sm">
         <h1 className="text-center text-xl mb-8">서비스 이용약관</h1>
 
         <p className="text-muted-foreground text-sm mb-6">시행일: 2026년 4월 1일</p>
@@ -30,7 +30,7 @@ export default function TermsPage() {
 
         <h2 className="text-base mt-6 mb-3">제2조 (정의)</h2>
         <ul className="text-sm text-muted-foreground leading-relaxed list-disc pl-5">
-          <li>&quot;본 서비스&quot;란 임산부의 출산 준비를 돕기 위해 제공되는 웹 기반 정보 제공 도구로, 체크리스트, 타임라인, 베이비페어 일정, 체중 기록, 영상 큐레이션 기능을 포함합니다.</li>
+          <li>&quot;본 서비스&quot;란 임산부의 출산 준비를 돕기 위해 제공되는 웹 기반 정보 제공 도구로, 체크리스트, 타임라인, 베이비페어 일정, 체중 관리, 영상 큐레이션, 육아·임신 관련 블로그 콘텐츠 제공 기능을 포함합니다.</li>
           <li>&quot;운영자&quot;란 본 서비스를 운영하는 개인을 의미합니다.</li>
           <li>&quot;이용자&quot;란 본 서비스에 접속하여 본 약관에 따라 서비스를 이용하는 자를 의미합니다.</li>
         </ul>
@@ -41,12 +41,17 @@ export default function TermsPage() {
         </p>
         <p className="text-sm text-muted-foreground leading-relaxed mt-2">
           ② 운영자는 합리적인 사유가 발생할 경우 관련 법령에 위배되지 않는 범위에서 본 약관을
-          변경할 수 있으며, 변경된 약관은 시행일 최소 7일 전에 서비스 내 공지합니다.
+          변경할 수 있으며, 변경된 약관은 시행일 최소 7일 전에 서비스 내 팝업 또는 공지사항을
+          통해 변경 사유 및 적용 일자를 명시하여 안내합니다.
           이용자에게 불리한 변경의 경우 최소 30일 전에 공지합니다.
         </p>
         <p className="text-sm text-muted-foreground leading-relaxed mt-2">
           ③ 이용자가 변경된 약관에 동의하지 않는 경우 서비스 이용을 중단할 수 있습니다.
           변경된 약관 시행일 이후에도 서비스를 계속 이용하는 경우 변경된 약관에 동의한 것으로 봅니다.
+        </p>
+        <p className="text-sm text-muted-foreground leading-relaxed mt-2">
+          ④ 이용자는 언제든지 서비스 이용을 중단함으로써 본 약관에 대한 동의를 철회할 수 있습니다.
+          브라우저의 LocalStorage 데이터를 삭제하면 서비스와 관련된 모든 로컬 데이터가 제거됩니다.
         </p>
 
         <h2 className="text-base mt-6 mb-3">제4조 (이용계약의 성립)</h2>
@@ -55,6 +60,7 @@ export default function TermsPage() {
         </p>
         <p className="text-sm text-muted-foreground leading-relaxed mt-2">
           ② 본 서비스는 회원가입 절차가 없으므로, 서비스 이용 시 본 약관에 동의한 것으로 간주합니다.
+          본 약관은 서비스 하단 링크 또는 설정 메뉴를 통해 언제든지 확인하실 수 있습니다.
         </p>
 
         <h2 className="text-base mt-6 mb-3">제5조 (서비스의 제공)</h2>
@@ -63,7 +69,7 @@ export default function TermsPage() {
         </p>
         <p className="text-sm text-muted-foreground leading-relaxed mt-2">
           ② 서비스 제공 범위: 출산 준비 체크리스트, 주차별 타임라인, 베이비페어 일정 정보,
-          체중 기록 관리, 영상 큐레이션
+          체중 관리, 영상 큐레이션, 임신·육아 관련 블로그 콘텐츠
         </p>
         <p className="text-sm text-muted-foreground leading-relaxed mt-2">
           ③ 본 서비스는 연중무휴 24시간 제공을 원칙으로 합니다.
@@ -81,12 +87,17 @@ export default function TermsPage() {
           <li>자동화된 수단(크롤링, 스크래핑 등)을 이용하여 서비스에 접근하는 행위</li>
           <li>기타 관련 법령에 위배되는 행위</li>
         </ul>
+        <p className="text-sm text-muted-foreground leading-relaxed mt-2">
+          운영자는 이용자가 위 의무를 위반한 경우, 해당 이용자의 서비스 접근을 제한하는 등
+          필요한 조치를 취할 수 있습니다.
+        </p>
 
         <h2 className="text-base mt-6 mb-3">제7조 (의료 면책)</h2>
         <p className="text-sm text-muted-foreground leading-relaxed">
-          ① 본 서비스에서 제공하는 모든 정보(체크리스트 항목, 타임라인, 권장 체중 범위 등)는
-          공개된 의학 자료를 참고하여 작성된 일반적인 참고 정보이며,
-          의학적 진단이나 치료를 대체하지 않습니다.
+          ① 본 서비스에서 제공하는 모든 정보(체크리스트 항목, 타임라인, 권장 체중 범위,
+          블로그 콘텐츠 등)는 공개적으로 이용 가능한 자료를 참고하여 작성된
+          일반적인 참고 정보이며, 의학적 진단, 치료, 처방을 대체하지 않습니다.
+          본 서비스의 정보는 의료 전문가의 자문을 거치지 않았을 수 있습니다.
         </p>
         <p className="text-sm text-muted-foreground leading-relaxed mt-2">
           ② 건강 관련 결정은 반드시 담당 의사 또는 의료 전문가와 상담 후 진행하시기 바랍니다.
@@ -134,14 +145,16 @@ export default function TermsPage() {
         <h2 className="text-base mt-6 mb-3">제11조 (보증의 부인)</h2>
         <p className="text-sm text-muted-foreground leading-relaxed">
           본 서비스는 &quot;있는 그대로(AS IS)&quot; 제공되며, 운영자는 서비스에서 제공하는
-          정보의 정확성, 완전성, 최신성, 신뢰성 또는 특정 목적에의 적합성에 대해
-          명시적이든 묵시적이든 어떠한 보증도 하지 않습니다.
+          정보의 정확성, 완전성, 최신성, 신뢰성, 특정 목적에의 적합성 또는 비침해성에 대해
+          명시적이든 묵시적이든 어떠한 보증도 하지 않습니다. 베이비페어 일정, 블로그 콘텐츠 등
+          외부 자료를 참고한 정보는 원본 자료의 변경으로 인해 실제와 다를 수 있습니다.
         </p>
 
         <h2 className="text-base mt-6 mb-3">제12조 (손해배상의 제한)</h2>
         <p className="text-sm text-muted-foreground leading-relaxed">
           ① 운영자는 무료로 제공하는 본 서비스와 관련하여 이용자에게 발생한 직접적, 간접적,
-          부수적, 특별, 결과적 손해에 대해서도 책임을 지지 않습니다.
+          부수적, 특별, 결과적 손해(데이터 소실, 이익 상실, 사업 중단 등을 포함하되 이에 한정되지 않음)에
+          대해 책임을 지지 않습니다.
           다만, 운영자의 고의 또는 중대한 과실로 인한 손해는 그러하지 아니합니다.
         </p>
         <p className="text-sm text-muted-foreground leading-relaxed mt-2">
@@ -165,6 +178,10 @@ export default function TermsPage() {
         <p className="text-sm text-muted-foreground leading-relaxed mt-2">
           ② 서비스를 변경하거나 중단하는 경우, 가능한 한 사전에 서비스 내 공지를 통해 안내합니다.
           다만, 운영자가 통제할 수 없는 사유로 인한 경우 사후에 공지할 수 있습니다.
+        </p>
+        <p className="text-sm text-muted-foreground leading-relaxed mt-2">
+          ③ 서비스가 완전히 종료되는 경우, 운영자는 종료일 최소 30일 전에 공지하며,
+          이용자가 LocalStorage에 저장된 데이터를 별도로 보관할 수 있도록 안내합니다.
         </p>
 
         <h2 className="text-base mt-6 mb-3">제15조 (이용 자격)</h2>

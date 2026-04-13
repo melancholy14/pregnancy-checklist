@@ -6,6 +6,7 @@ export type TimelineItem = {
   type: 'prep' | 'shopping' | 'admin' | 'education' | 'wellbeing';
   priority: 'high' | 'medium' | 'low';
   linked_checklist_ids?: string[];
+  linked_article_slugs?: string[];
   seo_slug?: string;
   isCustom?: boolean;
 };

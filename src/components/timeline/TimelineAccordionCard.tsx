@@ -7,24 +7,21 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { useTimelineStore } from "@/store/useTimelineStore";
+import { TIMELINE_TYPE_CONFIG } from "@/lib/constants";
 import type { TimelineItem } from "@/types/timeline";
 import type { ChecklistItem } from "@/types/checklist";
+import type { ArticleMeta } from "@/types/article";
 import { WeekChecklistSection } from "./WeekChecklistSection";
 import { DeleteConfirmDialog } from "./DeleteConfirmDialog";
+import { RelatedArticlesLink } from "./RelatedArticlesLink";
 
-const TYPE_COLORS: Record<string, string> = {
-  prep: "#FFD4DE",
-  shopping: "#FFE0CC",
-  admin: "#FFF4D4",
-  education: "#E4D6F0",
-  wellbeing: "#D0EDE2",
-};
 
 interface TimelineAccordionCardProps {
   item: TimelineItem;
   status: "past" | "current" | "future";
   checklistItems: ChecklistItem[];
   checkedIds: string[];
+  relatedArticles?: ArticleMeta[];
   defaultOpen?: boolean;
 }
 
@@ -33,6 +30,7 @@ export function TimelineAccordionCard({
   status,
   checklistItems,
   checkedIds,
+  relatedArticles = [],
   defaultOpen = false,
 }: TimelineAccordionCardProps) {
   const { removeCustomItem, updateCustomItem } = useTimelineStore();
@@ -42,10 +40,11 @@ export function TimelineAccordionCard({
   const [editDescription, setEditDescription] = useState(item.description);
   const [editWeek, setEditWeek] = useState(item.week);
 
-  const color = TYPE_COLORS[item.type] ?? "#E4D6F0";
+  const color = TIMELINE_TYPE_CONFIG[item.type]?.color ?? "#E4D6F0";
   const hasChecklist = checklistItems.length > 0;
   const checkedCount = checklistItems.filter((c) => checkedIds.includes(c.id)).length;
   const totalCount = checklistItems.length;
+  const isWeekComplete = hasChecklist && checkedCount === totalCount;
 
   const saveEdit = () => {
     if (!editTitle.trim()) return;
@@ -129,7 +128,17 @@ export function TimelineAccordionCard({
                     className={`flex-1 text-left ${hasChecklist ? "cursor-pointer" : "cursor-default"}`}
                     type="button"
                   >
-                    <div className="flex items-center gap-2 mb-1">
+                    <div className="flex items-center gap-2 mb-1 flex-wrap">
+                      {isWeekComplete && <span aria-label="완료">✅</span>}
+                      {TIMELINE_TYPE_CONFIG[item.type] && (
+                        <Badge
+                          style={{ backgroundColor: `${TIMELINE_TYPE_CONFIG[item.type].color}40` }}
+                          className="text-[10px] px-1.5 py-0 rounded border-0 text-[#3D4447]"
+                        >
+                          <span aria-hidden="true">{TIMELINE_TYPE_CONFIG[item.type].icon}</span>{" "}
+                          {TIMELINE_TYPE_CONFIG[item.type].label}
+                        </Badge>
+                      )}
                       <h3 className="text-[15px] font-medium">{item.title}</h3>
                       {item.isCustom && (
                         <Badge className="bg-[#E4D6F0]/40 text-[#6B5A80] text-[10px] px-1.5 py-0 rounded border-0 hover:bg-[#E4D6F0]/40">
@@ -149,14 +158,20 @@ export function TimelineAccordionCard({
                             isOpen ? "rotate-180" : ""
                           }`}
                         />
-                        <span className="text-xs text-muted-foreground">
-                          체크리스트 {totalCount}개
-                          {checkedCount > 0 && (
-                            <span className="ml-1 text-[#2D6B4F]">
-                              ({checkedCount}/{totalCount} 완료)
-                            </span>
-                          )}
-                        </span>
+                        {isWeekComplete ? (
+                          <span className="text-xs text-[#2D6B4F] font-medium">
+                            {item.week}주차 할일을 모두 완료했어요!
+                          </span>
+                        ) : (
+                          <span className="text-xs text-muted-foreground">
+                            체크리스트 {totalCount}개
+                            {checkedCount > 0 && (
+                              <span className="ml-1 text-[#2D6B4F]">
+                                ({checkedCount}/{totalCount} 완료)
+                              </span>
+                            )}
+                          </span>
+                        )}
                       </div>
                     )}
                     {!hasChecklist && (
@@ -186,6 +201,11 @@ export function TimelineAccordionCard({
                   <WeekChecklistSection items={checklistItems} checkedIds={checkedIds} />
                 </div>
               </CollapsibleContent>
+            )}
+
+            {/* Related articles */}
+            {!isEditing && relatedArticles.length > 0 && (
+              <RelatedArticlesLink articles={relatedArticles} />
             )}
           </CardContent>
         </Card>

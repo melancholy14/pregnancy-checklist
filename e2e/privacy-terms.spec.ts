@@ -24,6 +24,8 @@ test.describe("개인정보처리방침 & 서비스 약관", () => {
       // 무엇을: 모든 페이지 Footer에서 링크가 정상 이동하는지
       // 왜: 법적 페이지 접근성 필수
       await page.goto("/");
+      await page.evaluate(() => localStorage.setItem("onboarding-completed", "true"));
+      await page.goto("/");
       await page.getByRole("link", { name: "개인정보처리방침" }).click();
       await expect(page).toHaveURL(/\/privacy/);
 

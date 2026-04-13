@@ -1,5 +1,32 @@
 import type { ChecklistItem } from "@/types/checklist";
 
+export type BrandPhase = "pregnancy" | "postpartum" | "parenting";
+
+export const BRAND_PHASE: BrandPhase = "pregnancy";
+
+export const BRAND_COPY = {
+  pregnancy: {
+    heroSub: "답답해서 직접 만들었습니다",
+    heroCaption: "초산 임신 중인 개발자의 출산 준비 기록",
+    motivation: "같이 준비하면 덜 막막하니까요",
+    onboardingGreeting: "저도 초산이라 뭐부터 해야 할지 몰라서 이 체크리스트를 만들었어요.",
+  },
+  postpartum: {
+    heroSub: "답답해서 직접 만들었습니다",
+    heroCaption: "초산 개발자의 출산 준비 & 산후조리 기록",
+    motivation: "같이 준비하면 덜 막막하니까요",
+    onboardingGreeting: "초산 출산을 겪으며 만든 체크리스트예요. 같이 준비해봐요.",
+  },
+  parenting: {
+    heroSub: "답답해서 직접 만들었습니다",
+    heroCaption: "초산 개발자의 임신·출산·육아 기록",
+    motivation: "같이 준비하면 덜 막막하니까요",
+    onboardingGreeting: "임신부터 육아까지, 직접 겪으며 정리한 체크리스트예요.",
+  },
+} as const;
+
+export const CREATOR_DUE_DATE = "2026-08-15";
+
 export const BASE_URL = "https://pregnancy-checklist.com";
 
 export const OG_IMAGE = {
@@ -7,6 +34,14 @@ export const OG_IMAGE = {
   width: 1200,
   height: 630,
   alt: "출산 준비 체크리스트",
+} as const;
+
+export const TIMELINE_TYPE_CONFIG = {
+  prep: { icon: "📦", label: "준비", color: "#FFD4DE" },
+  shopping: { icon: "🛒", label: "쇼핑", color: "#FFF4D4" },
+  admin: { icon: "📋", label: "행정", color: "#E0F0FF" },
+  education: { icon: "📚", label: "교육", color: "#E4D6F0" },
+  wellbeing: { icon: "💚", label: "건강", color: "#D0EDE2" },
 } as const;
 
 export const CATEGORY_OPTIONS: { value: ChecklistItem["category"]; label: string }[] = [

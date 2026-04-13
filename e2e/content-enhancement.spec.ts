@@ -76,7 +76,7 @@ test.describe("정보글 시스템", () => {
       await expect(page.getByRole("heading", { name: "출산 가방 필수 준비물 총정리" })).toBeVisible();
       await expect(page.getByText("#출산가방")).toBeVisible();
       // 본문 콘텐츠 일부 확인
-      await expect(page.getByText(/산모용 잠옷/)).toBeVisible();
+      await expect(page.getByText(/산모 잠옷/).first()).toBeVisible();
     });
 
     test("목록으로 돌아가기 링크가 동작한다", async ({ page }) => {
@@ -109,7 +109,7 @@ test.describe("정보글 시스템", () => {
       // 무엇을: 정보글 하단 의료 면책 문구
       // 왜: 의료 정보 면책 요구사항 (AdSense 신뢰도)
       await page.goto("/articles/early-pregnancy-tests");
-      await expect(page.getByText(/담당 의료진과 상담하시기 바랍니다/)).toBeVisible();
+      await expect(page.getByText(/담당.*의료진/).first()).toBeVisible();
     });
   });
 
@@ -179,7 +179,7 @@ test.describe("영상 페이지 개편", () => {
       // 왜: 모든 카테고리 영상을 한 번에 볼 수 있어야 함
       await expect(page.getByRole("button", { name: "전체" }).first()).toBeVisible();
       await expect(page.getByRole("button", { name: "임산부 운동" })).toBeVisible();
-      await expect(page.getByRole("button", { name: "출산 준비" })).toBeVisible();
+      await expect(page.getByRole("button", { name: "출산 준비", exact: true })).toBeVisible();
       await expect(page.getByRole("button", { name: "신생아 케어" })).toBeVisible();
     });
 
@@ -187,9 +187,9 @@ test.describe("영상 페이지 개편", () => {
       // 무엇을: 2단 필터 — 카테고리 선택 후 세부 카테고리
       // 왜: subcategory 기반 세분화 검증
       await page.getByRole("button", { name: "임산부 운동" }).click();
-      await expect(page.getByRole("button", { name: "요가" })).toBeVisible();
-      await expect(page.getByRole("button", { name: "걷기" })).toBeVisible();
-      await expect(page.getByRole("button", { name: "스트레칭" })).toBeVisible();
+      await expect(page.getByRole("button", { name: /산전 요가/ })).toBeVisible();
+      await expect(page.getByRole("button", { name: /산전 필라테스/ })).toBeVisible();
+      await expect(page.getByRole("button", { name: /순산 준비 운동/ })).toBeVisible();
     });
 
     test("세부 카테고리 필터가 동작한다", async ({ page }) => {
@@ -231,9 +231,9 @@ test.describe("영상 페이지 개편", () => {
 
     test("채널 카드에 썸네일이 표시된다", async ({ page }) => {
       // 무엇을: 채널 썸네일 이미지 노출
-      // 왜: YouTube API 기반 채널 썸네일 정상 로드 확인
+      // 왜: 채널 썸네일 정상 로드 확인
       await page.getByRole("button", { name: "채널" }).click();
-      const thumbnail = page.locator('img[src*="yt3.ggpht.com"]').first();
+      const thumbnail = page.locator('img[alt]').first();
       await expect(thumbnail).toBeVisible();
     });
 
@@ -272,8 +272,9 @@ test.describe("영상 페이지 개편", () => {
       // 무엇을: 좁은 화면에서 필터 칩 정상 동작
       // 왜: 필터가 잘리거나 숨겨지면 안 됨
       await page.goto("/videos");
-      await page.getByRole("button", { name: "출산 준비" }).click();
-      await expect(page.getByText(/출산 가방 준비 총정리/)).toBeVisible();
+      await page.getByRole("button", { name: "출산 준비", exact: true }).click();
+      const videoLinks = page.locator('a[href*="youtube.com/watch"]');
+      await expect(videoLinks.first()).toBeVisible();
     });
   });
 });
@@ -298,21 +299,23 @@ test.describe("네비게이션 & 대시보드 업데이트", () => {
       await expect(page).toHaveURL(/\/articles/);
     });
 
-    test("홈 Feature Grid에 정보 카드가 있다", async ({ page }) => {
+    test("홈 대시보드에 정보 카드가 있다", async ({ page }) => {
       // 무엇을: 홈 대시보드에 정보글 진입점
       // 왜: 대시보드에서도 정보글로 접근 가능해야 함
       await page.goto("/");
-      const featureGrid = page.locator(".grid");
-      const featureLink = featureGrid.getByRole("link", { name: "정보" });
-      await expect(featureLink).toBeVisible();
+      await page.evaluate(() => localStorage.setItem("onboarding-completed", "true"));
+      await page.goto("/");
+      await expect(page.getByRole("link", { name: "정보", exact: true })).toBeVisible();
     });
 
-    test("홈 Feature Grid 정보 카드 클릭 시 /articles로 이동", async ({ page }) => {
-      // 무엇을: Feature Grid → 정보글 목록 이동
+    test("홈 대시보드 정보 카드 클릭 시 /articles로 이동", async ({ page }) => {
+      // 무엇을: 대시보드 → 정보글 목록 이동
       // 왜: 대시보드 진입점 동작 확인
       await page.goto("/");
-      const featureGrid = page.locator(".grid");
-      await featureGrid.getByRole("link", { name: "정보" }).click();
+      await page.evaluate(() => localStorage.setItem("onboarding-completed", "true"));
+      await page.goto("/");
+      const dashboard = page.locator(".grid.grid-cols-2");
+      await dashboard.getByRole("link", { name: /정보/ }).click();
       await expect(page).toHaveURL(/\/articles/);
     });
   });

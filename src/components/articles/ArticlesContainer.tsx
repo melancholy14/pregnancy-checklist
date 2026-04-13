@@ -20,7 +20,7 @@ export function ArticlesContainer({ articles, allTags }: ArticlesContainerProps)
 
   return (
     <div className="min-h-screen pb-24 px-4">
-      <div className="max-w-2xl mx-auto pt-8">
+      <div className="pt-8">
         <h1 className="mb-2 text-center">정보 & 가이드</h1>
         <p className="text-center text-muted-foreground mb-8">
           임신과 출산에 도움되는 정보 모음

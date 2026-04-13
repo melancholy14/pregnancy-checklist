@@ -30,7 +30,7 @@ export function WeightChart({ data, baseWeight }: WeightChartProps) {
 
   return (
     <Card className="rounded-2xl shadow-md mb-6 border border-black/4">
-      <CardContent className="p-6">
+      <CardContent className="p-4">
         <h3 className="mb-4">체중 추이</h3>
         <ResponsiveContainer width="100%" height={240}>
           <LineChart data={data}>
@@ -66,7 +66,7 @@ export function WeightChart({ data, baseWeight }: WeightChartProps) {
                 stroke="#D0EDE2"
                 strokeDasharray="5 5"
                 strokeWidth={1.5}
-                label={{ value: "권장 하한", position: "right", fontSize: 10, fill: "#9CA0A4" }}
+                label={{ value: "권장 하한", position: "right", fontSize: 11, fill: "#9CA0A4" }}
               />
             )}
             {maxTarget && (
@@ -75,7 +75,7 @@ export function WeightChart({ data, baseWeight }: WeightChartProps) {
                 stroke="#FFE0CC"
                 strokeDasharray="5 5"
                 strokeWidth={1.5}
-                label={{ value: "권장 상한", position: "right", fontSize: 10, fill: "#9CA0A4" }}
+                label={{ value: "권장 상한", position: "right", fontSize: 11, fill: "#9CA0A4" }}
               />
             )}
             <Line
@@ -96,7 +96,7 @@ export function WeightChart({ data, baseWeight }: WeightChartProps) {
           <br />
           출처: 대한산부인과학회 임신 중 체중 관리 가이드라인
           <br />
-          <span className="text-[10px]">
+          <span className="text-[11px]">
             * 본 정보는 참고용이며 의료적 조언이 아닙니다. 정확한 체중 관리는 담당 의사와 상담하세요.
           </span>
         </p>

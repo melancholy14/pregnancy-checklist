@@ -1,11 +1,14 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
+import { ChevronDown } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import type { BabyfairEvent } from "@/types/babyfair";
 import { BabyfairCard } from "./BabyfairCard";
+
+type BabyfairTab = "ongoing" | "upcoming" | "ended";
 
 interface BabyfairContainerProps {
   events: BabyfairEvent[];
@@ -13,6 +16,9 @@ interface BabyfairContainerProps {
 
 export function BabyfairContainer({ events }: BabyfairContainerProps) {
   const [today] = useState(() => new Date().toISOString().split("T")[0]);
+  const [citiesExpanded, setCitiesExpanded] = useState(false);
+  const [citiesOverflow, setCitiesOverflow] = useState(false);
+  const citiesRef = useRef<HTMLDivElement>(null);
 
   const cities = useMemo(() => {
     const set = new Set(events.map((e) => e.city));
@@ -26,24 +32,39 @@ export function BabyfairContainer({ events }: BabyfairContainerProps) {
 
   const [selectedCity, setSelectedCity] = useState("전체");
   const [selectedYear, setSelectedYear] = useState("전체");
-  const [tab, setTab] = useState<"upcoming" | "ended">("upcoming");
+
+  const ongoingEvents = useMemo(() => {
+    return events.filter(
+      (e) => e.start_date <= today && e.end_date >= today
+    );
+  }, [events, today]);
+
+  const [tab, setTab] = useState<BabyfairTab>(
+    ongoingEvents.length > 0 ? "ongoing" : "upcoming"
+  );
+
+  useEffect(() => {
+    const el = citiesRef.current;
+    if (el) setCitiesOverflow(el.scrollHeight > el.clientHeight + 4);
+  }, [cities]);
 
   const filtered = useMemo(() => {
     return events.filter((e) => {
       if (selectedCity !== "전체" && e.city !== selectedCity) return false;
       if (selectedYear !== "전체" && !e.start_date.startsWith(selectedYear)) return false;
-      if (tab === "upcoming" && e.end_date < today) return false;
-      if (tab === "ended" && e.end_date >= today) return false;
+      if (tab === "ongoing" && !(e.start_date <= today && e.end_date >= today)) return false;
+      if (tab === "upcoming" && !(e.start_date > today)) return false;
+      if (tab === "ended" && !(e.end_date < today)) return false;
       return true;
     });
   }, [events, selectedCity, selectedYear, tab, today]);
 
   return (
     <div className="min-h-screen pb-24 px-4">
-      <div className="max-w-4xl mx-auto pt-8">
+      <div className="pt-8">
         <h1 className="mb-2 text-center">베이비페어 일정</h1>
         <p className="text-center text-muted-foreground mb-6">
-          전국 베이비페어 행사 안내
+          {new Date().getFullYear()}년 전국 베이비페어 행사 안내
         </p>
 
         {events.length === 0 ? (
@@ -67,39 +88,79 @@ export function BabyfairContainer({ events }: BabyfairContainerProps) {
                   ))}
                 </select>
               )}
-              <div className="flex gap-1.5 overflow-x-auto" role="group" aria-label="도시 필터">
-                {cities.map((city) => (
+              <div>
+                <div
+                  ref={citiesRef}
+                  className={`flex flex-wrap gap-1.5 overflow-hidden transition-[max-height] duration-300 ${
+                    citiesExpanded ? "max-h-[500px]" : "max-h-[5.5rem]"
+                  }`}
+                >
+                  {cities.map((city) => (
+                    <button
+                      key={city}
+                      onClick={() => setSelectedCity(city)}
+                      className={`px-4 py-2 rounded-xl text-sm whitespace-nowrap border transition-all ${
+                        selectedCity === city
+                          ? "bg-[#D0EDE2]/40 border-[#D0EDE2]/30 text-[#3D4447]"
+                          : "bg-white border-black/4 text-[#9CA0A4] hover:bg-muted"
+                      }`}
+                    >
+                      {city}
+                    </button>
+                  ))}
+                </div>
+                {citiesOverflow && (
                   <button
-                    key={city}
-                    onClick={() => setSelectedCity(city)}
-                    className={`px-4 py-2 rounded-xl text-sm whitespace-nowrap border transition-all ${
-                      selectedCity === city
-                        ? "bg-[#D0EDE2]/40 border-[#D0EDE2]/30 text-[#3D4447]"
-                        : "bg-white border-black/4 text-[#9CA0A4] hover:bg-muted"
-                    }`}
+                    type="button"
+                    onClick={() => setCitiesExpanded((v) => !v)}
+                    className="flex items-center gap-1 mt-2 text-xs text-[#9CA0A4] hover:text-[#3D4447] transition-colors"
                   >
-                    {city}
+                    {citiesExpanded ? "접기" : "더보기"}
+                    <ChevronDown
+                      size={14}
+                      className={`transition-transform duration-200 ${citiesExpanded ? "rotate-180" : ""}`}
+                    />
                   </button>
-                ))}
+                )}
               </div>
             </div>
 
             {/* Tabs */}
-            <Tabs value={tab} onValueChange={(v) => setTab(v as "upcoming" | "ended")}>
+            <Tabs value={tab} onValueChange={(v) => setTab(v as BabyfairTab)}>
               <TabsList className="flex gap-2 mb-6 bg-transparent h-auto p-0">
                 <TabsTrigger
-                  value="upcoming"
-                  className="px-5 py-2.5 rounded-xl border border-black/4 bg-white text-[#9CA0A4] data-[state=active]:bg-[#D0EDE2]/40 data-[state=active]:text-[#3D4447] data-[state=active]:border-[#D0EDE2]/30 h-auto transition-all"
+                  value="ongoing"
+                  className="px-4 py-2 rounded-xl border border-black/4 bg-white text-[#9CA0A4] data-[state=active]:bg-[#D0EDE2]/40 data-[state=active]:text-[#3D4447] data-[state=active]:border-[#D0EDE2]/30 h-auto transition-all"
                 >
-                  예정 행사
+                  진행 중{ongoingEvents.length > 0 && ` (${ongoingEvents.length})`}
+                </TabsTrigger>
+                <TabsTrigger
+                  value="upcoming"
+                  className="px-4 py-2 rounded-xl border border-black/4 bg-white text-[#9CA0A4] data-[state=active]:bg-[#D0EDE2]/40 data-[state=active]:text-[#3D4447] data-[state=active]:border-[#D0EDE2]/30 h-auto transition-all"
+                >
+                  예정
                 </TabsTrigger>
                 <TabsTrigger
                   value="ended"
-                  className="px-5 py-2.5 rounded-xl border border-black/4 bg-white text-[#9CA0A4] data-[state=active]:bg-[#D0EDE2]/40 data-[state=active]:text-[#3D4447] data-[state=active]:border-[#D0EDE2]/30 h-auto transition-all"
+                  className="px-4 py-2 rounded-xl border border-black/4 bg-white text-[#9CA0A4] data-[state=active]:bg-[#D0EDE2]/40 data-[state=active]:text-[#3D4447] data-[state=active]:border-[#D0EDE2]/30 h-auto transition-all"
                 >
                   지난 행사
                 </TabsTrigger>
               </TabsList>
+
+              <TabsContent value="ongoing">
+                {filtered.length === 0 ? (
+                  <div className="text-center py-8 text-muted-foreground">
+                    <p>현재 진행 중인 행사가 없어요</p>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {filtered.map((event) => (
+                      <BabyfairCard key={event.slug} event={event} daysLeft={Math.ceil((new Date(event.end_date).getTime() - new Date(today).getTime()) / 86400000)} />
+                    ))}
+                  </div>
+                )}
+              </TabsContent>
 
               <TabsContent value="upcoming">
                 {filtered.length === 0 ? (

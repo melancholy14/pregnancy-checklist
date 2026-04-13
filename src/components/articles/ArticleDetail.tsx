@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { Article } from "@/types/article";
+import { TimelineCTA } from "./TimelineCTA";
 
 interface ArticleDetailProps {
   article: Article;
@@ -12,7 +13,7 @@ interface ArticleDetailProps {
 export function ArticleDetail({ article }: ArticleDetailProps) {
   return (
     <div className="min-h-screen pb-24 px-4">
-      <article className="max-w-2xl mx-auto pt-8">
+      <article className="pt-8">
         <Link
           href="/articles"
           className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-[#3D4447] mb-6 no-underline"
@@ -45,10 +46,25 @@ export function ArticleDetail({ article }: ArticleDetailProps) {
 
         <div className="h-px bg-gradient-to-r from-transparent via-[#F0EBE6] to-transparent mb-8" />
 
+        {article.authorNote && (
+          <div className="bg-[#FFF4D4]/15 border border-[#FFF4D4]/40 rounded-xl px-4 py-3.5 mb-8">
+            <p className="text-xs font-medium text-[#8B7520] mb-1.5">
+              💬 만든이의 한마디
+            </p>
+            <p className="text-sm text-[#8B7520] italic leading-relaxed">
+              &ldquo;{article.authorNote}&rdquo;
+            </p>
+          </div>
+        )}
+
         <div
           className="article-prose"
           dangerouslySetInnerHTML={{ __html: article.content }}
         />
+
+        {article.linked_timeline_weeks && article.linked_timeline_weeks.length > 0 && (
+          <TimelineCTA weeks={article.linked_timeline_weeks} />
+        )}
       </article>
     </div>
   );

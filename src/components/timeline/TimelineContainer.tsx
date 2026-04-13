@@ -1,7 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Plus } from "lucide-react";
+import { Plus, Save } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { useDueDateStore } from "@/store/useDueDateStore";
 import { useTimelineStore } from "@/store/useTimelineStore";
 import { useChecklistStore } from "@/store/useChecklistStore";
@@ -11,6 +12,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import type { TimelineItem } from "@/types/timeline";
 import type { ChecklistItem } from "@/types/checklist";
+import type { ArticleMeta } from "@/types/article";
 import { TimelineAccordionCard } from "./TimelineAccordionCard";
 import { UnifiedAddForm } from "./UnifiedAddForm";
 import { CategoryFilter } from "./CategoryFilter";
@@ -19,15 +21,18 @@ import { WeekChecklistSection } from "./WeekChecklistSection";
 interface TimelineContainerProps {
   timelineItems: TimelineItem[];
   checklistItems: ChecklistItem[];
+  articles?: ArticleMeta[];
 }
 
-export function TimelineContainer({ timelineItems, checklistItems }: TimelineContainerProps) {
+export function TimelineContainer({ timelineItems, checklistItems, articles = [] }: TimelineContainerProps) {
   const { dueDate } = useDueDateStore();
   const { customItems: customTimelineItems } = useTimelineStore();
   const { checkedIds, customItems: customChecklistItems } = useChecklistStore();
   const [hydrated, setHydrated] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
   const [activeCategory, setActiveCategory] = useState("all");
+  const [showFirstCheckBanner, setShowFirstCheckBanner] = useState(false);
+  const prevCheckedCountRef = useRef<number | null>(null);
   const currentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -38,6 +43,14 @@ export function TimelineContainer({ timelineItems, checklistItems }: TimelineCon
     if (!hydrated || !dueDate) return null;
     return calcPregnancyWeek(new Date(dueDate));
   }, [hydrated, dueDate]);
+
+  const articleMap = useMemo(() => {
+    const map = new Map<string, ArticleMeta>();
+    for (const a of articles) {
+      map.set(a.slug, a);
+    }
+    return map;
+  }, [articles]);
 
   const allTimelineItems = useMemo(() => {
     return [...timelineItems, ...customTimelineItems].sort((a, b) => a.week - b.week);
@@ -83,6 +96,24 @@ export function TimelineContainer({ timelineItems, checklistItems }: TimelineCon
     return set;
   }, [activeCategory, weekChecklistMap]);
 
+  // 첫 체크 시 인라인 배너 (1회성)
+  useEffect(() => {
+    if (!hydrated) return;
+    const count = checkedIds.length;
+    if (prevCheckedCountRef.current !== null && prevCheckedCountRef.current === 0 && count === 1) {
+      try {
+        const shown = localStorage.getItem("first-check-guide-shown");
+        if (!shown) {
+          setShowFirstCheckBanner(true);
+          localStorage.setItem("first-check-guide-shown", "true");
+        }
+      } catch {
+        // localStorage 접근 불가 시 무시
+      }
+    }
+    prevCheckedCountRef.current = count;
+  }, [hydrated, checkedIds]);
+
   // 현재 주차로 자동 스크롤
   useEffect(() => {
     if (hydrated && currentWeek && currentRef.current) {
@@ -104,7 +135,7 @@ export function TimelineContainer({ timelineItems, checklistItems }: TimelineCon
 
   return (
     <div className="min-h-screen pb-24 px-4 bg-linear-to-b from-[#FFFAF7] to-white">
-      <div className="max-w-2xl mx-auto pt-8">
+      <div className="pt-8">
         <h1 className="mb-2 text-center">임신 타임라인</h1>
         <p className="text-center text-muted-foreground mb-6">
           주차별 일정과 체크리스트를 한눈에 확인하세요
@@ -134,6 +165,41 @@ export function TimelineContainer({ timelineItems, checklistItems }: TimelineCon
                 </span>
               </div>
               <Progress value={progress.percent} className="h-2 bg-muted" />
+              {progress.percent >= 25 && (
+                <p className="text-xs text-center mt-2 text-[#2D6B4F] font-medium">
+                  {progress.percent >= 100
+                    ? "완벽한 준비 완료! 🎊"
+                    : progress.percent >= 75
+                      ? "거의 다 왔어요!"
+                      : progress.percent >= 50
+                        ? "절반 완료!"
+                        : "순조로운 출발!"}
+                </p>
+              )}
+            </CardContent>
+          </Card>
+        )}
+
+        {/* 첫 체크 인라인 배너 */}
+        {showFirstCheckBanner && (
+          <Card className="rounded-2xl border border-[#D0EDE2]/50 bg-[#D0EDE2]/10 mb-6">
+            <CardContent className="p-4 flex items-start gap-3">
+              <span className="w-9 h-9 rounded-xl bg-[#D0EDE2] flex items-center justify-center shrink-0 mt-0.5">
+                <Save size={18} strokeWidth={1.8} className="text-[#3D4447]" />
+              </span>
+              <div className="flex-1">
+                <p className="text-sm font-medium mb-0.5">체크한 내용은 자동 저장돼요!</p>
+                <p className="text-xs text-muted-foreground">다시 방문해도 기록이 남아있어요</p>
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setShowFirstCheckBanner(false)}
+                className="rounded-lg h-8 text-xs shrink-0"
+                aria-label="배너 닫기"
+              >
+                확인
+              </Button>
             </CardContent>
           </Card>
         )}
@@ -151,7 +217,7 @@ export function TimelineContainer({ timelineItems, checklistItems }: TimelineCon
         </div>
 
         {/* 통합 추가 폼 */}
-        {showAddForm && <UnifiedAddForm onClose={() => setShowAddForm(false)} />}
+        {showAddForm && <UnifiedAddForm onClose={() => setShowAddForm(false)} timelineItems={allTimelineItems} />}
 
         {/* Timeline */}
         <div className="relative">
@@ -168,6 +234,9 @@ export function TimelineContainer({ timelineItems, checklistItems }: TimelineCon
                   const shouldRef = status === "current" && !firstCurrentAssigned;
                   if (shouldRef) firstCurrentAssigned = true;
                   const weekChecklist = getFilteredChecklist(weekChecklistMap.get(item.week) ?? []);
+                  const relatedArticles = (item.linked_article_slugs ?? [])
+                    .map((slug) => articleMap.get(slug))
+                    .filter((a): a is ArticleMeta => a !== undefined);
 
                   return (
                     <div key={item.id} ref={shouldRef ? currentRef : undefined}>
@@ -176,6 +245,7 @@ export function TimelineContainer({ timelineItems, checklistItems }: TimelineCon
                         status={status}
                         checklistItems={weekChecklist}
                         checkedIds={hydrated ? checkedIds : []}
+                        relatedArticles={relatedArticles}
                         defaultOpen={status === "current"}
                       />
                     </div>
@@ -213,7 +283,7 @@ export function TimelineContainer({ timelineItems, checklistItems }: TimelineCon
         {/* FAB: 커스텀 항목 추가 */}
         <button
           onClick={() => setShowAddForm(true)}
-          className="fixed bottom-24 right-6 w-14 h-14 rounded-2xl bg-[#E4D6F0] shadow-lg flex items-center justify-center hover:bg-[#E4D6F0]/80 hover:shadow-xl transition-all duration-200 z-10"
+          className="fixed fab-bottom-safe right-6 w-14 h-14 rounded-2xl bg-[#E4D6F0] shadow-lg flex items-center justify-center hover:bg-[#E4D6F0]/80 hover:shadow-xl transition-all duration-200 z-10"
           aria-label="항목 추가"
         >
           <Plus size={24} color="#3D4447" />

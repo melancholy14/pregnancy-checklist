@@ -3,12 +3,12 @@ import { test, expect } from "@playwright/test";
 test.describe("SEO 메타데이터 & OG 태그", () => {
   test.describe("페이지별 title 확인", () => {
     const pages = [
-      { path: "/", title: "출산 준비 체크리스트 - 임신 주차별 준비 가이드" },
+      { path: "/", title: "출산 준비 체크리스트" },
       { path: "/timeline", title: "임신 주차별 타임라인 & 체크리스트" },
       { path: "/baby-fair", title: "베이비페어 일정 모음" },
       { path: "/weight", title: "임신 체중 기록 & 변화 그래프" },
       { path: "/videos", title: "임산부 추천 영상 모음" },
-      { path: "/about", title: "서비스 소개" },
+      { path: "/about", title: "만든 사람" },
       { path: "/guides/hospital-bag", title: "출산 가방 필수 준비물 총정리" },
       { path: "/guides/weekly-prep", title: "임신 주차별 검사 & 준비 가이드" },
     ];
@@ -37,7 +37,7 @@ test.describe("SEO 메타데이터 & OG 태그", () => {
       // 왜: SNS 공유 시 설명 표시
       await page.goto("/");
       const ogDesc = page.locator('meta[property="og:description"]');
-      await expect(ogDesc).toHaveAttribute("content", /임신 주차에 맞춘/);
+      await expect(ogDesc).toHaveAttribute("content", /답답해서 직접 만들었습니다/);
     });
 
     test("홈 페이지에 og:image가 설정된다", async ({ page }) => {

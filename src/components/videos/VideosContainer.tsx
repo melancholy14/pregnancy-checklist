@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
+import { ChevronDown } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { VideoCard } from "./VideoCard";
 import { ChannelCard } from "./ChannelCard";
@@ -23,6 +24,9 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
   const [viewMode, setViewMode] = useState<"videos" | "channels">("videos");
   const [activeCategory, setActiveCategory] = useState<string>("all");
   const [activeSubcategory, setActiveSubcategory] = useState<string>("all");
+  const [subExpanded, setSubExpanded] = useState(false);
+  const [subOverflow, setSubOverflow] = useState(false);
+  const subRef = useRef<HTMLDivElement>(null);
 
   const channelMap = useMemo(() => {
     const map: Record<string, ChannelItem> = {};
@@ -45,6 +49,11 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
     }
     return Array.from(map.entries());
   }, [items, activeCategory]);
+
+  useEffect(() => {
+    const el = subRef.current;
+    if (el) setSubOverflow(el.scrollHeight > el.clientHeight + 4);
+  }, [subcategories]);
 
   const filteredVideos = useMemo(() => {
     let result = items;
@@ -69,9 +78,17 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
 
   const isEmpty = items.length === 0;
 
+  const videosByCategory = useMemo(() => {
+    const map: Record<string, VideoItem[]> = {};
+    for (const key of categoryKeys) {
+      map[key] = items.filter((v) => v.category === key);
+    }
+    return map;
+  }, [items]);
+
   return (
     <div className="min-h-screen pb-24 px-4">
-      <div className="max-w-5xl mx-auto pt-8">
+      <div className="pt-8">
         <h1 className="mb-2 text-center">영상 콘텐츠</h1>
         <p className="text-center text-muted-foreground mb-6">
           임신과 육아에 도움되는 영상 모음
@@ -90,7 +107,7 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
               <button
                 type="button"
                 onClick={() => setViewMode("videos")}
-                className={`px-5 py-2.5 rounded-xl border text-sm transition-all duration-200 ${
+                className={`px-4 py-2 rounded-xl border text-sm transition-all duration-200 ${
                   viewMode === "videos"
                     ? "bg-[#FFD4DE]/40 text-[#3D4447] border-[#FFD4DE]/30"
                     : "bg-white text-[#9CA0A4] border-black/4 hover:bg-muted"
@@ -101,7 +118,7 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
               <button
                 type="button"
                 onClick={() => setViewMode("channels")}
-                className={`px-5 py-2.5 rounded-xl border text-sm transition-all duration-200 ${
+                className={`px-4 py-2 rounded-xl border text-sm transition-all duration-200 ${
                   viewMode === "channels"
                     ? "bg-[#FFD4DE]/40 text-[#3D4447] border-[#FFD4DE]/30"
                     : "bg-white text-[#9CA0A4] border-black/4 hover:bg-muted"
@@ -142,32 +159,52 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
 
             {/* Subcategory Filter (videos only) */}
             {viewMode === "videos" && subcategories.length > 1 && (
-              <div className="flex justify-center gap-2 mb-8 flex-wrap">
-                <button
-                  type="button"
-                  onClick={() => setActiveSubcategory("all")}
-                  className={`px-3 py-1.5 rounded-lg border text-xs transition-all duration-200 ${
-                    activeSubcategory === "all"
-                      ? "bg-[#E4D6F0]/40 text-[#6B5A80] border-[#E4D6F0]/30"
-                      : "bg-white text-[#9CA0A4] border-black/4 hover:bg-muted"
+              <div className="mb-8">
+                <div
+                  ref={subRef}
+                  className={`flex flex-wrap gap-2 overflow-hidden transition-[max-height] duration-300 ${
+                    subExpanded ? "max-h-[500px]" : "max-h-[4.5rem]"
                   }`}
                 >
-                  전체
-                </button>
-                {subcategories.map(([key, label]) => (
                   <button
-                    key={key}
                     type="button"
-                    onClick={() => setActiveSubcategory(key)}
+                    onClick={() => setActiveSubcategory("all")}
                     className={`px-3 py-1.5 rounded-lg border text-xs transition-all duration-200 ${
-                      activeSubcategory === key
+                      activeSubcategory === "all"
                         ? "bg-[#E4D6F0]/40 text-[#6B5A80] border-[#E4D6F0]/30"
                         : "bg-white text-[#9CA0A4] border-black/4 hover:bg-muted"
                     }`}
                   >
-                    {label}
+                    전체
                   </button>
-                ))}
+                  {subcategories.map(([key, label]) => (
+                    <button
+                      key={key}
+                      type="button"
+                      onClick={() => setActiveSubcategory(key)}
+                      className={`px-3 py-1.5 rounded-lg border text-xs transition-all duration-200 ${
+                        activeSubcategory === key
+                          ? "bg-[#E4D6F0]/40 text-[#6B5A80] border-[#E4D6F0]/30"
+                          : "bg-white text-[#9CA0A4] border-black/4 hover:bg-muted"
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+                {subOverflow && (
+                  <button
+                    type="button"
+                    onClick={() => setSubExpanded((v) => !v)}
+                    className="flex items-center gap-1 mt-2 text-xs text-[#9CA0A4] hover:text-[#3D4447] transition-colors"
+                  >
+                    {subExpanded ? "접기" : "더보기"}
+                    <ChevronDown
+                      size={14}
+                      className={`transition-transform duration-200 ${subExpanded ? "rotate-180" : ""}`}
+                    />
+                  </button>
+                )}
               </div>
             )}
 

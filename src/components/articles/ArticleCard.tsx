@@ -11,7 +11,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
   return (
     <Link href={`/articles/${article.slug}`} className="no-underline block">
       <Card className="rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 border border-black/4 hover:-translate-y-0.5">
-        <CardContent className="p-5">
+        <CardContent className="p-4">
           <h3 className="text-[15px] leading-snug mb-2">{article.title}</h3>
           <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
             {article.description}
@@ -20,7 +20,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
             {article.tags.map((tag) => (
               <Badge
                 key={tag}
-                className="bg-[#E4D6F0]/30 text-[#6B5A80] text-[11px] px-2 py-0.5 rounded-lg border-0 hover:bg-[#E4D6F0]/30"
+                className="bg-[#E4D6F0]/30 text-[#6B5A80] text-xs px-2 py-0.5 rounded-lg border-0 hover:bg-[#E4D6F0]/30"
               >
                 #{tag}
               </Badge>

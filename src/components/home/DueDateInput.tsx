@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useDueDateStore } from "@/store/useDueDateStore";
 import { calcPregnancyWeek } from "@/lib/week-calculator";
+import { sendGAEvent } from "@/lib/analytics";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
@@ -22,12 +23,17 @@ export function DueDateInput() {
   }, [hydrated, dueDate]);
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDueDate(e.target.value);
+    const value = e.target.value;
+    setDueDate(value);
+    if (value) {
+      const week = calcPregnancyWeek(new Date(value));
+      sendGAEvent("due_date_set", { pregnancy_week: week });
+    }
   };
 
   return (
     <Card className="rounded-2xl shadow-md border border-black/4">
-      <CardContent className="p-6">
+      <CardContent className="p-5">
         <label className="block mb-3 text-center text-sm">출산 예정일을 입력하세요</label>
         <input
           type="date"

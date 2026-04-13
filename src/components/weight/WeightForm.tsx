@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { X } from "lucide-react";
+import { sendGAEvent } from "@/lib/analytics";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -15,13 +16,14 @@ export function WeightForm({ onSubmit, onClose }: WeightFormProps) {
   const handleAdd = () => {
     if (!newDate || !newWeight) return;
     onSubmit(newDate, parseFloat(newWeight));
+    sendGAEvent("weight_log");
     setNewDate("");
     setNewWeight("");
   };
 
   return (
     <Card className="rounded-2xl shadow-md mb-6 border border-black/4">
-      <CardContent className="p-6">
+      <CardContent className="p-5">
         <div className="flex justify-between items-center mb-4">
           <h3>새 기록 추가</h3>
           <Button

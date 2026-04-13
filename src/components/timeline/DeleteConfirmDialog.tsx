@@ -23,7 +23,7 @@ export function DeleteConfirmDialog({ onConfirm, iconSize = 16 }: DeleteConfirmD
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <button
-          className="p-1 rounded-lg text-[#9CA0A4] hover:text-red-400 hover:bg-red-50 transition-colors"
+          className="p-2 rounded-lg text-[#9CA0A4] hover:text-red-400 hover:bg-red-50 transition-colors"
           aria-label="삭제"
         >
           <Trash2 size={iconSize} />

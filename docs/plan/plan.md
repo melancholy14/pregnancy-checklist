@@ -7,20 +7,117 @@
 
 ---
 
+## Product Overview (PRD)
+
+임산부와 가족이 **출산 준비를 체계적으로 관리**할 수 있도록 돕는 서비스.
+
+### 핵심 목적
+
+- 출산 준비 체크리스트 제공
+- 출산 예정일 기반 타임라인 자동 생성
+- 연도별 베이비페어 정보 제공
+- 임신 중 체중 기록 및 시각화
+- 출산/육아 관련 영상 큐레이션
+
+### 서비스 특징
+
+- 회원가입 없이 사용 가능
+- 출산 예정일 입력만으로 개인화 기능 제공
+- 개인 데이터는 브라우저 LocalStorage 저장
+
+### Target Persona
+
+**Primary: 초산 임산부 (25~35세)**
+
+- 임신 사실 확인 후 "뭘 준비해야 하는지" 검색하는 단계
+- 맘카페에서 정보를 찾지만, 흩어져 있어 체계적으로 정리하고 싶음
+- 앱 설치/회원가입 없이 빠르게 쓸 수 있는 웹 도구 선호
+- 모바일 사용 비율 80%+ 예상 (이동 중, 병원 대기 중)
+
+**Secondary: 남편/보호자**
+
+- 준비물 구매 분담, 베이비페어 동행 등 실질적 지원 역할
+- "이번 주에 뭐 해야 해?"를 확인하는 패턴
+- Phase 1에서는 별도 기능 없음. 같은 기기에서 함께 확인하는 수준
+
+**정보 탐색 경로**: 검색("출산 준비 체크리스트", "임신 주차별 준비") → 서비스 유입 → 예정일 입력 → 체크리스트 사용
+
+### Competitive Landscape
+
+| 대안 | 장점 | 단점 | 본 서비스 차별점 |
+| ---- | ---- | ---- | ---------------- |
+| 맘카페 (네이버) | 실사용 후기 풍부 | 정보 흩어짐, 구조화 안 됨 | 체크리스트 구조화 + 주차별 개인화 |
+| 임신 앱 (숨비, 배냇 등) | 기능 다양 | 앱 설치/가입 필수, 광고 과다 | 설치/가입 없이 웹에서 즉시 사용 |
+| 블로그/유튜브 | SEO 강함, 콘텐츠 풍부 | 관리 도구 없음, 진행률 추적 불가 | 읽기만 하는 게 아니라 체크하며 관리 |
+| 스프레드시트 | 자유도 높음 | 직접 만들어야 함, 모바일 UX 나쁨 | 전문가 큐레이션 데이터 + 모바일 최적화 |
+
+**핵심 포지셔닝**: "설치/가입 없이 즉시 쓰는 출산 준비 관리 도구"
+
+### Permanent Non-Goals
+
+- 의료 상담/진단/처방/개인 맞춤 의료 조언
+- 병원 추천/예약 연동
+
+본 서비스는 **정보 제공 및 준비 관리 도구**이다.
+
+### Success Metrics (KPI)
+
+PoC(Phase 1) 배포 후 4주간 측정하여 Go/No-Go 판단.
+
+**핵심 지표 (Primary)**
+
+| 지표 | 목표 | 측정 방법 |
+| ---- | ---- | --------- |
+| 예정일 입력 전환율 | 방문자 중 40%+ | GA4 `due_date_set` / `page_view` (홈) |
+| 체크리스트 체크 1회 이상 | 예정일 입력자 중 60%+ | GA4 `checklist_check` unique users |
+| 7일 재방문율 | 20%+ | GA4 Cohort 분석 |
+
+**보조 지표 (Secondary)**
+
+| 지표 | 목표 | 측정 방법 |
+| ---- | ---- | --------- |
+| 평균 세션 시간 | 3분+ | GA4 |
+| 페이지별 이탈률 | 홈 60% 이하, 체크리스트 40% 이하 | GA4 |
+| 커스텀 항목 추가율 | 예정일 입력자 중 10%+ | GA4 `custom_item_add` |
+| 체중 기록 1회 이상 | 예정일 입력자 중 15%+ | GA4 `weight_log` |
+
+**Go/No-Go 기준**
+
+- **Go**: 핵심 지표 3개 중 2개 이상 달성 → Phase 2 진행
+- **Pivot**: 예정일 입력 전환율만 미달 → 온보딩 개선 후 2주 재측정
+- **No-Go**: 핵심 지표 3개 모두 미달 → 서비스 컨셉 재검토
+
+### MVP Scope
+
+**Included**: 출산 예정일 입력, 체크리스트, 타임라인, 베이비페어, 체중 기록, 영상 큐레이션
+**Excluded**: 회원가입, 남편 공유 기능, 서버 기반 개인 데이터 저장, 커뮤니티, 메시징
+
+### Future Features
+
+- 회원가입 도입
+- 남편과 체크리스트 공유
+- 여러 기기 동기화
+- JSON 내보내기/가져오기
+
+---
+
 ## 전체 단계 요약
 
-| Phase | 환경 | 내용 | 예상 기간 | 상태 |
-| ----- | ---- | ---- | --------- | ---- |
+| Phase | 환경 | 내용 | 기간 | 상태 |
+| ----- | ---- | ---- | ---- | ---- |
 | 0 | 로컬 | 초기 세팅 + Figma 디자인 이전 | 2주 (완료: ~2026-03-29) | ✅ 완료 |
 | 1 | 로컬 → gh-pages | 핵심 기능 + PoC 배포 + GA4/Ads | 3~4주 (완료: ~2026-04-02) | ✅ 완료 |
 | 1.5 | 로컬 → 커스텀 도메인 | PoC 고도화 (기능 통합 + AdSense 기초 준비) | 2주 (완료: 2026-04-04) | ✅ 완료 |
-| 2 | 로컬 | 콘텐츠 강화 + AdSense 승인 | 3~4주 (목표: ~2026-04-30) | 📋 기획 |
-| 3 | 로컬 | 베이비페어 크롤러 & Admin UI | 2주 | |
-| 4 | GCP | 인프라 세팅 | 1주 | |
-| 5 | GCP | 운영 배포 | 1주 | |
+| 2 | 로컬 | 콘텐츠 강화 + AdSense 승인 | 3~4주 (완료: 2026-04-04) | ✅ 완료 |
+| 2.5 | 로컬 | UX 개선 + 리텐션 강화 | 5주 (완료: 2026-04-13) | ✅ 완료 |
+| 3 | 로컬 | 누락 기능 보완 (Analytics · 검색 · 크로스링크 · SEO 검증) | 2주 | 📋 기획 |
+| 4 | — | (예비 — 향후 필요 시 활용) | — | — |
+| 5 | 로컬 | 베이비페어 크롤러 & Admin UI | 2주 | |
+| 6 | GCP | 인프라 세팅 | 1주 | |
+| 7 | GCP | 운영 배포 | 1주 | |
 
-> **PoC 검증 기간**: Phase 1 배포 후 4주간 KPI 측정 → Go/No-Go 판단 (PRD §2 참조).
-> Phase 3 착수는 Go 판단 이후. 예상 일정: 2026년 5월 말.
+> **PoC 검증 기간**: Phase 1 배포 후 4주간 KPI 측정 → Go/No-Go 판단.
+> Phase 5 착수는 Go 판단 이후. 예상 일정: 2026년 6월 중순.
 >
 > **AdSense 승인 일정**: Phase 2 완료(4월 말) → GSC 색인 확인(5월 초) → AdSense 신청(5월 중순) → 심사(1~4주) → PoC 기간(6월 말) 내 결과 확인.
 
@@ -28,14 +125,13 @@
 > API Routes 없음. 사용자 상태(체크, 커스텀 항목, 체중)는 전부 LocalStorage(Zustand persist).
 > Next.js `output: 'export'`로 빌드 → 정적 HTML 생성 → gh-pages 무료 배포.
 >
-> **SEO**: React(Vite/CRA)는 SPA라 SEO를 위해 별도 SSG 설정이 필요하지만,
-> Next.js static export는 빌드 시 각 페이지의 HTML을 미리 생성하므로 SEO가 자연스럽게 해결됨.
+> **SEO**: Next.js static export는 빌드 시 각 페이지의 HTML을 미리 생성하므로 SEO 자연스럽게 해결.
 >
-> **운영 전환**: Phase 4에서 `output: 'export'` 제거 + API Routes 추가 + GCS 연결.
+> **운영 전환**: Phase 6에서 `output: 'export'` 제거 + API Routes 추가 + GCS 연결.
 
 ---
 
-## Phase 0. 프로젝트 초기 세팅 (로컬)
+## Phase 0. 프로젝트 초기 세팅 (로컬) — ✅ 완료
 
 ### 0-1. Next.js 프로젝트 생성
 
@@ -66,7 +162,7 @@ npm install recharts
 npm install date-fns
 ```
 
-> `@google-cloud/storage`는 Phase 4에서 추가. PoC에선 불필요.
+> `@google-cloud/storage`는 Phase 6에서 추가. PoC에선 불필요.
 
 ### 0-3. Static Export 설정 (`next.config.ts`)
 
@@ -74,14 +170,13 @@ npm install date-fns
 // next.config.ts  — PoC: 정적 HTML 빌드 → gh-pages 배포
 const nextConfig = {
   output: 'export',
-  // gh-pages 배포 시 repo 이름이 basePath가 됨 (예: /pregnancy-checklist)
   basePath: process.env.NEXT_PUBLIC_BASE_PATH ?? '',
-  images: { unoptimized: true }, // static export는 Image Optimization 서버 불필요
+  images: { unoptimized: true },
 };
 export default nextConfig;
 ```
 
-> **운영 전환 시**: `output: 'export'` 제거 → standalone 모드로 변경 (Phase 5).
+> **운영 전환 시**: `output: 'export'` 제거 → standalone 모드로 변경 (Phase 7).
 
 ### 0-4. 폴더 구조
 
@@ -94,7 +189,6 @@ src/
 │   ├── baby-fair/page.tsx
 │   ├── weight/page.tsx
 │   └── videos/page.tsx
-│   # api/ 없음 — PoC는 서버 없이 JSON 직접 import
 ├── components/
 │   ├── ui/                           # shadcn components
 │   ├── checklist/
@@ -112,8 +206,8 @@ src/
 │   └── date-utils.ts
 ├── store/
 │   ├── useDueDateStore.ts
-│   ├── useChecklistStore.ts          # 기본 체크 상태 + 커스텀 항목 추가/삭제
-│   ├── useTimelineStore.ts           # 커스텀 타임라인 항목 추가/삭제
+│   ├── useChecklistStore.ts
+│   ├── useTimelineStore.ts
 │   └── useWeightStore.ts
 └── types/
     ├── checklist.ts
@@ -127,13 +221,11 @@ src/
 API Routes 없이 컴포넌트에서 JSON을 직접 `import` 한다.
 
 ```ts
-// 예시: 체크리스트 페이지
 import checklistItems from '@/data/checklist_items.json';
 import timelineItems from '@/data/timeline_items.json';
 ```
 
 JSON을 static import하면 빌드 시 번들에 포함되어 별도 네트워크 요청 없이 동작한다.
-`tsconfig.json`에 `"resolveJsonModule": true` 필요 (Next.js 기본 활성화).
 
 ### 0-6. 환경변수
 
@@ -145,11 +237,10 @@ NEXT_PUBLIC_BASE_PATH=
 NEXT_PUBLIC_BASE_PATH=                # gh-pages 배포 시: /pregnancy-checklist
 NEXT_PUBLIC_GA_MEASUREMENT_ID=        # GA4 측정 ID (G-XXXXXXXXXX)
 NEXT_PUBLIC_ADSENSE_CLIENT_ID=        # AdSense 클라이언트 ID (ca-pub-XXXXXXXXXX)
-NEXT_PUBLIC_FEEDBACK_FORM_URL=        # 피드백 구글 폼 URL (Phase 1.5)
+NEXT_PUBLIC_FEEDBACK_FORM_URL=        # 피드백 구글 폼 URL
 ```
 
-> **Phase 4 전환 시 추가할 환경변수**: `DATA_SOURCE`, `GCS_BUCKET_NAME`, `YOUTUBE_API_KEY`
-> PoC에서는 불필요하므로 제거. 복잡도 최소화.
+> **Phase 6 전환 시 추가할 환경변수**: `DATA_SOURCE`, `GCS_BUCKET_NAME`, `YOUTUBE_API_KEY`
 
 ### 0-7. 타입 정의 (`src/types/`)
 
@@ -162,7 +253,7 @@ export type ChecklistItem = {
   categoryName: string;
   recommendedWeek: number;
   priority: 'high' | 'medium' | 'low';
-  isCustom?: boolean; // 유저가 직접 추가한 항목
+  isCustom?: boolean;
 };
 
 // timeline.ts
@@ -175,7 +266,7 @@ export type TimelineItem = {
   priority: 'high' | 'medium' | 'low';
   linked_checklist_ids?: string[];
   seo_slug?: string;
-  isCustom?: boolean; // 유저가 직접 추가한 항목
+  isCustom?: boolean;
 };
 
 // babyfair.ts
@@ -191,26 +282,32 @@ export type BabyfairEvent = {
 };
 ```
 
+### Phase 0 완료 실적
+
+- 7/7 요구사항 모두 충족
+- Next.js 16.2.0, React 19.2.4 (계획 대비 상위 버전)
+- Figma 디자인 이전 + shadcn/ui 전환 완료
+- Zustand store 4개, week-calculator, BottomNav, DueDateInput 구현
+- E2E 테스트 기반 준비 완료
+
 ---
 
-## Phase 1. 핵심 기능 개발 (로컬 → gh-pages PoC 배포)
+## Phase 1. 핵심 기능 개발 (로컬 → gh-pages PoC 배포) — ✅ 완료
 
 PoC는 서버 없이 동작. 모든 데이터는 정적 JSON import, 사용자 상태는 LocalStorage.
 
 ### 1-1. 데이터 로딩 (API Routes 없음)
 
 ```ts
-// 각 페이지/컴포넌트에서 직접 import
 import checklistItems from '@/data/checklist_items.json';
 import timelineItems from '@/data/timeline_items.json';
 import babyfairEvents from '@/data/babyfair_events.json';
 import videos from '@/data/videos.json';
 ```
 
-> API Routes는 Phase 4(GCP 운영) 전환 시 추가. PoC에선 불필요.
-> 라우트 경로: `/baby-fair` (kebab-case)
+> API Routes는 Phase 6(GCP 운영) 전환 시 추가.
 
-### 1-2. Due Date Input & 주차 계산 (`src/lib/week-calculator.ts`)
+### 1-2. Due Date Input & 주차 계산
 
 ```ts
 export function calcPregnancyWeek(dueDate: Date, today: Date): number {
@@ -221,10 +318,7 @@ export function calcPregnancyWeek(dueDate: Date, today: Date): number {
 }
 ```
 
-**Zustand Store** (`src/store/useDueDateStore.ts`):
-- `dueDate: string | null`
-- `setDueDate(date: string): void`
-- `persist` middleware로 LocalStorage 자동 동기화
+**Zustand Store** (`useDueDateStore`): `dueDate: string | null`, `setDueDate`, persist middleware
 
 ### 1-3. 체크리스트
 
@@ -232,37 +326,107 @@ export function calcPregnancyWeek(dueDate: Date, today: Date): number {
 - 현재 임신 주차 기준 "지금 해야 할 항목" 하이라이트 (`recommendedWeek` 기반)
 - 체크 상태 LocalStorage 저장 (Zustand persist)
 - 전체 / 카테고리별 진행률 표시
-- **커스텀 항목 추가/삭제**: 유저가 원하는 카테고리에 직접 항목 추가 가능.
-  커스텀 항목은 `useChecklistStore`에 `customItems` 배열로 저장 (LocalStorage persist).
-  기본 항목(`isCustom` 없음)은 삭제 불가, 커스텀 항목만 삭제 가능.
+- **커스텀 항목 추가/삭제**: `customItems` 배열로 저장. 기본 항목은 삭제 불가.
 
 ### 1-4. 타임라인
 
-- 임신 주차별 카드 리스트
-- 현재 주차 자동 스크롤
+- 임신 주차별 카드 리스트, 현재 주차 자동 스크롤
 - 완료(지난 주차) / 현재 / 예정 시각적 구분
-- **커스텀 항목 추가/삭제**: 특정 주차에 메모/할일을 직접 추가 가능.
-  커스텀 항목은 `useTimelineStore`에 저장 (LocalStorage persist).
-  기본 항목은 삭제 불가, 커스텀 항목만 삭제 가능.
+- 커스텀 항목 추가/삭제 (LocalStorage persist)
 
 ### 1-5. 베이비페어
 
 - 연도 필터, 도시 필터, upcoming/ended 탭
 - 행사 카드: 이름 / 장소 / 날짜 / 공식 링크
-- 초기엔 `babyfair_events.json` 빈 배열로 시작, Phase 2에서 채움
 
 ### 1-6. 체중 기록
 
-- 날짜 + 체중 입력 폼
-- Recharts LineChart로 변화 시각화
-- LocalStorage 저장 (Zustand persist)
+- 날짜 + 체중 입력 폼, Recharts LineChart 시각화, LocalStorage 저장
 
 ### 1-7. 영상 큐레이션
 
 - 카테고리별 탭 (임산부 운동 / 출산 준비 / 신생아 케어)
 - YouTube embed (`videos.json` 기반)
-- 영상 수집: YouTube Data API v3 `search.list`로 태그 기반 검색 (상세: [PRD v2 §5 Video Content](pregnancy-prep-service-prd-v2.md))
-- PoC에서는 수동 큐레이션 → `videos.json` 직접 편집. Phase 4 이후 API 자동 수집
+- PoC에서는 수동 큐레이션, Phase 6 이후 API 자동 수집
+
+**영상 수집 전략 (YouTube Data API v3)**
+
+| 카테고리 | 검색 태그 | 필터 |
+| -------- | --------- | ---- |
+| 임산부 운동 | `임산부 운동`, `임산부 요가`, `임산부 스트레칭` | `videoDuration=medium`, `relevanceLanguage=ko` |
+| 출산 준비 | `출산 준비`, `출산 과정`, `출산 호흡법` | `videoDuration=medium`, `relevanceLanguage=ko` |
+| 신생아 케어 | `신생아 케어`, `신생아 목욕`, `모유 수유` | `videoDuration=medium`, `relevanceLanguage=ko` |
+
+### 1-8. Google Analytics 4 (GA4)
+
+- `@next/third-parties` 패키지의 `<GoogleAnalytics />` 사용
+- 환경변수: `NEXT_PUBLIC_GA_MEASUREMENT_ID`
+
+**추적 이벤트:**
+
+| 이벤트 | 설명 |
+| ------ | ---- |
+| `page_view` | GA4 기본 (자동 수집) |
+| `due_date_set` | 출산 예정일 입력 (핵심 퍼널) |
+| `checklist_check` | 체크리스트 항목 체크/해제 |
+| `custom_item_add` | 커스텀 항목 추가 |
+| `weight_log` | 체중 기록 입력 |
+| `outbound_click` | 외부 링크 클릭 (베이비페어 공식 URL) |
+
+### 1-9. Google AdSense
+
+- `<AdUnit />` 컴포넌트, 환경변수 없으면 미렌더링
+- 광고 위치: 홈 하단, 체크리스트 사이, 타임라인 카드 사이, 체중 차트 하단
+
+### 1-10. 개인정보처리방침 & 서비스 약관
+
+- `/privacy` — 개인정보처리방침
+- `/terms` — 서비스 이용약관
+- 공통 푸터에 링크 배치
+
+**개인정보 필수 고지**: 수집 항목(쿠키, 방문 기록), 수집 목적(서비스 개선, 광고), 보관 기간(LocalStorage), 제3자 제공(Google Analytics, AdSense), 사용자 권리(브라우저 데이터 삭제)
+
+### 1-11. 의료 면책 고지
+
+- 공통 푸터: "본 서비스는 의료적 조언을 제공하지 않습니다"
+- 체중 기록 페이지: 권장 범위 참조선 옆 출처 + 면책 문구
+- 타임라인/체크리스트: 의료 관련 항목에 "담당 의료진과 상의하세요"
+- 콘텐츠 작성 원칙: 단정형 표현 금지, 권장 시점 표현("보통 이 시기에"), 출처 명시
+
+### 1-12. 홈 대시보드
+
+- 예정일 설정 시: 현재 주차 + 남은 일수, 체크리스트 진행률, 이번 주 타임라인
+- 예정일 미설정 시: 예정일 입력 유도 화면
+
+### 1-13. 온보딩 플로우
+
+**시나리오 A (첫 방문):**
+- 홈 진입 → 서비스 소개 + 예정일 입력 폼 중앙 노출
+- "예정일을 입력하면 나에게 맞는 체크리스트를 볼 수 있어요" 안내
+
+**시나리오 B (예정일 없이 탐색):**
+- 체크리스트/타임라인 상단에 유도 배너 표시
+- 예정일 없이도 전체 항목 열람 가능 (차단하지 않음)
+
+**시나리오 C (재방문, 예정일 입력 완료):**
+- 대시보드 바로 표시 (이번 주 할 일, 진행률)
+
+### 1-14. gh-pages 배포
+
+- `npm run build` → `out/` → `gh-pages` 패키지로 배포
+- GitHub Actions `main` push 시 자동 배포
+
+### Phase 1 완료 실적
+
+- 14개 Step 중 Step 1~9, 11~14 구현 완료. Step 10(배포) 워크플로우 준비 완료
+- 10개 신규 파일, 23개 수정 파일
+- 빌드 성공 (10개 정적 페이지)
+- 코드 리뷰: Critical 0건, Warning 5건 → 리팩토링 완료
+  - ChecklistItem hover 클래스 정적화
+  - ChecklistContainer 카테고리 상수 추출
+  - TimelineContainer 스크롤 로직 개선
+  - BabyfairContainer 빈 배열 처리
+  - ChecklistAddForm 유효성 검증 강화
 
 ### 1-8. Google Analytics 4 (GA4)
 
@@ -299,7 +463,7 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 | `timeline_scroll_depth` | 타임라인 스크롤 도달 주차 | `max_week_visible` |
 | `outbound_click` | 외부 링크 클릭 (베이비페어 공식 URL) | `url`, `event_name` |
 | `onboarding_banner_click` | 예정일 유도 배너 클릭 | `source_page` |
-| `data_export` | 데이터 내보내기 클릭 (Phase 1 이후) | — |
+| `data_export` | 데이터 내보내기 클릭 (Phase 3 이후) | — |
 
 ### 1-9. Google AdSense
 
@@ -357,51 +521,26 @@ AdSense 승인 및 GA4 사용의 필수 요건. 배포 전 반드시 준비.
 - 체중 기록 페이지: 권장 범위 참조선 옆 출처 + 면책 문구
 - 상세 전략: [PRD v2 §13](pregnancy-prep-service-prd-v2.md)
 
-### 1-12. 홈 대시보드
-
-- 예정일 설정 시: 현재 주차 + 남은 일수, 체크리스트 진행률, 이번 주 타임라인 미리보기
-- 예정일 미설정 시: 예정일 입력 유도 화면
-- 각 섹션에서 해당 페이지로 이동 링크
-
-### 1-13. 온보딩 플로우
-
-- 예정일 미입력 시: 서비스 소개 + 예정일 입력 폼 중앙 노출
-- 체크리스트/타임라인 페이지: 상단 유도 배너 (`DueDateBanner`)
-- 예정일 없이도 전체 항목 열람 가능 (차단하지 않음)
-- 예정일 입력 완료 시 배너 미표시
-- 예정일 첫 입력 시: "데이터는 이 브라우저에만 저장됩니다" 토스트 1회 표시
-
-### 1-14. gh-pages 배포
-
-- `npm run build` → `out/` 디렉토리 생성 (static export)
-- `gh-pages` 패키지로 `out/` → gh-pages 브랜치 배포
-- GitHub Actions로 `main` push 시 자동 배포
-- 배포 URL: `https://<username>.github.io/pregnancy-checklist`
-
 ---
 
-## Phase 1.5. PoC 고도화 (기능 통합 + AdSense 기초 준비)
+## Phase 1.5. PoC 고도화 (기능 통합 + AdSense 기초 준비) — ✅ 완료
 
-> 상세 스펙: [phase-1.5/plan.md](../phase-1.5/plan.md)
 > 완료일: 2026-04-04
-> 상태: ✅ 완료
 
 Phase 1에서 별도 페이지로 구현된 타임라인/체크리스트를 통합하고,
-AdSense 승인을 위한 SEO 기반 작업 + 콘텐츠 보완을 수행한다.
+AdSense 승인을 위한 SEO 기반 작업 + 콘텐츠 보완을 수행.
 
 ### Part A. 타임라인 + 체크리스트 통합
 
 #### 왜 통합하는가
 
 - **정보 분절**: "28주에 뭘 준비해야 하지?"에 2개 페이지를 오가야 함
-- **데이터 연결 미활용**: `linked_checklist_ids`, `recommendedWeek`가
-  UI에서 사용되지 않음
-- **네비 비효율**: 5개 탭 중 2개가 유사 기능 → 통합 시 1개 탭 확보
+- **데이터 연결 미활용**: `linked_checklist_ids`, `recommendedWeek`가 UI에서 사용되지 않음
+- **네비 비효율**: 5개 탭 중 2개가 유사 기능
 
 #### 1.5-1. 통합 타임라인 페이지
 
-- 타임라인 카드를 **아코디언**으로 변경 →
-  클릭 시 해당 주차 체크리스트 펼침/접힘
+- 타임라인 카드를 **아코디언**으로 변경 → 클릭 시 해당 주차 체크리스트 펼침/접힘
 - 현재 주차 카드 자동 펼침 + 스크롤
 - 체크리스트는 `recommendedWeek` 기준으로 주차별 그룹핑
 - 주차별/전체 진행률 표시
@@ -409,177 +548,274 @@ AdSense 승인을 위한 SEO 기반 작업 + 콘텐츠 보완을 수행한다.
 #### 1.5-2. 통합 추가 폼
 
 - **유형 선택**: 일정(타임라인) / 할 일(체크리스트)
-- **주차 입력**: 공통 필수
+- **주차 입력**: 공통 필수 (1~40)
 - **카테고리**: 체크리스트일 때만 노출
 - **설명**: 타임라인일 때만 노출
 
-#### 1.5-3. 수정 기능 (신규)
+#### 1.5-3. 수정/삭제 기능
 
 - 커스텀 항목에 한해 제목/주차/설명/카테고리 수정 가능
 - Store에 `updateCustomItem` 액션 추가
-- 기본(정적) 항목은 수정 불가
+- 커스텀 항목 삭제 시 확인 다이얼로그 표시
 
 #### 1.5-4. 카테고리 필터
 
 - 타임라인 상단 필터 칩으로 카테고리별 체크리스트 필터링
-- 체크리스트 전용 페이지 폐기를 보완
 - **행정 준비** 카테고리 선택 시 지자체 확인 안내 문구 표시
 
 #### 1.5-5. 네비게이션 & URL 변경
 
-- `/checklist` → `/timeline`으로 301 리다이렉트
-- 하단 네비: 5탭 재구성
-  (홈/타임라인/베이비페어/체중/영상) — Feature Grid과 일치
+- `/checklist` → `/timeline`으로 리다이렉트
+- 하단 네비: 5탭 재구성 (홈/타임라인/베이비페어/체중/영상)
 - Store는 분리 유지 (기존 localStorage 데이터 호환)
 
-#### 1.5-6. 커스텀 항목 삭제 확인
-
-- 커스텀 항목 삭제 시 확인 다이얼로그 표시
-- 삭제는 되돌릴 수 없으므로 실수 방지
-
-#### 1.5-7. 대시보드 보완
+#### 1.5-6. 대시보드 보완
 
 - "이번 주 할 일"에 커스텀 타임라인 항목도 포함
-- 대시보드 하단 **피드백 배너** 추가
-  (환경변수: `NEXT_PUBLIC_FEEDBACK_FORM_URL`)
+- **피드백 배너**를 홈 대시보드에서 `/contact` 페이지로 이동 (환경변수: `NEXT_PUBLIC_FEEDBACK_FORM_URL`)
 
-#### 1.5-8. 베이비페어 외부 링크 팝업
+#### 1.5-7. 베이비페어 외부 링크 팝업
 
-- 베이비페어 카드 클릭 시 외부 이동 확인 팝업 (AlertDialog)
+- 카드 클릭 시 외부 이동 확인 팝업 (AlertDialog)
 - 확인 시 `official_url`을 새 탭으로 열기
+- 팝업 차단 시 토스트 안내
 
 ### Part B. AdSense 기초 준비
 
-#### 1.5-9. 커스텀 도메인 연결
+- **커스텀 도메인**: `pregnancy-checklist.com` + HTTPS
+- **sitemap.ts + robots.ts**: 정적 사이트맵, 크롤링 허용
+- **메타데이터**: 11개 페이지 고유 title + description + OG + canonical
+- **영상 데이터**: 9개 영상 수동 큐레이션 (카테고리별 3개)
+- **가이드 콘텐츠**: `/guides/hospital-bag`, `/guides/weekly-prep` (각 1,000자+)
 
-- `pregnancy-checklist.com` + HTTPS 활성화
-- `public/CNAME`, `basePath` 제거
-
-#### 1.5-10. sitemap.ts + robots.ts
-
-- `src/app/sitemap.ts` — `force-static` 정적 사이트맵
-- `src/app/robots.ts` — 크롤링 허용 + sitemap URL
-
-#### 1.5-11. 페이지별 메타데이터 + OG + canonical
-
-- 11개 페이지 고유 `title` + `description` + OG 태그
-- canonical URL로 중복 콘텐츠 방지
-- `BASE_URL`, `OG_IMAGE` 공유 상수 추출
-
-#### 1.5-12. 영상 데이터 확보
-
-- 9개 영상 수동 큐레이션 (카테고리별 3개)
-- YouTube 썸네일 핫링크 (`img.youtube.com` 패턴)
-
-#### 1.5-13. 가이드 콘텐츠 2개
-
-- `/guides/hospital-bag` — 출산 가방 필수 준비물 가이드
-- `/guides/weekly-prep` — 임신 주차별 검사 & 준비 가이드
-- 각 1,000자+ 설명형 글, SEO 랜딩 효과
-
-#### 완료 실적
+### Phase 1.5 완료 실적
 
 - 20/20 기능 통합 검증 + 9/9 AdSense 준비 검증 통과
+- 7개 신규 파일, 7개 수정 파일, 5개 삭제 파일
 - 111 Playwright E2E 테스트 통과
-- 빌드 성공, 15개 정적 HTML 페이지 생성
+- 빌드 성공, 15개 정적 HTML 페이지
+- 주요 결정: Store 분리 유지, Collapsible UI, recommendedWeek 매핑, 인라인 편집
+- 코드 리뷰: Critical 0건, Warning 3건 → 리팩토링 완료
+  - DeleteConfirmDialog 컴포넌트 분리
+  - BottomNav 아이콘 색상 통일
+  - filteredWeekSet 최적화
+  - CATEGORY_OPTIONS 상수 추출
+  - 접근성 개선 (role, tabIndex, onKeyDown)
 
 ---
 
-## Phase 2. 콘텐츠 강화 + AdSense 승인 (로컬)
+## Phase 2. 콘텐츠 강화 + AdSense 승인 (로컬) — ✅ 완료
 
-> 상세 스펙: [phase-2/plan.md](../phase-2/plan.md)
-> 목표: 2026-04-30
-> 상태: 📋 기획
+> 완료일: 2026-04-04
 
 AdSense 승인률을 높이기 위한 **콘텐츠 볼륨 + 깊이 확보**.
-YouTube 영상/채널 세분화, 정보성 글(블로그) 시스템 구축.
 
 ### 2-1. YouTube 콘텐츠 세분화
 
-- 기존 `videos.json`에서 채널 데이터를 `channels.json`으로 분리
+- `channels.json` 분리 (채널 데이터 독립)
 - 카테고리별 **세부 카테고리(subcategory)** 추가
-- 채널 썸네일은 YouTube Data API v3로 가져와
-  빌드 시 URL 저장 (재호스팅 금지)
-- 영상/채널 각각 목록 UI 제공
+- 채널 썸네일 YouTube Data API v3로 확보
+- 영상/채널 각각 목록 UI + 2단 필터 (카테고리 → 세부 카테고리)
 
 ### 2-2. 정보성 글 (블로그) 시스템
 
 - MD 파일 기반 글 저장 → 빌드 시 HTML 생성 (SSG)
-- `/articles` 목록 페이지 + `/articles/[slug]` 상세 페이지
+- `gray-matter` + `remark/rehype` 파싱
+- `/articles` 목록 + `/articles/[slug]` 상세 페이지
 - 태그 기반 필터링
-- 네비게이션 + 홈 대시보드에 메뉴 추가
-- 기존 가이드 2개(`hospital-bag`, `weekly-prep`)를 MD로 변환
+- 기존 가이드 2개 MD 변환 + 신규 6개 작성 (총 8개)
 
-### 2-3. AdSense 승인 신청
+**블로그 목록:**
 
-- GSC 색인 확인 (≥ 10페이지)
-- Lighthouse SEO 90+ 달성
-- 5월 중순 승인 신청 → 심사 대기
+| slug | 제목 |
+|------|------|
+| `hospital-bag` | 출산 가방 필수 준비물 총정리 |
+| `weekly-prep` | 임신 주차별 검사 & 준비 가이드 |
+| `early-pregnancy-tests` | 임신 초기 필수 검사 총정리 |
+| `postpartum-care` | 산후조리원 선택 가이드 |
+| `baby-items-cost` | 출산 준비물 예상 비용 총정리 |
+| `newborn-bath-tips` | 신생아 목욕 방법과 주의사항 |
+| `infant-vaccination-schedule` | 영유아 예방접종 스케줄 완벽 정리 |
+| `postpartum-diet` | 산후조리 기간 산모 식단 관리 가이드 |
+
+### 2-3. 네비게이션 변경
+
+- 5탭: 홈/타임라인/베이비페어/영상/정보 (체중 → 홈에서 접근)
+- 홈 대시보드에 정보글 카드 추가
+
+### Phase 2 완료 실적
+
+- 15/15 완료 조건 충족
+- 16개 신규 파일, 12개 수정 파일
+- 150 Playwright E2E 테스트 통과
+- 코드 리뷰: Critical 0건, Warning 3건 (2건 수정, 1건 의도적 스킵)
+- 리팩토링: parseArticleMeta 유효성 검증, getAllTags 최적화
 
 ---
 
-## Phase 3. 베이비페어 크롤러 & Admin UI (로컬)
+## Phase 2.5. UX 개선 + 리텐션 강화 — ✅ 완료
 
-> 상세 스펙: [babyfair_crawler_spec.md](../specs/babyfair_crawler_spec.md)
+> 상세 스펙: [../phase-2.5/plan.md](../phase-2.5/plan.md)
+> 구현 완료: 2026-04-12 | QA 통과: 2026-04-13
 
-> **기술 제약**: `output: 'export'`(정적 빌드) 모드이므로
-> API Routes 사용 불가.
+유입된 유저가 타임라인을 중심으로 반복 방문하고 각 기능을 깊게 활용하는 구조 구축.
+
+### UX 개선 + 리텐션 (Step 1~9)
+
+- ✅ **온보딩 플로우**: 3단계 (웰컴 → 예정일 → 데이터 안내), 스킵 옵션, localStorage 플래그
+- ✅ **타임라인 유도 + 데이터 보존**: 홈 CTA 강화, 첫 체크 인라인 배너, 재방문 웰컴 메시지
+- ✅ **홈 대시보드 개편**: Feature Grid → 미니 대시보드 카드 (타임라인/베이비페어/체중/영상/정보)
+- ✅ **Sticky 헤더**: 44px, 로고 + 서비스명, 홈 제외, 스크롤 연동 숨김/표시
+- ✅ **크로스 링크**: 타임라인 → 관련 글 링크, 블로그 → 타임라인 CTA
+- ✅ **베이비페어 3분류**: 진행중/예정/지난 탭, D-N일 배지, 연도 라벨
+- ✅ **체중관리 접근성**: 홈 미니 대시보드 카드 연동
+- ✅ **버그 수정**: 미존재 주차 할일 추가 시 AlertDialog + 자동 생성
+- ✅ **달성감**: 주차 완료 아이콘 + 축하 메시지, 마일스톤 배지
+
+### 브랜딩: "초산 개발자" 아이덴티티 (Step 10~15)
+
+- ✅ **히어로 카피 & 톤**: "답답해서 직접 만들었습니다", `BRAND_PHASE` 전환 구조
+- ✅ **SEO 메타 태그**: "초산 개발자가 직접 만든 임신 주차별 가이드"
+- ✅ **온보딩 톤**: "저도 초산이라..." 1인칭 개인 톤
+- ✅ **About 페이지**: "만든 사람" 스토리텔링, `CREATOR_DUE_DATE` 기반 주차 자동 계산
+- ✅ **아티클 authorNote**: "만든이의 한마디" 카드 (조건부 렌더링)
+- ✅ **Contact 톤**: "의견 보내기", "혼자 만들다 보니 놓치는 것도 많아요"
+
+### 콘텐츠 강화 (Step 16~17)
+
+- ✅ **타임라인 구체화**: 빈 주차 15개 항목 추가, type 아이콘/배지 (준비/쇼핑/행정/교육/웰빙)
+- ✅ **베이비페어 구체화**: scale 배지, 입장료/운영시간/주차/하이라이트/팁 확장 필드
+
+### Phase 2.5 완료 실적
+
+- 17/17 구현 Step 완료 (4/6 ~ 4/12)
+- 35/35 완료 조건 충족 (4/13 QA 통과)
+- 284 E2E 테스트 전체 통과
+- 신규 파일 6개, 수정 파일 22개
+
+---
+
+## Phase 3. 누락 기능 보완 (로컬)
+
+> Phase 2.5까지 구현 과정에서 기획에는 있었으나 구현이 누락된 6개 항목을 보완한다.
+> 목표: ~2026-05-01
+
+### 3-1. GA4 커스텀 이벤트 3종 전송 누락 보완
+
+PRD에 정의된 이벤트 중 실제 `sendGAEvent` 호출 코드가 없는 3종을 구현한다.
+
+| 이벤트 | 설명 | 구현 위치 |
+|--------|------|-----------|
+| `category_tab_switch` | 체크리스트 카테고리 탭 전환 | `TimelineContainer` 카테고리 필터 변경 시 |
+| `timeline_scroll_depth` | 타임라인 스크롤 도달 주차 | `TimelineContainer` IntersectionObserver로 최대 visible 주차 추적 |
+| `onboarding_banner_click` | 예정일 유도 배너 클릭 | 타임라인·블로그 상단 유도 배너 클릭 시 |
+
+**완료 조건**: GA4 DebugView에서 3종 이벤트 전송 확인
+
+### 3-2. 클라이언트 사이드 검색 (fuse.js)
+
+Phase 2.5에서 선택 사항으로 언급되었으나 미구현. Sticky 헤더에 검색 진입점을 추가한다.
+
+- `fuse.js` 의존성 추가
+- 검색 대상: 타임라인 항목 (title + description) + 블로그 글 (title + tags)
+- UI: Sticky 헤더 검색 아이콘 → 풀스크린 검색 모달 → 결과 리스트 (타임라인/블로그 분리)
+- 디바운스 300ms, 최소 2자 이상 입력 시 검색
+
+**완료 조건**: 검색 모달에서 타임라인·블로그 결과가 정상 노출되고, 클릭 시 해당 페이지로 이동
+
+### 3-3. 영상 ↔ 타임라인 크로스 링크 (linked_video_ids)
+
+타임라인 항목에서 관련 영상으로 연결하는 크로스 링크를 추가한다.
+
+- `TimelineItem` 타입에 `linked_video_ids?: string[]` 필드 추가
+- `timeline_items.json`에 주요 항목(임산부 운동, 호흡법 등) 영상 ID 매핑
+- `TimelineAccordionCard` 하단에 "관련 영상" 링크 표시 (기존 `RelatedArticlesLink`와 유사)
+- 영상 클릭 시 `/videos` 페이지로 이동 (해당 영상 하이라이트)
+
+**완료 조건**: 타임라인 카드에서 관련 영상 링크가 노출되고, 클릭 시 정상 이동
+
+### 3-4. 채널 썸네일 수집 스크립트
+
+YouTube Data API v3 기반으로 채널 썸네일을 자동 수집하는 스크립트를 작성한다.
+
+- `scripts/fetch-channel-thumbs.ts` 작성
+- 환경변수: `YOUTUBE_API_KEY` (로컬 `.env.local`에서 관리)
+- `channels.json`의 `channel_id`로 API 호출 → `thumbnailUrl` 필드 자동 갱신
+- 수동 URL 입력 방식 병행 (API 키 없을 때 fallback)
+
+**완료 조건**: `npx ts-node scripts/fetch-channel-thumbs.ts` 실행 시 `channels.json` 썸네일 URL 업데이트
+
+### 3-5. Lighthouse SEO 90+ 자동 검증
+
+배포 후 SEO 품질을 자동 확인하는 스크립트를 추가한다.
+
+- `scripts/lighthouse-check.sh` 작성 (lighthouse CLI 기반)
+- 주요 페이지 5개 (홈, 타임라인, 베이비페어, 블로그 목록, 블로그 상세) 대상
+- SEO 카테고리 90점 이상 기준 pass/fail 판정
+- GitHub Actions에 optional step으로 추가 (배포 후 실행)
+
+**완료 조건**: 5개 주요 페이지 Lighthouse SEO 점수 90+ 확인
+
+### 3-6. 체중 페이지 → 블로그 크로스 링크
+
+`pregnancy-weight-management.md` 아티클과 체중 관리 페이지를 상호 연결한다.
+
+- `WeightContainer` 하단에 "임신 중 체중 관리 가이드 →" 링크 카드 추가
+- `pregnancy-weight-management.md` 본문에 "내 체중 기록하러 가기 →" CTA 추가
+
+**완료 조건**: 체중 페이지 ↔ 블로그 글 양방향 링크 정상 동작
+
+---
+
+## Phase 4. (예비)
+
+> 향후 필요 시 활용. 현재는 의도적으로 비워둠.
+
+---
+
+## Phase 5. 베이비페어 크롤러 & Admin UI (로컬)
+
+> 상세 스펙: [../specs/babyfair_crawler_spec.md](../specs/babyfair_crawler_spec.md)
+
+> **기술 제약**: `output: 'export'` 모드이므로 API Routes 불가.
 > 크롤러와 Admin 검수는 **CLI + 로컬 스크립트** 방식으로 운영.
-> Admin API Routes는 Phase 4(GCP 전환) 이후 추가.
 
-### 3-1. 크롤러 (`scripts/crawl-babyfair.ts`)
+### 5-1. 크롤러 (`scripts/crawl-babyfair.ts`)
 
 - 소스 우선순위: Tier 1 (공식) → Tier 2 (행사장) → Tier 3 (집계)
 - 파이프라인: `fetch HTML → extract → normalize → dedupe → save pending`
 - 실행 모드: `full | incremental | verify`
-- 로컬 실행 시 결과를 `src/data/babyfair_events_pending.json`에 저장
 
 ```bash
-# 로컬 크롤 실행
 npx ts-node scripts/crawl-babyfair.ts --mode=full
 ```
 
-### 3-2. 정규화 로직
+### 5-2. 정규화 로직
 
-- 행사명: trim + 공식 브랜드명 보존 (베페, 코베, 맘스홀릭)
-- 날짜: 한국어 날짜 → ISO 8601 (`2026-04-02`)
-- 장소: `코엑스/COEX/서울 코엑스` → `COEX` 통일
-- Confidence score 산출 (0.0 ~ 1.0)
+- 행사명: trim + 공식 브랜드명 보존
+- 날짜: 한국어 → ISO 8601
+- 장소: 통일 (코엑스/COEX → `COEX`)
+- Confidence score 산출 (0.0~1.0)
 
-### 3-3. Admin 검수 (CLI 기반)
-
-> Phase 2에서는 서버 없이 CLI 스크립트로 검수. Admin Web UI는 Phase 4 이후.
-
-- `scripts/review-babyfair.ts` — 터미널 기반 검수 도구
-  - pending 목록 출력 (raw 원본 vs normalized 비교)
-  - approve / reject / edit 입력
-  - approve → `src/data/babyfair_events.json`에 자동 반영
-  - 변경 후 `npm run build && npm run deploy`로 gh-pages 재배포
+### 5-3. Admin 검수 (CLI 기반)
 
 ```bash
-# 검수 실행
 npx ts-node scripts/review-babyfair.ts
-
-# 승인 후 재배포
-npm run build && npm run deploy
+npm run build && npm run deploy  # 승인 후 재배포
 ```
 
-### 3-4. Admin API Routes (Phase 4 이후)
-
-> `output: 'export'` 제거 후 서버 모드에서 추가. Phase 2에서는 미구현.
+### 5-4. Admin API Routes (Phase 6 이후)
 
 | Route | 역할 | 시점 |
 | ----- | ---- | ---- |
-| `POST /api/admin/crawl/babyfair/full` | 크롤러 full 실행 | Phase 4+ |
-| `POST /api/admin/crawl/babyfair/incremental` | 크롤러 incremental 실행 | Phase 4+ |
-| `POST /api/admin/babyfair-events/[id]/approve` | 이벤트 승인 | Phase 4+ |
-| `POST /api/admin/babyfair-events/[id]/reject` | 이벤트 거부 | Phase 4+ |
+| `POST /api/admin/crawl/babyfair/full` | 크롤러 full 실행 | Phase 6+ |
+| `POST /api/admin/crawl/babyfair/incremental` | 크롤러 incremental | Phase 6+ |
+| `POST /api/admin/babyfair-events/[id]/approve` | 이벤트 승인 | Phase 6+ |
+| `POST /api/admin/babyfair-events/[id]/reject` | 이벤트 거부 | Phase 6+ |
 
 ---
 
-## Phase 4. GCP 인프라 세팅
-
-> 이 단계부터 GCP 작업. 로컬 기능 개발은 완료 상태.
+## Phase 6. GCP 인프라 세팅
 
 ### GCP 프로젝트 초기 세팅
 
@@ -600,32 +836,16 @@ gcloud services enable \
 
 ```bash
 gsutil mb -l asia-northeast3 gs://pregnancy-prep-data
-
-# 공개 읽기 권한
 gsutil iam ch allUsers:objectViewer gs://pregnancy-prep-data
-
-# 로컬 mock 데이터를 그대로 업로드
-gsutil cp src/data/checklist_items.json \
-  gs://pregnancy-prep-data/checklist/v1/checklist_items.json
-
-gsutil cp src/data/timeline_items.json \
-  gs://pregnancy-prep-data/timeline/v1/timeline_items.json
-
-gsutil cp src/data/babyfair_events.json \
-  gs://pregnancy-prep-data/babyfair/2026/events.json
-
-gsutil cp src/data/videos.json \
-  gs://pregnancy-prep-data/videos/v1/videos.json
+gsutil cp src/data/checklist_items.json gs://pregnancy-prep-data/checklist/v1/checklist_items.json
+gsutil cp src/data/timeline_items.json gs://pregnancy-prep-data/timeline/v1/timeline_items.json
+gsutil cp src/data/babyfair_events.json gs://pregnancy-prep-data/babyfair/2026/events.json
+gsutil cp src/data/videos.json gs://pregnancy-prep-data/videos/v1/videos.json
 ```
 
-### GCS 클라이언트 구현 (`src/lib/data-source.ts` 업데이트)
-
-```bash
-npm install @google-cloud/storage
-```
+### GCS 클라이언트 (`src/lib/data-source.ts` 업데이트)
 
 ```ts
-// data-source.ts에 GCS 구현 추가
 async function fetchFromGCS<T>(path: string): Promise<T> {
   const { Storage } = await import('@google-cloud/storage');
   const storage = new Storage();
@@ -635,32 +855,22 @@ async function fetchFromGCS<T>(path: string): Promise<T> {
 }
 ```
 
-`DATA_SOURCE=gcs`로 환경변수만 바꾸면 전환 완료. API Route 코드 변경 없음.
+`DATA_SOURCE=gcs`로 환경변수만 바꾸면 전환 완료.
 
-### API Routes 캐시 추가
-
-GCS 연결 후 Next.js fetch revalidate 설정.
+### API Routes 캐시
 
 ```ts
 // 24h cache (checklist, timeline, videos)
 export const revalidate = 86400;
-
 // 6h cache (babyfair)
 export const revalidate = 21600;
 ```
 
-### Secret Manager 등록
+### Secret Manager / Artifact Registry
 
 ```bash
-echo -n "your_youtube_api_key" | \
-  gcloud secrets create YOUTUBE_API_KEY --data-file=-
+echo -n "your_youtube_api_key" | gcloud secrets create YOUTUBE_API_KEY --data-file=-
 
-# ADMIN_SECRET은 Phase 4 Admin UI 구현 시 추가
-```
-
-### Artifact Registry 생성
-
-```bash
 gcloud artifacts repositories create pregnancy-checklist \
   --repository-format=docker \
   --location=asia-northeast3
@@ -668,7 +878,7 @@ gcloud artifacts repositories create pregnancy-checklist \
 
 ---
 
-## Phase 5. 운영 배포
+## Phase 7. 운영 배포
 
 ### Dockerfile
 
@@ -700,19 +910,11 @@ ENV PORT=3000
 CMD ["node", "server.js"]
 ```
 
-```ts
-// next.config.ts
-const nextConfig = {
-  output: 'standalone',
-};
-```
-
 ### 배포 스크립트 (`scripts/deploy.sh`)
 
 ```bash
 #!/bin/bash
 set -e
-
 PROJECT_ID="pregnancy-checklist-prod"
 REGION="asia-northeast3"
 IMAGE="$REGION-docker.pkg.dev/$PROJECT_ID/pregnancy-checklist/app"
@@ -734,53 +936,26 @@ gcloud run deploy pregnancy-checklist \
   --set-secrets "YOUTUBE_API_KEY=YOUTUBE_API_KEY:latest" \
   --set-env-vars "GCS_BUCKET_NAME=pregnancy-prep-data,DATA_SOURCE=gcs" \
   --project "$PROJECT_ID"
-
-echo "Deploy complete."
-```
-
-### 서비스 계정 권한
-
-```bash
-SA="pregnancy-checklist-prod@appspot.gserviceaccount.com"
-
-gcloud projects add-iam-policy-binding pregnancy-checklist-prod \
-  --member="serviceAccount:$SA" \
-  --role="roles/storage.objectViewer"
-
-gcloud projects add-iam-policy-binding pregnancy-checklist-prod \
-  --member="serviceAccount:$SA" \
-  --role="roles/secretmanager.secretAccessor"
 ```
 
 ### CI/CD (GitHub Actions)
 
 ```yaml
-# .github/workflows/deploy.yml
 name: Deploy to Cloud Run
-
 on:
   push:
     branches: [main]
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Authenticate to GCP
-        uses: google-github-actions/auth@v2
+      - uses: google-github-actions/auth@v2
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
-
-      - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@v2
-
-      - name: Configure Docker
-        run: gcloud auth configure-docker asia-northeast3-docker.pkg.dev
-
-      - name: Build and Deploy
-        run: bash scripts/deploy.sh
+      - uses: google-github-actions/setup-gcloud@v2
+      - run: gcloud auth configure-docker asia-northeast3-docker.pkg.dev
+      - run: bash scripts/deploy.sh
 ```
 
 ### 베이비페어 크롤 스케줄 (Cloud Scheduler)
@@ -790,20 +965,89 @@ gcloud scheduler jobs create http crawl-babyfair-daily \
   --schedule="0 6 * * *" \
   --uri="https://your-cloudrun-url/api/admin/crawl/babyfair/incremental" \
   --http-method=POST \
-  --headers="Authorization=Bearer $ADMIN_TOKEN" \  # Phase 4 Admin UI 구현 시 인증 방식 확정
   --time-zone="Asia/Seoul"
 ```
 
-### 배포 후 확인 체크리스트
+---
 
-- [ ] Cloud Run URL 접속 확인
-- [ ] `/api/checklist` GCS 데이터 반환 확인
-- [ ] `/api/timeline` GCS 데이터 반환 확인
-- [ ] `/api/babyfair-events` GCS 데이터 반환 확인
-- [ ] LocalStorage 기반 체크리스트 동작 확인
-- [ ] 체중 기록 저장/시각화 확인
-- [ ] Cloud Logging 에러 없음 확인
-- [ ] Lighthouse 점수 확인 (Performance / SEO)
+## SEO Strategy
+
+### Target Keywords
+
+**Head (검색량 높음, 경쟁 높음)**
+
+| 키워드 | 타겟 페이지 |
+| ------ | ----------- |
+| 출산 준비 체크리스트 | 홈 / 체크리스트 |
+| 임신 준비물 리스트 | 체크리스트 |
+| 출산 가방 준비물 | 체크리스트 (출산 가방 탭) |
+
+**Mid-tail (검색량 중간, 전환 높음)**
+
+| 키워드 | 타겟 페이지 |
+| ------ | ----------- |
+| 임신 주차별 준비 | 타임라인 |
+| 베이비페어 일정 2026 | 베이비페어 |
+| 임산부 체중 관리 | 체중 기록 |
+
+**Long-tail (Phase 5+)**
+
+| 키워드 | 타겟 페이지 |
+| ------ | ----------- |
+| 임신 32주 출산 가방 | 타임라인 주차별 페이지 |
+| 코베 베이비페어 2026 일정 | 베이비페어 상세 |
+
+### Page-level SEO 매핑
+
+| 페이지 | `<title>` |
+| ------ | --------- |
+| 홈 | 출산 준비 체크리스트 - 임신 주차별 준비 가이드 |
+| 타임라인 | 임신 주차별 준비 타임라인 |
+| 베이비페어 | 2026 베이비페어 일정 - 전국 행사 모음 |
+| 체중 기록 | 임산부 체중 기록 & 그래프 |
+
+### seo_slug 활용 (Phase 5+)
+
+- `/timeline/week-32` → "임신 32주 준비 - 입원 가방 준비 시작"
+- 각 주차가 독립 URL → long-tail 키워드 랜딩 페이지
+- `generateStaticParams`로 빌드 시 정적 생성
+
+---
+
+## 데이터 전략
+
+### 서버 저장 데이터
+
+- 체크리스트 원본, 타임라인 원본, 베이비페어 목록, 영상 목록
+
+### 사용자 데이터 (LocalStorage)
+
+- dueDate, checklistState, weightLogs
+
+### 데이터 소실 리스크 & 고지
+
+LocalStorage 특성상 브라우저 캐시 삭제, 시크릿 모드, 기기/브라우저 변경 시 데이터 소실.
+
+**고지 방법:**
+- 첫 예정일 입력 직후: "데이터는 이 브라우저에만 저장됩니다" 토스트
+- 서비스 약관: 데이터 소실 면책 명시
+
+---
+
+## 수익화
+
+**Primary**: Display Ads (Google AdSense)
+**Secondary**: 베이비페어 광고, 육아 제품 제휴 링크
+
+---
+
+## 리스크
+
+| 리스크 | 대응 |
+|--------|------|
+| 임신 기간 이후 사용자 이탈 | SEO 중심 신규 유입 |
+| 맘카페 중심 정보 구조 | 데이터 큐레이션 품질 확보 |
+| 콘텐츠 데이터 관리 필요 | Phase 5 크롤러 자동화 |
 
 ---
 
@@ -812,35 +1056,32 @@ gcloud scheduler jobs create http crawl-babyfair-daily \
 ### 데이터 업데이트
 
 ```bash
-# 체크리스트/타임라인 수동 업데이트
-gsutil cp updated_checklist.json \
-  gs://pregnancy-prep-data/checklist/v1/checklist_items.json
-
-# 캐시 무효화: revalidate tag 또는 Cloud Run 재배포
+gsutil cp updated_checklist.json gs://pregnancy-prep-data/checklist/v1/checklist_items.json
 ```
 
 ### 모니터링
 
-- Cloud Logging: 에러 / 비정상 트래픽 확인
+- Cloud Logging: 에러 / 비정상 트래픽
 - Cloud Run 메트릭: 요청 수 / 레이턴시 / 인스턴스 수
 - 베이비페어 크롤러: 매일 06:00 실행 결과 확인
 
 ### 비용 관리
 
 - Cloud Run: `min-instances 0` → 트래픽 없을 때 비용 없음
-- GCS: 소량 JSON 파일, 비용 무시 수준
-- Artifact Registry: 이미지 태그 주기적 정리
+- GCS: 소량 JSON, 비용 무시 수준
 
 ---
 
 ## 마일스톤 요약
 
-| 마일스톤 | 완료 기준 |
-| -------- | --------- |
-| M0: 초기 세팅 | Next.js 로컬 실행, mock 데이터 로드 확인 ✅ |
-| M1: 핵심 기능 | 체크리스트/타임라인/체중기록 + GA4 + gh-pages 배포 ✅ |
-| M1.5: PoC 고도화 | 기능 통합 + AdSense 기초 준비 (SEO/가이드/영상) ✅ |
-| M2: 콘텐츠 강화 | YouTube 세분화 + 정보글 시스템 + AdSense 승인 신청 |
-| M3: 베이비페어 | 크롤러 → Admin 검수 → 데이터 반영 |
-| M4: 인프라 | GCS 업로드, `DATA_SOURCE=gcs` 로컬 연결 |
-| M5: 운영 배포 | Cloud Run 배포, CI/CD 동작 확인 |
+| 마일스톤 | 완료 기준 | 상태 |
+| -------- | --------- | ---- |
+| M0: 초기 세팅 | Next.js 로컬 실행, mock 데이터 로드 확인 | ✅ |
+| M1: 핵심 기능 | 체크리스트/타임라인/체중기록 + GA4 + gh-pages 배포 | ✅ |
+| M1.5: PoC 고도화 | 기능 통합 + AdSense 기초 준비 (SEO/가이드/영상) | ✅ |
+| M2: 콘텐츠 강화 | YouTube 세분화 + 정보글 시스템 + AdSense 승인 신청 | ✅ |
+| M2.5: UX 개선 | 온보딩 + 대시보드 개편 + 리텐션 강화 | ✅ |
+| M3: 누락 기능 보완 | GA4 이벤트 · 검색 · 크로스링크 · SEO 검증 | 📋 |
+| M5: 베이비페어 | 크롤러 → Admin 검수 → 데이터 반영 | |
+| M6: 인프라 | GCS 업로드, `DATA_SOURCE=gcs` 연결 | |
+| M7: 운영 배포 | Cloud Run 배포, CI/CD 동작 확인 | |

@@ -1,18 +1,26 @@
 import type { Metadata } from "next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Toaster } from "sonner";
+import { Poppins } from "next/font/google";
 import { BottomNav } from "@/components/layout/BottomNav";
 import { Footer } from "@/components/layout/Footer";
+import { StickyHeader } from "@/components/layout/StickyHeader";
 import { BASE_URL, OG_IMAGE } from "@/lib/constants";
 import "./globals.css";
 
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
-  title: "출산 준비 체크리스트 - 임신 주차별 준비 가이드",
-  description: "임신 주차에 맞춘 출산 준비 체크리스트, 타임라인, 베이비페어 일정을 한눈에 확인하세요.",
+  title: "출산 준비 체크리스트 - 초산 개발자가 직접 만든 임신 주차별 가이드",
+  description: "답답해서 직접 만들었습니다. 임신 주차별 체크리스트, 입원가방, 베이비페어, 체중관리까지.",
   openGraph: {
-    title: "출산 준비 체크리스트 - 임신 주차별 준비 가이드",
-    description: "임신 주차에 맞춘 출산 준비 체크리스트, 타임라인, 베이비페어 일정을 한눈에 확인하세요.",
+    title: "출산 준비 체크리스트 - 초산 개발자가 직접 만든 임신 주차별 가이드",
+    description: "답답해서 직접 만들었습니다. 임신 주차별 체크리스트, 입원가방, 베이비페어, 체중관리까지.",
     url: BASE_URL,
     siteName: "출산 준비 체크리스트",
     locale: "ko_KR",
@@ -30,14 +38,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ko">
+    <html lang="ko" className={poppins.className}>
       <head>
         {process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID && (
           <meta name="google-adsense-account" content={process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID} />
         )}
       </head>
       <body>
-        <div className="min-h-screen">
+        <StickyHeader />
+        <div className="min-h-screen max-w-2xl mx-auto">
           {children}
           <Footer />
           <BottomNav />

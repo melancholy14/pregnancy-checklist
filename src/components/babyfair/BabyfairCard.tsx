@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { MapPin, Calendar } from "lucide-react";
 import { toast } from "sonner";
+import { sendGAEvent } from "@/lib/analytics";
 import { format, parseISO } from "date-fns";
 import { ko } from "date-fns/locale";
 import { Card, CardContent } from "@/components/ui/card";
@@ -19,14 +20,31 @@ import {
 } from "@/components/ui/alert-dialog";
 import type { BabyfairEvent } from "@/types/babyfair";
 
+const SCALE_CONFIG: Record<string, { label: string; color: string }> = {
+  large: { label: "대형", color: "#FFD4DE" },
+  medium: { label: "중형", color: "#FFF4D4" },
+  small: { label: "소형", color: "#E0F0FF" },
+};
+
 const CITY_COLORS: Record<string, string> = {
   서울: "#FFD4DE",
+  "서울(마곡)": "#FFD4DE",
   부산: "#E4D6F0",
   대구: "#D0EDE2",
   인천: "#FFE0CC",
   경기: "#FFF4D4",
   광주: "#FFD4DE",
   대전: "#D0EDE2",
+  수원: "#FFF4D4",
+  "수원(광교)": "#FFF4D4",
+  "고양(일산)": "#FFE0CC",
+  청주: "#E4D6F0",
+  창원: "#D0EDE2",
+  김해: "#E4D6F0",
+  경주: "#FFE0CC",
+  강릉: "#D0EDE2",
+  익산: "#FFF4D4",
+  순천: "#FFD4DE",
 };
 
 function formatDateRange(startDate: string, endDate: string): string {
@@ -39,9 +57,10 @@ function formatDateRange(startDate: string, endDate: string): string {
 
 interface BabyfairCardProps {
   event: BabyfairEvent;
+  daysLeft?: number;
 }
 
-export function BabyfairCard({ event }: BabyfairCardProps) {
+export function BabyfairCard({ event, daysLeft }: BabyfairCardProps) {
   const color = CITY_COLORS[event.city] ?? "#FFD4DE";
   const [open, setOpen] = useState(false);
   const hasUrl = !!event.official_url;
@@ -51,6 +70,7 @@ export function BabyfairCard({ event }: BabyfairCardProps) {
   };
 
   const handleConfirm = () => {
+    sendGAEvent("outbound_click", { url: event.official_url, event_name: event.name });
     const newWindow = window.open(event.official_url, "_blank");
     if (newWindow) {
       newWindow.opener = null;
@@ -80,14 +100,29 @@ export function BabyfairCard({ event }: BabyfairCardProps) {
         })}
       >
         <CardContent className="p-6">
-          {/* City Badge */}
+          {/* City Badge + Scale Badge + D-day */}
           <div className="flex justify-between items-start mb-4">
-            <Badge
-              className="rounded-lg text-sm border border-black/4 px-3 py-1 text-[#3D4447] font-medium"
-              style={{ backgroundColor: color }}
-            >
-              {event.city}
-            </Badge>
+            <div className="flex items-center gap-2 flex-wrap">
+              {event.scale && SCALE_CONFIG[event.scale] && (
+                <Badge
+                  className="rounded-lg text-xs border-0 px-2 py-1 text-[#3D4447] font-medium"
+                  style={{ backgroundColor: SCALE_CONFIG[event.scale].color }}
+                >
+                  {SCALE_CONFIG[event.scale].label}
+                </Badge>
+              )}
+              <Badge
+                className="rounded-lg text-sm border border-black/4 px-3 py-1 text-[#3D4447] font-medium"
+                style={{ backgroundColor: color }}
+              >
+                {event.city}
+              </Badge>
+              {daysLeft !== undefined && (
+                <Badge className="rounded-lg text-xs border-0 px-2 py-1 bg-[#D0EDE2] text-[#2D6B4F] font-medium">
+                  {daysLeft === 0 ? "D-Day" : `D-${daysLeft}일 남음`}
+                </Badge>
+              )}
+            </div>
           </div>
 
           {/* Event Name */}
@@ -107,9 +142,57 @@ export function BabyfairCard({ event }: BabyfairCardProps) {
             <span>{event.venue_name}</span>
           </div>
 
-          {/* Decorative Element */}
+          {/* Extended Info */}
+          {(event.operating_hours || event.admission || event.parking) && (
+            <div className="mt-3 space-y-1.5">
+              {event.operating_hours && (
+                <div className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <span aria-hidden="true" className="shrink-0">🕐</span>
+                  <span>{event.operating_hours}</span>
+                </div>
+              )}
+              {event.admission && (
+                <div className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <span aria-hidden="true" className="shrink-0">🎟️</span>
+                  <span>{event.admission}</span>
+                </div>
+              )}
+              {event.parking && (
+                <div className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <span aria-hidden="true" className="shrink-0">🅿️</span>
+                  <span>{event.parking}</span>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Highlights */}
+          {event.highlights && event.highlights.length > 0 && (
+            <ul className="mt-3 space-y-1">
+              {event.highlights.slice(0, 3).map((h) => (
+                <li key={h} className="text-xs text-muted-foreground flex items-start gap-1.5">
+                  <span className="mt-1 shrink-0 w-1 h-1 rounded-full bg-muted-foreground/50" />
+                  {h}
+                </li>
+              ))}
+              {event.highlights.length > 3 && (
+                <li className="text-xs text-muted-foreground">외 {event.highlights.length - 3}개</li>
+              )}
+            </ul>
+          )}
+
+          {/* Tip */}
+          {event.tip && (
+            <div className="mt-3 p-3 rounded-lg bg-[#FFF4D4]/30 text-xs text-muted-foreground leading-relaxed">
+              <span aria-hidden="true">💬</span> {event.tip}
+            </div>
+          )}
+
+          {/* Footer */}
           <div className="mt-4 pt-4 border-t border-black/4 text-xs text-muted-foreground">
-            입장료, 주차, 혜택 등은 공식 홈페이지 참고
+            {event.admission || event.parking
+              ? "상세 정보는 공식 홈페이지에서 확인하세요"
+              : "입장료, 주차, 혜택 등은 공식 홈페이지 참고"}
           </div>
         </CardContent>
       </Card>
