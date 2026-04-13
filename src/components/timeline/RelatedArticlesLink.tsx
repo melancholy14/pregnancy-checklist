@@ -22,7 +22,7 @@ export function RelatedArticlesLink({ articles }: RelatedArticlesLinkProps) {
           <Link
             key={article.slug}
             href={`/articles/${article.slug}`}
-            className="block text-sm text-[#6B5A80] hover:text-[#4A3D5C] hover:bg-[#E4D6F0]/10 rounded-lg px-2 py-1.5 -mx-2 transition-colors no-underline"
+            className="block text-sm text-accent-purple hover:text-accent-purple-hover hover:bg-pastel-lavender/10 rounded-lg px-2 py-1.5 -mx-2 transition-colors no-underline"
           >
             {article.title} →
           </Link>

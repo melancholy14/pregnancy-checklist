@@ -28,7 +28,7 @@ export function VideoCard({ video, channelName }: VideoCardProps) {
           {/* Play Button Overlay */}
           <div className="absolute inset-0 bg-black/10 flex items-center justify-center group-hover:bg-black/20 transition-colors duration-300">
             <div className="w-14 h-14 rounded-2xl bg-white/90 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-              <Play size={24} fill="#3D4447" color="#3D4447" className="ml-0.5" />
+              <Play size={24} fill="currentColor" color="currentColor" className="ml-0.5 text-foreground" />
             </div>
           </div>
         </div>

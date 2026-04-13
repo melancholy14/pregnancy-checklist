@@ -47,7 +47,7 @@ export function DueDateStep({ onNext }: DueDateStepProps) {
           type="date"
           value={dateValue}
           onChange={handleDateChange}
-          className="w-full px-4 py-3 bg-input-background rounded-xl border border-black/6 text-center focus:outline-none focus:ring-2 focus:ring-[#FFD4DE]/50 transition-shadow"
+          className="w-full px-4 py-3 bg-input-background rounded-xl border border-black/6 text-center focus:outline-none focus:ring-2 focus:ring-pastel-pink/50 transition-shadow"
           aria-label="출산 예정일 선택"
         />
       </div>
@@ -56,7 +56,7 @@ export function DueDateStep({ onNext }: DueDateStepProps) {
         <Button
           onClick={handleNext}
           disabled={!dateValue}
-          className="w-full h-12 rounded-2xl bg-[#FFD4DE] text-[#3D4447] text-base hover:bg-[#FFD4DE]/80 disabled:opacity-40"
+          className="w-full h-12 rounded-2xl bg-pastel-pink text-foreground text-base hover:bg-pastel-pink/80 disabled:opacity-40"
           aria-label="다음 단계로 이동"
         >
           다음

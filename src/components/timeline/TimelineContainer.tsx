@@ -134,7 +134,7 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
   );
 
   return (
-    <div className="min-h-screen pb-24 px-4 bg-linear-to-b from-[#FFFAF7] to-white">
+    <div className="min-h-screen pb-24 px-4 bg-linear-to-b from-background to-white">
       <div className="pt-8">
         <h1 className="mb-2 text-center">임신 타임라인</h1>
         <p className="text-center text-muted-foreground mb-6">
@@ -166,7 +166,7 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
               </div>
               <Progress value={progress.percent} className="h-2 bg-muted" />
               {progress.percent >= 25 && (
-                <p className="text-xs text-center mt-2 text-[#2D6B4F] font-medium">
+                <p className="text-xs text-center mt-2 text-accent-green font-medium">
                   {progress.percent >= 100
                     ? "완벽한 준비 완료! 🎊"
                     : progress.percent >= 75
@@ -182,10 +182,10 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
 
         {/* 첫 체크 인라인 배너 */}
         {showFirstCheckBanner && (
-          <Card className="rounded-2xl border border-[#D0EDE2]/50 bg-[#D0EDE2]/10 mb-6">
+          <Card className="rounded-2xl border border-pastel-mint/40 bg-pastel-mint/20 mb-6">
             <CardContent className="p-4 flex items-start gap-3">
-              <span className="w-9 h-9 rounded-xl bg-[#D0EDE2] flex items-center justify-center shrink-0 mt-0.5">
-                <Save size={18} strokeWidth={1.8} className="text-[#3D4447]" />
+              <span className="w-9 h-9 rounded-xl bg-pastel-mint flex items-center justify-center shrink-0 mt-0.5">
+                <Save size={18} strokeWidth={1.8} className="text-foreground" />
               </span>
               <div className="flex-1">
                 <p className="text-sm font-medium mb-0.5">체크한 내용은 자동 저장돼요!</p>
@@ -208,8 +208,8 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
         <div className="mb-6">
           <CategoryFilter activeCategory={activeCategory} onCategoryChange={setActiveCategory} />
           {activeCategory === "admin" && (
-            <div className="mt-3 px-4 py-3 rounded-xl bg-[#FFF4D4]/40 border border-[#FFF4D4]/60">
-              <p className="text-xs text-[#8B7520] leading-relaxed">
+            <div className="mt-3 px-4 py-3 rounded-xl bg-pastel-yellow/40 border border-pastel-yellow/60">
+              <p className="text-xs text-accent-olive leading-relaxed">
                 행정 관련 항목은 거주 지자체에 따라 다를 수 있습니다. 정확한 정보는 주민센터 또는 정부24를 확인해주세요.
               </p>
             </div>
@@ -222,7 +222,7 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
         {/* Timeline */}
         <div className="relative">
           {/* Vertical Line */}
-          <div className="absolute left-7 top-0 bottom-0 w-0.5 bg-linear-to-b from-[#FFD4DE] via-[#E4D6F0] to-[#FFF4D4] opacity-60" />
+          <div className="absolute left-7 top-0 bottom-0 w-0.5 bg-linear-to-b from-pastel-pink via-pastel-lavender to-pastel-yellow opacity-60" />
 
           <div className="space-y-6">
             {(() => {
@@ -272,7 +272,7 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
 
         {/* Final Message */}
         <div className="mt-12 text-center">
-          <div className="inline-block bg-linear-to-r from-[#FFD4DE]/60 to-[#E4D6F0]/60 rounded-2xl px-8 py-5 shadow-md border border-black/4">
+          <div className="inline-block bg-linear-to-r from-pastel-pink/60 to-pastel-lavender/60 rounded-2xl px-8 py-5 shadow-md border border-black/4">
             <div className="text-4xl mb-2">👶</div>
             <div className="text-sm text-foreground">
               40주차: 소중한 아기와의 만남!
@@ -283,10 +283,10 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
         {/* FAB: 커스텀 항목 추가 */}
         <button
           onClick={() => setShowAddForm(true)}
-          className="fixed fab-bottom-safe right-6 w-14 h-14 rounded-2xl bg-[#E4D6F0] shadow-lg flex items-center justify-center hover:bg-[#E4D6F0]/80 hover:shadow-xl transition-all duration-200 z-10"
+          className="fixed fab-bottom-safe right-6 w-14 h-14 rounded-2xl bg-pastel-lavender shadow-lg flex items-center justify-center hover:bg-pastel-lavender/80 hover:shadow-xl transition-all duration-200 z-10"
           aria-label="항목 추가"
         >
-          <Plus size={24} color="#3D4447" />
+          <Plus size={24} className="text-foreground" />
         </button>
       </div>
     </div>

@@ -42,7 +42,7 @@ export function WeightForm({ onSubmit, onClose }: WeightFormProps) {
               type="date"
               value={newDate}
               onChange={(e) => setNewDate(e.target.value)}
-              className="w-full px-4 py-3 bg-input-background rounded-xl border border-black/6 focus:outline-none focus:ring-2 focus:ring-[#FFD4DE]/50 transition-shadow"
+              className="w-full px-4 py-3 bg-input-background rounded-xl border border-black/6 focus:outline-none focus:ring-2 focus:ring-pastel-pink/50 transition-shadow"
             />
           </div>
           <div>
@@ -53,12 +53,12 @@ export function WeightForm({ onSubmit, onClose }: WeightFormProps) {
               value={newWeight}
               onChange={(e) => setNewWeight(e.target.value)}
               placeholder="예: 62.5"
-              className="w-full px-4 py-3 bg-input-background rounded-xl border border-black/6 focus:outline-none focus:ring-2 focus:ring-[#FFD4DE]/50 transition-shadow"
+              className="w-full px-4 py-3 bg-input-background rounded-xl border border-black/6 focus:outline-none focus:ring-2 focus:ring-pastel-pink/50 transition-shadow"
             />
           </div>
           <Button
             onClick={handleAdd}
-            className="w-full py-3 bg-[#FFD4DE] rounded-xl hover:bg-[#f5cada] text-[#3D4447] h-auto transition-colors duration-200"
+            className="w-full py-3 bg-pastel-pink rounded-xl hover:bg-pastel-pink-hover text-foreground h-auto transition-colors duration-200"
           >
             추가
           </Button>

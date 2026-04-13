@@ -70,14 +70,14 @@ export function WeekChecklistSection({ items, checkedIds }: WeekChecklistSection
 
         if (editingId === item.id) {
           return (
-            <div key={item.id} className="p-3 rounded-xl border border-[#E4D6F0]/30 bg-[#E4D6F0]/5 space-y-2">
+            <div key={item.id} className="p-3 rounded-xl border border-pastel-lavender/30 bg-pastel-lavender/10 space-y-2">
               <div>
                 <label className="block text-xs text-muted-foreground mb-1">제목</label>
                 <input
                   type="text"
                   value={editTitle}
                   onChange={(e) => setEditTitle(e.target.value)}
-                  className="w-full px-3 py-1.5 rounded-lg border border-black/6 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#E4D6F0]/50"
+                  className="w-full px-3 py-1.5 rounded-lg border border-black/6 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-pastel-lavender/50"
                   autoFocus
                 />
               </div>
@@ -87,7 +87,7 @@ export function WeekChecklistSection({ items, checkedIds }: WeekChecklistSection
                   <select
                     value={editCategory}
                     onChange={(e) => setEditCategory(e.target.value as ChecklistItem["category"])}
-                    className="w-full px-3 py-1.5 rounded-lg border border-black/6 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#E4D6F0]/50"
+                    className="w-full px-3 py-1.5 rounded-lg border border-black/6 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-pastel-lavender/50"
                   >
                     {CATEGORY_OPTIONS.map((opt) => (
                       <option key={opt.value} value={opt.value}>{opt.label}</option>
@@ -102,7 +102,7 @@ export function WeekChecklistSection({ items, checkedIds }: WeekChecklistSection
                     max={40}
                     value={editWeek}
                     onChange={(e) => setEditWeek(Number(e.target.value))}
-                    className="w-full px-3 py-1.5 rounded-lg border border-black/6 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#E4D6F0]/50"
+                    className="w-full px-3 py-1.5 rounded-lg border border-black/6 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-pastel-lavender/50"
                   />
                 </div>
               </div>
@@ -110,7 +110,7 @@ export function WeekChecklistSection({ items, checkedIds }: WeekChecklistSection
                 <Button type="button" variant="ghost" size="sm" onClick={cancelEdit} className="rounded-lg h-8 text-xs">
                   취소
                 </Button>
-                <Button type="button" size="sm" onClick={saveEdit} disabled={!editTitle.trim()} className="rounded-lg h-8 text-xs bg-[#E4D6F0] text-[#3D4447] hover:bg-[#E4D6F0]/80">
+                <Button type="button" size="sm" onClick={saveEdit} disabled={!editTitle.trim()} className="rounded-lg h-8 text-xs bg-pastel-lavender text-foreground hover:bg-pastel-lavender/80">
                   저장
                 </Button>
               </div>
@@ -125,7 +125,7 @@ export function WeekChecklistSection({ items, checkedIds }: WeekChecklistSection
             tabIndex={0}
             className={`flex items-center gap-3 p-3 rounded-xl transition-all duration-200 cursor-pointer ${
               isChecked
-                ? "bg-[#D0EDE2]/15"
+                ? "bg-pastel-mint/20"
                 : "hover:bg-muted/50"
             }`}
             onClick={() => {
@@ -145,18 +145,18 @@ export function WeekChecklistSection({ items, checkedIds }: WeekChecklistSection
             <Checkbox
               checked={isChecked}
               onCheckedChange={() => toggle(item.id)}
-              className="size-5 rounded-md border-2 data-[state=checked]:bg-[#D0EDE2] data-[state=checked]:border-[#D0EDE2] data-[state=checked]:text-[#3D4447] border-gray-200 shrink-0"
+              className="size-5 rounded-md border-2 data-[state=checked]:bg-pastel-mint data-[state=checked]:border-pastel-mint data-[state=checked]:text-foreground border-gray-200 shrink-0"
               onClick={(e) => e.stopPropagation()}
             />
             <span
               className={`flex-1 text-sm ${
-                isChecked ? "line-through text-[#9CA0A4]" : "text-foreground"
+                isChecked ? "line-through text-muted-foreground" : "text-foreground"
               }`}
             >
               {item.title}
             </span>
             <Badge
-              className="text-xs px-2 py-0.5 rounded-lg border-0 shrink-0"
+              className="text-xs px-2 py-0.5 rounded-md border-0 shrink-0"
               style={{ backgroundColor: `${catColor}40`, color: "#3D4447" }}
             >
               {item.categoryName}
@@ -168,7 +168,7 @@ export function WeekChecklistSection({ items, checkedIds }: WeekChecklistSection
                     e.stopPropagation();
                     startEdit(item);
                   }}
-                  className="p-2 rounded-lg text-[#9CA0A4] hover:text-[#6B5A80] hover:bg-[#E4D6F0]/20 transition-colors"
+                  className="p-2 rounded-lg text-muted-foreground hover:text-accent-purple hover:bg-pastel-lavender/20 transition-colors"
                   aria-label="수정"
                 >
                   <Pencil size={16} />

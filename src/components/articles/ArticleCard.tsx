@@ -20,7 +20,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
             {article.tags.map((tag) => (
               <Badge
                 key={tag}
-                className="bg-[#E4D6F0]/30 text-[#6B5A80] text-xs px-2 py-0.5 rounded-lg border-0 hover:bg-[#E4D6F0]/30"
+                className="bg-pastel-lavender/30 text-accent-purple text-xs px-2 py-0.5 rounded-lg border-0 hover:bg-pastel-lavender/30"
               >
                 #{tag}
               </Badge>

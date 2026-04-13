@@ -161,13 +161,13 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
       {/* Hero Section */}
       <div className="pt-14 pb-8 text-center">
         <div className="mb-8 relative">
-          <div className="w-24 h-24 mx-auto rounded-full bg-linear-to-br from-[#FFD4DE] via-[#E4D6F0] to-[#D0EDE2] flex items-center justify-center shadow-lg overflow-hidden">
+          <div className="w-24 h-24 mx-auto rounded-full bg-linear-to-br from-pastel-pink via-pastel-lavender to-pastel-mint flex items-center justify-center shadow-lg overflow-hidden">
             <Image src="/home.png" alt="출산 준비" width={96} height={96} className="object-cover" />
           </div>
         </div>
         <h1 className="mb-3">출산 준비 체크리스트</h1>
         <p className="text-muted-foreground">{BRAND_COPY[BRAND_PHASE].heroSub}</p>
-        <div className="mt-6 mx-auto w-12 h-0.5 rounded-full bg-linear-to-r from-[#FFD4DE] to-[#E4D6F0]" />
+        <div className="mt-6 mx-auto w-12 h-0.5 rounded-full bg-linear-to-r from-pastel-pink to-pastel-lavender" />
         <p className="mt-3 text-xs text-muted-foreground">{BRAND_COPY[BRAND_PHASE].heroCaption}</p>
       </div>
 
@@ -181,9 +181,9 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
         <div className="space-y-4 mb-8">
           {/* 재방문 유저 웰컴 메시지 */}
           {returningMessage && (
-            <div className="flex items-center gap-2 px-4 py-3 rounded-2xl bg-[#E4D6F0]/20 border border-[#E4D6F0]/30">
-              <Sparkles size={16} className="text-[#6B5A80] shrink-0" />
-              <span className="text-sm text-[#6B5A80]">{returningMessage}</span>
+            <div className="flex items-center gap-2 px-4 py-3 rounded-2xl bg-pastel-lavender/20 border border-pastel-lavender/30">
+              <Sparkles size={16} className="text-accent-purple shrink-0" />
+              <span className="text-sm text-accent-purple">{returningMessage}</span>
             </div>
           )}
 
@@ -240,7 +240,7 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
                       <div key={item.id} className="flex items-center gap-2">
                         <Checkbox
                           checked={isChecked}
-                          className="size-4 rounded border-2 data-[state=checked]:bg-[#D0EDE2] data-[state=checked]:border-[#D0EDE2] data-[state=checked]:text-[#3D4447] border-gray-200 pointer-events-none"
+                          className="size-4 rounded border-2 data-[state=checked]:bg-pastel-mint data-[state=checked]:border-pastel-mint data-[state=checked]:text-foreground border-gray-200 pointer-events-none"
                           tabIndex={-1}
                           aria-hidden
                         />
@@ -253,7 +253,7 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
                 </div>
                 <Link href="/timeline" className="no-underline block">
                   <Button
-                    className="w-full h-10 rounded-xl bg-[#E4D6F0] text-[#3D4447] hover:bg-[#E4D6F0]/80"
+                    className="w-full h-10 rounded-xl bg-pastel-lavender text-foreground hover:bg-pastel-lavender/80"
                     aria-label="타임라인에서 확인하기"
                   >
                     타임라인에서 확인하기 →
@@ -268,9 +268,9 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
       {/* 예정일 미입력 시 안내 */}
       {hydrated && !dueDate && (
         <div className="mb-8 text-center">
-          <Card className="rounded-2xl border border-[#FFF4D4]/50 bg-[#FFF4D4]/10">
+          <Card className="rounded-2xl border border-pastel-yellow/40 bg-pastel-yellow/20">
             <CardContent className="p-6">
-              <p className="text-sm text-[#8B7520]">
+              <p className="text-sm text-accent-olive">
                 예정일을 입력하면 나에게 맞는 체크리스트와 타임라인을 볼 수 있어요
               </p>
             </CardContent>

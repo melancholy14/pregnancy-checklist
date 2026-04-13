@@ -40,7 +40,7 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
             role="presentation"
             aria-label={`${s}단계 ${s === step ? "진행 중" : s < step ? "완료" : "대기"}`}
             className={`h-1.5 rounded-full transition-all duration-300 ${
-              s === step ? "w-6 bg-[#FFD4DE]" : s < step ? "w-6 bg-[#FFD4DE]/50" : "w-6 bg-muted"
+              s === step ? "w-6 bg-pastel-pink" : s < step ? "w-6 bg-pastel-pink/50" : "w-6 bg-muted"
             }`}
           />
         ))}

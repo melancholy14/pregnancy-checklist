@@ -26,7 +26,7 @@ export default function AboutPage() {
 
         {/* 왜 만들었나 */}
         <section
-          className="rounded-xl bg-[#FFF4D4]/10 border border-[#FFF4D4]/30 p-5 mb-6"
+          className="rounded-xl bg-pastel-yellow/10 border border-pastel-yellow/30 p-5 mb-6"
           aria-label="왜 만들었나"
         >
           <h2 className="text-base font-semibold mb-3">왜 만들었나</h2>

@@ -80,7 +80,7 @@ export default function PrivacyPage() {
             href="https://support.google.com/analytics/answer/7667196"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#6B5A80] underline"
+            className="text-accent-purple underline"
           >
             Google Analytics 데이터 보관 정책
           </a>
@@ -106,7 +106,7 @@ export default function PrivacyPage() {
             href="https://policies.google.com/privacy"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#6B5A80] underline"
+            className="text-accent-purple underline"
           >
             Google 개인정보처리방침
           </a>
@@ -152,7 +152,7 @@ export default function PrivacyPage() {
               href="https://adssettings.google.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#6B5A80] underline"
+              className="text-accent-purple underline"
             >
               Google 광고 설정
             </a>
@@ -163,7 +163,7 @@ export default function PrivacyPage() {
               href="https://tools.google.com/dlpage/gaoptout"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#6B5A80] underline"
+              className="text-accent-purple underline"
             >
               Google Analytics 차단 브라우저 부가기능
             </a>
@@ -180,7 +180,7 @@ export default function PrivacyPage() {
             href="https://adssettings.google.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#6B5A80] underline"
+            className="text-accent-purple underline"
           >
             Google 광고 설정
           </a>

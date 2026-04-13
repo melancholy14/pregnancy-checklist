@@ -95,13 +95,13 @@ export function WeightContainer() {
           href="/articles/pregnancy-weight-management"
           className="block mt-6 mb-20 no-underline"
         >
-          <Card className="rounded-2xl border border-[#FFE0CC]/40 bg-[#FFE0CC]/10 hover:shadow-md transition-shadow">
+          <Card className="rounded-2xl border border-pastel-peach/40 bg-pastel-peach/10 hover:shadow-md transition-shadow">
             <CardContent className="p-4 flex items-center gap-3">
-              <span className="w-9 h-9 rounded-xl bg-[#FFE0CC] flex items-center justify-center shrink-0">
-                <FileText size={18} strokeWidth={1.8} className="text-[#3D4447]" />
+              <span className="w-9 h-9 rounded-xl bg-pastel-peach flex items-center justify-center shrink-0">
+                <FileText size={18} strokeWidth={1.8} className="text-foreground" />
               </span>
               <div className="flex-1">
-                <p className="text-sm font-medium text-[#3D4447]">임신 중 체중 관리 가이드</p>
+                <p className="text-sm font-medium text-foreground">임신 중 체중 관리 가이드</p>
                 <p className="text-xs text-muted-foreground">BMI별 권장 범위부터 안전한 운동법까지</p>
               </div>
               <span className="text-muted-foreground text-sm">→</span>
@@ -113,10 +113,10 @@ export function WeightContainer() {
         {!showAddForm && (
           <Button
             onClick={() => setShowAddForm(true)}
-            className="fixed fab-bottom-safe right-6 w-14 h-14 bg-[#FFD4DE] rounded-2xl shadow-lg hover:bg-[#f5cada] hover:scale-105 transition-all duration-200"
+            className="fixed fab-bottom-safe right-6 w-14 h-14 bg-pastel-pink rounded-2xl shadow-lg hover:bg-pastel-pink-hover hover:scale-105 transition-all duration-200"
             size="icon"
           >
-            <Plus size={24} strokeWidth={2.2} color="#3D4447" />
+            <Plus size={24} strokeWidth={2.2} className="text-foreground" />
           </Button>
         )}
       </div>

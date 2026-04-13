@@ -100,7 +100,7 @@ export function UnifiedAddForm({ onClose, timelineItems }: UnifiedAddFormProps) 
 
   return (
     <>
-      <Card className="rounded-2xl shadow-md mb-6 border border-[#E4D6F0]/30 bg-[#E4D6F0]/5">
+      <Card className="rounded-2xl shadow-md mb-6 border border-pastel-lavender/30 bg-pastel-lavender/10">
       <CardContent className="p-5">
         <h3 className="text-[15px] font-medium mb-4">새 항목 추가</h3>
         <form onSubmit={handleSubmit} className="space-y-3">
@@ -115,7 +115,7 @@ export function UnifiedAddForm({ onClose, timelineItems }: UnifiedAddFormProps) 
                   value="timeline"
                   checked={itemType === "timeline"}
                   onChange={() => setItemType("timeline")}
-                  className="accent-[#E4D6F0]"
+                  className="accent-pastel-lavender"
                 />
                 <span className="text-sm">일정 (타임라인)</span>
               </label>
@@ -126,7 +126,7 @@ export function UnifiedAddForm({ onClose, timelineItems }: UnifiedAddFormProps) 
                   value="checklist"
                   checked={itemType === "checklist"}
                   onChange={() => setItemType("checklist")}
-                  className="accent-[#FFD4DE]"
+                  className="accent-pastel-pink"
                 />
                 <span className="text-sm">할 일 (체크리스트)</span>
               </label>
@@ -144,7 +144,7 @@ export function UnifiedAddForm({ onClose, timelineItems }: UnifiedAddFormProps) 
               max={40}
               value={week}
               onChange={(e) => setWeek(Number(e.target.value))}
-              className="w-full px-3 py-2 rounded-xl border border-black/6 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#E4D6F0]/50"
+              className="w-full px-3 py-2 rounded-xl border border-black/6 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-pastel-lavender/50"
             />
           </div>
 
@@ -155,7 +155,7 @@ export function UnifiedAddForm({ onClose, timelineItems }: UnifiedAddFormProps) 
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value as ChecklistItem["category"])}
-                className="w-full px-3 py-2 rounded-xl border border-black/6 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#E4D6F0]/50"
+                className="w-full px-3 py-2 rounded-xl border border-black/6 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-pastel-lavender/50"
               >
                 {CATEGORY_OPTIONS.map((opt) => (
                   <option key={opt.value} value={opt.value}>{opt.label}</option>
@@ -174,7 +174,7 @@ export function UnifiedAddForm({ onClose, timelineItems }: UnifiedAddFormProps) 
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder={itemType === "timeline" ? "일정을 입력하세요" : "할 일을 입력하세요"}
-              className="w-full px-3 py-2 rounded-xl border border-black/6 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#E4D6F0]/50"
+              className="w-full px-3 py-2 rounded-xl border border-black/6 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-pastel-lavender/50"
               autoFocus
             />
           </div>
@@ -188,7 +188,7 @@ export function UnifiedAddForm({ onClose, timelineItems }: UnifiedAddFormProps) 
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="상세 설명을 입력하세요"
-                className="w-full px-3 py-2 rounded-xl border border-black/6 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#E4D6F0]/50"
+                className="w-full px-3 py-2 rounded-xl border border-black/6 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-pastel-lavender/50"
               />
             </div>
           )}
@@ -202,7 +202,7 @@ export function UnifiedAddForm({ onClose, timelineItems }: UnifiedAddFormProps) 
               type="submit"
               size="sm"
               disabled={!title.trim() || week < 1 || week > 40}
-              className="rounded-xl bg-[#E4D6F0] text-[#3D4447] hover:bg-[#E4D6F0]/80"
+              className="rounded-xl bg-pastel-lavender text-foreground hover:bg-pastel-lavender/80"
             >
               추가하기
             </Button>
@@ -223,7 +223,7 @@ export function UnifiedAddForm({ onClose, timelineItems }: UnifiedAddFormProps) 
           <AlertDialogCancel className="rounded-xl">취소</AlertDialogCancel>
           <AlertDialogAction
             onClick={() => submitChecklist(true)}
-            className="rounded-xl bg-[#E4D6F0] text-[#3D4447] hover:bg-[#E4D6F0]/80"
+            className="rounded-xl bg-pastel-lavender text-foreground hover:bg-pastel-lavender/80"
           >
             주차 추가하고 할일 넣기
           </AlertDialogAction>

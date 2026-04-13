@@ -105,20 +105,20 @@ export function BabyfairCard({ event, daysLeft }: BabyfairCardProps) {
             <div className="flex items-center gap-2 flex-wrap">
               {event.scale && SCALE_CONFIG[event.scale] && (
                 <Badge
-                  className="rounded-lg text-xs border-0 px-2 py-1 text-[#3D4447] font-medium"
+                  className="rounded-md text-xs border-0 px-2 py-1 text-foreground font-medium"
                   style={{ backgroundColor: SCALE_CONFIG[event.scale].color }}
                 >
                   {SCALE_CONFIG[event.scale].label}
                 </Badge>
               )}
               <Badge
-                className="rounded-lg text-sm border border-black/4 px-3 py-1 text-[#3D4447] font-medium"
+                className="rounded-md text-sm border border-black/4 px-3 py-1 text-foreground font-medium"
                 style={{ backgroundColor: color }}
               >
                 {event.city}
               </Badge>
               {daysLeft !== undefined && (
-                <Badge className="rounded-lg text-xs border-0 px-2 py-1 bg-[#D0EDE2] text-[#2D6B4F] font-medium">
+                <Badge className="rounded-md text-xs border-0 px-2 py-1 bg-pastel-mint text-accent-green font-medium">
                   {daysLeft === 0 ? "D-Day" : `D-${daysLeft}일 남음`}
                 </Badge>
               )}
@@ -183,7 +183,7 @@ export function BabyfairCard({ event, daysLeft }: BabyfairCardProps) {
 
           {/* Tip */}
           {event.tip && (
-            <div className="mt-3 p-3 rounded-lg bg-[#FFF4D4]/30 text-xs text-muted-foreground leading-relaxed">
+            <div className="mt-3 p-3 rounded-lg bg-pastel-yellow/20 text-xs text-muted-foreground leading-relaxed">
               <span aria-hidden="true">💬</span> {event.tip}
             </div>
           )}
@@ -207,7 +207,7 @@ export function BabyfairCard({ event, daysLeft }: BabyfairCardProps) {
             <AlertDialogCancel className="rounded-xl text-sm">취소</AlertDialogCancel>
             <AlertDialogAction
               onClick={handleConfirm}
-              className="rounded-xl text-sm bg-[#6B5A80] hover:bg-[#6B5A80]/90 text-white"
+              className="rounded-xl text-sm bg-accent-purple hover:bg-accent-purple/90 text-white"
             >
               이동
             </AlertDialogAction>

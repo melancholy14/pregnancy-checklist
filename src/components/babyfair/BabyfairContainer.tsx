@@ -81,7 +81,7 @@ export function BabyfairContainer({ events }: BabyfairContainerProps) {
                 <select
                   value={selectedYear}
                   onChange={(e) => setSelectedYear(e.target.value)}
-                  className="px-3 py-2 rounded-xl border border-black/6 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#D0EDE2]/50"
+                  className="px-3 py-2 rounded-xl border border-black/6 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-pastel-mint/50"
                 >
                   {years.map((y) => (
                     <option key={y} value={y}>{y === "전체" ? "전체 연도" : `${y}년`}</option>
@@ -101,8 +101,8 @@ export function BabyfairContainer({ events }: BabyfairContainerProps) {
                       onClick={() => setSelectedCity(city)}
                       className={`px-4 py-2 rounded-xl text-sm whitespace-nowrap border transition-all ${
                         selectedCity === city
-                          ? "bg-[#D0EDE2]/40 border-[#D0EDE2]/30 text-[#3D4447]"
-                          : "bg-white border-black/4 text-[#9CA0A4] hover:bg-muted"
+                          ? "bg-pastel-mint/40 border-pastel-mint/30 text-foreground"
+                          : "bg-white border-black/4 text-muted-foreground hover:bg-muted"
                       }`}
                     >
                       {city}
@@ -113,7 +113,7 @@ export function BabyfairContainer({ events }: BabyfairContainerProps) {
                   <button
                     type="button"
                     onClick={() => setCitiesExpanded((v) => !v)}
-                    className="flex items-center gap-1 mt-2 text-xs text-[#9CA0A4] hover:text-[#3D4447] transition-colors"
+                    className="flex items-center gap-1 mt-2 text-xs text-muted-foreground hover:text-foreground transition-colors"
                   >
                     {citiesExpanded ? "접기" : "더보기"}
                     <ChevronDown
@@ -130,19 +130,19 @@ export function BabyfairContainer({ events }: BabyfairContainerProps) {
               <TabsList className="flex gap-2 mb-6 bg-transparent h-auto p-0">
                 <TabsTrigger
                   value="ongoing"
-                  className="px-4 py-2 rounded-xl border border-black/4 bg-white text-[#9CA0A4] data-[state=active]:bg-[#D0EDE2]/40 data-[state=active]:text-[#3D4447] data-[state=active]:border-[#D0EDE2]/30 h-auto transition-all"
+                  className="px-4 py-2 rounded-xl border border-black/4 bg-white text-muted-foreground data-[state=active]:bg-pastel-mint/40 data-[state=active]:text-foreground data-[state=active]:border-pastel-mint/30 h-auto transition-all"
                 >
                   진행 중{ongoingEvents.length > 0 && ` (${ongoingEvents.length})`}
                 </TabsTrigger>
                 <TabsTrigger
                   value="upcoming"
-                  className="px-4 py-2 rounded-xl border border-black/4 bg-white text-[#9CA0A4] data-[state=active]:bg-[#D0EDE2]/40 data-[state=active]:text-[#3D4447] data-[state=active]:border-[#D0EDE2]/30 h-auto transition-all"
+                  className="px-4 py-2 rounded-xl border border-black/4 bg-white text-muted-foreground data-[state=active]:bg-pastel-mint/40 data-[state=active]:text-foreground data-[state=active]:border-pastel-mint/30 h-auto transition-all"
                 >
                   예정
                 </TabsTrigger>
                 <TabsTrigger
                   value="ended"
-                  className="px-4 py-2 rounded-xl border border-black/4 bg-white text-[#9CA0A4] data-[state=active]:bg-[#D0EDE2]/40 data-[state=active]:text-[#3D4447] data-[state=active]:border-[#D0EDE2]/30 h-auto transition-all"
+                  className="px-4 py-2 rounded-xl border border-black/4 bg-white text-muted-foreground data-[state=active]:bg-pastel-mint/40 data-[state=active]:text-foreground data-[state=active]:border-pastel-mint/30 h-auto transition-all"
                 >
                   지난 행사
                 </TabsTrigger>
@@ -194,28 +194,28 @@ export function BabyfairContainer({ events }: BabyfairContainerProps) {
         )}
 
         {/* Info Card */}
-        <Card className="mt-8 rounded-2xl shadow-md border border-black/4 bg-linear-to-r from-[#FFD4DE]/40 to-[#E4D6F0]/40">
+        <Card className="mt-8 rounded-2xl shadow-md border border-black/4 bg-linear-to-r from-pastel-pink/40 to-pastel-lavender/40">
           <CardContent className="p-6">
             <h3 className="mb-3">참관 팁</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li className="flex items-start gap-2">
-                <span className="w-1 h-1 rounded-full bg-[#FFD4DE] mt-2 shrink-0" />
+                <span className="w-1 h-1 rounded-full bg-pastel-pink mt-2 shrink-0" />
                 사전 등록하면 입장료 할인 혜택이 있어요
               </li>
               <li className="flex items-start gap-2">
-                <span className="w-1 h-1 rounded-full bg-[#E4D6F0] mt-2 shrink-0" />
+                <span className="w-1 h-1 rounded-full bg-pastel-lavender mt-2 shrink-0" />
                 카드 여러 개 준비하면 카드사 할인 받을 수 있어요
               </li>
               <li className="flex items-start gap-2">
-                <span className="w-1 h-1 rounded-full bg-[#D0EDE2] mt-2 shrink-0" />
+                <span className="w-1 h-1 rounded-full bg-pastel-mint mt-2 shrink-0" />
                 오전 일찍 가면 인기 상품 선착순 혜택을 받을 수 있어요
               </li>
               <li className="flex items-start gap-2">
-                <span className="w-1 h-1 rounded-full bg-[#FFE0CC] mt-2 shrink-0" />
+                <span className="w-1 h-1 rounded-full bg-pastel-peach mt-2 shrink-0" />
                 큰 에코백이나 카트 챙겨가세요
               </li>
               <li className="flex items-start gap-2">
-                <span className="w-1 h-1 rounded-full bg-[#FFF4D4] mt-2 shrink-0" />
+                <span className="w-1 h-1 rounded-full bg-pastel-yellow mt-2 shrink-0" />
                 편한 신발 필수! 많이 걸어야 해요
               </li>
             </ul>

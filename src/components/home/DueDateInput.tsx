@@ -39,11 +39,11 @@ export function DueDateInput() {
           type="date"
           value={hydrated ? (dueDate ?? "") : ""}
           onChange={handleDateChange}
-          className="w-full px-4 py-3 bg-input-background rounded-xl border border-black/6 text-center focus:outline-none focus:ring-2 focus:ring-[#FFD4DE]/50 transition-shadow"
+          className="w-full px-4 py-3 bg-input-background rounded-xl border border-black/6 text-center focus:outline-none focus:ring-2 focus:ring-pastel-pink/50 transition-shadow"
         />
         {hydrated && currentWeek !== null && (
           <div className="mt-4 text-center">
-            <Badge className="bg-[#FFD4DE]/60 text-[#3D4447] px-6 py-3 rounded-xl text-lg border-0 hover:bg-[#FFD4DE]/60">
+            <Badge className="bg-pastel-pink/60 text-foreground px-6 py-3 rounded-xl text-lg border-0 hover:bg-pastel-pink/60">
               현재 임신 <strong>{currentWeek}주</strong>
             </Badge>
           </div>

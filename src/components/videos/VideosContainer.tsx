@@ -109,8 +109,8 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
                 onClick={() => setViewMode("videos")}
                 className={`px-4 py-2 rounded-xl border text-sm transition-all duration-200 ${
                   viewMode === "videos"
-                    ? "bg-[#FFD4DE]/40 text-[#3D4447] border-[#FFD4DE]/30"
-                    : "bg-white text-[#9CA0A4] border-black/4 hover:bg-muted"
+                    ? "bg-pastel-pink/40 text-foreground border-pastel-pink/30"
+                    : "bg-white text-muted-foreground border-black/4 hover:bg-muted"
                 }`}
               >
                 영상
@@ -120,8 +120,8 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
                 onClick={() => setViewMode("channels")}
                 className={`px-4 py-2 rounded-xl border text-sm transition-all duration-200 ${
                   viewMode === "channels"
-                    ? "bg-[#FFD4DE]/40 text-[#3D4447] border-[#FFD4DE]/30"
-                    : "bg-white text-[#9CA0A4] border-black/4 hover:bg-muted"
+                    ? "bg-pastel-pink/40 text-foreground border-pastel-pink/30"
+                    : "bg-white text-muted-foreground border-black/4 hover:bg-muted"
                 }`}
               >
                 채널
@@ -135,8 +135,8 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
                 onClick={() => handleCategoryChange("all")}
                 className={`px-4 py-2 rounded-xl border text-sm transition-all duration-200 ${
                   activeCategory === "all"
-                    ? "bg-[#FFD4DE]/40 text-[#3D4447] border-[#FFD4DE]/30"
-                    : "bg-white text-[#9CA0A4] border-black/4 hover:bg-muted"
+                    ? "bg-pastel-pink/40 text-foreground border-pastel-pink/30"
+                    : "bg-white text-muted-foreground border-black/4 hover:bg-muted"
                 }`}
               >
                 전체
@@ -148,8 +148,8 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
                   onClick={() => handleCategoryChange(cat)}
                   className={`px-4 py-2 rounded-xl border text-sm transition-all duration-200 ${
                     activeCategory === cat
-                      ? "bg-[#FFD4DE]/40 text-[#3D4447] border-[#FFD4DE]/30"
-                      : "bg-white text-[#9CA0A4] border-black/4 hover:bg-muted"
+                      ? "bg-pastel-pink/40 text-foreground border-pastel-pink/30"
+                      : "bg-white text-muted-foreground border-black/4 hover:bg-muted"
                   }`}
                 >
                   {CATEGORY_MAP[cat]}
@@ -171,8 +171,8 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
                     onClick={() => setActiveSubcategory("all")}
                     className={`px-3 py-1.5 rounded-lg border text-xs transition-all duration-200 ${
                       activeSubcategory === "all"
-                        ? "bg-[#E4D6F0]/40 text-[#6B5A80] border-[#E4D6F0]/30"
-                        : "bg-white text-[#9CA0A4] border-black/4 hover:bg-muted"
+                        ? "bg-pastel-lavender/40 text-accent-purple border-pastel-lavender/30"
+                        : "bg-white text-muted-foreground border-black/4 hover:bg-muted"
                     }`}
                   >
                     전체
@@ -184,8 +184,8 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
                       onClick={() => setActiveSubcategory(key)}
                       className={`px-3 py-1.5 rounded-lg border text-xs transition-all duration-200 ${
                         activeSubcategory === key
-                          ? "bg-[#E4D6F0]/40 text-[#6B5A80] border-[#E4D6F0]/30"
-                          : "bg-white text-[#9CA0A4] border-black/4 hover:bg-muted"
+                          ? "bg-pastel-lavender/40 text-accent-purple border-pastel-lavender/30"
+                          : "bg-white text-muted-foreground border-black/4 hover:bg-muted"
                       }`}
                     >
                       {label}
@@ -196,7 +196,7 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
                   <button
                     type="button"
                     onClick={() => setSubExpanded((v) => !v)}
-                    className="flex items-center gap-1 mt-2 text-xs text-[#9CA0A4] hover:text-[#3D4447] transition-colors"
+                    className="flex items-center gap-1 mt-2 text-xs text-muted-foreground hover:text-foreground transition-colors"
                   >
                     {subExpanded ? "접기" : "더보기"}
                     <ChevronDown
@@ -240,7 +240,7 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
         )}
 
         {/* Info Card */}
-        <Card className="mt-12 rounded-2xl shadow-md border border-black/4 bg-linear-to-r from-[#D0EDE2]/40 to-[#FFE0CC]/40">
+        <Card className="mt-12 rounded-2xl shadow-md border border-black/4 bg-linear-to-r from-pastel-mint/40 to-pastel-peach/40">
           <CardContent className="p-6 text-center">
             <p className="text-sm text-muted-foreground">
               실제 영상 재생은 YouTube로 연결됩니다
