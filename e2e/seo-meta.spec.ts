@@ -56,7 +56,7 @@ test.describe("SEO 메타 태그 브랜딩 (Step 11)", () => {
       // 왜: 서브 페이지도 톤 통일
       await page.goto("/baby-fair");
       const description = await page.locator('meta[name="description"]').getAttribute("content");
-      expect(description).toContain("한곳에 모았습니다");
+      expect(description).toContain("한곳에서 확인하세요");
     });
   });
 });

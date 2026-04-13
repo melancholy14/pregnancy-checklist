@@ -38,13 +38,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ko">
+    <html lang="ko" className={poppins.className}>
       <head>
         {process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID && (
           <meta name="google-adsense-account" content={process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID} />
         )}
       </head>
-    <html lang="ko" className={poppins.className}>
       <body>
         <StickyHeader />
         <div className="min-h-screen max-w-2xl mx-auto">
