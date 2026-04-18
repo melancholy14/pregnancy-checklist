@@ -2,14 +2,19 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { Plus, X, FileText } from "lucide-react";
 import { format, parseISO } from "date-fns";
 import { ko } from "date-fns/locale";
 import { useWeightStore } from "@/store/useWeightStore";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { WeightChart } from "./WeightChart";
 import { WeightForm } from "./WeightForm";
+
+const WeightChart = dynamic(
+  () => import("./WeightChart").then((m) => ({ default: m.WeightChart })),
+  { ssr: false }
+);
 
 export function WeightContainer() {
   const { logs, addLog, removeLog } = useWeightStore();
