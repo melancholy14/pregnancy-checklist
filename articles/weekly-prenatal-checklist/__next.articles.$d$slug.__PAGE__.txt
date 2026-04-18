@@ -1,8 +1,8 @@
 1:"$Sreact.fragment"
-2:I[93406,["/_next/static/chunks/0m7.8ple1_ny_.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js","/_next/static/chunks/0k_ntlfs6mua6.js","/_next/static/chunks/0w0412nbnq_jy.js"],"ArticleDetail"]
-7:I[97367,["/_next/static/chunks/0m7.8ple1_ny_.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0vj9c4uwmeuej.js"],"OutletBoundary"]
+2:I[93406,["/_next/static/chunks/09e-rnyqzam9q.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0k_ntlfs6mua6.js","/_next/static/chunks/0w0412nbnq_jy.js"],"ArticleDetail"]
+7:I[97367,["/_next/static/chunks/09e-rnyqzam9q.js","/_next/static/chunks/1860zsbcg5z1o.js"],"OutletBoundary"]
 8:"$Sreact.suspense"
-3:T4474,<p>"다음 검사가 뭐였지?"
+3:T4473,<p>"다음 검사가 뭐였지?"
 임신 테스트기 두 줄을 보고 나서
 제일 먼저 든 생각이 이거였어요.
 병원 가면 알아서 해주겠지 싶다가도,
@@ -244,8 +244,7 @@ NIPT는 산모 혈액 속 태아 DNA를 직접 분석해서
 <blockquote>
 <p>⚠️ 이 글은 일반적인 육아 정보를 제공하며, 의학적 조언을 대체하지 않습니다.
 건강 관련 궁금한 점은 담당 전문의와 상담하세요.</p>
-</blockquote>
-0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"임신 주차별 검사 & 준비 총정리 — 수치 해석부터 놓쳤을 때 대처법까지","description":"임신 초기부터 출산까지 주차별 필수 검사와 준비 사항을 총정리했어요. NT 초음파 정상 수치와 이상 시 다음 단계, 임신성 당뇨 50g·75g·100g 검사 수치 기준과 대응법, 국민행복카드 발급 시기, GBS 검사까지 산모가 놓치기 쉬운 핵심 항목을 한눈에 확인하세요.","slug":"weekly-prenatal-checklist","tags":["임신초기","산전검사","주차별","출산준비","기형아검사","임신성당뇨"],"date":"2026-04-13","authorNote":"임신 준비하면서 헷갈렸던 내용 정리할 겸 기억 안 날때마다 보려고 정리했습니다.","content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"PeaWMLa-ffudqOX2uXkpC"}
+</blockquote>0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"임신 주차별 검사 & 준비 총정리 — 수치 해석부터 놓쳤을 때 대처법까지","description":"임신 초기부터 출산까지 주차별 필수 검사와 준비 사항을 총정리했어요. NT 초음파 정상 수치와 이상 시 다음 단계, 임신성 당뇨 50g·75g·100g 검사 수치 기준과 대응법, 국민행복카드 발급 시기, GBS 검사까지 산모가 놓치기 쉬운 핵심 항목을 한눈에 확인하세요.","slug":"weekly-prenatal-checklist","tags":["임신초기","산전검사","주차별","출산준비","기형아검사","임신성당뇨"],"date":"2026-04-13","authorNote":"임신 준비하면서 헷갈렸던 내용 정리할 겸 기억 안 날때마다 보려고 정리했습니다.","content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"JEDeWlYtzB7cN5rlorhLI"}
 4:["$","script","script-0",{"src":"/_next/static/chunks/0k_ntlfs6mua6.js","async":true}]
 5:["$","script","script-1",{"src":"/_next/static/chunks/0w0412nbnq_jy.js","async":true}]
 6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
