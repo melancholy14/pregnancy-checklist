@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "sonner";
 import { X } from "lucide-react";
 import { sendGAEvent } from "@/lib/analytics";
 import { Card, CardContent } from "@/components/ui/card";
@@ -15,7 +16,16 @@ export function WeightForm({ onSubmit, onClose }: WeightFormProps) {
 
   const handleAdd = () => {
     if (!newDate || !newWeight) return;
-    onSubmit(newDate, parseFloat(newWeight));
+    const weight = parseFloat(newWeight);
+    if (isNaN(weight) || weight < 30 || weight > 200) {
+      toast("체중은 30~200kg 범위로 입력해주세요", { duration: 3000 });
+      return;
+    }
+    if (newDate > new Date().toISOString().split("T")[0]) {
+      toast("미래 날짜는 입력할 수 없어요", { duration: 3000 });
+      return;
+    }
+    onSubmit(newDate, weight);
     sendGAEvent("weight_log");
     setNewDate("");
     setNewWeight("");
