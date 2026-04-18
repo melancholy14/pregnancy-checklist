@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import { Toaster } from "sonner";
 import { Poppins } from "next/font/google";
 import { BottomNav } from "@/components/layout/BottomNav";
 import { Footer } from "@/components/layout/Footer";
 import { StickyHeader } from "@/components/layout/StickyHeader";
+import { ConsentGatedScripts } from "@/components/consent/ConsentGatedScripts";
+import { CookieConsentBanner } from "@/components/consent/CookieConsentBanner";
 import { BASE_URL, OG_IMAGE } from "@/lib/constants";
 import "./globals.css";
 
@@ -52,9 +53,8 @@ export default function RootLayout({
           <BottomNav />
         </div>
         <Toaster position="top-center" richColors />
-        {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
-          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
-        )}
+        <ConsentGatedScripts />
+        <CookieConsentBanner />
       </body>
     </html>
   );

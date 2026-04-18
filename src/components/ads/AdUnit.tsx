@@ -1,7 +1,9 @@
 "use client";
 
+import { useConsentAccepted } from "@/lib/use-consent";
+
 export function AdUnit({ slot, format = "auto" }: { slot: string; format?: string }) {
-  if (!process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID) return null;
+  if (!useConsentAccepted() || !process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID) return null;
 
   return (
     <ins
