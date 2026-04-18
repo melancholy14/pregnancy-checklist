@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { Plus, X, FileText } from "lucide-react";
@@ -32,10 +32,14 @@ export function WeightContainer() {
 
   const entries = hydrated ? logs : [];
 
-  const chartData = entries.map((e) => ({
-    date: format(parseISO(e.date), "MM/dd", { locale: ko }),
-    weight: e.weight,
-  }));
+  const chartData = useMemo(
+    () =>
+      entries.map((e) => ({
+        date: format(parseISO(e.date), "MM/dd", { locale: ko }),
+        weight: e.weight,
+      })),
+    [entries]
+  );
 
   return (
     <div className="min-h-screen pb-24 px-4">
