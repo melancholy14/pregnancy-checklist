@@ -3,7 +3,9 @@ import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import remarkGfm from "remark-gfm";
-import html from "remark-html";
+import remarkRehype from "remark-rehype";
+import rehypeSanitize from "rehype-sanitize";
+import rehypeStringify from "rehype-stringify";
 import type { ArticleMeta, Article } from "@/types/article";
 
 const ARTICLES_DIR = path.join(process.cwd(), "src/content/articles");
@@ -53,7 +55,12 @@ export async function getArticleBySlug(
 
   const raw = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(raw);
-  const result = await remark().use(remarkGfm).use(html).process(content);
+  const result = await remark()
+    .use(remarkGfm)
+    .use(remarkRehype)
+    .use(rehypeSanitize)
+    .use(rehypeStringify)
+    .process(content);
 
   return {
     ...parseArticleMeta(data),
