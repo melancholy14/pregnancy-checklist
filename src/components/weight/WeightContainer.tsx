@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useMemo, useSyncExternalStore } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { Plus, X, FileText } from "lucide-react";
@@ -19,11 +19,11 @@ const WeightChart = dynamic(
 export function WeightContainer() {
   const { logs, addLog, removeLog } = useWeightStore();
   const [showAddForm, setShowAddForm] = useState(false);
-  const [hydrated, setHydrated] = useState(false);
-
-  useEffect(() => {
-    setHydrated(true);
-  }, []);
+  const hydrated = useSyncExternalStore(
+    (cb) => useWeightStore.persist.onFinishHydration(cb),
+    () => useWeightStore.persist.hasHydrated(),
+    () => false
+  );
 
   const handleSubmit = (date: string, weight: number) => {
     addLog({ id: Date.now().toString(), date, weight });

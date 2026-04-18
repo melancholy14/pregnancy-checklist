@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import Link from "next/link";
 import { Calendar } from "lucide-react";
 import { useDueDateStore } from "@/store/useDueDateStore";
@@ -8,11 +8,11 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export function DueDateBanner() {
   const { dueDate } = useDueDateStore();
-  const [hydrated, setHydrated] = useState(false);
-
-  useEffect(() => {
-    setHydrated(true);
-  }, []);
+  const hydrated = useSyncExternalStore(
+    (cb) => useDueDateStore.persist.onFinishHydration(cb),
+    () => useDueDateStore.persist.hasHydrated(),
+    () => false
+  );
 
   if (!hydrated || dueDate) return null;
 

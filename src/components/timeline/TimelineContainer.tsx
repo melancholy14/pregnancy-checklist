@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { Plus, Save } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useDueDateStore } from "@/store/useDueDateStore";
@@ -28,16 +28,16 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
   const { dueDate } = useDueDateStore();
   const { customItems: customTimelineItems } = useTimelineStore();
   const { checkedIds, customItems: customChecklistItems } = useChecklistStore();
-  const [hydrated, setHydrated] = useState(false);
+  const hydrated = useSyncExternalStore(
+    (cb) => useDueDateStore.persist.onFinishHydration(cb),
+    () => useDueDateStore.persist.hasHydrated(),
+    () => false
+  );
   const [showAddForm, setShowAddForm] = useState(false);
   const [activeCategory, setActiveCategory] = useState("all");
   const [showFirstCheckBanner, setShowFirstCheckBanner] = useState(false);
   const prevCheckedCountRef = useRef<number | null>(null);
   const currentRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setHydrated(true);
-  }, []);
 
   const currentWeek = useMemo(() => {
     if (!hydrated || !dueDate) return null;

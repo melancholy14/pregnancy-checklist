@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import { ChevronRight, Sparkles } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -40,26 +40,44 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
   const { checkedIds, customItems } = useChecklistStore();
   const { customItems: customTimelineItems } = useTimelineStore();
   const { logs: weightLogs } = useWeightStore();
-  const [hydrated, setHydrated] = useState(false);
-  const [showOnboarding, setShowOnboarding] = useState(false);
-  const [returningMessage, setReturningMessage] = useState<string | null>(null);
+  const hydrated = useSyncExternalStore(
+    (cb) => useDueDateStore.persist.onFinishHydration(cb),
+    () => useDueDateStore.persist.hasHydrated(),
+    () => false
+  );
+  const [onboardingDismissed, setOnboardingDismissed] = useState(false);
 
-  useEffect(() => {
-    setHydrated(true);
+  const showOnboarding = useMemo(() => {
+    if (!hydrated || onboardingDismissed) return false;
     try {
-      const completed = localStorage.getItem("onboarding-completed");
-      if (!completed) setShowOnboarding(true);
+      return !localStorage.getItem("onboarding-completed");
+    } catch {
+      return false;
+    }
+  }, [hydrated, onboardingDismissed]);
 
-      // 재방문 유저 웰컴 메시지
+  const returningMessage = useMemo(() => {
+    if (!hydrated) return null;
+    try {
       const lastVisit = localStorage.getItem("last-visit-date");
       const today = new Date().toISOString().split("T")[0];
       if (lastVisit && lastVisit !== today) {
-        const checkedCount = JSON.parse(localStorage.getItem("checklist-storage") || "{}").state?.checkedIds?.length;
+        const checkedCount = JSON.parse(
+          localStorage.getItem("checklist-storage") || "{}"
+        ).state?.checkedIds?.length;
         if (checkedCount > 0) {
-          setReturningMessage(`돌아오셨군요! 지난번에 ${checkedCount}개 체크하셨어요 ✨`);
+          return `돌아오셨군요! 지난번에 ${checkedCount}개 체크하셨어요 ✨`;
         }
       }
-      localStorage.setItem("last-visit-date", today);
+      return null;
+    } catch {
+      return null;
+    }
+  }, [hydrated]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem("last-visit-date", new Date().toISOString().split("T")[0]);
     } catch {
       // localStorage 접근 불가 시 무시
     }
@@ -153,7 +171,7 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
   const latestArticle = articles.length > 0 ? articles[0] : null;
 
   if (showOnboarding) {
-    return <OnboardingFlow onComplete={() => setShowOnboarding(false)} />;
+    return <OnboardingFlow onComplete={() => setOnboardingDismissed(true)} />;
   }
 
   return (

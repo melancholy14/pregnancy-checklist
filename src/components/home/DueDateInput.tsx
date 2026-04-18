@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useMemo, useSyncExternalStore } from "react";
 import { useDueDateStore } from "@/store/useDueDateStore";
 import { calcPregnancyWeek } from "@/lib/week-calculator";
 import { sendGAEvent } from "@/lib/analytics";
@@ -9,17 +9,15 @@ import { Badge } from "@/components/ui/badge";
 
 export function DueDateInput() {
   const { dueDate, setDueDate } = useDueDateStore();
-  const [currentWeek, setCurrentWeek] = useState<number | null>(null);
-  const [hydrated, setHydrated] = useState(false);
+  const hydrated = useSyncExternalStore(
+    (cb) => useDueDateStore.persist.onFinishHydration(cb),
+    () => useDueDateStore.persist.hasHydrated(),
+    () => false
+  );
 
-  useEffect(() => {
-    setHydrated(true);
-  }, []);
-
-  useEffect(() => {
-    if (hydrated && dueDate) {
-      setCurrentWeek(calcPregnancyWeek(new Date(dueDate)));
-    }
+  const currentWeek = useMemo(() => {
+    if (!hydrated || !dueDate) return null;
+    return calcPregnancyWeek(new Date(dueDate));
   }, [hydrated, dueDate]);
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
