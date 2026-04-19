@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllArticles, getArticleBySlug } from "@/lib/articles";
 import { ArticleDetail } from "@/components/articles/ArticleDetail";
-import { BASE_URL, OG_IMAGE } from "@/lib/constants";
+import { OG_IMAGE } from "@/lib/constants";
 
 export function generateStaticParams() {
   return getAllArticles().map((a) => ({ slug: a.slug }));
@@ -21,12 +21,12 @@ export async function generateMetadata({
     title: `${article.title} - 출산 준비 체크리스트`,
     description: article.description,
     alternates: {
-      canonical: `${BASE_URL}/articles/${slug}`,
+      canonical: article.canonical,
     },
     openGraph: {
       title: article.title,
       description: article.description,
-      url: `${BASE_URL}/articles/${slug}`,
+      url: article.canonical,
       images: [OG_IMAGE],
     },
   };

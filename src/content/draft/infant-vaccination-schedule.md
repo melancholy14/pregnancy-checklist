@@ -1,7 +1,7 @@
 ---
 title: "영유아 예방접종 스케줄 완벽 정리"
 description: "영유아 예방접종 시기가 헷갈리는 초보 부모를 위한 완벽 가이드예요. 질병관리청 권장 일정 기준으로 출생 직후부터 만 6세까지 월령별 접종 스케줄표, 무료·유료 접종 구분, 접종 전후 체크리스트, 이상 반응 대처법까지 한눈에 정리했어요."
-canonical: "https://{{SITE_URL}}/articles/infant-vaccination-schedule"
+canonical: "https://pregnancy-checklist.com/articles/infant-vaccination-schedule"
 slug: "infant-vaccination-schedule"
 tags:
   - 예방접종

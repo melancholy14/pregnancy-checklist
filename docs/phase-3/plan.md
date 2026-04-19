@@ -345,9 +345,16 @@ adsense-audit.md #9 해당.
 
 ### 0c-4. 완료 조건
 
-- [ ] 모든 아티클의 canonical URL이 `https://pregnancy-checklist.com/articles/[slug]` 형식으로 정상 출력
-- [ ] `{{SITE_URL}}` 플레이스홀더가 전체 코드베이스에서 0건
-- [ ] 새 아티클 추가 시 canonical 미입력해도 자동 생성 동작 확인
+- [x] 모든 아티클의 canonical URL이 `https://pregnancy-checklist.com/articles/[slug]` 형식으로 정상 출력
+- [x] `{{SITE_URL}}` 플레이스홀더가 전체 코드베이스에서 0건
+- [x] 새 아티클 추가 시 canonical 미입력해도 자동 생성 동작 확인
+
+### 0c-5. 구현 결과 (2026-04-19)
+
+- 방안 A: front matter 일괄 치환 완료 + TODO 주석 2건 삭제 (`hospital-bag.md`, `baby-items-cost.md`)
+- 방안 B: `ArticleMeta`에 `canonical: string` 추가, `parseArticleMeta`에서 front matter 파싱 + `BASE_URL/articles/${slug}` fallback
+- `[slug]/page.tsx`에서 하드코딩 canonical → `article.canonical` 사용으로 변경 (단일 진실 원천)
+- E2E: `e2e/canonical-url.spec.ts` 16개 테스트 전체 통과
 
 ---
 

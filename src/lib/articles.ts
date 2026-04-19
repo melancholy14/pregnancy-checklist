@@ -7,14 +7,16 @@ import remarkRehype from "remark-rehype";
 import rehypeSanitize from "rehype-sanitize";
 import rehypeStringify from "rehype-stringify";
 import type { ArticleMeta, Article } from "@/types/article";
+import { BASE_URL } from "@/lib/constants";
 
 const ARTICLES_DIR = path.join(process.cwd(), "src/content/articles");
 
 function parseArticleMeta(data: Record<string, unknown>): ArticleMeta {
+  const slug = String(data.slug ?? "");
   return {
     title: String(data.title ?? ""),
     description: String(data.description ?? ""),
-    slug: String(data.slug ?? ""),
+    slug,
     tags: Array.isArray(data.tags) ? data.tags : [],
     date: String(data.date ?? ""),
     updated: data.updated ? String(data.updated) : undefined,
@@ -22,6 +24,9 @@ function parseArticleMeta(data: Record<string, unknown>): ArticleMeta {
       ? data.linked_timeline_weeks.map(Number)
       : undefined,
     authorNote: data.authorNote ? String(data.authorNote) : undefined,
+    canonical: data.canonical
+      ? String(data.canonical)
+      : `${BASE_URL}/articles/${slug}`,
   };
 }
 
