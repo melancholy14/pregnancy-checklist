@@ -2,7 +2,6 @@
 title: "산후조리원 선택 가이드"
 description: "산후조리원 선택 기준을 비용·감염 관리·산후우울증 지원 중심으로 정리했어요. 서울·수도권·지방 2주 이용료 비교표와 실비보험+지자체 바우처를 활용한 실질 부담액 계산법, 투어 때 꼭 확인할 질문 목록까지 2026년 최신 기준으로 안내하는 완벽 가이드예요."
 author: "출산 준비 체크리스트 제작자 뿌까뽀까"
-reviewed_by: ""
 last_updated: "2026-04-09"
 canonical: "https://pregnancy-checklist.com/articles/postpartum-care"
 slug: "postpartum-care"

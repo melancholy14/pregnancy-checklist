@@ -2,7 +2,6 @@
 title: "출산 가방 필수 준비물 총정리"
 description: "출산 가방 준비물을 병원 제공 물품과 직접 준비 항목으로 비교하고, 자연분만·제왕절개별 입원 기간에 따른 수량 차이를 표로 정리했어요. 카시트 법적 의무와 오로 대비 위생용품까지 빠짐없이 담은 실전 체크리스트예요."
 author: "출산 준비 체크리스트 제작자 뿌까뽀까"
-reviewed_by: ""
 last_updated: "2026-04-11"
 canonical: "https://pregnancy-checklist.com/articles/hospital-bag"
 slug: "hospital-bag"

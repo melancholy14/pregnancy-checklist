@@ -60,15 +60,39 @@ export async function getArticleBySlug(
 
   const raw = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(raw);
+
+  // ⚠️ blockquote를 disclaimer로 분리
+  const lines = content.split("\n");
+  const disclaimerLines: string[] = [];
+  const contentLines: string[] = [];
+  let inDisclaimer = false;
+
+  for (const line of lines) {
+    if (!inDisclaimer && line.startsWith("> ⚠️")) {
+      inDisclaimer = true;
+      disclaimerLines.push(line.replace(/^>\s*/, "").replace(/^⚠️\s*/, ""));
+    } else if (inDisclaimer && line.startsWith(">")) {
+      disclaimerLines.push(line.replace(/^>\s*/, ""));
+    } else {
+      if (inDisclaimer) inDisclaimer = false;
+      contentLines.push(line);
+    }
+  }
+
+  const disclaimer = disclaimerLines.length > 0
+    ? disclaimerLines.join(" ")
+    : undefined;
+
   const result = await remark()
     .use(remarkGfm)
     .use(remarkRehype)
     .use(rehypeSanitize)
     .use(rehypeStringify)
-    .process(content);
+    .process(contentLines.join("\n"));
 
   return {
     ...parseArticleMeta(data),
     content: result.toString(),
+    disclaimer,
   };
 }

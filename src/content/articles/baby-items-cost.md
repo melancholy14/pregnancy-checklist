@@ -2,7 +2,6 @@
 title: "출산 준비물 예상 비용 총정리"
 description: "출산 준비물 비용을 미니멀·표준·풀세팅 3단계 예산 시나리오로 비교하고, 카테고리별 최소·평균 가격표와 유모차 가격 차이의 실체, 중고 구매 OK/NG 기준까지 2026년 최신 기준으로 정리했어요."
 author: "출산 준비 체크리스트 제작자 뿌까뽀까"
-reviewed_by: ""
 last_updated: "2026-04-11"
 canonical: "https://pregnancy-checklist.com/articles/baby-items-cost"
 slug: "baby-items-cost"

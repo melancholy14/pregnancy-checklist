@@ -2,7 +2,6 @@
 title: "태아보험, 가입 전에 꼭 따져봐야 할 5가지 (22주 넘기면 늦어요)"
 description: "태아보험 가입 시기는 22주가 마지노선, 1차 기형아 검사 전이 가장 유리해요. 선천이상 수술비·인큐베이터 입원비 등 필수 특약과 빼도 되는 특약 구별법, 손해보험 vs 생명보험 차이, 30세·100세 만기 선택, 평균 보험료까지. 임신 초기 예비맘이 꼭 알아야 할 포인트를 정리했어요."
 author: "출산 준비 체크리스트 제작자 뿌까뽀까"
-reviewed_by: ""
 last_updated: "2026-04-18"
 canonical: "https://pregnancy-checklist.com/articles/prenatal-insurance-preparation-guide"
 slug: "prenatal-insurance-preparation-guide"

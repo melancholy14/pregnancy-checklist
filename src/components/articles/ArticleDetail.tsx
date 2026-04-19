@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { Article } from "@/types/article";
 import { TimelineCTA } from "./TimelineCTA";
+import { MedicalDisclaimer } from "./MedicalDisclaimer";
 
 interface ArticleDetailProps {
   article: Article;
@@ -56,6 +57,8 @@ export function ArticleDetail({ article }: ArticleDetailProps) {
             </p>
           </div>
         )}
+
+        <MedicalDisclaimer text={article.disclaimer} />
 
         <div
           className="article-prose"

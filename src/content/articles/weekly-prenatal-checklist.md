@@ -2,7 +2,6 @@
 title: "임신 주차별 검사 & 준비 총정리 — 수치 해석부터 놓쳤을 때 대처법까지"
 description: "임신 초기부터 출산까지 주차별 필수 검사와 준비 사항을 총정리했어요. NT 초음파 정상 수치와 이상 시 다음 단계, 임신성 당뇨 50g·75g·100g 검사 수치 기준과 대응법, 국민행복카드 발급 시기, GBS 검사까지 산모가 놓치기 쉬운 핵심 항목을 한눈에 확인하세요."
 author: "출산 준비 체크리스트 제작자 뿌까뽀까"
-reviewed_by: ""
 last_updated: "2026-04-13"
 canonical: "https://pregnancy-checklist.com/articles/weekly-prenatal-checklist"
 slug: "weekly-prenatal-checklist"

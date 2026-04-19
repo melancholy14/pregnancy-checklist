@@ -480,9 +480,29 @@ adsense-audit.md #7 해당.
 
 ### 0e-4. 완료 조건
 
-- [ ] 모든 아티클 front matter에서 `reviewed_by: ""` 제거됨 (grep 0건)
-- [ ] 모든 아티클 상세 페이지 본문 상단에 의료 디스클레이머 노출
-- [ ] 디스클레이머 텍스트가 SSG HTML에 포함됨
+- [x] 모든 아티클 front matter에서 `reviewed_by: ""` 제거됨 (grep 0건)
+- [x] 모든 아티클 상세 페이지 본문 상단에 의료 디스클레이머 노출
+- [x] 디스클레이머 텍스트가 SSG HTML에 포함됨
+
+### 0e-5. 구현 결과 (2026-04-19)
+
+**생성 파일:**
+- `src/components/articles/MedicalDisclaimer.tsx` — `text` prop으로 아티클별 면책 문구 표시 (pastel-mint 카드)
+
+**수정 파일:**
+- `src/content/articles/*.md` (6개) — `reviewed_by: ""` 제거
+- `src/types/article.ts` — `Article`에 `disclaimer?: string` 추가
+- `src/lib/articles.ts` — `⚠️` blockquote를 `disclaimer`로 추출, 본문에서 제거
+- `src/components/articles/ArticleDetail.tsx` — MedicalDisclaimer 삽입 (본문 상단)
+
+**설계 변경점:**
+- plan 초안은 동일 문구를 모든 아티클에 적용하는 방식이었으나, 기존 MD 본문의 주제별 면책 문구를 파싱하여 아티클마다 다른 전문가를 안내하도록 변경
+  - 임신·검사 글 → 산부인과 전문의
+  - 보험·재무 글 → 보험설계사 또는 재무설계 전문가
+  - 육아 글 → 소아청소년과 전문의
+- blockquote 중복 제거: MD 본문의 `⚠️` blockquote를 추출하여 컴포넌트로 이동
+
+**E2E:** `e2e/medical-disclaimer.spec.ts` 8케이스, 전체 통과
 
 ---
 
