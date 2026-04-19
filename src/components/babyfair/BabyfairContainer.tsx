@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import type { BabyfairEvent } from "@/types/babyfair";
 import { BabyfairCard } from "./BabyfairCard";
+import { PageDescription } from "@/components/common/PageDescription";
 
 type BabyfairTab = "ongoing" | "upcoming" | "ended";
 
@@ -63,9 +64,12 @@ export function BabyfairContainer({ events }: BabyfairContainerProps) {
     <div className="min-h-screen pb-24 px-4">
       <div className="pt-8">
         <h1 className="mb-2 text-center">베이비페어 일정</h1>
-        <p className="text-center text-muted-foreground mb-6">
-          {new Date().getFullYear()}년 전국 베이비페어 행사 안내
-        </p>
+        <PageDescription>
+          전국 베이비페어 일정을 놓치지 않고 확인하세요.
+          진행 중, 예정, 종료된 행사를 한눈에 구분할 수 있고,
+          지역별·연도별 필터로 원하는 행사만 골라볼 수 있습니다.
+          사전 등록 할인과 선착순 혜택 정보도 함께 안내합니다.
+        </PageDescription>
 
         {events.length === 0 ? (
           <div className="text-center py-12 text-muted-foreground">

@@ -412,9 +412,27 @@ adsense-audit.md #6 해당.
 
 ### 0d-4. 완료 조건
 
-- [ ] 5개 도구 페이지 모두 설명 텍스트가 렌더링됨
-- [ ] 빌드된 HTML에 텍스트가 포함됨 (SSG 확인 — `curl` 또는 View Source)
-- [ ] 모바일에서 텍스트가 도구 UI를 과도하게 밀어내지 않음
+- [x] 5개 도구 페이지 모두 설명 텍스트가 렌더링됨
+- [x] 빌드된 HTML에 텍스트가 포함됨 (SSG 확인 — `curl` 또는 View Source)
+- [x] 모바일에서 텍스트가 도구 UI를 과도하게 밀어내지 않음
+
+### 0d-5. 구현 결과 (2026-04-19)
+
+**생성 파일:**
+- `src/components/common/PageDescription.tsx` — 공통 설명 텍스트 컴포넌트 (`children` prop, `text-sm leading-relaxed`)
+
+**수정 파일:**
+- `src/components/timeline/TimelineContainer.tsx` — 기존 짧은 p → PageDescription
+- `src/components/weight/WeightContainer.tsx` — 기존 짧은 p → PageDescription
+- `src/components/babyfair/BabyfairContainer.tsx` — 기존 짧은 p → PageDescription
+- `src/components/videos/VideosContainer.tsx` — 기존 짧은 p → PageDescription
+- `src/components/articles/ArticlesContainer.tsx` — 기존 짧은 p → PageDescription
+
+**설계 변경점:**
+- plan 초안은 `title + description` props였으나, 기존 h1이 이미 제목 역할을 하므로 `children` prop만 사용하는 심플한 구조로 변경
+- 5개 페이지 `mb-6`으로 간격 통일 (기존 Weight·Articles는 mb-8)
+
+**E2E:** `e2e/page-description.spec.ts` 7케이스, 전체 261 passed
 
 ---
 

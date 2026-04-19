@@ -17,6 +17,7 @@ import { TimelineAccordionCard } from "./TimelineAccordionCard";
 import { UnifiedAddForm } from "./UnifiedAddForm";
 import { CategoryFilter } from "./CategoryFilter";
 import { WeekChecklistSection } from "./WeekChecklistSection";
+import { PageDescription } from "@/components/common/PageDescription";
 
 interface TimelineContainerProps {
   timelineItems: TimelineItem[];
@@ -137,9 +138,12 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
     <div className="min-h-screen pb-24 px-4 bg-linear-to-b from-background to-white">
       <div className="pt-8">
         <h1 className="mb-2 text-center">임신 타임라인</h1>
-        <p className="text-center text-muted-foreground mb-6">
-          주차별 일정과 체크리스트를 한눈에 확인하세요
-        </p>
+        <PageDescription>
+          임신 주차에 맞춰 준비해야 할 항목을 한눈에 확인하세요.
+          출산 예정일을 입력하면 현재 주차가 자동으로 하이라이트됩니다.
+          각 주차를 펼치면 병원 검사, 서류 준비, 출산 용품 등 연결된
+          체크리스트를 바로 관리할 수 있어요.
+        </PageDescription>
 
         {/* 현재 주차 카드 */}
         {hydrated && currentWeek !== null && (

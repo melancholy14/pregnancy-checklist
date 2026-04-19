@@ -10,6 +10,7 @@ import { useWeightStore } from "@/store/useWeightStore";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { WeightForm } from "./WeightForm";
+import { PageDescription } from "@/components/common/PageDescription";
 
 const WeightChart = dynamic(
   () => import("./WeightChart").then((m) => ({ default: m.WeightChart })),
@@ -45,9 +46,12 @@ export function WeightContainer() {
     <div className="min-h-screen pb-24 px-4">
       <div className="pt-8">
         <h1 className="mb-2 text-center">체중 기록</h1>
-        <p className="text-center text-muted-foreground mb-8">
-          임신 중 체중 변화를 기록하고 확인하세요
-        </p>
+        <PageDescription>
+          임신 중 체중 변화를 주차별로 기록하고 그래프로 확인하세요.
+          대한산부인과학회 기준 BMI별 적정 체중 증가 범위를 참고할 수
+          있습니다. 정기 검진 때 담당 의료진과 함께 체중 추이를
+          확인하는 데 활용해 보세요.
+        </PageDescription>
 
         {/* Chart */}
         <WeightChart data={chartData} baseWeight={entries.length >= 2 ? entries[0].weight : undefined} />

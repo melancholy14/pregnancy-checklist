@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { VideoCard } from "./VideoCard";
 import { ChannelCard } from "./ChannelCard";
 import type { VideoItem, ChannelItem } from "@/types/video";
+import { PageDescription } from "@/components/common/PageDescription";
 
 const CATEGORY_MAP: Record<string, string> = {
   exercise: "임산부 운동",
@@ -90,9 +91,11 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
     <div className="min-h-screen pb-24 px-4">
       <div className="pt-8">
         <h1 className="mb-2 text-center">영상 콘텐츠</h1>
-        <p className="text-center text-muted-foreground mb-6">
-          임신과 육아에 도움되는 영상 모음
-        </p>
+        <PageDescription>
+          임산부 운동, 출산 준비, 신생아 케어 등 검증된 채널의 영상을
+          카테고리별로 큐레이션했습니다. 영상과 채널 보기를 전환할 수
+          있고, 세부 카테고리 필터로 필요한 영상만 골라 시청할 수 있어요.
+        </PageDescription>
 
         {isEmpty ? (
           <div className="text-center py-12 text-muted-foreground">
