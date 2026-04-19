@@ -13,6 +13,7 @@ import { Progress } from "@/components/ui/progress";
 import type { TimelineItem } from "@/types/timeline";
 import type { ChecklistItem } from "@/types/checklist";
 import type { ArticleMeta } from "@/types/article";
+import type { VideoItem } from "@/types/video";
 import { TimelineAccordionCard } from "./TimelineAccordionCard";
 import { UnifiedAddForm } from "./UnifiedAddForm";
 import { CategoryFilter } from "./CategoryFilter";
@@ -24,9 +25,10 @@ interface TimelineContainerProps {
   timelineItems: TimelineItem[];
   checklistItems: ChecklistItem[];
   articles?: ArticleMeta[];
+  videos?: VideoItem[];
 }
 
-export function TimelineContainer({ timelineItems, checklistItems, articles = [] }: TimelineContainerProps) {
+export function TimelineContainer({ timelineItems, checklistItems, articles = [], videos = [] }: TimelineContainerProps) {
   const { dueDate } = useDueDateStore();
   const { customItems: customTimelineItems } = useTimelineStore();
   const { checkedIds, customItems: customChecklistItems } = useChecklistStore();
@@ -53,6 +55,14 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
     }
     return map;
   }, [articles]);
+
+  const videoMap = useMemo(() => {
+    const map = new Map<string, VideoItem>();
+    for (const v of videos) {
+      map.set(v.id, v);
+    }
+    return map;
+  }, [videos]);
 
   const allTimelineItems = useMemo(() => {
     return [...timelineItems, ...customTimelineItems].sort((a, b) => a.week - b.week);
@@ -274,6 +284,9 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
                   const relatedArticles = (item.linked_article_slugs ?? [])
                     .map((slug) => articleMap.get(slug))
                     .filter((a): a is ArticleMeta => a !== undefined);
+                  const relatedVideos = (item.linked_video_ids ?? [])
+                    .map((id) => videoMap.get(id))
+                    .filter((v): v is VideoItem => v !== undefined);
 
                   return (
                     <div key={item.id} ref={shouldRef ? currentRef : undefined} data-week={item.week}>
@@ -283,6 +296,7 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
                         checklistItems={weekChecklist}
                         checkedIds={hydrated ? checkedIds : []}
                         relatedArticles={relatedArticles}
+                        relatedVideos={relatedVideos}
                         defaultOpen={status === "current"}
                       />
                     </div>

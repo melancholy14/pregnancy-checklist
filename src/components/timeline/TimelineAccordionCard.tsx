@@ -11,9 +11,11 @@ import { TIMELINE_TYPE_CONFIG } from "@/lib/constants";
 import type { TimelineItem } from "@/types/timeline";
 import type { ChecklistItem } from "@/types/checklist";
 import type { ArticleMeta } from "@/types/article";
+import type { VideoItem } from "@/types/video";
 import { WeekChecklistSection } from "./WeekChecklistSection";
 import { DeleteConfirmDialog } from "./DeleteConfirmDialog";
 import { RelatedArticlesLink } from "./RelatedArticlesLink";
+import { RelatedVideosLink } from "./RelatedVideosLink";
 import { sendGAEvent } from "@/lib/analytics";
 
 
@@ -23,6 +25,7 @@ interface TimelineAccordionCardProps {
   checklistItems: ChecklistItem[];
   checkedIds: string[];
   relatedArticles?: ArticleMeta[];
+  relatedVideos?: VideoItem[];
   defaultOpen?: boolean;
 }
 
@@ -32,6 +35,7 @@ export function TimelineAccordionCard({
   checklistItems,
   checkedIds,
   relatedArticles = [],
+  relatedVideos = [],
   defaultOpen = false,
 }: TimelineAccordionCardProps) {
   const { removeCustomItem, updateCustomItem } = useTimelineStore();
@@ -210,6 +214,11 @@ export function TimelineAccordionCard({
             {/* Related articles */}
             {!isEditing && relatedArticles.length > 0 && (
               <RelatedArticlesLink articles={relatedArticles} />
+            )}
+
+            {/* Related videos */}
+            {!isEditing && relatedVideos.length > 0 && (
+              <RelatedVideosLink videos={relatedVideos} />
             )}
           </CardContent>
         </Card>

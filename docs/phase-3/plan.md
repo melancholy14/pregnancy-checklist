@@ -772,10 +772,24 @@ export type TimelineItem = {
 
 ### 3-4. 완료 조건
 
-- [ ] `linked_video_ids`가 있는 타임라인 카드에서 "관련 영상" 링크 노출
-- [ ] 링크 클릭 시 `/videos` 페이지로 정상 이동
-- [ ] `linked_video_ids`가 없는 카드에서는 링크 미노출
-- [ ] 타입 정의가 정상 업데이트됨 (빌드 에러 없음)
+- [x] `linked_video_ids`가 있는 타임라인 카드에서 "관련 영상" 링크 노출
+- [x] 링크 클릭 시 `/videos` 페이지로 정상 이동
+- [x] `linked_video_ids`가 없는 카드에서는 링크 미노출
+- [x] 타입 정의가 정상 업데이트됨 (빌드 에러 없음)
+
+### 3-5. 구현 결과 (2026-04-19)
+
+**생성 파일:**
+- `src/components/timeline/RelatedVideosLink.tsx` — Play 아이콘 + `/videos#video_id` 링크 리스트 (RelatedArticlesLink 미러링)
+
+**수정 파일:**
+- `src/types/timeline.ts` — `linked_video_ids?: string[]` 추가
+- `src/data/timeline_items.json` — 8개 항목에 영상 ID 매핑 (12, 21, 22, 25, 30, 31, 32, 34주)
+- `src/components/timeline/TimelineAccordionCard.tsx` — `relatedVideos` prop + 렌더링
+- `src/components/timeline/TimelineContainer.tsx` — `videos` prop, `videoMap` 구축
+- `src/app/timeline/page.tsx` — `videos.json` 로드 + 전달
+
+**E2E:** `e2e/cross-links-video-weight.spec.ts` 13케이스 (Step 3: 8개 + Step 6: 5개), 전체 310 passed
 
 ---
 
@@ -944,10 +958,23 @@ echo "PASS: All pages scored 90+"
 
 ### 6-4. 완료 조건
 
-- [ ] 체중 페이지 하단에 "임신 중 체중 관리 가이드" 링크 카드 노출
-- [ ] 링크 클릭 시 `/articles/pregnancy-weight-management`로 이동
-- [ ] 블로그 글 하단에 "체중 기록 도구" CTA 노출
-- [ ] CTA 클릭 시 `/weight`로 이동
+- [x] 체중 페이지 하단에 "임신 중 체중 관리 가이드" 링크 카드 노출
+- [x] 링크 클릭 시 `/articles/pregnancy-weight-management`로 이동
+- [x] 블로그 글 하단에 "체중 기록 도구" CTA 노출
+- [x] CTA 클릭 시 `/weight`로 이동
+
+### 6-5. 구현 결과 (2026-04-19)
+
+**이미 완료:**
+- 체중 → 블로그: `WeightContainer.tsx`에 하드코딩된 링크 카드 기존 존재
+
+**수정 파일:**
+- `src/content/articles/pregnancy-weight-management.md` — 참고 자료 섹션 위에 `💡` 블록쿼트 CTA 추가 (`[체중 기록 도구](/weight)`)
+
+**설계 변경점:**
+- plan 초안은 컴포넌트 방식이었으나, 마크다운 블록쿼트가 기존 렌더링 파이프라인에 자연스럽게 통합되므로 마크다운 내 CTA로 변경
+
+**E2E:** Step 3과 공유 (`e2e/cross-links-video-weight.spec.ts`)
 
 ---
 

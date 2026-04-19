@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import timelineItems from "@/data/timeline_items.json";
 import checklistItems from "@/data/checklist_items.json";
+import videos from "@/data/videos.json";
 import type { TimelineItem } from "@/types/timeline";
 import type { ChecklistItem } from "@/types/checklist";
+import type { VideoItem } from "@/types/video";
 import { TimelineContainer } from "@/components/timeline/TimelineContainer";
 import { DueDateBanner } from "@/components/home/DueDateBanner";
 import { BASE_URL } from "@/lib/constants";
@@ -33,6 +35,7 @@ export default function TimelinePage() {
         timelineItems={timelineItems as TimelineItem[]}
         checklistItems={checklistItems as ChecklistItem[]}
         articles={articles}
+        videos={videos as VideoItem[]}
       />
     </>
   );

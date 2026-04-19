@@ -227,6 +227,9 @@ A. 네, 정상체중 기준으로 약 16\~20kg 증가가 권장돼요 [ACOG, 202
 2. **급격한 체중 증가 + 부종·두통이 겹치면 즉시 병원에 연락하세요.**
 3. **'덜 먹기'가 아니라 '잘 먹기' — 하루 +300kcal, 단백질 매끼, 걷기 주 3회.**
 
+> 💡 **내 체중을 직접 기록해보세요!**
+> [체중 기록 도구](/weight)에서 주차별 체중 변화를 그래프로 확인할 수 있습니다.
+
 ## 참고 자료
 
 - ACOG, 「Weight Gain During Pregnancy」 (2024) - https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2013/01/weight-gain-during-pregnancy
