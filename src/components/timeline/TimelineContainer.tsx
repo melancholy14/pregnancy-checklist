@@ -18,6 +18,7 @@ import { UnifiedAddForm } from "./UnifiedAddForm";
 import { CategoryFilter } from "./CategoryFilter";
 import { WeekChecklistSection } from "./WeekChecklistSection";
 import { PageDescription } from "@/components/common/PageDescription";
+import { sendGAEvent } from "@/lib/analytics";
 
 interface TimelineContainerProps {
   timelineItems: TimelineItem[];
@@ -123,6 +124,37 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
       }, 300);
     }
   }, [hydrated, currentWeek]);
+
+  // 스크롤 깊이 추적 (IntersectionObserver + 디바운스)
+  const maxWeekRef = useRef(0);
+  const debounceRef = useRef<ReturnType<typeof setTimeout>>(undefined);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const week = Number((entry.target as HTMLElement).dataset.week);
+          if (week > maxWeekRef.current) {
+            maxWeekRef.current = week;
+            clearTimeout(debounceRef.current);
+            debounceRef.current = setTimeout(() => {
+              sendGAEvent("timeline_scroll_depth", { max_week_visible: maxWeekRef.current });
+            }, 1000);
+          }
+        }
+      },
+      { threshold: 0.5 },
+    );
+
+    const cards = document.querySelectorAll("[data-week]");
+    cards.forEach((el) => observer.observe(el));
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(debounceRef.current);
+    };
+  }, [allTimelineItems]);
 
   const getStatus = useCallback(
     (week: number): "past" | "current" | "future" => {
@@ -243,7 +275,7 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
                     .filter((a): a is ArticleMeta => a !== undefined);
 
                   return (
-                    <div key={item.id} ref={shouldRef ? currentRef : undefined}>
+                    <div key={item.id} ref={shouldRef ? currentRef : undefined} data-week={item.week}>
                       <TimelineAccordionCard
                         item={item}
                         status={status}

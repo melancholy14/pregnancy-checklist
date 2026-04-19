@@ -14,6 +14,7 @@ import type { ArticleMeta } from "@/types/article";
 import { WeekChecklistSection } from "./WeekChecklistSection";
 import { DeleteConfirmDialog } from "./DeleteConfirmDialog";
 import { RelatedArticlesLink } from "./RelatedArticlesLink";
+import { sendGAEvent } from "@/lib/analytics";
 
 
 interface TimelineAccordionCardProps {
@@ -69,7 +70,10 @@ export function TimelineAccordionCard({
       </div>
 
       {/* Card with Collapsible */}
-      <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+      <Collapsible open={isOpen} onOpenChange={(open) => {
+        setIsOpen(open);
+        if (open) sendGAEvent("timeline_week_view", { week: item.week });
+      }}>
         <Card
           className={`rounded-xl shadow-sm transition-all border ${
             status === "current"

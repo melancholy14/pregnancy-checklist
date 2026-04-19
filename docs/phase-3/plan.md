@@ -569,10 +569,30 @@ const handleBannerClick = () => {
 
 ### 1-4. 완료 조건
 
-- [ ] GA4 DebugView에서 `category_tab_switch` 이벤트 전송 확인 (카테고리 파라미터 포함)
-- [ ] GA4 DebugView에서 `timeline_scroll_depth` 이벤트 전송 확인 (max_week_visible 파라미터 포함)
-- [ ] GA4 DebugView에서 `onboarding_banner_click` 이벤트 전송 확인 (source_page 파라미터 포함)
-- [ ] 스크롤 이벤트가 과다 전송되지 않음 (디바운스 동작 확인)
+- [x] GA4 DebugView에서 `category_tab_switch` 이벤트 전송 확인 (카테고리 파라미터 포함)
+- [x] GA4 DebugView에서 `timeline_scroll_depth` 이벤트 전송 확인 (max_week_visible 파라미터 포함)
+- [x] GA4 DebugView에서 `onboarding_banner_click` 이벤트 전송 확인 (source_page 파라미터 포함)
+- [x] 스크롤 이벤트가 과다 전송되지 않음 (디바운스 동작 확인)
+
+### 1-5. 구현 결과 (2026-04-19)
+
+plan 초안의 3종에 추가로 3종을 더 구현하여 총 6종 이벤트 추가.
+
+**생성 파일:**
+- `src/components/analytics/PageviewTracker.tsx` — 수동 페이지뷰 트래킹 (usePathname 기반)
+
+**수정 파일:**
+- `src/components/consent/ConsentGatedScripts.tsx` — `send_page_view:false` 추가 (중복 방지)
+- `src/app/layout.tsx` — PageviewTracker 배치
+- `src/components/timeline/CategoryFilter.tsx` — `category_tab_switch` 이벤트
+- `src/components/timeline/TimelineContainer.tsx` — `timeline_scroll_depth` (IntersectionObserver + 디바운스 1초)
+- `src/components/timeline/TimelineAccordionCard.tsx` — `timeline_week_view` 이벤트
+- `src/components/home/DueDateBanner.tsx` — `onboarding_banner_click` 이벤트
+- `src/components/videos/VideoCard.tsx` — `content_click` (type: video)
+- `src/components/videos/ChannelCard.tsx` — `content_click` (type: channel)
+- `src/components/articles/ArticleCard.tsx` — `content_click` (type: article)
+
+**E2E:** `e2e/ga4-events.spec.ts` 6케이스, 전체 통과
 
 ---
 

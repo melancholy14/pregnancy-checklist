@@ -1,6 +1,7 @@
 "use client";
 
 import { CATEGORY_FILTER_OPTIONS } from "@/lib/constants";
+import { sendGAEvent } from "@/lib/analytics";
 
 interface CategoryFilterProps {
   activeCategory: string;
@@ -15,7 +16,10 @@ export function CategoryFilter({ activeCategory, onCategoryChange }: CategoryFil
         return (
           <button
             key={opt.value}
-            onClick={() => onCategoryChange(opt.value)}
+            onClick={() => {
+              onCategoryChange(opt.value);
+              sendGAEvent("category_tab_switch", { category: opt.value });
+            }}
             className={`px-4 py-2 rounded-xl whitespace-nowrap border text-sm transition-all duration-200 ${
               isActive
                 ? "bg-pastel-pink/40 text-foreground border-pastel-pink/30"

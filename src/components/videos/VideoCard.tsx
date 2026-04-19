@@ -1,6 +1,7 @@
 import { Play } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import type { VideoItem } from "@/types/video";
+import { sendGAEvent } from "@/lib/analytics";
 
 interface VideoCardProps {
   video: VideoItem;
@@ -16,6 +17,7 @@ export function VideoCard({ video, channelName }: VideoCardProps) {
       target="_blank"
       rel="noopener noreferrer"
       className="no-underline"
+      onClick={() => sendGAEvent("content_click", { type: "video", title: video.title })}
     >
       <Card className="rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-black/4 group hover:-translate-y-0.5">
         {/* Thumbnail */}

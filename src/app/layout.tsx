@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { StickyHeader } from "@/components/layout/StickyHeader";
 import { ConsentGatedScripts } from "@/components/consent/ConsentGatedScripts";
 import { CookieConsentBanner } from "@/components/consent/CookieConsentBanner";
+import { PageviewTracker } from "@/components/analytics/PageviewTracker";
 import { BASE_URL, OG_IMAGE } from "@/lib/constants";
 import "./globals.css";
 
@@ -55,6 +56,7 @@ export default function RootLayout({
         <Toaster position="top-center" richColors />
         <ConsentGatedScripts />
         <CookieConsentBanner />
+        <PageviewTracker />
       </body>
     </html>
   );

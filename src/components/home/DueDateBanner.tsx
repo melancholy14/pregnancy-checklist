@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Calendar } from "lucide-react";
 import { useDueDateStore } from "@/store/useDueDateStore";
 import { Card, CardContent } from "@/components/ui/card";
+import { sendGAEvent } from "@/lib/analytics";
 
 export function DueDateBanner() {
   const { dueDate } = useDueDateStore();
@@ -17,7 +18,7 @@ export function DueDateBanner() {
   if (!hydrated || dueDate) return null;
 
   return (
-    <Link href="/" className="no-underline block mb-4">
+    <Link href="/" className="no-underline block mb-4" onClick={() => sendGAEvent("onboarding_banner_click", { source_page: "timeline" })}>
       <Card className="rounded-xl border border-pastel-yellow/40 bg-pastel-yellow/20 hover:bg-pastel-yellow/30 transition-colors">
         <CardContent className="p-3 flex items-center gap-3">
           <div className="w-9 h-9 rounded-xl bg-pastel-yellow flex items-center justify-center shrink-0">
