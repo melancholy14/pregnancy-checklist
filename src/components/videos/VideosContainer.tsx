@@ -56,6 +56,26 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
     if (el) setSubOverflow(el.scrollHeight > el.clientHeight + 4);
   }, [subcategories]);
 
+  // hash 스크롤: 검색 결과 등에서 /videos#video_id 로 진입 시
+  useEffect(() => {
+    const hash = window.location.hash.slice(1);
+    if (!hash) return;
+    let highlightTimer: ReturnType<typeof setTimeout>;
+    const scrollTimer = setTimeout(() => {
+      const el = document.getElementById(hash);
+      if (!el) return;
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+      el.classList.add("ring-2", "ring-pastel-pink", "rounded-2xl");
+      highlightTimer = setTimeout(() => {
+        el.classList.remove("ring-2", "ring-pastel-pink", "rounded-2xl");
+      }, 2000);
+    }, 300);
+    return () => {
+      clearTimeout(scrollTimer);
+      clearTimeout(highlightTimer);
+    };
+  }, []);
+
   const filteredVideos = useMemo(() => {
     let result = items;
     if (activeCategory !== "all") {

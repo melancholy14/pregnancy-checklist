@@ -7,6 +7,8 @@ import { StickyHeader } from "@/components/layout/StickyHeader";
 import { ConsentGatedScripts } from "@/components/consent/ConsentGatedScripts";
 import { CookieConsentBanner } from "@/components/consent/CookieConsentBanner";
 import { PageviewTracker } from "@/components/analytics/PageviewTracker";
+import { SearchModal } from "@/components/search/SearchModal";
+import { getAllArticles } from "@/lib/articles";
 import { BASE_URL, OG_IMAGE } from "@/lib/constants";
 import "./globals.css";
 
@@ -39,6 +41,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const articles = getAllArticles();
+
   return (
     <html lang="ko" className={poppins.className}>
       <head>
@@ -57,6 +61,7 @@ export default function RootLayout({
         <ConsentGatedScripts />
         <CookieConsentBanner />
         <PageviewTracker />
+        <SearchModal articles={articles} />
       </body>
     </html>
   );

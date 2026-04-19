@@ -685,12 +685,35 @@ npm install fuse.js
 
 ### 2-4. 완료 조건
 
-- [ ] Sticky 헤더에 검색 아이콘이 노출됨
-- [ ] 검색 모달에서 타임라인·블로그 결과가 정상 노출
-- [ ] 최소 2자 이상 입력 시 검색 동작 (1자는 무시)
-- [ ] 결과 클릭 시 해당 페이지로 정상 이동
-- [ ] 모달 외부 클릭 또는 ✕ 버튼으로 닫기 동작
-- [ ] 검색어 없을 때 "검색어를 입력하세요" 안내 표시
+- [x] Sticky 헤더에 검색 아이콘이 노출됨
+- [x] 검색 모달에서 타임라인·정보글·영상 결과가 정상 노출
+- [x] 최소 2자 이상 입력 시 검색 동작 (1자는 무시)
+- [x] 결과 클릭 시 해당 페이지로 정상 이동
+- [x] 모달 외부 클릭 또는 ✕ 버튼으로 닫기 동작
+- [x] 검색어 없을 때 "검색어를 입력하세요" 안내 표시
+- [x] 타임라인 결과 클릭 시 `/timeline#timeline-week-N`으로 이동+스크롤
+- [x] 영상 결과 클릭 시 `/videos#video_id`로 이동+스크롤+하이라이트
+
+### 2-5. 구현 결과 (2026-04-19)
+
+**생성 파일:**
+- `src/lib/search.ts` — `SearchItem` 타입 + `buildSearchIndex()` + `createSearcher()` (fuse.js 래퍼)
+- `src/store/useSearchStore.ts` — 모달 open/close Zustand store
+- `src/components/search/SearchModal.tsx` — Dialog + 순수 리스트 기반 검색 모달 (fuse.js 검색)
+
+**수정 파일:**
+- `src/components/layout/StickyHeader.tsx` — Search 아이콘 버튼 추가 (ml-auto 우측 배치)
+- `src/app/layout.tsx` — `getAllArticles()` 호출 + `<SearchModal>` 배치
+- `src/components/videos/VideoCard.tsx` — 루트 `<a>`에 `id={video.id}` 추가
+- `src/components/videos/VideosContainer.tsx` — hash 감지 → `scrollIntoView` + 2초 하이라이트
+- `src/components/timeline/TimelineContainer.tsx` — hash 존재 시 자동 스크롤 생략 가드 + 타이머 cleanup
+
+**설계 변경점:**
+- plan 초안은 타임라인+블로그 2그룹이었으나, 영상(30개) 추가로 3그룹(타임라인/정보글/영상) 구성
+- plan 초안은 cmdk `CommandDialog`를 사용했으나, `shouldFilter={false}` 전달 불가 + render 중 setState 문제로 cmdk 완전 제거 → Radix Dialog + 순수 리스트(`role="listbox"` + `role="option"`) + 화살표 키 네비게이션 직접 구현
+- 타임라인 자동 스크롤이 hash 스크롤을 덮어쓰는 버그 발견 → `window.location.hash` 가드 추가
+
+**E2E:** `e2e/client-search.spec.ts` 13케이스, 전체 통과
 
 ---
 

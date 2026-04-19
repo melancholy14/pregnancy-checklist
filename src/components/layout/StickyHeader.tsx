@@ -3,12 +3,15 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { Search } from "lucide-react";
+import { useSearchStore } from "@/store/useSearchStore";
 
 export function StickyHeader() {
   const pathname = usePathname();
   const [visible, setVisible] = useState(true);
   const [scrolled, setScrolled] = useState(false);
   const lastScrollY = useRef(0);
+  const openSearch = useSearchStore((s) => s.open);
 
   useEffect(() => {
     if (pathname === "/") return;
@@ -40,6 +43,14 @@ export function StickyHeader() {
           className="rounded-sm"
         />
         <span className="text-sm font-medium">출산 준비 체크리스트</span>
+        <button
+          type="button"
+          onClick={openSearch}
+          className="ml-auto p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+          aria-label="검색"
+        >
+          <Search size={18} />
+        </button>
       </div>
     </header>
   );

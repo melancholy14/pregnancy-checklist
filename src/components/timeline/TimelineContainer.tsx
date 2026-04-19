@@ -116,13 +116,14 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
     prevCheckedCountRef.current = count;
   }, [hydrated, checkedIds]);
 
-  // 현재 주차로 자동 스크롤
+  // 현재 주차로 자동 스크롤 (hash가 있으면 검색 등에서 특정 주차로 이동한 것이므로 생략)
   useEffect(() => {
-    if (hydrated && currentWeek && currentRef.current) {
-      setTimeout(() => {
-        currentRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
-      }, 300);
-    }
+    if (window.location.hash) return;
+    if (!hydrated || !currentWeek || !currentRef.current) return;
+    const timer = setTimeout(() => {
+      currentRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 300);
+    return () => clearTimeout(timer);
   }, [hydrated, currentWeek]);
 
   // 스크롤 깊이 추적 (IntersectionObserver + 디바운스)

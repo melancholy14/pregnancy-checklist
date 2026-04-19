@@ -13,6 +13,7 @@ export function VideoCard({ video, channelName }: VideoCardProps) {
 
   return (
     <a
+      id={video.id}
       href={`https://www.youtube.com/watch?v=${video.youtube_id}`}
       target="_blank"
       rel="noopener noreferrer"
