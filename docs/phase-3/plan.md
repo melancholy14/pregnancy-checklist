@@ -835,9 +835,22 @@ channels.json 읽기
 
 ### 4-4. 완료 조건
 
-- [ ] `npx ts-node scripts/fetch-channel-thumbs.ts` 실행 시 `channels.json` 썸네일 URL 업데이트
-- [ ] API 키 미설정 시 에러 메시지 + 수동 입력 안내 출력
-- [ ] 기존 수동 URL이 있는 채널은 덮어쓰지 않음 (옵션: `--force` 플래그로 강제 갱신)
+- [x] `npx tsx scripts/fetch-channel-thumbs.ts` 실행 시 `channels.json` 썸네일 URL 업데이트
+- [x] API 키 미설정 시 에러 메시지 + 수동 입력 안내 출력
+- [x] 기존 수동 URL이 있는 채널은 덮어쓰지 않음 (옵션: `--force` 플래그로 강제 갱신)
+
+### 4-5. 구현 결과 (2026-04-20)
+
+**생성 파일:**
+- `scripts/fetch-channel-thumbs.ts` — YouTube Data API v3 배치 호출, `--force` 옵션, 에러 핸들링
+- `e2e/fetch-channel-thumbs.spec.ts` — 9개 E2E 테스트 (인프라 3 + 에러 2 + 보존 1 + 무결성 3)
+
+**수정 파일:**
+- `package.json` — `tsx` ^4.21.0 devDependency + `fetch-channel-thumbs` npm script
+- `.env.example` — `YOUTUBE_API_KEY` 항목 추가
+
+**코드 리뷰:** Critical 0건, Warning 1건 수정 (catch 블록 API 키 노출 방지)
+**E2E:** 9/9 passed (1.8s)
 
 ---
 
