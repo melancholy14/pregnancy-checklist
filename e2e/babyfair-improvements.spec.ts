@@ -42,12 +42,18 @@ test.describe("베이비페어 개선 (Step 6)", () => {
     });
   });
 
-  test.describe("Happy Path — 연도 라벨", () => {
-    test("서브타이틀에 현재 연도가 포함되어 있다", async ({ page }) => {
-      // 무엇을: 서브타이틀에 연도 자동 반영
+  test.describe("Happy Path — 현재 연도 데이터", () => {
+    test("현재 연도의 행사 데이터가 존재한다", async ({ page }) => {
+      // 무엇을: 현재 연도 행사가 탭에 표시되는지 확인
       // 왜: 콘텐츠 최신성 표시
       const year = new Date().getFullYear();
-      await expect(page.getByText(`${year}년 전국 베이비페어 행사 안내`)).toBeVisible();
+      // 지난 행사 탭에서 현재 연도 데이터 확인
+      await page.getByRole("tab", { name: "지난 행사" }).click();
+      const cards = page.locator('[data-slot="card"]');
+      const count = await cards.count();
+      expect(count).toBeGreaterThan(0);
+      // 카드 내 날짜에 현재 연도가 포함되어 있는지 확인
+      await expect(page.getByText(`${year}년`).first()).toBeVisible();
     });
   });
 

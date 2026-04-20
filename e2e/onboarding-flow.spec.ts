@@ -1,6 +1,13 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("온보딩 플로우", () => {
+  test.beforeEach(async ({ page }) => {
+    // 쿠키 동의 배너가 버튼 클릭을 가로막지 않도록 사전 설정
+    await page.addInitScript(() => {
+      localStorage.setItem("cookie-consent", "accepted");
+    });
+  });
+
   test.describe("Happy Path", () => {
     test("전체 플로우: 웰컴 → 예정일 입력 → 데이터 안내 → 타임라인 이동", async ({ page }) => {
       // 무엇을: 3단계 온보딩을 처음부터 끝까지 완료하면 /timeline으로 이동하는지

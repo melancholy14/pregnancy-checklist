@@ -117,10 +117,10 @@ test.describe("가이드 페이지 (리다이렉트)", () => {
       await expect(page).toHaveURL(/\/articles\/hospital-bag/);
     });
 
-    test("/guides/weekly-prenatal-checklist → /articles/weekly-prenatal-checklist 리다이렉트", async ({ page }) => {
+    test("/guides/weekly-prep → /articles/weekly-prenatal-checklist 리다이렉트", async ({ page }) => {
       // 무엇을: 기존 가이드 URL 호환성
       // 왜: Phase 1.75 북마크/외부 링크 유지
-      await page.goto("/guides/weekly-prenatal-checklist");
+      await page.goto("/guides/weekly-prep");
       await expect(page).toHaveURL(/\/articles\/weekly-prenatal-checklist/);
     });
   });

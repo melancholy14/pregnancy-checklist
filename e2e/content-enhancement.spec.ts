@@ -10,17 +10,19 @@ test.describe("정보글 시스템", () => {
       // 무엇을: 정보글 목록 페이지 기본 UI
       // 왜: 페이지 정상 진입 확인
       await expect(page.getByRole("heading", { name: "정보 & 가이드" })).toBeVisible();
-      await expect(page.getByText("임신과 출산에 도움되는 정보 모음")).toBeVisible();
+      await expect(page.getByText("경험 기반으로 정리했습니다")).toBeVisible();
     });
 
-    test("정보글 5개가 목록에 표시된다", async ({ page }) => {
-      // 무엇을: 5개 MD 파일 기반 글이 모두 노출되는지
+    test("정보글 7개가 목록에 표시된다", async ({ page }) => {
+      // 무엇을: 7개 MD 파일 기반 글이 모두 노출되는지
       // 왜: AdSense 승인을 위한 최소 콘텐츠 볼륨 확인
       await expect(page.getByText("출산 가방 필수 준비물 총정리")).toBeVisible();
-      await expect(page.getByText("임신 주차별 검사 & 준비 가이드")).toBeVisible();
+      await expect(page.getByText("임신 주차별 검사")).toBeVisible();
       await expect(page.getByText("임신 초기 필수 검사 총정리")).toBeVisible();
       await expect(page.getByText("산후조리원 선택 가이드")).toBeVisible();
       await expect(page.getByText("출산 준비물 예상 비용 총정리")).toBeVisible();
+      await expect(page.getByText("임신 중 체중관리 완전 정리")).toBeVisible();
+      await expect(page.getByText("태아보험, 가입 전에 꼭 따져봐야 할")).toBeVisible();
     });
 
     test("태그 필터 칩이 표시된다", async ({ page }) => {
@@ -121,10 +123,10 @@ test.describe("정보글 시스템", () => {
       await expect(page).toHaveURL(/\/articles\/hospital-bag/);
     });
 
-    test("/guides/weekly-prenatal-checklist → /articles/weekly-prenatal-checklist 리다이렉트", async ({ page }) => {
+    test("/guides/weekly-prep → /articles/weekly-prenatal-checklist 리다이렉트", async ({ page }) => {
       // 무엇을: 기존 가이드 URL에서 정보글 URL로 리다이렉트
       // 왜: 북마크/외부 링크 호환성
-      await page.goto("/guides/weekly-prenatal-checklist");
+      await page.goto("/guides/weekly-prep");
       await expect(page).toHaveURL(/\/articles\/weekly-prenatal-checklist/);
     });
   });

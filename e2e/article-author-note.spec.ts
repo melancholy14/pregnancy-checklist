@@ -10,7 +10,7 @@ test.describe("아티클 authorNote 카드 (Step 14)", () => {
       await page.goto("/articles/hospital-bag");
       await expect(page.getByText("만든이의 한마디")).toBeVisible();
       await expect(
-        page.getByText("블로그마다 리스트가 달라서 짜증났어요"),
+        page.getByText("블로그/인스타그램마다 리스트가 달라서 혼란스러웠어요"),
       ).toBeVisible();
     });
 
@@ -41,15 +41,15 @@ test.describe("아티클 authorNote 카드 (Step 14)", () => {
       await expect(card).toHaveClass(/border/);
     });
 
-    test("baby-items-cost 아티클에서 authorNote가 표시된다", async ({
+    test("prenatal-insurance 아티클에서 authorNote가 표시된다", async ({
       page,
     }) => {
       // 무엇을: 다른 아티클에서도 authorNote가 정상 표시되는지
-      // 왜: 5개 아티클 모두 동작 확인
-      await page.goto("/articles/baby-items-cost");
+      // 왜: authorNote가 있는 아티클 모두 동작 확인
+      await page.goto("/articles/prenatal-insurance-preparation-guide");
       await expect(page.getByText("만든이의 한마디")).toBeVisible();
       await expect(
-        page.getByText("스프레드시트로 정리했던 걸 그대로 옮겼어요"),
+        page.getByText("태아보험 검색이었어요"),
       ).toBeVisible();
     });
 
@@ -119,7 +119,7 @@ test.describe("아티클 authorNote 카드 (Step 14)", () => {
       await page.goto("/articles/hospital-bag");
       await expect(page.getByText("만든이의 한마디")).toBeVisible();
       await expect(
-        page.getByText("블로그마다 리스트가 달라서 짜증났어요"),
+        page.getByText("블로그/인스타그램마다 리스트가 달라서 혼란스러웠어요"),
       ).toBeVisible();
     });
 
