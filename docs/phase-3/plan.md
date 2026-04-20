@@ -912,9 +912,21 @@ echo "PASS: All pages scored 90+"
 
 ### 5-4. 완료 조건
 
-- [ ] `bash scripts/lighthouse-check.sh` 실행 시 5개 페이지 SEO 점수 출력
-- [ ] 90점 미만 페이지 있으면 exit 1 반환
-- [ ] GitHub Actions에서 optional step으로 실행 가능
+- [x] `bash scripts/lighthouse-check.sh` 실행 시 7개 페이지 SEO 점수 출력
+- [x] 90점 미만 페이지 있으면 exit 1 반환
+- [x] GitHub Actions에서 optional step으로 실행 가능
+
+### 5-5. 구현 결과 (2026-04-20)
+
+**생성 파일:**
+- `scripts/lighthouse-check.sh` — 7개 페이지 SEO 90+ 자동 검증 (개별 에러 핸들링, node JSON 파싱)
+- `e2e/lighthouse-seo.spec.ts` — 45개 E2E 테스트 (SEO 필수 요소 42 + 인프라 3)
+
+**수정 파일:**
+- `package.json` — `lighthouse` ^12.8.2 devDependency + `lighthouse-check` npm script
+- `.github/workflows/deploy-gh-pages.yml` — Build→Deploy 사이 optional Lighthouse step
+
+**검증 결과:** 7개 페이지 SEO 100점, A11y 90~95점, E2E 45/45 passed
 
 ---
 

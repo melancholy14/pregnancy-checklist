@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "deploy": "NEXT_PUBLIC_GA_MEASUREMENT_ID=G-HT96X27T4K NEXT_PUBLIC_FEEDBACK_FORM_URL=https://forms.gle/iZrqyAd2LtTm7Gtm7 NEXT_PUBLIC_ADSENSE_CLIENT_ID=ca-pub-6022771079735605 next build && touch out/.nojekyll && echo 'pregnancy-checklist.com' > out/CNAME && gh-pages -d out --dotfiles"
+    "deploy": "NEXT_PUBLIC_GA_MEASUREMENT_ID=G-HT96X27T4K NEXT_PUBLIC_FEEDBACK_FORM_URL=https://forms.gle/iZrqyAd2LtTm7Gtm7 NEXT_PUBLIC_ADSENSE_CLIENT_ID=ca-pub-6022771079735605 next build && touch out/.nojekyll && echo 'pregnancy-checklist.com' > out/CNAME && gh-pages -d out --dotfiles",
+    "lighthouse-check": "bash scripts/lighthouse-check.sh"
   },
   "dependencies": {
     "@next/third-parties": "^16.2.2",
@@ -77,6 +78,7 @@
     "eslint": "^9",
     "eslint-config-next": "^16.2.0",
     "gh-pages": "^6.3.0",
+    "lighthouse": "^12.8.2",
     "serve": "^14.2.6",
     "tailwindcss": "4.1.12",
     "typescript": "5.8.3"
