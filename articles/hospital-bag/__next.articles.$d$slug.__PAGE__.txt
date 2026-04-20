@@ -1,8 +1,8 @@
 1:"$Sreact.fragment"
-2:I[93406,["/_next/static/chunks/09e-rnyqzam9q.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0k_ntlfs6mua6.js","/_next/static/chunks/0w0412nbnq_jy.js"],"ArticleDetail"]
-7:I[97367,["/_next/static/chunks/09e-rnyqzam9q.js","/_next/static/chunks/1860zsbcg5z1o.js"],"OutletBoundary"]
-8:"$Sreact.suspense"
-3:T2f76,<p>출산 가방, 뭘 넣어야 할지 검색하면
+2:I[93406,["/_next/static/chunks/0-ylqgo-ibycm.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js","/_next/static/chunks/0qt2f7.7o9bni.js"],"ArticleDetail"]
+6:I[97367,["/_next/static/chunks/0-ylqgo-ibycm.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],"OutletBoundary"]
+7:"$Sreact.suspense"
+3:T2ebc,<p>출산 가방, 뭘 넣어야 할지 검색하면
 블로그마다 리스트가 전부 달라서 더 혼란스럽죠.
 게다가 병원에서 주는 건지, 내가 사야 하는 건지
 구분이 안 되는 항목도 많아요.
@@ -234,7 +234,7 @@ ISOFIX 방식이 더 안정적이에요.</li>
 제왕절개 기준 20장 이상 준비하는 것을
 추천해요.</p>
 <p>산후조리원 선택이 고민이라면
-<a href="%7B%7BSITE_URL%7D%7D/articles/postpartum-care">산후조리원 선택 가이드</a>도
+<a href="https://pregnancy-checklist.com/articles/postpartum-care">산후조리원 선택 가이드</a>도
 함께 확인해보세요.</p>
 <h2>출산 가방 최종 체크리스트</h2>
 <p>아래는 위 내용을 바탕으로 한
@@ -268,10 +268,10 @@ ISOFIX 방식이 더 안정적이에요.</li>
 <li class="task-list-item"><input type="checkbox" disabled> 휴대폰 충전기 + 긴 케이블 (2m 이상)</li>
 </ul>
 <p>준비물별 예상 비용이 궁금하다면
-<a href="%7B%7BSITE_URL%7D%7D/articles/baby-items-cost">출산 준비물 예상 비용 총정리</a>를
+<a href="https://pregnancy-checklist.com/articles/baby-items-cost">출산 준비물 예상 비용 총정리</a>를
 참고해보세요.</p>
 <p>주차별 전체 준비 일정은
-<a href="%7B%7BSITE_URL%7D%7D/articles/weekly-prenatal-checklist">임신 주차별 검사 &#x26; 준비 총정리</a>에서
+<a href="https://pregnancy-checklist.com/articles/weekly-prenatal-checklist">임신 주차별 검사 &#x26; 준비 총정리</a>에서
 확인할 수 있어요.</p>
 <h2>자주 묻는 질문</h2>
 <p><strong>Q. 출산 가방은 임신 몇 주에 싸야 하나요?</strong>
@@ -320,12 +320,7 @@ A. 입원 중에는 병원에서 제공하는
 <li>미국소아과학회(AAP), Car Seats: Information
 for Families (2023)</li>
 </ul>
-<hr>
-<blockquote>
-<p>⚠️ 이 글은 일반적인 육아 정보를 제공하며, 의학적 조언을 대체하지 않습니다.
-아이의 건강 문제는 소아청소년과 전문의와 상담하세요.</p>
-</blockquote>0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"출산 가방 필수 준비물 총정리","description":"출산 가방 준비물을 병원 제공 물품과 직접 준비 항목으로 비교하고, 자연분만·제왕절개별 입원 기간에 따른 수량 차이를 표로 정리했어요. 카시트 법적 의무와 오로 대비 위생용품까지 빠짐없이 담은 실전 체크리스트예요.","slug":"hospital-bag","tags":["출산준비","출산가방","병원준비"],"date":"2026-04-11","linked_timeline_weeks":[32,36],"authorNote":"블로그/인스타그램마다 리스트가 달라서 혼란스러웠어요. 병원 제공 물품 기준으로 직접 정리한 리스트예요.","content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"JEDeWlYtzB7cN5rlorhLI"}
-4:["$","script","script-0",{"src":"/_next/static/chunks/0k_ntlfs6mua6.js","async":true}]
-5:["$","script","script-1",{"src":"/_next/static/chunks/0w0412nbnq_jy.js","async":true}]
-6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
-9:null
+<hr>0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"출산 가방 필수 준비물 총정리","description":"출산 가방 준비물을 병원 제공 물품과 직접 준비 항목으로 비교하고, 자연분만·제왕절개별 입원 기간에 따른 수량 차이를 표로 정리했어요. 카시트 법적 의무와 오로 대비 위생용품까지 빠짐없이 담은 실전 체크리스트예요.","slug":"hospital-bag","tags":["출산준비","출산가방","병원준비"],"date":"2026-04-11","linked_timeline_weeks":[32,36],"authorNote":"블로그/인스타그램마다 리스트가 달라서 혼란스러웠어요. 병원 제공 물품 기준으로 직접 정리한 리스트예요.","canonical":"https://pregnancy-checklist.com/articles/hospital-bag","content":"$3","disclaimer":"이 글은 일반적인 육아 정보를 제공하며, 의학적 조언을 대체하지 않습니다. 아이의 건강 문제는 소아청소년과 전문의와 상담하세요."}}],["$L4"],"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"lG7j_dnmSpBuaP3vTJEqI"}
+4:["$","script","script-0",{"src":"/_next/static/chunks/0qt2f7.7o9bni.js","async":true}]
+5:["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]
+8:null

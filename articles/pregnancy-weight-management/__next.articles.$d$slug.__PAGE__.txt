@@ -1,8 +1,8 @@
 1:"$Sreact.fragment"
-2:I[93406,["/_next/static/chunks/09e-rnyqzam9q.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0k_ntlfs6mua6.js","/_next/static/chunks/0w0412nbnq_jy.js"],"ArticleDetail"]
-7:I[97367,["/_next/static/chunks/09e-rnyqzam9q.js","/_next/static/chunks/1860zsbcg5z1o.js"],"OutletBoundary"]
-8:"$Sreact.suspense"
-3:T3d29,<p>"나 너무 많이 찐 건 아닐까?"
+2:I[93406,["/_next/static/chunks/0-ylqgo-ibycm.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js","/_next/static/chunks/0qt2f7.7o9bni.js"],"ArticleDetail"]
+6:I[97367,["/_next/static/chunks/0-ylqgo-ibycm.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],"OutletBoundary"]
+7:"$Sreact.suspense"
+3:T3d16,<p>"나 너무 많이 찐 건 아닐까?"
 체중계에 올라갈 때마다 숫자가 올라가 있으면
 심장이 철렁하잖아요.</p>
 <p>솔직히 말하면, 저도 그랬어요.
@@ -210,6 +210,10 @@ BMI에 따라 약간의 조정이 필요해요.</p>
 <li><strong>급격한 체중 증가 + 부종·두통이 겹치면 즉시 병원에 연락하세요.</strong></li>
 <li><strong>'덜 먹기'가 아니라 '잘 먹기' — 하루 +300kcal, 단백질 매끼, 걷기 주 3회.</strong></li>
 </ol>
+<blockquote>
+<p>💡 <strong>내 체중을 직접 기록해보세요!</strong>
+<a href="/weight">체중 기록 도구</a>에서 주차별 체중 변화를 그래프로 확인할 수 있습니다.</p>
+</blockquote>
 <h2>참고 자료</h2>
 <ul>
 <li>ACOG, 「Weight Gain During Pregnancy」 (2024) - <a href="https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2013/01/weight-gain-during-pregnancy">https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2013/01/weight-gain-during-pregnancy</a></li>
@@ -219,12 +223,7 @@ BMI에 따라 약간의 조정이 필요해요.</p>
 <li>WHO, 「Healthy Eating during Pregnancy and Breastfeeding」 (2023) — <a href="https://iris.who.int/server/api/core/bitstreams/eced0281-98bf-4df9-9ce9-ce8de0022a6f/content">https://iris.who.int/server/api/core/bitstreams/eced0281-98bf-4df9-9ce9-ce8de0022a6f/content</a></li>
 <li>PMC, 「임부의 임신스트레스에 영향을 미치는 요인에 관한 단면연구」 (2022) — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9334213/">https://pmc.ncbi.nlm.nih.gov/articles/PMC9334213/</a></li>
 </ul>
-<hr>
-<blockquote>
-<p>⚠️ 이 글은 일반적인 임신·건강 정보를 제공하며, 의학적 조언을 대체하지 않습니다.
-임신·출산 관련 건강 문제는 산부인과 전문의와 상담하세요.</p>
-</blockquote>0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"임신 중 체중관리 완전 정리 — BMI별 권장 증가량부터 주차별 자가 확인표, 체중 불안 다루기까지","description":"임신 중 체중 증가, 어디까지 정상일까요? ACOG 기준 BMI별 권장 증가량 표와 주차별 자가 확인표로 내 체중이 정상 범위인지 바로 확인하세요. 전자간증 위험 신호, 임신성 당뇨 식단 관리법, 체중계 불안 다루기까지 임산부 체중관리의 모든 것을 한 글에 정리했어요.","slug":"pregnancy-weight-management","tags":["임신","체중관리","임산부건강","임신중독증","임신성당뇨"],"date":"2026-04-15","linked_timeline_weeks":[6,24],"authorNote":"체중계 올라갈 때마다 불안해서, 정상 범위가 어디까지인지 정리해봤습니다.","content":"$3"}}],["$L4","$L5"],"$L6"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"JEDeWlYtzB7cN5rlorhLI"}
-4:["$","script","script-0",{"src":"/_next/static/chunks/0k_ntlfs6mua6.js","async":true}]
-5:["$","script","script-1",{"src":"/_next/static/chunks/0w0412nbnq_jy.js","async":true}]
-6:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
-9:null
+<hr>0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"임신 중 체중관리 완전 정리 — BMI별 권장 증가량부터 주차별 자가 확인표, 체중 불안 다루기까지","description":"임신 중 체중 증가, 어디까지 정상일까요? ACOG 기준 BMI별 권장 증가량 표와 주차별 자가 확인표로 내 체중이 정상 범위인지 바로 확인하세요. 전자간증 위험 신호, 임신성 당뇨 식단 관리법, 체중계 불안 다루기까지 임산부 체중관리의 모든 것을 한 글에 정리했어요.","slug":"pregnancy-weight-management","tags":["임신","체중관리","임산부건강","임신중독증","임신성당뇨"],"date":"2026-04-15","linked_timeline_weeks":[6,24],"authorNote":"체중계 올라갈 때마다 불안해서, 정상 범위가 어디까지인지 정리해봤습니다.","canonical":"https://pregnancy-checklist.com/articles/pregnancy-weight-management","content":"$3","disclaimer":"이 글은 일반적인 임신·건강 정보를 제공하며, 의학적 조언을 대체하지 않습니다. 임신·출산 관련 건강 문제는 산부인과 전문의와 상담하세요."}}],["$L4"],"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"lG7j_dnmSpBuaP3vTJEqI"}
+4:["$","script","script-0",{"src":"/_next/static/chunks/0qt2f7.7o9bni.js","async":true}]
+5:["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]
+8:null
