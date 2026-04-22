@@ -264,7 +264,7 @@ A. 임산부 등록 시 엽산제·철분제 무료 지급,
 평가 보고서」 (2023)</li>
 <li>미국소아과학회(AAP), Safe Sleep Guidelines (2022)</li>
 </ul>
-<hr>0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"출산 준비물 예상 비용 총정리","description":"출산 준비물 비용을 미니멀·표준·풀세팅 3단계 예산 시나리오로 비교하고, 카테고리별 최소·평균 가격표와 유모차 가격 차이의 실체, 중고 구매 OK/NG 기준까지 2026년 최신 기준으로 정리했어요.","slug":"baby-items-cost","tags":["출산준비","비용","쇼핑"],"date":"2026-04-11","linked_timeline_weeks":[18],"canonical":"https://pregnancy-checklist.com/articles/baby-items-cost","content":"$3","disclaimer":"이 글은 일반적인 육아 정보를 제공하며, 의학적 조언을 대체하지 않습니다. 아이의 건강 문제는 소아청소년과 전문의와 상담하세요."}}],["$L4"],"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"lG7j_dnmSpBuaP3vTJEqI"}
+<hr>0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"출산 준비물 예상 비용 총정리","description":"출산 준비물 비용을 미니멀·표준·풀세팅 3단계 예산 시나리오로 비교하고, 카테고리별 최소·평균 가격표와 유모차 가격 차이의 실체, 중고 구매 OK/NG 기준까지 2026년 최신 기준으로 정리했어요.","slug":"baby-items-cost","tags":["출산준비","비용","쇼핑"],"date":"2026-04-11","linked_timeline_weeks":[18],"canonical":"https://pregnancy-checklist.com/articles/baby-items-cost","content":"$3","disclaimer":"이 글은 일반적인 육아 정보를 제공하며, 의학적 조언을 대체하지 않습니다. 아이의 건강 문제는 소아청소년과 전문의와 상담하세요."}}],["$L4"],"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"jue6NGARF9HbQz6WpIBL5"}
 4:["$","script","script-0",{"src":"/_next/static/chunks/0qt2f7.7o9bni.js","async":true}]
 5:["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]
 8:null
