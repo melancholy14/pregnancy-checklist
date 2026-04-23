@@ -12,6 +12,10 @@ const CATEGORY_MAP: Record<string, string> = {
   exercise: "임산부 운동",
   birth_prep: "출산 준비",
   newborn_care: "신생아 케어",
+  pregnancy_health: "임신 건강 관리",
+  prenatal_checkup: "산전 검사",
+  nutrition: "임산부 영양",
+  policy: "육아 정책",
 };
 
 const categoryKeys = Object.keys(CATEGORY_MAP);
