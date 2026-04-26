@@ -134,19 +134,19 @@ A. 점심 직후가 가장 힘든 시간이에요. 가능하다면 15\~20분 짧
 
 ## 참고 자료
 
-1. 서울대학교병원 의학정보 — 임산부 빈혈 — https://www.snuh.org/health/nMedInfo/nView.do?category=DIS&medid=AA000473
-2. 질병관리청 국가건강정보포털 — 정상임신관리 — https://health.kdca.go.kr/healthinfo/biz/health/gnrlzHealthInfo/gnrlzHealthInfo/gnrlzHealthInfoView.do?cntnts_sn=6301
-3. Nature Scientific Reports — Gestational age-specific normative values of serum progesterone (2021) — https://www.nature.com/articles/s41598-021-83805-w
-4. Johns Hopkins Medicine — First Trimester Fatigue — https://www.hopkinsmedicine.org/health/conditions-and-diseases/first-trimester-fatigue
-5. 아이사랑 임신육아종합포털 — 임신초기 주의사항 — https://www.childcare.go.kr/?menuno=366
-6. 팜뉴스 — 임신한 여성이 알아야 할 호르몬 4총사 — https://www.pharmnews.com/news/articleView.html?idxno=96807
-7. MSD 매뉴얼 — 임신 초기 메스꺼움 및 구토 — https://www.msdmanuals.com/ko/%ED%99%88/%EC%97%AC%EC%84%B1-%EA%B1%B4%EA%B0%95-%EB%AC%B8%EC%A0%9C/%EC%9E%84%EC%8B%A0-%EC%A4%91-%EC%A6%9D%EC%83%81/%EC%9E%84%EC%8B%A0-%EC%B4%88%EA%B8%B0-%EB%A9%94%EC%8A%A4%EA%BA%BC%EC%9B%80-%EB%B0%8F-%EA%B5%AC%ED%86%A0
-8. 대한간호협회 홈케어 — 임산부 수면 관리 - https://www.khna.or.kr/homecare/11_pregn/pregnancy04.php
-9. ACOG — 임신 중 카페인 섭취 권고 (2010, reaffirmed 2020) - https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2010/08/moderate-caffeine-consumption-during-pregnancy
-10. NCBI StatPearls — Physiology, Ovulation And Basal Body Temperature — https://www.ncbi.nlm.nih.gov/books/NBK546686/
-11. Sleep Science (2021) — Fatigue and sleep quality in different trimesters of pregnancy — https://pmc.ncbi.nlm.nih.gov/articles/PMC8663733/
-12. 식품의약품안전처 식품영양성분 DB — 카페인 함량 조회 — https://various.foodsafetykorea.go.kr/nutrient/
-13. WHO — Haemoglobin concentrations for the diagnosis of anaemia and assessment of severity (2024) — https://www.who.int/publications/i/item/WHO-NMH-NHD-MNM-11.1
+- [서울대학교병원, 「임산부 빈혈」](https://www.snuh.org/health/nMedInfo/nView.do?category=DIS&medid=AA000473)
+- [질병관리청, 「정상임신관리」](https://health.kdca.go.kr/healthinfo/biz/health/gnrlzHealthInfo/gnrlzHealthInfo/gnrlzHealthInfoView.do?cntnts_sn=6301)
+- [Nature Scientific Reports, 「Gestational age-specific normative values of serum progesterone」 (2021)](https://www.nature.com/articles/s41598-021-83805-w)
+- [Johns Hopkins Medicine, 「First Trimester Fatigue」](https://www.hopkinsmedicine.org/health/conditions-and-diseases/first-trimester-fatigue)
+- [아이사랑 포털, 「임신초기 주의사항」](https://www.childcare.go.kr/?menuno=366)
+- [팜뉴스, 「임신한 여성이 알아야 할 호르몬 4총사」](https://www.pharmnews.com/news/articleView.html?idxno=96807)
+- [MSD 매뉴얼, 「임신 초기 메스꺼움 및 구토」](https://www.msdmanuals.com/ko/%ED%99%88/%EC%97%AC%EC%84%B1-%EA%B1%B4%EA%B0%95-%EB%AC%B8%EC%A0%9C/%EC%9E%84%EC%8B%A0-%EC%A4%91-%EC%A6%9D%EC%83%81/%EC%9E%84%EC%8B%A0-%EC%B4%88%EA%B8%B0-%EB%A9%94%EC%8A%A4%EA%BA%BC%EC%9B%80-%EB%B0%8F-%EA%B5%AC%ED%86%A0)
+- [대한간호협회, 「임산부 수면 관리」](https://www.khna.or.kr/homecare/11_pregn/pregnancy04.php)
+- [ACOG, 「임신 중 카페인 섭취 권고」 (2010, reaffirmed 2020)](https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2010/08/moderate-caffeine-consumption-during-pregnancy)
+- [NCBI StatPearls, 「Physiology, Ovulation And Basal Body Temperature」](https://www.ncbi.nlm.nih.gov/books/NBK546686/)
+- [Sleep Science, 「Fatigue and sleep quality in different trimesters of pregnancy」 (2021)](https://pmc.ncbi.nlm.nih.gov/articles/PMC8663733/)
+- [식품의약품안전처, 「식품영양성분 DB — 카페인 함량 조회」](https://various.foodsafetykorea.go.kr/nutrient/)
+- [WHO, 「Haemoglobin concentrations for the diagnosis of anaemia and assessment of severity」 (2024)](https://www.who.int/publications/i/item/WHO-NMH-NHD-MNM-11.1)
 
 ---
 

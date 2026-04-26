@@ -255,17 +255,17 @@ A. 네, 정상체중 기준으로 약 17\~25kg 증가가 권장돼요 [IOM, 2009
 
 ## 참고 자료
 
-- ACOG, Committee Opinion #548 「Weight Gain During Pregnancy」 (2013, reaffirmed 2024) — https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2013/01/weight-gain-during-pregnancy
-- 대한산부인과학회, 「임신성 당뇨」 — https://www.ksog.org/public/index.php?sub=1&third=8
-- 질병관리청, 「임신중독증(임신고혈압)」 — https://health.kdca.go.kr/healthinfo/biz/health/gnrlzHealthInfo/gnrlzHealthInfo/gnrlzHealthInfoView.do?cntnts_sn=3329
-- 질병관리청, 「식이영양(임산부)」 — https://health.kdca.go.kr/healthinfo/biz/health/gnrlzHealthInfo/gnrlzHealthInfo/gnrlzHealthInfoView.do?cntnts_sn=5214
-- WHO, 「Healthy Eating during Pregnancy and Breastfeeding」 (2023) — https://iris.who.int/server/api/core/bitstreams/eced0281-98bf-4df9-9ce9-ce8de0022a6f/content
-- IOM, 「Weight Gain During Pregnancy: Reexamining the Guidelines」 (2009) — https://pubmed.ncbi.nlm.nih.gov/20669500/
-- ACOG, Practice Bulletin #222 「Gestational Hypertension and Preeclampsia」 (2020) - https://www.preeclampsia.org/frontend/assets/img/advocacy_resource/Gestational_Hypertension_and_Preeclampsia_ACOG_Practice_Bulletin,_Number_222_1605448006.pdf
-- ACOG, Committee Opinion #804 「Physical Activity and Exercise During Pregnancy and the Postpartum Period」 (2020) - https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2020/04/physical-activity-and-exercise-during-pregnancy-and-the-postpartum-period
-- 한국영양학회, 「한국인 영양소 섭취기준 (KDRIs)」 — 에너지·단백질·칼슘 부가량 - https://www.kns.or.kr/FileRoom/FileRoom.asp?BoardID=Kdr
-- Hytten & Chamberlain, 「Clinical Physiology in Obstetrics」 — 임신 중 체중 구성 분해 참고
-- PMC, 「임부의 임신스트레스에 영향을 미치는 요인에 관한 단면연구」 (2022) — https://pmc.ncbi.nlm.nih.gov/articles/PMC9334213/
+- [ACOG, Committee Opinion #548 「Weight Gain During Pregnancy」 (2013, reaffirmed 2024)](https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2013/01/weight-gain-during-pregnancy)
+- [대한산부인과학회, 「임신성 당뇨」](https://www.ksog.org/public/index.php?sub=1&third=8)
+- [질병관리청, 「임신중독증(임신고혈압)」](https://health.kdca.go.kr/healthinfo/biz/health/gnrlzHealthInfo/gnrlzHealthInfo/gnrlzHealthInfoView.do?cntnts_sn=3329)
+- [질병관리청, 「식이영양(임산부)」](https://health.kdca.go.kr/healthinfo/biz/health/gnrlzHealthInfo/gnrlzHealthInfo/gnrlzHealthInfoView.do?cntnts_sn=5214)
+- [WHO, 「Healthy Eating during Pregnancy and Breastfeeding」 (2023)](https://iris.who.int/server/api/core/bitstreams/eced0281-98bf-4df9-9ce9-ce8de0022a6f/content)
+- [IOM, 「Weight Gain During Pregnancy: Reexamining the Guidelines」 (2009)](https://pubmed.ncbi.nlm.nih.gov/20669500/)
+- [ACOG, Practice Bulletin #222 「Gestational Hypertension and Preeclampsia」 (2020)](https://www.preeclampsia.org/frontend/assets/img/advocacy_resource/Gestational_Hypertension_and_Preeclampsia_ACOG_Practice_Bulletin,_Number_222_1605448006.pdf)
+- [ACOG, Committee Opinion #804 「Physical Activity and Exercise During Pregnancy and the Postpartum Period」 (2020)](https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2020/04/physical-activity-and-exercise-during-pregnancy-and-the-postpartum-period)
+- [한국영양학회, 「한국인 영양소 섭취기준 (KDRIs)」 — 에너지·단백질·칼슘 부가량](https://www.kns.or.kr/FileRoom/FileRoom.asp?BoardID=Kdr)
+- [Hytten & Chamberlain, 「Clinical Physiology in Obstetrics」](https://catalog.nlm.nih.gov/discovery/fulldisplay/alma997304173406676/01NLM_INST:01NLM_INST)
+- [PMC, 「임부의 임신스트레스에 영향을 미치는 요인에 관한 단면연구」 (2022)](https://pmc.ncbi.nlm.nih.gov/articles/PMC9334213/)
 
 ---
 
