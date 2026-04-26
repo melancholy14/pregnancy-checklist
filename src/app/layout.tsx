@@ -57,7 +57,7 @@ export default function RootLayout({
           <Footer />
           <BottomNav />
         </div>
-        <Toaster position="top-center" richColors />
+        <Toaster position="top-center" richColors theme="light" />
         <ConsentGatedScripts />
         <CookieConsentBanner />
         <PageviewTracker />
