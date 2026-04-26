@@ -80,8 +80,8 @@ NIPT라는 게 따로 있다는 것도 몰라서
 - **보건소 임산부 등록** — 엽산·철분제를 무료로 받을 수 있어요.
   엽산은 하루 400\~800μg이 권장되는데 [질병관리청, 국가건강정보포털],
   보건소에서 임신 초기 3개월분을 지원해줘요.
-  산모교실, 유축기 대여 등 지역별 추가 혜택도 안내받을 수 있어요.
-  지역에 따라 치과 스케일링 쿠폰, 교통비 지원 등이 있을 수 있으니
+  산모교실, 유축기 대여 등 지역별 추가 혜택도 함께 안내받아요.
+  지역에 따라 치과 스케일링 쿠폰, 교통비 지원 등도 있으니
   관할 보건소에 문의해보세요.
 - **산모수첩 발급** — 모든 산전 검사 기록이 이 수첩에 쌓여요.
   분만 시 병원에 제출하는 서류니까 잘 챙겨두세요.
@@ -168,7 +168,7 @@ NT 측정은 태아 머리엉덩이길이(CRL)가
 [서울아산병원, 산전 검사 안내].
 NT+혈액을 결합한 통합 검출률은 약 85\~90%이고,
 위양성률은 약 3\~5%예요(위험도 cutoff 1:300 기준)
-[ACOG Practice Bulletin No. 226].
+[ACOG Practice Bulletin No. 226, 2020].
 
 **결과가 이상 범위로 나왔을 때** —
 솔직히 말하면 이게 가장 무서운 순간이에요.
@@ -235,7 +235,7 @@ NIPT는 주로 다운증후군(21번), 에드워즈증후군(18번),
 
 A. 15\~20주에 진행하는 2차 기형아 검사(쿼드검사)로 대체할 수 있어요.
 쿼드검사 단독의 다운증후군 검출률은 약 81%예요
-[ACOG Practice Bulletin No. 226].
+[ACOG Practice Bulletin No. 226, 2020].
 1차를 놓쳤다고 해서 방법이 없는 건 아니에요.
 더 높은 정확도를 원한다면 NIPT(검출률 99% 이상)를
 대안으로 고려할 수 있으니 담당 의료진과 본인 상황에 맞는 계획을 세우세요.
@@ -298,8 +298,7 @@ A. 첫 방문에서는 보통 초음파와 hCG 혈액 검사만 하기 때문에
 - [보건복지부, 「임신·출산진료비 지원사업」](https://www.mohw.go.kr/menu.es?mid=a10705020100)
 - [아이사랑 포털, 「산전검사와 예방접종 — 임신초기」](https://www.childcare.go.kr/?menuno=361)
 - [메디칼업저버, 「산전 기형아 검사 NIPT, 진료비 지역별 차이」](https://www.monews.co.kr/news/articleView.html?idxno=307476)
-- ACOG Practice Bulletin No. 226, Screening for Fetal Chromosomal Abnormalities (2020)
-
+- [ACOG Practice Bulletin No. 226, Screening for Fetal Chromosomal Abnormalities (2020)](https://publications.smfm.org/publications/328-acog-practice-bulletin-226-screening-for-chromosomal-abnormalities/)
 ---
 > ⚠️ 이 글은 일반적인 임신·출산 정보를 제공하며, 의학적 조언을 대체하지 않습니다.
 > 검사 선택과 결과 해석은 담당 산부인과 전문의와 상담하세요.
