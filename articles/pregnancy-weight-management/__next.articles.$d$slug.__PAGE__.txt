@@ -1,8 +1,8 @@
 1:"$Sreact.fragment"
-2:I[93406,["/_next/static/chunks/0-ylqgo-ibycm.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js","/_next/static/chunks/0qt2f7.7o9bni.js"],"ArticleDetail"]
-6:I[97367,["/_next/static/chunks/0-ylqgo-ibycm.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],"OutletBoundary"]
+2:I[93406,["/_next/static/chunks/0_9.dpaez7op0.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js","/_next/static/chunks/0qt2f7.7o9bni.js"],"ArticleDetail"]
+6:I[97367,["/_next/static/chunks/0_9.dpaez7op0.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],"OutletBoundary"]
 7:"$Sreact.suspense"
-3:T3d16,<p>"나 너무 많이 찐 건 아닐까?"
+3:T4a6f,<p>"나 너무 많이 찐 건 아닐까?"
 체중계에 올라갈 때마다 숫자가 올라가 있으면
 심장이 철렁하잖아요.</p>
 <p>솔직히 말하면, 저도 그랬어요.
@@ -15,7 +15,8 @@
 <strong>'어떤 속도로, 어떤 구성으로 변하고 있느냐'</strong> 예요.</p>
 <p>저는 운 좋게 입덧을 하지않아 임신 초기에 5키로 정도 쪘는데요. 체중계 올라갔을 때 식겁했죠.
 더군다나 중기로 들어서면서 의사선생님께서 조절해야된다는 이야기를 해주셔서 정말로 마냥 찌면 안 되는구나를 새삼 깨닫고 운동과 식단을 시작했습니다.
-운동은 주로 순환요가, 천국의 계단을 했고 식단은 매일 기록하면서 초기 이후로 2키로 정도 쪘어요. 지금은 24주차이고요.
+운동은 주로 순환요가, 천국의 계단을 했고 식단은 매일 기록하면서 초기 이후로 2키로 정도 쪘어요. 지금은 24주차이고요.</p>
+<p>물론 저와 체질이 다르면 결과도 달라질 수 있어요. 아래 BMI별 기준표를 참고하되, 본인 목표는 담당 의료진과 함께 세우세요.
 운동과 식단 관련해서는 나중에 다른 글로 알려드릴게요!</p>
 <h2>임신 중 체중 증가, 어디까지 정상일까?</h2>
 <p>임신 중 권장 체중 증가량은 임신 전 BMI(체질량지수)에 따라 달라져요.</p>
@@ -51,8 +52,9 @@
 </tbody>
 </table>
 <p>이 수치는 단태아(아기 한 명) 기준이에요.
-쌍둥이 임신은 정상체중 기준으로 약 16~20kg 증가가 권장되니
-담당 의료진과 꼭 개별 목표를 세우세요 [ACOG, 2024].</p>
+참고로 위 BMI 기준은 IOM/ACOG 국제 기준이며, 일반 건강검진에서 사용하는 아시아 비만 기준(BMI 25)과 다를 수 있어요.
+쌍둥이 임신은 정상체중 기준으로 약 17~25kg 증가가 권장되니
+담당 의료진과 꼭 개별 목표를 세우세요 [IOM, 2009; ACOG Committee Opinion #548, 2013].</p>
 <p>"그런데 이 체중이 다 살인 건 아니잖아요?"</p>
 <p>맞아요. 만삭 기준으로 체중 증가분을 뜯어보면 이래요:</p>
 <ul>
@@ -65,13 +67,13 @@
 <li>체내 수분 증가: 약 1.5~2.7kg</li>
 <li>모체 지방 저장: 약 2.5~3.5kg</li>
 </ul>
-<p>합치면 정상체중 기준 11.5~16kg이 나오는 거예요.
+<p>합치면 정상체중 기준 11.5~16kg이 나오는 거예요 [Hytten &#x26; Chamberlain, Clinical Physiology in Obstetrics; Williams Obstetrics].
 숫자를 이렇게 분해해서 보면
 "내가 살이 찐 게 아니라 아기가 자라는 거구나" 하고
 조금은 마음이 놓이더라고요.</p>
 <h2>주차별 체중 변화 패턴과 자가 확인표</h2>
 <p>임신 기간 내내 균일하게 체중이 느는 건 아니에요.
-시기별로 자연스러운 변화 패턴이 있어요 [ACOG, 2024].</p>
+시기별로 자연스러운 변화 패턴이 있어요 [ACOG, 2013].</p>
 <p><strong>임신 초기(1~12주)</strong> 에는 입덧으로 오히려 체중이 줄기도 해요.
 0.5~2kg 정도 증가가 일반적이고,
 체중이 늘지 않거나 조금 줄었다고 해서 걱정할 필요는 없어요.</p>
@@ -116,14 +118,14 @@ BMI에 따라 약간의 조정이 필요해요.</p>
 </tr>
 </tbody>
 </table>
-<p>이 범위는 ACOG 권장 기준을 주차별로 역산한 대략적인 참고값이에요 [ACOG, 2024].
+<p>이 범위는 ACOG 권장 기준을 주차별로 역산한 대략적인 참고값이에요 [ACOG, 2013].
 개인차가 크니 숫자 하나에 너무 집착하지 말고,
 정기 검진에서 담당 의료진과 함께 체중 변화의 <strong>추세</strong>를 확인하는 게 가장 정확해요.</p>
 <p>주차별 체중 기록을 직접 남기고 싶다면 <a href="https://pregnancy-checklist.com/weight">체중 기록 페이지</a>도 활용해보세요.</p>
 <h3>심층: 급격한 체중 증가와 전자간증(임신중독증)</h3>
-<p>전자간증은 일반적으로 임신 20주 이후에 고혈압과 단백뇨가 함께 나타나는 상태로 알려져 있어요. 전체 임산부의 약 5~8%에서 발생한다고 하는데, 이게 은근히 무서운 게 초기에는 별다른 증상 없이 혈압만 슬금슬금 오르는 경우가 많아서 정기 검진이 아니면 놓치기 쉬워요 [질병관리청, 2024].</p>
-<p>일반적인 진단 기준을 숫자로 보면, 수축기 혈압 140mmHg 이상 또는 이완기 혈압 90mmHg 이상이면서 24시간 소변에서 단백질이 300mg 이상 검출되는 경우라고 해요 [질병관리청, 2024]. 방치하면 조산, 태아 성장 제한, 심한 경우 산모의 간·신장 손상으로까지 이어질 수 있다고 해요 [대한산부인과학회, 2024].</p>
-<p>급격한 체중 증가가 왜 여기서 중요하냐면, 갑자기 체중이 확 늘었다면 그게 단순히 많이 먹어서가 아니라 체내 수분이 비정상적으로 쌓이는 신호일 수 있거든요. 독자가 기억해야 할 핵심은 이거예요 — <strong>1주일에 1kg 이상</strong> 갑자기 체중이 늘면서 아래 증상이 동반되면 즉시 산부인과에 연락하세요:</p>
+<p>전자간증은 일반적으로 임신 20주 이후에 고혈압과 함께 단백뇨 또는 장기 손상 소견(혈소판 감소, 간·신기능 이상, 시각 증상 등)이 나타나는 상태예요. 전체 임산부의 약 5~8%에서 발생한다고 하는데, 이게 은근히 무서운 게 초기에는 별다른 증상 없이 혈압만 슬금슬금 오르는 경우가 많아서 정기 검진이 아니면 놓치기 쉬워요 [질병관리청, 2024].</p>
+<p>일반적인 진단 기준을 숫자로 보면, 수축기 혈압 140mmHg 이상 또는 이완기 혈압 90mmHg 이상이면서 단백뇨(24시간 소변 단백질 300mg 이상) 또는 혈소판 감소·간효소 상승·신기능 장애 등이 동반되는 경우라고 해요 [ACOG Practice Bulletin #222, 2020; 질병관리청, 2024]. 즉, 단백뇨가 없어도 전자간증으로 진단될 수 있어요. 방치하면 조산, 태아 성장 제한, 심한 경우 산모의 간·신장 손상으로까지 이어질 수 있다고 해요 [대한산부인과학회, 2024].</p>
+<p>급격한 체중 증가가 왜 여기서 중요하냐면, 갑자기 체중이 확 늘었다면 그게 단순히 많이 먹어서가 아니라 체내 수분이 비정상적으로 쌓이는 신호일 수 있거든요. 독자가 기억해야 할 핵심은 이거예요 — 일반적으로 <strong>1주에 약 1kg 이상의 갑작스러운 증가</strong>는 주의가 필요한 것으로 알려져 있어요. 이런 급격한 체중 증가와 함께 아래 증상이 동반되면 즉시 산부인과에 연락하세요:</p>
 <ul>
 <li>심한 두통이 지속될 때</li>
 <li>시야가 흐려지거나 번쩍이는 빛이 보일 때</li>
@@ -133,6 +135,7 @@ BMI에 따라 약간의 조정이 필요해요.</p>
 <p>이런 증상 없이 체중이 일시적으로 많이 늘었다면
 수분 섭취나 식이에 의한 것일 수 있으니
 다음 검진에서 의료진에게 확인하면 돼요.</p>
+<p>참고로 WHO에서는 칼슘 섭취가 부족한 임산부에게 하루 1.5~2.0g의 칼슘 보충을 전자간증 예방 차원에서 권고하고 있어요. 한국 여성의 칼슘 섭취량은 평균적으로 권장량에 미달하는 경우가 많으니, 우유·요거트·멸치 등으로 칼슘을 충분히 섭취하되 보충제 복용은 의료진과 상의하세요 [WHO; KDRIs].</p>
 <h2>체중 숫자 뒤의 심리 — 체중계 불안 다루기</h2>
 <p>이건 상위 글에서 잘 안 다루는 이야기인데,
 생각보다 진짜 중요해요.</p>
@@ -147,7 +150,7 @@ BMI에 따라 약간의 조정이 필요해요.</p>
 <strong>스트레스를 다루는 방법을 아는 게 중요</strong>한 거예요.</p>
 <p>혹시 체중계 숫자 때문에 힘들다면 이렇게 해보세요:</p>
 <ul>
-<li><strong>매일 재지 마세요</strong> — 주 1~2회, 같은 시간에 재는 것으로 충분해요. 하루 사이에도 수분량에 따라 0.5~1kg은 쉽게 왔다 갔다 하거든요.</li>
+<li><strong>매일 재지 마세요</strong> — 주 1~2회, 같은 시간에 재는 것으로 충분해요. 하루 사이에도 수분량에 따라 0.5~1kg은 쉽게 왔다 갔다 하거든요. 참고로 임산부는 하루 약 2.0~2.3L(약 8~10잔)의 수분 섭취가 권장되고, 충분한 수분은 양수 유지와 변비 예방에도 도움이 돼요.</li>
 <li><strong>숫자 대신 추세를 보세요</strong> — 한 번 잰 숫자보다 2~3주간의 변화 방향이 훨씬 의미 있어요.</li>
 <li><strong>위의 체중 구성표를 기억하세요</strong> — 늘어난 체중 중 모체 지방은 2.5~3.5kg에 불과해요. 나머지는 아기와 아기를 지키는 데 쓰이는 체중이에요.</li>
 <li><strong>비교하지 마세요</strong> — 온라인 커뮤니티에서 다른 분들 체중을 보면 비교하게 되는데, BMI·체질·생활 패턴이 전부 다르기 때문에 비교 자체가 의미 없어요.</li>
@@ -157,26 +160,57 @@ BMI에 따라 약간의 조정이 필요해요.</p>
 훨씬 도움이 되는 말이에요.</p>
 <h2>체중관리를 위한 식습관과 안전한 운동</h2>
 <p>임신 중 식단의 핵심은 '덜 먹기'가 아니라 <strong>'잘 먹기'</strong> 예요.</p>
-<p>시기별 추가 열량 권장량을 보면 [WHO, 2023]:</p>
-<ul>
-<li>임신 초기(~12주): +150kcal/일</li>
-<li>임신 중기·후기(13주~): +300kcal/일</li>
-</ul>
-<p>300kcal을 음식으로 환산하면
-밥 반 공기(150kcal) + 달걀 1개(80kcal) + 우유 반 잔(60kcal) 정도예요.
+<p>시기별 추가 열량 권장량은 기관마다 약간 달라요:</p>
+<table>
+<thead>
+<tr>
+<th>시기</th>
+<th>WHO (2023)</th>
+<th>KDRIs (한국)</th>
+<th>IOM/ACOG</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>임신 초기(~12주)</td>
+<td>+150kcal/일</td>
+<td>+0~70kcal/일</td>
+<td>+0kcal/일</td>
+</tr>
+<tr>
+<td>임신 중기(13~27주)</td>
+<td>+300kcal/일</td>
+<td>+340kcal/일</td>
+<td>+340kcal/일</td>
+</tr>
+<tr>
+<td>임신 후기(28주~)</td>
+<td>+300kcal/일</td>
+<td>+450kcal/일</td>
+<td>+452kcal/일</td>
+</tr>
+</tbody>
+</table>
+<p>초기에는 추가 열량이 거의 필요 없고, 후기에는 중기보다 더 필요하다는 게 공통점이에요.
+본인에게 맞는 열량 목표는 담당 의료진이나 영양사와 함께 세우세요.</p>
+<p>중기 기준 +340kcal을 음식으로 환산하면
+밥 반 공기(150kcal) + 달걀 1개(80kcal) + 우유 한 잔(120kcal) 정도예요.
 생각보다 많지 않죠?
 "둘이 먹으니까 두 배로 먹어야지"는 옛말이에요.</p>
 <p>단백질은 태아 근육·장기 형성의 기본 재료인 데다 포만감도 오래가니 매 끼니 꼭 챙기세요 —
 살코기, 생선, 달걀, 두부가 대표적이에요.
-철분은 임신 중기 이후 요구량이 확 늘어나니
-시금치, 소고기를 의식적으로 챙기되
-철분제는 의료진과 상담 후 복용하세요 [질병관리청, 2024].</p>
+한국인 영양소 섭취기준(KDRIs)에 따르면 임신 2기에는 하루 +15g, 3기에는 +30g의 단백질이 추가로 필요해요. 달걀 1개가 약 7g, 두부 반 모가 약 15g이니 참고하세요.</p>
+<p>철분은 임신 중기 이후 요구량이 확 늘어나니
+소고기, 시금치를 의식적으로 챙기되
+철분 흡수를 높이려면 비타민C가 풍부한 식품(귤, 파프리카)과 함께 드세요.
+철분제를 복용 중이라면 칼슘제·유제품·카페인과 2시간 이상 간격을 두는 게 좋아요.
+철분제 복용 여부와 용량은 의료진과 상담 후 결정하세요 [질병관리청, 2024; KDRIs].</p>
 <p>적절한 운동은 과도한 체중 증가를 예방하고
-임신성 당뇨·전자간증 위험을 낮추는 데 도움이 돼요 [ACOG, 2024].
+임신성 당뇨·전자간증 위험을 낮추는 데 도움이 돼요 [ACOG, 2013].
 하루 20~30분 걷기(주 3~5회)가 가장 안전하고,
 수영이나 임산부 요가도 좋아요.
 다만 접촉 스포츠나 낙상 위험이 있는 활동,
-20주 이후 누운 자세에서 오래 하는 운동은 피하세요.
+임신 중기(약 13~14주) 이후부터 누운 자세에서 오래 하는 운동은 피하세요 [ACOG Committee Opinion #804, 2020].
 운동 중 어지러움, 출혈, 심한 복통이 느껴지면
 즉시 중단하고 의료진과 상담하세요.</p>
 <h3>심층: 임신성 당뇨와 체중관리 식단</h3>
@@ -189,6 +223,12 @@ BMI에 따라 약간의 조정이 필요해요.</p>
 <li><strong>식사를 하루 4~5회로 나누기</strong> — 한 번에 많이 먹으면 혈당이 급격히 올라요.</li>
 <li><strong>단백질·채소를 먼저 먹고 탄수화물을 나중에</strong> — 같은 양을 먹어도 혈당 변동을 줄일 수 있어요.</li>
 </ul>
+<p>구체적인 한 끼 예시를 들면:</p>
+<ul>
+<li><strong>아침:</strong> 현미밥 2/3공기 + 두부된장찌개 + 시금치나물 + 달걀프라이</li>
+<li><strong>간식:</strong> 견과류 한 줌 + 무가당 요거트</li>
+</ul>
+<p>이런 구성이면 탄수화물은 적당히, 단백질과 식이섬유는 충분히 확보할 수 있어요.</p>
 <p>검사 일정과 수치 기준이 궁금하다면
 <a href="https://pregnancy-checklist.com/articles/weekly-prenatal-checklist">임신 주차별 검사 &#x26; 준비 총정리</a>도
 함께 확인해보세요.</p>
@@ -196,19 +236,19 @@ BMI에 따라 약간의 조정이 필요해요.</p>
 <p><strong>Q. 임신 초기에 체중이 오히려 줄었는데 괜찮은 건가요?</strong></p>
 <p>A. 입덧이 심한 경우 초기에 1~2kg 정도 체중이 줄 수 있어요. 12주 이후 서서히 회복되면 대부분 문제없어요. 다만 구토가 심해서 수분 섭취조차 어렵거나 체중이 계속 줄어든다면 담당 의료진에게 꼭 말씀하세요 — 임신 오조(입덧 중증)일 수 있어요.</p>
 <p><strong>Q. 임신 중 다이어트를 해도 되나요?</strong></p>
-<p>A. 의도적인 체중 감량은 권장하지 않아요. 태아 성장에 필요한 영양소가 부족해질 수 있거든요. 과체중·비만이어도 적정 범위 내 증가를 목표로 하되, 의료진과 함께 현실적인 식단 계획을 세우는 게 안전해요 [ACOG, 2024].</p>
+<p>A. 의도적인 체중 감량은 권장하지 않아요. 태아 성장에 필요한 영양소가 부족해질 수 있거든요. 과체중·비만이어도 적정 범위 내 증가를 목표로 하되, 의료진과 함께 현실적인 식단 계획을 세우는 게 안전해요 [ACOG, 2013].</p>
 <p><strong>Q. 체중이 권장 범위보다 많이 늘었으면 어떻게 하나요?</strong></p>
 <p>A. 이미 늘어난 체중을 빼려 하기보다는 앞으로의 증가 속도를 조절하는 데 집중하세요. 정제 탄수화물 줄이기, 매일 20~30분 걷기부터 시작하면 돼요. 급격한 식이 제한은 오히려 해로우니, 담당 의료진과 목표를 함께 세우는 걸 추천해요.</p>
 <p><strong>Q. 체중계를 매일 재야 하나요?</strong></p>
 <p>A. 매일 재면 하루 수분량 변동(0.5~1kg)에 일희일비하게 돼요. 주 1~2회, 아침 공복에 같은 조건으로 재는 것으로 충분해요. 한 번의 숫자보다 2~3주간 추세가 더 중요하다는 걸 기억하세요.</p>
 <p><strong>Q. 쌍둥이 임신인데 체중 증가 기준이 다른가요?</strong></p>
-<p>A. 네, 정상체중 기준으로 약 16~20kg 증가가 권장돼요 [ACOG, 2024]. 단태아 기준과 상당히 다르므로 반드시 담당 의료진과 개별 목표를 설정하세요.</p>
+<p>A. 네, 정상체중 기준으로 약 17~25kg 증가가 권장돼요 [IOM, 2009]. 단태아 기준과 상당히 다르므로 반드시 담당 의료진과 개별 목표를 설정하세요.</p>
 <hr>
 <p>임신 중 체중관리의 핵심을 세 줄로 정리하면:</p>
 <ol>
 <li><strong>정상 범위를 알고, 숫자 하나보다 변화 추세를 보세요.</strong></li>
 <li><strong>급격한 체중 증가 + 부종·두통이 겹치면 즉시 병원에 연락하세요.</strong></li>
-<li><strong>'덜 먹기'가 아니라 '잘 먹기' — 하루 +300kcal, 단백질 매끼, 걷기 주 3회.</strong></li>
+<li><strong>'덜 먹기'가 아니라 '잘 먹기' — 중기 기준 하루 +340kcal, 단백질 매끼, 걷기 주 3회.</strong></li>
 </ol>
 <blockquote>
 <p>💡 <strong>내 체중을 직접 기록해보세요!</strong>
@@ -216,14 +256,19 @@ BMI에 따라 약간의 조정이 필요해요.</p>
 </blockquote>
 <h2>참고 자료</h2>
 <ul>
-<li>ACOG, 「Weight Gain During Pregnancy」 (2024) - <a href="https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2013/01/weight-gain-during-pregnancy">https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2013/01/weight-gain-during-pregnancy</a></li>
-<li>대한산부인과학회, 「임신성 당뇨」 — <a href="https://www.ksog.org/public/index.php?sub=1&#x26;third=8">https://www.ksog.org/public/index.php?sub=1&#x26;third=8</a></li>
-<li>질병관리청, 「임신중독증(임신고혈압)」 — <a href="https://health.kdca.go.kr/healthinfo/biz/health/gnrlzHealthInfo/gnrlzHealthInfo/gnrlzHealthInfoView.do?cntnts_sn=3329">https://health.kdca.go.kr/healthinfo/biz/health/gnrlzHealthInfo/gnrlzHealthInfo/gnrlzHealthInfoView.do?cntnts_sn=3329</a></li>
-<li>질병관리청, 「식이영양(임산부)」 — <a href="https://health.kdca.go.kr/healthinfo/biz/health/gnrlzHealthInfo/gnrlzHealthInfo/gnrlzHealthInfoView.do?cntnts_sn=5214">https://health.kdca.go.kr/healthinfo/biz/health/gnrlzHealthInfo/gnrlzHealthInfo/gnrlzHealthInfoView.do?cntnts_sn=5214</a></li>
-<li>WHO, 「Healthy Eating during Pregnancy and Breastfeeding」 (2023) — <a href="https://iris.who.int/server/api/core/bitstreams/eced0281-98bf-4df9-9ce9-ce8de0022a6f/content">https://iris.who.int/server/api/core/bitstreams/eced0281-98bf-4df9-9ce9-ce8de0022a6f/content</a></li>
-<li>PMC, 「임부의 임신스트레스에 영향을 미치는 요인에 관한 단면연구」 (2022) — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9334213/">https://pmc.ncbi.nlm.nih.gov/articles/PMC9334213/</a></li>
+<li><a href="https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2013/01/weight-gain-during-pregnancy">ACOG, Committee Opinion #548 「Weight Gain During Pregnancy」 (2013, reaffirmed 2024)</a></li>
+<li><a href="https://www.ksog.org/public/index.php?sub=1&#x26;third=8">대한산부인과학회, 「임신성 당뇨」</a></li>
+<li><a href="https://health.kdca.go.kr/healthinfo/biz/health/gnrlzHealthInfo/gnrlzHealthInfo/gnrlzHealthInfoView.do?cntnts_sn=3329">질병관리청, 「임신중독증(임신고혈압)」</a></li>
+<li><a href="https://health.kdca.go.kr/healthinfo/biz/health/gnrlzHealthInfo/gnrlzHealthInfo/gnrlzHealthInfoView.do?cntnts_sn=5214">질병관리청, 「식이영양(임산부)」</a></li>
+<li><a href="https://iris.who.int/server/api/core/bitstreams/eced0281-98bf-4df9-9ce9-ce8de0022a6f/content">WHO, 「Healthy Eating during Pregnancy and Breastfeeding」 (2023)</a></li>
+<li><a href="https://pubmed.ncbi.nlm.nih.gov/20669500/">IOM, 「Weight Gain During Pregnancy: Reexamining the Guidelines」 (2009)</a></li>
+<li><a href="https://www.preeclampsia.org/frontend/assets/img/advocacy_resource/Gestational_Hypertension_and_Preeclampsia_ACOG_Practice_Bulletin,_Number_222_1605448006.pdf">ACOG, Practice Bulletin #222 「Gestational Hypertension and Preeclampsia」 (2020)</a></li>
+<li><a href="https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2020/04/physical-activity-and-exercise-during-pregnancy-and-the-postpartum-period">ACOG, Committee Opinion #804 「Physical Activity and Exercise During Pregnancy and the Postpartum Period」 (2020)</a></li>
+<li><a href="https://www.kns.or.kr/FileRoom/FileRoom.asp?BoardID=Kdr">한국영양학회, 「한국인 영양소 섭취기준 (KDRIs)」 — 에너지·단백질·칼슘 부가량</a></li>
+<li><a href="https://catalog.nlm.nih.gov/discovery/fulldisplay/alma997304173406676/01NLM_INST:01NLM_INST">Hytten &#x26; Chamberlain, 「Clinical Physiology in Obstetrics」</a></li>
+<li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9334213/">PMC, 「임부의 임신스트레스에 영향을 미치는 요인에 관한 단면연구」 (2022)</a></li>
 </ul>
-<hr>0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"임신 중 체중관리 완전 정리 — BMI별 권장 증가량부터 주차별 자가 확인표, 체중 불안 다루기까지","description":"임신 중 체중 증가, 어디까지 정상일까요? ACOG 기준 BMI별 권장 증가량 표와 주차별 자가 확인표로 내 체중이 정상 범위인지 바로 확인하세요. 전자간증 위험 신호, 임신성 당뇨 식단 관리법, 체중계 불안 다루기까지 임산부 체중관리의 모든 것을 한 글에 정리했어요.","slug":"pregnancy-weight-management","tags":["임신","체중관리","임산부건강","임신중독증","임신성당뇨"],"date":"2026-04-15","linked_timeline_weeks":[6,24],"authorNote":"체중계 올라갈 때마다 불안해서, 정상 범위가 어디까지인지 정리해봤습니다.","canonical":"https://pregnancy-checklist.com/articles/pregnancy-weight-management","content":"$3","disclaimer":"이 글은 일반적인 임신·건강 정보를 제공하며, 의학적 조언을 대체하지 않습니다. 임신·출산 관련 건강 문제는 산부인과 전문의와 상담하세요."}}],["$L4"],"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"jue6NGARF9HbQz6WpIBL5"}
+<hr>0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"article":{"title":"임신 중 체중관리 완전 정리 — BMI별 권장 증가량부터 주차별 자가 확인표, 체중 불안 다루기까지","description":"임신 중 체중 증가, 어디까지 정상일까요? ACOG 기준 BMI별 권장 증가량 표와 주차별 자가 확인표로 내 체중이 정상 범위인지 바로 확인하세요. 전자간증 위험 신호, 임신성 당뇨 식단 관리법, 체중계 불안 다루기까지 임산부 체중관리의 모든 것을 한 글에 정리했어요.","slug":"pregnancy-weight-management","tags":["임신","체중관리","임산부건강","임신중독증","임신성당뇨"],"date":"2026-04-15","linked_timeline_weeks":[6,24],"authorNote":"체중계 올라갈 때마다 불안해서, 정상 범위가 어디까지인지 정리해봤습니다.","canonical":"https://pregnancy-checklist.com/articles/pregnancy-weight-management","content":"$3","disclaimer":"이 글은 일반적인 임신·건강 정보를 제공하며, 의학적 조언을 대체하지 않습니다. 임신·출산 관련 건강 문제는 산부인과 전문의와 상담하세요."}}],["$L4"],"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"sep_UDy-0859AL8Sfdfk0"}
 4:["$","script","script-0",{"src":"/_next/static/chunks/0qt2f7.7o9bni.js","async":true}]
 5:["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]
 8:null

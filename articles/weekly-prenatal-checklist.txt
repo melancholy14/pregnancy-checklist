@@ -1,26 +1,26 @@
 1:"$Sreact.fragment"
-2:I[26365,["/_next/static/chunks/0-ylqgo-ibycm.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],"StickyHeader"]
-3:I[39756,["/_next/static/chunks/0-ylqgo-ibycm.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],"default"]
-4:I[37457,["/_next/static/chunks/0-ylqgo-ibycm.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],"default"]
-5:I[22016,["/_next/static/chunks/0-ylqgo-ibycm.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],""]
-6:I[44065,["/_next/static/chunks/0-ylqgo-ibycm.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],"BottomNav"]
-7:I[46696,["/_next/static/chunks/0-ylqgo-ibycm.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],"Toaster"]
-8:I[40147,["/_next/static/chunks/0-ylqgo-ibycm.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],"ConsentGatedScripts"]
-9:I[94033,["/_next/static/chunks/0-ylqgo-ibycm.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],"CookieConsentBanner"]
-a:I[34828,["/_next/static/chunks/0-ylqgo-ibycm.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],"PageviewTracker"]
-b:I[44542,["/_next/static/chunks/0-ylqgo-ibycm.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],"SearchModal"]
-11:I[68027,["/_next/static/chunks/0-ylqgo-ibycm.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],"default",1]
+2:I[26365,["/_next/static/chunks/0_9.dpaez7op0.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],"StickyHeader"]
+3:I[39756,["/_next/static/chunks/0_9.dpaez7op0.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],"default"]
+4:I[37457,["/_next/static/chunks/0_9.dpaez7op0.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],"default"]
+5:I[22016,["/_next/static/chunks/0_9.dpaez7op0.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],""]
+6:I[44065,["/_next/static/chunks/0_9.dpaez7op0.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],"BottomNav"]
+7:I[46696,["/_next/static/chunks/0_9.dpaez7op0.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],"Toaster"]
+8:I[40147,["/_next/static/chunks/0_9.dpaez7op0.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],"ConsentGatedScripts"]
+9:I[94033,["/_next/static/chunks/0_9.dpaez7op0.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],"CookieConsentBanner"]
+a:I[34828,["/_next/static/chunks/0_9.dpaez7op0.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],"PageviewTracker"]
+b:I[44542,["/_next/static/chunks/0_9.dpaez7op0.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],"SearchModal"]
+11:I[68027,["/_next/static/chunks/0_9.dpaez7op0.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],"default",1]
 :HL["/_next/static/chunks/10z8t6wtyiuhv.css","style"]
 :HL["/_next/static/chunks/0ug5iqyxpuh0-.css","style"]
 :HL["/_next/static/media/47fe1b7cd6e6ed85-s.p.0~mcdl10zdfb3.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/8e6fa89aa22d24ec-s.p.0uvzar8hswo3p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/a218039a3287bcfd-s.p.17-1enzs_j91b.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/e2334d715941921e-s.p.12skym0rqknxy.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-0:{"P":null,"c":["","articles","weekly-prenatal-checklist"],"q":"","i":false,"f":[[["",{"children":["articles",{"children":[["slug","weekly-prenatal-checklist","d",null],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/10z8t6wtyiuhv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0ug5iqyxpuh0-.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/0-ylqgo-ibycm.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/0c4et2y0_~k_u.js","async":true,"nonce":"$undefined"}],["$","script","script-2",{"src":"/_next/static/chunks/0w0412nbnq_jy.js","async":true,"nonce":"$undefined"}],["$","script","script-3",{"src":"/_next/static/chunks/1860zsbcg5z1o.js","async":true,"nonce":"$undefined"}],["$","script","script-4",{"src":"/_next/static/chunks/143w6tam9yw4r.js","async":true,"nonce":"$undefined"}],["$","script","script-5",{"src":"/_next/static/chunks/0-45w03mg9f7g.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"poppins_7339d393-module__fSXGKW__className","children":[["$","head",null,{"children":["$","meta",null,{"name":"google-adsense-account","content":"ca-pub-6022771079735605"}]}],["$","body",null,{"children":[["$","$L2",null,{}],["$","div",null,{"className":"min-h-screen max-w-2xl mx-auto","children":[["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"min-h-screen flex items-center justify-center px-4","children":["$","div",null,{"className":"text-center","children":[["$","div",null,{"className":"text-7xl mb-6","children":"🤷‍♀️"}],["$","h1",null,{"className":"mb-3","children":"페이지를 찾을 수 없어요"}],["$","p",null,{"className":"text-muted-foreground mb-8","children":"요청하신 페이지가 존재하지 않습니다"}],["$","$L5",null,{"href":"/","className":"inline-flex items-center gap-2 px-8 py-3 bg-pastel-pink rounded-xl hover:bg-pastel-pink-hover transition-colors duration-200 text-foreground font-medium","children":[["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":18,"height":18,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-house","children":[["$","path","5wwlr5",{"d":"M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"}],["$","path","1d0kgt",{"d":"M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"}],"$undefined"]}],["$","span",null,{"children":"홈으로 돌아가기"}]]}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","footer",null,{"className":"pb-28 pt-8 px-4 text-center text-xs text-muted-foreground space-y-2","children":[["$","p",null,{"children":"본 서비스는 의료적 조언을 제공하지 않습니다."}],["$","p",null,{"children":"제공되는 정보는 참고용이며, 정확한 진료는 담당 의사와 상담하세요."}],["$","div",null,{"className":"flex justify-center gap-3 mt-2","children":[["$","$L5",null,{"href":"/privacy","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"개인정보처리방침"}],["$","span",null,{"children":"|"}],["$","$L5",null,{"href":"/terms","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"서비스 이용약관"}],["$","span",null,{"children":"|"}],["$","$L5",null,{"href":"/about","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"서비스 소개"}],["$","span",null,{"children":"|"}],["$","$L5",null,{"href":"/contact","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"연락처"}]]}]]}],["$","$L6",null,{}]]}],["$","$L7",null,{"position":"top-center","richColors":true}],["$","$L8",null,{}],["$","$L9",null,{}],["$","$La",null,{}],["$","$Lb",null,{"articles":[{"title":"임신 초기에 유난히 피곤한 진짜 이유 5가지 — 언제까지 가는지, 병원 가야 할 때는?","description":"임신 초기에 왜 이렇게 피곤할까요? 프로게스테론 급등·혈액량 40% 증가·혈당 변화·hCG까지 피로의 진짜 원인 5가지와 주차별 변화 타임라인을 정리했어요. 정상 피로와 빈혈 구분 체크리스트, 직장·집에서 바로 쓸 수 있는 현실적인 관리법도 함께 담았어요.","slug":"early-pregnancy-fatigue-reasons","tags":["임신초기","임신피로","임신초기증상","프로게스테론","임산부빈혈"],"date":"2026-04-22","updated":"$undefined","linked_timeline_weeks":"$undefined","authorNote":"$undefined","canonical":"https://pregnancy-checklist.com/articles/early-pregnancy-fatigue-reasons"},{"title":"임신 초기 필수 검사 총정리","description":"임신 4주부터 13주까지 시기별 필수 검사·비용·해석법 정리. 1차 기형아 검사(NT 초음파) 정상 수치 3mm 해석과 이상 시 후속 검사 흐름, NIPT 검출률 99% vs NT 85-90% 비교(비용 30-85만 원), 국민행복카드 실질 부담액까지 담은 실전 가이드예요.","slug":"early-pregnancy-tests","tags":["임신초기","검사","병원","기형아검사","NIPT"],"date":"2026-04-19","updated":"$undefined","linked_timeline_weeks":[4,8,10,11],"authorNote":"어떤 검사를 언제 받아야 하는지 너무 헷갈렸어요. 시기별로 깔끔하게 정리해봤습니다.","canonical":"https://pregnancy-checklist.com/articles/early-pregnancy-tests"},{"title":"태아보험, 가입 전에 꼭 따져봐야 할 5가지 (22주 넘기면 늦어요)","description":"태아보험 가입 시기는 22주가 마지노선, 1차 기형아 검사 전이 가장 유리해요. 선천이상 수술비·인큐베이터 입원비 등 필수 특약과 빼도 되는 특약 구별법, 손해보험 vs 생명보험 차이, 30세·100세 만기 선택, 평균 보험료까지. 임신 초기 예비맘이 꼭 알아야 할 포인트를 정리했어요.","slug":"prenatal-insurance-preparation-guide","tags":["태아보험","임신보험","태아보험가입시기","태아보험특약","임신준비"],"date":"2026-04-18","updated":"$undefined","linked_timeline_weeks":[10,16],"authorNote":"임신 확인 이후, 병원을 갔다오고 먼저 한 일 중에 하나가 바로 태아보험 검색이었어요. 뭐가 좋은지 몰라 여러 앱에서 직접 상담하며 고르고 골랐던 걸 정리했습니다.","canonical":"https://pregnancy-checklist.com/articles/prenatal-insurance-preparation-guide"},{"title":"임신 중 체중관리 완전 정리 — BMI별 권장 증가량부터 주차별 자가 확인표, 체중 불안 다루기까지","description":"임신 중 체중 증가, 어디까지 정상일까요? ACOG 기준 BMI별 권장 증가량 표와 주차별 자가 확인표로 내 체중이 정상 범위인지 바로 확인하세요. 전자간증 위험 신호, 임신성 당뇨 식단 관리법, 체중계 불안 다루기까지 임산부 체중관리의 모든 것을 한 글에 정리했어요.","slug":"pregnancy-weight-management","tags":["임신","체중관리","임산부건강","임신중독증","임신성당뇨"],"date":"2026-04-15","updated":"$undefined","linked_timeline_weeks":[6,24],"authorNote":"체중계 올라갈 때마다 불안해서, 정상 범위가 어디까지인지 정리해봤습니다.","canonical":"https://pregnancy-checklist.com/articles/pregnancy-weight-management"},{"title":"임신 주차별 검사 & 준비 총정리 — 수치 해석부터 놓쳤을 때 대처법까지","description":"임신 초기부터 출산까지 주차별 필수 검사와 준비 사항을 총정리했어요. NT 초음파 정상 수치와 이상 시 다음 단계, 임신성 당뇨 50g·75g·100g 검사 수치 기준과 대응법, 국민행복카드 발급 시기, GBS 검사까지 산모가 놓치기 쉬운 핵심 항목을 한눈에 확인하세요.","slug":"weekly-prenatal-checklist","tags":["임신초기","산전검사","주차별","출산준비","기형아검사","임신성당뇨"],"date":"2026-04-13","updated":"$undefined","linked_timeline_weeks":"$undefined","authorNote":"임신 준비하면서 헷갈렸던 내용 정리할 겸 기억 안 날때마다 보려고 정리했습니다.","canonical":"https://pregnancy-checklist.com/articles/weekly-prenatal-checklist"},{"title":"출산 준비물 예상 비용 총정리","description":"출산 준비물 비용을 미니멀·표준·풀세팅 3단계 예산 시나리오로 비교하고, 카테고리별 최소·평균 가격표와 유모차 가격 차이의 실체, 중고 구매 OK/NG 기준까지 2026년 최신 기준으로 정리했어요.","slug":"baby-items-cost","tags":["출산준비","비용","쇼핑"],"date":"2026-04-11","updated":"$undefined","linked_timeline_weeks":[18],"authorNote":"$undefined","canonical":"https://pregnancy-checklist.com/articles/baby-items-cost"},{"title":"출산 가방 필수 준비물 총정리","description":"출산 가방 준비물을 병원 제공 물품과 직접 준비 항목으로 비교하고, 자연분만·제왕절개별 입원 기간에 따른 수량 차이를 표로 정리했어요. 카시트 법적 의무와 오로 대비 위생용품까지 빠짐없이 담은 실전 체크리스트예요.","slug":"hospital-bag","tags":["출산준비","출산가방","병원준비"],"date":"2026-04-11","updated":"$undefined","linked_timeline_weeks":[32,36],"authorNote":"블로그/인스타그램마다 리스트가 달라서 혼란스러웠어요. 병원 제공 물품 기준으로 직접 정리한 리스트예요.","canonical":"https://pregnancy-checklist.com/articles/hospital-bag"}]}]]}]]}]]}],{"children":["$Lc",{"children":["$Ld",{"children":["$Le",{},null,false,null]},null,false,"$@f"]},null,false,"$@f"]},null,false,null],"$L10",false]],"m":"$undefined","G":["$11",["$L12","$L13"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"jue6NGARF9HbQz6WpIBL5"}
-15:I[97367,["/_next/static/chunks/0-ylqgo-ibycm.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],"OutletBoundary"]
+0:{"P":null,"c":["","articles","weekly-prenatal-checklist"],"q":"","i":false,"f":[[["",{"children":["articles",{"children":[["slug","weekly-prenatal-checklist","d",null],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/10z8t6wtyiuhv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0ug5iqyxpuh0-.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/0_9.dpaez7op0.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/0c4et2y0_~k_u.js","async":true,"nonce":"$undefined"}],["$","script","script-2",{"src":"/_next/static/chunks/0w0412nbnq_jy.js","async":true,"nonce":"$undefined"}],["$","script","script-3",{"src":"/_next/static/chunks/1860zsbcg5z1o.js","async":true,"nonce":"$undefined"}],["$","script","script-4",{"src":"/_next/static/chunks/143w6tam9yw4r.js","async":true,"nonce":"$undefined"}],["$","script","script-5",{"src":"/_next/static/chunks/0-45w03mg9f7g.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"poppins_7339d393-module__fSXGKW__className","children":[["$","head",null,{"children":["$","meta",null,{"name":"google-adsense-account","content":"ca-pub-6022771079735605"}]}],["$","body",null,{"children":[["$","$L2",null,{}],["$","div",null,{"className":"min-h-screen max-w-2xl mx-auto","children":[["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"min-h-screen flex items-center justify-center px-4","children":["$","div",null,{"className":"text-center","children":[["$","div",null,{"className":"text-7xl mb-6","children":"🤷‍♀️"}],["$","h1",null,{"className":"mb-3","children":"페이지를 찾을 수 없어요"}],["$","p",null,{"className":"text-muted-foreground mb-8","children":"요청하신 페이지가 존재하지 않습니다"}],["$","$L5",null,{"href":"/","className":"inline-flex items-center gap-2 px-8 py-3 bg-pastel-pink rounded-xl hover:bg-pastel-pink-hover transition-colors duration-200 text-foreground font-medium","children":[["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":18,"height":18,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-house","children":[["$","path","5wwlr5",{"d":"M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"}],["$","path","1d0kgt",{"d":"M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"}],"$undefined"]}],["$","span",null,{"children":"홈으로 돌아가기"}]]}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","footer",null,{"className":"pb-28 pt-8 px-4 text-center text-xs text-muted-foreground space-y-2","children":[["$","p",null,{"children":"본 서비스는 의료적 조언을 제공하지 않습니다."}],["$","p",null,{"children":"제공되는 정보는 참고용이며, 정확한 진료는 담당 의사와 상담하세요."}],["$","div",null,{"className":"flex justify-center gap-3 mt-2","children":[["$","$L5",null,{"href":"/privacy","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"개인정보처리방침"}],["$","span",null,{"children":"|"}],["$","$L5",null,{"href":"/terms","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"서비스 이용약관"}],["$","span",null,{"children":"|"}],["$","$L5",null,{"href":"/about","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"서비스 소개"}],["$","span",null,{"children":"|"}],["$","$L5",null,{"href":"/contact","className":"underline underline-offset-2 hover:text-foreground transition-colors","children":"연락처"}]]}]]}],["$","$L6",null,{}]]}],["$","$L7",null,{"position":"top-center","richColors":true,"theme":"light"}],["$","$L8",null,{}],["$","$L9",null,{}],["$","$La",null,{}],["$","$Lb",null,{"articles":[{"title":"임신 초기 필수 검사 총정리","description":"임신 4주부터 13주까지 시기별 필수 검사·비용·해석법 정리. 1차 기형아 검사(NT 초음파) 정상 수치 3mm 해석과 이상 시 후속 검사 흐름, NIPT 검출률 99% vs NT 85-90% 비교(비용 30-85만 원), 국민행복카드 실질 부담액까지 담은 실전 가이드예요.","slug":"early-pregnancy-tests","tags":["임신초기","검사","병원","기형아검사","NIPT"],"date":"2026-04-26","updated":"$undefined","linked_timeline_weeks":[4,8,10,11],"authorNote":"어떤 검사를 언제 받아야 하는지 너무 헷갈렸어요. 시기별로 깔끔하게 정리해봤습니다.","canonical":"https://pregnancy-checklist.com/articles/early-pregnancy-tests"},{"title":"태아보험, 가입 전에 꼭 따져봐야 할 5가지 (22주 넘기면 늦어요)","description":"태아보험 가입 시기는 22주가 마지노선, 1차 기형아 검사 전이 가장 유리해요. 선천이상 수술비·인큐베이터 입원비 등 필수 특약과 빼도 되는 특약 구별법, 손해보험 vs 생명보험 차이, 30세·100세 만기 선택, 평균 보험료까지. 임신 초기 예비맘이 꼭 알아야 할 포인트를 정리했어요.","slug":"prenatal-insurance-preparation-guide","tags":["태아보험","임신보험","태아보험가입시기","태아보험특약","임신준비"],"date":"2026-04-26","updated":"$undefined","linked_timeline_weeks":[10,16],"authorNote":"임신 확인 이후, 병원을 갔다오고 먼저 한 일 중에 하나가 바로 태아보험 검색이었어요. 뭐가 좋은지 몰라 여러 앱에서 직접 상담하며 고르고 골랐던 걸 정리했습니다.","canonical":"https://pregnancy-checklist.com/articles/prenatal-insurance-preparation-guide"},{"title":"임신 초기에 유난히 피곤한 진짜 이유 5가지 — 언제까지 가는지, 병원 가야 할 때는?","description":"임신 초기에 왜 이렇게 피곤할까요? 프로게스테론 급등·혈액량 변화·혈당 불안정·hCG까지 피로의 진짜 원인 5가지와 주차별 변화 타임라인을 정리했어요. 정상 피로와 빈혈 구분 체크리스트, 직장·집에서 바로 쓸 수 있는 현실적인 관리법도 함께 담았어요.","slug":"early-pregnancy-fatigue-reasons","tags":["임신초기","임신피로","임신초기증상","프로게스테론","임산부빈혈"],"date":"2026-04-22","updated":"$undefined","linked_timeline_weeks":"$undefined","authorNote":"$undefined","canonical":"https://pregnancy-checklist.com/articles/early-pregnancy-fatigue-reasons"},{"title":"임신 중 체중관리 완전 정리 — BMI별 권장 증가량부터 주차별 자가 확인표, 체중 불안 다루기까지","description":"임신 중 체중 증가, 어디까지 정상일까요? ACOG 기준 BMI별 권장 증가량 표와 주차별 자가 확인표로 내 체중이 정상 범위인지 바로 확인하세요. 전자간증 위험 신호, 임신성 당뇨 식단 관리법, 체중계 불안 다루기까지 임산부 체중관리의 모든 것을 한 글에 정리했어요.","slug":"pregnancy-weight-management","tags":["임신","체중관리","임산부건강","임신중독증","임신성당뇨"],"date":"2026-04-15","updated":"$undefined","linked_timeline_weeks":[6,24],"authorNote":"체중계 올라갈 때마다 불안해서, 정상 범위가 어디까지인지 정리해봤습니다.","canonical":"https://pregnancy-checklist.com/articles/pregnancy-weight-management"},{"title":"임신 주차별 검사 & 준비 총정리 — 수치 해석부터 놓쳤을 때 대처법까지","description":"임신 초기부터 출산까지 주차별 필수 검사와 준비 사항을 총정리했어요. NT 초음파 정상 수치와 이상 시 다음 단계, 임신성 당뇨 50g·75g·100g 검사 수치 기준과 대응법, 국민행복카드 발급 시기, GBS 검사까지 산모가 놓치기 쉬운 핵심 항목을 한눈에 확인하세요.","slug":"weekly-prenatal-checklist","tags":["임신초기","산전검사","주차별","출산준비","기형아검사","임신성당뇨"],"date":"2026-04-13","updated":"$undefined","linked_timeline_weeks":"$undefined","authorNote":"임신 준비하면서 헷갈렸던 내용 정리할 겸 기억 안 날때마다 보려고 정리했습니다.","canonical":"https://pregnancy-checklist.com/articles/weekly-prenatal-checklist"}]}]]}]]}]]}],{"children":["$Lc",{"children":["$Ld",{"children":["$Le",{},null,false,null]},null,false,"$@f"]},null,false,"$@f"]},null,false,null],"$L10",false]],"m":"$undefined","G":["$11",["$L12","$L13"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"sep_UDy-0859AL8Sfdfk0"}
+15:I[97367,["/_next/static/chunks/0_9.dpaez7op0.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],"OutletBoundary"]
 16:"$Sreact.suspense"
-19:I[97367,["/_next/static/chunks/0-ylqgo-ibycm.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],"ViewportBoundary"]
-1b:I[97367,["/_next/static/chunks/0-ylqgo-ibycm.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],"MetadataBoundary"]
+19:I[97367,["/_next/static/chunks/0_9.dpaez7op0.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],"ViewportBoundary"]
+1b:I[97367,["/_next/static/chunks/0_9.dpaez7op0.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js"],"MetadataBoundary"]
 c:["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
 d:["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
 e:["$","$1","c",{"children":["$L14",[["$","script","script-0",{"src":"/_next/static/chunks/0qt2f7.7o9bni.js","async":true,"nonce":"$undefined"}]],["$","$L15",null,{"children":["$","$16",null,{"name":"Next.MetadataOutlet","children":"$@17"}]}]]}]
@@ -29,8 +29,8 @@ f:"$W18"
 10:["$","$1","h",{"children":[null,["$","$L19",null,{"children":"$L1a"}],["$","div",null,{"hidden":true,"children":["$","$L1b",null,{"children":["$","$16",null,{"name":"Next.Metadata","children":"$L1c"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
 12:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/10z8t6wtyiuhv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 13:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0ug5iqyxpuh0-.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
-1d:I[93406,["/_next/static/chunks/0-ylqgo-ibycm.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js","/_next/static/chunks/0qt2f7.7o9bni.js"],"ArticleDetail"]
-1e:T43a0,<p>"다음 검사가 뭐였지?"
+1d:I[93406,["/_next/static/chunks/0_9.dpaez7op0.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/143w6tam9yw4r.js","/_next/static/chunks/0-45w03mg9f7g.js","/_next/static/chunks/0qt2f7.7o9bni.js"],"ArticleDetail"]
+1e:T519f,<p>"다음 검사가 뭐였지?"
 임신 테스트기 두 줄을 보고 나서
 제일 먼저 든 생각이 이거였어요.
 병원 가면 알아서 해주겠지 싶다가도,
@@ -38,7 +38,7 @@ f:"$W18"
 놓치면 안 되는 게 한두 개가 아니더라고요.</p>
 <p>처음 남편과 산부인과에 갔을 때 주말이라 그런지 사람들이 많았는데, 초음파를 보고 산모수첩을 받고 다음 검사인 종합 산전 검사에 대해 안내 받았어요.
 다행히 보건소에서 산전검사를 받은 게 있어서 불필요하게 한 번 더 하는 수고는 덜었답니다.
-참고로, 보건소에서 하는 산전검사는 무료니까 꼭 받아보세요. (지자체별로 다를 수 있습니다.)</p>
+참고로, 보건소에서 하는 산전검사는 무료니까 꼭 받아보세요. (지자체별로 다를 수 있어요.)</p>
 <p>이 글은 대한산부인과학회와 질병관리청 권고를 바탕으로
 주차별 검사와 준비 항목을 정리한 거예요.
 단순히 "언제 뭘 하세요"에서 끝나는 게 아니라,
@@ -114,11 +114,18 @@ f:"$W18"
 다양한 서비스도 이용할 수 있어요.</li>
 <li><strong>산모수첩 발급</strong> — 산전 검사 기록을 관리하는
 공식 수첩으로, 분만 시에도 의료진이 참고해요.</li>
-<li><strong>엽산 복용 시작</strong> — 하루 400~800μg이 권장돼요
-[질병관리청, 2024].
+<li><strong>엽산 복용</strong> — 임신 계획 단계(최소 1개월 전)부터 복용하는 것이 이상적이에요.
+임신을 확인한 시점이라면 지금 바로 시작하세요.
+일반적으로 하루 400μg이 권장되고,
+이전 신경관 결손 경험 등 고위험군은
+의사와 상담하여 용량을 조절하세요
+[질병관리청, 2024; KDRIs 임산부 RDA 600μg DFE/일].
 이 양은 식사만으로 채우기 어려워서 보충제가 거의 필수예요.
 태아 신경관 결손 예방에 핵심적인 영양소이니
-담당 의사와 상담 후 비타민D·철분도 함께 고려하세요.</li>
+담당 의사와 상담 후 비타민D(하루 400IU)·철분(하루 24mg)도
+함께 고려하세요.
+참고로 철분과 칼슘은 2시간 이상 간격을 두고 복용하면
+흡수율이 높아져요.</li>
 </ul>
 <p>임신 초기 검사를 더 자세히 알고 싶다면
 <a href="https://pregnancy-checklist.com/articles/early-pregnancy-tests">임신 초기 필수 검사 총정리</a>도
@@ -126,15 +133,18 @@ f:"$W18"
 <h3>10~13주: 카드 발급과 1차 기형아 검사</h3>
 <p>국민행복카드를 빨리 만들어두면 좋은 이유가 있어요.
 임신출산 진료비 100만 원(다태아 140만 원)을 지원받으려면
-이 카드가 있어야 하거든요 [보건복지부, 2024].
-카드사 앱에서 신청하면 1~2주 내 발급되니
-10주 전후로 신청해두는 게 좋아요.</p>
+이 카드가 있어야 하거든요 [보건복지부, 2026].
+건강보험 가입자 또는 피부양자라면 신청할 수 있어요.
+카드사 앱 외에도 국민건강보험공단 지사 방문,
+정부24(gov.kr), 고객센터 전화(1577-1000)로도 신청 가능하고
+1~2주 내 발급되니 10주 전후로 신청해두는 게 좋아요.
+금액은 매년 변동될 수 있으니, 정부24에서 최신 기준을 확인하세요.</p>
 <p>산후조리원도 이 시기에 예약해두는 게 안전해요.
 인기 있는 곳은 임신 초기에 이미 마감되는 경우가 많거든요.</p>
 <h4>심층: 1차 기형아 검사 — 딱 3주, 놓치면 동일 검사 불가</h4>
 <p>1차 기형아 검사는 목덜미 투명대(NT) 초음파와 혈액 검사(PAPP-A, free β-hCG)를 결합해서 태아의 염색체 이상 가능성을 선별하는 검사예요. 저도 처음엔 "기형아 검사"라는 이름 자체가 무섭게 느껴졌는데, 알고 보면 혈액 뽑고 초음파 보는 비교적 간단한 과정이에요.</p>
 <p>이 검사가 특히 중요한 건 <strong>11주 0일~13주 6일, 딱 3주 동안만 시행할 수 있기 때문</strong>이에요. 태아 머리엉덩이길이(CRL)가 45~84mm인 시기에만 NT 측정이 의미 있어서, 이 시기를 놓치면 같은 방식으로는 다시 검사할 수 없어요. 15~20주의 2차 검사(쿼드검사)로 대체할 수는 있지만 진단율이 70~80% 수준으로 떨어져요 [서울아산병원].</p>
-<p>NT 두께 기준으로 보면, 11주경에는 2mm 이하, 13주 6일에는 3mm 이하가 정상 범위예요 [대한산부인과학회, 2023]. 3mm 이상이면 염색체 이상 위험이 높아지는데, 이때 다음 단계는 두 갈래예요. NIPT(비침습적 산전 검사)는 산모 혈액으로 태아 DNA를 분석하는 방법으로, 정확도가 99% 이상이지만 비급여라 30~85만 원 정도 들어요. 양수검사는 확진 검사이지만 침습적이라 시술 위험이 있어요.</p>
+<p>NT 두께는 주수에 따라 정상 범위가 달라지며, 일반적으로 3.0mm 이상이면 추가 검사를 고려해요 [대한산부인과학회, 2023]. 담당 의료진이 태아 머리엉덩이길이(CRL)와 혈액 마커를 종합적으로 판단하니, 수치 하나만 보고 불안해하지 않아도 돼요. 추가 검사가 필요할 때 다음 단계는 두 갈래예요. NIPT(비침습적 산전 검사)는 산모 혈액으로 태아 DNA를 분석하는 방법으로, 다운증후군 등 주요 삼염색체에 대한 검출률이 99% 이상이지만 비급여라 30~85만 원 정도 들어요. 양수검사는 확진 검사이지만 침습적이라 시술 위험이 있어요.</p>
 <p>NT 수치가 높게 나왔다고 너무 불안해하지 마세요. 선별 검사는 "가능성"을 보는 거지 확진이 아니에요. 담당 의료진과 상담해서 NIPT를 먼저 할지, 바로 양수검사로 갈지 함께 결정하면 돼요.</p>
 <h2>임신 중기 (14~28주): 정밀 검사와 출산 준비 시작</h2>
 <p>이때부터 태아가 안정적으로 자라면서
@@ -142,7 +152,9 @@ f:"$W18"
 검사 받으랴, 출산 준비물 비교하랴 바쁘지만
 그래도 초기보다는 여유가 생기는 구간이에요.</p>
 <p>저는 초기에 몸이 정말 많이 피곤했다가 이 시기에 몸 상태가 많이 좋아져서 임산부 운동도 하고 식이도 관리했는데요.
-지금은 한달에 한번씩만 병원 검진을 가고 있고 아직 임산성 당뇨 검사 전이라 특히 탄수화물을 줄이려고 노력하고 있어요.</p>
+지금은 한달에 한번씩만 병원 검진을 가고 있고 아직 임신성 당뇨 검사 전이라 단순 탄수화물(흰쌀밥, 흰빵, 과자류) 대신 복합 탄수화물(잡곡밥, 통밀빵, 고구마)을 선택하려고 노력하고 있어요.
+(이건 제 개인 선택이고, 검진 빈도나 식단은 산모 상태에 따라 달라지니 담당 의료진과 상의하세요.
+참고로, 임신성 당뇨 검사 전에는 평소 식단을 유지하는 것이 정확한 결과를 위해 중요해요.)</p>
 <p>태아보험의 경우, 출산 준비하면서 다운로드 받은 여러 앱에서 제공하는 상담을 2~3개 받아보고 결정했어요.
 우체국 보험과 같은 공익 보험도 있으니, 태아보험 관련해서는 나중에 다른 글로 알려드릴게요.</p>
 <p>베이비페어는 리서치 삼아 남편과 한 번 가봤는데, 충동구매하지 않기 위해 무엇을 봐야하는지 체크리스트를 만들어서 갔어요.
@@ -154,8 +166,10 @@ f:"$W18"
 <p>태아보험은 놓치면 보장 범위가 확 줄어드는 항목이에요.
 22주 이후에는 선천성 이상 특약이 제외되는 상품이 많으니
 <strong>20주 전후로 여러 보험사를 비교</strong>해서 가입하세요.</p>
-<p>정부·지자체 출산 지원금도 이 시기에 확인해두면 좋아요.
-거주 지역에 따라 추가 지원이 있을 수 있답니다.</p>
+<p>출산 지원금도 이 시기에 확인해두면 좋아요.
+국가 지원(국민행복카드, 첫만남이용권 등)은 전국 동일하고,
+지자체 추가 지원은 지역마다 달라요.
+거주지 주민센터 또는 복지로(bokjiro.go.kr)에서 확인하세요.</p>
 <h3>20~28주: 정밀초음파와 임신성 당뇨 검사</h3>
 <p>정밀초음파는 20주 전후에 태아 장기와 발육 상태를
 상세히 확인하는 검사예요.
@@ -168,15 +182,52 @@ f:"$W18"
 다가오는 베이비페어 일정은
 <a href="https://pregnancy-checklist.com/baby-fair">베이비페어 일정 모음</a>에서 확인할 수 있어요.</li>
 <li><strong>산후도우미 검색 및 예약</strong> — 바우처 신청은
-출산 40일 전부터 가능해요 [보건복지부, 2024].</li>
+출산 예정일 40일 전부터 출산 후 30일까지 가능해요.
+소득 기준에 따라 정부 지원 비율이 달라지니
+복지로(bokjiro.go.kr) 또는 관할 주민센터에서
+본인 유형을 확인하세요 [보건복지부, 2026].</li>
 <li><strong>육아휴직 신청 준비</strong> — 회사 인사팀에 미리 일정을
 공유하고 필요 서류를 확인해두세요.</li>
 </ul>
 <h4>심층: 임신성 당뇨 검사 — 수치 기준과 결과별 대응 로드맵</h4>
 <p>임신성 당뇨 검사(경구 포도당 부하 검사)는 임신 중 높아진 혈당이 산모와 태아에게 영향을 줄 수 있는지 확인하는 선별 검사예요. 이게 정말 중요한 게, 임산부의 약 10~15%에서 임신성 당뇨가 발생하거든요 [대한산부인과학회, 2023].</p>
 <p>방치하면 거대아(4kg 이상), 신생아 저혈당, 조산 위험이 높아질 수 있어요. 가족력이 있거나 BMI 25 이상이면 위험도가 더 높으니 24~28주 검사 시기를 꼭 지켜야 해요. 생각보다 주변에서 "나는 괜찮겠지" 하다가 뒤늦게 진단받는 경우가 많더라고요.</p>
-<p>수치 기준은 검사 방법에 따라 달라요. 가장 흔한 <strong>50g 선별검사</strong>(1차)는 공복 없이 포도당 용액을 마신 뒤 1시간 후 혈당을 측정하는데, <strong>140mg/dL 미만이면 정상</strong>이에요 [대한산부인과학회, 2023]. 140mg/dL 이상이면 정밀 검사로 넘어가요. <strong>100g 검사</strong> 기준은 공복 105·1시간 190·2시간 165·3시간 145mg/dL 중 2개 이상 넘으면 진단되고 [서울대학교병원], <strong>75g 검사</strong> 기준은 공복 92·1시간 180·2시간 153mg/dL 중 1개라도 초과하면 진단돼요 [WHO, 2013].</p>
-<p>진단받더라도 대부분은 식이 조절과 규칙적인 걷기 운동으로 관리할 수 있어요. 담당 의료진과 함께 혈당 모니터링 계획을 세우고, 공복혈당 95mg/dL 미만·식후 2시간 120mg/dL 미만을 목표로 관리하면 돼요 [대한산부인과학회, 2023]. 식이·운동으로 조절이 안 되면 인슐린 치료를 병행하게 되는데, 이것도 담당 의사가 안내해줄 거예요.</p>
+<p>수치 기준은 검사 방법에 따라 달라요. 가장 흔한 <strong>50g 선별검사</strong>(1차)는 공복 없이 포도당 용액을 마신 뒤 1시간 후 혈당을 측정하는데, <strong>140mg/dL 미만이면 정상</strong>이에요 [대한산부인과학회, 2023]. 140mg/dL 이상이면 정밀 검사로 넘어가요.</p>
+<p><strong>100g 검사</strong>는 병원에 따라 두 가지 기준을 적용해요. 밤새 공복 후 포도당 용액을 마시고, 공복·1시간·2시간·3시간 총 4번 혈당을 측정해요.</p>
+<table>
+<thead>
+<tr>
+<th>측정 시점</th>
+<th>NDDG 기준</th>
+<th>Carpenter-Coustan 기준</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>공복 (용액 마시기 전)</td>
+<td>105mg/dL</td>
+<td>95mg/dL</td>
+</tr>
+<tr>
+<td>1시간 후</td>
+<td>190mg/dL</td>
+<td>180mg/dL</td>
+</tr>
+<tr>
+<td>2시간 후</td>
+<td>165mg/dL</td>
+<td>155mg/dL</td>
+</tr>
+<tr>
+<td>3시간 후</td>
+<td>145mg/dL</td>
+<td>140mg/dL</td>
+</tr>
+</tbody>
+</table>
+<p>4번 측정 중 <strong>2개 이상</strong> 기준을 넘으면 임신성 당뇨로 진단돼요 [서울대학교병원; ACOG Practice Bulletin No. 190]. 병원마다 적용하는 기준이 다르니 담당 병원에 확인하세요.</p>
+<p><strong>75g 검사</strong>는 공복·1시간·2시간 총 3번 측정하고, 공복 92·1시간 180·2시간 153mg/dL 중 <strong>1개라도</strong> 초과하면 진단돼요 [WHO, 2013].</p>
+<p>진단받더라도 대부분은 식이 조절과 규칙적인 걷기 운동으로 관리할 수 있어요. 식이 조절의 핵심 원칙은 ① 하루 3끼 + 2~3회 간식으로 분산 섭취, ② 탄수화물을 끼니마다 균등하게 배분, ③ 흰쌀밥 대신 잡곡밥·통밀빵 등 복합 탄수화물 선택, ④ 단백질·채소를 함께 섭취하는 거예요. 담당 의료진과 함께 혈당 모니터링 계획을 세우고, 공복혈당 95mg/dL 미만·식후 2시간 120mg/dL 미만을 목표로 관리하면 돼요 [대한산부인과학회, 2023]. 식이·운동으로 조절이 안 되면 인슐린 치료를 병행하게 되는데, 이것도 담당 의사가 안내해줄 거예요.</p>
 <h2>임신 후기 (28~40주): 마무리 점검과 출산 대기</h2>
 <p>이제 정말 코앞이에요.
 출산 준비물 마무리하고, 병원까지 어떻게 갈지도 정해둬야 해요.</p>
@@ -185,7 +236,8 @@ f:"$W18"
 항체가 태아에게 전달돼요
 [질병관리청, 2024].
 태동 모니터링도 이 시기부터 시작하는 게 좋은데,
-하루에 태동 10회 이상 느껴지는지 확인하는
+매일 같은 시간(보통 저녁 식후)에 태동 세기를 시작해서,
+2시간 이내에 10회 이상 느껴지는지 확인하는
 습관을 들여보세요.
 태동이 현저히 줄었다면 즉시 병원에 연락하세요.</p>
 <p>입원 가방은 32주 전후로 산모용·아기용·보호자용으로 나눠서 준비하세요.
@@ -198,8 +250,9 @@ f:"$W18"
 미리 빨아서 준비해두세요.</li>
 <li><strong>기저귀·물티슈 등 소모품</strong> — 신생아용 기저귀는
 사이즈가 빨리 바뀌니 소량만 구매하세요.</li>
-<li><strong>산후도우미 바우처 신청</strong> — 출산 40일 전부터
-신청할 수 있어요.</li>
+<li><strong>산후도우미 바우처 신청</strong> — 출산 예정일 40일 전부터
+출산 후 30일까지 신청할 수 있어요.
+복지로 또는 관할 주민센터에서 신청하세요.</li>
 </ul>
 <h3>35~40주: 최종 점검과 출산 대기</h3>
 <p>GBS 검사(B군 연쇄상구균)는 36주경에 진행하는데,
@@ -208,8 +261,12 @@ f:"$W18"
 카시트는 퇴원 시 꼭 필요하니 미리 차량에
 설치하고 연습해두세요.</p>
 <ul>
-<li><strong>출생신고 서류 확인</strong> — 출생신고, 건강보험 등록,
-아동수당 등 행정 서류를 미리 정리해두세요.</li>
+<li><strong>출생신고 서류 확인</strong> — 출생신고는 출생 후 1개월 이내에
+해야 하며, 정부24(gov.kr)에서 온라인으로도 가능해요.
+출생증명서만 있으면 되고, 출생신고 후
+건강보험 등록·아동수당을 이어서 신청할 수 있어요.
+아동수당은 출생 후 60일 이내 신청하면
+출생일부터 소급 적용되니 기한을 놓치지 마세요.</li>
 <li><strong>출산 가방 최종 점검</strong> — 유통기한 있는 간식은
 마지막에 넣으세요.</li>
 <li><strong>퇴원 후 1주일 계획</strong> — 식사·장보기·방문 일정을
@@ -218,6 +275,19 @@ f:"$W18"
 참고해보세요.</li>
 <li><strong>병원 이동 경로·보호자 연락체계 최종 확인</strong></li>
 </ul>
+<h4>출산 후 지원금 체크리스트</h4>
+<p>출산 후 신청하는 주요 국가 지원도 미리 알아두세요.</p>
+<ul>
+<li><strong>첫만남이용권</strong> — 첫째아 200만 원, 둘째아 이상 300만 원
+바우처가 지급돼요. 출생신고 후 정부24 또는 주민센터에서 신청.</li>
+<li><strong>부모급여</strong> — 0세 월 100만 원, 1세 월 50만 원이 지급돼요.
+출생 후 60일 이내 신청 시 출생일부터 소급.</li>
+<li><strong>아동수당</strong> — 만 8세 미만 아동에게 월 10만 원 지급.
+출생 후 60일 이내 신청 권장.</li>
+</ul>
+<p>금액은 매년 변동될 수 있으니,
+정부24(gov.kr) 또는 복지로(bokjiro.go.kr)에서
+최신 기준을 확인하세요.</p>
 <p>37주부터는 만삭이에요.
 일정을 가볍게 유지하고,
 출혈·심한 두통·시야 변화 등이 있다면
@@ -255,20 +325,16 @@ NIPT는 산모 혈액 속 태아 DNA를 직접 분석해서
 제왕절개가 필요한 건 아니니 담당 의료진과 분만 계획을 상의하세요.</p>
 <h2>참고 자료</h2>
 <ul>
-<li>대한산부인과학회, 「산전 진단 검사」 (2023)
-<a href="https://www.ksog.org/public/index.php?sub=1&#x26;third=2">https://www.ksog.org/public/index.php?sub=1&#x26;third=2</a></li>
-<li>질병관리청, 「정상임신관리(임신의 진단과 관리)」 (2024)
-<a href="https://health.kdca.go.kr/healthinfo/biz/health/gnrlzHealthInfo/gnrlzHealthInfo/gnrlzHealthInfoView.do?cntnts_sn=6301">https://health.kdca.go.kr/healthinfo/biz/health/gnrlzHealthInfo/gnrlzHealthInfo/gnrlzHealthInfoView.do?cntnts_sn=6301</a></li>
-<li>서울아산병원, 「산전 검사」
-<a href="https://www.amc.seoul.kr/asan/healthinfo/management/managementDetail.do?managementId=58">https://www.amc.seoul.kr/asan/healthinfo/management/managementDetail.do?managementId=58</a></li>
-<li>보건복지부, 「임신·출산 진료비 지원」 (2024)
-<a href="https://www.mohw.go.kr/menu.es?mid=a10705020100">https://www.mohw.go.kr/menu.es?mid=a10705020100</a></li>
-<li>서울대학교병원, 「임신성 당뇨병」
-<a href="https://www.snuh.org/health/nMedInfo/nView.do?category=DIS&#x26;medid=AA000265">https://www.snuh.org/health/nMedInfo/nView.do?category=DIS&#x26;medid=AA000265</a></li>
-<li>WHO, 「Diagnostic Criteria and Classification of Hyperglycaemia First Detected in Pregnancy」 (2013)
-[<a href="https://www.who.int/publications/i/item/WHO-NMH-MND-13.2">https://www.who.int/publications/i/item/WHO-NMH-MND-13.2</a>]</li>
+<li><a href="https://www.ksog.org/public/index.php?sub=1&#x26;third=2">대한산부인과학회, 「산전 진단 검사」 (2023)</a></li>
+<li><a href="https://health.kdca.go.kr/healthinfo/biz/health/gnrlzHealthInfo/gnrlzHealthInfo/gnrlzHealthInfoView.do?cntnts_sn=6301">질병관리청, 「정상임신관리(임신의 진단과 관리)」 (2024)</a></li>
+<li><a href="https://www.amc.seoul.kr/asan/healthinfo/management/managementDetail.do?managementId=58">서울아산병원, 「산전 검사」</a></li>
+<li><a href="https://www.mohw.go.kr/menu.es?mid=a10705020100">보건복지부, 「임신·출산 진료비 지원」 (2026)</a></li>
+<li><a href="https://www.snuh.org/health/nMedInfo/nView.do?category=DIS&#x26;medid=AA000265">서울대학교병원, 「임신성 당뇨병」</a></li>
+<li><a href="https://www.who.int/publications/i/item/WHO-NMH-MND-13.2">WHO, 「Diagnostic Criteria and Classification of Hyperglycaemia First Detected in Pregnancy」 (2013)</a></li>
+<li><a href="https://www.kns.or.kr/">한국영양학회, 「2020 한국인 영양소 섭취기준(KDRIs)」</a></li>
+<li><a href="https://www.acog.org/">ACOG, 「Practice Bulletin No. 190: Gestational Diabetes Mellitus」 (2018)</a></li>
 </ul>
-<hr>14:["$","$L1d",null,{"article":{"title":"임신 주차별 검사 & 준비 총정리 — 수치 해석부터 놓쳤을 때 대처법까지","description":"임신 초기부터 출산까지 주차별 필수 검사와 준비 사항을 총정리했어요. NT 초음파 정상 수치와 이상 시 다음 단계, 임신성 당뇨 50g·75g·100g 검사 수치 기준과 대응법, 국민행복카드 발급 시기, GBS 검사까지 산모가 놓치기 쉬운 핵심 항목을 한눈에 확인하세요.","slug":"weekly-prenatal-checklist","tags":"$0:f:0:1:0:props:children:1:props:children:1:props:children:6:props:articles:4:tags","date":"2026-04-13","updated":"$undefined","linked_timeline_weeks":"$undefined","authorNote":"임신 준비하면서 헷갈렸던 내용 정리할 겸 기억 안 날때마다 보려고 정리했습니다.","canonical":"https://pregnancy-checklist.com/articles/weekly-prenatal-checklist","content":"$1e","disclaimer":"이 글은 일반적인 육아 정보를 제공하며, 의학적 조언을 대체하지 않습니다. 건강 관련 궁금한 점은 담당 전문의와 상담하세요."}}]
+<hr>14:["$","$L1d",null,{"article":{"title":"임신 주차별 검사 & 준비 총정리 — 수치 해석부터 놓쳤을 때 대처법까지","description":"임신 초기부터 출산까지 주차별 필수 검사와 준비 사항을 총정리했어요. NT 초음파 정상 수치와 이상 시 다음 단계, 임신성 당뇨 50g·75g·100g 검사 수치 기준과 대응법, 국민행복카드 발급 시기, GBS 검사까지 산모가 놓치기 쉬운 핵심 항목을 한눈에 확인하세요.","slug":"weekly-prenatal-checklist","tags":"$0:f:0:1:0:props:children:1:props:children:1:props:children:6:props:articles:4:tags","date":"2026-04-13","updated":"$undefined","linked_timeline_weeks":"$undefined","authorNote":"임신 준비하면서 헷갈렸던 내용 정리할 겸 기억 안 날때마다 보려고 정리했습니다.","canonical":"https://pregnancy-checklist.com/articles/weekly-prenatal-checklist","content":"$1e","disclaimer":"이 글은 일반적인 육아 정보를 제공하며, 의학적 조언을 대체하지 않습니다. 건강 관련 궁금한 점은 담당 전문의와 상담하세요. 정부 지원금 액수와 신청 조건은 연도·지역에 따라 달라질 수 있습니다. 최신 정보는 정부24(gov.kr) 또는 복지로(bokjiro.go.kr)에서 확인하세요."}}]
 1a:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
 17:null
 1c:[["$","title","0",{"children":"임신 주차별 검사 & 준비 총정리 — 수치 해석부터 놓쳤을 때 대처법까지 - 출산 준비 체크리스트"}],["$","meta","1",{"name":"description","content":"임신 초기부터 출산까지 주차별 필수 검사와 준비 사항을 총정리했어요. NT 초음파 정상 수치와 이상 시 다음 단계, 임신성 당뇨 50g·75g·100g 검사 수치 기준과 대응법, 국민행복카드 발급 시기, GBS 검사까지 산모가 놓치기 쉬운 핵심 항목을 한눈에 확인하세요."}],["$","link","2",{"rel":"canonical","href":"https://pregnancy-checklist.com/articles/weekly-prenatal-checklist"}],["$","meta","3",{"property":"og:title","content":"임신 주차별 검사 & 준비 총정리 — 수치 해석부터 놓쳤을 때 대처법까지"}],["$","meta","4",{"property":"og:description","content":"임신 초기부터 출산까지 주차별 필수 검사와 준비 사항을 총정리했어요. NT 초음파 정상 수치와 이상 시 다음 단계, 임신성 당뇨 50g·75g·100g 검사 수치 기준과 대응법, 국민행복카드 발급 시기, GBS 검사까지 산모가 놓치기 쉬운 핵심 항목을 한눈에 확인하세요."}],["$","meta","5",{"property":"og:url","content":"https://pregnancy-checklist.com/articles/weekly-prenatal-checklist"}],["$","meta","6",{"property":"og:image","content":"https://pregnancy-checklist.com/og-image.png"}],["$","meta","7",{"property":"og:image:width","content":"1200"}],["$","meta","8",{"property":"og:image:height","content":"630"}],["$","meta","9",{"property":"og:image:alt","content":"출산 준비 체크리스트"}],["$","meta","10",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","11",{"name":"twitter:title","content":"임신 주차별 검사 & 준비 총정리 — 수치 해석부터 놓쳤을 때 대처법까지"}],["$","meta","12",{"name":"twitter:description","content":"임신 초기부터 출산까지 주차별 필수 검사와 준비 사항을 총정리했어요. NT 초음파 정상 수치와 이상 시 다음 단계, 임신성 당뇨 50g·75g·100g 검사 수치 기준과 대응법, 국민행복카드 발급 시기, GBS 검사까지 산모가 놓치기 쉬운 핵심 항목을 한눈에 확인하세요."}],["$","meta","13",{"name":"twitter:image","content":"https://pregnancy-checklist.com/og-image.png"}],["$","meta","14",{"name":"twitter:image:alt","content":"출산 준비 체크리스트"}],["$","meta","15",{"name":"twitter:image:width","content":"1200"}],["$","meta","16",{"name":"twitter:image:height","content":"630"}]]
