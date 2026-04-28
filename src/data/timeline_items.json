@@ -67,6 +67,7 @@
     "priority": "medium",
     "linked_checklist_ids": [],
     "linked_article_slugs": [],
+    "linked_video_ids": ["video_042"],
     "seo_slug": "week-9"
   },
   {
@@ -78,6 +79,7 @@
     "priority": "high",
     "linked_checklist_ids": ["item_087", "item_106"],
     "linked_article_slugs": ["early-pregnancy-tests"],
+    "linked_video_ids": ["video_040"],
     "seo_slug": "week-10"
   },
   {
@@ -89,6 +91,7 @@
     "priority": "high",
     "linked_checklist_ids": [],
     "linked_article_slugs": [],
+    "linked_video_ids": ["video_044"],
     "seo_slug": "week-11"
   },
   {
@@ -112,6 +115,7 @@
     "priority": "medium",
     "linked_checklist_ids": [],
     "linked_article_slugs": ["pregnancy-weight-management"],
+    "linked_video_ids": ["video_056"],
     "seo_slug": "week-13"
   },
   {
@@ -122,6 +126,7 @@
     "type": "admin",
     "priority": "high",
     "linked_checklist_ids": ["item_107"],
+    "linked_video_ids": ["video_041", "video_045"],
     "seo_slug": "week-14"
   },
   {
@@ -133,6 +138,7 @@
     "priority": "high",
     "linked_checklist_ids": [],
     "linked_article_slugs": [],
+    "linked_video_ids": ["video_040"],
     "seo_slug": "week-15"
   },
   {
@@ -143,6 +149,7 @@
     "type": "admin",
     "priority": "high",
     "linked_checklist_ids": ["item_088", "item_071", "item_102", "item_093"],
+    "linked_video_ids": ["video_059"],
     "seo_slug": "week-16"
   },
   {
@@ -154,6 +161,7 @@
     "priority": "medium",
     "linked_checklist_ids": [],
     "linked_article_slugs": [],
+    "linked_video_ids": ["video_047"],
     "seo_slug": "week-17"
   },
   {
@@ -165,6 +173,7 @@
     "priority": "medium",
     "linked_checklist_ids": [],
     "linked_article_slugs": [],
+    "linked_video_ids": ["video_018"],
     "seo_slug": "week-18"
   },
   {
@@ -176,6 +185,7 @@
     "priority": "high",
     "linked_checklist_ids": [],
     "linked_article_slugs": [],
+    "linked_video_ids": ["video_043"],
     "seo_slug": "week-19"
   },
   {
@@ -186,6 +196,7 @@
     "type": "prep",
     "priority": "high",
     "linked_checklist_ids": ["item_108", "item_002", "item_008"],
+    "linked_video_ids": ["video_043", "video_045"],
     "seo_slug": "week-20"
   },
   {
@@ -220,6 +231,7 @@
     "priority": "medium",
     "linked_checklist_ids": [],
     "linked_article_slugs": [],
+    "linked_video_ids": ["video_037"],
     "seo_slug": "week-23"
   },
   {
@@ -230,6 +242,7 @@
     "type": "prep",
     "priority": "high",
     "linked_checklist_ids": ["item_109", "item_057", "item_090", "item_012"],
+    "linked_video_ids": ["video_037"],
     "seo_slug": "week-24"
   },
   {
@@ -252,6 +265,7 @@
     "type": "shopping",
     "priority": "high",
     "linked_checklist_ids": ["item_058"],
+    "linked_video_ids": ["video_018"],
     "seo_slug": "week-26"
   },
   {
@@ -263,6 +277,7 @@
     "priority": "medium",
     "linked_checklist_ids": [],
     "linked_article_slugs": [],
+    "linked_video_ids": ["video_046"],
     "seo_slug": "week-27"
   },
   {
@@ -274,6 +289,7 @@
     "priority": "high",
     "linked_checklist_ids": ["item_110", "item_111", "item_068", "item_081"],
     "linked_article_slugs": [],
+    "linked_video_ids": ["video_018"],
     "seo_slug": "week-28"
   },
   {
@@ -285,6 +301,7 @@
     "priority": "medium",
     "linked_checklist_ids": [],
     "linked_article_slugs": [],
+    "linked_video_ids": ["video_058", "video_059"],
     "seo_slug": "week-29"
   },
   {
@@ -332,6 +349,7 @@
     "priority": "medium",
     "linked_checklist_ids": [],
     "linked_article_slugs": [],
+    "linked_video_ids": ["video_026", "video_025"],
     "seo_slug": "week-33"
   },
   {
@@ -353,6 +371,7 @@
     "type": "prep",
     "priority": "high",
     "linked_checklist_ids": ["item_059", "item_041", "item_042", "item_033", "item_034", "item_030", "item_018"],
+    "linked_video_ids": ["video_018"],
     "seo_slug": "week-35"
   },
   {
