@@ -39,6 +39,13 @@ export function ArticleDetail({ article }: ArticleDetailProps) {
           ))}
         </div>
         <span className="text-xs text-muted-foreground block mb-6">
+          <Link
+            href="/about"
+            className="text-muted-foreground hover:text-foreground no-underline"
+          >
+            뿌까뽀까
+          </Link>
+          {" · "}
           {article.date}
           {article.updated && article.updated !== article.date && (
             <> · 수정 {article.updated}</>
