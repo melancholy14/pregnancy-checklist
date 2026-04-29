@@ -32,31 +32,32 @@ test.describe("베이비페어 페이지", () => {
       // 무엇을: 예정 탭의 이벤트 카드 렌더링
       // 왜: 미래 행사 데이터가 정상적으로 표시되는지
       await page.getByRole("tab", { name: "예정" }).click();
-      await expect(page.getByText("코베 부산 베이비페어 1차")).toBeVisible();
+      const cards = page.locator('[data-slot="card"]').filter({ hasText: /베이비페어|베이비&키즈페어|엑스포|베페/ });
+      await expect(cards.first()).toBeVisible();
     });
 
     test("도시 필터 클릭 시 해당 도시 행사만 표시된다", async ({ page }) => {
       // 무엇을: 도시 필터로 이벤트가 정상 필터링되는지
       // 왜: 필터 기능 정상 동작 검증
-      await page.getByRole("tab", { name: "예정" }).click();
-      await page.getByRole("button", { name: "부산", exact: true }).click();
-      await expect(page.getByText("코베 부산 베이비페어 1차")).toBeVisible();
+      await page.getByRole("tab", { name: "지난 행사" }).click();
+      await page.getByRole("button", { name: "서울", exact: true }).click();
+      await expect(page.getByText("제49회 베페(BeFe) 베이비페어")).toBeVisible();
     });
 
     test("전체 필터로 돌아오면 모든 행사가 표시된다", async ({ page }) => {
       // 무엇을: 전체 필터로 복귀 시 모든 이벤트 표시
       // 왜: 필터 해제 동작 확인
-      await page.getByRole("tab", { name: "예정" }).click();
-      await page.getByRole("button", { name: "부산", exact: true }).click();
+      await page.getByRole("tab", { name: "지난 행사" }).click();
+      await page.getByRole("button", { name: "서울", exact: true }).click();
       await page.getByRole("button", { name: "전체" }).click();
-      await expect(page.getByText("코베 부산 베이비페어 1차")).toBeVisible();
+      await expect(page.getByText("대전 베이비페어")).toBeVisible();
     });
 
     test("참관 팁이 표시된다", async ({ page }) => {
       // 무엇을: 참관 팁 카드 표시
       // 왜: 유용한 부가 정보 제공
       await expect(page.getByText("참관 팁")).toBeVisible();
-      await expect(page.getByText(/사전 등록/)).toBeVisible();
+      await expect(page.getByText("사전 등록하면 입장료 할인 혜택이 있어요")).toBeVisible();
     });
   });
 

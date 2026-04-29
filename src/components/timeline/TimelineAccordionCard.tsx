@@ -11,9 +11,12 @@ import { TIMELINE_TYPE_CONFIG } from "@/lib/constants";
 import type { TimelineItem } from "@/types/timeline";
 import type { ChecklistItem } from "@/types/checklist";
 import type { ArticleMeta } from "@/types/article";
+import type { VideoItem } from "@/types/video";
 import { WeekChecklistSection } from "./WeekChecklistSection";
 import { DeleteConfirmDialog } from "./DeleteConfirmDialog";
 import { RelatedArticlesLink } from "./RelatedArticlesLink";
+import { RelatedVideosLink } from "./RelatedVideosLink";
+import { sendGAEvent } from "@/lib/analytics";
 
 
 interface TimelineAccordionCardProps {
@@ -22,6 +25,7 @@ interface TimelineAccordionCardProps {
   checklistItems: ChecklistItem[];
   checkedIds: string[];
   relatedArticles?: ArticleMeta[];
+  relatedVideos?: VideoItem[];
   defaultOpen?: boolean;
 }
 
@@ -31,6 +35,7 @@ export function TimelineAccordionCard({
   checklistItems,
   checkedIds,
   relatedArticles = [],
+  relatedVideos = [],
   defaultOpen = false,
 }: TimelineAccordionCardProps) {
   const { removeCustomItem, updateCustomItem } = useTimelineStore();
@@ -65,11 +70,14 @@ export function TimelineAccordionCard({
         }`}
         style={{ backgroundColor: color }}
       >
-        <span className="text-sm font-semibold text-[#3D4447]">{item.week}주</span>
+        <span className="text-sm font-semibold text-foreground">{item.week}주</span>
       </div>
 
       {/* Card with Collapsible */}
-      <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+      <Collapsible open={isOpen} onOpenChange={(open) => {
+        setIsOpen(open);
+        if (open) sendGAEvent("timeline_week_view", { week: item.week });
+      }}>
         <Card
           className={`rounded-xl shadow-sm transition-all border ${
             status === "current"
@@ -90,7 +98,7 @@ export function TimelineAccordionCard({
                     max={40}
                     value={editWeek}
                     onChange={(e) => setEditWeek(Number(e.target.value))}
-                    className="w-full px-3 py-1.5 rounded-lg border border-black/6 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#E4D6F0]/50"
+                    className="w-full px-3 py-1.5 rounded-lg border border-black/6 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-pastel-lavender/50"
                   />
                 </div>
                 <div>
@@ -99,7 +107,7 @@ export function TimelineAccordionCard({
                     type="text"
                     value={editTitle}
                     onChange={(e) => setEditTitle(e.target.value)}
-                    className="w-full px-3 py-1.5 rounded-lg border border-black/6 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#E4D6F0]/50"
+                    className="w-full px-3 py-1.5 rounded-lg border border-black/6 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-pastel-lavender/50"
                     autoFocus
                   />
                 </div>
@@ -109,14 +117,14 @@ export function TimelineAccordionCard({
                     type="text"
                     value={editDescription}
                     onChange={(e) => setEditDescription(e.target.value)}
-                    className="w-full px-3 py-1.5 rounded-lg border border-black/6 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#E4D6F0]/50"
+                    className="w-full px-3 py-1.5 rounded-lg border border-black/6 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-pastel-lavender/50"
                   />
                 </div>
                 <div className="flex gap-2 justify-end">
                   <Button type="button" variant="ghost" size="sm" onClick={() => setIsEditing(false)} className="rounded-lg h-8 text-xs">
                     취소
                   </Button>
-                  <Button type="button" size="sm" onClick={saveEdit} disabled={!editTitle.trim()} className="rounded-lg h-8 text-xs bg-[#E4D6F0] text-[#3D4447] hover:bg-[#E4D6F0]/80">
+                  <Button type="button" size="sm" onClick={saveEdit} disabled={!editTitle.trim()} className="rounded-lg h-8 text-xs bg-pastel-lavender text-foreground hover:bg-pastel-lavender/80">
                     저장
                   </Button>
                 </div>
@@ -133,7 +141,7 @@ export function TimelineAccordionCard({
                       {TIMELINE_TYPE_CONFIG[item.type] && (
                         <Badge
                           style={{ backgroundColor: `${TIMELINE_TYPE_CONFIG[item.type].color}40` }}
-                          className="text-[10px] px-1.5 py-0 rounded border-0 text-[#3D4447]"
+                          className="text-[10px] px-1.5 py-0 rounded border-0 text-foreground"
                         >
                           <span aria-hidden="true">{TIMELINE_TYPE_CONFIG[item.type].icon}</span>{" "}
                           {TIMELINE_TYPE_CONFIG[item.type].label}
@@ -141,7 +149,7 @@ export function TimelineAccordionCard({
                       )}
                       <h3 className="text-[15px] font-medium">{item.title}</h3>
                       {item.isCustom && (
-                        <Badge className="bg-[#E4D6F0]/40 text-[#6B5A80] text-[10px] px-1.5 py-0 rounded border-0 hover:bg-[#E4D6F0]/40">
+                        <Badge className="bg-pastel-lavender/40 text-accent-purple text-[10px] px-1.5 py-0 rounded border-0 hover:bg-pastel-lavender/40">
                           내 항목
                         </Badge>
                       )}
@@ -159,14 +167,14 @@ export function TimelineAccordionCard({
                           }`}
                         />
                         {isWeekComplete ? (
-                          <span className="text-xs text-[#2D6B4F] font-medium">
+                          <span className="text-xs text-accent-green font-medium">
                             {item.week}주차 할일을 모두 완료했어요!
                           </span>
                         ) : (
                           <span className="text-xs text-muted-foreground">
                             체크리스트 {totalCount}개
                             {checkedCount > 0 && (
-                              <span className="ml-1 text-[#2D6B4F]">
+                              <span className="ml-1 text-accent-green">
                                 ({checkedCount}/{totalCount} 완료)
                               </span>
                             )}
@@ -183,7 +191,7 @@ export function TimelineAccordionCard({
                   <div className="flex items-center gap-1 shrink-0">
                     <button
                       onClick={() => setIsEditing(true)}
-                      className="p-1 rounded-lg text-[#9CA0A4] hover:text-[#6B5A80] hover:bg-[#E4D6F0]/20 transition-colors"
+                      className="p-1 rounded-lg text-muted-foreground hover:text-accent-purple hover:bg-pastel-lavender/20 transition-colors"
                       aria-label="수정"
                     >
                       <Pencil size={14} />
@@ -206,6 +214,11 @@ export function TimelineAccordionCard({
             {/* Related articles */}
             {!isEditing && relatedArticles.length > 0 && (
               <RelatedArticlesLink articles={relatedArticles} />
+            )}
+
+            {/* Related videos */}
+            {!isEditing && relatedVideos.length > 0 && (
+              <RelatedVideosLink videos={relatedVideos} />
             )}
           </CardContent>
         </Card>

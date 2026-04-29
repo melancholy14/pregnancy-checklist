@@ -1,16 +1,20 @@
 import type { Metadata } from "next";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import { Toaster } from "sonner";
 import { Poppins } from "next/font/google";
 import { BottomNav } from "@/components/layout/BottomNav";
 import { Footer } from "@/components/layout/Footer";
 import { StickyHeader } from "@/components/layout/StickyHeader";
+import { ConsentGatedScripts } from "@/components/consent/ConsentGatedScripts";
+import { CookieConsentBanner } from "@/components/consent/CookieConsentBanner";
+import { PageviewTracker } from "@/components/analytics/PageviewTracker";
+import { SearchModal } from "@/components/search/SearchModal";
+import { getAllArticles } from "@/lib/articles";
 import { BASE_URL, OG_IMAGE } from "@/lib/constants";
 import "./globals.css";
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -37,6 +41,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const articles = getAllArticles();
+
   return (
     <html lang="ko" className={poppins.className}>
       <head>
@@ -51,10 +57,11 @@ export default function RootLayout({
           <Footer />
           <BottomNav />
         </div>
-        <Toaster position="top-center" richColors />
-        {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
-          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
-        )}
+        <Toaster position="top-center" richColors theme="light" />
+        <ConsentGatedScripts />
+        <CookieConsentBanner />
+        <PageviewTracker />
+        <SearchModal articles={articles} />
       </body>
     </html>
   );

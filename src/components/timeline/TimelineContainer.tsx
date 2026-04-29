@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { Plus, Save } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useDueDateStore } from "@/store/useDueDateStore";
@@ -13,31 +13,35 @@ import { Progress } from "@/components/ui/progress";
 import type { TimelineItem } from "@/types/timeline";
 import type { ChecklistItem } from "@/types/checklist";
 import type { ArticleMeta } from "@/types/article";
+import type { VideoItem } from "@/types/video";
 import { TimelineAccordionCard } from "./TimelineAccordionCard";
 import { UnifiedAddForm } from "./UnifiedAddForm";
 import { CategoryFilter } from "./CategoryFilter";
 import { WeekChecklistSection } from "./WeekChecklistSection";
+import { PageDescription } from "@/components/common/PageDescription";
+import { sendGAEvent } from "@/lib/analytics";
 
 interface TimelineContainerProps {
   timelineItems: TimelineItem[];
   checklistItems: ChecklistItem[];
   articles?: ArticleMeta[];
+  videos?: VideoItem[];
 }
 
-export function TimelineContainer({ timelineItems, checklistItems, articles = [] }: TimelineContainerProps) {
+export function TimelineContainer({ timelineItems, checklistItems, articles = [], videos = [] }: TimelineContainerProps) {
   const { dueDate } = useDueDateStore();
   const { customItems: customTimelineItems } = useTimelineStore();
   const { checkedIds, customItems: customChecklistItems } = useChecklistStore();
-  const [hydrated, setHydrated] = useState(false);
+  const hydrated = useSyncExternalStore(
+    (cb) => useDueDateStore.persist.onFinishHydration(cb),
+    () => useDueDateStore.persist.hasHydrated(),
+    () => false
+  );
   const [showAddForm, setShowAddForm] = useState(false);
   const [activeCategory, setActiveCategory] = useState("all");
   const [showFirstCheckBanner, setShowFirstCheckBanner] = useState(false);
   const prevCheckedCountRef = useRef<number | null>(null);
   const currentRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setHydrated(true);
-  }, []);
 
   const currentWeek = useMemo(() => {
     if (!hydrated || !dueDate) return null;
@@ -51,6 +55,14 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
     }
     return map;
   }, [articles]);
+
+  const videoMap = useMemo(() => {
+    const map = new Map<string, VideoItem>();
+    for (const v of videos) {
+      map.set(v.id, v);
+    }
+    return map;
+  }, [videos]);
 
   const allTimelineItems = useMemo(() => {
     return [...timelineItems, ...customTimelineItems].sort((a, b) => a.week - b.week);
@@ -114,14 +126,46 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
     prevCheckedCountRef.current = count;
   }, [hydrated, checkedIds]);
 
-  // 현재 주차로 자동 스크롤
+  // 현재 주차로 자동 스크롤 (hash가 있으면 검색 등에서 특정 주차로 이동한 것이므로 생략)
   useEffect(() => {
-    if (hydrated && currentWeek && currentRef.current) {
-      setTimeout(() => {
-        currentRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
-      }, 300);
-    }
+    if (window.location.hash) return;
+    if (!hydrated || !currentWeek || !currentRef.current) return;
+    const timer = setTimeout(() => {
+      currentRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 300);
+    return () => clearTimeout(timer);
   }, [hydrated, currentWeek]);
+
+  // 스크롤 깊이 추적 (IntersectionObserver + 디바운스)
+  const maxWeekRef = useRef(0);
+  const debounceRef = useRef<ReturnType<typeof setTimeout>>(undefined);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const week = Number((entry.target as HTMLElement).dataset.week);
+          if (week > maxWeekRef.current) {
+            maxWeekRef.current = week;
+            clearTimeout(debounceRef.current);
+            debounceRef.current = setTimeout(() => {
+              sendGAEvent("timeline_scroll_depth", { max_week_visible: maxWeekRef.current });
+            }, 1000);
+          }
+        }
+      },
+      { threshold: 0.5 },
+    );
+
+    const cards = document.querySelectorAll("[data-week]");
+    cards.forEach((el) => observer.observe(el));
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(debounceRef.current);
+    };
+  }, [allTimelineItems]);
 
   const getStatus = useCallback(
     (week: number): "past" | "current" | "future" => {
@@ -134,12 +178,15 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
   );
 
   return (
-    <div className="min-h-screen pb-24 px-4 bg-linear-to-b from-[#FFFAF7] to-white">
+    <div className="min-h-screen pb-24 px-4 bg-linear-to-b from-background to-white">
       <div className="pt-8">
         <h1 className="mb-2 text-center">임신 타임라인</h1>
-        <p className="text-center text-muted-foreground mb-6">
-          주차별 일정과 체크리스트를 한눈에 확인하세요
-        </p>
+        <PageDescription>
+          임신 주차에 맞춰 준비해야 할 항목을 한눈에 확인하세요.
+          출산 예정일을 입력하면 현재 주차가 자동으로 하이라이트됩니다.
+          각 주차를 펼치면 병원 검사, 서류 준비, 출산 용품 등 연결된
+          체크리스트를 바로 관리할 수 있어요.
+        </PageDescription>
 
         {/* 현재 주차 카드 */}
         {hydrated && currentWeek !== null && (
@@ -166,7 +213,7 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
               </div>
               <Progress value={progress.percent} className="h-2 bg-muted" />
               {progress.percent >= 25 && (
-                <p className="text-xs text-center mt-2 text-[#2D6B4F] font-medium">
+                <p className="text-xs text-center mt-2 text-accent-green font-medium">
                   {progress.percent >= 100
                     ? "완벽한 준비 완료! 🎊"
                     : progress.percent >= 75
@@ -182,10 +229,10 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
 
         {/* 첫 체크 인라인 배너 */}
         {showFirstCheckBanner && (
-          <Card className="rounded-2xl border border-[#D0EDE2]/50 bg-[#D0EDE2]/10 mb-6">
+          <Card className="rounded-2xl border border-pastel-mint/40 bg-pastel-mint/20 mb-6">
             <CardContent className="p-4 flex items-start gap-3">
-              <span className="w-9 h-9 rounded-xl bg-[#D0EDE2] flex items-center justify-center shrink-0 mt-0.5">
-                <Save size={18} strokeWidth={1.8} className="text-[#3D4447]" />
+              <span className="w-9 h-9 rounded-xl bg-pastel-mint flex items-center justify-center shrink-0 mt-0.5">
+                <Save size={18} strokeWidth={1.8} className="text-foreground" />
               </span>
               <div className="flex-1">
                 <p className="text-sm font-medium mb-0.5">체크한 내용은 자동 저장돼요!</p>
@@ -208,8 +255,8 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
         <div className="mb-6">
           <CategoryFilter activeCategory={activeCategory} onCategoryChange={setActiveCategory} />
           {activeCategory === "admin" && (
-            <div className="mt-3 px-4 py-3 rounded-xl bg-[#FFF4D4]/40 border border-[#FFF4D4]/60">
-              <p className="text-xs text-[#8B7520] leading-relaxed">
+            <div className="mt-3 px-4 py-3 rounded-xl bg-pastel-yellow/40 border border-pastel-yellow/60">
+              <p className="text-xs text-accent-olive leading-relaxed">
                 행정 관련 항목은 거주 지자체에 따라 다를 수 있습니다. 정확한 정보는 주민센터 또는 정부24를 확인해주세요.
               </p>
             </div>
@@ -222,7 +269,7 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
         {/* Timeline */}
         <div className="relative">
           {/* Vertical Line */}
-          <div className="absolute left-7 top-0 bottom-0 w-0.5 bg-linear-to-b from-[#FFD4DE] via-[#E4D6F0] to-[#FFF4D4] opacity-60" />
+          <div className="absolute left-7 top-0 bottom-0 w-0.5 bg-linear-to-b from-pastel-pink via-pastel-lavender to-pastel-yellow opacity-60" />
 
           <div className="space-y-6">
             {(() => {
@@ -237,15 +284,19 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
                   const relatedArticles = (item.linked_article_slugs ?? [])
                     .map((slug) => articleMap.get(slug))
                     .filter((a): a is ArticleMeta => a !== undefined);
+                  const relatedVideos = (item.linked_video_ids ?? [])
+                    .map((id) => videoMap.get(id))
+                    .filter((v): v is VideoItem => v !== undefined);
 
                   return (
-                    <div key={item.id} ref={shouldRef ? currentRef : undefined}>
+                    <div key={item.id} ref={shouldRef ? currentRef : undefined} data-week={item.week}>
                       <TimelineAccordionCard
                         item={item}
                         status={status}
                         checklistItems={weekChecklist}
                         checkedIds={hydrated ? checkedIds : []}
                         relatedArticles={relatedArticles}
+                        relatedVideos={relatedVideos}
                         defaultOpen={status === "current"}
                       />
                     </div>
@@ -272,7 +323,7 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
 
         {/* Final Message */}
         <div className="mt-12 text-center">
-          <div className="inline-block bg-linear-to-r from-[#FFD4DE]/60 to-[#E4D6F0]/60 rounded-2xl px-8 py-5 shadow-md border border-black/4">
+          <div className="inline-block bg-linear-to-r from-pastel-pink/60 to-pastel-lavender/60 rounded-2xl px-8 py-5 shadow-md border border-black/4">
             <div className="text-4xl mb-2">👶</div>
             <div className="text-sm text-foreground">
               40주차: 소중한 아기와의 만남!
@@ -283,10 +334,10 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
         {/* FAB: 커스텀 항목 추가 */}
         <button
           onClick={() => setShowAddForm(true)}
-          className="fixed fab-bottom-safe right-6 w-14 h-14 rounded-2xl bg-[#E4D6F0] shadow-lg flex items-center justify-center hover:bg-[#E4D6F0]/80 hover:shadow-xl transition-all duration-200 z-10"
+          className="fixed fab-bottom-safe right-6 w-14 h-14 rounded-2xl bg-pastel-lavender shadow-lg flex items-center justify-center hover:bg-pastel-lavender/80 hover:shadow-xl transition-all duration-200 z-10"
           aria-label="항목 추가"
         >
-          <Plus size={24} color="#3D4447" />
+          <Plus size={24} className="text-foreground" />
         </button>
       </div>
     </div>

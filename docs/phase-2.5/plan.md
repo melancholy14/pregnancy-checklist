@@ -362,7 +362,7 @@ useEffect(() => {
 | 출산 가방 | Week 32, 36 | `hospital-bag.md` | **일치** — 체크리스트 22개 항목과 매칭 |
 | 산후조리원 | Week 12 | `postpartum-care.md` | **일치** — 타임라인은 시점, 블로그는 방법론 |
 | 출산 준비물 비용 | Week 18 (베이비페어 방문) | `baby-items-cost.md` | **부분 일치** — 연결 불명시 |
-| 주차별 가이드 | 전체 타임라인 | `weekly-prep.md` | **상호 보완적** |
+| 주차별 가이드 | 전체 타임라인 | `weekly-prenatal-checklist.md` | **상호 보완적** |
 | 신생아 목욕 | 타임라인에 없음 | `newborn-bath-tips.md` | **블로그만 존재** (출산 후 콘텐츠) |
 | 예방접종 | 타임라인에 없음 | `infant-vaccination-schedule.md` | **블로그만 존재** (출산 후 콘텐츠) |
 | 산후 식단 | 타임라인에 없음 | `postpartum-diet.md` | **블로그만 존재** (출산 후 콘텐츠) |
@@ -383,7 +383,7 @@ useEffect(() => {
 | Week 30 | `newborn-bath-tips` | 신생아 준비 시점 |
 | Week 32, 36 | `hospital-bag` | 입원 가방 준비 |
 | Week 37-40 | `postpartum-diet` | 출산 직전 산후 식단 미리 파악 |
-| Week 전체 | `weekly-prep` | 종합 가이드 |
+| Week 전체 | `weekly-prenatal-checklist` | 종합 가이드 |
 
 #### 구현 방식
 
@@ -1090,7 +1090,7 @@ authorNote: "실제로 입원가방 쌌을 때, 블로그마다 리스트가 달
 | `postpartum-care` | "산후조리원 고를 때 뭘 기준으로 비교해야 하는지 몰라서 한참 헤맸어요." |
 | `pregnancy-weight-management` | "체중계 올라갈 때마다 불안해서, 정상 범위가 어디까지인지 정리해봤습니다." |
 
-→ 나머지 아티클(`weekly-prep`, `newborn-bath-tips`, `infant-vaccination-schedule`, `postpartum-diet`)은 직접 경험 기반이 약하면 authorNote 없이 유지.
+→ 나머지 아티클(`weekly-prenatal-checklist`, `newborn-bath-tips`, `infant-vaccination-schedule`, `postpartum-diet`)은 직접 경험 기반이 약하면 authorNote 없이 유지.
 
 ### 14-3. UI 표현
 

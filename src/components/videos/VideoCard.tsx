@@ -1,6 +1,7 @@
 import { Play } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import type { VideoItem } from "@/types/video";
+import { sendGAEvent } from "@/lib/analytics";
 
 interface VideoCardProps {
   video: VideoItem;
@@ -12,10 +13,12 @@ export function VideoCard({ video, channelName }: VideoCardProps) {
 
   return (
     <a
+      id={video.id}
       href={`https://www.youtube.com/watch?v=${video.youtube_id}`}
       target="_blank"
       rel="noopener noreferrer"
       className="no-underline"
+      onClick={() => sendGAEvent("content_click", { type: "video", title: video.title })}
     >
       <Card className="rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-black/4 group hover:-translate-y-0.5">
         {/* Thumbnail */}
@@ -28,7 +31,7 @@ export function VideoCard({ video, channelName }: VideoCardProps) {
           {/* Play Button Overlay */}
           <div className="absolute inset-0 bg-black/10 flex items-center justify-center group-hover:bg-black/20 transition-colors duration-300">
             <div className="w-14 h-14 rounded-2xl bg-white/90 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-              <Play size={24} fill="#3D4447" color="#3D4447" className="ml-0.5" />
+              <Play size={24} fill="currentColor" color="currentColor" className="ml-0.5 text-foreground" />
             </div>
           </div>
         </div>

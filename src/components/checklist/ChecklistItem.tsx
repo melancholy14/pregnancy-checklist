@@ -5,9 +5,9 @@ import { Trash2 } from "lucide-react";
 import type { ChecklistItem as ChecklistItemType } from "@/types/checklist";
 
 const PRIORITY_STYLES: Record<string, { className: string; label: string }> = {
-  high: { className: "bg-[#FFD4DE]/60 text-[#B04060] hover:bg-[#FFD4DE]/60", label: "높음" },
-  medium: { className: "bg-[#FFF4D4]/60 text-[#8B7520] hover:bg-[#FFF4D4]/60", label: "보통" },
-  low: { className: "bg-[#D0EDE2]/60 text-[#2D6B4F] hover:bg-[#D0EDE2]/60", label: "낮음" },
+  high: { className: "bg-pastel-pink/60 text-accent-red hover:bg-pastel-pink/60", label: "높음" },
+  medium: { className: "bg-pastel-yellow/60 text-accent-olive hover:bg-pastel-yellow/60", label: "보통" },
+  low: { className: "bg-pastel-mint/60 text-accent-green hover:bg-pastel-mint/60", label: "낮음" },
 };
 
 interface ChecklistItemProps {
@@ -23,11 +23,11 @@ export function ChecklistItem({ item, isChecked, isHighlighted, onToggle, onDele
 
   return (
     <Card
-      className={`rounded-xl cursor-pointer transition-all duration-200 hover:shadow-md border ${
+      className={`rounded-xl cursor-pointer transition-all duration-300 hover:shadow-md border ${
         isChecked
-          ? "bg-[#D0EDE2]/20 border-[#D0EDE2]/30"
+          ? "bg-pastel-mint/20 border-pastel-mint/30"
           : isHighlighted
-          ? "bg-[#FFF4D4]/20 border-[#FFF4D4]/50 shadow-sm"
+          ? "bg-pastel-yellow/20 border-pastel-yellow/40 shadow-sm"
           : "bg-white border-black/4"
       }`}
       onClick={onToggle}
@@ -37,12 +37,12 @@ export function ChecklistItem({ item, isChecked, isHighlighted, onToggle, onDele
           <Checkbox
             checked={isChecked}
             onCheckedChange={onToggle}
-            className="size-6 rounded-lg border-2 data-[state=checked]:bg-[#D0EDE2] data-[state=checked]:border-[#D0EDE2] data-[state=checked]:text-[#3D4447] border-gray-200 shrink-0"
+            className="size-6 rounded-md border-2 data-[state=checked]:bg-pastel-mint data-[state=checked]:border-pastel-mint data-[state=checked]:text-foreground border-gray-200 shrink-0"
             onClick={(e) => e.stopPropagation()}
           />
           <span
             className={`flex-1 text-[15px] ${
-              isChecked ? "line-through text-[#9CA0A4]" : "text-foreground"
+              isChecked ? "line-through text-muted-foreground" : "text-foreground"
             }`}
           >
             {item.title}
@@ -57,7 +57,7 @@ export function ChecklistItem({ item, isChecked, isHighlighted, onToggle, onDele
                   e.stopPropagation();
                   onDelete();
                 }}
-                className="p-1 rounded-lg text-[#9CA0A4] hover:text-red-400 hover:bg-red-50 transition-colors"
+                className="p-1 rounded-lg text-muted-foreground hover:text-red-400 hover:bg-red-50 transition-colors"
                 aria-label="삭제"
               >
                 <Trash2 size={16} />
@@ -67,7 +67,7 @@ export function ChecklistItem({ item, isChecked, isHighlighted, onToggle, onDele
         </div>
         {isHighlighted && !isChecked && (
           <div className="mt-2 ml-9">
-            <span className="text-xs text-[#8B7520]">이번 주차에 추천하는 항목이에요</span>
+            <span className="text-xs text-accent-olive">이번 주차에 추천하는 항목이에요</span>
           </div>
         )}
       </CardContent>

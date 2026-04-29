@@ -34,6 +34,10 @@ next-env.d.ts
 # vercel
 .vercel
 
+# playwright
+test-results
+
 # misc
 .DS_Store
 *.pem
+tmp/expert-review

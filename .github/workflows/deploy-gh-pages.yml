@@ -29,6 +29,14 @@ jobs:
           NEXT_PUBLIC_FEEDBACK_FORM_URL: ${{ secrets.FEEDBACK_FORM_URL }}
         run: npm run build
 
+      - name: Lighthouse SEO Check
+        continue-on-error: true
+        run: |
+          npx serve out -l 3000 &
+          sleep 3
+          bash scripts/lighthouse-check.sh http://localhost:3000
+          kill %1 || true
+
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:

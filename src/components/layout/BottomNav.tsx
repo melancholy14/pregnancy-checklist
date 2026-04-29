@@ -28,11 +28,11 @@ export function BottomNav() {
               href={item.path}
               className={`flex flex-col items-center gap-1 px-3 py-2 rounded-2xl transition-all duration-200 ${
                 isActive
-                  ? "bg-[#FFD4DE]/40 text-[#3D4447]"
-                  : "text-[#9CA0A4] hover:text-[#3D4447]"
+                  ? "bg-pastel-pink/40 text-foreground"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
             >
-              <Icon size={20} strokeWidth={isActive ? 2.2 : 1.8} color={isActive ? "#3D4447" : "#9CA0A4"} />
+              <Icon size={20} strokeWidth={isActive ? 2.2 : 1.8} className={isActive ? "text-foreground" : "text-muted-foreground"} />
               <span className="text-[11px] font-medium">{item.label}</span>
             </Link>
           );

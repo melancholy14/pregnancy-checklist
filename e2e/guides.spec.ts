@@ -42,10 +42,10 @@ test.describe("가이드 페이지 (리다이렉트)", () => {
     test("관련 아티클 링크가 동작한다", async ({ page }) => {
       // 무엇을: 관련 정보글로의 내부 링크
       // 왜: 가이드 간 상호 연결 확인
-      const link = page.getByRole("link", { name: /임신 주차별 검사 & 준비 가이드/ });
+      const link = page.getByRole("link", { name: /임신 주차별 검사 & 준비 총정리/ });
       await expect(link).toBeVisible();
       await link.click();
-      await expect(page).toHaveURL(/\/articles\/weekly-prep/);
+      await expect(page).toHaveURL(/\/articles\/weekly-prenatal-checklist/);
     });
 
     test("의료 관련 안내가 표시된다", async ({ page }) => {
@@ -57,14 +57,14 @@ test.describe("가이드 페이지 (리다이렉트)", () => {
 
   test.describe("주차별 준비 가이드", () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto("/articles/weekly-prep");
+      await page.goto("/articles/weekly-prenatal-checklist");
     });
 
     test("제목과 본문이 렌더링된다", async ({ page }) => {
       // 무엇을: 주차별 가이드 페이지 기본 UI
       // 왜: MD 기반 정보글로 변환 후 정상 표시 확인
       await expect(
-        page.getByRole("heading", { name: "임신 주차별 검사 & 준비 가이드" })
+        page.getByRole("heading", { name: "임신 주차별 검사 & 준비 총정리" })
       ).toBeVisible();
     });
 
@@ -117,11 +117,11 @@ test.describe("가이드 페이지 (리다이렉트)", () => {
       await expect(page).toHaveURL(/\/articles\/hospital-bag/);
     });
 
-    test("/guides/weekly-prep → /articles/weekly-prep 리다이렉트", async ({ page }) => {
+    test("/guides/weekly-prep → /articles/weekly-prenatal-checklist 리다이렉트", async ({ page }) => {
       // 무엇을: 기존 가이드 URL 호환성
       // 왜: Phase 1.75 북마크/외부 링크 유지
       await page.goto("/guides/weekly-prep");
-      await expect(page).toHaveURL(/\/articles\/weekly-prep/);
+      await expect(page).toHaveURL(/\/articles\/weekly-prenatal-checklist/);
     });
   });
 
@@ -140,9 +140,9 @@ test.describe("가이드 페이지 (리다이렉트)", () => {
     test("모바일: 주차별 가이드가 정상 렌더링된다", async ({ page }) => {
       // 무엇을: 375px에서 주차별 가이드 표시
       // 왜: 주요 타겟 기기
-      await page.goto("/articles/weekly-prep");
+      await page.goto("/articles/weekly-prenatal-checklist");
       await expect(
-        page.getByRole("heading", { name: "임신 주차별 검사 & 준비 가이드" })
+        page.getByRole("heading", { name: "임신 주차별 검사 & 준비 총정리" })
       ).toBeVisible();
     });
   });

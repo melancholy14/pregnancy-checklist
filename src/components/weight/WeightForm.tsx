@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "sonner";
 import { X } from "lucide-react";
 import { sendGAEvent } from "@/lib/analytics";
 import { Card, CardContent } from "@/components/ui/card";
@@ -15,7 +16,16 @@ export function WeightForm({ onSubmit, onClose }: WeightFormProps) {
 
   const handleAdd = () => {
     if (!newDate || !newWeight) return;
-    onSubmit(newDate, parseFloat(newWeight));
+    const weight = parseFloat(newWeight);
+    if (isNaN(weight) || weight < 30 || weight > 200) {
+      toast("체중은 30~200kg 범위로 입력해주세요", { duration: 3000 });
+      return;
+    }
+    if (newDate > new Date().toISOString().split("T")[0]) {
+      toast("미래 날짜는 입력할 수 없어요", { duration: 3000 });
+      return;
+    }
+    onSubmit(newDate, weight);
     sendGAEvent("weight_log");
     setNewDate("");
     setNewWeight("");
@@ -42,7 +52,7 @@ export function WeightForm({ onSubmit, onClose }: WeightFormProps) {
               type="date"
               value={newDate}
               onChange={(e) => setNewDate(e.target.value)}
-              className="w-full px-4 py-3 bg-input-background rounded-xl border border-black/6 focus:outline-none focus:ring-2 focus:ring-[#FFD4DE]/50 transition-shadow"
+              className="w-full px-4 py-3 bg-input-background rounded-xl border border-black/6 focus:outline-none focus:ring-2 focus:ring-pastel-pink/50 transition-shadow"
             />
           </div>
           <div>
@@ -53,12 +63,12 @@ export function WeightForm({ onSubmit, onClose }: WeightFormProps) {
               value={newWeight}
               onChange={(e) => setNewWeight(e.target.value)}
               placeholder="예: 62.5"
-              className="w-full px-4 py-3 bg-input-background rounded-xl border border-black/6 focus:outline-none focus:ring-2 focus:ring-[#FFD4DE]/50 transition-shadow"
+              className="w-full px-4 py-3 bg-input-background rounded-xl border border-black/6 focus:outline-none focus:ring-2 focus:ring-pastel-pink/50 transition-shadow"
             />
           </div>
           <Button
             onClick={handleAdd}
-            className="w-full py-3 bg-[#FFD4DE] rounded-xl hover:bg-[#f5cada] text-[#3D4447] h-auto transition-colors duration-200"
+            className="w-full py-3 bg-pastel-pink rounded-xl hover:bg-pastel-pink-hover text-foreground h-auto transition-colors duration-200"
           >
             추가
           </Button>

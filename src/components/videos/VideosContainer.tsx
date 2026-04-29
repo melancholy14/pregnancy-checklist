@@ -6,11 +6,16 @@ import { Card, CardContent } from "@/components/ui/card";
 import { VideoCard } from "./VideoCard";
 import { ChannelCard } from "./ChannelCard";
 import type { VideoItem, ChannelItem } from "@/types/video";
+import { PageDescription } from "@/components/common/PageDescription";
 
 const CATEGORY_MAP: Record<string, string> = {
   exercise: "임산부 운동",
   birth_prep: "출산 준비",
   newborn_care: "신생아 케어",
+  pregnancy_health: "임신 건강 관리",
+  prenatal_checkup: "산전 검사",
+  nutrition: "임산부 영양",
+  policy: "육아 정책",
 };
 
 const categoryKeys = Object.keys(CATEGORY_MAP);
@@ -55,6 +60,26 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
     if (el) setSubOverflow(el.scrollHeight > el.clientHeight + 4);
   }, [subcategories]);
 
+  // hash 스크롤: 검색 결과 등에서 /videos#video_id 로 진입 시
+  useEffect(() => {
+    const hash = window.location.hash.slice(1);
+    if (!hash) return;
+    let highlightTimer: ReturnType<typeof setTimeout>;
+    const scrollTimer = setTimeout(() => {
+      const el = document.getElementById(hash);
+      if (!el) return;
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+      el.classList.add("ring-2", "ring-pastel-pink", "rounded-2xl");
+      highlightTimer = setTimeout(() => {
+        el.classList.remove("ring-2", "ring-pastel-pink", "rounded-2xl");
+      }, 2000);
+    }, 300);
+    return () => {
+      clearTimeout(scrollTimer);
+      clearTimeout(highlightTimer);
+    };
+  }, []);
+
   const filteredVideos = useMemo(() => {
     let result = items;
     if (activeCategory !== "all") {
@@ -90,9 +115,11 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
     <div className="min-h-screen pb-24 px-4">
       <div className="pt-8">
         <h1 className="mb-2 text-center">영상 콘텐츠</h1>
-        <p className="text-center text-muted-foreground mb-6">
-          임신과 육아에 도움되는 영상 모음
-        </p>
+        <PageDescription>
+          임산부 운동, 출산 준비, 신생아 케어 등 검증된 채널의 영상을
+          카테고리별로 큐레이션했습니다. 영상과 채널 보기를 전환할 수
+          있고, 세부 카테고리 필터로 필요한 영상만 골라 시청할 수 있어요.
+        </PageDescription>
 
         {isEmpty ? (
           <div className="text-center py-12 text-muted-foreground">
@@ -109,8 +136,8 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
                 onClick={() => setViewMode("videos")}
                 className={`px-4 py-2 rounded-xl border text-sm transition-all duration-200 ${
                   viewMode === "videos"
-                    ? "bg-[#FFD4DE]/40 text-[#3D4447] border-[#FFD4DE]/30"
-                    : "bg-white text-[#9CA0A4] border-black/4 hover:bg-muted"
+                    ? "bg-pastel-pink/40 text-foreground border-pastel-pink/30"
+                    : "bg-white text-muted-foreground border-black/4 hover:bg-muted"
                 }`}
               >
                 영상
@@ -120,8 +147,8 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
                 onClick={() => setViewMode("channels")}
                 className={`px-4 py-2 rounded-xl border text-sm transition-all duration-200 ${
                   viewMode === "channels"
-                    ? "bg-[#FFD4DE]/40 text-[#3D4447] border-[#FFD4DE]/30"
-                    : "bg-white text-[#9CA0A4] border-black/4 hover:bg-muted"
+                    ? "bg-pastel-pink/40 text-foreground border-pastel-pink/30"
+                    : "bg-white text-muted-foreground border-black/4 hover:bg-muted"
                 }`}
               >
                 채널
@@ -135,8 +162,8 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
                 onClick={() => handleCategoryChange("all")}
                 className={`px-4 py-2 rounded-xl border text-sm transition-all duration-200 ${
                   activeCategory === "all"
-                    ? "bg-[#FFD4DE]/40 text-[#3D4447] border-[#FFD4DE]/30"
-                    : "bg-white text-[#9CA0A4] border-black/4 hover:bg-muted"
+                    ? "bg-pastel-pink/40 text-foreground border-pastel-pink/30"
+                    : "bg-white text-muted-foreground border-black/4 hover:bg-muted"
                 }`}
               >
                 전체
@@ -148,8 +175,8 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
                   onClick={() => handleCategoryChange(cat)}
                   className={`px-4 py-2 rounded-xl border text-sm transition-all duration-200 ${
                     activeCategory === cat
-                      ? "bg-[#FFD4DE]/40 text-[#3D4447] border-[#FFD4DE]/30"
-                      : "bg-white text-[#9CA0A4] border-black/4 hover:bg-muted"
+                      ? "bg-pastel-pink/40 text-foreground border-pastel-pink/30"
+                      : "bg-white text-muted-foreground border-black/4 hover:bg-muted"
                   }`}
                 >
                   {CATEGORY_MAP[cat]}
@@ -171,8 +198,8 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
                     onClick={() => setActiveSubcategory("all")}
                     className={`px-3 py-1.5 rounded-lg border text-xs transition-all duration-200 ${
                       activeSubcategory === "all"
-                        ? "bg-[#E4D6F0]/40 text-[#6B5A80] border-[#E4D6F0]/30"
-                        : "bg-white text-[#9CA0A4] border-black/4 hover:bg-muted"
+                        ? "bg-pastel-lavender/40 text-accent-purple border-pastel-lavender/30"
+                        : "bg-white text-muted-foreground border-black/4 hover:bg-muted"
                     }`}
                   >
                     전체
@@ -184,8 +211,8 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
                       onClick={() => setActiveSubcategory(key)}
                       className={`px-3 py-1.5 rounded-lg border text-xs transition-all duration-200 ${
                         activeSubcategory === key
-                          ? "bg-[#E4D6F0]/40 text-[#6B5A80] border-[#E4D6F0]/30"
-                          : "bg-white text-[#9CA0A4] border-black/4 hover:bg-muted"
+                          ? "bg-pastel-lavender/40 text-accent-purple border-pastel-lavender/30"
+                          : "bg-white text-muted-foreground border-black/4 hover:bg-muted"
                       }`}
                     >
                       {label}
@@ -196,7 +223,7 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
                   <button
                     type="button"
                     onClick={() => setSubExpanded((v) => !v)}
-                    className="flex items-center gap-1 mt-2 text-xs text-[#9CA0A4] hover:text-[#3D4447] transition-colors"
+                    className="flex items-center gap-1 mt-2 text-xs text-muted-foreground hover:text-foreground transition-colors"
                   >
                     {subExpanded ? "접기" : "더보기"}
                     <ChevronDown
@@ -240,7 +267,7 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
         )}
 
         {/* Info Card */}
-        <Card className="mt-12 rounded-2xl shadow-md border border-black/4 bg-linear-to-r from-[#D0EDE2]/40 to-[#FFE0CC]/40">
+        <Card className="mt-12 rounded-2xl shadow-md border border-black/4 bg-linear-to-r from-pastel-mint/40 to-pastel-peach/40">
           <CardContent className="p-6 text-center">
             <p className="text-sm text-muted-foreground">
               실제 영상 재생은 YouTube로 연결됩니다

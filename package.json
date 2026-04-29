@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "deploy": "NEXT_PUBLIC_GA_MEASUREMENT_ID=G-HT96X27T4K NEXT_PUBLIC_FEEDBACK_FORM_URL=https://forms.gle/iZrqyAd2LtTm7Gtm7 NEXT_PUBLIC_ADSENSE_CLIENT_ID=ca-pub-6022771079735605 next build && touch out/.nojekyll && echo 'pregnancy-checklist.com' > out/CNAME && gh-pages -d out --dotfiles"
+    "deploy": "NEXT_PUBLIC_GA_MEASUREMENT_ID=G-HT96X27T4K NEXT_PUBLIC_FEEDBACK_FORM_URL=https://forms.gle/iZrqyAd2LtTm7Gtm7 NEXT_PUBLIC_ADSENSE_CLIENT_ID=ca-pub-6022771079735605 next build && touch out/.nojekyll && echo 'pregnancy-checklist.com' > out/CNAME && gh-pages -d out --dotfiles",
+    "lighthouse-check": "bash scripts/lighthouse-check.sh",
+    "fetch-channel-thumbs": "npx tsx scripts/fetch-channel-thumbs.ts",
+    "fetch-channel-thumbs:force": "npx tsx scripts/fetch-channel-thumbs.ts --force"
   },
   "dependencies": {
     "@next/third-parties": "^16.2.2",
@@ -43,6 +46,7 @@
     "cmdk": "1.1.1",
     "date-fns": "^4.1.0",
     "embla-carousel-react": "8.6.0",
+    "fuse.js": "^7.3.0",
     "gray-matter": "^4.0.3",
     "input-otp": "1.4.2",
     "lucide-react": "0.487.0",
@@ -55,9 +59,11 @@
     "react-hook-form": "7.55.0",
     "react-resizable-panels": "2.1.7",
     "recharts": "2.15.2",
+    "rehype-sanitize": "^6.0.0",
+    "rehype-stringify": "^10.0.1",
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.1",
-    "remark-html": "^16.0.1",
+    "remark-rehype": "^11.1.2",
     "shadcn": "^4.0.8",
     "sonner": "2.0.3",
     "tailwind-merge": "3.2.0",
@@ -74,8 +80,10 @@
     "eslint": "^9",
     "eslint-config-next": "^16.2.0",
     "gh-pages": "^6.3.0",
+    "lighthouse": "^12.8.2",
     "serve": "^14.2.6",
     "tailwindcss": "4.1.12",
+    "tsx": "^4.21.0",
     "typescript": "5.8.3"
   }
 }

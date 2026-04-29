@@ -3,8 +3,9 @@ import { test, expect } from "@playwright/test";
 test.describe("체크리스트 주차 미존재 버그 수정 (Step 8)", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/timeline");
-    // 이전 커스텀 데이터 초기화
+    // 쿠키 동의 + 이전 커스텀 데이터 초기화
     await page.evaluate(() => {
+      localStorage.setItem("cookie-consent", "accepted");
       localStorage.removeItem("checklist-storage");
       localStorage.removeItem("timeline-storage");
     });

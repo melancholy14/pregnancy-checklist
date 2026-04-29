@@ -3,7 +3,10 @@ import { test, expect } from "@playwright/test";
 test.describe("온보딩 톤 변경 (Step 12)", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
-    await page.evaluate(() => localStorage.removeItem("onboarding-completed"));
+    await page.evaluate(() => {
+      localStorage.setItem("cookie-consent", "accepted");
+      localStorage.removeItem("onboarding-completed");
+    });
     await page.goto("/");
   });
 

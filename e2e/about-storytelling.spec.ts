@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test.describe("About 페이지 → 만든 사람 스토리텔링 (Step 13)", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("/about");
+    await page.goto("/about", { waitUntil: "domcontentloaded" });
   });
 
   test.describe("Happy Path", () => {

@@ -19,7 +19,7 @@ export function WelcomeStep({ onNext }: WelcomeStepProps) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen px-6 text-center">
       <div className="mb-10">
-        <div className="w-28 h-28 mx-auto rounded-full bg-linear-to-br from-[#FFD4DE] via-[#E4D6F0] to-[#D0EDE2] flex items-center justify-center shadow-lg overflow-hidden">
+        <div className="w-28 h-28 mx-auto rounded-full bg-linear-to-br from-pastel-pink via-pastel-lavender to-pastel-mint flex items-center justify-center shadow-lg overflow-hidden">
           <Image
             src="/home.png"
             alt="출산 준비"
@@ -38,8 +38,8 @@ export function WelcomeStep({ onNext }: WelcomeStepProps) {
       <ul className="space-y-3 mt-6 mb-10 text-left">
         {highlights.map((text) => (
           <li key={text} className="flex items-center gap-3">
-            <span className="w-6 h-6 rounded-full bg-[#D0EDE2] flex items-center justify-center shrink-0">
-              <Check size={14} strokeWidth={2.5} className="text-[#3D7A5F]" />
+            <span className="w-6 h-6 rounded-full bg-pastel-mint flex items-center justify-center shrink-0">
+              <Check size={14} strokeWidth={2.5} className="text-accent-green-light" />
             </span>
             <span className="text-base">{text}</span>
           </li>
@@ -48,7 +48,7 @@ export function WelcomeStep({ onNext }: WelcomeStepProps) {
 
       <Button
         onClick={onNext}
-        className="w-full max-w-xs h-12 rounded-2xl bg-[#FFD4DE] text-[#3D4447] text-base hover:bg-[#FFD4DE]/80"
+        className="w-full max-w-xs h-12 rounded-2xl bg-pastel-pink text-foreground text-base hover:bg-pastel-pink/80"
         aria-label="온보딩 시작하기"
       >
         시작하기

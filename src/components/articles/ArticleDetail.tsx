@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { Article } from "@/types/article";
 import { TimelineCTA } from "./TimelineCTA";
+import { MedicalDisclaimer } from "./MedicalDisclaimer";
 
 interface ArticleDetailProps {
   article: Article;
@@ -16,7 +17,7 @@ export function ArticleDetail({ article }: ArticleDetailProps) {
       <article className="pt-8">
         <Link
           href="/articles"
-          className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-[#3D4447] mb-6 no-underline"
+          className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6 no-underline"
         >
           <ArrowLeft size={16} />
           목록으로
@@ -31,13 +32,20 @@ export function ArticleDetail({ article }: ArticleDetailProps) {
           {article.tags.map((tag) => (
             <Badge
               key={tag}
-              className="bg-[#E4D6F0]/30 text-[#6B5A80] text-[11px] px-2 py-0.5 rounded-lg border-0 hover:bg-[#E4D6F0]/30"
+              className="bg-pastel-lavender/30 text-accent-purple text-[11px] px-2 py-0.5 rounded-lg border-0 hover:bg-pastel-lavender/30"
             >
               #{tag}
             </Badge>
           ))}
         </div>
         <span className="text-xs text-muted-foreground block mb-6">
+          <Link
+            href="/about"
+            className="text-muted-foreground hover:text-foreground no-underline"
+          >
+            뿌까뽀까
+          </Link>
+          {" · "}
           {article.date}
           {article.updated && article.updated !== article.date && (
             <> · 수정 {article.updated}</>
@@ -47,15 +55,17 @@ export function ArticleDetail({ article }: ArticleDetailProps) {
         <div className="h-px bg-gradient-to-r from-transparent via-[#F0EBE6] to-transparent mb-8" />
 
         {article.authorNote && (
-          <div className="bg-[#FFF4D4]/15 border border-[#FFF4D4]/40 rounded-xl px-4 py-3.5 mb-8">
-            <p className="text-xs font-medium text-[#8B7520] mb-1.5">
+          <div className="bg-pastel-yellow/20 border border-pastel-yellow/40 rounded-xl px-4 py-3.5 mb-8">
+            <p className="text-xs font-medium text-accent-olive mb-1.5">
               💬 만든이의 한마디
             </p>
-            <p className="text-sm text-[#8B7520] italic leading-relaxed">
+            <p className="text-sm text-accent-olive italic leading-relaxed">
               &ldquo;{article.authorNote}&rdquo;
             </p>
           </div>
         )}
+
+        <MedicalDisclaimer text={article.disclaimer} />
 
         <div
           className="article-prose"

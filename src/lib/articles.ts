@@ -3,16 +3,20 @@ import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import remarkGfm from "remark-gfm";
-import html from "remark-html";
+import remarkRehype from "remark-rehype";
+import rehypeSanitize from "rehype-sanitize";
+import rehypeStringify from "rehype-stringify";
 import type { ArticleMeta, Article } from "@/types/article";
+import { BASE_URL } from "@/lib/constants";
 
 const ARTICLES_DIR = path.join(process.cwd(), "src/content/articles");
 
 function parseArticleMeta(data: Record<string, unknown>): ArticleMeta {
+  const slug = String(data.slug ?? "");
   return {
     title: String(data.title ?? ""),
     description: String(data.description ?? ""),
-    slug: String(data.slug ?? ""),
+    slug,
     tags: Array.isArray(data.tags) ? data.tags : [],
     date: String(data.date ?? ""),
     updated: data.updated ? String(data.updated) : undefined,
@@ -20,6 +24,9 @@ function parseArticleMeta(data: Record<string, unknown>): ArticleMeta {
       ? data.linked_timeline_weeks.map(Number)
       : undefined,
     authorNote: data.authorNote ? String(data.authorNote) : undefined,
+    canonical: data.canonical
+      ? String(data.canonical)
+      : `${BASE_URL}/articles/${slug}`,
   };
 }
 
@@ -53,10 +60,39 @@ export async function getArticleBySlug(
 
   const raw = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(raw);
-  const result = await remark().use(remarkGfm).use(html).process(content);
+
+  // ⚠️ blockquote를 disclaimer로 분리
+  const lines = content.split("\n");
+  const disclaimerLines: string[] = [];
+  const contentLines: string[] = [];
+  let inDisclaimer = false;
+
+  for (const line of lines) {
+    if (!inDisclaimer && line.startsWith("> ⚠️")) {
+      inDisclaimer = true;
+      disclaimerLines.push(line.replace(/^>\s*/, "").replace(/^⚠️\s*/, ""));
+    } else if (inDisclaimer && line.startsWith(">")) {
+      disclaimerLines.push(line.replace(/^>\s*/, ""));
+    } else {
+      if (inDisclaimer) inDisclaimer = false;
+      contentLines.push(line);
+    }
+  }
+
+  const disclaimer = disclaimerLines.length > 0
+    ? disclaimerLines.join(" ")
+    : undefined;
+
+  const result = await remark()
+    .use(remarkGfm)
+    .use(remarkRehype)
+    .use(rehypeSanitize)
+    .use(rehypeStringify)
+    .process(contentLines.join("\n"));
 
   return {
     ...parseArticleMeta(data),
     content: result.toString(),
+    disclaimer,
   };
 }

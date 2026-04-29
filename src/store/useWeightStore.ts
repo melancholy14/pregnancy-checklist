@@ -19,8 +19,8 @@ export const useWeightStore = create<WeightState>()(
       logs: [],
       addLog: (log) =>
         set((state) => ({
-          logs: [...state.logs, log].sort(
-            (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+          logs: [...state.logs, log].sort((a, b) =>
+            a.date.localeCompare(b.date)
           ),
         })),
       removeLog: (id) =>

@@ -19,6 +19,15 @@
   --pastel-peach: #FFE0CC;
   --pastel-yellow: #FFF4D4;
 
+  /* Semantic accent colors */
+  --accent-purple: #6B5A80;
+  --accent-purple-hover: #4A3D5C;
+  --accent-olive: #8B7520;
+  --accent-green: #2D6B4F;
+  --accent-green-light: #3D7A5F;
+  --accent-red: #B04060;
+  --pastel-pink-hover: #f5cada;
+
   --card: #ffffff;
   --card-foreground: #3D4447;
   --popover: #ffffff;
@@ -132,6 +141,18 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-pastel-pink: var(--pastel-pink);
+  --color-pastel-lavender: var(--pastel-lavender);
+  --color-pastel-mint: var(--pastel-mint);
+  --color-pastel-peach: var(--pastel-peach);
+  --color-pastel-yellow: var(--pastel-yellow);
+  --color-accent-purple: var(--accent-purple);
+  --color-accent-purple-hover: var(--accent-purple-hover);
+  --color-accent-olive: var(--accent-olive);
+  --color-accent-green: var(--accent-green);
+  --color-accent-green-light: var(--accent-green-light);
+  --color-accent-red: var(--accent-red);
+  --color-pastel-pink-hover: var(--pastel-pink-hover);
   --shadow-sm: 0 1px 2px rgba(0,0,0,0.03), 0 1px 3px rgba(0,0,0,0.02);
   --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 8px rgba(0,0,0,0.03);
   --shadow-md: 0 2px 4px rgba(0,0,0,0.03), 0 6px 16px rgba(0,0,0,0.04);

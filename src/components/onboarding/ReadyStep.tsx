@@ -11,17 +11,17 @@ const infoItems = [
   {
     icon: Lock,
     text: "입력한 정보는 이 브라우저에만 저장돼요",
-    color: "#E4D6F0",
+    colorClass: "bg-pastel-lavender",
   },
   {
     icon: CheckCircle,
     text: "회원가입 없이 바로 시작!",
-    color: "#D0EDE2",
+    colorClass: "bg-pastel-mint",
   },
   {
     icon: Save,
     text: "다시 와도 기록이 남아있어요",
-    color: "#FFE0CC",
+    colorClass: "bg-pastel-peach",
   },
 ];
 
@@ -31,13 +31,12 @@ export function ReadyStep({ onComplete }: ReadyStepProps) {
       <h1 className="text-2xl mb-8">준비 완료! 같이 챙겨봐요</h1>
 
       <ul className="space-y-4 mb-10 text-left w-full max-w-xs">
-        {infoItems.map(({ icon: Icon, text, color }) => (
+        {infoItems.map(({ icon: Icon, text, colorClass }) => (
           <li key={text} className="flex items-center gap-3">
             <span
-              className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
-              style={{ backgroundColor: color }}
+              className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${colorClass}`}
             >
-              <Icon size={20} strokeWidth={1.8} className="text-[#3D4447]" />
+              <Icon size={20} strokeWidth={1.8} className="text-foreground" />
             </span>
             <span className="text-sm">{text}</span>
           </li>
@@ -46,7 +45,7 @@ export function ReadyStep({ onComplete }: ReadyStepProps) {
 
       <Button
         onClick={onComplete}
-        className="w-full max-w-xs h-12 rounded-2xl bg-[#FFD4DE] text-[#3D4447] text-base hover:bg-[#FFD4DE]/80"
+        className="w-full max-w-xs h-12 rounded-2xl bg-pastel-pink text-foreground text-base hover:bg-pastel-pink/80"
         aria-label="체크리스트 보러가기"
       >
         체크리스트 보러가기 →

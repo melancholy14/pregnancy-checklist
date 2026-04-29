@@ -195,7 +195,7 @@ export default function TermsPage() {
           이용자의 개인정보 보호에 관한 사항은 별도의{" "}
           <a
             href="/privacy"
-            className="text-[#6B5A80] underline"
+            className="text-accent-purple underline"
           >
             개인정보처리방침
           </a>

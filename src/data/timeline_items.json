@@ -8,6 +8,7 @@
     "priority": "high",
     "linked_checklist_ids": [],
     "linked_article_slugs": ["early-pregnancy-tests"],
+    "linked_video_ids": ["video_031", "video_032"],
     "seo_slug": "week-4"
   },
   {
@@ -19,6 +20,7 @@
     "priority": "medium",
     "linked_checklist_ids": [],
     "linked_article_slugs": [],
+    "linked_video_ids": ["video_033", "video_052"],
     "seo_slug": "week-5"
   },
   {
@@ -29,6 +31,7 @@
     "type": "wellbeing",
     "priority": "high",
     "linked_checklist_ids": ["item_105"],
+    "linked_video_ids": ["video_049", "video_050"],
     "seo_slug": "week-6"
   },
   {
@@ -40,6 +43,7 @@
     "priority": "high",
     "linked_checklist_ids": [],
     "linked_article_slugs": [],
+    "linked_video_ids": ["video_046", "video_048"],
     "seo_slug": "week-7"
   },
   {
@@ -51,6 +55,7 @@
     "priority": "high",
     "linked_checklist_ids": ["item_001", "item_003", "item_011", "item_086"],
     "linked_article_slugs": ["early-pregnancy-tests"],
+    "linked_video_ids": ["video_047"],
     "seo_slug": "week-8"
   },
   {
@@ -62,6 +67,7 @@
     "priority": "medium",
     "linked_checklist_ids": [],
     "linked_article_slugs": [],
+    "linked_video_ids": ["video_042"],
     "seo_slug": "week-9"
   },
   {
@@ -73,6 +79,7 @@
     "priority": "high",
     "linked_checklist_ids": ["item_087", "item_106"],
     "linked_article_slugs": ["early-pregnancy-tests"],
+    "linked_video_ids": ["video_040"],
     "seo_slug": "week-10"
   },
   {
@@ -84,6 +91,7 @@
     "priority": "high",
     "linked_checklist_ids": [],
     "linked_article_slugs": [],
+    "linked_video_ids": ["video_044"],
     "seo_slug": "week-11"
   },
   {
@@ -94,7 +102,8 @@
     "type": "admin",
     "priority": "high",
     "linked_checklist_ids": ["item_070", "item_092", "item_103"],
-    "linked_article_slugs": ["postpartum-care"],
+    "linked_article_slugs": [],
+    "linked_video_ids": ["video_058"],
     "seo_slug": "week-12"
   },
   {
@@ -106,6 +115,7 @@
     "priority": "medium",
     "linked_checklist_ids": [],
     "linked_article_slugs": ["pregnancy-weight-management"],
+    "linked_video_ids": ["video_056"],
     "seo_slug": "week-13"
   },
   {
@@ -116,6 +126,7 @@
     "type": "admin",
     "priority": "high",
     "linked_checklist_ids": ["item_107"],
+    "linked_video_ids": ["video_041", "video_045"],
     "seo_slug": "week-14"
   },
   {
@@ -127,6 +138,7 @@
     "priority": "high",
     "linked_checklist_ids": [],
     "linked_article_slugs": [],
+    "linked_video_ids": ["video_040"],
     "seo_slug": "week-15"
   },
   {
@@ -137,6 +149,7 @@
     "type": "admin",
     "priority": "high",
     "linked_checklist_ids": ["item_088", "item_071", "item_102", "item_093"],
+    "linked_video_ids": ["video_059"],
     "seo_slug": "week-16"
   },
   {
@@ -148,6 +161,7 @@
     "priority": "medium",
     "linked_checklist_ids": [],
     "linked_article_slugs": [],
+    "linked_video_ids": ["video_047"],
     "seo_slug": "week-17"
   },
   {
@@ -158,7 +172,8 @@
     "type": "shopping",
     "priority": "medium",
     "linked_checklist_ids": [],
-    "linked_article_slugs": ["baby-items-cost"],
+    "linked_article_slugs": [],
+    "linked_video_ids": ["video_018"],
     "seo_slug": "week-18"
   },
   {
@@ -170,6 +185,7 @@
     "priority": "high",
     "linked_checklist_ids": [],
     "linked_article_slugs": [],
+    "linked_video_ids": ["video_043"],
     "seo_slug": "week-19"
   },
   {
@@ -180,6 +196,7 @@
     "type": "prep",
     "priority": "high",
     "linked_checklist_ids": ["item_108", "item_002", "item_008"],
+    "linked_video_ids": ["video_043", "video_045"],
     "seo_slug": "week-20"
   },
   {
@@ -191,6 +208,7 @@
     "priority": "medium",
     "linked_checklist_ids": [],
     "linked_article_slugs": [],
+    "linked_video_ids": ["video_001", "video_008", "video_006"],
     "seo_slug": "week-21"
   },
   {
@@ -201,6 +219,7 @@
     "type": "prep",
     "priority": "medium",
     "linked_checklist_ids": ["item_089"],
+    "linked_video_ids": ["video_016"],
     "seo_slug": "week-22"
   },
   {
@@ -212,6 +231,7 @@
     "priority": "medium",
     "linked_checklist_ids": [],
     "linked_article_slugs": [],
+    "linked_video_ids": ["video_037"],
     "seo_slug": "week-23"
   },
   {
@@ -222,6 +242,7 @@
     "type": "prep",
     "priority": "high",
     "linked_checklist_ids": ["item_109", "item_057", "item_090", "item_012"],
+    "linked_video_ids": ["video_037"],
     "seo_slug": "week-24"
   },
   {
@@ -233,6 +254,7 @@
     "priority": "medium",
     "linked_checklist_ids": [],
     "linked_article_slugs": [],
+    "linked_video_ids": ["video_019"],
     "seo_slug": "week-25"
   },
   {
@@ -243,6 +265,7 @@
     "type": "shopping",
     "priority": "high",
     "linked_checklist_ids": ["item_058"],
+    "linked_video_ids": ["video_018"],
     "seo_slug": "week-26"
   },
   {
@@ -254,6 +277,7 @@
     "priority": "medium",
     "linked_checklist_ids": [],
     "linked_article_slugs": [],
+    "linked_video_ids": ["video_046"],
     "seo_slug": "week-27"
   },
   {
@@ -264,7 +288,8 @@
     "type": "prep",
     "priority": "high",
     "linked_checklist_ids": ["item_110", "item_111", "item_068", "item_081"],
-    "linked_article_slugs": ["infant-vaccination-schedule"],
+    "linked_article_slugs": [],
+    "linked_video_ids": ["video_018"],
     "seo_slug": "week-28"
   },
   {
@@ -276,6 +301,7 @@
     "priority": "medium",
     "linked_checklist_ids": [],
     "linked_article_slugs": [],
+    "linked_video_ids": ["video_058", "video_059"],
     "seo_slug": "week-29"
   },
   {
@@ -286,7 +312,8 @@
     "type": "prep",
     "priority": "high",
     "linked_checklist_ids": ["item_046", "item_047", "item_065", "item_004", "item_078", "item_079"],
-    "linked_article_slugs": ["newborn-bath-tips"],
+    "linked_article_slugs": [],
+    "linked_video_ids": ["video_021", "video_027"],
     "seo_slug": "week-30"
   },
   {
@@ -298,6 +325,7 @@
     "priority": "medium",
     "linked_checklist_ids": [],
     "linked_article_slugs": [],
+    "linked_video_ids": ["video_012", "video_013"],
     "seo_slug": "week-31"
   },
   {
@@ -308,7 +336,8 @@
     "type": "prep",
     "priority": "high",
     "linked_checklist_ids": ["item_021", "item_024", "item_026", "item_035", "item_043", "item_044", "item_052", "item_053", "item_054", "item_066", "item_075", "item_083", "item_091"],
-    "linked_article_slugs": ["hospital-bag"],
+    "linked_article_slugs": [],
+    "linked_video_ids": ["video_018"],
     "seo_slug": "week-32"
   },
   {
@@ -320,6 +349,7 @@
     "priority": "medium",
     "linked_checklist_ids": [],
     "linked_article_slugs": [],
+    "linked_video_ids": ["video_026", "video_025"],
     "seo_slug": "week-33"
   },
   {
@@ -330,6 +360,7 @@
     "type": "education",
     "priority": "high",
     "linked_checklist_ids": ["item_114", "item_009", "item_010", "item_007", "item_049", "item_050", "item_063", "item_099", "item_094", "item_095", "item_096", "item_101", "item_113", "item_082", "item_084", "item_085"],
+    "linked_video_ids": ["video_014", "video_020"],
     "seo_slug": "week-34"
   },
   {
@@ -340,6 +371,7 @@
     "type": "prep",
     "priority": "high",
     "linked_checklist_ids": ["item_059", "item_041", "item_042", "item_033", "item_034", "item_030", "item_018"],
+    "linked_video_ids": ["video_018"],
     "seo_slug": "week-35"
   },
   {
@@ -350,7 +382,8 @@
     "type": "prep",
     "priority": "high",
     "linked_checklist_ids": ["item_112", "item_020", "item_019", "item_017", "item_097", "item_098", "item_100", "item_055", "item_080"],
-    "linked_article_slugs": ["hospital-bag"],
+    "linked_article_slugs": [],
+    "linked_video_ids": ["video_007"],
     "seo_slug": "week-36"
   },
   {
@@ -361,7 +394,8 @@
     "type": "prep",
     "priority": "high",
     "linked_checklist_ids": ["item_072", "item_074", "item_076", "item_077"],
-    "linked_article_slugs": ["postpartum-diet"],
+    "linked_article_slugs": [],
+    "linked_video_ids": ["video_022", "video_023"],
     "seo_slug": "week-37"
   },
   {
@@ -372,6 +406,7 @@
     "type": "prep",
     "priority": "high",
     "linked_checklist_ids": [],
+    "linked_video_ids": ["video_002", "video_005"],
     "seo_slug": "week-38"
   },
   {
@@ -382,6 +417,7 @@
     "type": "wellbeing",
     "priority": "medium",
     "linked_checklist_ids": [],
+    "linked_video_ids": ["video_020"],
     "seo_slug": "week-39"
   },
   {
@@ -392,6 +428,7 @@
     "type": "prep",
     "priority": "high",
     "linked_checklist_ids": [],
+    "linked_video_ids": ["video_021", "video_025"],
     "seo_slug": "week-40"
   }
 ]

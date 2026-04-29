@@ -10,7 +10,7 @@ test.describe("SEO 메타데이터 & OG 태그", () => {
       { path: "/videos", title: "임산부 추천 영상 모음" },
       { path: "/about", title: "만든 사람" },
       { path: "/guides/hospital-bag", title: "출산 가방 필수 준비물 총정리" },
-      { path: "/guides/weekly-prep", title: "임신 주차별 검사 & 준비 가이드" },
+      { path: "/guides/weekly-prep", title: "임신 주차별 검사 & 준비 총정리" },
     ];
 
     for (const { path, title } of pages) {
@@ -55,7 +55,7 @@ test.describe("SEO 메타데이터 & OG 태그", () => {
       { path: "/timeline", canonical: "https://pregnancy-checklist.com/timeline" },
       { path: "/baby-fair", canonical: "https://pregnancy-checklist.com/baby-fair" },
       { path: "/articles/hospital-bag", canonical: "https://pregnancy-checklist.com/articles/hospital-bag" },
-      { path: "/articles/weekly-prep", canonical: "https://pregnancy-checklist.com/articles/weekly-prep" },
+      { path: "/articles/weekly-prenatal-checklist", canonical: "https://pregnancy-checklist.com/articles/weekly-prenatal-checklist" },
     ];
 
     for (const { path, canonical } of pages) {
