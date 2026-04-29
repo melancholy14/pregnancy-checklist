@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "slug": "partner-prep",
+    "title": "남편/파트너 준비 체크리스트",
+    "description": "출산 전후로 남편/파트너가 준비해야 할 일을 정리했어요. 함께 준비하면 산모의 회복도, 신생아 케어도 훨씬 수월해집니다.",
+    "icon": "👨‍👩‍👧",
+    "subcategories": [
+      { "key": "partner_before", "label": "출산 전" },
+      { "key": "partner_day", "label": "출산 당일" },
+      { "key": "partner_after", "label": "산후" }
+    ],
+    "linked_timeline_weeks": [28, 32, 36, 40],
+    "linked_article_slugs": ["husband-postpartum-checklist"],
+    "linked_video_ids": []
+  },
+  "items": [
+    { "id": "pp_before_01", "title": "출산 휴가 / 배우자 출산휴가 신청", "category": "partner_before", "categoryName": "출산 전", "recommendedWeek": 0, "priority": "high", "note": "회사 인사팀에 미리 신청 — 최대 10일 유급" },
+    { "id": "pp_before_02", "title": "병원까지 이동 경로 / 주차 / 야간 입구 확인", "category": "partner_before", "categoryName": "출산 전", "recommendedWeek": 0, "priority": "high" },
+    { "id": "pp_before_03", "title": "분만 진행 시 비상 연락망 정리 (양가, 친구)", "category": "partner_before", "categoryName": "출산 전", "recommendedWeek": 0, "priority": "high" },
+    { "id": "pp_before_04", "title": "산후도우미 / 산후조리원 예약", "category": "partner_before", "categoryName": "출산 전", "recommendedWeek": 0, "priority": "high" },
+    { "id": "pp_before_05", "title": "집 대청소 + 살균/소독 (신생아 환경 준비)", "category": "partner_before", "categoryName": "출산 전", "recommendedWeek": 0, "priority": "medium" },
+    { "id": "pp_before_06", "title": "신생아 옷/이불 물세탁 + 햇볕에 말리기", "category": "partner_before", "categoryName": "출산 전", "recommendedWeek": 0, "priority": "medium" },
+    { "id": "pp_before_07", "title": "출산 가방 차량 적재 위치 미리 정하기", "category": "partner_before", "categoryName": "출산 전", "recommendedWeek": 0, "priority": "medium" },
+    { "id": "pp_before_08", "title": "냉동 반찬 / 즉석식품 비축 (산후 첫 1~2주)", "category": "partner_before", "categoryName": "출산 전", "recommendedWeek": 0, "priority": "medium" },
+    { "id": "pp_before_09", "title": "카시트 차량 장착 + 작동 연습", "category": "partner_before", "categoryName": "출산 전", "recommendedWeek": 0, "priority": "high" },
+    { "id": "pp_day_01", "title": "입원 가방 차량에 싣기", "category": "partner_day", "categoryName": "출산 당일", "recommendedWeek": 0, "priority": "high" },
+    { "id": "pp_day_02", "title": "진통 간격 기록 (앱 또는 메모)", "category": "partner_day", "categoryName": "출산 당일", "recommendedWeek": 0, "priority": "high", "note": "5-1-1 규칙: 5분 간격, 1분 지속, 1시간 이상" },
+    { "id": "pp_day_03", "title": "병원 이동 / 응급실 접수", "category": "partner_day", "categoryName": "출산 당일", "recommendedWeek": 0, "priority": "high" },
+    { "id": "pp_day_04", "title": "산모 호흡 / 마사지 보조", "category": "partner_day", "categoryName": "출산 당일", "recommendedWeek": 0, "priority": "medium" },
+    { "id": "pp_day_05", "title": "양가 가족 / 지인 출산 알림", "category": "partner_day", "categoryName": "출산 당일", "recommendedWeek": 0, "priority": "medium" },
+    { "id": "pp_day_06", "title": "산모 음식 / 수분 챙기기 (분만 후)", "category": "partner_day", "categoryName": "출산 당일", "recommendedWeek": 0, "priority": "medium" },
+    { "id": "pp_day_07", "title": "신생아 첫 사진 / 영상 촬영", "category": "partner_day", "categoryName": "출산 당일", "recommendedWeek": 0, "priority": "low" },
+    { "id": "pp_after_01", "title": "출생신고 (출생일 포함 1개월 이내)", "category": "partner_after", "categoryName": "산후", "recommendedWeek": 0, "priority": "high", "note": "주민센터 또는 정부24" },
+    { "id": "pp_after_02", "title": "건강보험 피부양자 등록 (자녀)", "category": "partner_after", "categoryName": "산후", "recommendedWeek": 0, "priority": "high" },
+    { "id": "pp_after_03", "title": "첫만남이용권 / 부모급여 신청", "category": "partner_after", "categoryName": "산후", "recommendedWeek": 0, "priority": "high", "note": "정부24 또는 복지로" },
+    { "id": "pp_after_04", "title": "산후조리 식단 준비 (미역국, 단백질)", "category": "partner_after", "categoryName": "산후", "recommendedWeek": 0, "priority": "medium" },
+    { "id": "pp_after_05", "title": "야간 수유 교대 / 트림 보조", "category": "partner_after", "categoryName": "산후", "recommendedWeek": 0, "priority": "high" },
+    { "id": "pp_after_06", "title": "산모 정서 케어 (산후우울 신호 살피기)", "category": "partner_after", "categoryName": "산후", "recommendedWeek": 0, "priority": "high" },
+    { "id": "pp_after_07", "title": "신생아 목욕 보조 (배꼽 떨어진 후)", "category": "partner_after", "categoryName": "산후", "recommendedWeek": 0, "priority": "medium" },
+    { "id": "pp_after_08", "title": "신생아 예방접종 일정 관리", "category": "partner_after", "categoryName": "산후", "recommendedWeek": 0, "priority": "medium" },
+    { "id": "pp_after_09", "title": "육아휴직 / 단축근무 신청 검토", "category": "partner_after", "categoryName": "산후", "recommendedWeek": 0, "priority": "medium" }
+  ]
+}
