@@ -40,7 +40,7 @@ export function buildSearchIndex(
     type: "video",
     title: v.title,
     description: v.description ?? "",
-    url: `/videos#${v.id}`,
+    url: `/info?tab=videos#${v.id}`,
     categoryName: v.categoryName,
   }));
 

@@ -76,7 +76,7 @@ export function ChecklistRelatedContent({
               {linkedVideos.map((video) => (
                 <a
                   key={video.id}
-                  href={`/videos#${video.id}`}
+                  href={`/info?tab=videos#${video.id}`}
                   className="block text-sm text-accent-purple hover:bg-pastel-lavender/10 rounded-lg px-2 py-1.5 -mx-2 transition-colors no-underline"
                 >
                   {video.title} →

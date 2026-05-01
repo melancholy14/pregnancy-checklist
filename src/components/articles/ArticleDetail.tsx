@@ -16,7 +16,7 @@ export function ArticleDetail({ article }: ArticleDetailProps) {
     <div className="min-h-screen pb-24 px-4">
       <article className="pt-8">
         <Link
-          href="/articles"
+          href="/info"
           className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6 no-underline"
         >
           <ArrowLeft size={16} />

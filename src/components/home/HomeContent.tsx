@@ -351,7 +351,7 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
         <DashboardCard
           icon="🎬"
           title="영상"
-          href="/videos"
+          href="/info?tab=videos"
           color="#FFF4D4"
           cta="보러가기"
         >
@@ -366,7 +366,7 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
         <DashboardCard
           icon="📝"
           title="정보 & 가이드"
-          href="/articles"
+          href="/info"
           color="#E0F0FF"
           cta="읽으러 가기"
         >
