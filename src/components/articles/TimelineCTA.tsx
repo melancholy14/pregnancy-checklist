@@ -1,12 +1,13 @@
 "use client";
 
-import Link from "next/link";
 import { Calendar } from "lucide-react";
 
 interface TimelineCTAProps {
   weeks: number[];
 }
 
+// Next.js 16.2 App Router 버그: 같은 경로를 재방문할 때 이전 hash가 누적되므로
+// cross-page hash 링크는 <a>로 강제 풀 내비게이션.
 export function TimelineCTA({ weeks }: TimelineCTAProps) {
   if (weeks.length === 0) return null;
 
@@ -24,12 +25,12 @@ export function TimelineCTA({ weeks }: TimelineCTAProps) {
           <p className="text-xs text-muted-foreground mb-3">
             이 내용은 {weeksText} 할일에 있어요
           </p>
-          <Link
+          <a
             href={`/timeline#timeline-week-${firstWeek}`}
             className="inline-flex items-center gap-1 text-sm text-accent-purple hover:text-accent-purple-hover font-medium no-underline"
           >
             타임라인 보기 →
-          </Link>
+          </a>
         </div>
       </div>
     </div>

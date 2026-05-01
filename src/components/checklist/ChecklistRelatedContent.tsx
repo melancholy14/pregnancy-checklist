@@ -4,6 +4,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import type { ArticleMeta } from "@/types/article";
 import type { VideoItem } from "@/types/video";
 
+// Next.js 16.2 App Router 버그: 같은 경로(/timeline 등)를 재방문할 때 이전 hash가 누적되어
+// /timeline#a#b 형태로 URL이 깨진다. cross-page hash 링크는 <a>로 강제 풀 내비게이션.
+
 interface ChecklistRelatedContentProps {
   linkedArticles: ArticleMeta[];
   linkedTimelineWeeks: number[];
@@ -51,13 +54,13 @@ export function ChecklistRelatedContent({
             </div>
             <div className="space-y-1">
               {linkedTimelineWeeks.map((week) => (
-                <Link
+                <a
                   key={week}
-                  href={`/timeline#week-${week}`}
+                  href={`/timeline#timeline-week-${week}`}
                   className="block text-sm text-accent-purple hover:bg-pastel-lavender/10 rounded-lg px-2 py-1.5 -mx-2 transition-colors no-underline"
                 >
                   {week}주차 보기 →
-                </Link>
+                </a>
               ))}
             </div>
           </div>
@@ -71,13 +74,13 @@ export function ChecklistRelatedContent({
             </div>
             <div className="space-y-1">
               {linkedVideos.map((video) => (
-                <Link
+                <a
                   key={video.id}
                   href={`/videos#${video.id}`}
                   className="block text-sm text-accent-purple hover:bg-pastel-lavender/10 rounded-lg px-2 py-1.5 -mx-2 transition-colors no-underline"
                 >
                   {video.title} →
-                </Link>
+                </a>
               ))}
             </div>
           </div>

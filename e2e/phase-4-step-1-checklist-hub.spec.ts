@@ -116,6 +116,49 @@ test.describe("체크리스트 허브 + 신규 3종 (Phase 4 Step 1)", () => {
       await expect(page.getByText(/32주차 보기/)).toBeVisible();
     });
 
+    test("관련 타임라인 링크가 실제 주차 카드로 스크롤 이동한다 (bug fix #1)", async ({ page }) => {
+      // 무엇을: /timeline#timeline-week-32 hash가 해당 주차 요소로 정확히 스크롤
+      // 왜: 이전에 /timeline#week-32(잘못된 id)로 만들어서 hash가 동작하지 않던 버그 회귀 방지
+      await page.goto("/checklist/hospital-bag");
+      const link = page.getByRole("link", { name: /32주차 보기/ });
+      await expect(link).toHaveAttribute("href", "/timeline#timeline-week-32");
+      await link.click();
+      await page.waitForURL(/\/timeline#timeline-week-32$/);
+      // 타임라인 32주차 카드가 실제로 뷰포트 안에 보여야 함
+      await expect(page.locator("#timeline-week-32")).toBeInViewport();
+    });
+
+    test("아티클 → 타임라인 이동 시 URL에 hash가 정확히 1개만 붙는다 (bug fix #2)", async ({ page }) => {
+      // 무엇을: 체크리스트 → 타임라인(hash) → 정보 → 아티클 → 타임라인 CTA 까지 모두 클릭으로만 진행해도
+      //          마지막 URL의 hash가 1개여야 함
+      // 왜: Next.js 16.2 App Router가 같은 경로를 재방문할 때 이전 hash를 누적시키는 버그
+      //     (`/timeline#timeline-week-32#timeline-week-4` 형태)에 대한 회귀 방지.
+      //     수정: cross-page hash 링크는 <a>로 풀 내비게이션 시켜 우회.
+      await page.goto("/checklist/hospital-bag");
+      await page.getByRole("link", { name: /32주차 보기/ }).click();
+      await page.waitForURL(/\/timeline#timeline-week-32$/);
+
+      await page.locator("nav").last().getByText("정보").click();
+      await page.waitForURL(/\/articles$/);
+
+      // 정보 리스트에서 임신 초기 검사 글로 클릭만으로 이동 (page.goto 사용 금지 — 버그 재현 조건)
+      await page
+        .getByRole("link")
+        .filter({ hasText: /임신 초기 필수 검사/ })
+        .first()
+        .click();
+      await page.waitForURL(/\/articles\/early-pregnancy-tests/);
+
+      const tlLink = page.getByRole("link", { name: /타임라인 보기/ });
+      await expect(tlLink).toHaveAttribute("href", /^\/timeline#timeline-week-\d+$/);
+      await tlLink.click();
+      await page.waitForURL(/\/timeline#timeline-week-\d+$/);
+
+      const url = page.url();
+      const hashCount = (url.match(/#/g) || []).length;
+      expect(hashCount).toBe(1);
+    });
+
     test("BottomNav '체크리스트' 탭이 /checklist 하위 경로에서 활성화된다", async ({ page }) => {
       // 무엇을: prefix 매칭으로 하위 페이지에서도 탭 활성
       // 왜: AC #10 — 네비게이션 일관성
