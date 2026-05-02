@@ -10,7 +10,9 @@
     "deploy": "NEXT_PUBLIC_GA_MEASUREMENT_ID=G-HT96X27T4K NEXT_PUBLIC_FEEDBACK_FORM_URL=https://forms.gle/iZrqyAd2LtTm7Gtm7 NEXT_PUBLIC_ADSENSE_CLIENT_ID=ca-pub-6022771079735605 next build && touch out/.nojekyll && echo 'pregnancy-checklist.com' > out/CNAME && gh-pages -d out --dotfiles",
     "lighthouse-check": "bash scripts/lighthouse-check.sh",
     "fetch-channel-thumbs": "npx tsx scripts/fetch-channel-thumbs.ts",
-    "fetch-channel-thumbs:force": "npx tsx scripts/fetch-channel-thumbs.ts --force"
+    "fetch-channel-thumbs:force": "npx tsx scripts/fetch-channel-thumbs.ts --force",
+    "fetch-video-metadata": "npx tsx scripts/fetch-video-metadata.ts",
+    "fetch-video-metadata:update": "npx tsx scripts/fetch-video-metadata.ts --update"
   },
   "dependencies": {
     "@next/third-parties": "^16.2.2",

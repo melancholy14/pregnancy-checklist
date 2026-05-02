@@ -77,7 +77,10 @@ export function InfoContainer({
     const filtered = selectedTag
       ? videos.filter((v) => videoMatchesUnifiedTag(v.category, selectedTag))
       : videos;
-    return filtered.map((v) => ({
+    const sorted = [...filtered].sort((a, b) =>
+      b.upload_date.localeCompare(a.upload_date),
+    );
+    return sorted.map((v) => ({
       type: "video",
       data: v,
       channelName: channelNameById[v.channel_id],
@@ -87,7 +90,12 @@ export function InfoContainer({
   const visibleItems = useMemo<InfoItem[]>(() => {
     if (activeTab === "articles") return articleItems;
     if (activeTab === "videos") return videoItems;
-    return [...articleItems, ...videoItems];
+    // "전체" 탭: 블로그 date(YYYY-MM-DD)와 영상 upload_date를 사전식 비교로 통합 최신순 정렬
+    return [...articleItems, ...videoItems].sort((a, b) => {
+      const ad = a.type === "article" ? a.data.date : a.data.upload_date;
+      const bd = b.type === "article" ? b.data.date : b.data.upload_date;
+      return bd.localeCompare(ad);
+    });
   }, [activeTab, articleItems, videoItems]);
 
   useEffect(() => {

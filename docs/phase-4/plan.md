@@ -22,6 +22,7 @@
 - 영상 채널 보기 모드·sub-category 필터는 `/info`에서 의도적으로 제외 (Phase 5 채널 디렉토리로 부활)
 - 통합 태그 13종(동의어 흡수 매핑 포함) 도입. 옵션 B(2단계 계층)·옵션 D(큐레이션 컬렉션)·front matter 일괄 마이그레이션은 Phase 5 이월
 - 내부 링크 5곳 + sitemap.xml + 검색 인덱스를 `/info` 경로로 일괄 갱신해 리다이렉트 깜빡임 제거
+- `videos.json` `upload_date` 백필(57건) + `VideoItem` 타입 확장으로 블로그·영상 단일 시간축 최신순 정렬 적용 — Phase 5 이월 예정이었던 항목 조기 해소
 - `/info` 페이지의 헤더·`PageDescription`을 Suspense 밖으로 이동 — JS 비활성 환경(SEO 봇)에서도 노출
 - 기존 e2e 11개 스펙 마이그레이션(URL/탭 갱신) + 폐기된 기능 테스트 2개 파일 삭제 (`videos.spec.ts`, `video-channel-links.spec.ts`)
 - `scripts/lighthouse-check.sh` PAGES 배열을 현재 라우트로 교체
@@ -583,12 +584,12 @@ type UnifiedTag = {
 
 "전체" 탭에서 블로그와 영상을 혼합 정렬할 기준:
 
-1. **블로그**: front matter `date` 기준 최신순
-2. **영상**: `videos.json` 등장 순서(파일 인덱스) 기준 — 영상에는 등록일 필드가 없음
-3. **혼합**: 블로그 그룹 → 영상 그룹 순서로 이어붙이고, 그룹 내부는 위 기준으로 정렬
+1. **블로그**: front matter `date`(YYYY-MM-DD) 기준 최신순
+2. **영상**: `videos.json`의 `upload_date`(YYYY-MM-DD) 기준 최신순
+3. **혼합**: 두 매체를 같은 날짜 키로 비교해 단일 최신순으로 정렬 (사전식 비교로 충분)
 4. **태그/탭 필터 적용 시**: 매칭된 항목만 동일 규칙으로 노출
 
-> 엄격한 시간 기준 혼합 정렬은 영상 데이터에 `registered_date` 필드 백필 후 가능 → Phase 5 이월.
+> 운영자가 2026-05-02에 영상 57개 전부에 `upload_date`(+`is_short`)를 백필하여 시간축 통합 정렬을 Phase 4에서 즉시 적용 (Phase 5 이월 예정이었던 항목 조기 해소).
 
 ### 2-3. 장단점 분석
 
@@ -608,7 +609,7 @@ type UnifiedTag = {
 |------|------|------|
 | 기존 URL 보호 | `/articles/*` 이미 인덱싱됨 | URL 변경 없이 진입점만 `/info`로. `/articles`→`/info` 리다이렉트 (정적 export에서는 `redirect()` from `next/navigation` 사용) |
 | `/videos` URL | `/videos` 페이지 사라짐 | `/videos`→`/info?tab=videos` 리다이렉트. 정적 export에서 쿼리 보존이 안 되면 클라이언트 리다이렉트로 폴백 |
-| 혼합 정렬 품질 | 블로그·영상의 날짜 기준이 다름 (영상에 등록일 없음) | Phase 4에서는 "블로그 그룹 → 영상 그룹" 순서. 엄격 최신순은 Phase 5(영상 `registered_date` 백필)로 이월 |
+| 혼합 정렬 품질 | 블로그·영상의 날짜 기준이 다름 | 2026-05-02 운영자 백필로 영상에 `upload_date` 추가됨 → 단일 시간축 최신순 정렬을 Phase 4에서 즉시 적용 |
 | UI 복잡도 | 두 종류 카드를 한 리스트에 혼합 | 카드 타입별 시각적 구분 (📰/🎬 아이콘 + 카드 디자인 미세 차이). 기존 `ArticleCard`/`VideoCard` 재사용 |
 | 채널 진입점 손실 | `/videos`의 채널 보기 토글 폐기 | Phase 5에서 채널 디렉토리(`/info/channels` 또는 `/channels`) 별도 페이지로 부활 |
 | 영상 sub-category 손실 | `VideosContainer`의 sub-category 필터가 `/info`에서 빠짐 | 통합 태그 필터로 단순화. 세부 토픽은 검색(`fuse.js`)으로 도달 |
@@ -1070,11 +1071,12 @@ npx tsx scripts/generate-crosslinks.ts --report
 - **선행 조건**: 통합 태그 정의 안착, 태그 변경이 SEO·검색에 미치는 영향 모니터링
 - **Phase 5 계획**: 모든 블로그 front matter `tags`를 통합 태그 키로 일괄 정규화. 일괄 마이그레이션 스크립트 + 본문 태그 사용 흔적(`#태그` 등) 동시 정리. 마이그레이션 후 `unified-tags.ts`의 동의어 매핑은 안전망으로 유지
 
-### 영상 데이터 `registered_date` 백필
+### ~~영상 데이터 `registered_date` 백필~~ ✅ Phase 4에서 조기 해소 (2026-05-02)
 
-- **이동 이유**: Phase 4 Step 2에서는 영상에 등록일 필드가 없어 "블로그 그룹 → 영상 그룹" 순서로 노출. 엄격한 시간 혼합 정렬은 데이터 백필 후 가능
-- **선행 조건**: 채널 API 또는 운영자 수기 데이터로 등록일 확보
-- **Phase 5 계획**: `videos.json`에 `registered_date` 필드 추가, `VideoItem` 타입 갱신, `/info` 정렬 로직을 단일 시간축 최신순으로 통합
+- 운영자가 `videos.json` 57개 영상 전부에 `upload_date`(+`is_short`) 필드 직접 백필
+- `VideoItem` 타입에 `upload_date: string`, `is_short?: boolean` 추가
+- `/info` 전체 탭 정렬 로직을 블로그 `date` ↔ 영상 `upload_date` 단일 시간축 최신순으로 통합
+- 결과: Phase 5로 이월 예정이었던 정렬 정합성 항목이 Phase 4 안에서 종료됨
 
 ### 영상 sub-category 진입점 (필요 시)
 
