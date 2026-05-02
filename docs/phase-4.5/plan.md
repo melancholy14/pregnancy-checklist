@@ -102,11 +102,12 @@ GA4 인프라(consent 게이팅 + 수동 page_view + `sendGAEvent` 헬퍼)는 �
 
 | 이벤트 | 파라미터 | 인사이트 |
 |---|---|---|
-| `article_view` | `slug`, `topic`, `format`(article/video/guide), `week_relevance` | 어떤 토픽이 잘 읽히나 |
+| `article_view` | `slug`, `topic`, `format`(article/guide), `week_relevance` | 어떤 토픽이 잘 읽히나 |
 | `article_read_complete` | `slug`, `read_time_sec` | scroll 75%↑ + dwell 60s↑ — **진짜 읽힌 글** (GA4 기본 scroll 단독으로는 부족) |
 | `related_article_click` | `from_slug`, `to_slug`, `position` | 최근 만든 추천 기능([commit 0c25e04](../../scripts/generate-crosslinks.ts)) 효과 측정 |
 | `share_click` | `slug`, `method`(share/copy) | Web Share([commit ba15a41](../../src/components/share/ShareButton.tsx)) 전환율 |
-| `video_progress` | `slug`, `percent`(25/50/75/100) | 영상 완시청률 |
+
+> 📌 영상은 자체 임베드가 아니라 [VideoCard.tsx](../../src/components/videos/VideoCard.tsx)에서 youtube.com으로 외부 이동. 시청 진행률(`video_progress`)은 우리 도메인에서 측정 불가 → §E `external_link_click`에 `video_id`·`channel_id` 파라미터로 흡수해 한 곳에서 본다. YouTube Studio 분석은 별도.
 
 #### D. 개인화 트래커 — 체중 · 타임라인
 
@@ -156,7 +157,7 @@ GA4 인프라(consent 게이팅 + 수동 page_view + `sendGAEvent` 헬퍼)는 �
 |---|---|---|---|
 | **G** | User properties 3종(`due_date_set`, `current_pregnancy_week`, `cohort_join_week`) + `pregnancy_week_set` 이벤트 (북극성 측정 기반) | S | 큼 |
 | **H** | 핵심 4개 이벤트 — `checklist_item_toggle`, `article_read_complete`, `weight_log`, `search_submit` (1단계, B·C·D·E 핵심) | M | 큼 |
-| **I** | 콘텐츠 보조 이벤트 — `related_article_click`, `share_click`, `video_progress`, `cta_click` | S | 중 |
+| **I** | 콘텐츠 보조 이벤트 — `related_article_click`, `share_click`, `cta_click` | S | 중 |
 | **J** | Signals 그룹 — `scroll_without_action`, `external_link_click`, `empty_state_view`, `feature_request_signal` | M | 중 |
 | **L** | 자동 주간 리포트 스크립트 — GA4 Data API + Claude API + Obsidian vault MD 출력 (§1.9) | M | 큼 |
 | **M** | launchd 등록 + 1차 수동 실행 검증 + 2주 안정화 (§1.9) | S | 중 |
