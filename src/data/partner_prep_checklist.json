@@ -9,7 +9,7 @@
       { "key": "partner_day", "label": "출산 당일" },
       { "key": "partner_after", "label": "산후" }
     ],
-    "linked_timeline_weeks": [28, 32, 36, 40],
+    "linked_timeline_weeks": [12, 16, 29, 32, 36, 40],
     "linked_article_slugs": ["husband-postpartum-checklist"],
     "linked_video_ids": []
   },
@@ -17,7 +17,7 @@
     { "id": "pp_before_01", "title": "출산 휴가 / 배우자 출산휴가 신청", "category": "partner_before", "categoryName": "출산 전", "recommendedWeek": 0, "priority": "high", "note": "회사 인사팀에 미리 신청 — 최대 10일 유급" },
     { "id": "pp_before_02", "title": "병원까지 이동 경로 / 주차 / 야간 입구 확인", "category": "partner_before", "categoryName": "출산 전", "recommendedWeek": 0, "priority": "high" },
     { "id": "pp_before_03", "title": "분만 진행 시 비상 연락망 정리 (양가, 친구)", "category": "partner_before", "categoryName": "출산 전", "recommendedWeek": 0, "priority": "high" },
-    { "id": "pp_before_04", "title": "산후도우미 / 산후조리원 예약", "category": "partner_before", "categoryName": "출산 전", "recommendedWeek": 0, "priority": "high" },
+    { "id": "pp_before_04", "title": "산후도우미 / 산후조리원 예약", "category": "partner_before", "categoryName": "출산 전", "recommendedWeek": 0, "priority": "high", "note": "조기 예약 필요. 출산 40일 전 바우처 신청 필수" },
     { "id": "pp_before_05", "title": "집 대청소 + 살균/소독 (신생아 환경 준비)", "category": "partner_before", "categoryName": "출산 전", "recommendedWeek": 0, "priority": "medium" },
     { "id": "pp_before_06", "title": "신생아 옷/이불 물세탁 + 햇볕에 말리기", "category": "partner_before", "categoryName": "출산 전", "recommendedWeek": 0, "priority": "medium" },
     { "id": "pp_before_07", "title": "출산 가방 차량 적재 위치 미리 정하기", "category": "partner_before", "categoryName": "출산 전", "recommendedWeek": 0, "priority": "medium" },

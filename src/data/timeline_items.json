@@ -2,13 +2,14 @@
   {
     "id": "week_04_confirm_pregnancy",
     "week": 4,
-    "title": "임신 확인 후 기본 일정 잡기",
-    "description": "산부인과 첫 진료를 예약하고, 임신 확인서를 받는다.",
+    "title": "임신 확인과 엽산 복용 시작",
+    "description": "산부인과 첫 진료를 예약하고 임신 확인서를 받는다. 신경관 결손 예방을 위해 엽산은 임신 인지 즉시 복용을 시작한다 (이상적으로는 임신 3개월 전부터).",
     "type": "admin",
     "priority": "high",
-    "linked_checklist_ids": [],
+    "linked_checklist_ids": ["item_105"],
+    "linked_checklist_slugs": ["pregnancy-prep"],
     "linked_article_slugs": ["early-pregnancy-tests"],
-    "linked_video_ids": ["video_031", "video_032"],
+    "linked_video_ids": ["video_031", "video_032", "video_049", "video_050"],
     "seo_slug": "week-4"
   },
   {
@@ -22,17 +23,6 @@
     "linked_article_slugs": [],
     "linked_video_ids": ["video_033", "video_052"],
     "seo_slug": "week-5"
-  },
-  {
-    "id": "week_06_supplements",
-    "week": 6,
-    "title": "엽산·영양제 복용 확인",
-    "description": "엽산은 임신 초기부터 필수다. 철분, 비타민D 등 필요 영양제를 의사와 상담한다.",
-    "type": "wellbeing",
-    "priority": "high",
-    "linked_checklist_ids": ["item_105"],
-    "linked_video_ids": ["video_049", "video_050"],
-    "seo_slug": "week-6"
   },
   {
     "id": "week_07_first_ultrasound",
@@ -332,10 +322,11 @@
     "id": "week_32_hospital_bag_start",
     "week": 32,
     "title": "입원 가방 준비 시작 및 신생아 용품 마무리",
-    "description": "산모용·아기용·보호자용으로 나눠 입원 가방을 정리한다. 아래 체크리스트에서 하나씩 확인하세요.",
+    "description": "산모용·아기용·보호자용으로 나눠 입원 가방을 정리한다. 가방 세부 품목은 출산가방 체크리스트에서 확인하세요.",
     "type": "prep",
     "priority": "high",
-    "linked_checklist_ids": ["item_021", "item_024", "item_026", "item_035", "item_043", "item_044", "item_052", "item_053", "item_054", "item_066", "item_075", "item_083", "item_091"],
+    "linked_checklist_ids": ["item_043", "item_044", "item_052", "item_053", "item_054", "item_066", "item_075", "item_083", "item_091"],
+    "linked_checklist_slugs": ["hospital-bag"],
     "linked_article_slugs": [],
     "linked_video_ids": ["video_018"],
     "seo_slug": "week-32"
@@ -367,10 +358,11 @@
     "id": "week_35_carseat_install",
     "week": 35,
     "title": "카시트 설치 및 퇴원 준비물 완료",
-    "description": "카시트를 차량에 설치하고, 퇴원복(산모+아기)과 신분증, 보험카드 등을 입원 가방에 넣는다.",
+    "description": "카시트를 차량에 설치하고 입원 시 필요 서류를 정리한다. 퇴원복·세면도구 등 가방 세부 품목은 출산가방 체크리스트에서 확인하세요.",
     "type": "prep",
     "priority": "high",
-    "linked_checklist_ids": ["item_059", "item_041", "item_042", "item_033", "item_034", "item_030", "item_018"],
+    "linked_checklist_ids": ["item_059", "item_018"],
+    "linked_checklist_slugs": ["hospital-bag"],
     "linked_video_ids": ["video_018"],
     "seo_slug": "week-35"
   },
@@ -382,6 +374,7 @@
     "type": "prep",
     "priority": "high",
     "linked_checklist_ids": ["item_112", "item_020", "item_019", "item_017", "item_097", "item_098", "item_100", "item_055", "item_080"],
+    "linked_checklist_slugs": ["hospital-bag"],
     "linked_article_slugs": [],
     "linked_video_ids": ["video_007"],
     "seo_slug": "week-36"

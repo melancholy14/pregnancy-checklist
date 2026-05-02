@@ -3,7 +3,28 @@
 > Phase 3 기록: [../phase-3/plan.md](../phase-3/plan.md)
 > Date: 2026-04-27
 > 목표 완료: 2026-05-18
-> Status: 📋 기획
+> Status: 🚧 진행 중 (Step 1·2 완료, Step 3·4·5 대기)
+> Last Updated: 2026-05-02
+
+## 진행 현황
+
+| Step | 상태 | 산출물 |
+| ---- | ---- | -------- |
+| Step 1. 체크리스트 허브 확장 | ✅ 완료 (2026-05-01) | [../implementation/phase-4-step-1-checklist-hub-impl.md](../implementation/phase-4-step-1-checklist-hub-impl.md), [../review/phase-4-step-1-checklist-hub-review.md](../review/phase-4-step-1-checklist-hub-review.md), [e2e/phase-4-step-1-checklist-hub.spec.ts](../../e2e/phase-4-step-1-checklist-hub.spec.ts) |
+| Step 2. 정보 탭 통합 | ✅ 완료 (2026-05-02) | [../info-tab-integration/README.md](../info-tab-integration/README.md), [../plan/info-tab-integration-plan.md](../plan/info-tab-integration-plan.md), [e2e/info-tab-integration.spec.ts](../../e2e/info-tab-integration.spec.ts) |
+| Step 3. 관련 콘텐츠 추천 | ⏳ 대기 | — |
+| Step 4. 공유 기능 | ⏳ 대기 | — |
+| Step 5. 크로스링크 스크립트 | ⏳ 대기 | — |
+
+### Step 2 완료 시 함께 정리된 사항
+
+- BottomNav 5탭 → 4탭으로 축소(`홈/체크리스트/베이비페어/정보`). 5탭 확장(체중·더보기)은 Phase 5 이월
+- 영상 채널 보기 모드·sub-category 필터는 `/info`에서 의도적으로 제외 (Phase 5 채널 디렉토리로 부활)
+- 통합 태그 13종(동의어 흡수 매핑 포함) 도입. 옵션 B(2단계 계층)·옵션 D(큐레이션 컬렉션)·front matter 일괄 마이그레이션은 Phase 5 이월
+- 내부 링크 5곳 + sitemap.xml + 검색 인덱스를 `/info` 경로로 일괄 갱신해 리다이렉트 깜빡임 제거
+- `/info` 페이지의 헤더·`PageDescription`을 Suspense 밖으로 이동 — JS 비활성 환경(SEO 봇)에서도 노출
+- 기존 e2e 11개 스펙 마이그레이션(URL/탭 갱신) + 폐기된 기능 테스트 2개 파일 삭제 (`videos.spec.ts`, `video-channel-links.spec.ts`)
+- `scripts/lighthouse-check.sh` PAGES 배열을 현재 라우트로 교체
 
 ---
 
