@@ -5,6 +5,7 @@ import videoData from "@/data/videos.json";
 import channelData from "@/data/channels.json";
 import type { ChannelItem, VideoItem } from "@/types/video";
 import { InfoContainer } from "@/components/info/InfoContainer";
+import { PageDescription } from "@/components/common/PageDescription";
 import { BASE_URL, OG_IMAGE } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -29,14 +30,22 @@ export default function InfoPage() {
   const channels = channelData as ChannelItem[];
 
   return (
-    <Suspense
-      fallback={<div className="min-h-screen pb-24 px-4 pt-8" aria-hidden />}
-    >
-      <InfoContainer
-        articles={articles}
-        videos={videos}
-        channels={channels}
-      />
-    </Suspense>
+    <div className="min-h-screen pb-24 px-4">
+      <div className="pt-8">
+        <h1 className="mb-2 text-center">📚 정보</h1>
+        <PageDescription>
+          임신·출산에 필요한 블로그 글과 영상을 한곳에 모았어요. 관심 주제 태그로
+          필터링하고, 블로그/영상 탭에서 원하는 형식만 골라 볼 수 있어요. 글은
+          경험 기반으로 정리했고, 영상은 검증된 채널에서 큐레이션했습니다.
+        </PageDescription>
+        <Suspense fallback={<div aria-hidden />}>
+          <InfoContainer
+            articles={articles}
+            videos={videos}
+            channels={channels}
+          />
+        </Suspense>
+      </div>
+    </div>
   );
 }

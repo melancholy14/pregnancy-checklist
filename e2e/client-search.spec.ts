@@ -44,8 +44,10 @@ test.describe("클라이언트 검색", () => {
       // "검색어를 입력하세요" 안내가 사라지고 결과가 나와야 함
       await expect(dialog.getByText("검색어를 입력하세요", { exact: true })).not.toBeVisible();
 
-      // 타임라인 그룹 헤딩이 존재해야 함
-      await expect(dialog.locator("[role='listbox']").getByText("타임라인")).toBeVisible();
+      // 타임라인 그룹 헤딩이 존재해야 함 (그룹 라벨은 정확 매칭)
+      await expect(
+        dialog.locator("[role='listbox']").getByText("타임라인", { exact: true }),
+      ).toBeVisible();
     });
 
     test("타임라인 결과 클릭 시 /timeline#timeline-week-N으로 이동한다", async ({ page }) => {
@@ -67,7 +69,7 @@ test.describe("클라이언트 검색", () => {
     test("정보글 결과 클릭 시 /articles/slug 으로 이동한다", async ({ page }) => {
       // 무엇을: 정보글 검색 결과 클릭 시 해당 아티클로 이동하는지
       // 왜: 검색 → 아티클 연결이 콘텐츠 발견성의 핵심
-      await page.goto("/articles");
+      await page.goto("/info");
       await page.getByRole("button", { name: "검색" }).click();
 
       const dialog = searchDialog(page);
@@ -81,10 +83,10 @@ test.describe("클라이언트 검색", () => {
       await expect(page).toHaveURL(/\/articles\//);
     });
 
-    test("영상 결과 클릭 시 /videos#video_id 로 이동한다", async ({ page }) => {
-      // 무엇을: 영상 검색 결과 클릭 시 영상 페이지의 해당 카드로 이동하는지
-      // 왜: 영상 검색 → hash 스크롤 + 하이라이트가 정상 동작해야 함
-      await page.goto("/videos");
+    test("영상 결과 클릭 시 /info?tab=videos#video_id 로 이동한다", async ({ page }) => {
+      // 무엇을: 영상 검색 결과 클릭 시 통합 정보 허브의 영상 탭 + 해당 카드로 이동
+      // 왜: Step 2에서 /videos는 폐기되고 /info로 통합됨. hash 스크롤 + 하이라이트 유지
+      await page.goto("/info?tab=videos");
       await page.getByRole("button", { name: "검색" }).click();
 
       const dialog = searchDialog(page);
@@ -95,7 +97,7 @@ test.describe("클라이언트 검색", () => {
       await expect(result).toBeVisible();
       await result.click();
 
-      await expect(page).toHaveURL(/\/videos#video_/);
+      await expect(page).toHaveURL(/\/info\?tab=videos#video_/);
     });
 
     test("모달 닫기 버튼 클릭 시 모달이 닫힌다", async ({ page }) => {

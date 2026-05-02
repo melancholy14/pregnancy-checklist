@@ -284,24 +284,27 @@ test.describe("Phase 1.5: 타임라인 + 체크리스트 통합", () => {
   });
 
   test.describe("리다이렉트 / 네비게이션", () => {
-    test("/checklist 접근 시 /timeline으로 리다이렉트된다", async ({ page }) => {
-      // 무엇을: /checklist → /timeline 리다이렉트
-      // 왜: Phase 1 북마크/외부 링크 호환
+    test("/checklist 접근 시 체크리스트 허브가 표시된다", async ({ page }) => {
+      // 무엇을: Phase 4 Step 1에서 /checklist는 허브 페이지로 전환됨 (이전 /timeline 리다이렉트는 제거)
+      // 왜: 사이트 정체성 — 체크리스트 허브가 메인 진입점
       await page.goto("/checklist");
-      await expect(page).toHaveURL(/\/timeline/);
+      await expect(page).toHaveURL(/\/checklist\/?$/);
+      await expect(
+        page.getByRole("heading", { name: /체크리스트/, level: 1 }),
+      ).toBeVisible();
     });
 
-    test("하단 네비게이션이 5개 탭이다", async ({ page }) => {
-      // 무엇을: 홈/타임라인/베이비페어/영상/정보 5개 탭이 표시되는지
-      // 왜: Phase 2에서 체중→정보 교체. Feature Grid과 네비게이션 일치
+    test("하단 네비게이션이 4개 탭이다", async ({ page }) => {
+      // 무엇을: Phase 4 Step 1에서 타임라인→체크리스트, Step 2에서 영상 제거
+      // 왜: Step 2 통합 후 4탭 (홈/체크리스트/베이비페어/정보)
       const nav = page.locator("nav");
       await expect(nav.getByText("홈")).toBeVisible();
-      await expect(nav.getByText("타임라인")).toBeVisible();
+      await expect(nav.getByText("체크리스트")).toBeVisible();
       await expect(nav.getByText("베이비페어")).toBeVisible();
-      await expect(nav.getByText("영상")).toBeVisible();
       await expect(nav.getByText("정보")).toBeVisible();
-      await expect(nav.getByText("체크리스트")).not.toBeVisible();
-      await expect(nav.getByText("더보기")).not.toBeVisible();
+      await expect(nav.getByText("타임라인")).toHaveCount(0);
+      await expect(nav.getByText("영상")).toHaveCount(0);
+      await expect(nav.getByText("더보기")).toHaveCount(0);
     });
 
     test("온보딩 배너: 예정일 미입력 시 DueDateBanner 표시", async ({ page }) => {

@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { InfoCard } from "./InfoCard";
-import { PageDescription } from "@/components/common/PageDescription";
 import type { ArticleMeta } from "@/types/article";
 import type { ChannelItem, VideoItem } from "@/types/video";
 import type { InfoItem, InfoTab } from "@/types/info";
@@ -118,21 +117,12 @@ export function InfoContainer({
   }, [activeTab]);
 
   return (
-    <div className="min-h-screen pb-24 px-4">
-      <div className="pt-8">
-        <h1 className="mb-2 text-center">📚 정보</h1>
-        <PageDescription>
-          임신·출산에 필요한 블로그 글과 영상을 한곳에 모았어요. 관심 주제
-          태그로 필터링하고, 블로그/영상 탭에서 원하는 형식만 골라 볼 수
-          있어요. 글은 경험 기반으로 정리했고, 영상은 검증된 채널에서
-          큐레이션했습니다.
-        </PageDescription>
-
-        <div
-          className="flex justify-center gap-2 mb-6"
-          role="tablist"
-          aria-label="콘텐츠 타입"
-        >
+    <>
+      <div
+        className="flex justify-center gap-2 mb-6"
+        role="tablist"
+        aria-label="콘텐츠 타입"
+      >
           {TAB_ORDER.map((tab) => (
             <button
               key={tab}
@@ -211,7 +201,6 @@ export function InfoContainer({
             </div>
           )}
         </div>
-      </div>
-    </div>
+    </>
   );
 }

@@ -197,14 +197,22 @@ test.describe("정보 탭 통합 — 블로그 + 영상 (Phase 4 Step 2)", () =>
   });
 
   test.describe("내부 링크 갱신 — 리다이렉트 우회", () => {
+    test.beforeEach(async ({ page }) => {
+      // 대시보드는 온보딩 완료 후에만 노출되므로 미리 플래그 설정
+      await page.goto("/");
+      await page.evaluate(() =>
+        localStorage.setItem("onboarding-completed", "true"),
+      );
+      await page.goto("/");
+    });
+
     test("홈 대시보드 '정보' 카드는 /info로 직접 연결된다", async ({
       page,
     }) => {
       // 무엇을: HomeContent.tsx의 정보 카드 href가 /info여야 함
       // 왜: 내부 클릭에서 리다이렉트 깜빡임 제거
-      await page.goto("/");
-
-      const infoLink = page.locator('a[href="/info"]').first();
+      const dashboard = page.locator(".grid.grid-cols-2");
+      const infoLink = dashboard.locator('a[href="/info"]').first();
       await expect(infoLink).toBeVisible();
       await expect(infoLink).toContainText("정보 & 가이드");
     });
@@ -214,9 +222,10 @@ test.describe("정보 탭 통합 — 블로그 + 영상 (Phase 4 Step 2)", () =>
     }) => {
       // 무엇을: 영상 대시보드 카드도 통합 허브로 직접 이동
       // 왜: 리다이렉트 우회
-      await page.goto("/");
-
-      const videoLink = page.locator('a[href="/info?tab=videos"]').first();
+      const dashboard = page.locator(".grid.grid-cols-2");
+      const videoLink = dashboard
+        .locator('a[href="/info?tab=videos"]')
+        .first();
       await expect(videoLink).toBeVisible();
       await expect(videoLink).toContainText("영상");
     });

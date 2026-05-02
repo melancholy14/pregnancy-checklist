@@ -32,24 +32,14 @@ test.describe("도구 페이지 설명 텍스트 (PageDescription)", () => {
       await expect(page.getByText("사전 등록 할인과 선착순 혜택 정보도 함께 안내합니다")).toBeVisible();
     });
 
-    test("영상 콘텐츠 페이지에 설명 텍스트가 노출된다", async ({ page }) => {
-      // 무엇을: 영상 페이지에 카테고리 큐레이션 관련 설명이 렌더링되는지 확인
-      // 왜: 영상 임베드만으로는 텍스트 밀도가 부족
-      await page.goto("/videos");
+    test("/info 통합 허브에 설명 텍스트가 노출된다", async ({ page }) => {
+      // 무엇을: /info에 블로그·영상 통합 안내 설명이 렌더링되는지 확인
+      // 왜: AdSense 심사 봇이 텍스트를 파싱하므로 충분한 텍스트가 필요
+      await page.goto("/info");
 
-      await expect(page.getByRole("heading", { name: "영상 콘텐츠" })).toBeVisible();
-      await expect(page.getByText("검증된 채널의 영상을")).toBeVisible();
-      await expect(page.getByText("세부 카테고리 필터로 필요한 영상만 골라 시청할 수 있어요")).toBeVisible();
-    });
-
-    test("정보글 페이지에 설명 텍스트가 노출된다", async ({ page }) => {
-      // 무엇을: 정보글 목록 페이지에 경험 기반 작성 원칙 관련 설명이 렌더링되는지 확인
-      // 왜: 아티클 목록 페이지에도 설명 텍스트가 있어야 사이트 전체 콘텐츠 밀도가 충분
-      await page.goto("/articles");
-
-      await expect(page.getByRole("heading", { name: "정보 & 가이드" })).toBeVisible();
-      await expect(page.getByText("경험 기반으로")).toBeVisible();
-      await expect(page.getByText("참고 자료 출처가 명시되어 있어 신뢰할 수 있는 정보를 제공합니다")).toBeVisible();
+      await expect(page.getByRole("heading", { name: /정보/, level: 1 })).toBeVisible();
+      await expect(page.getByText("임신·출산에 필요한 블로그 글과 영상을 한곳에 모았어요")).toBeVisible();
+      await expect(page.getByText("영상은 검증된 채널에서 큐레이션했습니다")).toBeVisible();
     });
   });
 
@@ -71,11 +61,10 @@ test.describe("도구 페이지 설명 텍스트 (PageDescription)", () => {
       await page.goto("/baby-fair");
       await expect(page.getByText("지역별·연도별 필터로 원하는 행사만 골라볼 수 있습니다")).toBeVisible();
 
-      await page.goto("/videos");
-      await expect(page.getByText("검증된 채널의 영상을")).toBeVisible();
-
-      await page.goto("/articles");
-      await expect(page.getByText("경험 기반으로")).toBeVisible();
+      await page.goto("/info");
+      await expect(
+        page.getByText("임신·출산에 필요한 블로그 글과 영상을 한곳에 모았어요"),
+      ).toBeVisible();
 
       await context.close();
     });

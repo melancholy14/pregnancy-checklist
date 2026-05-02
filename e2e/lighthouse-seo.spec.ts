@@ -10,9 +10,9 @@ const TARGET_PAGES = [
   { path: "/timeline", name: "타임라인" },
   { path: "/baby-fair", name: "베이비페어" },
   { path: "/weight", name: "체중 관리" },
-  { path: "/videos", name: "영상" },
-  { path: "/articles", name: "블로그 목록" },
-  { path: "/articles/hospital-bag", name: "블로그 상세" },
+  { path: "/info", name: "정보 통합 허브" },
+  { path: "/checklist", name: "체크리스트 허브" },
+  { path: "/articles/early-pregnancy-tests", name: "블로그 상세" },
 ];
 
 test.describe("Lighthouse SEO 필수 요소 (7개 타겟 페이지)", () => {
