@@ -10,6 +10,8 @@ export type VideoItem = {
   subcategoryName: string;
   description?: string;
   channel_id: string;
+  upload_date: string;
+  is_short?: boolean;
 };
 
 export type ChannelItem = {

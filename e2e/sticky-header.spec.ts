@@ -33,7 +33,7 @@ test.describe("Sticky 헤더", () => {
   test("여러 서브 페이지에서 헤더가 표시된다", async ({ page }) => {
     // 무엇을: 타임라인 외 다른 서브 페이지에서도 헤더가 보이는지
     // 왜: 홈 제외 모든 페이지에서 헤더 표시 확인
-    for (const path of ["/baby-fair", "/videos", "/articles"]) {
+    for (const path of ["/baby-fair", "/info", "/checklist"]) {
       await page.goto(path);
       await expect(page.locator("header")).toBeVisible();
       await expect(page.locator("header").getByText("출산 준비 체크리스트")).toBeVisible();

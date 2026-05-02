@@ -13,8 +13,8 @@ tags:
   - 임신중독증
   - 임신성당뇨
 date: "2026-04-15"
-linked_timeline_weeks: [6, 24]
 authorNote: "체중계 올라갈 때마다 불안해서, 정상 범위가 어디까지인지 정리해봤습니다."
+linked_video_ids: ["video_031", "video_032", "video_033", "video_037", "video_038"]
 ---
 
 "나 너무 많이 찐 건 아닐까?"

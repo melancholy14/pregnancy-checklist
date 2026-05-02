@@ -9,9 +9,9 @@ PAGES=(
   "/timeline"
   "/baby-fair"
   "/weight"
-  "/videos"
-  "/articles"
-  "/articles/hospital-bag"
+  "/info"
+  "/checklist"
+  "/articles/early-pregnancy-tests"
 )
 BASE_URL="${1:-http://localhost:3000}"
 THRESHOLD=90

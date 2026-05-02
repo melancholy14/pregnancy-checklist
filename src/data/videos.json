@@ -1,36 +1,42 @@
 [
   {
     "id": "video_001",
-    "title": "임산부 스트레칭 + 유무산소 운동 20분 (16주-35주)",
+    "title": "🤰🏻임산부 스트레칭 + 유무산소 운동 20분 (16주 - 35주) | 체중관리, 순산, 산후 붓기 빼기 | 👶🏻 EP.04 | 김보라 강사",
     "youtube_id": "WVhjGWinm9E",
     "category": "exercise",
     "categoryName": "임산부 운동",
     "subcategory": "prenatal_yoga",
     "subcategoryName": "산전 요가",
     "description": "임신 중기 이후 임산부를 위한 20분 전신 스트레칭 요가 루틴.",
-    "channel_id": "channel_010"
+    "channel_id": "channel_047",
+    "upload_date": "2023-01-04",
+    "is_short": false
   },
   {
     "id": "video_002",
-    "title": "막달 임산부를 위한 짐볼 요가, 분만촉진운동",
+    "title": "[임산부요가] 막달 임산부를 위한 짐볼 요가, 분만촉진운동",
     "youtube_id": "4PkSy81Kg28",
     "category": "exercise",
     "categoryName": "임산부 운동",
     "subcategory": "prenatal_yoga",
     "subcategoryName": "산전 요가",
     "description": "출산 전 골반 유연성을 높이고 분만을 돕는 짐볼 요가.",
-    "channel_id": "channel_011"
+    "channel_id": "channel_008",
+    "upload_date": "2023-05-25",
+    "is_short": false
   },
   {
     "id": "video_005",
-    "title": "출산 전, 이 동작이면 자연분만 성공합니다!",
+    "title": "[임산부 요가] 출산 전, 이 동작이면 자연분만 성공합니다!",
     "youtube_id": "Pp1Dau9ChGI",
     "category": "exercise",
     "categoryName": "임산부 운동",
     "subcategory": "prenatal_yoga",
     "subcategoryName": "산전 요가",
     "description": "자연분만 성공을 위한 임산부 요가 동작.",
-    "channel_id": "channel_012"
+    "channel_id": "channel_012",
+    "upload_date": "2026-03-12",
+    "is_short": false
   },
   {
     "id": "video_006",
@@ -41,62 +47,74 @@
     "subcategory": "medical_exercise",
     "subcategoryName": "의학적 운동 가이드",
     "description": "서울아산병원 산부인과에서 알려주는 임산부 체조.",
-    "channel_id": "channel_002"
+    "channel_id": "channel_046",
+    "upload_date": "2014-08-19",
+    "is_short": false
   },
   {
     "id": "video_007",
-    "title": "분만을 앞두고 있다면 이 운동은 꼭 하세요 - 분만 호흡법",
+    "title": "분만을 앞두고 있다면 이 운동은 꼭! 하세요👩🏻‍⚕️｜분만을 위해 알아둘 호흡법은? ｜임신부 필수 시청🔥- [노노산부인과 ep75]",
     "youtube_id": "jJb_DpbB7RQ",
     "category": "exercise",
     "categoryName": "임산부 운동",
     "subcategory": "birth_preparation_exercise",
     "subcategoryName": "순산 준비 운동",
     "description": "분만에 도움이 되는 대표 임산부 운동과 호흡법.",
-    "channel_id": "channel_014"
+    "channel_id": "channel_033",
+    "upload_date": "2022-09-07",
+    "is_short": false
   },
   {
     "id": "video_008",
-    "title": "임산부가 매일 꼭 해야하는 10분 허리 스트레칭",
+    "title": "임산부가 매일 꼭 해야하는 10분 허리 스트레칭 - 허리통증, 꼬리뼈통증, 골반순환(12~40주)",
     "youtube_id": "irVOAN-UJS4",
     "category": "exercise",
     "categoryName": "임산부 운동",
     "subcategory": "pain_relief_exercise",
     "subcategoryName": "통증 완화 운동",
     "description": "허리통증, 꼬리뼈통증, 골반순환을 위한 10분 스트레칭.",
-    "channel_id": "channel_012"
+    "channel_id": "channel_044",
+    "upload_date": "2026-01-26",
+    "is_short": false
   },
   {
     "id": "video_009",
-    "title": "임산부 전신근력 / 코어발란스 / 체력유지루틴",
+    "title": "[임산부운동] 임신중기7편 전신근력 / 코어발란스 / 체력유지루틴 / 덤벨운동",
     "youtube_id": "RrGp6N03djs",
     "category": "exercise",
     "categoryName": "임산부 운동",
     "subcategory": "prenatal_pilates",
     "subcategoryName": "산전 필라테스",
     "description": "임신 중기 전신근력과 코어 강화 루틴.",
-    "channel_id": "channel_015"
+    "channel_id": "channel_045",
+    "upload_date": "2017-07-24",
+    "is_short": false
   },
   {
     "id": "video_010",
-    "title": "임산부가 꼭 해야하는 15분 전신 스트레칭 - 부종완화",
+    "title": "하루 한 번! 임산부가 꼭 해야하는 15분 전신 스트레칭 - 전신순환, 부종완화, 체력유지, 태교 루틴(12~40주)",
     "youtube_id": "F96RPs4mC7M",
     "category": "exercise",
     "categoryName": "임산부 운동",
     "subcategory": "edema_exercise",
     "subcategoryName": "부종 완화 운동",
     "description": "전신순환, 부종완화, 체력유지를 위한 15분 스트레칭.",
-    "channel_id": "channel_012"
+    "channel_id": "channel_044",
+    "upload_date": "2026-02-09",
+    "is_short": false
   },
   {
     "id": "video_011",
-    "title": "출산 후 고생하기 싫다면? 임산부 지금 당장 이 운동 시작하세요",
+    "title": "출산 후 고생하기 싫다면? 임산부 지금 당장 '이 운동' 시작하세요",
     "youtube_id": "eM_fyLsllyA",
     "category": "exercise",
     "categoryName": "임산부 운동",
     "subcategory": "birth_preparation_exercise",
     "subcategoryName": "순산 준비 운동",
     "description": "호산병원 산부인과에서 알려주는 출산 전 준비 운동.",
-    "channel_id": "channel_013"
+    "channel_id": "channel_009",
+    "upload_date": "2026-01-15",
+    "is_short": false
   },
   {
     "id": "video_012",
@@ -107,7 +125,9 @@
     "subcategory": "labor_process",
     "subcategoryName": "분만 과정",
     "description": "산부인과 의사가 설명하는 자연분만의 장점.",
-    "channel_id": "channel_013"
+    "channel_id": "channel_009",
+    "upload_date": "2024-03-14",
+    "is_short": true
   },
   {
     "id": "video_013",
@@ -118,29 +138,35 @@
     "subcategory": "delivery_types",
     "subcategoryName": "분만 방식",
     "description": "나이대별 분만 방법 추천과 비교.",
-    "channel_id": "channel_013"
+    "channel_id": "channel_009",
+    "upload_date": "2023-12-24",
+    "is_short": true
   },
   {
     "id": "video_014",
-    "title": "출산 임박신호 7가지! 병원에 빨리 가야 할 응급상황",
+    "title": "출산 임박신호! 7가지!. 출산 증상(출산 임박 진통), 병원에 빨리 가야 할 응급상황 6가지! 그리고 출산 전 미리 준비해 두어야 할 것들은?",
     "youtube_id": "CngyoYc34d0",
     "category": "birth_prep",
     "categoryName": "출산 준비",
     "subcategory": "labor_signs",
     "subcategoryName": "진통 신호",
     "description": "출산이 가까워졌을 때 나타나는 증상과 응급상황 설명.",
-    "channel_id": "channel_007"
+    "channel_id": "channel_005",
+    "upload_date": "2019-11-26",
+    "is_short": false
   },
   {
     "id": "video_015",
-    "title": "노산이면 제왕절개 해야 할까? 분만 몰아보기",
+    "title": "[분만 몰아보기] 노산이면 제왕절개 해야 할까?🤔 ｜🔥분만실 직원들이 제왕절개를 많이 하는 숨겨진 이유..?🔥",
     "youtube_id": "TYMczvBhRf4",
     "category": "birth_prep",
     "categoryName": "출산 준비",
     "subcategory": "delivery_types",
     "subcategoryName": "분만 방식",
     "description": "제왕절개와 자연분만에 대한 의사의 설명.",
-    "channel_id": "channel_014"
+    "channel_id": "channel_033",
+    "upload_date": "2024-01-10",
+    "is_short": false
   },
   {
     "id": "video_016",
@@ -151,62 +177,74 @@
     "subcategory": "partner_preparation",
     "subcategoryName": "배우자 준비",
     "description": "출산 시 배우자의 역할과 주의사항.",
-    "channel_id": "channel_013"
+    "channel_id": "channel_013",
+    "upload_date": "2024-09-06",
+    "is_short": true
   },
   {
     "id": "video_018",
-    "title": "출산용품 아기용품 준비 리스트 - 예산 절반으로 줄이는 실제 후기",
+    "title": "👶🏻출산용품 아기용품 준비 리스트 | 예산 절반으로 줄여주는 실제 사용후기 썰 | 구글 시트 공유",
     "youtube_id": "UT51exMarzw",
     "category": "birth_prep",
     "categoryName": "출산 준비",
     "subcategory": "checklist",
     "subcategoryName": "출산 준비 체크리스트",
     "description": "출산 전 필수 준비물과 예산 절약 팁.",
-    "channel_id": "channel_023"
+    "channel_id": "channel_023",
+    "upload_date": "2024-06-25",
+    "is_short": false
   },
   {
     "id": "video_019",
-    "title": "태교학교 5교시 - 건강하고 똑똑한 아이를 만나는 방법",
+    "title": "[태교학교 5교시] 곧 다가온 출산! 건강하고 똑똑한 아이를 만나는 방법은? 임신 7~9개월 태교비법",
     "youtube_id": "9dygS9a32tg",
     "category": "birth_prep",
     "categoryName": "출산 준비",
     "subcategory": "prenatal_class",
     "subcategoryName": "산전 교육",
     "description": "차병원 태교학교 임신 7~9개월 태교 비법.",
-    "channel_id": "channel_004"
+    "channel_id": "channel_002",
+    "upload_date": "2020-03-11",
+    "is_short": false
   },
   {
     "id": "video_020",
-    "title": "아기 한방에 쌕 나오는 호흡법",
+    "title": "(놀람주의) 아기 한방에 쑥 나오는 호흡법   #임산부 #산부인과 #출산 #출산 #임신 #태아",
     "youtube_id": "hQYk4yfJC9Q",
     "category": "birth_prep",
     "categoryName": "출산 준비",
     "subcategory": "breathing",
     "subcategoryName": "분만 호흡",
     "description": "진통 시 사용하는 분만 호흡법.",
-    "channel_id": "channel_013"
+    "channel_id": "channel_009",
+    "upload_date": "2024-01-11",
+    "is_short": true
   },
   {
     "id": "video_021",
-    "title": "신생아 목욕 방법 (with 쁘리마쥬)",
+    "title": "신생아목욕(with 쁘리마쥬)",
     "youtube_id": "5ksIJu1lw9w",
     "category": "newborn_care",
     "categoryName": "신생아 케어",
     "subcategory": "baby_bath",
     "subcategoryName": "신생아 목욕",
     "description": "교육간호사가 알려주는 신생아 목욕 방법과 주의사항.",
-    "channel_id": "channel_017"
+    "channel_id": "channel_011",
+    "upload_date": "2020-02-03",
+    "is_short": false
   },
   {
     "id": "video_022",
-    "title": "출산직후 모유수유를 성공하려면",
+    "title": "출산직후 모유수유를 성공하려면-1편-",
     "youtube_id": "scj5V_8Vx4U",
     "category": "newborn_care",
     "categoryName": "신생아 케어",
     "subcategory": "feeding",
     "subcategoryName": "수유",
     "description": "출산 직후 모유수유 성공을 위한 가이드.",
-    "channel_id": "channel_009"
+    "channel_id": "channel_007",
+    "upload_date": "2019-07-17",
+    "is_short": false
   },
   {
     "id": "video_023",
@@ -217,7 +255,9 @@
     "subcategory": "burping",
     "subcategoryName": "트림",
     "description": "수유 후 신생아 트림 시키는 올바른 방법.",
-    "channel_id": "channel_007"
+    "channel_id": "channel_005",
+    "upload_date": "2026-03-31",
+    "is_short": true
   },
   {
     "id": "video_024",
@@ -228,18 +268,22 @@
     "subcategory": "sleep",
     "subcategoryName": "수면",
     "description": "신생아 수면교육의 핵심 원리와 방법.",
-    "channel_id": "channel_009"
+    "channel_id": "channel_007",
+    "upload_date": "2026-03-26",
+    "is_short": false
   },
   {
     "id": "video_025",
-    "title": "우리 아이 배꼽 소독 하기",
+    "title": "우리 아이 배꼽 소독 하기 #산부인과 #세인트마리여성병원 #신생아",
     "youtube_id": "7bqJpzAk2DM",
     "category": "newborn_care",
     "categoryName": "신생아 케어",
     "subcategory": "navel_care",
     "subcategoryName": "배꼽 관리",
     "description": "신생아 배꼽 소독과 관리 방법.",
-    "channel_id": "channel_014"
+    "channel_id": "channel_014",
+    "upload_date": "2025-02-03",
+    "is_short": false
   },
   {
     "id": "video_026",
@@ -250,62 +294,74 @@
     "subcategory": "crying",
     "subcategoryName": "울음 해석",
     "description": "신생아 울음 유형별 원인과 대처법.",
-    "channel_id": "channel_015"
+    "channel_id": "channel_015",
+    "upload_date": "2025-10-14",
+    "is_short": true
   },
   {
     "id": "video_027",
-    "title": "기저귀 이렇게 채우면 무조건 쌉니다",
+    "title": "기저귀 이렇게 채우면 무조건 샙니다😭 손가락 2개 여유 꼭 확인",
     "youtube_id": "UYgeQhuuiuw",
     "category": "newborn_care",
     "categoryName": "신생아 케어",
     "subcategory": "diaper",
     "subcategoryName": "기저귀 갈기",
     "description": "올바른 기저귀 교체 방법과 팁.",
-    "channel_id": "channel_007"
+    "channel_id": "channel_005",
+    "upload_date": "2026-03-05",
+    "is_short": true
   },
   {
     "id": "video_028",
-    "title": "아가가 열이 날 때",
+    "title": "#33 아가가 열이 날 때",
     "youtube_id": "BrlV6XvUiEU",
     "category": "newborn_care",
     "categoryName": "신생아 케어",
     "subcategory": "temperature",
     "subcategoryName": "체온 관리",
     "description": "하정훈 소아과 전문의가 알려주는 신생아 발열 대처법.",
-    "channel_id": "channel_001"
+    "channel_id": "channel_001",
+    "upload_date": "2018-12-14",
+    "is_short": false
   },
   {
     "id": "video_029",
-    "title": "영아산통(배앓이) 총정리!",
+    "title": "👩‍⚕️영아산통(배앓이) 총정리! 🎦영상 하나로 해결해요! _  육아전문의학 채널, 육아정보 채널 NO 1. \"우리동네 어린이병원\"",
     "youtube_id": "pg76jt3RGR4",
     "category": "newborn_care",
     "categoryName": "신생아 케어",
     "subcategory": "colic",
     "subcategoryName": "배앓이",
     "description": "영아산통 증상과 대응 방법 총정리.",
-    "channel_id": "channel_016"
+    "channel_id": "channel_016",
+    "upload_date": "2025-11-25",
+    "is_short": false
   },
   {
     "id": "video_030",
-    "title": "쉬즈메디 산모교실 - 분만 전 운동법",
+    "title": "쉬즈메디 산모교실 - 분만 전 운동법 [수원 산부인과]",
     "youtube_id": "E7Q-N3zP_CI",
     "category": "birth_prep",
     "categoryName": "출산 준비",
     "subcategory": "prenatal_class",
     "subcategoryName": "산전 교육",
     "description": "병원 산전 교육 핵심 요약.",
-    "channel_id": "channel_016"
+    "channel_id": "channel_010",
+    "upload_date": "2020-12-03",
+    "is_short": false
   },
   {
     "id": "video_031",
-    "title": "복통은 임신의 증거?! 임신 극초기 증상 총정리",
+    "title": "복통은 임신의 증거?! 임신 극초기 증상 총정리😎 - [노노산부인과 ep9]",
     "youtube_id": "8i1bcPj9fqk",
     "category": "pregnancy_health",
     "categoryName": "임신 건강 관리",
     "subcategory": "early_symptoms",
     "subcategoryName": "임신 초기 증상",
     "description": "산부인과 전문의 3인이 임신 극초기 증상(복통, 출혈, 체온 변화 등)을 총정리.",
-    "channel_id": "channel_004"
+    "channel_id": "channel_033",
+    "upload_date": "2021-04-28",
+    "is_short": false
   },
   {
     "id": "video_032",
@@ -316,7 +372,9 @@
     "subcategory": "early_symptoms",
     "subcategoryName": "임신 초기 증상",
     "description": "산부인과 전문의가 임신 초기에 조심해야 할 생활습관과 주의사항을 설명.",
-    "channel_id": "channel_027"
+    "channel_id": "channel_027",
+    "upload_date": "2023-08-02",
+    "is_short": false
   },
   {
     "id": "video_033",
@@ -327,18 +385,22 @@
     "subcategory": "early_symptoms",
     "subcategoryName": "임신 초기 증상",
     "description": "뜨거운 탕목욕, 파스, 감기약 등 임신 중 조심해야 하는 7가지를 산부인과 의사가 직접 설명.",
-    "channel_id": "channel_004"
+    "channel_id": "channel_009",
+    "upload_date": "2023-10-13",
+    "is_short": false
   },
   {
     "id": "video_034",
-    "title": "입덧인가 지옥인가. 산부인과 의사의 해결책은? 입덧 완화 방법, 음식, 증상",
+    "title": "입덧인가 지옥인가. 산부인과 의사의 해결책은? 입덧 완화 방법, 음식, 증상,",
     "youtube_id": "cNgrIi3HVwA",
     "category": "pregnancy_health",
     "categoryName": "임신 건강 관리",
     "subcategory": "morning_sickness",
     "subcategoryName": "입덧",
     "description": "호산병원 산부인과 의사가 입덧 증상별 완화 방법, 도움이 되는 음식, 입덧약 복용법을 설명.",
-    "channel_id": "channel_009"
+    "channel_id": "channel_009",
+    "upload_date": "2024-03-03",
+    "is_short": false
   },
   {
     "id": "video_035",
@@ -349,73 +411,87 @@
     "subcategory": "morning_sickness",
     "subcategoryName": "입덧",
     "description": "서울대병원 산부인과 조희영 교수가 입덧의 원인, 시기, 먹덧과 토덧의 차이를 설명.",
-    "channel_id": "channel_028"
+    "channel_id": "channel_031",
+    "upload_date": "2023-08-22",
+    "is_short": false
   },
   {
     "id": "video_036",
-    "title": "입덧 아직도 참고계세요??? 산부인과전문의가 입덧 완화방법을 알려드립니다!",
+    "title": "입덧😡 아직도 참고계세요???(산부인과전문의가 입덧 완화방법❗을 알려드립다!!!)",
     "youtube_id": "YOFsEKX1Obw",
     "category": "pregnancy_health",
     "categoryName": "임신 건강 관리",
     "subcategory": "morning_sickness",
     "subcategoryName": "입덧",
     "description": "산부인과 전문의가 입덧을 참지 말아야 하는 이유와 안전한 완화 방법 및 약물 치료를 설명.",
-    "channel_id": "channel_029"
+    "channel_id": "channel_029",
+    "upload_date": "2020-10-10",
+    "is_short": false
   },
   {
     "id": "video_037",
-    "title": "임신성 당뇨가 태아에게 미치는 영향은? 당뇨 수치를 꼭 관리해야 하는 이유!",
+    "title": "임신성 당뇨가 태아에게 미치는 영향은?👶 당뇨 수치를 꼭 관리해야 하는 이유! 🔥임신부 필수 시청🔥 산부인과 곽동욱 교수[아주대병원TV]",
     "youtube_id": "e64BlQxl1ZM",
     "category": "pregnancy_health",
     "categoryName": "임신 건강 관리",
     "subcategory": "complications",
     "subcategoryName": "임신 합병증",
     "description": "아주대병원 산부인과 곽동욱 교수가 임신성 당뇨가 태아에게 미치는 영향과 혈당 관리의 중요성을 설명.",
-    "channel_id": "channel_030"
+    "channel_id": "channel_030",
+    "upload_date": "2023-07-27",
+    "is_short": false
   },
   {
     "id": "video_038",
-    "title": "임신 중독되는 병 아니다! 임신중독증 증상, 원인, 치료, 예방까지",
+    "title": "임신 중독되는 병 아니다! 임신중독증 증상, 원인, 치료, 예방까지 | 산부인과 이승미 교수",
     "youtube_id": "cuXSjpiG9RM",
     "category": "pregnancy_health",
     "categoryName": "임신 건강 관리",
     "subcategory": "complications",
     "subcategoryName": "임신 합병증",
     "description": "서울대병원 이승미 교수가 임신중독증(전자간증)의 증상, 원인, 치료법, 예방약을 설명.",
-    "channel_id": "channel_031"
+    "channel_id": "channel_031",
+    "upload_date": "2023-06-13",
+    "is_short": false
   },
   {
     "id": "video_039",
-    "title": "임신중독증, 이렇게 관리하세요",
+    "title": "임신중독증, 이렇게 관리하세요(산부인과 김효신 교수)",
     "youtube_id": "Ymuf4d-e8EE",
     "category": "pregnancy_health",
     "categoryName": "임신 건강 관리",
     "subcategory": "complications",
     "subcategoryName": "임신 합병증",
     "description": "영남대병원 산부인과 김효신 교수가 임신중독증의 원인, 증상, 예방 및 관리법을 설명.",
-    "channel_id": "channel_032"
+    "channel_id": "channel_032",
+    "upload_date": "2024-03-29",
+    "is_short": false
   },
   {
     "id": "video_040",
-    "title": "기형아 검사 종류도 많고 어렵다고요? 이 영상으로 완벽정리 기형아 검사 AtoZ!",
+    "title": "기형아 검사 종류도 많고 어렵다고요? 🔥이 영상으로 완벽정리🔥 기형아 검사 AtoZ! 종류부터 장단점, 부작용까지 싹~ 다 알려드립니다! 산부인과 곽동욱 교수 [아주대병원TV]",
     "youtube_id": "Aef8ndqcS0Q",
     "category": "prenatal_checkup",
     "categoryName": "산전 검사",
     "subcategory": "screening",
     "subcategoryName": "기형아 검사",
     "description": "아주대병원 산부인과 곽동욱 교수가 기형아 검사의 종류, 장단점, 부작용을 A부터 Z까지 정리.",
-    "channel_id": "channel_030"
+    "channel_id": "channel_030",
+    "upload_date": "2022-10-06",
+    "is_short": false
   },
   {
     "id": "video_041",
-    "title": "기형아 검사를 하는 '찐' 이유｜결과가 나오기까지 너무 두려워요",
+    "title": "기형아 검사를 하는 '찐' 이유｜결과가 나오기까지 너무 두려워요😢 - [노노산부인과 ep53]",
     "youtube_id": "_7gShLBiSK4",
     "category": "prenatal_checkup",
     "categoryName": "산전 검사",
     "subcategory": "screening",
     "subcategoryName": "기형아 검사",
     "description": "산부인과 전문의 유정현 원장이 1차·2차 기형아 검사의 진짜 이유와 결과 해석법을 설명.",
-    "channel_id": "channel_033"
+    "channel_id": "channel_033",
+    "upload_date": "2022-04-06",
+    "is_short": false
   },
   {
     "id": "video_042",
@@ -426,40 +502,48 @@
     "subcategory": "screening",
     "subcategoryName": "기형아 검사",
     "description": "강남차여성병원 산과 박희진·한유정 교수가 비침습적 산전검사(NIPT)의 원리와 정확도를 설명.",
-    "channel_id": "channel_034"
+    "channel_id": "channel_002",
+    "upload_date": "2021-06-17",
+    "is_short": false
   },
   {
     "id": "video_043",
-    "title": "정밀 초음파 검사 - 태아 기형 유무를 확인하는 기본검사",
+    "title": "정밀 초음파 검사. 태아 기형 유무를 확인하는 기본검사. 『임신과 출산』 5번째 이야기. 👩🏻‍⚕산부인과 의사 3인이 풀어가는 유익한 의학채널",
     "youtube_id": "1-o7zBT5KAc",
     "category": "prenatal_checkup",
     "categoryName": "산전 검사",
     "subcategory": "ultrasound",
     "subcategoryName": "정밀 초음파",
     "description": "산부인과 의사 3인이 정밀 초음파 검사의 시기, 확인 항목, 일반 초음파와의 차이점을 설명.",
-    "channel_id": "channel_004"
+    "channel_id": "channel_004",
+    "upload_date": "2019-08-14",
+    "is_short": false
   },
   {
     "id": "video_044",
-    "title": "임신 중 기형아검사로 무엇까지 알 수 있을까? 통합선별검사, 니프티(NIPT)에 대해 알아봐요",
+    "title": "임신 중 기형아검사로 무엇까지 알 수 있을까? 통합선별검사, 니프티(NIPT)에 대해 알아봐요[서울미즈병원 송이룸 과장님]",
     "youtube_id": "26Kympq12c0",
     "category": "prenatal_checkup",
     "categoryName": "산전 검사",
     "subcategory": "ultrasound",
     "subcategoryName": "정밀 초음파",
     "description": "서울미즈병원 송이룸 과장이 통합선별검사와 NIPT 검사로 확인 가능한 항목을 설명.",
-    "channel_id": "channel_036"
+    "channel_id": "channel_036",
+    "upload_date": "2024-10-04",
+    "is_short": false
   },
   {
     "id": "video_045",
-    "title": "기형아 검사로 어디까지 알 수 있을까?",
+    "title": "기형아 검사로 어디까지 알 수 있을까? | 이승미 교수",
     "youtube_id": "wAOxwk04kUY",
     "category": "prenatal_checkup",
     "categoryName": "산전 검사",
     "subcategory": "ultrasound",
     "subcategoryName": "정밀 초음파",
     "description": "서울대병원 산부인과 이승미 교수가 정밀 초음파로 확인 가능한 태아 구조 이상의 범위를 설명.",
-    "channel_id": "channel_031"
+    "channel_id": "channel_031",
+    "upload_date": "2023-09-22",
+    "is_short": false
   },
   {
     "id": "video_046",
@@ -470,40 +554,48 @@
     "subcategory": "schedule",
     "subcategoryName": "검사 일정",
     "description": "부천서울여성병원 이소현 과장이 주수별 검사 항목(초음파, 혈액검사, 기형아 검사 등)을 한눈에 정리.",
-    "channel_id": "channel_027"
+    "channel_id": "channel_027",
+    "upload_date": "2023-07-21",
+    "is_short": false
   },
   {
     "id": "video_047",
-    "title": "임신 주기별 변화부터 출산 징후까지",
+    "title": "[분당차병원·분당차여성병원] 임신 주기별 변화부터 출산 징후까지_분당차여성병원 산부인과 김나리교수",
     "youtube_id": "ZCIP4yYh8qE",
     "category": "prenatal_checkup",
     "categoryName": "산전 검사",
     "subcategory": "schedule",
     "subcategoryName": "검사 일정",
     "description": "분당차여성병원 산부인과 김나리 교수가 임신 초기부터 막달까지 산전 검사 일정을 체계적으로 안내.",
-    "channel_id": "channel_035"
+    "channel_id": "channel_035",
+    "upload_date": "2026-01-02",
+    "is_short": false
   },
   {
     "id": "video_048",
-    "title": "임신 주수별 해야 할 것, 임신 과정 싹 정리해왔습니다",
+    "title": "임신 주수별 해야 할 것, 임신 과정 싹 정리해왔습니다✔",
     "youtube_id": "gkqX6rbL7TA",
     "category": "prenatal_checkup",
     "categoryName": "산전 검사",
     "subcategory": "schedule",
     "subcategoryName": "검사 일정",
     "description": "산부인과 전문의들이 임신 주수별로 받아야 할 검사와 주의사항을 타임라인 형식으로 총정리.",
-    "channel_id": "channel_004"
+    "channel_id": "channel_004",
+    "upload_date": "2025-09-24",
+    "is_short": false
   },
   {
     "id": "video_049",
-    "title": "임신 중, 임신 준비 영양제! 이렇게만 드세요! 엽산,철분,비타민D,칼슘,오메가3,유산균 총정리",
+    "title": "임신 중, 임신 준비 영양제!💊 이렇게만 드세요! | 엽산,철분,비타민D,칼슘,비타민A,요오드,오메가3,유산균,코엔자임Q10,L-아르기닌_총 정리",
     "youtube_id": "cAAbDLwRc4Q",
     "category": "nutrition",
     "categoryName": "임산부 영양",
     "subcategory": "supplements",
     "subcategoryName": "임산부 영양제",
     "description": "산부인과 전문의가 임신 준비부터 임신 중까지 필요한 10가지 영양제를 총정리.",
-    "channel_id": "channel_037"
+    "channel_id": "channel_037",
+    "upload_date": "2020-11-20",
+    "is_short": false
   },
   {
     "id": "video_050",
@@ -514,106 +606,126 @@
     "subcategory": "supplements",
     "subcategoryName": "임산부 영양제",
     "description": "차병원에서 임신 준비 시 꼭 챙겨야 할 엽산, 비타민D, 철분, 오메가3 등 필수 영양제를 정리.",
-    "channel_id": "channel_002"
+    "channel_id": "channel_002",
+    "upload_date": "2025-07-11",
+    "is_short": false
   },
   {
     "id": "video_051",
-    "title": "임신 중 꼭 먹어야 할 영양소는? 영양제 추천 및 복용 시기",
+    "title": "임신 중 꼭 먹어야 할 영양소는? 영양제 추천 및 복용 시기 - 엽산, 비타민D, 철분, 칼슘, 오메가-3",
     "youtube_id": "DMgED3ZLnso",
     "category": "nutrition",
     "categoryName": "임산부 영양",
     "subcategory": "supplements",
     "subcategoryName": "임산부 영양제",
     "description": "임신 시기별 엽산·철분·오메가3·칼슘·비타민D의 복용 시기와 권장량을 정리.",
-    "channel_id": "channel_002"
+    "channel_id": "channel_002",
+    "upload_date": "2024-09-27",
+    "is_short": false
   },
   {
     "id": "video_052",
-    "title": "임산부 필수시청! 임신 중 절대 먹으면 안되는 음식",
+    "title": "임산부 필수시청! 임신 중 절대 먹으면 안되는 음식 / 좋은 음식, 임산부 영양제 추천, 식단, 임산부 다이어트 식단",
     "youtube_id": "MQ7mcTpbb2I",
     "category": "nutrition",
     "categoryName": "임산부 영양",
     "subcategory": "food_restrictions",
     "subcategoryName": "금지 음식",
     "description": "산부인과에서 커피·날음식·회·해산물·술 등 임신 중 절대 먹으면 안 되는 음식과 좋은 음식을 정리.",
-    "channel_id": "channel_009"
+    "channel_id": "channel_009",
+    "upload_date": "2023-09-22",
+    "is_short": false
   },
   {
     "id": "video_053",
-    "title": "임신중 먹지말아야할 음식 1편 콜라 커피 술 생선 논란 총정리해드립니다",
+    "title": "임신중 먹지말아야할 음식 1편 콜라 커피 술 생선 임신중 먹으면 안된다? 논란 총정리해드립니다",
     "youtube_id": "QPpHwHCPupU",
     "category": "nutrition",
     "categoryName": "임산부 영양",
     "subcategory": "food_restrictions",
     "subcategoryName": "금지 음식",
     "description": "임산부 금기 음식으로 알려진 콜라·커피·술·생선에 대해 팩트와 속설을 구분해 총정리.",
-    "channel_id": "channel_038"
+    "channel_id": "channel_038",
+    "upload_date": "2022-07-04",
+    "is_short": false
   },
   {
     "id": "video_054",
-    "title": "임신 중 피해야할 음식? 커피는요? 최신 연구로 업데이트된 임신 중 음식 가이드!",
+    "title": "❌  임신 중 피해야할 음식? ❌  커피는요? 간헐적 단식은요? 최신 연구로 업데이트된 임신 중 음식 가이드!",
     "youtube_id": "quA-8kRD4cg",
     "category": "nutrition",
     "categoryName": "임산부 영양",
     "subcategory": "food_restrictions",
     "subcategoryName": "금지 음식",
     "description": "최신 연구 결과를 반영하여 임신 중 피해야 할 음식, 카페인 제한 등을 업데이트된 가이드로 설명.",
-    "channel_id": "channel_039"
+    "channel_id": "channel_039",
+    "upload_date": "2025-07-31",
+    "is_short": false
   },
   {
     "id": "video_055",
-    "title": "임신 중 꼭 먹어야 하는 음식? 임산부 식단 관리 탄단지 총정리!",
+    "title": "임신 중 꼭 먹어야 하는 음식? ⭕️임신 중기부터 XXX는 이렇게 드셔야 해요! ⭕️ 임산부 식단 관리 탄단지 총정리!",
     "youtube_id": "Winm68NH5WA",
     "category": "nutrition",
     "categoryName": "임산부 영양",
     "subcategory": "meal_plan",
     "subcategoryName": "식단/체중 관리",
     "description": "임신 주수별 식단 관리의 중요성과 탄수화물·단백질·지방 비율을 구체적으로 정리.",
-    "channel_id": "channel_039"
+    "channel_id": "channel_039",
+    "upload_date": "2025-07-03",
+    "is_short": false
   },
   {
     "id": "video_056",
-    "title": "임산부 다이어트 풀버전! 간단한데 쉬운 방법 7가지",
+    "title": "#332 임산부 다이어트 풀버젼 ! 간단한데 쉬운 방법 7가지  | 임산부식단관리 | 둘라로지아",
     "youtube_id": "RrL6CtNr4zk",
     "category": "nutrition",
     "categoryName": "임산부 영양",
     "subcategory": "meal_plan",
     "subcategoryName": "식단/체중 관리",
     "description": "임산부 영양코칭 전문가가 건강한 체중 증가를 위한 실천 가능한 식단관리 방법 7가지를 소개.",
-    "channel_id": "channel_040"
+    "channel_id": "channel_040",
+    "upload_date": "2021-11-01",
+    "is_short": false
   },
   {
     "id": "video_057",
-    "title": "임산부가 꼭 알아야 하는 식단관리 3가지 꿀팁",
+    "title": "#66 임산부가 꼭 알아야 하는 식단관리 3가지 꿀팁",
     "youtube_id": "onQFF3l3Tn0",
     "category": "nutrition",
     "categoryName": "임산부 영양",
     "subcategory": "meal_plan",
     "subcategoryName": "식단/체중 관리",
     "description": "정해진 시간 식사, 야식 피하기 등 임산부 식단관리의 핵심 꿀팁 3가지를 설명.",
-    "channel_id": "channel_040"
+    "channel_id": "channel_040",
+    "upload_date": "2019-10-01",
+    "is_short": false
   },
   {
     "id": "video_058",
-    "title": "2026년 육아정책 확정판! \"카더라\"는 그만, 핵심만 완벽 정리해 드립니다",
+    "title": "📌2026년 육아정책 확정판! \"카더라\"는 그만, 핵심만 완벽 정리해 드립니다 [이민주육아상담소]",
     "youtube_id": "xt53rj1Ium8",
     "category": "policy",
     "categoryName": "육아 정책",
     "subcategory": "policy_summary",
     "subcategoryName": "정책 총정리",
     "description": "2026년 확정된 육아정책(아동수당 확대, 육아휴직 급여 인상, 부모급여 등)을 검증된 정보만 핵심 정리.",
-    "channel_id": "channel_041"
+    "channel_id": "channel_041",
+    "upload_date": "2026-02-10",
+    "is_short": false
   },
   {
     "id": "video_059",
-    "title": "육아휴직 급여 신청방법 2026년 최신버전 영상 한편으로 정리하세요!!",
+    "title": "육아휴직 급여 신청방법 2026년 최신버전 영상 한편으로 정리하세요!! (6+6,1년 6개월,부부) 최대 3,270만원  맞벌이면 6천만원??",
     "youtube_id": "mQCYiL7MXs8",
     "category": "policy",
     "categoryName": "육아 정책",
     "subcategory": "parental_leave",
     "subcategoryName": "육아휴직",
     "description": "2026년 최신 기준 육아휴직 급여 신청 조건, 6+6 부모육아휴직제, 1년 6개월 확대, 최대 수령액 정리.",
-    "channel_id": "channel_042"
+    "channel_id": "channel_042",
+    "upload_date": "2026-03-17",
+    "is_short": false
   },
   {
     "id": "video_060",
@@ -624,6 +736,8 @@
     "subcategory": "policy_summary",
     "subcategoryName": "정책 총정리",
     "description": "2026년부터 달라지는 출산·육아 정책 5가지(아동수당 지급 연령 확대, 아이돌봄 지원 확대 등) 요약.",
-    "channel_id": "channel_043"
+    "channel_id": "channel_043",
+    "upload_date": "2025-11-13",
+    "is_short": false
   }
 ]

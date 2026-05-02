@@ -313,5 +313,41 @@
     "category": "policy",
     "handle": "@miztalktalkTV",
     "thumbnail_url": "https://yt3.ggpht.com/peA4HD7GisMCkHcpX2O26z7OBMNeI8psanTDjIHWDr4q_PUR2e3a8UKKfioTDz3dLRqvbxVsDg=s800-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    "id": "channel_044",
+    "youtube_channel_id": "UCRrZ5RYIalHLiHq5ftzxM6A",
+    "name": "빵느",
+    "description": "물리치료사이자 필라테스 강사 빵느의 홈트레이닝 채널. 임산부 스트레칭, 부종 완화 등 산전 운동 콘텐츠 제공.",
+    "category": "exercise",
+    "handle": "@bbangneu",
+    "thumbnail_url": "https://yt3.ggpht.com/xkezT06kxIAn_eFmPYgboFDM1QfxEIQVX1QCzXiUCIZngEo7NL80rXUE--0MSEcNeU8zcyFMYA=s800-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    "id": "channel_045",
+    "youtube_channel_id": "UCGJsOy0oOSrSKjM69_0WaIg",
+    "name": "샤인킴",
+    "description": "산전·산후 운동 전문가 샤인킴의 홈트 채널. 임산부 코어·체력 유지 루틴, 산후 회복 운동 콘텐츠 제공.",
+    "category": "exercise",
+    "handle": "@shinekimfitness",
+    "thumbnail_url": "https://yt3.ggpht.com/6AIuH1G1ZEDbBBatT-Q6zawre77zXe4zquPRRJQ92XNfdm82Dc1udbYIxoz2Nge6J776lwFBe5w=s800-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    "id": "channel_046",
+    "youtube_channel_id": "UC08tP3KIyCK9vYNZm5qQuiw",
+    "name": "서울아산병원",
+    "description": "서울아산병원 공식 채널. 임산부 체조, 산부인과 의학 정보 등 교육 목적의 의료 콘텐츠 제공.",
+    "category": "pregnancy_health",
+    "handle": "@asanmedicalcenter",
+    "thumbnail_url": "https://yt3.ggpht.com/ytc/AIdro_kYRq6NY5QjOJ3bnKJe5clNtjr50gitxmrM0KJb0gOiqhc=s800-c-k-c0x00ffffff-no-rj"
+  },
+  {
+    "id": "channel_047",
+    "youtube_channel_id": "UCzg1Ive5NEVKeTEfiopLSUA",
+    "name": "이화여자대학교 의료원",
+    "description": "이화여자대학교 의료원 공식 채널. 산부인과·여성암 등 여성 건강 중심의 의학 콘텐츠 제공.",
+    "category": "pregnancy_health",
+    "handle": "@ewhaunivmedicalcenter",
+    "thumbnail_url": "https://yt3.ggpht.com/s-fAP3cmXAlNu_II83kILVaea2LpnI8hesdeNAlUtPY2fLBfyMpSg7RvPsjFn6chE-H4VE6Nt6g=s800-c-k-c0x00ffffff-no-rj"
   }
 ]

@@ -66,7 +66,13 @@ export function SearchModal({ articles }: SearchModalProps) {
     (url: string) => {
       close();
       setQuery("");
-      router.push(url);
+      // Next.js 16.2 App Router 버그: hash가 포함된 URL을 router.push로 같은 path 재방문 시
+      // 이전 hash가 누적된다. hash가 있는 경우 풀 내비게이션으로 우회.
+      if (url.includes("#")) {
+        window.location.assign(url);
+      } else {
+        router.push(url);
+      }
     },
     [close, router],
   );

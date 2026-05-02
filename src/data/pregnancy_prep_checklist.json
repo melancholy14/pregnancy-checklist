@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "slug": "pregnancy-prep",
+    "title": "임신 준비 체크리스트",
+    "description": "임신을 계획 중이라면 이것부터 확인하세요. 임신 3개월 전부터 시작하면 건강한 임신과 안전한 출산에 큰 도움이 됩니다.",
+    "icon": "🌱",
+    "subcategories": [
+      {
+        "key": "prep_health",
+        "label": "건강 관리"
+      },
+      {
+        "key": "prep_nutrition",
+        "label": "영양"
+      },
+      {
+        "key": "prep_checkup",
+        "label": "검사"
+      },
+      {
+        "key": "prep_finance",
+        "label": "재무/행정"
+      }
+    ],
+    "linked_timeline_weeks": [],
+    "linked_article_slugs": [
+      "early-pregnancy-tests",
+      "prenatal-insurance-preparation-guide",
+      "weekly-prenatal-checklist"
+    ],
+    "linked_video_ids": []
+  },
+  "items": [
+    {
+      "id": "pr_health_01",
+      "title": "산전 건강검진 받기",
+      "category": "prep_health",
+      "categoryName": "건강 관리",
+      "recommendedWeek": 0,
+      "priority": "high"
+    },
+    {
+      "id": "pr_health_02",
+      "title": "치과 검진 + 스케일링 (임신 전 권장)",
+      "category": "prep_health",
+      "categoryName": "건강 관리",
+      "recommendedWeek": 0,
+      "priority": "high",
+      "note": "임신 중에는 X-ray·마취 제한이 있어 미리 처리"
+    },
+    {
+      "id": "pr_health_03",
+      "title": "금주 / 금연 시작 (3개월 전부터)",
+      "category": "prep_health",
+      "categoryName": "건강 관리",
+      "recommendedWeek": 0,
+      "priority": "high"
+    },
+    {
+      "id": "pr_health_04",
+      "title": "복용 중 약물 검토 (의사 상담)",
+      "category": "prep_health",
+      "categoryName": "건강 관리",
+      "recommendedWeek": 0,
+      "priority": "high"
+    },
+    {
+      "id": "pr_health_05",
+      "title": "적정 체중 관리 (BMI 18.5~24.9)",
+      "category": "prep_health",
+      "categoryName": "건강 관리",
+      "recommendedWeek": 0,
+      "priority": "medium"
+    },
+    {
+      "id": "pr_health_06",
+      "title": "규칙적인 운동 습관 만들기 (주 3회 이상)",
+      "category": "prep_health",
+      "categoryName": "건강 관리",
+      "recommendedWeek": 0,
+      "priority": "medium"
+    },
+    {
+      "id": "pr_nutri_01",
+      "title": "엽산 복용 시작 (임신 3개월 전~12주)",
+      "category": "prep_nutrition",
+      "categoryName": "영양",
+      "recommendedWeek": 0,
+      "priority": "high",
+      "note": "신경관 결손 예방 — 하루 0.4~0.8mg"
+    },
+    {
+      "id": "pr_nutri_02",
+      "title": "철분 / 빈혈 수치 확인",
+      "category": "prep_nutrition",
+      "categoryName": "영양",
+      "recommendedWeek": 0,
+      "priority": "high"
+    },
+    {
+      "id": "pr_nutri_03",
+      "title": "비타민 D / 칼슘 섭취 점검",
+      "category": "prep_nutrition",
+      "categoryName": "영양",
+      "recommendedWeek": 0,
+      "priority": "medium"
+    },
+    {
+      "id": "pr_nutri_04",
+      "title": "카페인 줄이기 (하루 200mg 이하)",
+      "category": "prep_nutrition",
+      "categoryName": "영양",
+      "recommendedWeek": 0,
+      "priority": "medium"
+    },
+    {
+      "id": "pr_nutri_05",
+      "title": "생식 / 회 / 가공육 섭취 줄이기",
+      "category": "prep_nutrition",
+      "categoryName": "영양",
+      "recommendedWeek": 0,
+      "priority": "medium"
+    },
+    {
+      "id": "pr_nutri_06",
+      "title": "수은 함량 높은 어종 피하기",
+      "category": "prep_nutrition",
+      "categoryName": "영양",
+      "recommendedWeek": 0,
+      "priority": "low"
+    },
+    {
+      "id": "pr_check_01",
+      "title": "풍진 항체 검사",
+      "category": "prep_checkup",
+      "categoryName": "검사",
+      "recommendedWeek": 0,
+      "priority": "high",
+      "note": "항체가 없으면 임신 3개월 전 백신 접종"
+    },
+    {
+      "id": "pr_check_02",
+      "title": "갑상선 기능 검사 (TSH)",
+      "category": "prep_checkup",
+      "categoryName": "검사",
+      "recommendedWeek": 0,
+      "priority": "high"
+    },
+    {
+      "id": "pr_check_03",
+      "title": "자궁경부암 검사 (Pap smear)",
+      "category": "prep_checkup",
+      "categoryName": "검사",
+      "recommendedWeek": 0,
+      "priority": "high"
+    },
+    {
+      "id": "pr_check_04",
+      "title": "성병 / 간염 검사 (STD, B형 간염)",
+      "category": "prep_checkup",
+      "categoryName": "검사",
+      "recommendedWeek": 0,
+      "priority": "high"
+    },
+    {
+      "id": "pr_check_05",
+      "title": "유전자 검사 / 가족력 상담",
+      "category": "prep_checkup",
+      "categoryName": "검사",
+      "recommendedWeek": 0,
+      "priority": "medium"
+    },
+    {
+      "id": "pr_check_06",
+      "title": "남편 정자 검사 (필요 시)",
+      "category": "prep_checkup",
+      "categoryName": "검사",
+      "recommendedWeek": 0,
+      "priority": "low"
+    },
+    {
+      "id": "pr_finance_01",
+      "title": "태아 보험 알아보기 (임신 22주 이전)",
+      "category": "prep_finance",
+      "categoryName": "재무/행정",
+      "recommendedWeek": 0,
+      "priority": "high"
+    },
+    {
+      "id": "pr_finance_02",
+      "title": "출산·육아 예산 세우기",
+      "category": "prep_finance",
+      "categoryName": "재무/행정",
+      "recommendedWeek": 0,
+      "priority": "medium"
+    },
+    {
+      "id": "pr_finance_03",
+      "title": "비상 자금 / 의료비 적립",
+      "category": "prep_finance",
+      "categoryName": "재무/행정",
+      "recommendedWeek": 0,
+      "priority": "medium"
+    },
+    {
+      "id": "pr_finance_04",
+      "title": "회사 출산 / 육아휴직 제도 확인",
+      "category": "prep_finance",
+      "categoryName": "재무/행정",
+      "recommendedWeek": 0,
+      "priority": "high"
+    },
+    {
+      "id": "pr_finance_05",
+      "title": "정부 지원금 확인 (첫만남이용권, 부모급여)",
+      "category": "prep_finance",
+      "categoryName": "재무/행정",
+      "recommendedWeek": 0,
+      "priority": "medium"
+    },
+    {
+      "id": "pr_finance_06",
+      "title": "건강보험 임신·출산 진료비 지원 확인",
+      "category": "prep_finance",
+      "categoryName": "재무/행정",
+      "recommendedWeek": 0,
+      "priority": "medium",
+      "note": "국민행복카드 신청"
+    },
+    {
+      "id": "pr_finance_07",
+      "title": "주거 환경 점검 (소음·교통·병원 접근성)",
+      "category": "prep_finance",
+      "categoryName": "재무/행정",
+      "recommendedWeek": 0,
+      "priority": "low"
+    }
+  ]
+}

@@ -19,7 +19,9 @@ import { UnifiedAddForm } from "./UnifiedAddForm";
 import { CategoryFilter } from "./CategoryFilter";
 import { WeekChecklistSection } from "./WeekChecklistSection";
 import { PageDescription } from "@/components/common/PageDescription";
+import { ShareButton } from "@/components/share/ShareButton";
 import { sendGAEvent } from "@/lib/analytics";
+import { BASE_URL } from "@/lib/constants";
 
 interface TimelineContainerProps {
   timelineItems: TimelineItem[];
@@ -187,6 +189,16 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
           각 주차를 펼치면 병원 검사, 서류 준비, 출산 용품 등 연결된
           체크리스트를 바로 관리할 수 있어요.
         </PageDescription>
+
+        <div className="flex justify-end mb-4">
+          <ShareButton
+            title="임신 주차별 타임라인 & 체크리스트"
+            description="주차별로 뭘 해야 하는지 한눈에. 직접 써보며 만든 체크리스트."
+            url={`${BASE_URL}/timeline`}
+            contentType="timeline"
+            itemId="timeline"
+          />
+        </div>
 
         {/* 현재 주차 카드 */}
         {hydrated && currentWeek !== null && (

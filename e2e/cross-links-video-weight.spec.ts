@@ -18,16 +18,16 @@ test.describe("Step 3: 타임라인 → 영상 크로스 링크", () => {
       // 무엇을: 21주차에 3개 영상 링크가 모두 표시되는지
       // 왜: 1:N 매핑이 올바르게 렌더링되는지 확인
       const card = page.locator('[id="timeline-week-21"]');
-      const videoLinks = card.locator('a[href^="/videos#video_"]');
+      const videoLinks = card.locator('a[href^="/info?tab=videos#video_"]');
       await expect(videoLinks).toHaveCount(3);
     });
 
-    test("관련 영상 링크를 클릭하면 영상 페이지로 이동한다", async ({ page }) => {
-      // 무엇을: 영상 링크 클릭 → /videos#video_id 이동
-      // 왜: 크로스 링크가 실제로 동작하는지 검증
+    test("관련 영상 링크를 클릭하면 통합 정보 허브 영상 탭으로 이동한다", async ({ page }) => {
+      // 무엇을: 영상 링크 클릭 → /info?tab=videos#video_id 이동
+      // 왜: Step 2 — 영상은 /info 통합 허브로 흡수됨
       const card = page.locator('[id="timeline-week-34"]');
       await card.getByRole("link", { name: /출산 임박신호/ }).click();
-      await expect(page).toHaveURL(/\/videos#video_014/);
+      await expect(page).toHaveURL(/\/info\?tab=videos#video_014/);
     });
 
     test("linked_video_ids가 없는 카드에는 관련 영상 영역이 없다", async ({ page }) => {

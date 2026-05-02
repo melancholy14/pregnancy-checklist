@@ -16,6 +16,7 @@ import { WeekChecklistSection } from "./WeekChecklistSection";
 import { DeleteConfirmDialog } from "./DeleteConfirmDialog";
 import { RelatedArticlesLink } from "./RelatedArticlesLink";
 import { RelatedVideosLink } from "./RelatedVideosLink";
+import { RelatedChecklistsLink } from "./RelatedChecklistsLink";
 import { sendGAEvent } from "@/lib/analytics";
 
 
@@ -209,6 +210,11 @@ export function TimelineAccordionCard({
                   <WeekChecklistSection items={checklistItems} checkedIds={checkedIds} />
                 </div>
               </CollapsibleContent>
+            )}
+
+            {/* Related checklists */}
+            {!isEditing && (item.linked_checklist_slugs?.length ?? 0) > 0 && (
+              <RelatedChecklistsLink slugs={item.linked_checklist_slugs!} />
             )}
 
             {/* Related articles */}

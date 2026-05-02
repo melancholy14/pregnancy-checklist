@@ -1,13 +1,13 @@
 import { test, expect } from "@playwright/test";
 
 const ARTICLES = [
-  "hospital-bag",
-  "baby-items-cost",
+  "early-pregnancy-fatigue-reasons",
   "early-pregnancy-tests",
-  "weekly-prenatal-checklist",
+  "mid-pregnancy-lifestyle-guide",
+  "pregnancy-government-benefits-2026",
   "pregnancy-weight-management",
-  "postpartum-care",
   "prenatal-insurance-preparation-guide",
+  "weekly-prenatal-checklist",
 ];
 
 const BASE = "https://pregnancy-checklist.com";
@@ -80,11 +80,11 @@ test.describe("canonical URL 플레이스홀더 수정 (Step 0c)", () => {
     }) => {
       // 무엇을: 모바일 뷰포트에서 canonical 메타태그 동일 확인
       // 왜: 뷰포트에 따라 다른 canonical이 렌더되면 SEO 불이익
-      await page.goto("/articles/hospital-bag");
+      await page.goto("/articles/early-pregnancy-tests");
       const link = page.locator('link[rel="canonical"]');
       await expect(link).toHaveAttribute(
         "href",
-        `${BASE}/articles/hospital-bag`,
+        `${BASE}/articles/early-pregnancy-tests`,
       );
     });
   });

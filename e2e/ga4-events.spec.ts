@@ -24,17 +24,18 @@ test.describe("GA4 커스텀 이벤트 (Step 1)", () => {
       await page.goto("/");
       await injectGtagSpy(page);
 
-      await page.locator("nav").getByText("타임라인").click();
-      await expect(page).toHaveURL(/\/timeline/);
+      // Phase 4 Step 1+2 이후 nav에 타임라인 탭이 없으므로 정보 탭으로 검증
+      await page.locator("nav").getByText("정보").click();
+      await expect(page).toHaveURL(/\/info\/?$/);
 
       const calls = await getGtagCalls(page);
-      const timelinePageView = calls.find(
+      const infoPageView = calls.find(
         (c) =>
           c[0] === "event" &&
           c[1] === "page_view" &&
-          (c[2] as Record<string, string>).page_path === "/timeline",
+          (c[2] as Record<string, string>).page_path === "/info",
       );
-      expect(timelinePageView).toBeTruthy();
+      expect(infoPageView).toBeTruthy();
     });
   });
 
@@ -82,7 +83,8 @@ test.describe("GA4 커스텀 이벤트 (Step 1)", () => {
     test("아티클 카드 클릭 시 content_click 이벤트가 전송된다", async ({ page }) => {
       // 무엇을: 정보글 카드 클릭 시 GA4 이벤트 확인
       // 왜: 어떤 글이 사용자 관심을 끄는지 분석
-      await page.goto("/articles");
+      await page.goto("/info");
+      await page.getByRole("tab", { name: "블로그" }).click();
       await injectGtagSpy(page);
 
       const articleCard = page.locator("a").filter({ hasText: /총정리|가이드|체크리스트/ }).first();
@@ -100,7 +102,7 @@ test.describe("GA4 커스텀 이벤트 (Step 1)", () => {
     test("영상 카드 클릭 시 content_click 이벤트가 전송된다", async ({ page }) => {
       // 무엇을: 영상 카드 클릭 시 GA4 이벤트 확인
       // 왜: 어떤 영상이 사용자 관심을 끄는지 분석
-      await page.goto("/videos");
+      await page.goto("/info?tab=videos");
       await injectGtagSpy(page);
 
       const videoCard = page.locator("a[href*='youtube.com/watch']").first();

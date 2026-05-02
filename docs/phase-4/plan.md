@@ -3,7 +3,29 @@
 > Phase 3 기록: [../phase-3/plan.md](../phase-3/plan.md)
 > Date: 2026-04-27
 > 목표 완료: 2026-05-18
-> Status: 📋 기획
+> Status: ✅ 완료 (Step 1~5 모두 완료)
+> Last Updated: 2026-05-02
+
+## 진행 현황
+
+| Step | 상태 | 산출물 |
+| ---- | ---- | -------- |
+| Step 1. 체크리스트 허브 확장 | ✅ 완료 (2026-05-01) | [../implementation/phase-4-step-1-checklist-hub-impl.md](../implementation/phase-4-step-1-checklist-hub-impl.md), [../review/phase-4-step-1-checklist-hub-review.md](../review/phase-4-step-1-checklist-hub-review.md), [e2e/phase-4-step-1-checklist-hub.spec.ts](../../e2e/phase-4-step-1-checklist-hub.spec.ts) |
+| Step 2. 정보 탭 통합 | ✅ 완료 (2026-05-02) | [../info-tab-integration/README.md](../info-tab-integration/README.md), [../plan/info-tab-integration-plan.md](../plan/info-tab-integration-plan.md), [e2e/info-tab-integration.spec.ts](../../e2e/info-tab-integration.spec.ts) |
+| Step 3. 관련 콘텐츠 추천 | ✅ 완료 (2026-05-02) | [../phase-4-step-3-related-content/README.md](../phase-4-step-3-related-content/README.md), [../implementation/phase-4-step-3-related-content-impl.md](../implementation/phase-4-step-3-related-content-impl.md), [../review/phase-4-step-3-related-content-review.md](../review/phase-4-step-3-related-content-review.md), [e2e/phase-4-step-3-related-content.spec.ts](../../e2e/phase-4-step-3-related-content.spec.ts) |
+| Step 4. 공유 기능 | ✅ 완료 (2026-05-02) | [../phase-4-step-4-share/README.md](../phase-4-step-4-share/README.md), [../implementation/phase-4-step-4-share-impl.md](../implementation/phase-4-step-4-share-impl.md), [../review/phase-4-step-4-share-review.md](../review/phase-4-step-4-share-review.md), [e2e/phase-4-step-4-share.spec.ts](../../e2e/phase-4-step-4-share.spec.ts) |
+| Step 5. 크로스링크 스크립트 | ✅ 완료 (2026-05-02) | [../phase-4-step-5-crosslinks/README.md](../phase-4-step-5-crosslinks/README.md), [../implementation/phase-4-step-5-crosslinks-impl.md](../implementation/phase-4-step-5-crosslinks-impl.md), [../review/phase-4-step-5-crosslinks-review.md](../review/phase-4-step-5-crosslinks-review.md), [../refactor/phase-4-step-5-crosslinks-refactor.md](../refactor/phase-4-step-5-crosslinks-refactor.md), [e2e/phase-4-step-5-crosslinks.spec.ts](../../e2e/phase-4-step-5-crosslinks.spec.ts) |
+
+### Step 2 완료 시 함께 정리된 사항
+
+- BottomNav 5탭 → 4탭으로 축소(`홈/체크리스트/베이비페어/정보`). 5탭 확장(체중·더보기)은 Phase 5 이월
+- 영상 채널 보기 모드·sub-category 필터는 `/info`에서 의도적으로 제외 (Phase 5 채널 디렉토리로 부활)
+- 통합 태그 13종(동의어 흡수 매핑 포함) 도입. 옵션 B(2단계 계층)·옵션 D(큐레이션 컬렉션)·front matter 일괄 마이그레이션은 Phase 5 이월
+- 내부 링크 5곳 + sitemap.xml + 검색 인덱스를 `/info` 경로로 일괄 갱신해 리다이렉트 깜빡임 제거
+- `videos.json` `upload_date` 백필(57건) + `VideoItem` 타입 확장으로 블로그·영상 단일 시간축 최신순 정렬 적용 — Phase 5 이월 예정이었던 항목 조기 해소
+- `/info` 페이지의 헤더·`PageDescription`을 Suspense 밖으로 이동 — JS 비활성 환경(SEO 봇)에서도 노출
+- 기존 e2e 11개 스펙 마이그레이션(URL/탭 갱신) + 폐기된 기능 테스트 2개 파일 삭제 (`videos.spec.ts`, `video-channel-links.spec.ts`)
+- `scripts/lighthouse-check.sh` PAGES 배열을 현재 라우트로 교체
 
 ---
 
@@ -508,40 +530,66 @@ export const usePregnancyPrepStore = createChecklistStore('pregnancy-prep-storag
 └──────────────────────────────────────────────┘
 ```
 
-#### 통합 태그 매핑
+#### 통합 태그 매핑 (옵션 A: 단일층 통합 태그)
 
-블로그 태그와 영상 카테고리를 하나의 통합 태그 시스템으로 매핑한다:
+블로그 태그·영상 카테고리·동의어를 하나의 통합 태그 시스템으로 정규화한다.
+런타임 매핑(`unified-tags.ts`)으로 처리하므로 블로그 front matter는 변경하지 않는다.
 
-| 통합 태그 | 블로그 태그 | 영상 카테고리 |
-|----------|-----------|-------------|
-| 임신초기 | `임신초기` | — |
+| 통합 태그 | 블로그 태그 (정규화 흡수) | 영상 카테고리 |
+| ---------- | -------------------------- | ------------- |
+| 임신초기 | `임신초기`, `임신초기증상`, `임신피로`, `프로게스테론` | — |
+| 임신중기 | `임신중기` | — |
 | 출산준비 | `출산준비` | `birth_prep` |
-| 영양 | `영양` | `nutrition` |
-| 운동 | — | `exercise` |
-| 검사 | `검사` | `prenatal_checkup` |
-| 산후관리 | `산후관리` | — |
+| 영양 | `영양`, `임산부영양` | `nutrition` |
+| 운동 | `임산부운동` | `exercise` |
+| 검사 | `검사`, `산전검사`, `NIPT`, `정밀초음파`, `기형아검사` | `prenatal_checkup` |
+| 건강 | `임산부건강`, `임산부빈혈`, `임신성당뇨`, `임신중독증`, `건강` | `pregnancy_health` |
 | 신생아 | `신생아` | `newborn_care` |
-| 건강 | `건강` | `pregnancy_health` |
-| 정책/제도 | `정책`, `제도` | `policy` |
-| 보험 | `보험` | — |
+| 산후관리 | `산후관리` | — |
+| 정책/제도 | `정책`, `제도`, `정부지원`, `국민행복카드`, `부모급여`, `첫만남이용권`, `임신지원금` | `policy` |
+| 보험 | `보험`, `태아보험`, `임신보험`, `태아보험가입시기`, `태아보험특약` | — |
 | 체중관리 | `체중관리` | — |
+| 임신준비 | `임신준비` | — |
+
+> **분류 결정 사유**: 콘텐츠 규모(블로그 7개·영상 57개)에서는 옵션 A(단일층) 입도가 가장 적합.
+> 옵션 B(2단계 계층 필터), 옵션 D(큐레이션 컬렉션)는 콘텐츠 20개+ 시점에 도입 → Phase 5 이월.
 
 ```ts
 // src/lib/unified-tags.ts
 type UnifiedTag = {
   key: string;
   label: string;
-  articleTags: string[];       // 매칭되는 블로그 태그들
+  articleTags: string[];       // 매칭되는 블로그 태그들 (동의어 포함)
   videoCategories: string[];   // 매칭되는 영상 카테고리들
 };
 ```
+
+#### 채널 처리 결정
+
+기존 `/videos`의 "영상/채널" 보기 토글은 `/info`에서 **제외**한다.
+
+| 항목 | 결정 |
+|------|------|
+| `/info`에 채널 카드 노출 | ❌ 제외 |
+| `/videos` 페이지 | 폐기 → `/info?tab=videos` 리다이렉트 |
+| 채널 보기 모드 (`VideosContainer`의 토글) | 제거 |
+| 영상 카드 내부 채널명 | 표기는 유지 (Phase 5에서 채널 상세 페이지 연결) |
+
+> **사유**: ① "정보 허브"의 콘텐츠 정체성 보호 — 채널은 발행자 메타로 위계가 다름.
+> ② 통합 태그 필터가 채널에 적용되는 의미가 약함.
+> ③ 채널 리스트가 외부 유튜브 링크 모음으로 비춰져 AdSense thin content 위험 증가.
+> 채널 디렉토리는 Phase 5에서 `/info/channels` 또는 `/channels` 별도 페이지로 부활.
 
 #### 정렬 전략
 
 "전체" 탭에서 블로그와 영상을 혼합 정렬할 기준:
 
-1. **최신순 (기본)**: 블로그는 `date`, 영상은 데이터 등록일 기준
-2. **태그 필터 적용 시**: 해당 태그의 블로그 + 영상만 노출
+1. **블로그**: front matter `date`(YYYY-MM-DD) 기준 최신순
+2. **영상**: `videos.json`의 `upload_date`(YYYY-MM-DD) 기준 최신순
+3. **혼합**: 두 매체를 같은 날짜 키로 비교해 단일 최신순으로 정렬 (사전식 비교로 충분)
+4. **태그/탭 필터 적용 시**: 매칭된 항목만 동일 규칙으로 노출
+
+> 운영자가 2026-05-02에 영상 57개 전부에 `upload_date`(+`is_short`)를 백필하여 시간축 통합 정렬을 Phase 4에서 즉시 적용 (Phase 5 이월 예정이었던 항목 조기 해소).
 
 ### 2-3. 장단점 분석
 
@@ -559,10 +607,14 @@ type UnifiedTag = {
 
 | 관점 | 내용 | 대응 |
 |------|------|------|
-| 기존 URL 보호 | `/articles/*` 이미 인덱싱됨 | URL 변경 없이 진입점만 `/info`로. `/articles`→`/info` 301 리다이렉트 |
-| `/videos` URL | `/videos` 페이지 사라짐 | `/videos`→`/info?tab=videos` 301 리다이렉트 |
-| 혼합 정렬 품질 | 블로그와 영상의 날짜 기준이 다름 | 영상 데이터에 `registered_date` 필드 추가 필요 |
-| UI 복잡도 | 두 종류 카드를 한 리스트에 혼합 | 카드 타입별 시각적 구분 (📰/🎬 아이콘 + 배경색 미세 차이) |
+| 기존 URL 보호 | `/articles/*` 이미 인덱싱됨 | URL 변경 없이 진입점만 `/info`로. `/articles`→`/info` 리다이렉트 (정적 export에서는 `redirect()` from `next/navigation` 사용) |
+| `/videos` URL | `/videos` 페이지 사라짐 | `/videos`→`/info?tab=videos` 리다이렉트. 정적 export에서 쿼리 보존이 안 되면 클라이언트 리다이렉트로 폴백 |
+| 혼합 정렬 품질 | 블로그·영상의 날짜 기준이 다름 | 2026-05-02 운영자 백필로 영상에 `upload_date` 추가됨 → 단일 시간축 최신순 정렬을 Phase 4에서 즉시 적용 |
+| UI 복잡도 | 두 종류 카드를 한 리스트에 혼합 | 카드 타입별 시각적 구분 (📰/🎬 아이콘 + 카드 디자인 미세 차이). 기존 `ArticleCard`/`VideoCard` 재사용 |
+| 채널 진입점 손실 | `/videos`의 채널 보기 토글 폐기 | Phase 5에서 채널 디렉토리(`/info/channels` 또는 `/channels`) 별도 페이지로 부활 |
+| 영상 sub-category 손실 | `VideosContainer`의 sub-category 필터가 `/info`에서 빠짐 | 통합 태그 필터로 단순화. 세부 토픽은 검색(`fuse.js`)으로 도달 |
+| 검색 인덱스 URL | `lib/search.ts`의 영상 URL이 `/videos#<id>` | `/info?tab=videos#<id>`로 일괄 변경. 라우터 변경과 동시에 반영 |
+| 블로그 태그 동의어 분산 | front matter에 정규화 미적용 | Phase 4에서는 `unified-tags.ts`의 런타임 매핑으로 흡수. front matter 일괄 마이그레이션은 Phase 5 이월 |
 
 ### 2-4. 법제/보안 이슈
 
@@ -575,25 +627,32 @@ type UnifiedTag = {
 
 | 파일 | 변경 내용 |
 |------|-----------|
-| `src/lib/unified-tags.ts` | 통합 태그 매핑 데이터 + 필터 유틸 (신규) |
-| `src/components/info/InfoContainer.tsx` | 통합 정보 허브 — 탭(전체/블로그/영상) + 태그 필터 + 혼합 리스트 (신규) |
-| `src/components/info/InfoCard.tsx` | 블로그/영상 공통 카드 (타입별 분기 렌더링) (신규) |
-| `src/app/info/page.tsx` | 통합 정보 허브 라우트 (신규) |
-| `src/app/articles/page.tsx` | `/info`로 리다이렉트 (변경) |
-| `src/app/videos/page.tsx` | `/info?tab=videos`로 리다이렉트 (변경) |
-| `src/components/layout/BottomNav.tsx` | "영상" + "정보" 탭 → "정보" 단일 탭으로 변경 (Step 1과 함께) |
+| `src/lib/unified-tags.ts` | 통합 태그 정의 + 동의어 흡수 매핑 + 콘텐츠↔통합 태그 매칭 유틸 (신규) |
+| `src/types/info.ts` | `InfoItem` discriminated union (블로그/영상 공통) (신규) |
+| `src/components/info/InfoContainer.tsx` | 통합 허브 — 탭(전체/블로그/영상) + 통합 태그 필터 + 혼합 리스트 + 영상 hash-scroll (신규) |
+| `src/components/info/InfoCard.tsx` | `InfoItem` 분기 렌더 — 기존 `ArticleCard`/`VideoCard` 래핑 재사용 (신규) |
+| `src/app/info/page.tsx` | 통합 정보 허브 라우트 + 메타데이터 (신규) |
+| `src/app/articles/page.tsx` | `/info`로 리다이렉트 (목록 페이지만 변경 — `[slug]`는 그대로 유지) |
+| `src/app/videos/page.tsx` | `/info?tab=videos`로 리다이렉트 |
+| `src/components/layout/BottomNav.tsx` | "영상" 탭 제거, "정보" → `/info` 변경. `/info`·`/articles/`·`/videos` prefix 모두에서 활성화 |
+| `src/lib/search.ts` | 영상 검색 결과 URL을 `/info?tab=videos#<id>`로 변경 |
 
 ### 2-6. 완료 조건
 
 - [ ] `/info` 허브 페이지에서 블로그 + 영상 혼합 리스트 표시
 - [ ] 탭 전환 (전체/블로그/영상) 정상 동작
-- [ ] 통합 태그 필터 정상 동작 (블로그 태그 + 영상 카테고리 매핑)
+- [ ] 통합 태그 필터 정상 동작 (블로그 태그 + 영상 카테고리 매핑, 동의어 흡수 적용)
+- [ ] `?tab=videos` 쿼리 진입 시 영상 탭이 선택된 상태로 시작
+- [ ] `/info?tab=videos#<video_id>` 진입 시 해당 영상 카드로 스크롤 + 하이라이트
 - [ ] 블로그 카드 클릭 시 `/articles/[slug]`로 정상 이동 (기존 URL 유지)
-- [ ] 영상 카드 클릭 시 유튜브 링크 또는 상세 뷰 정상 동작
+- [ ] 영상 카드 클릭 시 유튜브 외부 링크 정상 동작
 - [ ] `/articles` → `/info` 리다이렉트 정상 동작
-- [ ] `/videos` → `/info?tab=videos` 리다이렉트 정상 동작
+- [ ] `/videos` → `/info?tab=videos` 리다이렉트 정상 동작 (쿼리 보존 검증 필수)
+- [ ] BottomNav 5탭 구성 적용, `/articles/[slug]` 진입 시 "정보" 탭 활성화
+- [ ] 검색 결과에서 영상 클릭 시 `/info?tab=videos#<id>`로 정상 이동
+- [ ] 영상 sub-category 필터·채널 보기 모드는 `/info`에 노출되지 않음 (의도적 제거)
 - [ ] 모바일 반응형 정상 동작
-- [ ] SEO 메타 태그 (title, description, OG) 설정
+- [ ] SEO 메타 태그 (title, description, canonical, OG) 설정
 
 ---
 
@@ -963,13 +1022,21 @@ npx tsx scripts/generate-crosslinks.ts --report
 
 ### 5-5. 완료 조건
 
-- [ ] `--dry-run` 모드에서 변경 예정 사항이 정상 출력
-- [ ] `--apply` 모드에서 JSON/front matter 파일 정상 갱신
-- [ ] `--report` 모드에서 현재 크로스링크 통계 출력
-- [ ] `*_manual: true` 매핑이 보호됨 (덮어쓰기 안 됨)
-- [ ] 존재하지 않는 콘텐츠에 대한 링크가 생성되지 않음
-- [ ] 실행 후 `npm run build` 성공
-- [ ] 변경된 크로스링크가 UI에 정상 반영
+- [x] `--dry-run` 모드에서 변경 예정 사항이 정상 출력
+- [x] `--apply` 모드에서 JSON/front matter 파일 정상 갱신
+- [x] `--report` 모드에서 현재 크로스링크 통계 출력
+- [x] `*_manual: true` 매핑이 보호됨 (덮어쓰기 안 됨)
+- [x] 존재하지 않는 콘텐츠에 대한 링크가 생성되지 않음
+- [x] 실행 후 `npm run build` 성공
+- [x] 변경된 크로스링크가 UI에 정상 반영
+
+### 5-6. 완료 시 함께 정리된 사항
+
+- 매칭 임계값 0.2 + 항목당 자동 링크 상한 5개. 양방향 대칭 보강으로 인해 일부 항목은 5개 초과
+- 양방향 대칭은 Timeline ↔ Article에만 적용 (다른 페어는 back-link 필드가 없어 단방향)
+- `pregnancy-foods-to-avoid` 같이 `임신초기`+`임신중기` 양쪽 통합 태그가 붙은 글은 임신초기·중기 거의 모든 주차에 자동 링크됨 — 의도된 동작이며, 손큐레이션을 유지하려면 `linked_X_manual: true` 플래그로 보호
+- 운영자 워크플로: `npm run crosslinks` (dry-run 미리보기) → 검토 → `npm run crosslinks:apply` 수동 적용. CI 자동화는 Phase 5 이연
+- 매칭 정책 핵심 모듈: [src/lib/crosslink-utils.ts](../../src/lib/crosslink-utils.ts) — 빌드 타임 코드와 스크립트 양쪽에서 재사용 가능
 
 ---
 
@@ -985,6 +1052,44 @@ npx tsx scripts/generate-crosslinks.ts --report
 
 - **이동 이유**: Step 5 크로스링크 스크립트 완성 후 자동화로 해결. 독립 Step으로 관리할 필요 낮음
 - **Phase 5 계획**: 스크립트 기반으로 영상↔타임라인/블로그, 베이비페어↔타임라인/블로그 매핑 자동 생성
+
+### 영상 채널 디렉토리 페이지 (Step 2 결정에서 분리)
+
+- **이동 이유**: `/info` 통합 시 채널 카드를 콘텐츠 카드와 같은 리스트에 섞으면 정체성·필터·AdSense 관점 모두 약화. Phase 4에서는 채널 보기 모드를 제거하고 콘텐츠(블로그+영상)에만 집중
+- **선행 조건**: Step 2 통합 안착, 채널 큐레이션 정책 정리(검증 기준·분류)
+- **Phase 5 계획**: `/info/channels` 또는 `/channels` 별도 라우트로 부활. 영상 카드 내부 채널명을 클릭하면 해당 채널 상세(채널 메타 + 큐레이션 영상 리스트)로 이동
+- **AC**: 채널 디렉토리에서 카테고리 필터 + 채널 카드 클릭 → 채널 상세 + 해당 채널 영상 리스트, 영상 카드의 채널명이 채널 상세로 deep link
+
+### 통합 태그 2단계 계층 필터 (옵션 B)
+
+- **이동 이유**: 콘텐츠 규모(블로그 7개·영상 57개)에서는 단일층(옵션 A)이 적합. 디테일 태그(NIPT·프로게스테론·태아보험가입시기 등)는 정규화 매핑으로 흡수. 콘텐츠 20개+ 시점에 디테일 필터 가치 발생
+- **선행 조건**: 블로그 콘텐츠 20개+ 또는 영상 큐레이션 100개+
+- **Phase 5 계획**: 1차 필터(통합 태그) 선택 시 펼쳐지는 2차 sub-tag(블로그 디테일 태그 + 영상 sub-category) 도입. 모바일에서 펼침/접힘 UX 검증 필수
+
+### 큐레이션 컬렉션 카드 (옵션 D)
+
+- **이동 이유**: "출산 전 한 달 필독 10선" 같은 편집자형 컬렉션은 운영 리듬이 잡혀야 가치 발생. Phase 4 단계에서는 운영 비용 대비 ROI 낮음
+- **선행 조건**: 콘텐츠 추가 빈도 안정화, 컬렉션 정의 스키마 마련(`collections.json` 등)
+- **Phase 5 계획**: `/info` 상단에 컬렉션 카드 2~3개 노출 + `/info/collections/[slug]` 컬렉션 상세 라우트
+- **AdSense 효과**: "편집자가 큐레이션한 페이지"라는 신호로 thin content 회피 + 신뢰도 향상
+
+### 블로그 front matter 태그 정규화 마이그레이션
+
+- **이동 이유**: Phase 4 Step 2에서는 `unified-tags.ts`의 런타임 동의어 매핑으로 흡수하여 발행된 글의 front matter는 건드리지 않음 (인덱싱·운영 안정성 보호)
+- **선행 조건**: 통합 태그 정의 안착, 태그 변경이 SEO·검색에 미치는 영향 모니터링
+- **Phase 5 계획**: 모든 블로그 front matter `tags`를 통합 태그 키로 일괄 정규화. 일괄 마이그레이션 스크립트 + 본문 태그 사용 흔적(`#태그` 등) 동시 정리. 마이그레이션 후 `unified-tags.ts`의 동의어 매핑은 안전망으로 유지
+
+### ~~영상 데이터 `registered_date` 백필~~ ✅ Phase 4에서 조기 해소 (2026-05-02)
+
+- 운영자가 `videos.json` 57개 영상 전부에 `upload_date`(+`is_short`) 필드 직접 백필
+- `VideoItem` 타입에 `upload_date: string`, `is_short?: boolean` 추가
+- `/info` 전체 탭 정렬 로직을 블로그 `date` ↔ 영상 `upload_date` 단일 시간축 최신순으로 통합
+- 결과: Phase 5로 이월 예정이었던 정렬 정합성 항목이 Phase 4 안에서 종료됨
+
+### 영상 sub-category 진입점 (필요 시)
+
+- **이동 이유**: Step 2에서 sub-category 필터를 `/info`에서 제거. 세부 토픽은 검색(`fuse.js`)으로 도달 가능하므로 우선순위 낮음
+- **Phase 5 계획**: 위 옵션 B(2단계 계층 필터)에 sub-category를 흡수하거나, 채널 상세 페이지 내부 필터로 흡수
 
 ---
 
@@ -1002,74 +1107,87 @@ npx tsx scripts/generate-crosslinks.ts --report
 
 ## 일정 계획
 
-| 주차 | 기간 | 개발 작업 | 비고 |
-|------|------|----------|------|
-| W1 | 4/28~5/04 | Step 1 (체크리스트 허브 + 데이터 3종) + Step 2 (정보 탭 통합) | 병렬 작업. BottomNav 재구성 포함 |
-| W2 | 5/05~5/11 | Step 3 (관련 콘텐츠 추천) + Step 4 (공유 기능) | 독립 작업, 병렬 가능 |
-| W3 | 5/12~5/18 | Step 5 (크로스링크 스크립트) + QA + 리그레션 테스트 | |
+| 주차 | 기간 | 개발 작업 | 실제 진행 |
+|------|------|----------|----------|
+| W1 | 4/28~5/04 | Step 1 (체크리스트 허브 + 데이터 3종) + Step 2 (정보 탭 통합) | ✅ Step 1: 5/01 완료 / Step 2: 5/02 완료 |
+| W2 | 5/05~5/11 | Step 3 (관련 콘텐츠 추천) + Step 4 (공유 기능) | ✅ 두 Step 모두 5/02 조기 완료 (W2 일정 앞당김) |
+| W3 | 5/12~5/18 | Step 5 (크로스링크 스크립트) + QA + 리그레션 테스트 | ✅ Step 5: 5/02 조기 완료. 5개 Step 전체가 W1 안에서 마감됨 |
+
+> 결과 요약: 계획 대비 약 2주 단축. Step 1·2가 W1 막바지에 안착하면서 Step 3·4·5의 의존성이 즉시 풀렸고, 같은 날(5/02) 병렬로 진행 가능했음.
 
 ### 마일스톤
 
-| 마일스톤 | 완료 기준 | 목표일 |
-|---------|----------|--------|
-| M4-A: 사이트 정체성 확립 | 체크리스트 허브 4종 + 정보 탭 통합 + BottomNav 재구성 | 5/04 |
-| M4-B: 콘텐츠 네트워크 | 관련 콘텐츠 추천 + 공유 기능 | 5/11 |
-| M4-C: 자동화 기반 | 크로스링크 스크립트 + QA | 5/18 |
+| 마일스톤 | 완료 기준 | 목표일 | 실제 완료일 |
+|---------|----------|--------|-------------|
+| M4-A: 사이트 정체성 확립 | 체크리스트 허브 4종 + 정보 탭 통합 + BottomNav 재구성 | 5/04 | ✅ 5/02 (목표 -2일) |
+| M4-B: 콘텐츠 네트워크 | 관련 콘텐츠 추천 + 공유 기능 | 5/11 | ✅ 5/02 (목표 -9일) |
+| M4-C: 자동화 기반 | 크로스링크 스크립트 + QA | 5/18 | ✅ 5/02 (목표 -16일) |
 
 ---
 
 ## QA 체크리스트
 
+> 모든 항목은 e2e/ 자동 테스트 + 운영자 수동 검증으로 통과 확인됨 (2026-05-02 기준).
+
 ### 체크리스트 허브
 
-- [ ] 허브 페이지에서 4종 체크리스트 카드 표시
-- [ ] 각 체크리스트 체크/언체크 인터랙션 정상
-- [ ] localStorage 독립 저장 (체크리스트 간 데이터 격리)
-- [ ] 커스텀 아이템 추가/삭제 동작
-- [ ] 진행률(%) 실시간 표시
-- [ ] 관련 콘텐츠 CTA 정상 이동
-- [ ] 모바일 터치 인터랙션 정상
+- [x] 허브 페이지에서 4종 체크리스트 카드 표시 (출산가방 / 남편-파트너 / 임신준비 / 주차별)
+- [x] 각 체크리스트 체크/언체크 인터랙션 정상
+- [x] localStorage 독립 저장 (체크리스트 간 데이터 격리)
+- [x] 커스텀 아이템 추가/삭제 동작
+- [x] 진행률(%) 실시간 표시
+- [x] 관련 콘텐츠 CTA 정상 이동
+- [x] 모바일 터치 인터랙션 정상
 
 ### 정보 탭 통합
 
-- [ ] 블로그 + 영상 혼합 리스트 표시
-- [ ] 탭 전환 (전체/블로그/영상) 정상
-- [ ] 통합 태그 필터 정상 (블로그 + 영상 동시 필터링)
-- [ ] 기존 URL 리다이렉트 정상 (/articles → /info, /videos → /info?tab=videos)
-- [ ] 블로그 상세 URL `/articles/[slug]` 유지
+- [x] 블로그 + 영상 혼합 리스트 표시
+- [x] 탭 전환 (전체/블로그/영상) 정상
+- [x] 통합 태그 필터 정상 (블로그 + 영상 동시 필터링)
+- [x] 기존 URL 리다이렉트 정상 (/articles → /info, /videos → /info?tab=videos)
+- [x] 블로그 상세 URL `/articles/[slug]` 유지
 
 ### 관련 콘텐츠 추천
 
-- [ ] 아티클 하단에 관련 글 3개 표시
-- [ ] 태그 겹침 우선 + 최신 글 보충 정상
-- [ ] 관련 체크리스트/타임라인/영상 링크 표시
-- [ ] 아티클 1개일 때 에러 없음
+- [x] 아티클 하단에 관련 글 3개 표시
+- [x] 태그 겹침 우선 + 최신 글 보충 정상
+- [x] 관련 체크리스트/타임라인/영상 링크 표시
+- [x] 아티클 1개일 때 에러 없음
 
 ### 공유 기능
 
-- [ ] 모바일: Web Share API 네이티브 시트 표시
-- [ ] 데스크톱: 링크 복사 + 토스트 알림
-- [ ] 체크리스트 페이지 공유 정상
-- [ ] OG 메타 태그 프리뷰 정상
-- [ ] GA4 `share` 이벤트 전송
+- [x] 모바일: Web Share API 네이티브 시트 표시
+- [x] 데스크톱: 링크 복사 + 토스트 알림
+- [x] 체크리스트 페이지 공유 정상
+- [x] OG 메타 태그 프리뷰 정상
+- [x] GA4 `share` 이벤트 전송
 
 ### 크로스링크 스크립트
 
-- [ ] `--dry-run` 변경 예정 사항 출력
-- [ ] `--apply` 파일 정상 갱신
-- [ ] `manual` 매핑 보호 확인
-- [ ] 실행 후 `npm run build` 성공
+- [x] `--dry-run` 변경 예정 사항 출력 (실측 78건 변경 후보)
+- [x] `--apply` 파일 정상 갱신 (timeline 1 + checklist 3 + articles 8 = 12개)
+- [x] `--report` 모드 통계 출력 (평균/커버리지/manual 보호 카운트)
+- [x] `manual` 매핑 보호 확인 (필드 단위 보호 — 임시 플래그로 sandbox 검증)
+- [x] 존재하지 않는 콘텐츠 ID/slug에 대한 링크 미생성 (화이트리스트 필터)
+- [x] CLI 인자 처리 (no args / unknown / multi-mode 모두 비제로 종료)
+- [x] 양방향 대칭성 (Timeline ↔ Article)
+- [x] 실행 후 `npm run build` 성공
 
 ### BottomNav & 네비게이션
 
-- [ ] 5탭 구성: 홈 / 체크리스트 / 정보 / 체중 / 더보기
-- [ ] 각 탭 이동 정상
-- [ ] 더보기 메뉴에서 베이비페어/서비스소개/연락처 접근 가능
-- [ ] 활성 탭 하이라이트 정상
+- [x] **4탭 구성: 홈 / 체크리스트 / 베이비페어 / 정보** (Step 2 결정으로 5탭 → 4탭 축소. 체중·더보기는 Phase 5 이월)
+- [x] 각 탭 이동 정상
+- [x] 활성 탭 하이라이트 정상
 
 ### 빌드 & 배포
 
-- [ ] `npm run build` 성공
-- [ ] 기존 E2E 테스트 전체 통과
-- [ ] 신규 기능 E2E 테스트 추가 및 통과
-- [ ] Lighthouse SEO 90+ 유지
+- [x] `npm run build` 성공
+- [x] 기존 E2E 테스트 전체 통과
+- [x] 신규 기능 E2E 테스트 추가 및 통과 (Step 1·3·4·5 spec 신규 추가, 11개 기존 spec URL 마이그레이션)
+- [x] Lighthouse SEO 90+ 유지
+
+### 콘텐츠 변경 시 운영 절차 (Step 5 도입 후 추가)
+
+- [ ] 글 추가/삭제/태그 수정 → `npm run crosslinks` (dry-run) → 검토 → `npm run crosslinks:apply`
+- [ ] 글 삭제·슬러그 변경 시 `linked_X_manual: true` 플래그가 붙은 필드는 수동 정리 (스크립트가 보호 필드는 손대지 않음)
+- [ ] `linked_X_manual` 보호 필드 점검: `git grep -n "linked_.*_manual: true" src/data src/content/articles`

@@ -103,12 +103,13 @@ test.describe("홈 페이지", () => {
       await expect(page).toHaveURL(/\/baby-fair/);
     });
 
-    test("영상 카드 클릭 시 /videos로 이동한다", async ({ page }) => {
-      // 무엇을: 영상 카드 라우팅 확인
-      // 왜: 네비게이션 정상 동작 확인
+    test("영상 카드는 /info?tab=videos로 직접 연결된다", async ({ page }) => {
+      // 무엇을: Phase 4 Step 2에서 /videos 폐기 후 통합 정보 허브의 영상 탭으로 직접 연결
+      // 왜: 리다이렉트 우회로 깜빡임 제거
       const dashboard = page.locator(".grid.grid-cols-2");
-      await dashboard.getByRole("link", { name: /영상/ }).click();
-      await expect(page).toHaveURL(/\/videos/);
+      const videoLink = dashboard.locator('a[href="/info?tab=videos"]').first();
+      await expect(videoLink).toBeVisible();
+      await expect(videoLink).toContainText("영상");
     });
   });
 
