@@ -13,8 +13,9 @@ tags:
   - 정부지원
   - 2026년
 date: "2026-05-01"
-linked_timeline_weeks: [8, 12, 16]
+linked_timeline_weeks: [10]
 authorNote: "임신 확인하자마자 받는 첫 숙제가 '국민행복카드 신청'이에요. 그런데 카드사부터 사은품, 신청 시점까지 알아볼 게 너무 많아서 정리해봤습니다."
+linked_video_ids: ["video_058", "video_059", "video_060"]
 ---
 
 # 2026년 임신·출산 정부 혜택 총정리: 국민행복카드 100만원부터 부모급여·교통비까지

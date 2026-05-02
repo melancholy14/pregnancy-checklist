@@ -14,6 +14,8 @@ tags:
   - 임신성당뇨
 date: "2026-04-13"
 authorNote: "임신 준비하면서 헷갈렸던 내용 정리할 겸 기억 안 날때마다 보려고 정리했습니다."
+linked_timeline_weeks: [7, 9, 10, 11, 36]
+linked_video_ids: ["video_019"]
 ---
 
 "다음 검사가 뭐였지?"

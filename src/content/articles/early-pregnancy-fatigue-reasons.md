@@ -13,6 +13,8 @@ date: "2026-04-22"
 author: "출산 준비 체크리스트 제작자 뿌까뽀까"
 reviewed_by: ""
 last_updated: "2026-04-26"
+linked_timeline_weeks: [4, 5, 8, 12, 13]
+linked_video_ids: ["video_031", "video_032", "video_033", "video_037", "video_039"]
 ---
 
 ## 임신 초기, 왜 이렇게 피곤할까?

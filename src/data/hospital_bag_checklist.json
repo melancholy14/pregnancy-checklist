@@ -5,46 +5,289 @@
     "description": "출산 예정일이 가까워지면 입원 가방을 미리 싸두세요. 보통 임신 32~36주 사이에 준비하는 것을 권장합니다.",
     "icon": "🧳",
     "subcategories": [
-      { "key": "bag_mom", "label": "엄마 가방" },
-      { "key": "bag_baby", "label": "아기 가방" },
-      { "key": "bag_docs", "label": "서류/기타" }
+      {
+        "key": "bag_mom",
+        "label": "엄마 가방"
+      },
+      {
+        "key": "bag_baby",
+        "label": "아기 가방"
+      },
+      {
+        "key": "bag_docs",
+        "label": "서류/기타"
+      }
     ],
-    "linked_timeline_weeks": [32, 34, 36],
-    "linked_article_slugs": ["hospital-bag"],
-    "linked_video_ids": []
+    "linked_timeline_weeks": [
+      32,
+      34,
+      36
+    ],
+    "linked_article_slugs": [],
+    "linked_video_ids": [
+      "video_019"
+    ]
   },
   "items": [
-    { "id": "hb_mom_01", "title": "산모용 잠옷 (앞트임 수유 가능) 2~3벌", "category": "bag_mom", "categoryName": "엄마 가방", "recommendedWeek": 0, "priority": "high" },
-    { "id": "hb_mom_02", "title": "일회용 산모 속옷 (자연분만 15~20장 / 제왕절개 10~15장)", "category": "bag_mom", "categoryName": "엄마 가방", "recommendedWeek": 0, "priority": "high" },
-    { "id": "hb_mom_03", "title": "수유 브라 2~3개", "category": "bag_mom", "categoryName": "엄마 가방", "recommendedWeek": 0, "priority": "high" },
-    { "id": "hb_mom_04", "title": "산모 패드 1~2팩 (병원 제공 여부 전화 확인)", "category": "bag_mom", "categoryName": "엄마 가방", "recommendedWeek": 0, "priority": "high", "note": "병원마다 제공량이 다르므로 확인 필요" },
-    { "id": "hb_mom_05", "title": "세면도구 (칫솔, 치약, 세안제, 보습 로션)", "category": "bag_mom", "categoryName": "엄마 가방", "recommendedWeek": 0, "priority": "high" },
-    { "id": "hb_mom_06", "title": "슬리퍼 (미끄럼 방지)", "category": "bag_mom", "categoryName": "엄마 가방", "recommendedWeek": 0, "priority": "medium" },
-    { "id": "hb_mom_07", "title": "빨대컵", "category": "bag_mom", "categoryName": "엄마 가방", "recommendedWeek": 0, "priority": "high", "note": "제왕절개 시 누워서 음용 필수" },
-    { "id": "hb_mom_08", "title": "유두 보호 크림", "category": "bag_mom", "categoryName": "엄마 가방", "recommendedWeek": 0, "priority": "medium" },
-    { "id": "hb_mom_09", "title": "손목보호대", "category": "bag_mom", "categoryName": "엄마 가방", "recommendedWeek": 0, "priority": "low" },
-    { "id": "hb_mom_10", "title": "간식, 에너지바", "category": "bag_mom", "categoryName": "엄마 가방", "recommendedWeek": 0, "priority": "medium" },
-    { "id": "hb_mom_11", "title": "회음부 방석 (자연분만 시)", "category": "bag_mom", "categoryName": "엄마 가방", "recommendedWeek": 0, "priority": "medium" },
-    { "id": "hb_mom_12", "title": "압박스타킹 (제왕절개 시 혈전 예방)", "category": "bag_mom", "categoryName": "엄마 가방", "recommendedWeek": 0, "priority": "high" },
-    { "id": "hb_mom_13", "title": "산후 복대 (제왕절개 시 권장)", "category": "bag_mom", "categoryName": "엄마 가방", "recommendedWeek": 0, "priority": "medium" },
-    { "id": "hb_mom_14", "title": "드라이 샴푸 (제왕절개 시 샤워 제한)", "category": "bag_mom", "categoryName": "엄마 가방", "recommendedWeek": 0, "priority": "low" },
-    { "id": "hb_mom_15", "title": "퇴원복 (앞트임 또는 원피스)", "category": "bag_mom", "categoryName": "엄마 가방", "recommendedWeek": 0, "priority": "high" },
-    { "id": "hb_mom_16", "title": "휴대폰 충전기", "category": "bag_mom", "categoryName": "엄마 가방", "recommendedWeek": 0, "priority": "high" },
-    { "id": "hb_baby_01", "title": "퇴원복 1벌 (계절에 맞는 소재)", "category": "bag_baby", "categoryName": "아기 가방", "recommendedWeek": 0, "priority": "high" },
-    { "id": "hb_baby_02", "title": "배냇저고리 2벌", "category": "bag_baby", "categoryName": "아기 가방", "recommendedWeek": 0, "priority": "high" },
-    { "id": "hb_baby_03", "title": "속싸개 3~5장", "category": "bag_baby", "categoryName": "아기 가방", "recommendedWeek": 0, "priority": "high" },
-    { "id": "hb_baby_04", "title": "겉싸개 1~2장", "category": "bag_baby", "categoryName": "아기 가방", "recommendedWeek": 0, "priority": "medium" },
-    { "id": "hb_baby_05", "title": "신생아 기저귀 1팩", "category": "bag_baby", "categoryName": "아기 가방", "recommendedWeek": 0, "priority": "medium", "note": "병원에서 제공하는 곳도 많아 사전 확인 권장" },
-    { "id": "hb_baby_06", "title": "아기 물티슈", "category": "bag_baby", "categoryName": "아기 가방", "recommendedWeek": 0, "priority": "medium" },
-    { "id": "hb_baby_07", "title": "아기 모자", "category": "bag_baby", "categoryName": "아기 가방", "recommendedWeek": 0, "priority": "medium" },
-    { "id": "hb_baby_08", "title": "카시트 (차량 설치 + 작동 확인 완료)", "category": "bag_baby", "categoryName": "아기 가방", "recommendedWeek": 0, "priority": "high", "note": "퇴원 전 필수 — 도로교통법 제50조" },
-    { "id": "hb_docs_01", "title": "산모수첩", "category": "bag_docs", "categoryName": "서류/기타", "recommendedWeek": 0, "priority": "high" },
-    { "id": "hb_docs_02", "title": "신분증, 건강보험증", "category": "bag_docs", "categoryName": "서류/기타", "recommendedWeek": 0, "priority": "high" },
-    { "id": "hb_docs_03", "title": "실비보험 카드 / 보험 서류", "category": "bag_docs", "categoryName": "서류/기타", "recommendedWeek": 0, "priority": "high" },
-    { "id": "hb_docs_04", "title": "출산 계획서 (작성한 경우)", "category": "bag_docs", "categoryName": "서류/기타", "recommendedWeek": 0, "priority": "medium" },
-    { "id": "hb_docs_05", "title": "보호자 여벌 옷 1~2벌", "category": "bag_docs", "categoryName": "서류/기타", "recommendedWeek": 0, "priority": "medium" },
-    { "id": "hb_docs_06", "title": "보호자 세면도구", "category": "bag_docs", "categoryName": "서류/기타", "recommendedWeek": 0, "priority": "medium" },
-    { "id": "hb_docs_07", "title": "보호자 이불/담요 (간이침대 침구 미제공 병원 많음)", "category": "bag_docs", "categoryName": "서류/기타", "recommendedWeek": 0, "priority": "low" },
-    { "id": "hb_docs_08", "title": "긴 충전 케이블 (2m 이상)", "category": "bag_docs", "categoryName": "서류/기타", "recommendedWeek": 0, "priority": "low" }
+    {
+      "id": "hb_mom_01",
+      "title": "산모용 잠옷 (앞트임 수유 가능) 2~3벌",
+      "category": "bag_mom",
+      "categoryName": "엄마 가방",
+      "recommendedWeek": 0,
+      "priority": "high"
+    },
+    {
+      "id": "hb_mom_02",
+      "title": "일회용 산모 속옷 (자연분만 15~20장 / 제왕절개 10~15장)",
+      "category": "bag_mom",
+      "categoryName": "엄마 가방",
+      "recommendedWeek": 0,
+      "priority": "high"
+    },
+    {
+      "id": "hb_mom_03",
+      "title": "수유 브라 2~3개",
+      "category": "bag_mom",
+      "categoryName": "엄마 가방",
+      "recommendedWeek": 0,
+      "priority": "high"
+    },
+    {
+      "id": "hb_mom_04",
+      "title": "산모 패드 1~2팩 (병원 제공 여부 전화 확인)",
+      "category": "bag_mom",
+      "categoryName": "엄마 가방",
+      "recommendedWeek": 0,
+      "priority": "high",
+      "note": "병원마다 제공량이 다르므로 확인 필요"
+    },
+    {
+      "id": "hb_mom_05",
+      "title": "세면도구 (칫솔, 치약, 세안제, 보습 로션)",
+      "category": "bag_mom",
+      "categoryName": "엄마 가방",
+      "recommendedWeek": 0,
+      "priority": "high"
+    },
+    {
+      "id": "hb_mom_06",
+      "title": "슬리퍼 (미끄럼 방지)",
+      "category": "bag_mom",
+      "categoryName": "엄마 가방",
+      "recommendedWeek": 0,
+      "priority": "medium"
+    },
+    {
+      "id": "hb_mom_07",
+      "title": "빨대컵",
+      "category": "bag_mom",
+      "categoryName": "엄마 가방",
+      "recommendedWeek": 0,
+      "priority": "high",
+      "note": "제왕절개 시 누워서 음용 필수"
+    },
+    {
+      "id": "hb_mom_08",
+      "title": "유두 보호 크림",
+      "category": "bag_mom",
+      "categoryName": "엄마 가방",
+      "recommendedWeek": 0,
+      "priority": "medium"
+    },
+    {
+      "id": "hb_mom_09",
+      "title": "손목보호대",
+      "category": "bag_mom",
+      "categoryName": "엄마 가방",
+      "recommendedWeek": 0,
+      "priority": "low"
+    },
+    {
+      "id": "hb_mom_10",
+      "title": "간식, 에너지바",
+      "category": "bag_mom",
+      "categoryName": "엄마 가방",
+      "recommendedWeek": 0,
+      "priority": "medium"
+    },
+    {
+      "id": "hb_mom_11",
+      "title": "회음부 방석 (자연분만 시)",
+      "category": "bag_mom",
+      "categoryName": "엄마 가방",
+      "recommendedWeek": 0,
+      "priority": "medium"
+    },
+    {
+      "id": "hb_mom_12",
+      "title": "압박스타킹 (제왕절개 시 혈전 예방)",
+      "category": "bag_mom",
+      "categoryName": "엄마 가방",
+      "recommendedWeek": 0,
+      "priority": "high"
+    },
+    {
+      "id": "hb_mom_13",
+      "title": "산후 복대 (제왕절개 시 권장)",
+      "category": "bag_mom",
+      "categoryName": "엄마 가방",
+      "recommendedWeek": 0,
+      "priority": "medium"
+    },
+    {
+      "id": "hb_mom_14",
+      "title": "드라이 샴푸 (제왕절개 시 샤워 제한)",
+      "category": "bag_mom",
+      "categoryName": "엄마 가방",
+      "recommendedWeek": 0,
+      "priority": "low"
+    },
+    {
+      "id": "hb_mom_15",
+      "title": "퇴원복 (앞트임 또는 원피스)",
+      "category": "bag_mom",
+      "categoryName": "엄마 가방",
+      "recommendedWeek": 0,
+      "priority": "high"
+    },
+    {
+      "id": "hb_mom_16",
+      "title": "휴대폰 충전기",
+      "category": "bag_mom",
+      "categoryName": "엄마 가방",
+      "recommendedWeek": 0,
+      "priority": "high"
+    },
+    {
+      "id": "hb_baby_01",
+      "title": "퇴원복 1벌 (계절에 맞는 소재)",
+      "category": "bag_baby",
+      "categoryName": "아기 가방",
+      "recommendedWeek": 0,
+      "priority": "high"
+    },
+    {
+      "id": "hb_baby_02",
+      "title": "배냇저고리 2벌",
+      "category": "bag_baby",
+      "categoryName": "아기 가방",
+      "recommendedWeek": 0,
+      "priority": "high"
+    },
+    {
+      "id": "hb_baby_03",
+      "title": "속싸개 3~5장",
+      "category": "bag_baby",
+      "categoryName": "아기 가방",
+      "recommendedWeek": 0,
+      "priority": "high"
+    },
+    {
+      "id": "hb_baby_04",
+      "title": "겉싸개 1~2장",
+      "category": "bag_baby",
+      "categoryName": "아기 가방",
+      "recommendedWeek": 0,
+      "priority": "medium"
+    },
+    {
+      "id": "hb_baby_05",
+      "title": "신생아 기저귀 1팩",
+      "category": "bag_baby",
+      "categoryName": "아기 가방",
+      "recommendedWeek": 0,
+      "priority": "medium",
+      "note": "병원에서 제공하는 곳도 많아 사전 확인 권장"
+    },
+    {
+      "id": "hb_baby_06",
+      "title": "아기 물티슈",
+      "category": "bag_baby",
+      "categoryName": "아기 가방",
+      "recommendedWeek": 0,
+      "priority": "medium"
+    },
+    {
+      "id": "hb_baby_07",
+      "title": "아기 모자",
+      "category": "bag_baby",
+      "categoryName": "아기 가방",
+      "recommendedWeek": 0,
+      "priority": "medium"
+    },
+    {
+      "id": "hb_baby_08",
+      "title": "카시트 (차량 설치 + 작동 확인 완료)",
+      "category": "bag_baby",
+      "categoryName": "아기 가방",
+      "recommendedWeek": 0,
+      "priority": "high",
+      "note": "퇴원 전 필수 — 도로교통법 제50조"
+    },
+    {
+      "id": "hb_docs_01",
+      "title": "산모수첩",
+      "category": "bag_docs",
+      "categoryName": "서류/기타",
+      "recommendedWeek": 0,
+      "priority": "high"
+    },
+    {
+      "id": "hb_docs_02",
+      "title": "신분증, 건강보험증",
+      "category": "bag_docs",
+      "categoryName": "서류/기타",
+      "recommendedWeek": 0,
+      "priority": "high"
+    },
+    {
+      "id": "hb_docs_03",
+      "title": "실비보험 카드 / 보험 서류",
+      "category": "bag_docs",
+      "categoryName": "서류/기타",
+      "recommendedWeek": 0,
+      "priority": "high"
+    },
+    {
+      "id": "hb_docs_04",
+      "title": "출산 계획서 (작성한 경우)",
+      "category": "bag_docs",
+      "categoryName": "서류/기타",
+      "recommendedWeek": 0,
+      "priority": "medium"
+    },
+    {
+      "id": "hb_docs_05",
+      "title": "보호자 여벌 옷 1~2벌",
+      "category": "bag_docs",
+      "categoryName": "서류/기타",
+      "recommendedWeek": 0,
+      "priority": "medium"
+    },
+    {
+      "id": "hb_docs_06",
+      "title": "보호자 세면도구",
+      "category": "bag_docs",
+      "categoryName": "서류/기타",
+      "recommendedWeek": 0,
+      "priority": "medium"
+    },
+    {
+      "id": "hb_docs_07",
+      "title": "보호자 이불/담요 (간이침대 침구 미제공 병원 많음)",
+      "category": "bag_docs",
+      "categoryName": "서류/기타",
+      "recommendedWeek": 0,
+      "priority": "low"
+    },
+    {
+      "id": "hb_docs_08",
+      "title": "긴 충전 케이블 (2m 이상)",
+      "category": "bag_docs",
+      "categoryName": "서류/기타",
+      "recommendedWeek": 0,
+      "priority": "low"
+    }
   ]
 }

@@ -3,7 +3,7 @@
 > Phase 3 기록: [../phase-3/plan.md](../phase-3/plan.md)
 > Date: 2026-04-27
 > 목표 완료: 2026-05-18
-> Status: 🚧 진행 중 (Step 1·2 완료, Step 3·4·5 대기)
+> Status: ✅ 완료 (Step 1~5 모두 완료)
 > Last Updated: 2026-05-02
 
 ## 진행 현황
@@ -12,9 +12,9 @@
 | ---- | ---- | -------- |
 | Step 1. 체크리스트 허브 확장 | ✅ 완료 (2026-05-01) | [../implementation/phase-4-step-1-checklist-hub-impl.md](../implementation/phase-4-step-1-checklist-hub-impl.md), [../review/phase-4-step-1-checklist-hub-review.md](../review/phase-4-step-1-checklist-hub-review.md), [e2e/phase-4-step-1-checklist-hub.spec.ts](../../e2e/phase-4-step-1-checklist-hub.spec.ts) |
 | Step 2. 정보 탭 통합 | ✅ 완료 (2026-05-02) | [../info-tab-integration/README.md](../info-tab-integration/README.md), [../plan/info-tab-integration-plan.md](../plan/info-tab-integration-plan.md), [e2e/info-tab-integration.spec.ts](../../e2e/info-tab-integration.spec.ts) |
-| Step 3. 관련 콘텐츠 추천 | ⏳ 대기 | — |
-| Step 4. 공유 기능 | ⏳ 대기 | — |
-| Step 5. 크로스링크 스크립트 | ⏳ 대기 | — |
+| Step 3. 관련 콘텐츠 추천 | ✅ 완료 (2026-05-02) | [../phase-4-step-3-related-content/README.md](../phase-4-step-3-related-content/README.md), [../implementation/phase-4-step-3-related-content-impl.md](../implementation/phase-4-step-3-related-content-impl.md), [../review/phase-4-step-3-related-content-review.md](../review/phase-4-step-3-related-content-review.md), [e2e/phase-4-step-3-related-content.spec.ts](../../e2e/phase-4-step-3-related-content.spec.ts) |
+| Step 4. 공유 기능 | ✅ 완료 (2026-05-02) | [../phase-4-step-4-share/README.md](../phase-4-step-4-share/README.md), [../implementation/phase-4-step-4-share-impl.md](../implementation/phase-4-step-4-share-impl.md), [../review/phase-4-step-4-share-review.md](../review/phase-4-step-4-share-review.md), [e2e/phase-4-step-4-share.spec.ts](../../e2e/phase-4-step-4-share.spec.ts) |
+| Step 5. 크로스링크 스크립트 | ✅ 완료 (2026-05-02) | [../phase-4-step-5-crosslinks/README.md](../phase-4-step-5-crosslinks/README.md), [../implementation/phase-4-step-5-crosslinks-impl.md](../implementation/phase-4-step-5-crosslinks-impl.md), [../review/phase-4-step-5-crosslinks-review.md](../review/phase-4-step-5-crosslinks-review.md), [../refactor/phase-4-step-5-crosslinks-refactor.md](../refactor/phase-4-step-5-crosslinks-refactor.md), [e2e/phase-4-step-5-crosslinks.spec.ts](../../e2e/phase-4-step-5-crosslinks.spec.ts) |
 
 ### Step 2 완료 시 함께 정리된 사항
 
@@ -1022,13 +1022,21 @@ npx tsx scripts/generate-crosslinks.ts --report
 
 ### 5-5. 완료 조건
 
-- [ ] `--dry-run` 모드에서 변경 예정 사항이 정상 출력
-- [ ] `--apply` 모드에서 JSON/front matter 파일 정상 갱신
-- [ ] `--report` 모드에서 현재 크로스링크 통계 출력
-- [ ] `*_manual: true` 매핑이 보호됨 (덮어쓰기 안 됨)
-- [ ] 존재하지 않는 콘텐츠에 대한 링크가 생성되지 않음
-- [ ] 실행 후 `npm run build` 성공
-- [ ] 변경된 크로스링크가 UI에 정상 반영
+- [x] `--dry-run` 모드에서 변경 예정 사항이 정상 출력
+- [x] `--apply` 모드에서 JSON/front matter 파일 정상 갱신
+- [x] `--report` 모드에서 현재 크로스링크 통계 출력
+- [x] `*_manual: true` 매핑이 보호됨 (덮어쓰기 안 됨)
+- [x] 존재하지 않는 콘텐츠에 대한 링크가 생성되지 않음
+- [x] 실행 후 `npm run build` 성공
+- [x] 변경된 크로스링크가 UI에 정상 반영
+
+### 5-6. 완료 시 함께 정리된 사항
+
+- 매칭 임계값 0.2 + 항목당 자동 링크 상한 5개. 양방향 대칭 보강으로 인해 일부 항목은 5개 초과
+- 양방향 대칭은 Timeline ↔ Article에만 적용 (다른 페어는 back-link 필드가 없어 단방향)
+- `pregnancy-foods-to-avoid` 같이 `임신초기`+`임신중기` 양쪽 통합 태그가 붙은 글은 임신초기·중기 거의 모든 주차에 자동 링크됨 — 의도된 동작이며, 손큐레이션을 유지하려면 `linked_X_manual: true` 플래그로 보호
+- 운영자 워크플로: `npm run crosslinks` (dry-run 미리보기) → 검토 → `npm run crosslinks:apply` 수동 적용. CI 자동화는 Phase 5 이연
+- 매칭 정책 핵심 모듈: [src/lib/crosslink-utils.ts](../../src/lib/crosslink-utils.ts) — 빌드 타임 코드와 스크립트 양쪽에서 재사용 가능
 
 ---
 
@@ -1099,74 +1107,87 @@ npx tsx scripts/generate-crosslinks.ts --report
 
 ## 일정 계획
 
-| 주차 | 기간 | 개발 작업 | 비고 |
-|------|------|----------|------|
-| W1 | 4/28~5/04 | Step 1 (체크리스트 허브 + 데이터 3종) + Step 2 (정보 탭 통합) | 병렬 작업. BottomNav 재구성 포함 |
-| W2 | 5/05~5/11 | Step 3 (관련 콘텐츠 추천) + Step 4 (공유 기능) | 독립 작업, 병렬 가능 |
-| W3 | 5/12~5/18 | Step 5 (크로스링크 스크립트) + QA + 리그레션 테스트 | |
+| 주차 | 기간 | 개발 작업 | 실제 진행 |
+|------|------|----------|----------|
+| W1 | 4/28~5/04 | Step 1 (체크리스트 허브 + 데이터 3종) + Step 2 (정보 탭 통합) | ✅ Step 1: 5/01 완료 / Step 2: 5/02 완료 |
+| W2 | 5/05~5/11 | Step 3 (관련 콘텐츠 추천) + Step 4 (공유 기능) | ✅ 두 Step 모두 5/02 조기 완료 (W2 일정 앞당김) |
+| W3 | 5/12~5/18 | Step 5 (크로스링크 스크립트) + QA + 리그레션 테스트 | ✅ Step 5: 5/02 조기 완료. 5개 Step 전체가 W1 안에서 마감됨 |
+
+> 결과 요약: 계획 대비 약 2주 단축. Step 1·2가 W1 막바지에 안착하면서 Step 3·4·5의 의존성이 즉시 풀렸고, 같은 날(5/02) 병렬로 진행 가능했음.
 
 ### 마일스톤
 
-| 마일스톤 | 완료 기준 | 목표일 |
-|---------|----------|--------|
-| M4-A: 사이트 정체성 확립 | 체크리스트 허브 4종 + 정보 탭 통합 + BottomNav 재구성 | 5/04 |
-| M4-B: 콘텐츠 네트워크 | 관련 콘텐츠 추천 + 공유 기능 | 5/11 |
-| M4-C: 자동화 기반 | 크로스링크 스크립트 + QA | 5/18 |
+| 마일스톤 | 완료 기준 | 목표일 | 실제 완료일 |
+|---------|----------|--------|-------------|
+| M4-A: 사이트 정체성 확립 | 체크리스트 허브 4종 + 정보 탭 통합 + BottomNav 재구성 | 5/04 | ✅ 5/02 (목표 -2일) |
+| M4-B: 콘텐츠 네트워크 | 관련 콘텐츠 추천 + 공유 기능 | 5/11 | ✅ 5/02 (목표 -9일) |
+| M4-C: 자동화 기반 | 크로스링크 스크립트 + QA | 5/18 | ✅ 5/02 (목표 -16일) |
 
 ---
 
 ## QA 체크리스트
 
+> 모든 항목은 e2e/ 자동 테스트 + 운영자 수동 검증으로 통과 확인됨 (2026-05-02 기준).
+
 ### 체크리스트 허브
 
-- [ ] 허브 페이지에서 4종 체크리스트 카드 표시
-- [ ] 각 체크리스트 체크/언체크 인터랙션 정상
-- [ ] localStorage 독립 저장 (체크리스트 간 데이터 격리)
-- [ ] 커스텀 아이템 추가/삭제 동작
-- [ ] 진행률(%) 실시간 표시
-- [ ] 관련 콘텐츠 CTA 정상 이동
-- [ ] 모바일 터치 인터랙션 정상
+- [x] 허브 페이지에서 4종 체크리스트 카드 표시 (출산가방 / 남편-파트너 / 임신준비 / 주차별)
+- [x] 각 체크리스트 체크/언체크 인터랙션 정상
+- [x] localStorage 독립 저장 (체크리스트 간 데이터 격리)
+- [x] 커스텀 아이템 추가/삭제 동작
+- [x] 진행률(%) 실시간 표시
+- [x] 관련 콘텐츠 CTA 정상 이동
+- [x] 모바일 터치 인터랙션 정상
 
 ### 정보 탭 통합
 
-- [ ] 블로그 + 영상 혼합 리스트 표시
-- [ ] 탭 전환 (전체/블로그/영상) 정상
-- [ ] 통합 태그 필터 정상 (블로그 + 영상 동시 필터링)
-- [ ] 기존 URL 리다이렉트 정상 (/articles → /info, /videos → /info?tab=videos)
-- [ ] 블로그 상세 URL `/articles/[slug]` 유지
+- [x] 블로그 + 영상 혼합 리스트 표시
+- [x] 탭 전환 (전체/블로그/영상) 정상
+- [x] 통합 태그 필터 정상 (블로그 + 영상 동시 필터링)
+- [x] 기존 URL 리다이렉트 정상 (/articles → /info, /videos → /info?tab=videos)
+- [x] 블로그 상세 URL `/articles/[slug]` 유지
 
 ### 관련 콘텐츠 추천
 
-- [ ] 아티클 하단에 관련 글 3개 표시
-- [ ] 태그 겹침 우선 + 최신 글 보충 정상
-- [ ] 관련 체크리스트/타임라인/영상 링크 표시
-- [ ] 아티클 1개일 때 에러 없음
+- [x] 아티클 하단에 관련 글 3개 표시
+- [x] 태그 겹침 우선 + 최신 글 보충 정상
+- [x] 관련 체크리스트/타임라인/영상 링크 표시
+- [x] 아티클 1개일 때 에러 없음
 
 ### 공유 기능
 
-- [ ] 모바일: Web Share API 네이티브 시트 표시
-- [ ] 데스크톱: 링크 복사 + 토스트 알림
-- [ ] 체크리스트 페이지 공유 정상
-- [ ] OG 메타 태그 프리뷰 정상
-- [ ] GA4 `share` 이벤트 전송
+- [x] 모바일: Web Share API 네이티브 시트 표시
+- [x] 데스크톱: 링크 복사 + 토스트 알림
+- [x] 체크리스트 페이지 공유 정상
+- [x] OG 메타 태그 프리뷰 정상
+- [x] GA4 `share` 이벤트 전송
 
 ### 크로스링크 스크립트
 
-- [ ] `--dry-run` 변경 예정 사항 출력
-- [ ] `--apply` 파일 정상 갱신
-- [ ] `manual` 매핑 보호 확인
-- [ ] 실행 후 `npm run build` 성공
+- [x] `--dry-run` 변경 예정 사항 출력 (실측 78건 변경 후보)
+- [x] `--apply` 파일 정상 갱신 (timeline 1 + checklist 3 + articles 8 = 12개)
+- [x] `--report` 모드 통계 출력 (평균/커버리지/manual 보호 카운트)
+- [x] `manual` 매핑 보호 확인 (필드 단위 보호 — 임시 플래그로 sandbox 검증)
+- [x] 존재하지 않는 콘텐츠 ID/slug에 대한 링크 미생성 (화이트리스트 필터)
+- [x] CLI 인자 처리 (no args / unknown / multi-mode 모두 비제로 종료)
+- [x] 양방향 대칭성 (Timeline ↔ Article)
+- [x] 실행 후 `npm run build` 성공
 
 ### BottomNav & 네비게이션
 
-- [ ] 5탭 구성: 홈 / 체크리스트 / 정보 / 체중 / 더보기
-- [ ] 각 탭 이동 정상
-- [ ] 더보기 메뉴에서 베이비페어/서비스소개/연락처 접근 가능
-- [ ] 활성 탭 하이라이트 정상
+- [x] **4탭 구성: 홈 / 체크리스트 / 베이비페어 / 정보** (Step 2 결정으로 5탭 → 4탭 축소. 체중·더보기는 Phase 5 이월)
+- [x] 각 탭 이동 정상
+- [x] 활성 탭 하이라이트 정상
 
 ### 빌드 & 배포
 
-- [ ] `npm run build` 성공
-- [ ] 기존 E2E 테스트 전체 통과
-- [ ] 신규 기능 E2E 테스트 추가 및 통과
-- [ ] Lighthouse SEO 90+ 유지
+- [x] `npm run build` 성공
+- [x] 기존 E2E 테스트 전체 통과
+- [x] 신규 기능 E2E 테스트 추가 및 통과 (Step 1·3·4·5 spec 신규 추가, 11개 기존 spec URL 마이그레이션)
+- [x] Lighthouse SEO 90+ 유지
+
+### 콘텐츠 변경 시 운영 절차 (Step 5 도입 후 추가)
+
+- [ ] 글 추가/삭제/태그 수정 → `npm run crosslinks` (dry-run) → 검토 → `npm run crosslinks:apply`
+- [ ] 글 삭제·슬러그 변경 시 `linked_X_manual: true` 플래그가 붙은 필드는 수동 정리 (스크립트가 보호 필드는 손대지 않음)
+- [ ] `linked_X_manual` 보호 필드 점검: `git grep -n "linked_.*_manual: true" src/data src/content/articles`

@@ -6,10 +6,17 @@
     "description": "산부인과 첫 진료를 예약하고 임신 확인서를 받는다. 신경관 결손 예방을 위해 엽산은 임신 인지 즉시 복용을 시작한다 (이상적으로는 임신 3개월 전부터).",
     "type": "admin",
     "priority": "high",
-    "linked_checklist_ids": ["item_105"],
-    "linked_checklist_slugs": ["pregnancy-prep"],
-    "linked_article_slugs": ["early-pregnancy-tests"],
-    "linked_video_ids": ["video_031", "video_032", "video_049", "video_050"],
+    "linked_checklist_ids": [
+      "item_105"
+    ],
+    "linked_checklist_slugs": [
+      "pregnancy-prep"
+    ],
+    "linked_article_slugs": [
+      "early-pregnancy-fatigue-reasons",
+      "pregnancy-foods-to-avoid"
+    ],
+    "linked_video_ids": [],
     "seo_slug": "week-4"
   },
   {
@@ -20,8 +27,12 @@
     "type": "wellbeing",
     "priority": "medium",
     "linked_checklist_ids": [],
-    "linked_article_slugs": [],
-    "linked_video_ids": ["video_033", "video_052"],
+    "linked_article_slugs": [
+      "early-pregnancy-fatigue-reasons",
+      "early-pregnancy-tests",
+      "pregnancy-foods-to-avoid"
+    ],
+    "linked_video_ids": [],
     "seo_slug": "week-5"
   },
   {
@@ -32,8 +43,17 @@
     "type": "admin",
     "priority": "high",
     "linked_checklist_ids": [],
-    "linked_article_slugs": [],
-    "linked_video_ids": ["video_046", "video_048"],
+    "linked_article_slugs": [
+      "early-pregnancy-tests",
+      "weekly-prenatal-checklist"
+    ],
+    "linked_video_ids": [
+      "video_040",
+      "video_043",
+      "video_045",
+      "video_046",
+      "video_047"
+    ],
     "seo_slug": "week-7"
   },
   {
@@ -43,9 +63,17 @@
     "description": "분만까지 다닐 산부인과를 확정하고, 보건소에 임산부 등록을 한다. 산모수첩을 발급받는다.",
     "type": "admin",
     "priority": "high",
-    "linked_checklist_ids": ["item_001", "item_003", "item_011", "item_086"],
-    "linked_article_slugs": ["early-pregnancy-tests"],
-    "linked_video_ids": ["video_047"],
+    "linked_checklist_ids": [
+      "item_001",
+      "item_003",
+      "item_011",
+      "item_086"
+    ],
+    "linked_article_slugs": [
+      "early-pregnancy-fatigue-reasons",
+      "pregnancy-foods-to-avoid"
+    ],
+    "linked_video_ids": [],
     "seo_slug": "week-8"
   },
   {
@@ -56,8 +84,17 @@
     "type": "admin",
     "priority": "medium",
     "linked_checklist_ids": [],
-    "linked_article_slugs": [],
-    "linked_video_ids": ["video_042"],
+    "linked_article_slugs": [
+      "early-pregnancy-tests",
+      "weekly-prenatal-checklist"
+    ],
+    "linked_video_ids": [
+      "video_040",
+      "video_042",
+      "video_044",
+      "video_046",
+      "video_047"
+    ],
     "seo_slug": "week-9"
   },
   {
@@ -67,9 +104,22 @@
     "description": "임신출산 진료비 지원을 위한 국민행복카드를 발급받는다. 11~13주 1차 통합선별검사 일정을 확인한다.",
     "type": "admin",
     "priority": "high",
-    "linked_checklist_ids": ["item_087", "item_106"],
-    "linked_article_slugs": ["early-pregnancy-tests"],
-    "linked_video_ids": ["video_040"],
+    "linked_checklist_ids": [
+      "item_087",
+      "item_106"
+    ],
+    "linked_article_slugs": [
+      "early-pregnancy-tests",
+      "pregnancy-government-benefits-2026",
+      "weekly-prenatal-checklist"
+    ],
+    "linked_video_ids": [
+      "video_040",
+      "video_044",
+      "video_045",
+      "video_046",
+      "video_047"
+    ],
     "seo_slug": "week-10"
   },
   {
@@ -80,8 +130,17 @@
     "type": "admin",
     "priority": "high",
     "linked_checklist_ids": [],
-    "linked_article_slugs": [],
-    "linked_video_ids": ["video_044"],
+    "linked_article_slugs": [
+      "early-pregnancy-tests",
+      "weekly-prenatal-checklist"
+    ],
+    "linked_video_ids": [
+      "video_040",
+      "video_043",
+      "video_045",
+      "video_046",
+      "video_047"
+    ],
     "seo_slug": "week-11"
   },
   {
@@ -91,9 +150,16 @@
     "description": "인기 있는 산후조리원은 초기에 마감된다. 정부 출산 지원금과 산모 교통비 지원도 함께 확인한다.",
     "type": "admin",
     "priority": "high",
-    "linked_checklist_ids": ["item_070", "item_092", "item_103"],
-    "linked_article_slugs": [],
-    "linked_video_ids": ["video_058"],
+    "linked_checklist_ids": [
+      "item_070",
+      "item_092",
+      "item_103"
+    ],
+    "linked_article_slugs": [
+      "early-pregnancy-fatigue-reasons",
+      "pregnancy-foods-to-avoid"
+    ],
+    "linked_video_ids": [],
     "seo_slug": "week-12"
   },
   {
@@ -104,8 +170,12 @@
     "type": "wellbeing",
     "priority": "medium",
     "linked_checklist_ids": [],
-    "linked_article_slugs": ["pregnancy-weight-management"],
-    "linked_video_ids": ["video_056"],
+    "linked_article_slugs": [
+      "early-pregnancy-fatigue-reasons",
+      "early-pregnancy-tests",
+      "pregnancy-foods-to-avoid"
+    ],
+    "linked_video_ids": [],
     "seo_slug": "week-13"
   },
   {
@@ -115,9 +185,20 @@
     "description": "15~20주 사이에 진행되는 쿼드검사 일정을 확인한다.",
     "type": "admin",
     "priority": "high",
-    "linked_checklist_ids": ["item_107"],
-    "linked_video_ids": ["video_041", "video_045"],
-    "seo_slug": "week-14"
+    "linked_checklist_ids": [
+      "item_107"
+    ],
+    "linked_video_ids": [
+      "video_040",
+      "video_041",
+      "video_045",
+      "video_046",
+      "video_047"
+    ],
+    "seo_slug": "week-14",
+    "linked_article_slugs": [
+      "mid-pregnancy-lifestyle-guide"
+    ]
   },
   {
     "id": "week_15_quad_test",
@@ -127,8 +208,16 @@
     "type": "admin",
     "priority": "high",
     "linked_checklist_ids": [],
-    "linked_article_slugs": [],
-    "linked_video_ids": ["video_040"],
+    "linked_article_slugs": [
+      "mid-pregnancy-lifestyle-guide"
+    ],
+    "linked_video_ids": [
+      "video_040",
+      "video_041",
+      "video_045",
+      "video_046",
+      "video_047"
+    ],
     "seo_slug": "week-15"
   },
   {
@@ -138,8 +227,13 @@
     "description": "태아보험은 22주 전에 가입해야 보장 범위가 넓다. 산후도우미 바우처도 조기에 신청해야 배정받기 유리하다.",
     "type": "admin",
     "priority": "high",
-    "linked_checklist_ids": ["item_088", "item_071", "item_102", "item_093"],
-    "linked_video_ids": ["video_059"],
+    "linked_checklist_ids": [
+      "item_088",
+      "item_071",
+      "item_102",
+      "item_093"
+    ],
+    "linked_video_ids": [],
     "seo_slug": "week-16"
   },
   {
@@ -150,8 +244,12 @@
     "type": "wellbeing",
     "priority": "medium",
     "linked_checklist_ids": [],
-    "linked_article_slugs": [],
-    "linked_video_ids": ["video_047"],
+    "linked_article_slugs": [
+      "pregnancy-foods-to-avoid"
+    ],
+    "linked_video_ids": [
+      "video_009"
+    ],
     "seo_slug": "week-17"
   },
   {
@@ -162,8 +260,12 @@
     "type": "shopping",
     "priority": "medium",
     "linked_checklist_ids": [],
-    "linked_article_slugs": [],
-    "linked_video_ids": ["video_018"],
+    "linked_article_slugs": [
+      "pregnancy-foods-to-avoid"
+    ],
+    "linked_video_ids": [
+      "video_009"
+    ],
     "seo_slug": "week-18"
   },
   {
@@ -174,8 +276,12 @@
     "type": "admin",
     "priority": "high",
     "linked_checklist_ids": [],
-    "linked_article_slugs": [],
-    "linked_video_ids": ["video_043"],
+    "linked_article_slugs": [
+      "pregnancy-foods-to-avoid"
+    ],
+    "linked_video_ids": [
+      "video_009"
+    ],
     "seo_slug": "week-19"
   },
   {
@@ -185,9 +291,22 @@
     "description": "20주 전후 정밀초음파로 태아 발육을 상세히 확인한다. 분만 병원도 이때 확정하면 여유 있다.",
     "type": "prep",
     "priority": "high",
-    "linked_checklist_ids": ["item_108", "item_002", "item_008"],
-    "linked_video_ids": ["video_043", "video_045"],
-    "seo_slug": "week-20"
+    "linked_checklist_ids": [
+      "item_108",
+      "item_002",
+      "item_008"
+    ],
+    "linked_video_ids": [
+      "video_040",
+      "video_041",
+      "video_042",
+      "video_043",
+      "video_044"
+    ],
+    "seo_slug": "week-20",
+    "linked_article_slugs": [
+      "mid-pregnancy-lifestyle-guide"
+    ]
   },
   {
     "id": "week_21_exercise_start",
@@ -197,8 +316,12 @@
     "type": "wellbeing",
     "priority": "medium",
     "linked_checklist_ids": [],
-    "linked_article_slugs": [],
-    "linked_video_ids": ["video_001", "video_008", "video_006"],
+    "linked_article_slugs": [
+      "pregnancy-foods-to-avoid"
+    ],
+    "linked_video_ids": [
+      "video_009"
+    ],
     "seo_slug": "week-21"
   },
   {
@@ -208,9 +331,16 @@
     "description": "출산 준비 담당을 미리 나누고, 아기 이름 후보도 정리하기 시작한다.",
     "type": "prep",
     "priority": "medium",
-    "linked_checklist_ids": ["item_089"],
-    "linked_video_ids": ["video_016"],
-    "seo_slug": "week-22"
+    "linked_checklist_ids": [
+      "item_089"
+    ],
+    "linked_video_ids": [
+      "video_009"
+    ],
+    "seo_slug": "week-22",
+    "linked_article_slugs": [
+      "pregnancy-foods-to-avoid"
+    ]
   },
   {
     "id": "week_23_gdm_prep",
@@ -220,8 +350,16 @@
     "type": "admin",
     "priority": "medium",
     "linked_checklist_ids": [],
-    "linked_article_slugs": [],
-    "linked_video_ids": ["video_037"],
+    "linked_article_slugs": [
+      "mid-pregnancy-lifestyle-guide"
+    ],
+    "linked_video_ids": [
+      "video_040",
+      "video_041",
+      "video_043",
+      "video_046",
+      "video_047"
+    ],
     "seo_slug": "week-23"
   },
   {
@@ -231,9 +369,24 @@
     "description": "24~28주 사이 임신성 당뇨 선별검사를 받는다. 유모차는 차량 적재, 엘리베이터 크기 등을 기준으로 비교 후 구매한다.",
     "type": "prep",
     "priority": "high",
-    "linked_checklist_ids": ["item_109", "item_057", "item_090", "item_012"],
-    "linked_video_ids": ["video_037"],
-    "seo_slug": "week-24"
+    "linked_checklist_ids": [
+      "item_109",
+      "item_057",
+      "item_090",
+      "item_012"
+    ],
+    "linked_video_ids": [
+      "video_040",
+      "video_041",
+      "video_043",
+      "video_046",
+      "video_047"
+    ],
+    "seo_slug": "week-24",
+    "linked_article_slugs": [
+      "mid-pregnancy-lifestyle-guide",
+      "pregnancy-foods-to-avoid"
+    ]
   },
   {
     "id": "week_25_birth_class",
@@ -243,8 +396,12 @@
     "type": "education",
     "priority": "medium",
     "linked_checklist_ids": [],
-    "linked_article_slugs": [],
-    "linked_video_ids": ["video_019"],
+    "linked_article_slugs": [
+      "pregnancy-foods-to-avoid"
+    ],
+    "linked_video_ids": [
+      "video_009"
+    ],
     "seo_slug": "week-25"
   },
   {
@@ -254,9 +411,16 @@
     "description": "장착 난이도와 차량 호환성을 실물로 확인한다. 퇴원 시 반드시 필요하므로 미리 준비한다.",
     "type": "shopping",
     "priority": "high",
-    "linked_checklist_ids": ["item_058"],
-    "linked_video_ids": ["video_018"],
-    "seo_slug": "week-26"
+    "linked_checklist_ids": [
+      "item_058"
+    ],
+    "linked_video_ids": [
+      "video_009"
+    ],
+    "seo_slug": "week-26",
+    "linked_article_slugs": [
+      "pregnancy-foods-to-avoid"
+    ]
   },
   {
     "id": "week_27_routine_tests",
@@ -266,8 +430,16 @@
     "type": "admin",
     "priority": "medium",
     "linked_checklist_ids": [],
-    "linked_article_slugs": [],
-    "linked_video_ids": ["video_046"],
+    "linked_article_slugs": [
+      "mid-pregnancy-lifestyle-guide"
+    ],
+    "linked_video_ids": [
+      "video_040",
+      "video_041",
+      "video_043",
+      "video_046",
+      "video_047"
+    ],
     "seo_slug": "week-27"
   },
   {
@@ -277,9 +449,20 @@
     "description": "27~36주 사이 Tdap 접종을 권장한다. 기본 신생아 용품(젖병, 배냇옷, 속싸개 등) 구매를 시작한다.",
     "type": "prep",
     "priority": "high",
-    "linked_checklist_ids": ["item_110", "item_111", "item_068", "item_081"],
+    "linked_checklist_ids": [
+      "item_110",
+      "item_111",
+      "item_068",
+      "item_081"
+    ],
     "linked_article_slugs": [],
-    "linked_video_ids": ["video_018"],
+    "linked_video_ids": [
+      "video_021",
+      "video_023",
+      "video_024",
+      "video_026",
+      "video_028"
+    ],
     "seo_slug": "week-28"
   },
   {
@@ -291,7 +474,13 @@
     "priority": "medium",
     "linked_checklist_ids": [],
     "linked_article_slugs": [],
-    "linked_video_ids": ["video_058", "video_059"],
+    "linked_video_ids": [
+      "video_012",
+      "video_013",
+      "video_014",
+      "video_015",
+      "video_016"
+    ],
     "seo_slug": "week-29"
   },
   {
@@ -301,9 +490,22 @@
     "description": "아기를 안고 이동하는 상황을 기준으로 집 구조를 점검한다. 아기 침대와 매트리스를 세팅한다.",
     "type": "prep",
     "priority": "high",
-    "linked_checklist_ids": ["item_046", "item_047", "item_065", "item_004", "item_078", "item_079"],
+    "linked_checklist_ids": [
+      "item_046",
+      "item_047",
+      "item_065",
+      "item_004",
+      "item_078",
+      "item_079"
+    ],
     "linked_article_slugs": [],
-    "linked_video_ids": ["video_021", "video_027"],
+    "linked_video_ids": [
+      "video_012",
+      "video_013",
+      "video_014",
+      "video_015",
+      "video_016"
+    ],
     "seo_slug": "week-30"
   },
   {
@@ -315,7 +517,13 @@
     "priority": "medium",
     "linked_checklist_ids": [],
     "linked_article_slugs": [],
-    "linked_video_ids": ["video_012", "video_013"],
+    "linked_video_ids": [
+      "video_012",
+      "video_013",
+      "video_015",
+      "video_020",
+      "video_030"
+    ],
     "seo_slug": "week-31"
   },
   {
@@ -325,10 +533,28 @@
     "description": "산모용·아기용·보호자용으로 나눠 입원 가방을 정리한다. 가방 세부 품목은 출산가방 체크리스트에서 확인하세요.",
     "type": "prep",
     "priority": "high",
-    "linked_checklist_ids": ["item_043", "item_044", "item_052", "item_053", "item_054", "item_066", "item_075", "item_083", "item_091"],
-    "linked_checklist_slugs": ["hospital-bag"],
+    "linked_checklist_ids": [
+      "item_043",
+      "item_044",
+      "item_052",
+      "item_053",
+      "item_054",
+      "item_066",
+      "item_075",
+      "item_083",
+      "item_091"
+    ],
+    "linked_checklist_slugs": [
+      "hospital-bag"
+    ],
     "linked_article_slugs": [],
-    "linked_video_ids": ["video_018"],
+    "linked_video_ids": [
+      "video_021",
+      "video_023",
+      "video_024",
+      "video_026",
+      "video_028"
+    ],
     "seo_slug": "week-32"
   },
   {
@@ -340,7 +566,13 @@
     "priority": "medium",
     "linked_checklist_ids": [],
     "linked_article_slugs": [],
-    "linked_video_ids": ["video_026", "video_025"],
+    "linked_video_ids": [
+      "video_021",
+      "video_023",
+      "video_024",
+      "video_026",
+      "video_028"
+    ],
     "seo_slug": "week-33"
   },
   {
@@ -350,8 +582,31 @@
     "description": "이슬, 진통, 파수 등 입원 신호를 숙지한다. 병원 이동 경로와 야간 응급실 위치를 확인한다.",
     "type": "education",
     "priority": "high",
-    "linked_checklist_ids": ["item_114", "item_009", "item_010", "item_007", "item_049", "item_050", "item_063", "item_099", "item_094", "item_095", "item_096", "item_101", "item_113", "item_082", "item_084", "item_085"],
-    "linked_video_ids": ["video_014", "video_020"],
+    "linked_checklist_ids": [
+      "item_114",
+      "item_009",
+      "item_010",
+      "item_007",
+      "item_049",
+      "item_050",
+      "item_063",
+      "item_099",
+      "item_094",
+      "item_095",
+      "item_096",
+      "item_101",
+      "item_113",
+      "item_082",
+      "item_084",
+      "item_085"
+    ],
+    "linked_video_ids": [
+      "video_012",
+      "video_013",
+      "video_014",
+      "video_020",
+      "video_030"
+    ],
     "seo_slug": "week-34"
   },
   {
@@ -361,9 +616,20 @@
     "description": "카시트를 차량에 설치하고 입원 시 필요 서류를 정리한다. 퇴원복·세면도구 등 가방 세부 품목은 출산가방 체크리스트에서 확인하세요.",
     "type": "prep",
     "priority": "high",
-    "linked_checklist_ids": ["item_059", "item_018"],
-    "linked_checklist_slugs": ["hospital-bag"],
-    "linked_video_ids": ["video_018"],
+    "linked_checklist_ids": [
+      "item_059",
+      "item_018"
+    ],
+    "linked_checklist_slugs": [
+      "hospital-bag"
+    ],
+    "linked_video_ids": [
+      "video_012",
+      "video_013",
+      "video_014",
+      "video_015",
+      "video_016"
+    ],
     "seo_slug": "week-35"
   },
   {
@@ -373,10 +639,30 @@
     "description": "GBS 검사를 받고, 입원 가방을 최종 점검한다. 출생신고 등 출산 후 필요한 행정 서류를 미리 준비한다.",
     "type": "prep",
     "priority": "high",
-    "linked_checklist_ids": ["item_112", "item_020", "item_019", "item_017", "item_097", "item_098", "item_100", "item_055", "item_080"],
-    "linked_checklist_slugs": ["hospital-bag"],
-    "linked_article_slugs": [],
-    "linked_video_ids": ["video_007"],
+    "linked_checklist_ids": [
+      "item_112",
+      "item_020",
+      "item_019",
+      "item_017",
+      "item_097",
+      "item_098",
+      "item_100",
+      "item_055",
+      "item_080"
+    ],
+    "linked_checklist_slugs": [
+      "hospital-bag"
+    ],
+    "linked_article_slugs": [
+      "weekly-prenatal-checklist"
+    ],
+    "linked_video_ids": [
+      "video_012",
+      "video_013",
+      "video_014",
+      "video_015",
+      "video_041"
+    ],
     "seo_slug": "week-36"
   },
   {
@@ -386,9 +672,20 @@
     "description": "식사, 장보기, 방문 일정, 휴식 지원 계획을 확정한다. 산후조리원 입소 준비물도 챙긴다.",
     "type": "prep",
     "priority": "high",
-    "linked_checklist_ids": ["item_072", "item_074", "item_076", "item_077"],
+    "linked_checklist_ids": [
+      "item_072",
+      "item_074",
+      "item_076",
+      "item_077"
+    ],
     "linked_article_slugs": [],
-    "linked_video_ids": ["video_022", "video_023"],
+    "linked_video_ids": [
+      "video_012",
+      "video_013",
+      "video_014",
+      "video_015",
+      "video_016"
+    ],
     "seo_slug": "week-37"
   },
   {
@@ -399,7 +696,13 @@
     "type": "prep",
     "priority": "high",
     "linked_checklist_ids": [],
-    "linked_video_ids": ["video_002", "video_005"],
+    "linked_video_ids": [
+      "video_012",
+      "video_013",
+      "video_014",
+      "video_015",
+      "video_016"
+    ],
     "seo_slug": "week-38"
   },
   {
@@ -410,7 +713,13 @@
     "type": "wellbeing",
     "priority": "medium",
     "linked_checklist_ids": [],
-    "linked_video_ids": ["video_020"],
+    "linked_video_ids": [
+      "video_012",
+      "video_013",
+      "video_014",
+      "video_015",
+      "video_016"
+    ],
     "seo_slug": "week-39"
   },
   {
@@ -421,7 +730,13 @@
     "type": "prep",
     "priority": "high",
     "linked_checklist_ids": [],
-    "linked_video_ids": ["video_021", "video_025"],
+    "linked_video_ids": [
+      "video_012",
+      "video_013",
+      "video_014",
+      "video_015",
+      "video_016"
+    ],
     "seo_slug": "week-40"
   }
 ]

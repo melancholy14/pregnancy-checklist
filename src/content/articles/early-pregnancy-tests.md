@@ -13,8 +13,9 @@ date: "2026-04-26"
 author: "출산 준비 체크리스트 제작자 뿌까뽀까"
 reviewed_by: "산부인과 전문의, 가족·복지정책 전문가 (AI 페르소나 검수)"
 last_updated: "2026-04-26"
-linked_timeline_weeks: [4, 8, 10, 11]
+linked_timeline_weeks: [5, 7, 9, 10, 11, 13]
 authorNote: "어떤 검사를 언제 받아야 하는지 너무 헷갈렸어요. 시기별로 깔끔하게 정리해봤습니다."
+linked_video_ids: ["video_040", "video_042", "video_043", "video_046", "video_047"]
 ---
 
 임신 테스트기 두 줄을 보고 나면
