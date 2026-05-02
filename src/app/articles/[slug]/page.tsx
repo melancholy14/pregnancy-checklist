@@ -1,8 +1,25 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllArticles, getArticleBySlug } from "@/lib/articles";
+import {
+  getRelatedArticles,
+  getRelatedChecklists,
+  getRelatedVideos,
+} from "@/lib/related-content";
 import { ArticleDetail } from "@/components/articles/ArticleDetail";
 import { BASE_URL, OG_IMAGE } from "@/lib/constants";
+import hospitalBag from "@/data/hospital_bag_checklist.json";
+import partnerPrep from "@/data/partner_prep_checklist.json";
+import pregnancyPrep from "@/data/pregnancy_prep_checklist.json";
+import videos from "@/data/videos.json";
+import type { ChecklistData } from "@/types/checklist";
+import type { VideoItem } from "@/types/video";
+
+const allChecklistMetas = [
+  (hospitalBag as ChecklistData).meta,
+  (partnerPrep as ChecklistData).meta,
+  (pregnancyPrep as ChecklistData).meta,
+];
 
 export function generateStaticParams() {
   return getAllArticles().map((a) => ({ slug: a.slug }));
@@ -86,6 +103,11 @@ export default async function ArticlePage({
     notFound();
   }
 
+  const allArticles = getAllArticles();
+  const relatedArticles = getRelatedArticles(article, allArticles);
+  const relatedChecklists = getRelatedChecklists(slug, allChecklistMetas);
+  const relatedVideos = getRelatedVideos(article.tags, videos as VideoItem[]);
+
   return (
     <>
       <ArticleJsonLd
@@ -95,7 +117,12 @@ export default async function ArticlePage({
         date={article.date}
         updated={article.updated}
       />
-      <ArticleDetail article={article} />
+      <ArticleDetail
+        article={article}
+        relatedArticles={relatedArticles}
+        relatedChecklists={relatedChecklists}
+        relatedVideos={relatedVideos}
+      />
     </>
   );
 }

@@ -3,15 +3,27 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import type { Article } from "@/types/article";
+import type { Article, ArticleMeta } from "@/types/article";
+import type { ChecklistMeta } from "@/types/checklist";
+import type { VideoItem } from "@/types/video";
 import { TimelineCTA } from "./TimelineCTA";
 import { MedicalDisclaimer } from "./MedicalDisclaimer";
+import { RelatedArticles } from "./RelatedArticles";
+import { RelatedContent } from "./RelatedContent";
 
 interface ArticleDetailProps {
   article: Article;
+  relatedArticles?: ArticleMeta[];
+  relatedChecklists?: ChecklistMeta[];
+  relatedVideos?: VideoItem[];
 }
 
-export function ArticleDetail({ article }: ArticleDetailProps) {
+export function ArticleDetail({
+  article,
+  relatedArticles = [],
+  relatedChecklists = [],
+  relatedVideos = [],
+}: ArticleDetailProps) {
   return (
     <div className="min-h-screen pb-24 px-4">
       <article className="pt-8">
@@ -75,6 +87,13 @@ export function ArticleDetail({ article }: ArticleDetailProps) {
         {article.linked_timeline_weeks && article.linked_timeline_weeks.length > 0 && (
           <TimelineCTA weeks={article.linked_timeline_weeks} />
         )}
+
+        <RelatedContent
+          checklists={relatedChecklists}
+          videos={relatedVideos}
+        />
+
+        <RelatedArticles articles={relatedArticles} />
       </article>
     </div>
   );
