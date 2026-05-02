@@ -10,6 +10,7 @@ import { TimelineCTA } from "./TimelineCTA";
 import { MedicalDisclaimer } from "./MedicalDisclaimer";
 import { RelatedArticles } from "./RelatedArticles";
 import { RelatedContent } from "./RelatedContent";
+import { ShareButton } from "@/components/share/ShareButton";
 
 interface ArticleDetailProps {
   article: Article;
@@ -64,7 +65,17 @@ export function ArticleDetail({
           )}
         </span>
 
-        <div className="h-px bg-gradient-to-r from-transparent via-[#F0EBE6] to-transparent mb-8" />
+        <div className="h-px bg-gradient-to-r from-transparent via-[#F0EBE6] to-transparent mb-4" />
+
+        <div className="flex justify-end mb-6">
+          <ShareButton
+            title={article.title}
+            description={article.description}
+            url={article.canonical}
+            contentType="article"
+            itemId={article.slug}
+          />
+        </div>
 
         {article.authorNote && (
           <div className="bg-pastel-yellow/20 border border-pastel-yellow/40 rounded-xl px-4 py-3.5 mb-8">
@@ -87,6 +98,17 @@ export function ArticleDetail({
         {article.linked_timeline_weeks && article.linked_timeline_weeks.length > 0 && (
           <TimelineCTA weeks={article.linked_timeline_weeks} />
         )}
+
+        <div className="flex justify-center mt-10">
+          <ShareButton
+            title={article.title}
+            description={article.description}
+            url={article.canonical}
+            contentType="article"
+            itemId={article.slug}
+            label="이 글 공유하기"
+          />
+        </div>
 
         <RelatedContent
           checklists={relatedChecklists}

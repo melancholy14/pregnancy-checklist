@@ -8,7 +8,9 @@ import { ChecklistProgress } from "./ChecklistProgress";
 import { ChecklistRelatedContent } from "./ChecklistRelatedContent";
 import { ChecklistAddForm } from "./ChecklistAddForm";
 import { ChecklistItemRow } from "./ChecklistItemRow";
+import { ShareButton } from "@/components/share/ShareButton";
 import { sendGAEvent } from "@/lib/analytics";
+import { BASE_URL } from "@/lib/constants";
 import type { ArticleMeta } from "@/types/article";
 import type { VideoItem } from "@/types/video";
 import type { ChecklistData, ChecklistItem } from "@/types/checklist";
@@ -85,6 +87,16 @@ export function ChecklistPage({ data, storeSlug, linkedArticles, linkedVideos }:
           {meta.title}
         </h1>
         <PageDescription>{meta.description}</PageDescription>
+
+        <div className="flex justify-end mb-4">
+          <ShareButton
+            title={meta.title}
+            description={meta.description}
+            url={`${BASE_URL}/checklist/${meta.slug}`}
+            contentType="checklist"
+            itemId={meta.slug}
+          />
+        </div>
 
         <ChecklistProgress
           items={allItems}
