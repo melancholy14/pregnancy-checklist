@@ -4,33 +4,49 @@
 
 ```text
 docs/
+├── tech/                   기술 단일 진실 (현재 상태)
+│   ├── persona.md          개발 협업 페르소나·주의사항
+│   ├── folder.md           폴더 구조 가이드
+│   ├── spec.md             개발 스펙 (스택/환경변수/라우트)
+│   ├── design.md           설계·디자인 패턴·방법론
+│   ├── infra.md            인프라 (현재 + 진행 예정)
+│   ├── impl.md             구현 요약 (검색·스크립트 상세)
+│   ├── review.md           리팩토링 미완료 항목
+│   └── technical-debt.md   살아있는 기술 부채만
 ├── plan/
-│   └── plan.md              전체 개발 계획 + PRD + Phase별 완료 실적
-├── phase-2.5/
-│   └── plan.md              Phase 2.5 UX 개선 + 리텐션 강화 기획
+│   └── plan.md             전체 개발 계획 + PRD + Phase별 완료 실적
+├── phase-2.5/, phase-3/, phase-4/   각 phase plan
+├── phase-4-step-1-checklist-hub/    step별 README
+├── phase-4-step-3-related-content/
+├── phase-4-step-4-share/
+├── implementation/         구현 보고서
+├── review/                 코드 리뷰 결과
+├── refactor/               리팩토링 결과
+├── client-search/          검색 기능 archive
+├── info-tab-integration/   정보 탭 archive
+├── lighthouse-seo/         SEO 측정
 ├── specs/
-│   ├── babyfair_crawler_spec.md   베이비페어 크롤러 스펙
-│   ├── babyfair_data_pipeline.md  베이비페어 데이터 파이프라인
-│   └── technical-debt.md          기술적 보완 사항
-├── infra/
-│   ├── architecture.md      시스템 아키텍처
-│   └── gcp-deployment.md    GCP 배포 가이드
-└── README.md                전체 개발 기록 (Phase 1~2.5)
+│   ├── babyfair_crawler_spec.md
+│   └── babyfair_data_pipeline.md
+├── infra/                  (legacy) Cloud Run·GCS 미래상 — tech/infra.md로 갈음
+└── README.md               이 인덱스
 ```
 
 ## 핵심 문서
 
 | 파일 | 내용 |
 | ---- | ---- |
-| `plan/plan.md` | **마스터 문서**. 전체 Phase 0~5 개발 계획, PRD(페르소나/KPI/SEO), Phase별 완료 실적 |
-| `phase-2.5/plan.md` | Phase 2.5 상세 기획 (온보딩, 대시보드 개편, 크로스링크 등) |
+| `tech/` | **현재 진실**. 새 기능 작업 전 항상 먼저 |
+| `plan/plan.md` | 마스터 문서. 전체 Phase 0~5 개발 계획, PRD, Phase별 실적 |
+| `phase-3/plan.md`, `phase-4/plan.md` | 최근 phase plan |
 
 ## 참고 문서
 
 | 폴더 | 내용 |
 | ---- | ---- |
-| `specs/` | 베이비페어 크롤러 스펙, 데이터 파이프라인, 기술 부채 목록 |
-| `infra/` | GCP 아키텍처 다이어그램, Cloud Run 배포 가이드 |
+| `implementation/`, `review/`, `refactor/` | phase별 작업 산출물 |
+| `specs/` | 베이비페어 크롤러·파이프라인 스펙 |
+| `infra/` | (legacy) Phase 6+ Cloud Run 미래상 — tech/infra.md 우선 |
 
 ---
 ---
