@@ -457,6 +457,120 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 ---
 
+### 2.8 다른 영역 위반 요약
+
+> §2.1~2.7은 체크리스트 영역의 deep-dive. 아래는 나머지 5개 영역의 high-impact 위반만 요약. 각 영역의 전체 분석은 `docs/design/{area}/{ux,ui}.md` 참조 — [docs/design/](../design/).
+
+#### 2.8.1 홈 (`/`) — 분석 [docs/design/home/](../design/home/)
+
+| ID | 위반 | 위치 | 묶음 |
+|----|------|------|------|
+| H-1 | 체크박스 `border-gray-200` (토큰 외) | [HomeContent.tsx:261](../../src/components/home/HomeContent.tsx) | E (마감) |
+| H-2 | "타임라인에서 확인하기 →" 텍스트 화살표 | [HomeContent.tsx:277](../../src/components/home/HomeContent.tsx) | E |
+| H-3 | 미니카드 4번째 아이콘 배경 `#E0F0FF` (토큰 외 파랑) | [HomeContent.tsx:370](../../src/components/home/HomeContent.tsx), [DashboardCard.tsx:34](../../src/components/home/DashboardCard.tsx) | **Cross-1** (6번째 pastel 결정) |
+| H-4 | 현재 주차 Badge가 `bg-pastel-pink/60` (pink=CTA 토큰을 데이터 라벨에) | [DueDateInput.tsx](../../src/components/home/DueDateInput.tsx) | (결정) |
+| H-5 | BottomNav 아이콘 `w-5 h-5` (DESIGN.md `w-6 h-6`) | [BottomNav.tsx](../../src/components/layout/BottomNav.tsx) | (글로벌 셸) |
+
+#### 2.8.2 타임라인 (`/timeline`) — 분석 [docs/design/timeline/](../design/timeline/)
+
+| ID | 위반 | 위치 | 묶음 |
+|----|------|------|------|
+| T-1 | 페이지 셸 `bg-linear-to-b ... to-white` | [TimelineContainer.tsx:183](../../src/components/timeline/TimelineContainer.tsx) | A (Cross-3) |
+| T-2 | `TIMELINE_TYPE_CONFIG.admin = #E0F0FF` (토큰 외 파랑) | timeline constants | **Cross-1** |
+| T-3 | `text-red-400` 필수표시 | [UnifiedAddForm.tsx:139,170](../../src/components/timeline/UnifiedAddForm.tsx) | E |
+| T-4 | CategoryFilter 활성 `bg-pastel-pink/40` (pink=CTA를 필터에) | [CategoryFilter.tsx](../../src/components/timeline/CategoryFilter.tsx) | **Cross-2** |
+| T-5 | Checkbox `border-gray-200` | [WeekChecklistSection.tsx:148](../../src/components/timeline/WeekChecklistSection.tsx) | B (체크리스트와 공유 컴포넌트) |
+| T-6 | 주차 카드 `rounded-xl` (page-level 권장 `rounded-2xl`) | [TimelineAccordionCard.tsx:82](../../src/components/timeline/TimelineAccordionCard.tsx) | A |
+| T-7 | 기타 섹션 카드 `rounded-xl` | [TimelineContainer.tsx:328](../../src/components/timeline/TimelineContainer.tsx) | A |
+| T-8 | "→" 텍스트 화살표 (Related\*Link 3종) | timeline/Related\*Link.tsx | E |
+| T-9 | h2/h3 인라인 `text-[15px]` | TimelineAccordionCard, UnifiedAddForm | C |
+| T-10 | 정보 카드 `shadow-md` (현재 주차·진행률·첫 체크 배너) | TimelineContainer | E |
+| T-11 | 카테고리 배지 인라인 hex `color: "#3D4447"` | [WeekChecklistSection.tsx](../../src/components/timeline/WeekChecklistSection.tsx) | E |
+| T-12 | DeleteConfirmDialog `bg-red-500`, `hover:bg-red-50` | [DeleteConfirmDialog.tsx](../../src/components/timeline/DeleteConfirmDialog.tsx) | E |
+
+#### 2.8.3 정보 (`/info`, `/articles/[slug]`) — 분석 [docs/design/info/](../design/info/)
+
+| ID | 위반 | 위치 | 묶음 |
+|----|------|------|------|
+| I-1 | "→" 텍스트 화살표 | [RelatedContent.tsx:33,55](../../src/components/articles/RelatedContent.tsx), [TimelineCTA.tsx:32](../../src/components/articles/TimelineCTA.tsx) | E |
+| I-2 | Divider 인라인 hex `via-[#F0EBE6]` | [ArticleDetail.tsx:68](../../src/components/articles/ArticleDetail.tsx) | E (`--prose-divider` 토큰 사용) |
+| I-3 | VideoCard `backdrop-blur-sm` (BottomNav 전용 시그니처 침범) | [VideoCard.tsx](../../src/components/videos/VideoCard.tsx) | E |
+| I-4 | VideoCard vs VideoCardCompact hover 동작 불일치 | videos/VideoCard\*.tsx | (결정) |
+| I-5 | ArticleCard 제목 `text-[15px]` | [ArticleCard.tsx:14](../../src/components/articles/ArticleCard.tsx) | C |
+| I-6 | ArticleDetail h1 `text-xl` (글로벌 `text-2xl`) | [ArticleDetail.tsx](../../src/components/articles/ArticleDetail.tsx) | C |
+| I-7 | 정보 탭 활성 색이 pink (CTA 토큰) | [InfoContainer.tsx](../../src/components/info/InfoContainer.tsx) | **Cross-2** |
+
+> 위반 빈도 가장 낮은 영역. 시스템 정합성 가장 양호.
+
+#### 2.8.4 체중 (`/weight`) — 분석 [docs/design/weight/](../design/weight/)
+
+| ID | 위반 | 위치 | 묶음 |
+|----|------|------|------|
+| W-1 | 차트 라인 `#FFD4DE` (pink=CTA 토큰을 데이터 시각화에) ⭐ | [WeightChart.tsx:39,84-86](../../src/components/weight/WeightChart.tsx) | (결정) — peach=data role과 정합 |
+| W-2 | 차트 카드 `shadow-md` (정보 카드) | [WeightChart.tsx:32](../../src/components/weight/WeightChart.tsx) | E |
+| W-3 | 로그 카드 `rounded-xl` | [WeightContainer.tsx:81](../../src/components/weight/WeightContainer.tsx) | A |
+| W-4 | 삭제 버튼 `bg-red-50 text-red-500` (토큰 외) | [WeightContainer.tsx:97](../../src/components/weight/WeightContainer.tsx) | E |
+| W-5 | 관련 글 "→" 텍스트 화살표 | [WeightContainer.tsx:120](../../src/components/weight/WeightContainer.tsx) | E |
+| W-6 | Tooltip `rounded-[12px]` (토큰 외 radius) | [WeightChart.tsx](../../src/components/weight/WeightChart.tsx) | E (`rounded-xl`) |
+
+#### 2.8.5 베이비페어 (`/baby-fair`) — 분석 [docs/design/baby-fair/](../design/baby-fair/)
+
+| ID | 위반 | 위치 | 묶음 |
+|----|------|------|------|
+| B-1 | 규모 "소형" 배지 `#E0F0FF` (토큰 외 파랑) | [BabyfairCard.tsx:26](../../src/components/babyfair/BabyfairCard.tsx) `SCALE_CONFIG` | **Cross-1** |
+| B-2 | 참관 팁 카드 `shadow-md` (정보 카드) | [BabyfairContainer.tsx:201](../../src/components/babyfair/BabyfairContainer.tsx) | E |
+| B-3 | 도시·규모 배지 인라인 hex `style={{ backgroundColor }}` | [BabyfairCard.tsx](../../src/components/babyfair/BabyfairCard.tsx) | **Cross-4** |
+| B-4 | 탭 활성 `bg-pastel-mint/40` (정보 탭/필터는 pink) | [BabyfairContainer.tsx](../../src/components/babyfair/BabyfairContainer.tsx) | **Cross-2** |
+| B-5 | window.open `rel="noopener noreferrer"` 미명시 | [BabyfairCard.tsx:74](../../src/components/babyfair/BabyfairCard.tsx) | (결정) |
+| B-6 | `official_url` 없는 카드 시각 구분 부재 | [BabyfairCard.tsx](../../src/components/babyfair/BabyfairCard.tsx) | UX 기회 |
+
+---
+
+### 2.9 횡단 패턴 (Cross-Area)
+
+> 6개 영역 분석에서 도출. 한 번 정정 결정으로 여러 영역 동시 수정. 자세한 컨텍스트: [docs/design/persona.md §6 (2026-05-03)](../design/persona.md)
+
+| ID | 패턴 | 영향 영역 | 결정/대응 |
+|----|------|-----------|-----------|
+| **Cross-1** | `#E0F0FF` 비공식 6번째 pastel | home(H-3), timeline(T-2), baby-fair(B-1) | **시스템 결정 필요**: 6번째 pastel 헌법화 vs 5-pastel 내 정정 |
+| **Cross-2** | 탭/필터 활성색 컨벤션 미합의 | info(I-7), timeline(T-4), baby-fair(B-4) | **권장**: 탭·필터 활성 = `lavender/40` 통일 (pink=CTA만, role 정합) |
+| **Cross-3** | 페이지 셸 `bg-linear-to-* to-white` 위반 | checklist(C2), timeline(T-1) | A 묶음 — `bg-background` 단색 일괄 |
+| **Cross-4** | 인라인 hex `style={{ backgroundColor }}` | home(H-3), timeline(T-11), baby-fair(B-3) | **헬퍼 도입**: 데이터 매핑 layer가 토큰 클래스를 반환하도록 한 단계 추가 |
+| **Cross-5** | row-as-button + nested interactive | checklist(M1), timeline(WeekChecklistSection 공유) | B 묶음 — WeekChecklistSection 한 컴포넌트 정정으로 둘 다 해결 |
+| **Cross-6** | 인라인 size override (`text-[15px] font-medium`) | checklist(C4), timeline(T-9), info(I-5·I-6) | C 묶음 — 글로벌 h3·h4 자체를 카드용으로 조정 검토 |
+| **Cross-7** | "→" 텍스트 화살표 산재 | home(H-2), timeline(T-8), info(I-1), weight(W-5) | E 묶음 — `grep -rn "→" src/` 일괄 |
+| **Cross-8** | 정보 카드 `shadow-md` 위반 | timeline(T-10), info(검토), weight(W-2), baby-fair(B-2) | E 묶음 — `shadow-sm` 일괄 |
+| **Cross-9** | 토큰 외 red 컬러 (`text-red-400`, `bg-red-500`, `bg-red-50`) | timeline(T-3·T-12), home(H-1 옆 패턴), weight(W-4) | E 묶음 — `text-destructive`/`bg-destructive` 일괄 |
+| **Cross-10** | ShareButton 위치 컨벤션 부재 | checklist(우상단), info/articles(우상단+중앙하단) | (결정) — 통일 정책 |
+| **Cross-11** | 삭제 정책 영역마다 다름 (confirm vs 즉시) | checklist(confirm), timeline(confirm), weight(즉시) | (결정) — sonner 기반 undo-toast 패턴 통일 검토 |
+
+---
+
+### 2.10 통합 작업 묶음 (전 영역)
+
+> §2.7의 A~F는 체크리스트 기반. 다른 영역 위반·횡단 패턴까지 포함하면 묶음이 확장된다. 묶음 ID는 §2.7과 호환.
+
+| 묶음 | 내용 | 영역 | 난이도 | 임팩트 |
+|---|---|---|---|---|
+| **A** | 페이지 셸 그라디언트 정정 + radius 통일 + 우선순위 색 재매핑 (C1·C2·C3·T-1·T-6·T-7·W-3) | checklist+timeline+weight | S | 큼 |
+| **B** | WeekChecklistSection을 label 기반 마크업으로 (M1·T-5) | checklist+timeline (공유 컴포넌트) | M | 큼 |
+| **C** | h2/h3 인라인 size override 정리 (C4·T-9·I-5·I-6, Cross-6) — 글로벌 위계 조정 검토 포함 | 전 영역 | S~M | 중 |
+| **D** | "미체크만 보기" + 임신 주차 컨텍스트 라벨 | checklist | M | 큼 |
+| **E** | 마감 일괄(shadow / 화살표 / 토큰 외 red / 토큰 외 hex / Minor 전반) — Cross-7·Cross-8·Cross-9 포함 | 전 영역 | S | 큼 (영향 면적 큰 cleanup) |
+| **F** | 허브 카드 아이콘 패턴 통일 + "37주차" 핀 (M5·M6) | checklist | S | 중 |
+| **G** | **`#E0F0FF` 결정 + 일괄 정정** (Cross-1) | home+timeline+baby-fair | S (결정 후) | 큼 (헌법 정합성) |
+| **H** | **탭/필터 활성색 일괄 정렬 → lavender/40** (Cross-2) | info+timeline+baby-fair | S | 중 |
+| **I** | 데이터→토큰 매핑 헬퍼 도입 (Cross-4) | home+timeline+baby-fair | M | 중 |
+| **J** | ShareButton 위치 컨벤션 결정 + 일괄 정렬 (Cross-10) | checklist+info | S | 중 |
+| **K** | 삭제 패턴 통일 — undo 토스트 도입 (Cross-11) + 체중 confirm 추가 | checklist+timeline+weight | M | 중 |
+| **N** | 차트 색 결정 (W-1) — peach 라인 + 권장 범위 톤 재배치 | weight | S | 중 |
+| **O** | 외부 링크 보안 패턴 (B-5) — `rel="noopener noreferrer"` 표준 정렬 | baby-fair (확장 가능) | S | 낮 |
+
+권장 실행 순서: **G → H → A → C → E → F → B → I → J → K → N → O → D**
+(헌법 결정 G·H 먼저 → 토큰 일괄 정정 A·C·E → 마크업 리팩터 B·I → 시스템 컨벤션 J·K·N·O → 신규 UX D)
+
+---
+
 ## 3. 기획 개선
 
 > 분석 시점: 2026-05-03
@@ -622,7 +736,165 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 ## 4. 개발 개선
 
-> TBD — 별도 라운드에서 채워질 섹션. 미사용 코드 제거(예: §3 P2가 "삭제"로 결정될 경우 ChecklistItem.tsx 자체 제거), 테스트 커버리지 보강, 타입 정리 등이 후보.
+> 분석 시점: 2026-05-03
+> 출처: [docs/tech/technical-debt.md](../tech/technical-debt.md) P1 항목, [docs/tech/review.md](../tech/review.md) 리뷰 잔불, [docs/tech/impl.md](../tech/impl.md) 미구현 메모
+> 기준: Phase 5 착수 전에 처리해야 할 기술 부채만 모음. P2/P3는 [docs/tech/technical-debt.md](../tech/technical-debt.md)에 잔존.
+
+### 4.1 종합 평가
+
+Phase 4까지 기능은 모두 들어왔으나 다음 3개 영역에 부채가 누적됨:
+1. **AdSense 인프라 미완** — Phase 3-0a/0e 잔불. 심사 통과율에 직접 영향.
+2. **자동화·회귀 안전망 부재** — 수동 배포·E2E·컴플라이언스 회귀 미커버.
+3. **리뷰 단계 Suggestion 미처리** — Phase 4 step 1·3·4·5 + info-tab의 보류 항목 누적.
+
+미사용 코드(§3 P2 결정 결과의 ChecklistItem 제거 등)는 기획 결정 후 D-Mn에 합류.
+
+---
+
+### 4.2 Critical — Phase 5 차단 이슈
+
+#### D-C1. AdSense 스크립트 + `public/ads.txt` 미완 (Phase 3-0a 잔존)
+- **현 상태**: [src/app/layout.tsx](../../src/app/layout.tsx)에 `<meta name="google-adsense-account">` 만 있음. `adsbygoogle.js` 스크립트 태그 없음.
+- **문제**: `public/`에 CNAME·og-image·home.png만 있고 `ads.txt` 미존재.
+- **수정**: `<head>`에 비동기 스크립트 추가 + `public/ads.txt` 생성 (`google.com, pub-6022771079735605, DIRECT, f08c47fec0942fa0`).
+- **검증**: 배포 후 AdSense 콘솔 사이트 크롤링 + `https://pregnancy-checklist.com/ads.txt` 200 응답.
+
+#### D-C2. `reviewed_by` 빈 필드 4건 (Phase 3-0e 잔존)
+- **위치**:
+  - [src/content/articles/early-pregnancy-fatigue-reasons.md](../../src/content/articles/early-pregnancy-fatigue-reasons.md)
+  - [src/content/articles/mid-pregnancy-lifestyle-guide.md](../../src/content/articles/mid-pregnancy-lifestyle-guide.md)
+  - [src/content/articles/pregnancy-foods-to-avoid.md](../../src/content/articles/pregnancy-foods-to-avoid.md)
+  - [src/content/articles/pregnancy-weight-management.md](../../src/content/articles/pregnancy-weight-management.md)
+- **문제**: `reviewed_by: ""` 빈 값 노출은 "리뷰받지 않았다"를 명시하는 것과 같음 → YMYL 신뢰도 마이너스.
+- **수정**: 검수자 부재 시 필드 자체 제거. 향후 검수 받으면 실제 이름 명시.
+
+---
+
+### 4.3 Major — 자동화·회귀 안전망
+
+#### D-M1. GitHub Actions CI/CD
+- **현 상태**: 수동 `npm run deploy`. 워크플로우 0건.
+- **선행**: GA·AdSense·Feedback 환경변수를 GitHub Secrets로 이관.
+- **워크플로우 (`.github/workflows/ci.yml`)**:
+  - actions/checkout → setup-node@v4 (node 20, npm cache)
+  - npm ci → tsc --noEmit → eslint → next build
+  - playwright install --with-deps chromium → playwright test
+  - main 브랜치만: `gh-pages -d out`
+
+#### D-M2. E2E webServer 자동화 + CI 통합
+- **현재**: 로컬에서 `npx serve out -l 3000` 수동 실행.
+- **수정**: Playwright `webServer` 설정으로 자동 시작/종료. CI에서 chromium만 사용. 스크린샷·비디오를 GitHub Actions 아티팩트로 업로드.
+
+#### D-M3. 쿠키 동의 거부 시 GA4·AdSense 비활성 회귀 테스트
+- **현 상태**: [src/lib/consent.ts](../../src/lib/consent.ts) + 분석 컴포넌트 조건부 렌더로 차단되지만 회귀 테스트 부재.
+- **수정**: e2e 시나리오 추가 — 거부 상태에서 `window.gtag` / `adsbygoogle` 미주입 검증. 컴플라이언스 변경 시 회귀 자동 탐지.
+
+---
+
+### 4.4 Minor — 코드 정돈
+
+#### D-Mn1. 미사용 shadcn ui 컴포넌트 30개 일괄 제거
+- **목록**: aspect-ratio · avatar · breadcrumb · carousel · calendar · chart · command · context-menu · drawer · dropdown-menu · form · hover-card · input-otp · menubar · navigation-menu · pagination · popover · radio-group · resizable · scroll-area · separator · sheet · sidebar · skeleton · slider · sonner · switch · toggle · toggle-group · tooltip
+- **함께 제거 가능 외부 의존성**: `vaul` · `cmdk` · `react-day-picker` · `embla-carousel-react` · `react-resizable-panels` · `input-otp` · `next-themes` · `react-hook-form`
+- **주의**: `npx shadcn add` 명령으로 다시 생성될 수 있으므로 [DESIGN.md](../../DESIGN.md) 또는 [docs/tech/spec.md](../tech/spec.md)에 "추가 금지 리스트" 명시.
+- **검증**: `tsc --noEmit` + e2e 회귀 통과 + 번들 사이즈 비교 (`@next/bundle-analyzer` 일회성 측정).
+
+#### D-Mn2. info-tab `as VideoItem[]` 단언 (Phase 4 step 2 Warning #4 보류)
+- **위치**: [src/app/info/page.tsx:28-29](../../src/app/info/page.tsx#L28-L29) + `/videos/page.tsx` 등 동일 패턴.
+- **해결**: `src/types/video.ts`의 `VideoCategory` union을 실 데이터 7종(`pregnancy_health`·`prenatal_checkup`·`nutrition`·`policy` 포함)에 맞춰 확장.
+- **참고**: zod 도입은 Phase 5(plan/plan.md §5에 합류). 이 항목은 zod 없이 union 확장만으로 해결.
+
+#### D-Mn3. info-tab searchParams useEffect/useState 중복 (Phase 4 step 2 Warning #3 보류)
+- **위치**: [src/components/info/InfoContainer.tsx:42-49](../../src/components/info/InfoContainer.tsx#L42-L49)
+- **해결**: 동작 보존(브라우저 뒤로가기로 `?tab=` 변경 시 동기화) 깨지 않는 패턴 검토 — `useSyncExternalStore` 또는 `searchParams.toString()` 비교.
+
+#### D-Mn4. RelatedContent 체크리스트 링크 GA `content_click` 미전송 (step 3 Suggestion #3)
+- **위치**: [src/components/articles/RelatedContent.tsx](../../src/components/articles/RelatedContent.tsx)
+- **수정**: `placement: "article-related"` 메타와 함께 `sendGAEvent("content_click", {...})` 추가.
+
+#### D-Mn5. share.ts — AbortError 외 에러 swallow (step 4 Suggestion #1)
+- **위치**: [src/lib/share.ts:33-35](../../src/lib/share.ts#L33-L35)
+- **수정**: `err.name !== "AbortError"`이면 toast 또는 모달 fallback 유도.
+
+#### D-Mn6. share.ts — clipboard 미지원/실패 메시지 분기 (step 4 Suggestion #2)
+- **위치**: [src/lib/share.ts:56-58](../../src/lib/share.ts#L56-L58)
+- **수정**: 미지원 시 "이 브라우저는 복사를 지원하지 않아요. 입력란을 길게 눌러 복사해 주세요." 별도 메시지.
+
+#### D-Mn7. ShareModal — 복사 실패 시 모달 닫힘 (step 4 Suggestion #3)
+- **위치**: [src/components/share/ShareModal.tsx:30-33](../../src/components/share/ShareModal.tsx#L30-L33)
+- **수정**: `copyShareLink` 반환을 boolean으로 → 성공 시에만 close. 실패 시 사용자가 직접 선택해 복사 가능하게.
+
+#### D-Mn8. crosslinks dry-run에 manual 보호 가시화 (step 5 Suggestion #1)
+- **수정**: `--dry-run` 출력에서도 manual 보호로 스킵된 항목을 `🔒` 마커로 표시.
+
+#### D-Mn9. crosslinks `formatYamlInlineArray` escape 일반화 (step 5 Suggestion #2)
+- **위치**: [scripts/generate-crosslinks.ts:269-274](../../scripts/generate-crosslinks.ts#L269-L274)
+- **수정**: 백슬래시 escape 추가 또는 화이트리스트 검증(영문+숫자+하이픈+언더스코어).
+
+#### D-Mn10. crosslinks threshold/topN CLI 옵션 (step 5 Suggestion #3)
+- **현재**: `crosslink-utils.ts`에 하드코딩 (`THRESHOLD=0.2`, `TOP_N=5`).
+- **수정**: `--threshold=0.25 --top=4` CLI 옵션 또는 `.env` 키.
+
+#### D-Mn11. crosslinks report에 manual 보호 분포 (step 5 Suggestion #5)
+- **수정**: `--report` 출력에 어떤 콘텐츠의 어떤 필드가 잠겼는지 표 형식으로.
+
+#### D-Mn12. ChecklistHub 카드 두 종류 통합 (step 1 Suggestion #3)
+- **위치**: `TimelineCard` + `ChecklistCard` 거의 동일 구조.
+- **수정**: prop으로 차이 흡수해 단일 카드 컴포넌트로.
+
+#### D-Mn13. ChecklistHub SSR 0% 깜빡임 (step 1 Suggestion #5)
+- **현상**: `hydrated` 미완 시 `checked = 0` → 하이드레이트 후 점프.
+- **수정**: Skeleton 또는 `opacity-0` fade-in 패턴. 진행률은 hydrate 완료 시점에만 표시.
+
+#### D-Mn14. ChecklistAddForm 우선순위·노트 입력 (step 1 Suggestion #6)
+- **현재**: 분류·제목만.
+- **수정**: 우선순위 select + 노트 textarea. 단, 기획 §3 P1 결정(편집 모드에서 priority/note 수정 허용) 결과에 따라 함께 정돈.
+
+#### D-Mn15. `/videos` hash 앵커 스크롤 동작 검증 (step 1 Suggestion #1)
+- **현재**: ChecklistRelatedContent 영상 링크가 hash 형식. `/info?tab=videos#{id}`로 통합 라우트는 동작하지만 `/videos` 직접 접근 시도 hash 동작하는지 확인.
+- **수정**: 통합 후 `/videos` 페이지가 hash 받았을 때 스크롤·하이라이트 동작 보장.
+
+#### D-Mn16. ChecklistProgress "완벽하게 준비되었어요!" 라인 (step 1 Suggestion #4)
+- **현재**: `>= 100` 조건. customItems 추가로 100% 도달 가능.
+- **수정**: UX 결정 필요 — base 100% 시점에 한정할지, customItems 포함해서 가능하게 둘지. **기획 §3에 결정 위임**.
+
+#### D-Mn17. 체크리스트 note의 i18n-style 카탈로그 (step 1 Suggestion #2)
+- **트리거**: 체크리스트 5종+ 추가 또는 영문 지원 검토 시.
+- **현 시점**: 미실행. 플레이스홀더로만 유지.
+
+#### D-Mn18. articles/[slug] `getAllArticles()` 빌드 시 9회 호출 (step 3 Suggestion #1)
+- **현재 영향**: 무시 가능 (article 8개).
+- **트리거**: 콘텐츠 수십~수백 개로 늘어날 때 모듈 레벨 캐시 또는 React `cache()`.
+- **현 시점**: 미실행.
+
+#### D-Mn19. related-content.ts Jaccard 단일 패스 (step 3 Suggestion #2)
+- **현재 영향**: 무시 가능.
+- **트리거**: 관련 콘텐츠 알고리즘 확장 시 단일 패스로 intersect/union 동시 카운트.
+- **현 시점**: 미실행.
+
+#### D-Mn20. crosslinks front matter 파서 단위 테스트 (step 5 Suggestion #4)
+- **블록 의존**: vitest 도입(plan/plan.md Phase 5). 도입 후 `parseSimpleYaml`·`setFrontMatterField` 단위 테스트 추가.
+
+---
+
+### 4.5 작업 묶음 (실행 단위)
+
+| 묶음 | 항목 | 우선순위 | 의존 |
+|------|------|---------|------|
+| **D-A** AdSense 인프라 마감 | D-C1, D-C2 | 즉시 | — |
+| **D-B** 자동화·회귀 안전망 | D-M1, D-M2, D-M3 | 다음 | GitHub Secrets 등록 |
+| **D-C** 코드 정돈 (의존성 다이어트) | D-Mn1, D-Mn2 | D-B 후 | — |
+| **D-D** 리뷰 잔불 일괄 | D-Mn3 ~ D-Mn16 | 시간 날 때 | 없음 (개별 처리 가능) |
+| **D-E** 트리거 대기 (의도적 보류) | D-Mn17, D-Mn18, D-Mn19, D-Mn20 | 트리거 도달 시 | D-Mn20만 Phase 5 vitest 의존 |
+
+---
+
+### 4.6 회귀 안전장치
+
+- 모든 D-Mn 처리 시 e2e 회귀 통과 확인.
+- D-A 처리 후 AdSense 콘솔 크롤링 통과 확인.
+- D-B 도입 후 main 푸시로 자동 배포 1회 동작 검증.
+- D-C 처리 후 번들 사이즈 비교 리포트 [docs/lighthouse-seo/](../lighthouse-seo/)에 기록.
 
 ---
 
