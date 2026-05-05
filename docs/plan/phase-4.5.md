@@ -571,6 +571,40 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 ---
 
+### 2.11 블로그 본문 이미지 노출 패턴
+
+> 분석 시점: 2026-05-05
+> 분석 대상: `src/content/articles/*.md` 본문 이미지 (markdown `![alt](path)` 형식)
+> 현재 상태: [globals.css](../../src/app/globals.css) `article-prose`에 `img` 전용 토큰 없음 → markdown이 brower default로 렌더되어 컨테이너 폭 초과·여백·radius·캡션 정책이 모두 미정의
+
+#### 2.11.1 잘못 처리되는 부분
+
+- **figure/figcaption 부재** — [weekly-prenatal-checklist.md:41](../../src/content/articles/weekly-prenatal-checklist.md#L41), [prenatal-insurance-preparation-guide.md:20](../../src/content/articles/prenatal-insurance-preparation-guide.md#L20) 모두 단순 `![alt](path)`. alt가 곧 캡션 역할을 하지만, 시각적으로 캡션이 보이지 않아 "이 이미지가 무엇을 설명하는지" 본문 흐름과 분리됨.
+- **`img`에 radius·shadow 토큰 미적용** — `article-prose` 안에서 이미지가 `border-radius: 0` 직각으로 떨어짐. 본문 카드(rounded-2xl)·인용블록 톤과 어긋남.
+- **모바일 폭 처리 미정의** — `next/image` 미사용. layout shift, lazy loading, srcset 모두 누락 → CLS·LCP 점수에 직접 영향.
+- **AI 생성 이미지임을 시각적으로 알 수 없음** — 운영자가 AI로 만든 인포그래픽인데 본문에는 표시 없음. §3.1 P14 결정과 직접 연결.
+
+#### 2.11.2 결정 필요 / 작업 항목
+
+| ID | 내용 | 묶음 |
+|----|------|------|
+| **IM-1** | `article-prose img`에 `rounded-2xl + shadow-sm + my-6 + max-w-full` 토큰 적용 | 신규 묶음 **L** |
+| **IM-2** | `figure > img + figcaption` 패턴 도입 — markdown remark 플러그인(`remark-figure-image` 등)으로 `![alt](path)`를 자동 figure 변환. caption은 alt 텍스트 그대로, `text-sm text-muted-foreground text-center mt-2`로 렌더 | L |
+| **IM-3** | `<img>` → `next/image` 전환 — fill 모드 + `sizes="(max-width: 768px) 100vw, 720px"`. 본문 폭 기준 `width=720, height=auto` 메타 도입 (md frontmatter에 width/height 추가하거나 빌드 시 추출) | L |
+| **IM-4** | AI 생성 이미지의 시각 표시 — figcaption 끝에 `· AI 생성` 텍스트 라벨 또는 이미지 우하단 `bg-foreground/60 text-white text-xs` 칩(`Imagined with AI` 패턴 차용). §3.1 P14 결정에 따라 형태·문구 확정 | L (P14 결정 후) |
+| **IM-5** | 본문 이미지 lightbox / zoom 여부 결정 — 인포그래픽 텍스트가 모바일에서 작아 가독성 떨어짐. 탭 시 전체화면 확대(Radix Dialog) 도입 vs 원본 새 탭 열기 vs 미도입 | (결정) |
+| **IM-6** | 이미지 alt 작성 가이드라인 — 현재 alt가 "임신 초기 예비맘이 노트북으로 보험 상품을 비교하는 모습"처럼 장면 묘사형. 인포그래픽은 **그래프 데이터 핵심 수치**까지 포함해야 스크린리더 사용자가 정보 손실 없음. §3 P10 운영자 가이드와 통합 | S 묶음 |
+
+#### 2.11.3 권장 작업 묶음
+
+| 묶음 | 내용 | 의존성 | 임팩트 |
+|---|---|---|---|
+| **L** | article-prose 이미지 시스템(IM-1~IM-4) — figure 패턴 + next/image + AI 표시 | P14 결정 | 큼 (전체 글에 적용) |
+
+권장 실행 순서: **P14 결정 → L 묶음 일괄 적용 → 기존 글 2건(`weekly-prenatal-checklist`, `prenatal-insurance-preparation-guide`) 마이그레이션 검증**.
+
+---
+
 ## 3. 기획 개선
 
 > 분석 시점: 2026-05-03
@@ -671,6 +705,37 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 - **현황**: Phase 4 Step 5의 운영 절차는 자동 크로스링크 영역만 다룸. 체크리스트 항목 ID 변경/삭제 시 사용자 localStorage에 dangling reference 발생하지만 가이드 부재
 - **연결**: P5 schema versioning과 함께 도입하면 일관
 
+#### P14. 블로그 본문 AI 생성 이미지 표시 의무 ⭐ Critical (법적 리스크)
+
+- [ ] **결정**: (a) 표시 형태 — figcaption 텍스트 라벨(`· AI 생성`) / 이미지 우하단 가시 워터마크 칩 / 둘 다
+- [ ] **결정**: (b) 표시 문구 — `AI 생성` / `AI로 만든 이미지` / `Imagined with AI` (한글/영문)
+- [ ] **결정**: (c) 메타데이터 병행 여부 — 가시 표시 외에 `<img>` alt 또는 EXIF에 `AI-generated` 플래그 추가
+- [ ] **결정**: (d) 적용 범위 — 인포그래픽만 / AI 후보정 사진 포함 / 모든 비실사 이미지
+- **법적 배경 (확인 완료, 2026-05-05)**:
+  - **AI 기본법(인공지능기본법) 2026-01-22 시행** — 한국은 EU에 이어 세계 두 번째 포괄적 AI 규제 체계
+  - **의무 주체는 "AI 사업자"** — ChatGPT·미드저니 같은 생성형 AI 서비스 제공자, 또는 AI로 자동 콘텐츠를 생성하는 서비스를 제공하는 사업자. **AI를 단순히 업무·창작의 "도구"로 활용하는 이용자(크리에이터·마케터·블로거)는 의무 대상이 아님** (시행령·실무 해석)
+  - **본 사이트 운영자의 위치**: 운영자가 미드저니·DALL·E로 인포그래픽을 만들고 검수·삽입하는 행위는 **"단순 도구 이용"에 해당해 법적 강제 표시 의무는 없을 가능성이 높음**. 텍스트(블로그 본문)도 ChatGPT 초안을 운영자가 검수·편집해 발행하는 한 표시 의무 대상 아님
+  - **표시 방법(사업자에 한해)**: 사람이 인식할 수 있는 가시·가청적 워터마크/문구 또는 기계가 판독할 수 있는 메타데이터. 이미지는 좌·우·중앙 하단 가시 워터마크/로고가 표준 (참고: 갤럭시 AI 로고, Meta `Imagined with AI` 라벨). 시행령은 "결과물 자체에 'AI 생성' 표시가 있으면 투명성 의무 이행으로 인정"하여 이행 유연성 확대
+  - **위반 시(사업자에 한해)**: 시정명령 → 불이행 시 최대 3,000만원 과태료. 1년 이상 계도기간 운영
+- **자발적 표시를 권장하는 비-법적 근거**:
+  - **AdSense / Google 콘텐츠 정책** — AI 생성 콘텐츠에 대한 별도 노출 정책 운영 중. 미표시 시 노출 제한 가능성
+  - **E-E-A-T** — 의료·임신 도메인은 정보 출처·작성 주체의 투명성이 신뢰도 변수에 직접 반영
+  - **시행령 인센티브** — 자발적 표시는 향후 사업자성 인정되더라도 투명성 의무 이행 안전망
+- **현황**:
+  - 발행 글 2건에 AI 생성 이미지 사용 중이지만 본문 어디에도 AI 표시 없음 — [weekly-prenatal-checklist.md:41](../../src/content/articles/weekly-prenatal-checklist.md#L41), [prenatal-insurance-preparation-guide.md:20](../../src/content/articles/prenatal-insurance-preparation-guide.md#L20)
+  - frontmatter·alt·캡션·이미지 본체 모두 AI 생성 여부 메타 없음
+- **고려할 트레이드오프**:
+  - 가시 워터마크 칩(우하단) → 법 정합성·신뢰도 ↑, 인포그래픽 정보 일부 가림 가능. `Imagined with AI` 같은 영문 라벨은 국제 표준에 가깝지만 임산부 독자에게는 거리감
+  - figcaption 텍스트(`· AI 생성`) → 디자인 부담 ↓, 캡션을 안 읽는 사용자에겐 노출 약함. **표시 의무 "사람이 인식할 수 있는 방법"의 최소 요건은 충족**
+  - 둘 다 → 가장 안전. 인포그래픽 핵심 영역을 피해 워터마크 위치 결정 필요
+- **차단되는 다른 작업**:
+  - §2.11 묶음 L (article-prose 이미지 시스템) — IM-4 형태가 P14 결정에 종속
+  - 신규 글 작성 가이드 (P10 운영자 가이드와 통합) — 이미지 제작·배치 SOP 미정
+- **연결되는 다른 결정**:
+  - P10 운영자 가이드 — AI 이미지 제작 시 표시 의무를 SOP 체크리스트로 박아넣기
+  - §3.2 P11 콘텐츠 매트릭스 — 인포그래픽이 차지하는 비중에 따라 표시 부담 달라짐
+- **권장 실행**: 법적 강제 의무 가능성은 낮지만, **자발적 표시를 선제 도입 권장**. 이유 (1) AdSense·Google AI 콘텐츠 정책 정합성 (2) E-E-A-T 신뢰도 — "AI로 만들었지만 운영자가 검증한 이미지"라는 명시가 의료·임신 도메인 신뢰 점수에 유리 (3) 이미지에만 적용하면 충분 — 텍스트 본문은 운영자 검수·편집 거치므로 표시 불필요
+
 ### 3.2 콘텐츠 전략 결정 사항 (콘텐츠 전문가 관점)
 
 #### P11. 콘텐츠 ↔ 체크리스트 매트릭스 1차 산출
@@ -707,12 +772,15 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 | **S** | P9·P10 — 빈 상태 명세 + 운영자 가이드 작성 | 독립 | 작음 |
 | **T** | P8 — 카테고리 체계 결정 (작업은 Phase 5) | Phase 4.5 결정만 | 작음 |
 | **U** | P12 — 양방향 크로스링크 정책 결정 + 자동화 확장 | Step 5 스크립트 확장 | 중 |
+| **V** | P14 — AI 생성 이미지 표시 형태·문구 결정 + 기존 글 2건 마이그레이션 | §2.11 L 묶음의 선결조건 | 중 (AdSense·E-E-A-T) |
 
-권장 실행 순서: **N → (G·H 실행 unblock) → R → O → P / Q / S / T / U 병렬**.
+권장 실행 순서: **N → (G·H 실행 unblock) → V → R → O → P / Q / S / T / U 병렬**.
 
 > 📌 N묶음(P3·P4)이 §1·§2의 미결 종속성을 **세 군데 동시 해소**하므로 가장 시급. 다른 모든 결정은 N 이후로 미뤄도 된다.
+>
+> 📌 V묶음(P14)은 운영자가 단순 도구 이용자로 분류돼 법적 강제 의무 가능성은 낮지만, AdSense·E-E-A-T 정합성과 §2.11 L묶음의 선결조건이라 N 다음으로 자발적 도입 권장.
 
-### 3.4 P1~P13 결정 매트릭스 (운영자 결정용)
+### 3.4 P1~P14 결정 매트릭스 (운영자 결정용)
 
 > 운영자가 결정 시 빠르게 훑을 수 있도록 한 표로 요약. 결정 후 위 §3.1·§3.2의 체크박스 채움.
 
@@ -731,6 +799,7 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 | P11 | 콘텐츠 매트릭스 | 보통 | 콘텐츠 백로그 사전 정리 |
 | P12 | 양방향 크로스링크 | 보통 | 유입→도구 흐름 |
 | P13 | 외부 링크 인벤토리 | 낮음 | 묶음 J 사전 작업 |
+| P14 | AI 생성 이미지 표시 형태·문구 | 보통 | §2.11 L묶음, AdSense·E-E-A-T 정합성 (법적 강제 의무 가능성 낮음) |
 
 ---
 
