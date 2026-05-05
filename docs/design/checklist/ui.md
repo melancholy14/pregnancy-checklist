@@ -4,7 +4,7 @@
 > 페르소나/원칙: [persona.md](../persona.md)
 > 사용자 흐름·상태 모델: [ux.md](ux.md)
 > 디자인 시스템 헌법: [DESIGN.md](../../../DESIGN.md)
-> 알려진 위반/개선 백로그: [../phase-4.5/plan.md §2](../../phase-4.5/plan.md)
+> 알려진 위반/개선 백로그: [../phase-4.5/plan.md §2](../../plan/phase-4.5.md)
 
 ---
 
@@ -55,7 +55,7 @@
 | 진행 강조 메시지 | `text-accent-green` | — | — | 25/50/75/100 |
 | 체크된 행 배경 | `bg-pastel-mint/20` | `rounded-xl` | — | + `line-through` + `text-muted-foreground` |
 | 호버 배경 (미체크 행) | `bg-muted/50` | `rounded-xl` | — | hover only |
-| FAB | `bg-pastel-lavender` (현재) | `rounded-2xl` | `shadow-lg` | 컨벤션 결정 대기 — [phase-4.5 §2.4 M2](../../phase-4.5/plan.md) |
+| FAB | `bg-pastel-lavender` (현재) | `rounded-2xl` | `shadow-lg` | 컨벤션 결정 대기 — [phase-4.5 §2.4 M2](../../plan/phase-4.5.md) |
 | 추가 폼 카드 | `bg-pastel-lavender/10 + border-pastel-lavender/30` | `rounded-2xl` | `shadow-md` | 인풋 보유 |
 | 관련 콘텐츠 링크 | `text-accent-purple` + `hover:bg-pastel-lavender/10` | `rounded-lg` | — | DESIGN.md 4.4 prose-accent와 일관 |
 
@@ -69,9 +69,9 @@
 |------|------|------|
 | 카드 컨테이너 | `rounded-2xl border border-black/4 bg-card shadow-sm hover:shadow-md` | 정보 카드 표준 |
 | 카드 패딩 | `p-5` | DESIGN.md 4.1 12~16px 사이 |
-| 아이콘 (3종 카드) | 이모지 단독 `text-3xl` | 패턴 통일 결정 대기 — [phase-4.5 §2.4 M5](../../phase-4.5/plan.md) |
+| 아이콘 (3종 카드) | 이모지 단독 `text-3xl` | 패턴 통일 결정 대기 — [phase-4.5 §2.4 M5](../../plan/phase-4.5.md) |
 | 아이콘 (타임라인) | `w-12 h-12 rounded-2xl bg-pastel-pink/40` 컨테이너 + Calendar | 동일 케이스. pink 사용은 §2.4 M6 검토 대상 |
-| 카드 타이틀 | 시맨틱 `<h3>` 권장 (현재 `<h2 + text-[15px]>` 위반 — [§2.3 C4](../../phase-4.5/plan.md)) | |
+| 카드 타이틀 | 시맨틱 `<h3>` 권장 (현재 `<h2 + text-[15px]>` 위반 — [§2.3 C4](../../plan/phase-4.5.md)) | |
 | 서브카테고리 칩 | `text-[11px] px-2 py-0.5 rounded-md bg-pastel-lavender/30 text-foreground` | 항상 lavender. mint/yellow 사용 금지(타임라인 카드 예외 검토) |
 | 진행 바 | `<Progress h-1.5 bg-muted />` + `text-[11px] tabular-nums text-muted-foreground` | |
 
@@ -80,7 +80,7 @@
 | 요소 | 토큰 | 비고 |
 |------|------|------|
 | 섹션 헤더 | 시맨틱 `<h3>` 권장 | 현재 `<h2 + text-[15px]>` 위반 |
-| 섹션 그룹 카드 | `rounded-2xl` 권장 | 현재 `rounded-xl` 위반 — [§2.3 C3](../../phase-4.5/plan.md) |
+| 섹션 그룹 카드 | `rounded-2xl` 권장 | 현재 `rounded-xl` 위반 — [§2.3 C3](../../plan/phase-4.5.md) |
 | 그룹 카드 패딩 | `p-2 space-y-1` | 행이 스스로 패딩을 가짐 |
 | FAB 위치 | `fixed fab-bottom-safe right-6 w-14 h-14` | DESIGN.md 4.4 BottomNav 회피 |
 
@@ -102,7 +102,7 @@
 | 편집 모드 행 | `border border-pastel-lavender/30 bg-pastel-lavender/10 rounded-xl` | lavender=secondary surface |
 | Checkbox | `size-5 mt-0.5 rounded-md border-2 data-[state=checked]:bg-pastel-mint data-[state=checked]:border-pastel-mint border-gray-200` | **`border-gray-200`은 토큰 외** — `border-black/4` 또는 `border-input`으로 정정 권장 ([persona §5 AP7](../persona.md)) |
 | 노트 라인 | `text-xs text-muted-foreground` + `<Info size={11}>` | 현재 미체크 시만 노출 — 체크 후 유지 결정 대기 |
-| 우선순위 배지 (current 위반) | high=`bg-pastel-pink/60 text-accent-red` / med=`bg-pastel-yellow/60 text-accent-olive` / low=`bg-pastel-mint/60 text-accent-green` | **5-pastel role 위반** — [§2.3 C1](../../phase-4.5/plan.md). 재매핑 또는 시각 다운그레이드 결정 대기 |
+| 우선순위 배지 (current 위반) | high=`bg-pastel-pink/60 text-accent-red` / med=`bg-pastel-yellow/60 text-accent-olive` / low=`bg-pastel-mint/60 text-accent-green` | **5-pastel role 위반** — [§2.3 C1](../../plan/phase-4.5.md). 재매핑 또는 시각 다운그레이드 결정 대기 |
 | 편집 아이콘 버튼 | `p-1.5 rounded-lg text-muted-foreground hover:text-accent-purple hover:bg-pastel-lavender/20` | OK |
 
 ### 4.5 [ChecklistAddForm](../../../src/components/checklist/ChecklistAddForm.tsx)
@@ -111,7 +111,7 @@
 |------|------|------|
 | 폼 카드 | `rounded-2xl border border-pastel-lavender/30 bg-pastel-lavender/10 shadow-md` | 인풋 보유 → shadow-md OK |
 | 라벨 | `text-sm text-muted-foreground` | |
-| 필수 표시 | `text-destructive` 권장 | 현재 `text-red-400` 토큰 외 — [§2.5](../../phase-4.5/plan.md) |
+| 필수 표시 | `text-destructive` 권장 | 현재 `text-red-400` 토큰 외 — [§2.5](../../plan/phase-4.5.md) |
 | 인풋 / 셀렉트 | `rounded-xl border border-black/6 bg-white text-sm focus:ring-2 focus:ring-pastel-lavender/50` | |
 | 추가 버튼 | `rounded-xl bg-pastel-lavender text-foreground hover:bg-pastel-lavender/80` | secondary CTA |
 | 취소 버튼 | shadcn `variant="ghost"` + `rounded-xl` | |
@@ -124,7 +124,7 @@
 | 섹션 헤더 | `text-sm font-medium` + 이모지 💡 | 동급으로 글/타임라인/영상 |
 | 카테고리 라벨 | `text-xs text-muted-foreground font-medium` + lucide 아이콘 13px | |
 | 링크 | `text-sm text-accent-purple hover:bg-pastel-lavender/10 rounded-lg px-2 py-1.5 -mx-2` | hover 영역 inset |
-| 화살표 | `<ChevronRight aria-hidden>` 권장 | 현재 텍스트 "→" — [§2.5](../../phase-4.5/plan.md) |
+| 화살표 | `<ChevronRight aria-hidden>` 권장 | 현재 텍스트 "→" — [§2.5](../../plan/phase-4.5.md) |
 
 ---
 
@@ -193,7 +193,7 @@
 
 ## 10. 알려진 UI 위반 (요약)
 
-> 상세: [../phase-4.5/plan.md §2](../../phase-4.5/plan.md)
+> 상세: [../phase-4.5/plan.md §2](../../plan/phase-4.5.md)
 
 | ID | 위반 | 대응 묶음 |
 |----|------|-----------|

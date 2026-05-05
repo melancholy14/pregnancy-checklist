@@ -1,7 +1,7 @@
 # info-tab-integration Implementation
 
 > Phase 4 Step 2 — 정보 탭 통합 (블로그 + 영상)
-> Plan: [../plan/info-tab-integration-plan.md](../plan/info-tab-integration-plan.md)
+> 출처 PRD: [../../plan/phase-4.md](../../plan/phase-4.md) Step 2
 > Date: 2026-05-01
 
 ---

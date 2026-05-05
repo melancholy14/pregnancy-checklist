@@ -656,7 +656,7 @@ AdSense 승인률을 높이기 위한 **콘텐츠 볼륨 + 깊이 확보**.
 
 ## Phase 2.5. UX 개선 + 리텐션 강화 — ✅ 완료
 
-> 상세 스펙: [../phase-2.5/plan.md](../phase-2.5/plan.md)
+> 상세 스펙: [phase-2.5.md](phase-2.5.md)
 > 구현 완료: 2026-04-12 | QA 통과: 2026-04-13
 
 유입된 유저가 타임라인을 중심으로 반복 방문하고 각 기능을 깊게 활용하는 구조 구축.
@@ -845,7 +845,7 @@ YouTube Data API v3 기반으로 채널 썸네일을 자동 수집하는 스크�
 
 ## Phase 4. 사용자 경험 심화 + 콘텐츠 네트워크 강화
 
-> 상세 스펙: [../phase-4/plan.md](../phase-4/plan.md)
+> 상세 스펙: [phase-4.md](phase-4.md)
 > Phase 3에서 AdSense 인프라를 갖춘 뒤, 세션 체류 시간 확대 · 콘텐츠 간 유기적 연결 · 바이럴 성장 채널을 확보한다.
 > 목표: ~2026-05-15
 
@@ -891,7 +891,7 @@ OG 메타 태그 정비 + GA4 `share` 이벤트 전송.
 
 ## Phase 5. 베이비페어 크롤러 & Admin UI · 품질 인프라 (로컬)
 
-> 상세 스펙(크롤러): [../specs/babyfair_crawler_spec.md](../specs/babyfair_crawler_spec.md)
+> 상세 스펙(크롤러): [specs/babyfair_crawler_spec.md](specs/babyfair_crawler_spec.md)
 > 상세 스펙(개발 부채): [../tech/technical-debt.md](../tech/technical-debt.md)
 
 > **기술 제약**: `output: 'export'` 모드이므로 API Routes 불가.

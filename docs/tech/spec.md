@@ -35,7 +35,7 @@
 | 빌드 도구 (스크립트) | tsx | 4.21.0 |
 | 패키지 매니저 | npm | (lock 파일 기준) |
 
-> **주의**: Next 16/React 19는 학습 데이터의 13~15와 다른 부분이 있다. 새 API 사용 전 [AGENTS.md](AGENTS.md) 안내·`node_modules/next/dist/docs/` 확인.
+> **주의**: Next 16/React 19는 학습 데이터의 13~15와 다른 부분이 있다. 새 API 사용 전 [AGENTS.md](../../AGENTS.md) 안내·`node_modules/next/dist/docs/` 확인.
 
 ---
 

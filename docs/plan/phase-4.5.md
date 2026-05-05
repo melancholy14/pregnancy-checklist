@@ -1,6 +1,6 @@
 # Phase 4.5: 기존 기능 개선 (Pre-Phase 5)
 
-> Phase 4 기록: [../phase-4/plan.md](../phase-4/plan.md)
+> Phase 4 기록: [phase-4.md](phase-4.md)
 > Date: 2026-05-02
 > 목표 완료: TBD
 > Status: 📝 기획 단계
@@ -618,7 +618,7 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
   - 풀스크린 onboarding → 입력 전환율 ↑, 첫 방문 이탈 위험. Phase 2.5 온보딩과 통합 가능 (이미 3단계 존재)
   - 홈 상단 카드 → 입력 부담 ↓, 익명 사용자 비율 늘어 코호트 분석 약화
   - 헤더 고정 위젯 → 갱신 편하나 시각적 점유 부담
-- **연결**: Phase 2.5 온보딩 플로우([phase-2.5/plan.md](../phase-2.5/plan.md) §Step 1)와 통합하면 새 화면 추가 없이 해소 가능
+- **연결**: Phase 2.5 온보딩 플로우([phase-2.5/plan.md](phase-2.5.md) §Step 1)와 통합하면 새 화면 추가 없이 해소 가능
 
 #### P4. `current_pregnancy_week` 영속성·갱신 정책
 

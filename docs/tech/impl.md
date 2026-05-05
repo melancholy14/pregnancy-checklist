@@ -1,6 +1,6 @@
 # 구현 요약
 
-> 지금까지 구현된 기능을 한 곳에. 자세한 phase별 구현 보고서는 [docs/implementation/](../implementation/), [docs/phase-*](../).
+> 지금까지 구현된 기능을 한 곳에. 자세한 phase별 구현 보고서는 [docs/tech/implementation/](implementation/), 각 phase plan은 [docs/plan/phase-*.md](../plan/).
 > 이 문서는 "어디 가면 그 코드를 읽을 수 있는지" 인덱스 역할.
 
 ---
@@ -247,10 +247,10 @@ function isMobileTouchEnvironment(): boolean {
 | 항목 | 일정 | 위치 / 비고 |
 |------|------|------------|
 | 체중 BMI/IOM 권장 영역 차트 | **Phase 5** §5-0a | `WeightContainer` 미적용. 의료 면책 + 개인정보처리방침 건강 정보 조항 선행. [plan.md](../plan/plan.md#L902) |
-| 베이비페어 크롤러 (`scripts/crawl-babyfair.ts`) | **Phase 5** §5-1 | 스펙 [docs/specs/babyfair_crawler_spec.md](../specs/babyfair_crawler_spec.md) |
+| 베이비페어 크롤러 (`scripts/crawl-babyfair.ts`) | **Phase 5** §5-1 | 스펙 [docs/plan/specs/babyfair_crawler_spec.md](../plan/specs/babyfair_crawler_spec.md) |
 | Unit Test (vitest) | **Phase 5** §5-0b | 핵심 lib 5종 첫 라운드 |
 | zod 런타임 검증 | **Phase 5** §5-0c | JSON 임포트 단언 → 스키마 검증 |
-| AdSense `adsbygoogle.js` + `public/ads.txt` | **Phase 4.5** D-C1 | [phase-4.5/plan.md §4](../phase-4.5/plan.md) |
-| `reviewed_by` 빈 필드 4건 정리 | **Phase 4.5** D-C2 | [phase-4.5/plan.md §4](../phase-4.5/plan.md) |
-| GitHub Actions CI/CD | **Phase 4.5** D-M1 | [phase-4.5/plan.md §4](../phase-4.5/plan.md) |
+| AdSense `adsbygoogle.js` + `public/ads.txt` | **Phase 4.5** D-C1 | [phase-4.5/plan.md §4](../plan/phase-4.5.md) |
+| `reviewed_by` 빈 필드 4건 정리 | **Phase 4.5** D-C2 | [phase-4.5/plan.md §4](../plan/phase-4.5.md) |
+| GitHub Actions CI/CD | **Phase 4.5** D-M1 | [phase-4.5/plan.md §4](../plan/phase-4.5.md) |
 | 에러 모니터링 SaaS (Sentry) | **Phase 6** §6-1 | [plan.md](../plan/plan.md) |

@@ -1,7 +1,7 @@
 # Phase 4 Step 1 — 체크리스트 허브 코드 리뷰
 
-> 리뷰 대상 PRD: [docs/phase-4/plan.md](../phase-4/plan.md) Step 1
-> 구현 문서: [docs/implementation/phase-4-step-1-checklist-hub-impl.md](../implementation/phase-4-step-1-checklist-hub-impl.md)
+> 리뷰 대상 PRD: [docs/plan/phase-4.md](../../plan/phase-4.md) Step 1
+> 구현 문서: [docs/tech/implementation/phase-4-step-1-checklist-hub-impl.md](../implementation/phase-4-step-1-checklist-hub-impl.md)
 > 리뷰일: 2026-04-29
 
 ## 리뷰 대상 파일 (17개)

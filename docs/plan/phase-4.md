@@ -1,6 +1,6 @@
 # Phase 4: 체크리스트 허브 확장 + 정보 탭 통합 — Development Plan
 
-> Phase 3 기록: [../phase-3/plan.md](../phase-3/plan.md)
+> Phase 3 기록: [phase-3.md](phase-3.md)
 > Date: 2026-04-27
 > 목표 완료: 2026-05-18
 > Status: ✅ 완료 (Step 1~5 모두 완료)
@@ -10,11 +10,11 @@
 
 | Step | 상태 | 산출물 |
 | ---- | ---- | -------- |
-| Step 1. 체크리스트 허브 확장 | ✅ 완료 (2026-05-01) | [../implementation/phase-4-step-1-checklist-hub-impl.md](../implementation/phase-4-step-1-checklist-hub-impl.md), [../review/phase-4-step-1-checklist-hub-review.md](../review/phase-4-step-1-checklist-hub-review.md), [e2e/phase-4-step-1-checklist-hub.spec.ts](../../e2e/phase-4-step-1-checklist-hub.spec.ts) |
-| Step 2. 정보 탭 통합 | ✅ 완료 (2026-05-02) | [../info-tab-integration/README.md](../info-tab-integration/README.md), [../plan/info-tab-integration-plan.md](../plan/info-tab-integration-plan.md), [e2e/info-tab-integration.spec.ts](../../e2e/info-tab-integration.spec.ts) |
-| Step 3. 관련 콘텐츠 추천 | ✅ 완료 (2026-05-02) | [../phase-4-step-3-related-content/README.md](../phase-4-step-3-related-content/README.md), [../implementation/phase-4-step-3-related-content-impl.md](../implementation/phase-4-step-3-related-content-impl.md), [../review/phase-4-step-3-related-content-review.md](../review/phase-4-step-3-related-content-review.md), [e2e/phase-4-step-3-related-content.spec.ts](../../e2e/phase-4-step-3-related-content.spec.ts) |
-| Step 4. 공유 기능 | ✅ 완료 (2026-05-02) | [../phase-4-step-4-share/README.md](../phase-4-step-4-share/README.md), [../implementation/phase-4-step-4-share-impl.md](../implementation/phase-4-step-4-share-impl.md), [../review/phase-4-step-4-share-review.md](../review/phase-4-step-4-share-review.md), [e2e/phase-4-step-4-share.spec.ts](../../e2e/phase-4-step-4-share.spec.ts) |
-| Step 5. 크로스링크 스크립트 | ✅ 완료 (2026-05-02) | [../phase-4-step-5-crosslinks/README.md](../phase-4-step-5-crosslinks/README.md), [../implementation/phase-4-step-5-crosslinks-impl.md](../implementation/phase-4-step-5-crosslinks-impl.md), [../review/phase-4-step-5-crosslinks-review.md](../review/phase-4-step-5-crosslinks-review.md), [../refactor/phase-4-step-5-crosslinks-refactor.md](../refactor/phase-4-step-5-crosslinks-refactor.md), [e2e/phase-4-step-5-crosslinks.spec.ts](../../e2e/phase-4-step-5-crosslinks.spec.ts) |
+| Step 1. 체크리스트 허브 확장 | ✅ 완료 (2026-05-01) | [../tech/implementation/phase-4-step-1-checklist-hub-impl.md](../tech/implementation/phase-4-step-1-checklist-hub-impl.md), [../tech/review/phase-4-step-1-checklist-hub-review.md](../tech/review/phase-4-step-1-checklist-hub-review.md), [e2e/phase-4-step-1-checklist-hub.spec.ts](../../e2e/phase-4-step-1-checklist-hub.spec.ts) |
+| Step 2. 정보 탭 통합 | ✅ 완료 (2026-05-02) | [../tech/implementation/info-tab-integration-impl.md](../tech/implementation/info-tab-integration-impl.md), [../tech/review/info-tab-integration-review.md](../tech/review/info-tab-integration-review.md), [../tech/refactor/info-tab-integration-refactor.md](../tech/refactor/info-tab-integration-refactor.md), [e2e/info-tab-integration.spec.ts](../../e2e/info-tab-integration.spec.ts) |
+| Step 3. 관련 콘텐츠 추천 | ✅ 완료 (2026-05-02) | [../tech/implementation/phase-4-step-3-related-content-impl.md](../tech/implementation/phase-4-step-3-related-content-impl.md), [../tech/review/phase-4-step-3-related-content-review.md](../tech/review/phase-4-step-3-related-content-review.md), [e2e/phase-4-step-3-related-content.spec.ts](../../e2e/phase-4-step-3-related-content.spec.ts) |
+| Step 4. 공유 기능 | ✅ 완료 (2026-05-02) | [../tech/implementation/phase-4-step-4-share-impl.md](../tech/implementation/phase-4-step-4-share-impl.md), [../tech/review/phase-4-step-4-share-review.md](../tech/review/phase-4-step-4-share-review.md), [e2e/phase-4-step-4-share.spec.ts](../../e2e/phase-4-step-4-share.spec.ts) |
+| Step 5. 크로스링크 스크립트 | ✅ 완료 (2026-05-02) | [../tech/implementation/phase-4-step-5-crosslinks-impl.md](../tech/implementation/phase-4-step-5-crosslinks-impl.md), [../tech/review/phase-4-step-5-crosslinks-review.md](../tech/review/phase-4-step-5-crosslinks-review.md), [../tech/refactor/phase-4-step-5-crosslinks-refactor.md](../tech/refactor/phase-4-step-5-crosslinks-refactor.md), [e2e/phase-4-step-5-crosslinks.spec.ts](../../e2e/phase-4-step-5-crosslinks.spec.ts) |
 
 ### Step 2 완료 시 함께 정리된 사항
 

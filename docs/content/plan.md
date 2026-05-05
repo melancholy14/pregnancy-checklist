@@ -14,7 +14,7 @@
         │
         ▼
 [Phase 4.5 진행 중 🛠️]   기획 결정 + 마케팅 측정 + 디자인 마감
-        │              상세: docs/phase-4.5/plan.md
+        │              상세: docs/plan/phase-4.5.md
         ▼
 [Phase 5]  도구 고도화 + 콘텐츠 자산 확장
         │
@@ -31,7 +31,7 @@
 
 ## 1. Phase 4.5 — 진행 중 (요약)
 
-> 풀버전: [`docs/phase-4.5/plan.md`](../phase-4.5/plan.md)
+> 풀버전: [`docs/plan/phase-4.5.md`](../plan/phase-4.5.md)
 
 체크리스트 영역의 마감 라운드. **신규 기능 X, 정돈만**.
 

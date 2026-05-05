@@ -1,6 +1,6 @@
 # Phase 4 Step 1 — 체크리스트 허브 리팩토링
 
-> 리뷰 문서: [docs/review/phase-4-step-1-checklist-hub-review.md](../review/phase-4-step-1-checklist-hub-review.md)
+> 리뷰 문서: [docs/tech/review/phase-4-step-1-checklist-hub-review.md](../review/phase-4-step-1-checklist-hub-review.md)
 > 리팩토링일: 2026-04-29
 
 ## 리팩토링한 파일 목록

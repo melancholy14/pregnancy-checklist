@@ -1,7 +1,7 @@
 # 인프라
 
 > 현재 운영 인프라 + Phase별 진행 예정 사항.
-> 과거 [docs/infra/architecture.md](../infra/architecture.md), [docs/infra/gcp-deployment.md](../infra/gcp-deployment.md)는 Phase 6+ 미래상만 적혀있어 현재와 어긋남. 이 문서가 현재 진실.
+> 이 문서가 인프라의 단일 진실 (legacy `docs/infra/` 폴더는 2026-05-05 정리 시 삭제, 본 문서로 갈음).
 
 ---
 
@@ -69,7 +69,7 @@
 
 > 로컬 CLI 자동화. 인프라 변경 없음.
 
-- `scripts/crawl-babyfair.ts` (미구현, [docs/specs/babyfair_crawler_spec.md](../specs/babyfair_crawler_spec.md) 참조)
+- `scripts/crawl-babyfair.ts` (미구현, [docs/plan/specs/babyfair_crawler_spec.md](../plan/specs/babyfair_crawler_spec.md) 참조)
 - 모드: `full` / `incremental` / `verify`. confidence score 산출 → pending 상태로 저장.
 - `scripts/review-babyfair.ts` Admin CLI로 승인/반려 → JSON 갱신 → 재배포.
 - API Routes 없음 (static export 유지).

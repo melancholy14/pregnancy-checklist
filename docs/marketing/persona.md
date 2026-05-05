@@ -104,7 +104,7 @@
 - Next.js App Router (브레이킹 변경 있음, [AGENTS.md](../../AGENTS.md) 참조).
 - GA4: consent 게이팅 + `send_page_view:false` + 수동 page_view ([ConsentGatedScripts.tsx](../../src/components/consent/ConsentGatedScripts.tsx), [PageviewTracker.tsx](../../src/components/analytics/PageviewTracker.tsx)).
 - 이벤트 헬퍼: [analytics.ts](../../src/lib/analytics.ts) `sendGAEvent`. 호출부는 타입 안전 wrapper 사용 권장.
-- Obsidian vault: `~/Documents/pregnancy-checklist/`. 마케팅 리포트는 `60-analytics/weekly/`에 출력 예정 ([phase-4.5/plan.md §1.9](../phase-4.5/plan.md)).
+- Obsidian vault: `~/Documents/pregnancy-checklist/`. 마케팅 리포트는 `60-analytics/weekly/`에 출력 예정 ([phase-4.5/plan.md §1.9](../plan/phase-4.5.md)).
 
 ### 4.4 법/규제
 - **한국 PIPA 준수** — 개인정보 수집 동의 우선. consent 게이팅이 그래서 박혀있음.
@@ -139,7 +139,7 @@
 - A/B 가능한 결정(카피, 색, 위치)은 **단일 변경 → 1주 데이터 → 다음 변경** 리듬. 한꺼번에 5개 바꾸지 않기.
 
 ### 5.5 자동 리포트 운영 (§1.9 Pattern C)
-- 주간 리포트 형식이 바뀌면 [phase-4.5/plan.md §1.9.6](../phase-4.5/plan.md) 스키마도 함께 갱신.
+- 주간 리포트 형식이 바뀌면 [phase-4.5/plan.md §1.9.6](../plan/phase-4.5.md) 스키마도 함께 갱신.
 - LLM 출력만 믿지 말고 **첫 8주는 raw JSON 같이 저장** (회귀 안전장치).
 - 리포트 해석은 **단주 노이즈 vs 추세 구분** 필수. 직전주 ±5%는 노이즈, 4주 이동평균 추세로 판단.
 
@@ -170,7 +170,7 @@
 | 문서 | 무엇 |
 |---|---|
 | [docs/marketing/ga4.md](ga4.md) | 이벤트별 정의·상관관계·분석법 (운영 레퍼런스) |
-| [docs/phase-4.5/plan.md §1](../phase-4.5/plan.md) | 측정 모델·이벤트 카탈로그·작업 묶음 (의사결정 문서) |
+| [docs/plan/phase-4.5.md §1](../plan/phase-4.5.md) | 측정 모델·이벤트 카탈로그·작업 묶음 (의사결정 문서) |
 | [DESIGN.md](../../DESIGN.md) | 디자인 시스템 — 광고 위치/CTA 컬러 결정 시 참조 |
 | [AGENTS.md](../../AGENTS.md) | Next.js 버전 특이사항 — 코드 수정 전 필독 |
 

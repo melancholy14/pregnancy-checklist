@@ -5,7 +5,7 @@
 >
 > 우선순위: **P2** (Phase 5+) · **P3** (Phase 6+ 운영 전환 시)
 >
-> Phase 5 이전(=즉시) 작업 대상은 [docs/phase-4.5/plan.md §4](../phase-4.5/plan.md) 개발 개선 섹션으로 이전됨.
+> Phase 5 이전(=즉시) 작업 대상은 [docs/plan/phase-4.5.md §4](../plan/phase-4.5.md) 개발 개선 섹션으로 이전됨.
 
 ---
 
@@ -39,7 +39,7 @@
 ### C-8. 번들 사이즈 분석·관리 (P2)
 
 - heavy 의존성: `recharts` (~200KB gzipped, weight 페이지 전용), `@radix-ui/*` (28+ 패키지, tree-shaking 적용).
-- **참고**: 미사용 shadcn ui 컴포넌트 30종 일괄 제거는 [docs/phase-4.5/plan.md §4 D-Mn1](../phase-4.5/plan.md)로 이전.
+- **참고**: 미사용 shadcn ui 컴포넌트 30종 일괄 제거는 [docs/plan/phase-4.5.md §4 D-Mn1](../plan/phase-4.5.md)로 이전.
 - **남은 작업 (P2)**:
   - `@next/bundle-analyzer` 도입, 페이지별 first-load JS 측정.
   - Recharts dynamic import 검토 (체중 페이지만 사용).
@@ -113,6 +113,6 @@
 | 2026-03-29 | 최초 작성 (Phase 1 코드 분석) |
 | 2026-05-03 | tech/로 이동. 해소된 7건 삭제: A-2 컴포넌트 분리, A-3 videos JSON, B-5 localStorage 용량, B-7 data-source.ts, E-13 GA4 구현, E-14 AdSense 슬롯 스펙, F-16 ADMIN_SECRET. |
 | 2026-05-03 | A-1(현재 아키텍처 문서)는 [tech/infra.md](infra.md) §1로 갈음 후 제거. |
-| 2026-05-03 | P1 5건 → [phase-4.5/plan.md §4](../phase-4.5/plan.md): E-13a AdSense 스크립트·ads.txt, E-13b reviewed_by 빈 필드, C-10 GitHub Actions CI/CD, D-12 E2E webServer 자동화, F-19 쿠키 동의 회귀 테스트. |
+| 2026-05-03 | P1 5건 → [phase-4.5/plan.md §4](../plan/phase-4.5.md): E-13a AdSense 스크립트·ads.txt, E-13b reviewed_by 빈 필드, C-10 GitHub Actions CI/CD, D-12 E2E webServer 자동화, F-19 쿠키 동의 회귀 테스트. |
 | 2026-05-03 | Phase 5로 이전: D-11 vitest 도입(첫 라운드), Video 타입 정비/zod, BMI 차트. 이 문서엔 P2 확장 분량만 잔존. |
 | 2026-05-03 | Phase 6으로 이전: F-17 에러 모니터링 SaaS(Sentry/Cloud Error Reporting). |

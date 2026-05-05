@@ -18,19 +18,19 @@
 ## 2. 이 프로젝트에서 절대 잊지 말 것
 
 ### 2.1 스택 — "보편적 Next.js와 다르다"
-- Next.js **16.2.0** + React **19.2.4**. 학습 데이터의 13/14/15 패턴이 통하지 않을 수 있음. 새 API 사용 전 `node_modules/next/dist/docs/` 또는 [AGENTS.md](AGENTS.md)의 deprecation 안내 확인.
+- Next.js **16.2.0** + React **19.2.4**. 학습 데이터의 13/14/15 패턴이 통하지 않을 수 있음. 새 API 사용 전 `node_modules/next/dist/docs/` 또는 [AGENTS.md](../../AGENTS.md)의 deprecation 안내 확인.
 - `output: "export"` static export 모드. **API Routes·서버 액션·동적 라우트 사용 금지**. 모든 데이터는 `import json` 또는 빌드 시점에 결정.
 - `app/` router 사용 (pages 아님). 클라이언트 상호작용은 `"use client"` 명시.
 
 ### 2.2 데이터 흐름 — "서버 없음"
-- 콘텐츠 데이터: [src/data/](src/data/) JSON을 컴포넌트에서 직접 import.
+- 콘텐츠 데이터: [src/data/](../../src/data/) JSON을 컴포넌트에서 직접 import.
 - 사용자 상태: Zustand persist → localStorage. 4개 store 분리 (`useDueDateStore`·`useChecklistStore`·`useTimelineStore`·`useWeightStore`) + 체크리스트 슬러그별 store factory.
 - localStorage 손실(시크릿 모드·캐시 삭제)을 가정하고 UX 짜기. 빈 상태(empty state) 항상 디자인.
 
 ### 2.3 디자인 시스템 — "마음대로 색 추가 금지"
 - [DESIGN.md](DESIGN.md)가 단일 진실. 모든 UI 작업 전 읽는다.
 - 다섯 파스텔 (pink/lavender/mint/peach/yellow) 각각 **고정된 역할**. 새 색 도입·역할 재할당 금지.
-- 토큰은 [src/app/globals.css](src/app/globals.css)에서. raw hex는 새 토큰 도입 시에만.
+- 토큰은 [src/app/globals.css](../../src/app/globals.css)에서. raw hex는 새 토큰 도입 시에만.
 - 모바일 우선. 데스크톱 멀티 컬럼 만들지 않음. 모든 페이지 wrapper는 `pb-24 px-4`.
 
 ### 2.4 상태 끌어올리기보다 store 분리 유지
@@ -66,13 +66,13 @@
 
 | 영역 | 산출물 위치 (있어야 할 것) | 없을 때 |
 |------|--------------------------|--------|
-| **디자인 시스템 (색·여백·타이포·컴포넌트)** | [DESIGN.md](DESIGN.md), [src/app/globals.css](src/app/globals.css) | 디자이너 결정 후 토큰 추가 → 그 다음 코드 |
-| **카피·톤** | [src/lib/constants.ts](src/lib/constants.ts)의 `BRAND_PHASE`·홈/온보딩 카피, [docs/phase-2.5/plan.md](docs/phase-2.5/plan.md), 기획자 PRD | 운영자(기획자) 카피 결정 → 코드 |
-| **면책 문구·법적 안내** | [src/components/common/MedicalDisclaimer.tsx](src/components/common/MedicalDisclaimer.tsx), `/privacy`·`/terms`, 글 frontmatter | **개발자 임의 작성 절대 금지**. 의료·재무·법률 면책은 글 주제별로 다르고 잘못 쓰면 YMYL 리스크. 운영자/전문가 컨펌 필요 |
-| **GA4 측정 모델 (이벤트명·파라미터)** | [docs/phase-4.5/plan.md §1](docs/phase-4.5/plan.md), `src/lib/analytics.ts` | 마케터 측정 모델 확정 후 이벤트 wiring |
-| **콘텐츠 본문** | [src/content/articles/*.md](src/content/articles/), 운영자 작성 | 운영자 작성 → 개발자는 렌더만 |
-| **체크리스트·타임라인 데이터** | [src/data/*.json](src/data/) | 기획자/운영자 데이터 확정 → 코드 |
-| **크로스링크·태그 매핑** | [src/lib/unified-tags.ts](src/lib/unified-tags.ts) + 자동 스크립트 | 매트릭스는 운영자 결정. `*_manual: true` 보호 플래그 존중 |
+| **디자인 시스템 (색·여백·타이포·컴포넌트)** | [DESIGN.md](../../DESIGN.md), [src/app/globals.css](../../src/app/globals.css) | 디자이너 결정 후 토큰 추가 → 그 다음 코드 |
+| **카피·톤** | [src/lib/constants.ts](../../src/lib/constants.ts)의 `BRAND_PHASE`·홈/온보딩 카피, [docs/plan/phase-2.5.md](../plan/phase-2.5.md), 기획자 PRD | 운영자(기획자) 카피 결정 → 코드 |
+| **면책 문구·법적 안내** | [src/components/common/MedicalDisclaimer.tsx](../../src/components/common/MedicalDisclaimer.tsx), `/privacy`·`/terms`, 글 frontmatter | **개발자 임의 작성 절대 금지**. 의료·재무·법률 면책은 글 주제별로 다르고 잘못 쓰면 YMYL 리스크. 운영자/전문가 컨펌 필요 |
+| **GA4 측정 모델 (이벤트명·파라미터)** | [docs/plan/phase-4.5.md §1](../plan/phase-4.5.md), `src/lib/analytics.ts` | 마케터 측정 모델 확정 후 이벤트 wiring |
+| **콘텐츠 본문** | [src/content/articles/*.md](../../src/content/articles/), 운영자 작성 | 운영자 작성 → 개발자는 렌더만 |
+| **체크리스트·타임라인 데이터** | [src/data/*.json](../../src/data/) | 기획자/운영자 데이터 확정 → 코드 |
+| **크로스링크·태그 매핑** | [src/lib/unified-tags.ts](../../src/lib/unified-tags.ts) + 자동 스크립트 | 매트릭스는 운영자 결정. `*_manual: true` 보호 플래그 존중 |
 
 산출물이 없거나 모호하면:
 1. 무엇이 결정되어야 하는지 한 줄로 정리해서 운영자에게 묻는다.
@@ -82,13 +82,13 @@
 ### 3.3 큰 기능
 
 1. `/blog-pipeline-1` 또는 `/feature-pipeline` 같은 스킬을 우선 검토.
-2. 코드 직접 짜기 전 PRD/plan 위치 확인 ([docs/plan/plan.md](docs/plan/plan.md), [docs/phase-*/plan.md](docs/)).
-3. **§3.2의 산출물 체크 통과 후** [src/components/](src/components/) feature 폴더에 컨테이너 패턴으로 구현.
+2. 코드 직접 짜기 전 PRD/plan 위치 확인 ([docs/plan/plan.md](../plan/plan.md), [docs/plan/phase-*.md](../plan/)).
+3. **§3.2의 산출물 체크 통과 후** [src/components/](../../src/components/) feature 폴더에 컨테이너 패턴으로 구현.
 
 ### 3.4 작은 수정
 
 - 한 파일 그레이매트(grep) → Read → Edit. Bash로 cat/sed 쓰지 않음.
-- 의도적 보류된 항목은 [docs/phase-4.5/plan.md §4](docs/phase-4.5/plan.md) 개발 개선 섹션에서 확인 후 건드릴지 판단.
+- 의도적 보류된 항목은 [docs/plan/phase-4.5.md §4](../plan/phase-4.5.md) 개발 개선 섹션에서 확인 후 건드릴지 판단.
 
 ### 3.5 PR / 커밋
 
@@ -126,7 +126,7 @@
 
 ### 6.1 YMYL 단정형 표현 / 의료 면책 누락
 - "X는 Y에 효과적입니다" 같은 단정 금지. "보통", "대략", "일반적으로 ~한다고 알려져 있어요" 완곡 표현.
-- 의료 관련 글에 [MedicalDisclaimer](src/components/common/MedicalDisclaimer.tsx) 빠뜨리고 배포하지 않음.
+- 의료 관련 글에 [MedicalDisclaimer](../../src/components/common/MedicalDisclaimer.tsx) 빠뜨리고 배포하지 않음.
 - 한 줄의 잘못된 정보가 임산부 행동을 바꾼다 + 의료기기법·식약처 가이드 위반 가능.
 
 ### 6.2 법적 컴플라이언스 (개인정보·쿠키 동의·AdSense 정책)

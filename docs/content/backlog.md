@@ -17,7 +17,7 @@
 
 ## A. Phase 4 → Phase 5 이월
 
-> 출처: [`docs/phase-4/plan.md`](../phase-4/plan.md) §"Phase 5로 이동된 항목"
+> 출처: [`docs/plan/phase-4.md`](../plan/phase-4.md) §"Phase 5로 이동된 항목"
 
 ### A1. 체중 차트 BMI별 권장 범위 시각화 🟧
 
@@ -74,7 +74,7 @@
 
 ## B. Phase 4.5 미정의 영역
 
-> 출처: [`docs/phase-4.5/plan.md`](../phase-4.5/plan.md) §3·§4
+> 출처: [`docs/plan/phase-4.5.md`](../plan/phase-4.5.md) §3·§4
 
 ### B1. 임신 주차 입력(onboarding) UX 🟥
 
@@ -123,7 +123,7 @@
 
 ## C. Phase 3 → Phase 4 이월된 운영자 작업 (병렬 진행)
 
-> 출처: [`docs/phase-3/plan.md`](../phase-3/plan.md) §"병렬 진행: 콘텐츠 품질 보강"
+> 출처: [`docs/plan/phase-3.md`](../plan/phase-3.md) §"병렬 진행: 콘텐츠 품질 보강"
 
 ### C1. URL-NEEDED 참고자료 링크 30개+ 🟧
 
@@ -149,7 +149,7 @@
 
 ## D. Phase 2.5에서 Phase 3+로 이월된 항목
 
-> 출처: [`docs/phase-2.5/plan.md`](../phase-2.5/plan.md) §"Out of scope"
+> 출처: [`docs/plan/phase-2.5.md`](../plan/phase-2.5.md) §"Out of scope"
 
 ### D1. 체중관리 타임라인 통합 🟩
 

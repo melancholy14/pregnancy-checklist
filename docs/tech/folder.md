@@ -179,25 +179,27 @@ scripts/
 docs/
 ├── tech/                       # 기술 단일 진실 (이 폴더)
 │   ├── persona.md  folder.md  spec.md  design.md
-│   ├── infra.md    impl.md    review.md
-│   └── technical-debt.md
-├── plan/                       # PRD + 마스터 계획
-├── phase-*/                    # phase별 plan.md
-├── phase-4-step-*/             # phase 내 step 단위 README
-├── implementation/             # 구현 보고서 (impl.md)
-├── review/                     # 코드 리뷰 결과
-├── refactor/                   # 리팩토링 결과
-├── infra/                      # (legacy) Cloud Run·GCS 미래상 — tech/infra.md로 통합
-├── specs/                      # 베이비페어 크롤러 스펙 (tech/ 외)
-├── client-search/              # 검색 기능 archive
-├── info-tab-integration/       # 정보 탭 archive
-├── lighthouse-seo/             # SEO 측정 결과
+│   ├── infra.md    impl.md    review.md  technical-debt.md
+│   ├── implementation/         # step별 구현 보고서
+│   ├── review/                 # step별 코드 리뷰 결과
+│   └── refactor/               # step별 리팩토링 결과
+├── marketing/                  # 측정·운영 SoT (마케터 시각)
+├── design/                     # 디자인 시스템 SoT (디자이너 시각)
+├── content/                    # 기획·콘텐츠 SoT (기획자 시각)
+├── plan/                       # 4축 횡단 — PRD + phase plan + 외부 스펙
+│   ├── plan.md                 # 마스터 PRD + Phase 0~7
+│   ├── phase-2.5.md ~ phase-4.5.md   # phase별 plan
+│   ├── adsense-audit.md        # AdSense 신청 체크리스트
+│   └── specs/                  # 외부 도메인 스펙 (베이비페어 크롤러 등)
 └── README.md                   # 인덱스
 ```
 
-**원칙**:
-- **현재 진실**은 [docs/tech/](docs/tech/)에 모은다. 과거 phase 진행 기록은 phase-*/·implementation/·review/에 그대로 둠.
-- 새 기능 추가 시: phase plan → impl 기록 → 끝나면 tech/impl.md 갱신.
+**원칙 (5축 SoT 컨벤션)**:
+
+- 페르소나 시각이 있는 결정은 `tech/`·`marketing/`·`design/`·`content/` 중 해당 폴더로.
+- 4축 횡단(PRD, phase plan, 외부 스펙)은 `plan/`으로.
+- 새 기능 추가 시: `plan/phase-N.md`에 plan → `tech/implementation/` impl → `tech/review/` 리뷰 → `tech/refactor/` 리팩토링 → 완료 시 `tech/impl.md` 인덱스 갱신.
+- step 산출물의 SoT는 `tech/{implementation,review,refactor}/` 분산형. 종합 README는 만들지 않음 (중복 회피).
 
 ---
 

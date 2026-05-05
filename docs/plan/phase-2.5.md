@@ -1,6 +1,6 @@
 # Phase 2.5: UX 개선 + 리텐션 강화 — Development Plan
 
-> Phase 2 기록: [phase-2/plan.md](../phase-2/plan.md)
+> Phase 2 기록: [plan.md](plan.md) §Phase 2
 > Date: 2026-04-05
 > 목표 완료: 2026-05-15
 > Status: ✅ 완료 (구현 + QA 통과)

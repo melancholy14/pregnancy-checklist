@@ -1,7 +1,6 @@
 # phase-4-step-1-checklist-hub Implementation
 
-> 출처 PRD: [docs/phase-4/plan.md](../phase-4/plan.md) Step 1
-> Plan: [docs/plan/phase-4-step-1-checklist-hub-plan.md](../plan/phase-4-step-1-checklist-hub-plan.md)
+> 출처 PRD: [docs/plan/phase-4.md](../../plan/phase-4.md) Step 1
 > 구현일: 2026-04-29
 
 ## 완료 조건 충족 여부

@@ -1,6 +1,6 @@
 # Phase 3: 누락 기능 보완 + AdSense 승인 준비 — Development Plan
 
-> Phase 2.5 기록: [../phase-2.5/plan.md](../phase-2.5/plan.md)
+> Phase 2.5 기록: [phase-2.5.md](phase-2.5.md)
 > AdSense 감사 리포트: [../plan/adsense-audit.md](../plan/adsense-audit.md)
 > Date: 2026-04-17
 > 목표 완료: 2026-05-01

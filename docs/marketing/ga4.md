@@ -2,7 +2,7 @@
 
 > 출산 준비 체크리스트 서비스에서 사용하는 GA4 이벤트의 단일 진실 원천(Single Source of Truth).
 > 신규 이벤트는 코드 추가 **전에** 이 문서에 등재 — 이름·파라미터 락인 방지.
-> 운영 결정 문서는 [docs/phase-4.5/plan.md §1](../phase-4.5/plan.md), 이 문서는 **레퍼런스**.
+> 운영 결정 문서는 [docs/plan/phase-4.5.md §1](../plan/phase-4.5.md), 이 문서는 **레퍼런스**.
 > 마케팅 페르소나·룰: [persona.md](persona.md)
 > 최초 작성: 2026-05-03
 
@@ -433,7 +433,7 @@ GA4는 한번 쌓이면 이름 변경 시 **과거 데이터와 단절**된다. 
 
 ## 8. 도입 단계 (현황 추적)
 
-[phase-4.5/plan.md §1.8](../phase-4.5/plan.md) 작업 묶음과 동기. 발사 시작 시 체크.
+[phase-4.5/plan.md §1.8](../plan/phase-4.5.md) 작업 묶음과 동기. 발사 시작 시 체크.
 
 - [ ] **G** — User properties 3종 + `pregnancy_week_set`
 - [ ] **H** — `checklist_item_toggle`, `article_read_complete`, `weight_log`, `search_submit`
