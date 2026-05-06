@@ -84,10 +84,15 @@ test.describe("타임라인 페이지", () => {
   });
 
   test.describe("온보딩 배너", () => {
-    test("예정일 미입력 시 DueDateBanner가 표시된다", async ({ page }) => {
-      // 무엇을: 배너로 예정일 입력을 유도하는지
-      // 왜: 주차 기반 시각 구분에 예정일 필요
-      await expect(page.getByText("예정일을 입력하면 나에게 맞는 정보를 볼 수 있어요")).toBeVisible();
+    test("온보딩 미완 사용자에게 글로벌 슬림 배너가 표시된다", async ({ page }) => {
+      // 무엇을: pregnancy-week-onboarding 적용 후 DueDateBanner는 삭제되고
+      //         OnboardingBannerProvider의 글로벌 슬림 배너로 대체되었는지
+      // 왜: spec.md 시나리오 2. SEO 직진자에게 도구 존재를 알림
+      await expect(
+        page.getByRole("link", {
+          name: /예정일을 입력하면 주차별로 정렬된 체크리스트를 볼 수 있어요/,
+        }),
+      ).toBeVisible();
     });
   });
 

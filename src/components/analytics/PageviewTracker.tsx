@@ -1,19 +1,24 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { sendGAEvent } from "@/lib/analytics";
+import { sendGAEvent, setUserProperties } from "@/lib/analytics";
+import { useDueDateStore } from "@/store/useDueDateStore";
 
 export function PageviewTracker() {
   const pathname = usePathname();
-  const isFirst = useRef(true);
 
   useEffect(() => {
-    if (isFirst.current) {
-      isFirst.current = false;
-      sendGAEvent("page_view", { page_path: pathname });
-      return;
-    }
+    useDueDateStore.getState().refreshWeekIfNeeded();
+    const { dueDate, currentPregnancyWeek, cohortJoinWeek } =
+      useDueDateStore.getState();
+
+    setUserProperties({
+      due_date_set: dueDate !== null,
+      current_pregnancy_week: currentPregnancyWeek ?? undefined,
+      cohort_join_week: cohortJoinWeek ?? undefined,
+    });
+
     sendGAEvent("page_view", { page_path: pathname });
   }, [pathname]);
 

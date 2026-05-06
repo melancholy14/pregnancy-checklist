@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { PageDescription } from "@/components/common/PageDescription";
 import { useChecklistStore } from "@/store/useChecklistStore";
+import { useDueDateStore } from "@/store/useDueDateStore";
 import {
   createChecklistStore,
   useHospitalBagStore,
@@ -103,9 +104,19 @@ function TimelineCard({ baseTotal }: { baseTotal: number }) {
     () => useChecklistStore.persist.hasHydrated(),
     () => false
   );
+  const { currentPregnancyWeek } = useDueDateStore();
+  const dueHydrated = useSyncExternalStore(
+    (cb) => useDueDateStore.persist.onFinishHydration(cb),
+    () => useDueDateStore.persist.hasHydrated(),
+    () => false
+  );
   const total = baseTotal + (hydrated ? customItems.length : 0);
   const checked = hydrated ? checkedIds.length : 0;
   const percent = total > 0 ? (checked / total) * 100 : 0;
+  const weekLabel =
+    dueHydrated && currentPregnancyWeek !== null
+      ? `${currentPregnancyWeek}주차`
+      : "예정일 입력 시 추천";
 
   return (
     <Link href="/timeline" className="block no-underline">
@@ -125,7 +136,7 @@ function TimelineCard({ baseTotal }: { baseTotal: number }) {
               </p>
               <div className="flex flex-wrap gap-1 mb-3">
                 <span className="text-[11px] px-2 py-0.5 rounded-md bg-pastel-pink/40 text-foreground">
-                  37주차
+                  {weekLabel}
                 </span>
                 <span className="text-[11px] px-2 py-0.5 rounded-md bg-pastel-yellow/40 text-foreground">
                   체크 항목 {baseTotal}개

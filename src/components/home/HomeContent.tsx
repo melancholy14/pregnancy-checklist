@@ -16,7 +16,7 @@ import { useChecklistStore } from "@/store/useChecklistStore";
 import { useTimelineStore } from "@/store/useTimelineStore";
 import { useWeightStore } from "@/store/useWeightStore";
 import { OnboardingFlow } from "@/components/onboarding/OnboardingFlow";
-import { calcPregnancyWeek } from "@/lib/week-calculator";
+import { parseDateKST, getTodayKST } from "@/lib/date-kst";
 import { getChecklistByWeek } from "@/lib/checklist-week-map";
 import { BRAND_COPY, BRAND_PHASE } from "@/lib/constants";
 import checklistItems from "@/data/checklist_items.json";
@@ -36,7 +36,7 @@ export interface HomeContentProps {
 }
 
 export function HomeContent({ articles = [] }: HomeContentProps) {
-  const { dueDate } = useDueDateStore();
+  const { dueDate, currentPregnancyWeek } = useDueDateStore();
   const { checkedIds, customItems } = useChecklistStore();
   const { customItems: customTimelineItems } = useTimelineStore();
   const { logs: weightLogs } = useWeightStore();
@@ -100,10 +100,7 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
     }
   }, [hydrated, dueDate]);
 
-  const currentWeek = useMemo(() => {
-    if (!hydrated || !dueDate) return null;
-    return calcPregnancyWeek(new Date(dueDate));
-  }, [hydrated, dueDate]);
+  const currentWeek = hydrated ? currentPregnancyWeek : null;
 
   const allChecklistItems = useMemo(
     () => [...(checklistItems as ChecklistItem[]), ...customItems],
@@ -137,7 +134,8 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
   const daysLeft = useMemo(() => {
     if (!dueDate) return null;
     const diff = Math.ceil(
-      (new Date(dueDate).getTime() - new Date().getTime()) / 86400000
+      (parseDateKST(dueDate).getTime() - parseDateKST(getTodayKST()).getTime()) /
+        86400000
     );
     return Math.max(0, diff);
   }, [dueDate]);
@@ -280,19 +278,6 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
               </CardContent>
             </Card>
           )}
-        </div>
-      )}
-
-      {/* 예정일 미입력 시 안내 */}
-      {hydrated && !dueDate && (
-        <div className="mb-8 text-center">
-          <Card className="rounded-2xl border border-pastel-yellow/40 bg-pastel-yellow/20">
-            <CardContent className="p-6">
-              <p className="text-sm text-accent-olive">
-                예정일을 입력하면 나에게 맞는 체크리스트와 타임라인을 볼 수 있어요
-              </p>
-            </CardContent>
-          </Card>
         </div>
       )}
 

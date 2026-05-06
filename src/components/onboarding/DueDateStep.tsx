@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { toast } from "sonner";
 import { useDueDateStore } from "@/store/useDueDateStore";
 import { sendGAEvent } from "@/lib/analytics";
-import { calcPregnancyWeek } from "@/lib/week-calculator";
 import { Button } from "@/components/ui/button";
 
 interface DueDateStepProps {
@@ -11,7 +11,7 @@ interface DueDateStepProps {
 }
 
 export function DueDateStep({ onNext }: DueDateStepProps) {
-  const { setDueDate } = useDueDateStore();
+  const setDueDate = useDueDateStore((s) => s.setDueDate);
   const [dateValue, setDateValue] = useState("");
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,9 +20,20 @@ export function DueDateStep({ onNext }: DueDateStepProps) {
 
   const handleNext = () => {
     if (dateValue) {
-      setDueDate(dateValue);
-      const week = calcPregnancyWeek(new Date(dateValue));
-      sendGAEvent("onboarding_due_date_set", { pregnancy_week: week });
+      const ok = setDueDate(dateValue);
+      if (!ok) {
+        toast.error("출산 예정일을 다시 확인해주세요", {
+          description: "오늘 이후 ~ 40주 이내 날짜를 입력해주세요",
+          duration: 4000,
+        });
+        return;
+      }
+      const week = useDueDateStore.getState().currentPregnancyWeek;
+      if (week !== null) {
+        sendGAEvent("onboarding_due_date_set", { pregnancy_week: week });
+        sendGAEvent("due_date_set", { pregnancy_week: week });
+        sendGAEvent("pregnancy_week_set", { week, source: "onboarding" });
+      }
     }
     onNext();
   };
