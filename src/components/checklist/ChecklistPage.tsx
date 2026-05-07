@@ -1,13 +1,24 @@
 "use client";
 
-import { useCallback, useMemo, useState, useSyncExternalStore } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
+import { useRouter } from "next/navigation";
 import { Plus } from "lucide-react";
+import { toast } from "sonner";
 import { Card, CardContent } from "@/components/ui/card";
 import { PageDescription } from "@/components/common/PageDescription";
 import { ChecklistProgress } from "./ChecklistProgress";
 import { ChecklistRelatedContent } from "./ChecklistRelatedContent";
 import { ChecklistAddForm } from "./ChecklistAddForm";
 import { ChecklistItemRow } from "./ChecklistItemRow";
+import { ChecklistEmptyState, type ChecklistEmptyStateCase } from "./ChecklistEmptyState";
+import { AllDoneBadge } from "./AllDoneBadge";
 import { ShareButton } from "@/components/share/ShareButton";
 import { sendGAEvent } from "@/lib/analytics";
 import { BASE_URL } from "@/lib/constants";
@@ -22,6 +33,7 @@ import {
 export type { ChecklistStoreSlug };
 
 const EMPTY_CHECKED_IDS: string[] = [];
+const ITEMS_ANCHOR_ID = "checklist-items";
 
 interface ChecklistPageProps {
   data: ChecklistData;
@@ -33,12 +45,22 @@ interface ChecklistPageProps {
 export function ChecklistPage({ data, storeSlug, linkedArticles, linkedVideos }: ChecklistPageProps) {
   const { meta, items: baseItems } = data;
   const useStore = CHECKLIST_STORE_BY_SLUG[storeSlug];
-  const { checkedIds, customItems, toggle, addCustomItem, removeCustomItem, updateCustomItem } = useStore();
+  const {
+    checkedIds,
+    customItems,
+    migrationLostFlag,
+    toggle,
+    addCustomItem,
+    removeCustomItem,
+    updateCustomItem,
+    clearMigrationLost,
+  } = useStore();
   const hydrated = useSyncExternalStore(
     (cb) => useStore.persist.onFinishHydration(cb),
     () => useStore.persist.hasHydrated(),
     () => false
   );
+  const router = useRouter();
 
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -54,10 +76,63 @@ export function ChecklistPage({ data, storeSlug, linkedArticles, linkedVideos }:
     [hydrated, checkedIds]
   );
 
+  const allDone = useMemo(
+    () =>
+      hydrated &&
+      allItems.length > 0 &&
+      allItems.every((i) => effectiveCheckedIds.includes(i.id)),
+    [hydrated, allItems, effectiveCheckedIds]
+  );
+
+  const emptyStateCase = useMemo<ChecklistEmptyStateCase | null>(() => {
+    if (!hydrated) return null;
+    if (migrationLostFlag) return "migration_lost";
+    if (effectiveCheckedIds.length === 0 && customItems.length === 0) return "first_visit";
+    if (baseItems.length === 0 && customItems.length >= 1) return "custom_only";
+    return null;
+  }, [hydrated, migrationLostFlag, effectiveCheckedIds.length, customItems.length, baseItems.length]);
+
+  const allDoneToastEvaluatedRef = useRef(false);
+  useEffect(() => {
+    if (!hydrated || allDoneToastEvaluatedRef.current) return;
+    allDoneToastEvaluatedRef.current = true;
+    if (!allDone) return;
+    const prefersReducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    const delay = prefersReducedMotion ? 0 : 100;
+    const timer = window.setTimeout(() => {
+      toast("다른 체크리스트도 살펴보시겠어요?", {
+        duration: 3000,
+        action: {
+          label: "둘러보기",
+          onClick: () => router.push("/checklist"),
+        },
+      });
+    }, delay);
+    return () => window.clearTimeout(timer);
+  }, [hydrated, allDone, router]);
+
+  const handleBrowse = useCallback(() => {
+    if (typeof window === "undefined") return;
+    const target = document.getElementById(ITEMS_ANCHOR_ID);
+    if (!target) return;
+    const prefersReducedMotion = window.matchMedia?.(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    target.scrollIntoView({
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+      block: "start",
+    });
+  }, []);
+
   const handleToggle = useCallback(
     (item: ChecklistItem) => {
-      const willCheck = !checkedIds.includes(item.id);
+      const willCheck = !effectiveCheckedIds.includes(item.id);
       toggle(item.id);
+      if (migrationLostFlag) {
+        clearMigrationLost();
+      }
       sendGAEvent("checklist_check", {
         category: item.category,
         item_id: item.id,
@@ -65,7 +140,7 @@ export function ChecklistPage({ data, storeSlug, linkedArticles, linkedVideos }:
         slug: meta.slug,
       });
     },
-    [checkedIds, toggle, meta.slug]
+    [effectiveCheckedIds, toggle, meta.slug, migrationLostFlag, clearMigrationLost]
   );
 
   const startEdit = (item: ChecklistItem) => {
@@ -88,6 +163,8 @@ export function ChecklistPage({ data, storeSlug, linkedArticles, linkedVideos }:
         </h1>
         <PageDescription>{meta.description}</PageDescription>
 
+        {allDone && <AllDoneBadge />}
+
         <div className="flex justify-end mb-4">
           <ShareButton
             title={meta.title}
@@ -98,13 +175,21 @@ export function ChecklistPage({ data, storeSlug, linkedArticles, linkedVideos }:
           />
         </div>
 
+        {emptyStateCase && (
+          <ChecklistEmptyState
+            case={emptyStateCase}
+            onBrowse={handleBrowse}
+            onMigrationConfirm={clearMigrationLost}
+          />
+        )}
+
         <ChecklistProgress
           items={allItems}
           checkedIds={effectiveCheckedIds}
           subcategories={meta.subcategories}
         />
 
-        <div className="space-y-6 mb-8">
+        <div id={ITEMS_ANCHOR_ID} className="space-y-6 mb-8 scroll-mt-4">
           {meta.subcategories.map((sub) => {
             const subItems = allItems.filter((i) => i.category === sub.key);
             if (subItems.length === 0) return null;
