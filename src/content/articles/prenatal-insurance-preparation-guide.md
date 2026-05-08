@@ -17,7 +17,7 @@ linked_video_ids: ["video_040", "video_041", "video_045", "video_046", "video_04
 ---
 
 <!-- image:  -->
-![임신 초기 예비맘이 노트북으로 보험 상품을 비교하는 모습](/articles/prenatal-insurance-preparation-guide.png)
+![임신 초기 예비맘이 노트북으로 보험 상품을 비교하는 모습 (AI 생성 이미지)](/articles/prenatal-insurance-preparation-guide.png "태아보험 가입 마지노선은 임신 22주 — 1차 기형아 검사 전이 가장 유리")
 
 임신 확인하고 나면 병원 예약, 엽산 챙기기, 입덧 대비… 할 일이 산더미처럼 쌓이잖아요. 그 와중에 "태아보험도 알아봐야 해"라는 말을 듣는 순간, 솔직히 머리가 하얘지더라고요. 보험이라는 게 원래 복잡한데, 임신 중에 알아보려니 더 막막하고요.
 

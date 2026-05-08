@@ -378,6 +378,47 @@
   font-weight: 500;
 }
 
+/* Article figure (rehype-article-figure plugin output) */
+.article-prose .article-figure {
+  margin: 1.5em 0;
+}
+
+.article-prose .article-figure__media {
+  display: block;
+  position: relative;
+  line-height: 0;
+}
+
+.article-prose .article-figure__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+.article-prose .article-figure__chip {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgb(61 68 71 / 0.6);
+  color: #FFFFFF;
+  font-size: 0.75rem;
+  line-height: 1;
+  padding: 4px 8px;
+  border-radius: 0.25rem;
+  pointer-events: none;
+  letter-spacing: 0;
+  font-weight: 500;
+}
+
+.article-prose .article-figure__caption {
+  margin-top: 0.5em;
+  color: var(--prose-muted);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  text-align: left;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

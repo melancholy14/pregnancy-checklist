@@ -7,12 +7,13 @@
 
 ## review.md 결정사항 참조
 
-본 스펙은 review.md §5 결정에 일관되게 따른다. 결정 본문이 어긋날 시 review.md를 우선한다.
+본 스펙은 review.md §5 + §5.1 + §5.2 결정에 일관되게 따른다. 결정 본문이 어긋날 시 review.md를 우선한다.
 
-- **표시 형태(4.1)**: figcaption(`· AI 생성`) + 우하단 DOM 오버레이 워터마크 칩 + alt 속성. 워터마크는 이미지 본체에 합성하지 않고 article-prose figure 컴포넌트의 CSS absolute로 렌더.
-- **표시 문구(4.2)**: 워터마크 칩 영문 `Imagined with AI`(Meta·C2PA 호환), figcaption 한글 `· AI 생성`.
+- **표시 형태(4.1)**: 우하단 DOM 오버레이 워터마크 칩 + alt 속성 + (캡션 있을 때만) figcaption. 워터마크는 이미지 본체에 합성하지 않고 article-prose figure 컴포넌트의 CSS absolute로 렌더.
+- **표시 문구(4.2)**: 워터마크 칩 영문 `Imagined with AI`(Meta·C2PA 호환). figcaption은 원본 캡션이 있을 때만 렌더되며 AI 이미지면 `<원본 캡션> · AI 생성`, AI 아니면 `<원본 캡션>` 단독. 캡션 없으면 figcaption 자체 미렌더(§5.2 절충안).
 - **메타데이터(4.3)**: alt 속성 `(AI 생성 이미지)` + IPTC `DigitalSourceType` 자동 포함. ChatGPT/DALL·E 출력은 검증 완료, 다른 도구 도입 시 1회 검증.
 - **적용 범위(4.4)**: 100% AI 생성 이미지 전체(텍스트→이미지 도구 출력). AI 후보정 사진 제외.
+- **캡션 컨벤션(§5.2)**: markdown image title 슬롯 `![alt](src "원본 캡션")` 사용. plugin이 title을 figcaption으로 옮기고 img에서 제거.
 
 ## 1. 배경·목적
 
@@ -35,7 +36,8 @@
 - **렌더링**: 아티클 본문(`.article-prose`)의 모든 이미지를 `<figure>` 패턴으로 래핑(next/image + figcaption + 워터마크 칩 absolute).
 - **AI 표시 트리거**: MD 본문 alt 텍스트 끝에 `(AI 생성 이미지)` 후행 표기. rehype 플러그인이 alt에서 이 마커를 감지해 ① 워터마크 칩 렌더, ② figcaption에 `· AI 생성` 후행 부착, ③ alt 자체는 마커 포함 그대로 유지(스크린리더 낭독 일관성). 채택 이유는 docs/features/p14-ai-image-label/review.md cross-check 후속 결정 참조 — 1인 운영 부담 최소·마이그레이션 한 줄·구현 단순.
 - **워터마크 칩 컴포넌트**: 이미지 우하단 absolute 위치, `bg-foreground/60 text-white text-xs px-2 py-1 rounded`, 텍스트 `Imagined with AI`. 광고 슬롯과 인접 시 위치 충돌 방지(여백 8px 이상).
-- **figcaption**: 원본 캡션(이미지에 의도적으로 붙은 설명) 뒤에 `· AI 생성` 후행 텍스트 자동 부착. 원본 캡션 없으면 `· AI 생성`만 단독 표기.
+- **figcaption**: 원본 캡션(이미지에 의도적으로 붙은 설명)이 있을 때만 렌더(§5.2 절충안). 캡션 + AI 마커 → `<원본 캡션> · AI 생성`, 캡션 + AI 마커 없음 → `<원본 캡션>` 단독, 캡션 없으면 figcaption 자체 미렌더(워터마크 칩 + alt 두 채널로 표시 의무 충족).
+- **캡션 입력**: markdown image title 슬롯 `![alt](src "원본 캡션")`. plugin이 빌드 타임에 title을 추출해 figcaption으로 옮기고 img에서 title 속성 제거(브라우저 기본 tooltip 중복 방지).
 - **alt 속성**: `(AI 생성 이미지)` 후행. 스크린리더가 원본 의미 낭독 직후 AI 표시 인지 가능.
 - **마이그레이션**: 발행된 글 2건([weekly-prenatal-checklist](../../../src/content/articles/weekly-prenatal-checklist.md), [prenatal-insurance-preparation-guide](../../../src/content/articles/prenatal-insurance-preparation-guide.md))의 이미지에 위 컨벤션 반영. 본문 텍스트는 손대지 않음.
 - **운영자 SOP 통합**: P10 운영자 가이드에 "이미지 SOP" 섹션 별도 헤더 + 체크리스트화. 도구별 분류 표(자동 포함 검증 완료/미검증) 빈 칸 유지.

@@ -4,12 +4,21 @@ import matter from "gray-matter";
 import { remark } from "remark";
 import remarkGfm from "remark-gfm";
 import remarkRehype from "remark-rehype";
-import rehypeSanitize from "rehype-sanitize";
+import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 import rehypeStringify from "rehype-stringify";
+import { rehypeArticleFigure } from "@/lib/markdown/rehype-article-figure";
 import type { ArticleMeta, Article } from "@/types/article";
 import { BASE_URL } from "@/lib/constants";
 
 const ARTICLES_DIR = path.join(process.cwd(), "src/content/articles");
+
+const sanitizeSchema = {
+  ...defaultSchema,
+  attributes: {
+    ...defaultSchema.attributes,
+    img: [...(defaultSchema.attributes?.img ?? []), "title"],
+  },
+};
 
 function parseArticleMeta(data: Record<string, unknown>): ArticleMeta {
   const slug = String(data.slug ?? "");
@@ -86,7 +95,8 @@ export async function getArticleBySlug(
   const result = await remark()
     .use(remarkGfm)
     .use(remarkRehype)
-    .use(rehypeSanitize)
+    .use(rehypeSanitize, sanitizeSchema)
+    .use(rehypeArticleFigure)
     .use(rehypeStringify)
     .process(contentLines.join("\n"));
 

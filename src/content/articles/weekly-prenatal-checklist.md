@@ -38,7 +38,7 @@ linked_video_ids: ["video_019"]
 [타임라인 페이지](https://pregnancy-checklist.com/timeline)에서
 확인할 수 있어요.
 
-![임신 주차별 검사 및 준비 타임라인 요약 인포그래픽](/articles/weekly-prenatal-checklist.png)
+![임신 주차별 검사 및 준비 타임라인 요약 인포그래픽 (AI 생성 이미지)](/articles/weekly-prenatal-checklist.png "주차별 핵심 검사 타임라인 — 1차 기형아 검사는 11~13주 3주만 가능")
 
 
 ## 시기별 핵심 검사 한눈에 보기
