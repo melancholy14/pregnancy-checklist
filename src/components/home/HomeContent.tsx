@@ -352,7 +352,7 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
           icon="📝"
           title="정보 & 가이드"
           href="/info"
-          color="#E0F0FF"
+          color="#E4D6F0"
           cta="읽으러 가기"
         >
           {latestArticle ? (

@@ -23,7 +23,7 @@ import type { BabyfairEvent } from "@/types/babyfair";
 const SCALE_CONFIG: Record<string, { label: string; color: string }> = {
   large: { label: "대형", color: "#FFD4DE" },
   medium: { label: "중형", color: "#FFF4D4" },
-  small: { label: "소형", color: "#E0F0FF" },
+  small: { label: "소형", color: "#E4D6F0" },
 };
 
 const CITY_COLORS: Record<string, string> = {
