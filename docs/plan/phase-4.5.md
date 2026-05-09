@@ -3,7 +3,26 @@
 > Phase 4 기록: [phase-4.md](phase-4.md)
 > Date: 2026-05-02
 > 목표 완료: TBD
-> Status: 📝 기획 단계
+> Status: 🚧 기획 후반 / 디자인 진입 가능 (2026-05-09 갱신)
+>
+> **진행 요약 (2026-05-09)**
+>
+> - **기획 §3** — Critical 결정·구현 완료:
+>   P3·P4 ([pregnancy-week-onboarding](../pregnancy-week-onboarding/README.md)),
+>   P14 ([p14-ai-image-label](../p14-ai-image-label/README.md)),
+>   P9 ([p9-empty-state](../p9-empty-state/README.md)),
+>   P2·P6·P7 ([checklist-recommendation-semantics](../checklist-recommendation-semantics/README.md)).
+>   P11 spec·결정 완료 (vault 매트릭스 1차 작성 대기).
+>   P1 deferred (`checklist-data-model-bundle`).
+>   P5 P1과 묶여 자연 보류.
+>   P8·P10·P12·P13 결정 산출물 미발견.
+> - **디자인 §2** — **진행 가능 ✅**.
+>   묶음 L (P14 unblock), 묶음 D (P3·P4 unblock) unblock 완료.
+>   묶음 G(`#E0F0FF` Cross-1 헌법 결정)만 운영자 결정 1건 필요.
+> - **마케팅 §1** — 묶음 G 부분 wiring (user properties + `pregnancy_week_set` 코드 머지),
+>   `recommended_item_view`/`check`·`weight_log` 코드 wired.
+>   D1(GA4 Property ID + Service Account 발급) 운영자 작업 미수행.
+> - **개발 §4** — 미착수. P1 deferred 묶음과 함께 phase-4.5 종료 시 합류 예정.
 
 ## Overview
 
@@ -165,6 +184,8 @@ GA4 인프라(consent 게이팅 + 수동 page_view + `sendGAEvent` 헬퍼)는 �
 권장 실행 순서: **G → H → (1주 관찰) → I → J → L → M**
 (G·H 없이 I 먼저 가면 코호트 슬라이싱이 안 돼서 데이터가 평면적. L·M은 G~J가 1~2주 누적된 뒤 의미 있는 리포트가 나옴.)
 
+> **상태 (2026-05-09)**: 묶음 G 부분 wiring 완료 — `pregnancy_week_set` (DueDateInput·DueDateStep), user properties 3종 (PageviewTracker), `recommended_item_view`/`check` (ChecklistPage·TimelineContainer·WeekChecklistSection), `weight_log` (WeightForm) 코드 머지. ga4.md §8 추적표 미갱신. 묶음 H 카탈로그 정렬·`article_read_complete`·`search_submit` 잔여. I·J·L·M 미착수.
+
 > 📌 §2(디자인) 작업 묶음 A~F와는 독립 진행 가능. 단 §2.6의 "미체크만 보기" 토글이 들어가면 묶음 H 정의에 `checklist_filter` 이벤트 1개 추가.
 
 > 📌 Looker Studio 대시보드는 §1.9의 자동 리포트와 기능 중복(정형 주간 보고). 인터랙티브 탐색이 필요해지면 그때 별도 묶음으로 추가.
@@ -234,6 +255,9 @@ config/
 ### 1.9.4 결정 필요 항목
 
 #### D1. GA4 Property ID + Service Account 발급
+
+> **상태 (2026-05-09)**: ⚠️ **운영자 작업 미수행** — `scripts/weekly-report/` 미존재, `~/.config/pregnancy-checklist/ga4-sa.json` 미발급. 묶음 L·M의 선결조건.
+
 - [ ] GA4 콘솔에서 Property ID 확인 (Measurement ID `G-XXX`와 다름)
 - [ ] GCP 콘솔에서 Service Account 생성 → JSON 키 다운로드
 - [ ] GA4 Property에 Service Account 이메일을 **Viewer 권한**으로 추가
@@ -569,6 +593,8 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 권장 실행 순서: **G → H → A → C → E → F → B → I → J → K → N → O → D**
 (헌법 결정 G·H 먼저 → 토큰 일괄 정정 A·C·E → 마크업 리팩터 B·I → 시스템 컨벤션 J·K·N·O → 신규 UX D)
 
+> **상태 (2026-05-09)**: 모두 미착수. 선결조건 검토 결과 — 묶음 L (P14, §2.11) ✅ unblock 완료, 묶음 D (P3·P4, §2.6) ✅ unblock 완료. 묶음 G(`#E0F0FF` Cross-1 헌법 결정)만 운영자 결정 1건 필요 — 결정되면 G → H → 나머지 묶음 일괄 진행 가능.
+
 ---
 
 ### 2.11 블로그 본문 이미지 노출 패턴
@@ -597,11 +623,13 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 #### 2.11.3 권장 작업 묶음
 
-| 묶음 | 내용 | 의존성 | 임팩트 |
-|---|---|---|---|
-| **L** | article-prose 이미지 시스템(IM-1~IM-4) — figure 패턴 + next/image + AI 표시 | P14 결정 | 큼 (전체 글에 적용) |
+| 묶음 | 내용 | 의존성 | 임팩트 | 상태 (2026-05-09) |
+|---|---|---|---|---|
+| **L** | article-prose 이미지 시스템(IM-1~IM-4) — figure 패턴 + next/image + AI 표시 | P14 결정 | 큼 (전체 글에 적용) | ✅ unblock — IM-2·IM-4 P14 산출로 완료, IM-1·IM-3 잔여 |
 
 권장 실행 순서: **P14 결정 → L 묶음 일괄 적용 → 기존 글 2건(`weekly-prenatal-checklist`, `prenatal-insurance-preparation-guide`) 마이그레이션 검증**.
+
+> **상태 (2026-05-09)**: P14 ✅ 완료로 IM-2(figure 패턴) + IM-4(AI 표시) 적용 완료. 발행 글 2건 마이그레이션 + e2e 11/11 통과. **잔여 IM-1**(article-prose img 토큰 적용) + **IM-3**(next/image 전환) + **IM-5**(lightbox 결정) + **IM-6**(alt 가이드라인)는 디자인 §2 라운드에서 처리.
 
 ---
 
@@ -621,6 +649,8 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 #### P1. 편집 모드에서 priority/note 수정 허용 여부
 
+> **상태 (2026-05-09)**: 🟡 **deferred** — `checklist-data-model-bundle (TBD)`로 이연. [features/p1-priority-note-edit/meta.md](../features/p1-priority-note-edit/meta.md).
+
 - [ ] **결정**: 허용 / 미허용
 - **현황**: [ChecklistItemRow.tsx:42-73](../../src/components/checklist/ChecklistItemRow.tsx#L42-L73) 편집 모드는 **title만** 수정 가능. 추가 폼([ChecklistAddForm.tsx:43](../../src/components/checklist/ChecklistAddForm.tsx#L43))도 priority를 받지 않고 `medium` 하드코딩.
 - **고려할 트레이드오프**:
@@ -630,7 +660,9 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 #### P2. ChecklistItem.tsx의 `isHighlighted` ("이번 주차 추천") UX 부활 여부
 
-- [ ] **결정**: 부활 / 삭제
+> **상태 (2026-05-09)**: ✅ **완료** — 부활 결정. ChecklistItemRow + WeekChecklistSection으로 surface 이식, `recommended_item_view/check` 이벤트 + 마이크로 라벨(CalendarCheck) 구현. [checklist-recommendation-semantics](../checklist-recommendation-semantics/README.md).
+
+- [x] **결정**: 부활 / 삭제
 - **현황**: [ChecklistItem.tsx:68-72](../../src/components/checklist/ChecklistItem.tsx#L68-L72)에 `isHighlighted` prop과 "이번 주차에 추천하는 항목이에요" 문구가 정의돼 있으나, 현재 사용처가 없음(허브·상세 모두 [ChecklistItemRow.tsx](../../src/components/checklist/ChecklistItemRow.tsx)만 사용). **잠재 가치 있는 UX가 사장된 상태**.
 - **고려할 트레이드오프**:
   - 부활 → §2.6 #2(임신 주차 연동)와 강하게 시너지. 사용자의 현재 주차 ↔ 항목의 `recommendedWeek` 매칭으로 "지금 챙길 것"을 강조. ChecklistItemRow로 이식 + store에 현재 주차 의존성 필요.
@@ -639,9 +671,11 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 #### P3. 임신 주차 입력(onboarding) UX의 형태 ⭐ Critical
 
-- [ ] **결정**: (a) 입력 방식 — 예정일 직접 입력 / 주차 직접 입력 / 둘 다
-- [ ] **결정**: (b) 입력 시점 — 첫 방문 풀스크린 onboarding / 홈 상단 카드 / 헤더 고정 위젯 / 체크리스트 진입 시 모달
-- [ ] **결정**: (c) 미입력자 사용 허용 여부 — "입력 없이도 둘러보기 가능" vs "필수"
+> **상태 (2026-05-09)**: ✅ **완료** — (a) 예정일 직접 입력 + 자동 주차 산출, (b) 홈은 풀스크린 onboarding + 그 외 5개 섹션은 글로벌 슬림 배너, (c) 미입력자 사용 허용. ChecklistHub 하드코딩 "37주차" 핀도 store 값으로 치환. [pregnancy-week-onboarding](../pregnancy-week-onboarding/README.md).
+
+- [x] **결정**: (a) 입력 방식 — 예정일 직접 입력 / 주차 직접 입력 / 둘 다
+- [x] **결정**: (b) 입력 시점 — 첫 방문 풀스크린 onboarding / 홈 상단 카드 / 헤더 고정 위젯 / 체크리스트 진입 시 모달
+- [x] **결정**: (c) 미입력자 사용 허용 여부 — "입력 없이도 둘러보기 가능" vs "필수"
 - **현황**: 사이트 어디에도 사용자가 due date·주차를 명시 입력할 곳이 없음. ChecklistHub의 "37주차" 핀도 하드코딩 ([ChecklistHub.tsx:128](../../src/components/checklist/ChecklistHub.tsx#L128)).
 - **차단되는 다른 작업**:
   - §1.8 묶음 G — user properties(`due_date_set`, `current_pregnancy_week`, `cohort_join_week`) 작동 불가
@@ -656,13 +690,17 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 #### P4. `current_pregnancy_week` 영속성·갱신 정책
 
-- [ ] **결정**: (a) 입력 단위 — 예정일(자동 계산) / 주차 직접
-- [ ] **결정**: (b) 갱신 주기 — 자동 매주 / 사용자 명시 갱신만
-- [ ] **결정**: (c) GA4 user property set 시점 — 매 페이지뷰 / 변경 시만
+> **상태 (2026-05-09)**: ✅ **완료** — (a) 예정일 단일 입력, (b) `lastCalcDate !== todayKST`일 때만 재계산(KST 자정 기준), (c) PageviewTracker가 매 page_view 직전 refresh + user_properties set. zustand persist v0→v1 migrate로 무손실 마이그레이션. [pregnancy-week-onboarding](../pregnancy-week-onboarding/README.md).
+
+- [x] **결정**: (a) 입력 단위 — 예정일(자동 계산) / 주차 직접
+- [x] **결정**: (b) 갱신 주기 — 자동 매주 / 사용자 명시 갱신만
+- [x] **결정**: (c) GA4 user property set 시점 — 매 페이지뷰 / 변경 시만
 - **현황**: P3 결정에 종속. due date 입력 시 주차 자동 산출이 가장 안전하다는 게 일반론(매일 자동 갱신 가능)
 - **고려할 트레이드오프**: 주차 직접 입력은 "정확하지 않은 사용자 입력값"으로 코호트 데이터 오염 가능성. 예정일 단일 입력 + 자동 산출 권장
 
 #### P5. localStorage schema versioning 도입
+
+> **상태 (2026-05-09)**: 🟡 **부분 진행 / 자연 보류** — useDueDateStore에 v0→v1 migrate 1건 적용 (P3·P4 산출). 전역 schema versioning 정책은 P1 deferred에 묶여 `checklist-data-model-bundle (TBD)`로 이연.
 
 - [ ] **결정**: (a) version 필드 도입 시점 — Phase 4.5 일괄 vs P1 결정 시 함께
 - [ ] **결정**: (b) 마이그레이션 함수 위치 — zustand `persist`의 `migrate` 옵션 / 별도 helper
@@ -672,19 +710,25 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 #### P6. `recommendedWeek: 0`의 의미 정의
 
-- [ ] **결정**: 0의 시맨틱 — "추천 주차 미정/시점 무관" / "항상 추천" / "잘못된 데이터" 중 하나
-- [ ] **결정**: 의미 분리 필요 시 — `recommendedWeek: null` 도입 vs 별도 필드(`alwaysRecommended: true`)
+> **상태 (2026-05-09)**: ✅ **완료** — 0 = "미정/주차 무관"으로 명문화. `ChecklistItem.recommendedWeek` JSDoc + 매칭 가드(`recommendedWeek !== 0`) 적용. 데이터 구조 변경(`null` / `alwaysRecommended`)은 phase-5 schema versioning 묶음으로 이연. [checklist-recommendation-semantics](../checklist-recommendation-semantics/README.md).
+
+- [x] **결정**: 0의 시맨틱 — "추천 주차 미정/시점 무관" / "항상 추천" / "잘못된 데이터" 중 하나
+- [ ] **결정**: 의미 분리 필요 시 — `recommendedWeek: null` 도입 vs 별도 필드(`alwaysRecommended: true`) (phase-5 이연)
 - **현황**: hospital_bag, partner_prep, pregnancy_prep 항목 다수가 `recommendedWeek: 0`. P2가 "부활"로 결정되면 모든 0번 항목이 매주 추천되는 잠재 버그
 - **연결**: P2 결정 직후 또는 그 전에 정의
 
 #### P7. `note` 필드 콘텐츠 타입 분류
 
-- [ ] **결정**: `note_type` 필드 도입 여부 — `action` / `context` / `legal` / 단순 string 유지
+> **상태 (2026-05-09)**: ✅ **부분 완료** — 텍스트 패턴 기반 `legal` 분기 시각 적용 (Scale 아이콘 + italic) + `checklist_check.note_type` 파라미터 추가 (`legal`/`default`/`null`). `note_type` 필드 신규 도입은 phase-5 schema versioning 묶음으로 이연 (락인 §6: 필드 도입 시 자동 채워짐). [checklist-recommendation-semantics](../checklist-recommendation-semantics/README.md).
+
+- [x] **결정**: `note_type` 필드 도입 여부 — `action` / `context` / `legal` / 단순 string 유지 (Phase 4.5: 패턴 분류, 필드 도입은 phase-5)
 - **현황**: "병원 전화 확인" / "도로교통법 제50조" / "제왕절개 시" 등 성격 다른 노트가 한 필드에 섞여 있음
 - **연결**: §2.4 M4(체크 후에도 노트 보존) + §2.6 UX 기회 #5(노트 → 자동 액션 분리) 진행 시 필수. 단순 보존 결정이면 도입 불필요
 - **고려할 트레이드오프**: 도입 시 데이터 마이그레이션 필요 (운영자가 기존 노트 분류). 미도입 시 노트 자동화 UX 불가
 
 #### P8. 카테고리 두 체계 공존 방향
+
+> **상태 (2026-05-09)**: ⚠️ **미결** — 결정 산출물 미발견. P11 spec에서 신규 3종 `subcategories`는 운영자가 임시 분류로 둠. 디자인 §2를 차단하지 않으므로 phase-5 통합 검색 시 결정 권장.
 
 - [ ] **결정**: (a) 통합 카테고리 어휘로 정렬 / (b) 체크리스트별 로컬 분류 유지
 - [ ] **결정**: (c) Phase 4.5에서 결정만 vs 작업도 / Phase 5 통합 검색 시 결정
@@ -694,23 +738,29 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 #### P9. 빈 상태(empty state) 카피·CTA 명세
 
-- [ ] **결정**: 케이스별 카피·CTA — 첫 방문(체크 0개) / 모두 체크 완료 / 마이그레이션 후 데이터 사라진 경우 / 커스텀만 있고 기본 0개일 때
+> **상태 (2026-05-09)**: ✅ **완료** — 4종 케이스 구현 (first_visit / all_done / migration_lost / custom_only). `ChecklistEmptyState`·`AllDoneBadge` + sonner 토스트 + a11y(`role="status"`/`alert`/`aria-live`) + 다크 패턴 회피 (lavender/peach/mint만 사용). `empty_state_view` GA4 이벤트는 §1.8 묶음 J에서 별도 도입. [p9-empty-state](../p9-empty-state/README.md).
+
+- [x] **결정**: 케이스별 카피·CTA — 첫 방문(체크 0개) / 모두 체크 완료 / 마이그레이션 후 데이터 사라진 경우 / 커스텀만 있고 기본 0개일 때
 - **현황**: §1.5 `empty_state_view`가 측정 항목인데, 정작 빈 상태가 어떤 페이지에 어떤 형태로 보이는지 미정의
 - **연결**: §1.8 묶음 J(신호 이벤트) 도입 시 같이 정의해야 측정 의미 있음
 
 #### P10. 운영자 가이드 — 체크리스트 데이터 변경 룰
 
+> **상태 (2026-05-09)**: ⚠️ **부분 완료** — [docs/content/image-sop.md](../content/image-sop.md) §8에 "체크리스트 데이터 변경 룰" 한 줄 흡수 (P14 산출). 통합 운영자 가이드 본체는 미작성.
+
 - [ ] **결정**: ID 변경 금지 규칙 명문화 (추가 자유, 삭제는 deprecated 플래그 후 N주)
-- [ ] **결정**: 가이드 문서 위치 — `docs/content/` / `AGENTS.md` / 별도
+- [x] **결정**: 가이드 문서 위치 — `docs/content/` / `AGENTS.md` / 별도 (`docs/content/image-sop.md`로 임시 흡수, 통합 가이드 분리 도입은 phase-5)
 - **현황**: Phase 4 Step 5의 운영 절차는 자동 크로스링크 영역만 다룸. 체크리스트 항목 ID 변경/삭제 시 사용자 localStorage에 dangling reference 발생하지만 가이드 부재
 - **연결**: P5 schema versioning과 함께 도입하면 일관
 
 #### P14. 블로그 본문 AI 생성 이미지 표시 의무 ⭐ Critical (법적 리스크)
 
-- [ ] **결정**: (a) 표시 형태 — figcaption 텍스트 라벨(`· AI 생성`) / 이미지 우하단 가시 워터마크 칩 / 둘 다
-- [ ] **결정**: (b) 표시 문구 — `AI 생성` / `AI로 만든 이미지` / `Imagined with AI` (한글/영문)
-- [ ] **결정**: (c) 메타데이터 병행 여부 — 가시 표시 외에 `<img>` alt 또는 EXIF에 `AI-generated` 플래그 추가
-- [ ] **결정**: (d) 적용 범위 — 인포그래픽만 / AI 후보정 사진 포함 / 모든 비실사 이미지
+> **상태 (2026-05-09)**: ✅ **완료** — (a) figcaption + 우하단 워터마크 칩 둘 다(figcaption은 markdown title 슬롯에 캡션이 있을 때만 조건부), (b) `Imagined with AI`, (c) alt 마커 `(AI 생성 이미지)` + sanitize 스키마 확장, (d) 인포그래픽 우선 적용. `rehype-article-figure` 플러그인 빌드 타임 자동 부착 + 발행 글 2건 마이그레이션 + e2e 11/11 통과 + [docs/content/image-sop.md](../content/image-sop.md) 운영자 SOP 발행. [p14-ai-image-label](../p14-ai-image-label/README.md).
+
+- [x] **결정**: (a) 표시 형태 — figcaption 텍스트 라벨(`· AI 생성`) / 이미지 우하단 가시 워터마크 칩 / 둘 다
+- [x] **결정**: (b) 표시 문구 — `AI 생성` / `AI로 만든 이미지` / `Imagined with AI` (한글/영문)
+- [x] **결정**: (c) 메타데이터 병행 여부 — 가시 표시 외에 `<img>` alt 또는 EXIF에 `AI-generated` 플래그 추가
+- [x] **결정**: (d) 적용 범위 — 인포그래픽만 / AI 후보정 사진 포함 / 모든 비실사 이미지
 - **법적 배경 (확인 완료, 2026-05-05)**:
   - **AI 기본법(인공지능기본법) 2026-01-22 시행** — 한국은 EU에 이어 세계 두 번째 포괄적 AI 규제 체계
   - **의무 주체는 "AI 사업자"** — ChatGPT·미드저니 같은 생성형 AI 서비스 제공자, 또는 AI로 자동 콘텐츠를 생성하는 서비스를 제공하는 사업자. **AI를 단순히 업무·창작의 "도구"로 활용하는 이용자(크리에이터·마케터·블로거)는 의무 대상이 아님** (시행령·실무 해석)
@@ -740,12 +790,16 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 #### P11. 콘텐츠 ↔ 체크리스트 매트릭스 1차 산출
 
-- [ ] **결정**: (a) 산출물 보관 위치 — Obsidian vault `30-domain/` / `60-analytics/` 신설
-- [ ] **결정**: (b) 첫 그리기 Phase 4.5 포함 vs Phase 5
+> **상태 (2026-05-09)**: 🟡 **결정 완료, 산출물 미작성** — (a) `~/Documents/pregnancy-checklist/30-domain/content-matrix.md`, (b) Phase 4.5 포함. spec까지 발행, vault 매트릭스 1차 수기 작성 대기. [features/p11-content-matrix/spec.md](../features/p11-content-matrix/spec.md).
+
+- [x] **결정**: (a) 산출물 보관 위치 — Obsidian vault `30-domain/` / `60-analytics/` 신설
+- [x] **결정**: (b) 첫 그리기 Phase 4.5 포함 vs Phase 5
 - **배경**: Phase 4 Step 5 자동 크로스링크는 "있는 콘텐츠끼리 잘 연결됐는지"만 보장. **"있어야 할 콘텐츠가 있는지"는 모름**. timeline_items.json을 보면 초기 주차에 동일 글 2~3개 반복 매핑됨
 - **연결**: §1.5 `search_submit` (results_count=0) 데이터가 1~2주 누적되기 전, 운영자가 한 번 수동으로 "주차 × 토픽" 빈칸을 그리면 콘텐츠 백로그가 미리 잡힘
 
 #### P12. 양방향 크로스링크 정책 — 아티클 → 체크리스트 CTA
+
+> **상태 (2026-05-09)**: ⚠️ **미결** — 결정 산출물 미발견. 기존 `scripts/generate-crosslinks.ts` 자동화 인프라는 phase-4 step 5에서 완료. 디자인을 차단하지 않으므로 phase-5 또는 별도 라운드에서 결정 권장.
 
 - [ ] **결정**: (a) 아티클 본문 끝에 별도 "관련 체크리스트" 블록 신설 vs 기존 §관련 콘텐츠 카드에 흡수
 - [ ] **결정**: (b) 자동화 범위 포함 vs 수동 유지
@@ -753,6 +807,8 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 - **연결**: persona §4.4 "콘텐츠 ↔ 도구 연결 의무" 룰과 정합. 자동화에 포함하면 운영 부담 ↓
 
 #### P13. 외부 링크 인벤토리 1회 수집
+
+> **상태 (2026-05-09)**: ⚠️ **미결** — 결정·수집 산출물 미발견. §1.8 묶음 J 도입 시점에 같이 처리 권장.
 
 - [ ] **결정**: §1.8 묶음 J(신호 이벤트) 도입 전 1회 수행 vs 측정 데이터로 대체
 - **배경**: §1.5 `external_link_click`이 "자체화 후보"라고 명시. 측정 시작 전 운영자가 grep으로 TOP 10 도메인 + 빈도 미리 뽑아두면 데이터 1주만에 자체화 우선순위 잡힘
@@ -762,19 +818,21 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 §3 결정을 묶음으로 정리하면:
 
-| 묶음 | 내용 | 의존성 / 트리거 | 임팩트 |
-|---|---|---|---|
-| **N** | P3·P4 — 임신 주차 입력 onboarding UX 결정 + 와이어프레임 | §1 G·H, §2.6 #2, P2 모두의 선결조건 | 큼 ⭐ |
-| **O** | P5 — localStorage schema versioning 도입 | P1 결정 후 | 중 |
-| **P** | P11 — 콘텐츠 매트릭스 1차 산출 (운영자 직접) | §1.9 자동 리포트와 정합 | 중 |
-| **Q** | P13 — 외부 링크 인벤토리 1회 수집 | §1.8 묶음 J 전 | 작음 |
-| **R** | P6·P7 — 데이터 모델 정합성 결정 (recommendedWeek / note_type) | P2 부활 결정 시 필수 | 중 |
-| **S** | P9·P10 — 빈 상태 명세 + 운영자 가이드 작성 | 독립 | 작음 |
-| **T** | P8 — 카테고리 체계 결정 (작업은 Phase 5) | Phase 4.5 결정만 | 작음 |
-| **U** | P12 — 양방향 크로스링크 정책 결정 + 자동화 확장 | Step 5 스크립트 확장 | 중 |
-| **V** | P14 — AI 생성 이미지 표시 형태·문구 결정 + 기존 글 2건 마이그레이션 | §2.11 L 묶음의 선결조건 | 중 (AdSense·E-E-A-T) |
+| 묶음 | 내용 | 의존성 / 트리거 | 임팩트 | 상태 (2026-05-09) |
+|---|---|---|---|---|
+| **N** | P3·P4 — 임신 주차 입력 onboarding UX 결정 + 와이어프레임 | §1 G·H, §2.6 #2, P2 모두의 선결조건 | 큼 ⭐ | ✅ 완료 |
+| **O** | P5 — localStorage schema versioning 도입 | P1 결정 후 | 중 | 🟡 부분 (P3·P4 store만) |
+| **P** | P11 — 콘텐츠 매트릭스 1차 산출 (운영자 직접) | §1.9 자동 리포트와 정합 | 중 | 🟡 결정만, 매트릭스 미작성 |
+| **Q** | P13 — 외부 링크 인벤토리 1회 수집 | §1.8 묶음 J 전 | 작음 | ⚠️ 미착수 |
+| **R** | P6·P7 — 데이터 모델 정합성 결정 (recommendedWeek / note_type) | P2 부활 결정 시 필수 | 중 | ✅ 완료 (필드 도입은 phase-5) |
+| **S** | P9·P10 — 빈 상태 명세 + 운영자 가이드 작성 | 독립 | 작음 | 🟡 P9 ✅, P10 부분 |
+| **T** | P8 — 카테고리 체계 결정 (작업은 Phase 5) | Phase 4.5 결정만 | 작음 | ⚠️ 미결 |
+| **U** | P12 — 양방향 크로스링크 정책 결정 + 자동화 확장 | Step 5 스크립트 확장 | 중 | ⚠️ 미결 |
+| **V** | P14 — AI 생성 이미지 표시 형태·문구 결정 + 기존 글 2건 마이그레이션 | §2.11 L 묶음의 선결조건 | 중 (AdSense·E-E-A-T) | ✅ 완료 |
 
 권장 실행 순서: **N → (G·H 실행 unblock) → V → R → O → P / Q / S / T / U 병렬**.
+
+> ✅ **2026-05-09 갱신**: N·V·R 완료로 §1 G·H + §2.6 #2 + §2.11 L 모두 unblock. P/Q/S/T/U 잔여는 디자인 §2 작업과 병렬 진행 가능.
 
 > 📌 N묶음(P3·P4)이 §1·§2의 미결 종속성을 **세 군데 동시 해소**하므로 가장 시급. 다른 모든 결정은 N 이후로 미뤄도 된다.
 >
@@ -784,22 +842,22 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 > 운영자가 결정 시 빠르게 훑을 수 있도록 한 표로 요약. 결정 후 위 §3.1·§3.2의 체크박스 채움.
 
-| ID | 결정 항목 | 시급도 | 차단되는 작업 |
-|----|---------|-------|--------------|
-| P1 | priority/note 수정 허용 | 보통 | O묶음(versioning), 폼 작업 |
-| P2 | isHighlighted 부활 | 낮음 | R·N 결정 후 |
-| **P3** | **주차 입력 UX 형태** | **높음 ⭐** | **G·H, P2, §2.6 #2** |
-| **P4** | **주차 영속성·갱신 정책** | **높음 ⭐** | **G·H** |
-| P5 | schema versioning | 보통 | O묶음 |
-| P6 | recommendedWeek 0 의미 | 보통 | P2 부활 시 필수 |
-| P7 | note_type 필드 | 낮음 | UX #5 진행 시 |
-| P8 | 카테고리 체계 | 낮음 | Phase 5 통합 검색 |
-| P9 | 빈 상태 명세 | 보통 | 묶음 J 측정 의미 |
-| P10 | 운영자 가이드 | 낮음 | 데이터 변경 사고 예방 |
-| P11 | 콘텐츠 매트릭스 | 보통 | 콘텐츠 백로그 사전 정리 |
-| P12 | 양방향 크로스링크 | 보통 | 유입→도구 흐름 |
-| P13 | 외부 링크 인벤토리 | 낮음 | 묶음 J 사전 작업 |
-| P14 | AI 생성 이미지 표시 형태·문구 | 보통 | §2.11 L묶음, AdSense·E-E-A-T 정합성 (법적 강제 의무 가능성 낮음) |
+| ID | 결정 항목 | 시급도 | 차단되는 작업 | 상태 (2026-05-09) |
+|----|---------|-------|--------------|------|
+| P1 | priority/note 수정 허용 | 보통 | O묶음(versioning), 폼 작업 | 🟡 deferred (`checklist-data-model-bundle`) |
+| P2 | isHighlighted 부활 | 낮음 | R·N 결정 후 | ✅ 완료 |
+| **P3** | **주차 입력 UX 형태** | **높음 ⭐** | **G·H, P2, §2.6 #2** | ✅ 완료 |
+| **P4** | **주차 영속성·갱신 정책** | **높음 ⭐** | **G·H** | ✅ 완료 |
+| P5 | schema versioning | 보통 | O묶음 | 🟡 부분 (P3·P4 store만) |
+| P6 | recommendedWeek 0 의미 | 보통 | P2 부활 시 필수 | ✅ 완료 |
+| P7 | note_type 필드 | 낮음 | UX #5 진행 시 | ✅ 부분 (패턴 분류, 필드는 phase-5) |
+| P8 | 카테고리 체계 | 낮음 | Phase 5 통합 검색 | ⚠️ 미결 |
+| P9 | 빈 상태 명세 | 보통 | 묶음 J 측정 의미 | ✅ 완료 |
+| P10 | 운영자 가이드 | 낮음 | 데이터 변경 사고 예방 | 🟡 부분 (image-sop §8 흡수) |
+| P11 | 콘텐츠 매트릭스 | 보통 | 콘텐츠 백로그 사전 정리 | 🟡 결정 완료, 매트릭스 미작성 |
+| P12 | 양방향 크로스링크 | 보통 | 유입→도구 흐름 | ⚠️ 미결 |
+| P13 | 외부 링크 인벤토리 | 낮음 | 묶음 J 사전 작업 | ⚠️ 미결 |
+| P14 | AI 생성 이미지 표시 형태·문구 | 보통 | §2.11 L묶음, AdSense·E-E-A-T 정합성 (법적 강제 의무 가능성 낮음) | ✅ 완료 |
 
 ---
 
@@ -808,6 +866,8 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 > 분석 시점: 2026-05-03
 > 출처: [docs/tech/technical-debt.md](../tech/technical-debt.md) P1 항목, [docs/tech/review.md](../tech/review.md) 리뷰 잔불, [docs/tech/impl.md](../tech/impl.md) 미구현 메모
 > 기준: Phase 5 착수 전에 처리해야 할 기술 부채만 모음. P2/P3는 [docs/tech/technical-debt.md](../tech/technical-debt.md)에 잔존.
+>
+> **상태 (2026-05-09)**: ⚠️ **미착수** — 기획·디자인·마케팅 라운드 종료 후 합류 예정. P2 ChecklistItem.tsx 미사용 코드는 [checklist-recommendation-semantics](../checklist-recommendation-semantics/README.md)에서 이미 삭제됨. P1 deferred 묶음(`checklist-data-model-bundle`)은 phase-4.5 종료 시 함께 처리.
 
 ### 4.1 종합 평가
 
