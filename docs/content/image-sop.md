@@ -122,3 +122,7 @@ exiftool -a -G1 image.png | grep -iE "DigitalSourceType|trainedAlgorithmicMedia"
 - figcaption(`· AI 생성`)이 본문 흐름과 자연스럽게 이어지는가
 
 문제 발견 시 → 도구별 출력 비율 조정(우하단 8px 영역에 핵심 정보가 안 오도록 미드저니 프롬프트 가이드) 또는 디자인 토큰 재논의 ([docs/features/p14-ai-image-label/design.md](../features/p14-ai-image-label/design.md)).
+
+## 8. 체크리스트 데이터 변경 룰 (시맨틱 한 줄)
+
+체크리스트 항목 JSON 편집 시 `recommendedWeek` 의미 — `0` 은 **미정/주차 무관**으로 P2 "이번 주 추천" 매칭 대상이 아니다 (출처: [docs/features/checklist-recommendation-semantics/](../features/checklist-recommendation-semantics/)). 본격 데이터 변경 룰(ID 재사용 금지, 삭제 deprecated 플래그 등)은 P10 통합 운영자 가이드 발행 시 합본.

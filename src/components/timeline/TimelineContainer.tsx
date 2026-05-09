@@ -50,6 +50,31 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
     return calcPregnancyWeek(new Date(dueDate));
   }, [hydrated, dueDate]);
 
+  const recommendedViewCount = useMemo(() => {
+    if (currentWeek === null) return 0;
+    const all = [...checklistItems, ...customChecklistItems];
+    return all.filter(
+      (item) =>
+        item.recommendedWeek !== 0 &&
+        item.recommendedWeek === currentWeek &&
+        !checkedIds.includes(item.id),
+    ).length;
+  }, [checklistItems, customChecklistItems, currentWeek, checkedIds]);
+
+  const recommendedViewSentRef = useRef(false);
+  useEffect(() => {
+    if (!hydrated) return;
+    if (recommendedViewSentRef.current) return;
+    if (currentWeek === null) return;
+    if (recommendedViewCount === 0) return;
+    recommendedViewSentRef.current = true;
+    sendGAEvent("recommended_item_view", {
+      count: recommendedViewCount,
+      week: currentWeek,
+      slug: "main",
+    });
+  }, [hydrated, currentWeek, recommendedViewCount]);
+
   const articleMap = useMemo(() => {
     const map = new Map<string, ArticleMeta>();
     for (const a of articles) {
@@ -285,13 +310,17 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
 
           <div className="space-y-6">
             {(() => {
-              let firstCurrentAssigned = false;
-              return allTimelineItems
-                .filter((item) => filteredWeekSet === null || filteredWeekSet.has(item.week))
-                .map((item) => {
+              const visibleItems = allTimelineItems.filter(
+                (item) => filteredWeekSet === null || filteredWeekSet.has(item.week)
+              );
+              const hasExactCurrent =
+                currentWeek !== null && visibleItems.some((i) => i.week === currentWeek);
+              const refTargetWeek = hasExactCurrent
+                ? currentWeek
+                : visibleItems.find((i) => getStatus(i.week) === "current")?.week ?? null;
+              return visibleItems.map((item) => {
                   const status = getStatus(item.week);
-                  const shouldRef = status === "current" && !firstCurrentAssigned;
-                  if (shouldRef) firstCurrentAssigned = true;
+                  const shouldRef = refTargetWeek !== null && item.week === refTargetWeek;
                   const weekChecklist = getFilteredChecklist(weekChecklistMap.get(item.week) ?? []);
                   const relatedArticles = (item.linked_article_slugs ?? [])
                     .map((slug) => articleMap.get(slug))
@@ -310,6 +339,7 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
                         relatedArticles={relatedArticles}
                         relatedVideos={relatedVideos}
                         defaultOpen={status === "current"}
+                        currentPregnancyWeek={currentWeek}
                       />
                     </div>
                   );
@@ -327,7 +357,12 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
             </div>
             <Card className="rounded-xl border border-black/4">
               <CardContent className="p-2">
-                <WeekChecklistSection items={unassignedChecklist} checkedIds={checkedIds} />
+                <WeekChecklistSection
+                  items={unassignedChecklist}
+                  checkedIds={checkedIds}
+                  currentPregnancyWeek={currentWeek}
+                  slug="main"
+                />
               </CardContent>
             </Card>
           </div>

@@ -1,21 +1,23 @@
 "use client";
 
-import { Pencil, Info } from "lucide-react";
+import { useMemo } from "react";
+import { Pencil, Info, Scale, CalendarCheck } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { DeleteConfirmDialog } from "@/components/timeline/DeleteConfirmDialog";
+import { classifyNote, type NoteType } from "@/lib/note-classifier";
 import type { ChecklistItem } from "@/types/checklist";
 
-const PRIORITY_STYLES: Record<ChecklistItem["priority"], { className: string; label: string }> = {
-  high: { className: "bg-pastel-pink/60 text-accent-red", label: "높음" },
-  medium: { className: "bg-pastel-yellow/60 text-accent-olive", label: "보통" },
-  low: { className: "bg-pastel-mint/60 text-accent-green", label: "낮음" },
+const PRIORITY_DOT: Record<ChecklistItem["priority"], { className: string; label: string }> = {
+  high: { className: "bg-accent-red", label: "높음" },
+  medium: { className: "bg-accent-olive", label: "보통" },
+  low: { className: "bg-accent-green", label: "낮음" },
 };
 
 interface ChecklistItemRowProps {
   item: ChecklistItem;
   isChecked: boolean;
+  isHighlighted: boolean;
   isEditing: boolean;
   editTitle: string;
   onToggle: () => void;
@@ -29,6 +31,7 @@ interface ChecklistItemRowProps {
 export function ChecklistItemRow({
   item,
   isChecked,
+  isHighlighted,
   isEditing,
   editTitle,
   onToggle,
@@ -73,7 +76,9 @@ export function ChecklistItemRow({
     );
   }
 
-  const priority = PRIORITY_STYLES[item.priority];
+  const priority = PRIORITY_DOT[item.priority];
+  const noteType: NoteType = useMemo(() => classifyNote(item.note), [item.note]);
+  const showHighlightLabel = isHighlighted && !isChecked;
 
   return (
     <div
@@ -90,7 +95,7 @@ export function ChecklistItemRow({
         }
       }}
       aria-pressed={isChecked}
-      aria-label={`${item.title} ${isChecked ? "체크 해제" : "체크"}`}
+      aria-label={`${item.title} (우선순위 ${priority.label}) ${isChecked ? "체크 해제" : "체크"}`}
     >
       <Checkbox
         checked={isChecked}
@@ -101,42 +106,55 @@ export function ChecklistItemRow({
       />
       <div className="flex-1 min-w-0">
         <span
-          className={`block text-sm leading-relaxed ${
+          className={`flex items-center gap-2 text-sm leading-relaxed ${
             isChecked ? "line-through text-muted-foreground" : "text-foreground"
           }`}
         >
-          {item.title}
+          <span
+            className={`inline-block size-1.5 rounded-full shrink-0 ${priority.className}`}
+            aria-hidden="true"
+          />
+          <span className="min-w-0 break-words">{item.title}</span>
         </span>
-        {item.note && !isChecked && (
-          <span className="mt-1 flex items-start gap-1 text-xs text-muted-foreground">
-            <Info size={11} className="mt-0.5 shrink-0" />
+        {showHighlightLabel && (
+          <span className="mt-1 flex items-center gap-1 text-xs font-medium text-foreground">
+            <CalendarCheck size={11} className="shrink-0" aria-hidden="true" />
+            <span>이번 주 추천</span>
+          </span>
+        )}
+        {item.note && (
+          <span
+            className={`mt-1 flex items-start gap-1 text-xs text-muted-foreground ${
+              noteType === "legal" ? "italic" : ""
+            } ${isChecked ? "line-through" : ""}`}
+          >
+            {noteType === "legal" ? (
+              <Scale size={11} className="mt-0.5 shrink-0" aria-hidden="true" />
+            ) : (
+              <Info size={11} className="mt-0.5 shrink-0" aria-hidden="true" />
+            )}
             <span>{item.note}</span>
           </span>
         )}
       </div>
-      <div className="flex items-center gap-1 shrink-0">
-        <Badge className={`${priority.className} text-[11px] px-2 py-0.5 rounded-md border-0`}>
-          {priority.label}
-        </Badge>
-        {item.isCustom && (
-          <>
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                onStartEdit();
-              }}
-              className="p-1.5 rounded-lg text-muted-foreground hover:text-accent-purple hover:bg-pastel-lavender/20 transition-colors"
-              aria-label="수정"
-            >
-              <Pencil size={14} />
-            </button>
-            <span onClick={(e) => e.stopPropagation()}>
-              <DeleteConfirmDialog onConfirm={onRemove} iconSize={14} />
-            </span>
-          </>
-        )}
-      </div>
+      {item.isCustom && (
+        <div className="flex items-center gap-1 shrink-0">
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onStartEdit();
+            }}
+            className="p-1.5 rounded-lg text-muted-foreground hover:text-accent-purple hover:bg-pastel-lavender/20 transition-colors"
+            aria-label="수정"
+          >
+            <Pencil size={14} />
+          </button>
+          <span onClick={(e) => e.stopPropagation()}>
+            <DeleteConfirmDialog onConfirm={onRemove} iconSize={14} />
+          </span>
+        </div>
+      )}
     </div>
   );
 }

@@ -28,6 +28,7 @@ interface TimelineAccordionCardProps {
   relatedArticles?: ArticleMeta[];
   relatedVideos?: VideoItem[];
   defaultOpen?: boolean;
+  currentPregnancyWeek: number | null;
 }
 
 export function TimelineAccordionCard({
@@ -38,6 +39,7 @@ export function TimelineAccordionCard({
   relatedArticles = [],
   relatedVideos = [],
   defaultOpen = false,
+  currentPregnancyWeek,
 }: TimelineAccordionCardProps) {
   const { removeCustomItem, updateCustomItem } = useTimelineStore();
   const [isOpen, setIsOpen] = useState(defaultOpen);
@@ -207,7 +209,12 @@ export function TimelineAccordionCard({
             {hasChecklist && !isEditing && (
               <CollapsibleContent>
                 <div className="border-t border-black/4 px-4">
-                  <WeekChecklistSection items={checklistItems} checkedIds={checkedIds} />
+                  <WeekChecklistSection
+                    items={checklistItems}
+                    checkedIds={checkedIds}
+                    currentPregnancyWeek={currentPregnancyWeek}
+                    slug="main"
+                  />
                 </div>
               </CollapsibleContent>
             )}

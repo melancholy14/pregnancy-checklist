@@ -22,6 +22,7 @@ import { AllDoneBadge } from "./AllDoneBadge";
 import { ShareButton } from "@/components/share/ShareButton";
 import { sendGAEvent } from "@/lib/analytics";
 import { BASE_URL } from "@/lib/constants";
+import { classifyNote } from "@/lib/note-classifier";
 import type { ArticleMeta } from "@/types/article";
 import type { VideoItem } from "@/types/video";
 import type { ChecklistData, ChecklistItem } from "@/types/checklist";
@@ -29,6 +30,7 @@ import {
   CHECKLIST_STORE_BY_SLUG,
   type ChecklistStoreSlug,
 } from "@/store/createChecklistStore";
+import { useDueDateStore } from "@/store/useDueDateStore";
 
 export type { ChecklistStoreSlug };
 
@@ -60,6 +62,7 @@ export function ChecklistPage({ data, storeSlug, linkedArticles, linkedVideos }:
     () => useStore.persist.hasHydrated(),
     () => false
   );
+  const currentPregnancyWeek = useDueDateStore((s) => s.currentPregnancyWeek);
   const router = useRouter();
 
   const [showAddForm, setShowAddForm] = useState(false);
@@ -75,6 +78,41 @@ export function ChecklistPage({ data, storeSlug, linkedArticles, linkedVideos }:
     () => (hydrated ? checkedIds : EMPTY_CHECKED_IDS),
     [hydrated, checkedIds]
   );
+
+  const isHighlighted = useCallback(
+    (item: ChecklistItem) =>
+      currentPregnancyWeek !== null &&
+      item.recommendedWeek !== 0 &&
+      item.recommendedWeek === currentPregnancyWeek,
+    [currentPregnancyWeek]
+  );
+
+  const recommendedViewCount = useMemo(
+    () =>
+      currentPregnancyWeek === null
+        ? 0
+        : allItems.filter(
+            (item) =>
+              item.recommendedWeek !== 0 &&
+              item.recommendedWeek === currentPregnancyWeek &&
+              !effectiveCheckedIds.includes(item.id)
+          ).length,
+    [allItems, currentPregnancyWeek, effectiveCheckedIds]
+  );
+
+  const recommendedViewSentRef = useRef(false);
+  useEffect(() => {
+    if (!hydrated) return;
+    if (recommendedViewSentRef.current) return;
+    if (currentPregnancyWeek === null) return;
+    if (recommendedViewCount === 0) return;
+    recommendedViewSentRef.current = true;
+    sendGAEvent("recommended_item_view", {
+      count: recommendedViewCount,
+      week: currentPregnancyWeek,
+      slug: meta.slug,
+    });
+  }, [hydrated, currentPregnancyWeek, recommendedViewCount, meta.slug]);
 
   const allDone = useMemo(
     () =>
@@ -133,14 +171,36 @@ export function ChecklistPage({ data, storeSlug, linkedArticles, linkedVideos }:
       if (migrationLostFlag) {
         clearMigrationLost();
       }
+      const noteType = classifyNote(item.note);
       sendGAEvent("checklist_check", {
         category: item.category,
         item_id: item.id,
         checked: willCheck,
         slug: meta.slug,
+        note_type: item.note ? noteType : null,
       });
+      if (
+        willCheck &&
+        currentPregnancyWeek !== null &&
+        item.recommendedWeek !== 0 &&
+        item.recommendedWeek === currentPregnancyWeek
+      ) {
+        sendGAEvent("recommended_item_check", {
+          item_id: item.id,
+          category: item.category,
+          week: currentPregnancyWeek,
+          slug: meta.slug,
+        });
+      }
     },
-    [effectiveCheckedIds, toggle, meta.slug, migrationLostFlag, clearMigrationLost]
+    [
+      effectiveCheckedIds,
+      toggle,
+      meta.slug,
+      migrationLostFlag,
+      clearMigrationLost,
+      currentPregnancyWeek,
+    ]
   );
 
   const startEdit = (item: ChecklistItem) => {
@@ -210,6 +270,7 @@ export function ChecklistPage({ data, storeSlug, linkedArticles, linkedVideos }:
                         key={item.id}
                         item={item}
                         isChecked={effectiveCheckedIds.includes(item.id)}
+                        isHighlighted={isHighlighted(item)}
                         isEditing={editingId === item.id}
                         editTitle={editTitle}
                         onToggle={() => handleToggle(item)}
