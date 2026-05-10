@@ -29,7 +29,7 @@ export function WeightChart({ data, baseWeight }: WeightChartProps) {
   const maxTarget = baseWeight ? baseWeight + 16 : undefined;
 
   return (
-    <Card className="rounded-2xl shadow-md mb-6 border border-black/4">
+    <Card className="rounded-2xl shadow-sm mb-6 border border-black/4">
       <CardContent className="p-4">
         <h3 className="mb-4">체중 추이</h3>
         <ResponsiveContainer width="100%" height={240}>

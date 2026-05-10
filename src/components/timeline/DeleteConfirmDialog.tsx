@@ -23,7 +23,7 @@ export function DeleteConfirmDialog({ onConfirm, iconSize = 16 }: DeleteConfirmD
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <button
-          className="p-2 rounded-lg text-muted-foreground hover:text-red-400 hover:bg-red-50 transition-colors"
+          className="p-2 rounded-lg text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors"
           aria-label="삭제"
         >
           <Trash2 size={iconSize} />
@@ -38,7 +38,7 @@ export function DeleteConfirmDialog({ onConfirm, iconSize = 16 }: DeleteConfirmD
           <AlertDialogCancel className="rounded-xl text-sm">취소</AlertDialogCancel>
           <AlertDialogAction
             onClick={onConfirm}
-            className="rounded-xl text-sm bg-red-500 hover:bg-red-600 text-white"
+            className="rounded-xl text-sm bg-destructive hover:bg-destructive/90 text-destructive-foreground"
           >
             삭제
           </AlertDialogAction>

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FileText } from "lucide-react";
+import { ChevronRight, FileText } from "lucide-react";
 import type { ArticleMeta } from "@/types/article";
 
 interface RelatedArticlesLinkProps {
@@ -22,9 +22,10 @@ export function RelatedArticlesLink({ articles }: RelatedArticlesLinkProps) {
           <Link
             key={article.slug}
             href={`/articles/${article.slug}`}
-            className="block text-sm text-accent-purple hover:text-accent-purple-hover hover:bg-pastel-lavender/10 rounded-lg px-2 py-1.5 -mx-2 transition-colors no-underline"
+            className="flex items-center gap-1 text-sm text-accent-purple hover:text-accent-purple-hover hover:bg-pastel-lavender/10 rounded-lg px-2 py-1.5 -mx-2 transition-colors no-underline"
           >
-            {article.title} →
+            <span className="flex-1 min-w-0">{article.title}</span>
+            <ChevronRight size={16} aria-hidden="true" className="shrink-0" />
           </Link>
         ))}
       </div>

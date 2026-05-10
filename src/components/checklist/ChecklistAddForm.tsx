@@ -51,7 +51,7 @@ export function ChecklistAddForm({ storeSlug, subcategories, onAdd, onClose }: C
   return (
     <Card className="rounded-2xl shadow-md mb-6 border border-pastel-lavender/30 bg-pastel-lavender/10">
       <CardContent className="p-5">
-        <h3 className="text-[15px] font-medium mb-4">새 항목 추가</h3>
+        <h3 className="mb-4">새 항목 추가</h3>
         <form onSubmit={handleSubmit} className="space-y-3">
           <div>
             <label className="block text-sm text-muted-foreground mb-1">분류</label>
@@ -69,7 +69,7 @@ export function ChecklistAddForm({ storeSlug, subcategories, onAdd, onClose }: C
 
           <div>
             <label className="block text-sm text-muted-foreground mb-1">
-              제목 <span className="text-red-400">*</span>
+              제목 <span className="text-destructive">*</span>
             </label>
             <input
               type="text"

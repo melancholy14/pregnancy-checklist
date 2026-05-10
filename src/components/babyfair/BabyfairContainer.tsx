@@ -198,7 +198,7 @@ export function BabyfairContainer({ events }: BabyfairContainerProps) {
         )}
 
         {/* Info Card */}
-        <Card className="mt-8 rounded-2xl shadow-md border border-black/4 bg-linear-to-r from-pastel-pink/40 to-pastel-lavender/40">
+        <Card className="mt-8 rounded-2xl shadow-sm border border-black/4 bg-linear-to-r from-pastel-pink/40 to-pastel-lavender/40">
           <CardContent className="p-6">
             <h3 className="mb-3">참관 팁</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">

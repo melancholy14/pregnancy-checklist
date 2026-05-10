@@ -202,8 +202,8 @@ export function WeekChecklistSection({
               )}
             </div>
             <Badge
-              className="text-xs px-2 py-0.5 rounded-md border-0 shrink-0 mt-0.5"
-              style={{ backgroundColor: `${catColor}40`, color: "#3D4447" }}
+              className="text-xs px-2 py-0.5 rounded-md border-0 shrink-0 mt-0.5 text-foreground"
+              style={{ backgroundColor: `${catColor}40` }}
             >
               {item.categoryName}
             </Badge>

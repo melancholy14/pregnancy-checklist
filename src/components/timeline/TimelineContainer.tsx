@@ -205,7 +205,7 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
   );
 
   return (
-    <div className="min-h-screen pb-24 px-4 bg-linear-to-b from-background to-white">
+    <div className="min-h-screen pb-24 px-4 bg-background">
       <div className="pt-8">
         <h1 className="mb-2 text-center">임신 타임라인</h1>
         <PageDescription>
@@ -227,7 +227,7 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
 
         {/* 현재 주차 카드 */}
         {hydrated && currentWeek !== null && (
-          <Card className="rounded-2xl shadow-md mb-4 border border-black/4">
+          <Card className="rounded-2xl shadow-sm mb-4 border border-black/4">
             <CardContent className="p-4 text-center">
               <span className="text-sm text-muted-foreground">현재</span>
               <div className="text-2xl mt-1">
@@ -239,7 +239,7 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
 
         {/* 전체 진행률 */}
         {hydrated && (
-          <Card className="rounded-2xl shadow-md mb-6 border border-black/4">
+          <Card className="rounded-2xl shadow-sm mb-6 border border-black/4">
             <CardContent className="p-4">
               <div className="flex justify-between items-center mb-2">
                 <span className="text-sm text-muted-foreground">전체 진행률</span>
@@ -353,9 +353,9 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
           <div className="mt-8">
             <div className="flex items-center gap-2 mb-3 pl-2">
               <span className="text-base">📦</span>
-              <h2 className="text-[15px] font-medium text-muted-foreground">기타 (주차 미지정)</h2>
+              <h2 className="text-muted-foreground">기타 (주차 미지정)</h2>
             </div>
-            <Card className="rounded-xl border border-black/4">
+            <Card className="rounded-2xl border border-black/4">
               <CardContent className="p-2">
                 <WeekChecklistSection
                   items={unassignedChecklist}

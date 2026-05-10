@@ -36,7 +36,7 @@ export function ArticleDetail({
           목록으로
         </Link>
 
-        <h1 className="text-xl mb-2">{article.title}</h1>
+        <h1 className="mb-2">{article.title}</h1>
         <p className="text-muted-foreground text-sm mb-4">
           {article.description}
         </p>
@@ -65,7 +65,7 @@ export function ArticleDetail({
           )}
         </span>
 
-        <div className="h-px bg-gradient-to-r from-transparent via-[#F0EBE6] to-transparent mb-4" />
+        <div className="h-px bg-gradient-to-r from-transparent via-black/5 to-transparent mb-4" />
 
         <div className="flex justify-end mb-6">
           <ShareButton

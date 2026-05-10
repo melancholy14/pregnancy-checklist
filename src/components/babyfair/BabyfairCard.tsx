@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { MapPin, Calendar } from "lucide-react";
-import { toast } from "sonner";
 import { sendGAEvent } from "@/lib/analytics";
 import { format, parseISO } from "date-fns";
 import { ko } from "date-fns/locale";
@@ -69,16 +68,8 @@ export function BabyfairCard({ event, daysLeft }: BabyfairCardProps) {
     if (hasUrl) setOpen(true);
   };
 
-  const handleConfirm = () => {
+  const handleConfirmClick = () => {
     sendGAEvent("outbound_click", { url: event.official_url, event_name: event.name });
-    const newWindow = window.open(event.official_url, "_blank");
-    if (newWindow) {
-      newWindow.opener = null;
-    } else {
-      toast("팝업이 차단되었습니다", {
-        description: "브라우저 설정에서 팝업을 허용해주세요",
-      });
-    }
     setOpen(false);
   };
 
@@ -205,11 +196,16 @@ export function BabyfairCard({ event, daysLeft }: BabyfairCardProps) {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel className="rounded-xl text-sm">취소</AlertDialogCancel>
-            <AlertDialogAction
-              onClick={handleConfirm}
-              className="rounded-xl text-sm bg-accent-purple hover:bg-accent-purple/90 text-white"
-            >
-              이동
+            <AlertDialogAction asChild>
+              <a
+                href={event.official_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={handleConfirmClick}
+                className="rounded-xl text-sm bg-accent-purple hover:bg-accent-purple/90 text-white inline-flex items-center justify-center px-4 py-2 transition-colors"
+              >
+                이동
+              </a>
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

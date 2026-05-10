@@ -82,7 +82,7 @@ export function TimelineAccordionCard({
         if (open) sendGAEvent("timeline_week_view", { week: item.week });
       }}>
         <Card
-          className={`rounded-xl shadow-sm transition-all border ${
+          className={`rounded-2xl shadow-sm transition-all border ${
             status === "current"
               ? "ring-2 ring-offset-2 border-black/4"
               : "border-black/4"
@@ -150,7 +150,7 @@ export function TimelineAccordionCard({
                           {TIMELINE_TYPE_CONFIG[item.type].label}
                         </Badge>
                       )}
-                      <h3 className="text-[15px] font-medium">{item.title}</h3>
+                      <h3>{item.title}</h3>
                       {item.isCustom && (
                         <Badge className="bg-pastel-lavender/40 text-accent-purple text-[10px] px-1.5 py-0 rounded border-0 hover:bg-pastel-lavender/40">
                           내 항목

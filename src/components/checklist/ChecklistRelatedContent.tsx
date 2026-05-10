@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Calendar, FileText, Play } from "lucide-react";
+import { Calendar, ChevronRight, FileText, Play } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import type { ArticleMeta } from "@/types/article";
 import type { VideoItem } from "@/types/video";
@@ -22,7 +22,7 @@ export function ChecklistRelatedContent({
   if (!hasAny) return null;
 
   return (
-    <Card className="rounded-2xl shadow-md mb-6 border border-black/4">
+    <Card className="rounded-2xl shadow-sm mb-6 border border-black/4">
       <CardContent className="p-4">
         <h2 className="text-sm font-medium mb-3">💡 관련 콘텐츠</h2>
 
@@ -37,9 +37,10 @@ export function ChecklistRelatedContent({
                 <Link
                   key={article.slug}
                   href={`/articles/${article.slug}`}
-                  className="block text-sm text-accent-purple hover:bg-pastel-lavender/10 rounded-lg px-2 py-1.5 -mx-2 transition-colors no-underline"
+                  className="flex items-center gap-1 text-sm text-accent-purple hover:bg-pastel-lavender/10 rounded-lg px-2 py-1.5 -mx-2 transition-colors no-underline"
                 >
-                  {article.title} →
+                  <span className="flex-1 min-w-0">{article.title}</span>
+                  <ChevronRight size={16} aria-hidden="true" className="shrink-0" />
                 </Link>
               ))}
             </div>
@@ -57,9 +58,10 @@ export function ChecklistRelatedContent({
                 <a
                   key={week}
                   href={`/timeline#timeline-week-${week}`}
-                  className="block text-sm text-accent-purple hover:bg-pastel-lavender/10 rounded-lg px-2 py-1.5 -mx-2 transition-colors no-underline"
+                  className="flex items-center gap-1 text-sm text-accent-purple hover:bg-pastel-lavender/10 rounded-lg px-2 py-1.5 -mx-2 transition-colors no-underline"
                 >
-                  {week}주차 보기 →
+                  <span className="flex-1 min-w-0">{week}주차 보기</span>
+                  <ChevronRight size={16} aria-hidden="true" className="shrink-0" />
                 </a>
               ))}
             </div>
@@ -77,9 +79,10 @@ export function ChecklistRelatedContent({
                 <a
                   key={video.id}
                   href={`/info?tab=videos#${video.id}`}
-                  className="block text-sm text-accent-purple hover:bg-pastel-lavender/10 rounded-lg px-2 py-1.5 -mx-2 transition-colors no-underline"
+                  className="flex items-center gap-1 text-sm text-accent-purple hover:bg-pastel-lavender/10 rounded-lg px-2 py-1.5 -mx-2 transition-colors no-underline"
                 >
-                  {video.title} →
+                  <span className="flex-1 min-w-0">{video.title}</span>
+                  <ChevronRight size={16} aria-hidden="true" className="shrink-0" />
                 </a>
               ))}
             </div>

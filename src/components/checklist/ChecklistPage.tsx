@@ -244,7 +244,7 @@ export function ChecklistPage({ data, storeSlug, linkedArticles, linkedVideos }:
   };
 
   return (
-    <div className="min-h-screen pb-24 px-4 bg-linear-to-b from-background to-white">
+    <div className="min-h-screen pb-24 px-4 bg-background">
       <div className="pt-8">
         <h1 className="mb-2 text-center">
           <span className="mr-1.5">{meta.icon}</span>
@@ -309,12 +309,12 @@ export function ChecklistPage({ data, storeSlug, linkedArticles, linkedVideos }:
             return (
               <section key={sub.key}>
                 <div className="flex items-center justify-between mb-3 pl-2">
-                  <h2 className="text-[15px] font-medium">{sub.label}</h2>
+                  <h2>{sub.label}</h2>
                   <span className="text-xs tabular-nums text-muted-foreground">
                     {subChecked}/{subItems.length}
                   </span>
                 </div>
-                <Card className="rounded-xl border border-black/4">
+                <Card className="rounded-2xl border border-black/4">
                   <CardContent className="p-2 space-y-1">
                     {subVisibleItems.map((item) => (
                       <ChecklistItemRow
