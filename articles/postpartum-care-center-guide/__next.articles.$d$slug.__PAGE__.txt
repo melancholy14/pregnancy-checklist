@@ -1,0 +1,179 @@
+1:"$Sreact.fragment"
+2:I[93406,["/_next/static/chunks/0q2gpmw4um7p_.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/060cea59jrhus.js","/_next/static/chunks/05cjgv7yz0q8o.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/18587cyb82jfd.js","/_next/static/chunks/049-2mdzeepb7.js"],"ArticleDetail"]
+6:I[97367,["/_next/static/chunks/0q2gpmw4um7p_.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/060cea59jrhus.js","/_next/static/chunks/05cjgv7yz0q8o.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/18587cyb82jfd.js"],"OutletBoundary"]
+7:"$Sreact.suspense"
+3:T4d6e,<h1>산후조리원 어떻게 고르지? 비교 기준 7가지와 임신 주차별 예약 캘린더</h1>
+<p>임신 12주 넘어가면 갑자기 카톡방마다 "조리원 예약했어?" 하는 질문이 떠다니기 시작해요. 솔직히 말하면 저도 처음엔 "아직 출산까지 한참 남았는데?" 싶었는데, 막상 알아보니 인기 있는 곳은 이미 다음 시즌까지 줄을 서 있더라고요. 게다가 비교 기준이 너무 많아서 뭘 봐야 할지 막막한 분도 많을 거예요.</p>
+<p>이 글은 산후조리원을 고를 때 진짜 봐야 할 7가지 기준과, 임신 주차별로 언제 무엇을 해야 하는지 정리한 캘린더를 담았어요. 비용은 2025년 하반기 보건복지부 공개 자료 기준으로 채웠고, 서울 거주자라면 받을 수 있는 산후조리경비 지원 정보도 함께 정리했어요.</p>
+<p>저는 동네 의원에서 임신확인서를 받은 뒤 큰 산부인과로 옮기면서, 그 병원과 연계된 산후조리원을 같이 예약했어요. 이때가 12주차였어요. 산부인과를 옮기기 전부터 여러 조리원을 검색해봤는데, 저한테 가장 중요했던 건 병원·집과의 거리, 그리고 남편이 조리원에서 직장까지 출퇴근할 수 있는지였어요. 예약을 위해 투어 갔을 때는 어떤 시설이 있는지, 모자동실 운영 방식이 어떤지, 아기는 언제 볼 수 있는지 등을 질문했어요.</p>
+<h2>산후조리원, 가야 할까 — 기간·예산 정리부터</h2>
+<p>가야 하는지부터 마음을 못 정한 분도 많을 거예요. 우리나라에서는 보통 출산 후 1주, 2주, 3주 중에 고르는데 평균은 2주예요. 비용은 2025년 하반기 기준 전국 일반실 평균 <strong>372만원</strong>, 특실 평균 <strong>543만원</strong>이에요 [매일신문, 2026.03.14 보도].</p>
+<p>가야 할지 정하는 기준은 세 가지예요.</p>
+<ul>
+<li><strong>산후 도움 줄 가족이 있는지</strong>: 친정·시댁 도움이 어려우면 조리원 효용이 커져요.</li>
+<li><strong>산모 회복 상태</strong>: 첫 출산이거나 제왕절개라면 회복에 시간이 더 필요해요.</li>
+<li><strong>신생아 케어 자신감</strong>: 첫째 출산이면 케어 자신감이 낮아 케어 인력이 도움이 돼요.</li>
+</ul>
+<p>첫째 출산이고 가족 도움이 어려운 상황이라면 2주 정도 조리원에서 케어 받는 쪽이 회복에 유리할 수 있어요.</p>
+<h2>비교 기준 7가지 — 시설만큼 사람을 봐야 하는 이유</h2>
+<p>투어 가면 다들 비슷해 보여요. 깔끔한 로비, 예쁜 인테리어, 친절한 안내. 그래도 같은 가격대에서 만족도가 갈리는 큰 변수는 인테리어보다 간호 인력 쪽인 경우가 많아요 [비행테라스, 「산후조리원 선택 기준 7가지」, 2025].</p>
+<p>가장 결정적인 1번 기준부터 자세히 볼게요.</p>
+<h3>1. 신생아실 간호사 1인당 아기 비율</h3>
+<p>신생아실에서 간호사 한 명이 동시에 돌보는 아기 수예요. 조리원 입장에선 인건비라 줄이고 싶어 하는 항목이지만, 산모·아기 입장에선 이 숫자가 케어 품질에 큰 영향을 주는 변수예요.</p>
+<p>이 비율이 높으면 수유 텀이 밀리고, 트림이나 기저귀 갈이가 누락되거나, 아기가 울어도 바로 대응이 어려워져요. 신생아실 집단 감염은 인력 수준 하나로 결정되지는 않고 위생 시스템·출입 동선·손위생 준수 같은 여러 요인이 함께 작동하지만, <strong>인력 부족은 그중 알려진 위험요인 중 하나</strong>예요 [질병관리청, 의료감염관리 지침 가이드맵, 2026]. 모유수유 지원도 간호사가 시간이 있어야 가능한 영역이라 인력 비율이 케어 품질에 크게 작용해요.</p>
+<p>법정 기준은 <strong>간호사 1명당 영유아 7명</strong>이에요. 모자보건법 시행규칙 별표 3에 "해당 산후조리원의 전년도 1일 평균 입원 영유아 수를 7로 나눈 수의 간호사를 두되, 소수점은 올려서 산정한다"고 박혀 있거든요 [모자보건법 시행규칙 별표 3]. 그리고 산정된 <strong>간호사 정원의 30% 범위 내에서만 간호조무사로 대체</strong>할 수 있어요. 즉 정원 10명이면 최소 7명은 무조건 간호사고, 나머지 3명까지만 간호조무사로 채울 수 있다는 뜻이에요. 별도로 <strong>간호조무사는 영유아 2.5명당 1명</strong>을 추가로 둬야 하고요(이쪽은 간호사로 대체 가능). 1:8 이상이면 법정 기준 미달에 해당해서 신중히 보시는 게 좋아요.</p>
+<p>투어 갈 때 <strong>"지금 이 시간대 신생아실에 간호사 몇 분, 간호조무사 몇 분 계시고, 입원 아기는 몇 명인가요?"</strong> 라고 직접 물어보세요. 답을 명확히 해주지 못하거나 얼버무리면 그 부분도 판단 기준에 넣어 보시면 도움이 돼요. 인력 비율 외에 신생아 안전 관점에서 함께 확인하면 좋은 항목도 있어요.</p>
+<ul>
+<li>신생아 응급 시(호흡 곤란·청색증·체온 저하) 대응 절차와 가까운 NICU 이송 협약 여부</li>
+<li>황달 모니터링(경피 빌리루빈 측정 또는 정기 체크) 운영 방식</li>
+<li>수유량·체중·소변·대변 일일 기록 여부</li>
+<li>24시간 의료진 호출 체계</li>
+</ul>
+<p>산후조리원은 의료기관이 아닌 일반 시설이라 응급 대응 절차가 시설별 차이가 큰 편이에요. 미리 확인해두면 안전 측면에서 차이가 커요.</p>
+<h3>2~7. 나머지 6가지 비교 기준</h3>
+<p>이 항목들은 투어 한 번으로 다 체크하기 어려우니 비교표를 만들어서 후보 3~4곳을 같은 기준으로 점수 매기는 걸 추천드려요.</p>
+<ul>
+<li><strong>위생 시스템</strong>: 출입 통제(보호자 1인 한정·면회 시간 제한), 손 소독제 위치, 체온 측정. 신생아실 출입 동선이 다른 구역과 분리됐는지 봐야 해요.</li>
+<li><strong>모유수유 지원</strong>: IBCLC(국제수유상담사) 또는 수유간호사 상주 여부와 자격(IBCLC가 가장 권위 있는 국제 자격), 유축기 종류(병원급 듀얼펌프 1대 이상 권장)와 대수, 직수 시도 빈도(매 수유 vs 요청 시), 수유 신호 기반 운영 여부(아기가 신호 보낼 때 바로 데려가는지, 정해진 시간에만 데려가는지), 야간 수유 합방 가능 여부(완모 산모에게 결정적).</li>
+<li><strong>산모식</strong>: 단백질·철분 비중, 외부 반입 가능 여부, 회복식과 일반식 구분. 2주 동안 먹을 거라 이게 은근히 중요해요.</li>
+<li><strong>산모 회복 프로그램</strong>: 산후 마사지 횟수, 좌욕 시설, 골반 케어, 수면 보장 시간.</li>
+<li><strong>위치</strong>: 분만 병원과의 거리(이송 시간), 집과의 거리(남편 출퇴근), 응급 상황 시 가까운 종합병원 접근성.</li>
+<li><strong>환불·취소 규정</strong>: 예약금 30~50만원이 보통인데 조기 진통·조기 분만 시 환불 조항이 천차만별이에요. 계약서 작성 전에 무조건 정독하세요.</li>
+</ul>
+<h2>평균 비용과 지역별 가격 차이 + 서울형 산후조리경비</h2>
+<p>비용 차이가 진짜로 커요. 같은 서울이라도 강남이냐 아니냐로 두세 배 차이가 나거든요.</p>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>일반실 평균</th>
+<th>특실 평균</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>전국 (2025년 하반기)</td>
+<td>372만원</td>
+<td>543만원</td>
+<td>보건복지부 공개, 460·358개소</td>
+</tr>
+<tr>
+<td>수도권 (경기·인천)</td>
+<td>250~500만원 (범위)</td>
+<td>700만원~</td>
+<td>시설별 편차 큼</td>
+</tr>
+<tr>
+<td>서울</td>
+<td>505만원</td>
+<td>810만원</td>
+<td>특실 94개소 평균, 전년 +39만원</td>
+</tr>
+</tbody>
+</table>
+<p>전국 수치는 [매일신문, 2026.03.14 보도], 서울 수치는 [뉴시스, 2026.03.12 보도] 기준이고, 수도권(경기·인천) 범위는 시설별 공시 가격을 종합한 추정치라 시설별 편차가 큰 점은 감안하세요. 참고로 <strong>강남 특실은 평균 1,732만원</strong>으로 예외적인 고가대고, 일부 시설은 5,000만원을 넘기도 해요 [뉴시스, 2026.03.12]. 예약금은 보통 30~50만원이고, 환불 조건은 시설별로 천차만별이라 계약서를 꼭 정독해야 해요.</p>
+<p>다행히 서울 거주자라면 받을 수 있는 지원이 있어요. <strong>2026년 서울형 산후조리경비</strong>는 자녀 수에 따라 차등 지원돼요(2026년 5월 기준).</p>
+<ul>
+<li><strong>첫째</strong>: 100만원</li>
+<li><strong>둘째</strong>: 120만원</li>
+<li><strong>셋째 이상</strong>: 150만원</li>
+</ul>
+<p><strong>별도 소득 기준이나 거주 기간 요건은 없어요.</strong> 서울 거주 산모라면 누구나 신청 가능하고, <strong>첫만남이용권·부모급여·영아수당 등 다른 정부 출산 지원과 중복 수급이 가능</strong>해요. 출산 후 <strong>180일 이내</strong>에 신청해야 하고(2026년 3월 30일 시행), 신청은 <strong>몽땅정보통(umppa.seoul.go.kr)</strong> 온라인 또는 거주지 동주민센터 방문으로 가능해요. 정책 일반 안내는 서울시 임신·출산 정보센터(seoul-agi.seoul.go.kr)에서 따로 볼 수 있어요 [서울시 임신·출산 정보센터, 2026].</p>
+<p>지급은 <strong>협약카드사 5개사(신한·삼성·KB국민·우리·BC) 중 한 곳의 산모 본인 명의 신용 또는 체크카드</strong>에 바우처 포인트로 적립되는 방식이에요. 신한카드는 <strong>국민행복카드</strong> 형태로만 신청 가능하고, BC카드는 IBK기업은행·신협·새마을금고·우체국·NH농협의 BC국민행복카드를 포함해요. 사용처는 산후조리원, 산모·신생아 건강관리(산모도우미), 의약품, 한약 등으로 비교적 폭넓고, 일반 식료품·비의료적 비용 등은 사용 불가 영역이에요(상세 카테고리표는 공식 안내 참조).</p>
+<p>서울 외 지역 거주자라면 <strong>정부24(<a href="http://www.gov.kr">www.gov.kr</a>)</strong> 또는 <strong>복지로(<a href="http://www.bokjiro.go.kr">www.bokjiro.go.kr</a>)</strong> 에서 "산후조리 지원"을 검색하시고, 거주지 보건소 모자보건사업 페이지도 함께 확인하세요. 지자체별 편차가 커서 경기·인천·광역시 단위로 별도 지원금이 운영되는 경우가 많아요.</p>
+<h2>임신 주차별 예약 캘린더 — 8주에 시작해서 잔금까지</h2>
+<p>여기가 이 글에서 제일 실용적인 부분이에요. "예약 일찍 하세요"는 누구나 하는 말인데, 정확히 언제 뭘 하라는 건지 정리한 글은 거의 없거든요.</p>
+<p>이 캘린더는 임신 주차별로 해야 할 일을 정한 행동표예요. 왜 필요하냐면, 인기 조리원은 임신 16주가 넘어가면 1순위 자리는 거의 마감이에요. 그 이후엔 후순위 대기 또는 차선책으로 밀려나는 구조예요. 8주에 시장조사 시작 → 12주에 투어 → 16주 전 예약 확정 → 28주에 잔금·재방문이 일반적인 흐름이에요 [비행테라스, 「산후조리원 선택 기준 7가지」, 2025].</p>
+<p>지금 본인 주차가 어디인지 보고 다음 한 가지를 이번 주 안에 잡으세요.</p>
+<table>
+<thead>
+<tr>
+<th>주차</th>
+<th>할 일</th>
+<th>핵심 포인트</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8~10주</td>
+<td>후보 5~7곳 리스트업</td>
+<td>지역·가격대·후기 기준</td>
+</tr>
+<tr>
+<td>11~13주</td>
+<td>상위 3~4곳 투어 예약</td>
+<td>방문 1~2주 전 컨택</td>
+</tr>
+<tr>
+<td>14~16주</td>
+<td><strong>1순위 예약금 입금</strong></td>
+<td>16주가 마지노선</td>
+</tr>
+<tr>
+<td>17~24주</td>
+<td>계약서 정독, 환불 조항 사진 저장</td>
+<td>의학적 사유 환불 조항 확인</td>
+</tr>
+<tr>
+<td>25~30주</td>
+<td>잔금 일정 확인, 짐 리스트 시작</td>
+<td>잔금 분할 가능 여부 체크</td>
+</tr>
+<tr>
+<td>31~36주</td>
+<td>투어 한 번 더, 짐 패킹</td>
+<td>인력·동선 변동 재확인</td>
+</tr>
+<tr>
+<td>37주~</td>
+<td>입소 안내 수령</td>
+<td>분만 병원과 이송 동선 점검</td>
+</tr>
+</tbody>
+</table>
+<p>16주 넘었다고 해서 늦은 건 아니에요. 1순위가 아닌 2~3순위로 시작한다고 보면 돼요. 대기 풀린다는 연락도 종종 와요. 다만 후순위 대기는 입소 시점이 유동적이라 짐·일정 계획에 여유를 더 둬야 해요.</p>
+<h2>모자동실·신생아실·가족실, 내 상황에 맞는 선택</h2>
+<p>조리원 들어가서 아기를 어디서 케어할지도 결정해야 해요. 셋 중에서 골라야 하는데, 답은 본인 상황마다 달라요.</p>
+<ul>
+<li><strong>모자동실</strong>: 산모 침대 옆에 아기 침대를 두고 24시간 함께 있는 방식. 모유수유 의지가 있다면 신호 기반 수유에 유리해서 정착이 빠르고, 분유·혼합 수유라도 모아애착·집단 감염 감소 효과는 동일하게 적용돼요 [WHO/UNICEF Baby-Friendly Hospital Initiative Step 7; ABM Clinical Protocol #7 (2018); Jaafar et al., Cochrane 2016]. 다만 산모 수면이 거의 끊겨서 회복 속도가 느려져요. 산모가 졸리거나 진통제·수면제를 복용한 시간에는 아기를 산모 침대에 함께 두지 말고 별도 아기 침대로 옮겨 등을 대고 재우고, 침구·인형 같은 질식 위험 물품은 멀리 두는 게 안전해요 [AAP Safe Sleep Recommendations].</li>
+<li><strong>신생아실</strong>: 평소엔 분리해서 케어하고 수유 시간에만 데려오는 방식. 산모 회복이 가장 빠르고, 출산 직후 체력이 바닥인 분들에게 잘 맞아요.</li>
+<li><strong>가족실</strong>: 첫째나 남편이 자유롭게 왕래할 수 있는 방식. 첫째가 분리 불안 있는 가정에서 선택해요.</li>
+</ul>
+<p>결정 변수는 회복 우선순위, 모유수유 의지, 가족 동반 필요성 세 가지예요. <strong>모유든 분유든 산모와 아기에게 맞는 방식이 최선</strong>이라는 전제에서 — 완모 의지가 강한 산모는 모자동실(rooming-in)이 모유 정착에 유리하고(WHO/ABM 권고), 회복이 우선이거나 분유·혼합 수유 계획이라면 신생아실 + 수유 시간 합방이 적합해요. 어느 쪽이든 투어 때 <strong>"수유 신호가 있을 때 즉시 합방 가능한가요?"</strong>, <strong>"산모가 부담될 때 즉시 신생아실로 보낼 수 있는 유연 시스템인가요?"</strong> — 두 질문을 명시적으로 물어보세요.</p>
+<h2>자주 묻는 질문 (FAQ)</h2>
+<p><strong>Q. 산후조리원 예약은 임신 몇 주차에 해야 하나요?</strong></p>
+<p>A. 인기 조리원 기준 임신 8~12주차에 시장조사를 시작해서 16주 전에 예약 확정하는 흐름이 안전해요. 그 이후엔 1순위 자리가 마감되고 후순위 대기로 시작해야 해요 [비행테라스, 2025]. 비인기 시즌(7~8월 출산 예정)은 좀 더 여유 있는 편이에요.</p>
+<p><strong>Q. 예약금 걸었는데 취소하면 환불 받을 수 있나요?</strong></p>
+<p>A. 예약금은 보통 30~50만원이고 환불 규정은 조리원마다 천차만별이에요. 조기 진통·조기 분만·유산 등 의학적 사유에 한해 전액 환불해주는 곳도 있고, 입소 30일 전 기준으로 차등 환불하는 곳도 있어요. 계약서 작성 전에 환불 조항 부분을 사진으로 저장해두세요.</p>
+<p><strong>Q. 모자동실 vs 신생아실, 첫째 출산이라면 뭐가 좋을까요?</strong></p>
+<p>A. 정답은 없는데, 첫째 출산은 산모가 회복도 어렵고 신생아 케어 자신감도 낮은 시기라 "기본 신생아실 + 원할 때 모자동실 전환" 옵션이 있는 곳을 추천드려요.</p>
+<p><strong>Q. 서울형 산후조리경비 100만원은 어떻게 받나요?</strong></p>
+<p>A. 출산 후 180일 이내에 <strong>몽땅정보통(umppa.seoul.go.kr)</strong> 또는 거주지 동주민센터에서 신청하면 협약카드사 5개사(신한·삼성·KB국민·우리·BC) 중 한 곳의 산모 본인 명의 신용 또는 체크카드에 바우처 포인트로 지급돼요. 자녀 수에 따라 100만/120만/150만으로 차등되고(2026년 5월 기준), 별도 소득 기준이나 거주 기간 요건 없이 서울 거주 산모면 누구나 신청 가능하며, 첫만남이용권·부모급여 등 다른 정부 지원과 중복 수급도 가능해요 [서울시 임신·출산 정보센터, 2026].</p>
+<h2>마무리 — 핵심 3줄 요약</h2>
+<ol>
+<li><strong>시설만큼 인력이 중요해요.</strong> 신생아실 간호사 1인당 아기 비율을 투어 때 직접 물어보세요.</li>
+<li><strong>임신 16주 전에 1순위 예약 확정하는 게 안전해요.</strong> 8주부터 시장조사 시작.</li>
+<li><strong>비용·정책은 매년 변해요.</strong> 예약 직전에 거주지 보건소·시설 공식 자료를 다시 확인하세요.</li>
+</ol>
+<h2>참고 자료</h2>
+<ul>
+<li><a href="https://www.imaeil.com/page/view/2026031419140703819">매일신문, 「산후조리원 평균 372만원 시대」 (2026)</a></li>
+<li><a href="https://www.newsis.com/view/NISX20260312_0003546373">뉴시스, 「서울 산후조리원 특실 평균 810만, 강남 1,732만」 (2026)</a></li>
+<li><a href="https://seoul-agi.seoul.go.kr/postpartum-care">서울시 임신·출산 정보센터, 「서울형 산후조리경비 지원」 (2026)</a></li>
+<li><a href="https://umppa.seoul.go.kr/">몽땅정보통(서울시), 산후조리경비 신청</a></li>
+<li><a href="https://health.gangnam.go.kr/web/business/moja/sub04.do">강남구보건소, 「서울시 산모 산후조리경비 지원사업」 (2026)</a></li>
+<li><a href="https://www.gov.kr/">정부24, 출산·육아 통합 지원 안내</a></li>
+<li><a href="https://www.bokjiro.go.kr/">복지로, 산후조리 지원 검색</a></li>
+<li><a href="https://www.law.go.kr/LSW/lsBylInfoPLinkR.do?bylBrNo=00&#x26;lsNm=%EB%AA%A8%EC%9E%90%EB%B3%B4%EA%B1%B4%EB%B2%95+%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99&#x26;bylCls=BE&#x26;bylNo=0003">국가법령정보센터, 「모자보건법 시행규칙」 별표 3 — 산후조리원의 인력 및 시설기준</a></li>
+<li><a href="https://www.who.int/publications/i/item/9789241513807">WHO/UNICEF, Implementation Guidance: Protecting, promoting and supporting breastfeeding in facilities providing maternity and newborn services — the revised Baby-Friendly Hospital Initiative (2018)</a></li>
+<li><a href="https://www.bfmed.org/protocols">Academy of Breastfeeding Medicine, Clinical Protocol #7: Model Maternity Policy Supportive of Breastfeeding (2018)</a></li>
+<li><a href="https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD006641.pub3/full">Jaafar SH, Ho JJ, Lee KS. Rooming-in for new mother and infant versus separate care for increasing the duration of breastfeeding. Cochrane Database Syst Rev. 2016;(8):CD006641</a></li>
+<li><a href="https://www.aap.org/en/patient-care/safe-sleep/">American Academy of Pediatrics, Safe Sleep and the Baby-Friendly Hospital</a></li>
+<li><a href="https://www.kdca.go.kr/kdca/2847/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGa2RjYSUyRjQxJTJGMzEwNDcxJTJGYXJ0Y2xWaWV3LmRvJTNG">질병관리청, 「의료감염관리 지침·안내서 가이드맵 안내」 (2026)</a></li>
+<li><a href="https://baby.tali.kr/postpartum-care-center-guide">비행테라스, 「산후조리원 선택 기준 7가지, 가격대별 비교와 체크리스트」 (2025)</a></li>
+</ul>
+<hr>0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"Article\",\"headline\":\"산후조리원 어떻게 고르지? 비교 기준 7가지와 임신 주차별 예약 캘린더\",\"description\":\"산후조리원 어떻게 고르지 막막하셨죠? 간호사 1인당 아기 비율 등 비교 기준 7가지, 임신 8주부터 잔금까지 주차별 예약 캘린더, 전국 평균 372만원·서울 특실 810만원 가격 정보, 2026년 서울형 산후조리경비 100만원 신청 방법까지 정리했어요.\",\"url\":\"https://pregnancy-checklist.com/articles/postpartum-care-center-guide\",\"datePublished\":\"2026-05-09\",\"author\":{\"@type\":\"Person\",\"name\":\"뿌까뽀까\",\"url\":\"https://pregnancy-checklist.com/about\"},\"publisher\":{\"@type\":\"Person\",\"name\":\"뿌까뽀까\",\"url\":\"https://pregnancy-checklist.com/about\"},\"inLanguage\":\"ko-KR\"}"}}],["$","$L2",null,{"article":{"title":"산후조리원 어떻게 고르지? 비교 기준 7가지와 임신 주차별 예약 캘린더","description":"산후조리원 어떻게 고르지 막막하셨죠? 간호사 1인당 아기 비율 등 비교 기준 7가지, 임신 8주부터 잔금까지 주차별 예약 캘린더, 전국 평균 372만원·서울 특실 810만원 가격 정보, 2026년 서울형 산후조리경비 100만원 신청 방법까지 정리했어요.","slug":"postpartum-care-center-guide","tags":["산후조리원","산후조리원선택","산후조리원예약","산후조리경비","출산준비"],"date":"2026-05-09","linked_timeline_weeks":[10,14,16],"authorNote":"산후조리원 알아보다 보니 어떤 글은 시설을 강조하고, 어떤 글은 가격을 강조하더라고요. 정작 '언제 뭘 해야 하는지'를 주차별로 정리해 둔 글이 없어서 직접 정리했어요.","canonical":"https://pregnancy-checklist.com/articles/postpartum-care-center-guide","content":"$3","disclaimer":"이 글은 2026년 5월 기준 산후조리원 가격·운영 정책·정부 지원 정보를 운영자가 직접 정리한 일반 정보예요. 의료·간호 전문가의 별도 검수를 거치지 않았으니 결정에 앞서 공식 자료와 전문가 상담을 함께 활용해 주세요. 가격·환불 조항·지원 금액은 시설과 정책 개편에 따라 달라질 수 있으니 예약·잔금 입금 전 시설과 거주지 보건소에서 최신 정보를 직접 확인하세요. 산후 회복·신생아 건강 관련 의문은 산부인과·소아청소년과 전문의와 상담하시기 바랍니다."},"relatedArticles":[{"title":"임신 주차별 검사 & 준비 총정리 — 수치 해석부터 놓쳤을 때 대처법까지","description":"임신 초기부터 출산까지 주차별 필수 검사와 준비 사항을 총정리했어요. NT 초음파 정상 수치와 이상 시 다음 단계, 임신성 당뇨 50g·75g·100g 검사 수치 기준과 대응법, 국민행복카드 발급 시기, GBS 검사까지 산모가 놓치기 쉬운 핵심 항목을 한눈에 확인하세요.","slug":"weekly-prenatal-checklist","tags":["임신초기","산전검사","주차별","출산준비","기형아검사","임신성당뇨"],"date":"2026-04-13","linked_timeline_weeks":[7,9,10,11,36],"authorNote":"임신 준비하면서 헷갈렸던 내용 정리할 겸 기억 안 날때마다 보려고 정리했습니다.","canonical":"https://pregnancy-checklist.com/articles/weekly-prenatal-checklist"},{"title":"운동 안 하던 임산부도 안전하게 시작하는 4주 플랜 — 강도, 시기, 중단 신호까지","description":"임산부 운동, 어디서부터 시작해야 할지 막막하다면. 운동 안 하던 분도 따라 할 4주 점진 시작 플랜으로 주 150분 도달, 대화 가능 테스트로 강도 자가 측정, 의사에게 꼭 물어야 할 5가지 질문, 시기별 주의·즉시 중단 신호까지 ACOG·JKMA 권고에 맞춰 행동 가능한 형태로 정리했어요.","slug":"pregnancy-exercise-starter-guide","tags":["임산부운동","임산부운동가이드","산전운동","임산부필라테스","임산부"],"date":"2026-05-05","linked_timeline_weeks":[12,16,28],"authorNote":"임신하고 나서 '운동해라' 정보는 넘치는데 '오늘 뭘 어떻게 시작하라'는 정보는 없더라고요. 권장 수치만 던지지 않고, 의사 면담 질문 5가지·4주 점진 플랜·대화 가능 테스트까지 행동 가능한 형태로 정리했어요.","canonical":"https://pregnancy-checklist.com/articles/pregnancy-exercise-starter-guide"},{"title":"임산부 영양제 가이드: 엽산·철분·오메가3 주차별 복용 타임라인","description":"임신 주차별로 엽산·철분·오메가3를 언제 시작하고 끊어야 하는지, 권장량과 충돌 회피 시간대 스케줄까지 한 글에 정리했어요. 엽산 1일 620㎍·12주까지, 철분 16주부터 24mg, 오메가3 14주 이후 DHA 200mg과 출산 2주 전 EPA 점검 기준을 근거와 함께 풀어드립니다.","slug":"pregnancy-supplements-by-week","tags":["임신영양제","엽산","철분","오메가3","임산부"],"date":"2026-05-03","linked_timeline_weeks":[4,12,16],"authorNote":"인터넷에서 임산부 영양제로 검색하고 나서도 한참 헤맸어요. 글마다 권장량과 시작 시기가 조금씩 달라서 GPT로도 검색하며 정리해봤지만, 글 하나로 한눈에 보고 싶었던 정보를 모아봤어요.","canonical":"https://pregnancy-checklist.com/articles/pregnancy-supplements-by-week"}],"relatedChecklists":[],"relatedVideos":[{"id":"video_016","title":"분만장에서 만나는 초보 아빠의 나쁜 예","youtube_id":"yO7bSb1xmz0","category":"birth_prep","categoryName":"출산 준비","subcategory":"partner_preparation","subcategoryName":"배우자 준비","description":"출산 시 배우자의 역할과 주의사항.","channel_id":"channel_013","upload_date":"2024-09-06","is_short":true},{"id":"video_018","title":"👶🏻출산용품 아기용품 준비 리스트 | 예산 절반으로 줄여주는 실제 사용후기 썰 | 구글 시트 공유","youtube_id":"UT51exMarzw","category":"birth_prep","categoryName":"출산 준비","subcategory":"checklist","subcategoryName":"출산 준비 체크리스트","description":"출산 전 필수 준비물과 예산 절약 팁.","channel_id":"channel_023","upload_date":"2024-06-25","is_short":false},{"id":"video_012","title":"산부인과의사가 자연분만을 권하는 진짜 이유","youtube_id":"XlLnuDmlo7U","category":"birth_prep","categoryName":"출산 준비","subcategory":"labor_process","subcategoryName":"분만 과정","description":"산부인과 의사가 설명하는 자연분만의 장점.","channel_id":"channel_009","upload_date":"2024-03-14","is_short":true}]}]],["$L4"],"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"LP-bOh_S908JYQXKJjlSZ"}
+4:["$","script","script-0",{"src":"/_next/static/chunks/049-2mdzeepb7.js","async":true}]
+5:["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]
+8:null
