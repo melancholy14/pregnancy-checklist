@@ -19,16 +19,16 @@ async function gotoHomeOnboarded(page: import("@playwright/test").Page) {
 
 test.describe("design-bundle-g-pastel-remap (5-pastel role 정합 회복)", () => {
   test.describe("Happy Path", () => {
-    test("홈 정보 & 가이드 미니카드 아이콘 배경이 pastel-lavender(#E4D6F0)이다", async ({ page }) => {
-      // 무엇을: HomeContent.tsx:355 의 color prop 변경이 DashboardCard 아이콘 div 배경에 반영되는지
-      // 왜: spec must 1번 — Cross-1 처리 핵심 검증
+    test("홈 정보 & 가이드 미니카드 아이콘이 pastel-lavender 클래스를 갖는다", async ({ page }) => {
+      // 무엇을: HomeContent.tsx 의 slot="info" prop 이 DashboardCard 아이콘 div 에 lavender/40 클래스로 반영
+      // 왜: spec must 1번 — design-bundle-b-i-row-tokens 라운드 이후 인라인 style → className 전환된 신 컨트랙트
       await gotoHomeOnboarded(page);
 
-      const infoCard = page.locator('a[href="/info"]').first();
+      const infoCard = page.locator('a[href="/info"]', { hasText: "📝" }).first();
       await expect(infoCard).toBeVisible();
 
-      const iconBox = infoCard.locator('div[style*="background-color"]').first();
-      await expect(iconBox).toHaveCSS("background-color", LAVENDER_RGB);
+      const iconBox = infoCard.locator("div.w-8.h-8.rounded-lg").first();
+      await expect(iconBox).toHaveClass(/bg-pastel-lavender\/40/);
     });
 
     test("타임라인 '행정' 배지 배경이 pastel-peach(#FFE0CC, alpha 0.25)이다", async ({ page }) => {
@@ -41,16 +41,16 @@ test.describe("design-bundle-g-pastel-remap (5-pastel role 정합 회복)", () =
       await expect(adminBadge).toHaveCSS("background-color", PEACH_25PCT_RGBA);
     });
 
-    test("베이비페어 '소형' 배지 배경이 pastel-lavender(#E4D6F0)이다", async ({ page }) => {
-      // 무엇을: SCALE_CONFIG.small.color 변경이 BabyfairCard 소형 Badge 배경에 반영되는지
-      // 왜: spec must 3번 — 베이비페어 규모 배지 lavender 매핑 검증
+    test("베이비페어 '소형' 배지가 pastel-lavender 클래스를 갖는다", async ({ page }) => {
+      // 무엇을: BabyfairCard 소형 Badge 가 getScaleTokenClass("small") 결과로 lavender/40 클래스 적용
+      // 왜: spec must 3번 — design-bundle-b-i-row-tokens 라운드 이후 신 컨트랙트
       // 데이터상 small-scale 행사(2026-04-02~04-05)는 5월 9일 기준 '지난 행사' 탭
       await page.goto("/baby-fair");
       await page.getByRole("tab", { name: "지난 행사" }).click();
 
       const smallBadge = page.locator('[data-slot="badge"]:has-text("소형")').first();
       await expect(smallBadge).toBeVisible();
-      await expect(smallBadge).toHaveCSS("background-color", LAVENDER_RGB);
+      await expect(smallBadge).toHaveClass(/bg-pastel-lavender\/40/);
     });
   });
 
@@ -97,20 +97,20 @@ test.describe("design-bundle-g-pastel-remap (5-pastel role 정합 회복)", () =
   test.describe("반응형 (Mobile 375px)", () => {
     test.use({ viewport: { width: 375, height: 812 } });
 
-    test("모바일에서도 홈 정보 카드와 베이비페어 소형 배지에 lavender 색이 유지된다", async ({ page }) => {
-      // 무엇을: 375px viewport에서도 새 색이 동일하게 적용되는지
+    test("모바일에서도 홈 정보 카드와 베이비페어 소형 배지가 lavender 클래스를 유지한다", async ({ page }) => {
+      // 무엇을: 375px viewport에서도 lavender/40 클래스가 동일하게 적용되는지
       // 왜: 타겟 유저(임산부) 주요 디바이스 폭 기준 회귀 가드
       await gotoHomeOnboarded(page);
-      const infoCard = page.locator('a[href="/info"]').first();
+      const infoCard = page.locator('a[href="/info"]', { hasText: "📝" }).first();
       await expect(infoCard).toBeVisible();
-      const iconBox = infoCard.locator('div[style*="background-color"]').first();
-      await expect(iconBox).toHaveCSS("background-color", LAVENDER_RGB);
+      const iconBox = infoCard.locator("div.w-8.h-8.rounded-lg").first();
+      await expect(iconBox).toHaveClass(/bg-pastel-lavender\/40/);
 
       await page.goto("/baby-fair");
       await page.getByRole("tab", { name: "지난 행사" }).click();
       const smallBadge = page.locator('[data-slot="badge"]:has-text("소형")').first();
       await expect(smallBadge).toBeVisible();
-      await expect(smallBadge).toHaveCSS("background-color", LAVENDER_RGB);
+      await expect(smallBadge).toHaveClass(/bg-pastel-lavender\/40/);
     });
   });
 });

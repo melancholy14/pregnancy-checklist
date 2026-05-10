@@ -56,3 +56,9 @@ export const CATEGORY_FILTER_OPTIONS: { value: ChecklistItem["category"] | "all"
   { value: "all", label: "전체" },
   ...CATEGORY_OPTIONS,
 ];
+
+export const PRIORITY_LABEL: Record<ChecklistItem["priority"], string> = {
+  high: "높음",
+  medium: "보통",
+  low: "낮음",
+};

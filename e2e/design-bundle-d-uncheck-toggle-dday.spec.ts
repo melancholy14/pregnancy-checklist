@@ -159,8 +159,8 @@ test.describe("design-bundle-d-uncheck-toggle-dday", () => {
       await page.goto(HB_PATH);
 
       // 시드된 체크 항목이 처음에 보임 (체크 상태)
-      const firstItemRow = page.getByRole("button", { name: itemSubstring });
-      await expect(firstItemRow).toHaveAttribute("aria-pressed", "true");
+      const firstItemRow = page.locator("label", { hasText: itemSubstring });
+      await expect(firstItemRow.getByRole("checkbox")).toBeChecked();
 
       // 토글 on
       const toggle = page.getByRole("switch", { name: "미체크만 보기" });
@@ -175,7 +175,7 @@ test.describe("design-bundle-d-uncheck-toggle-dday", () => {
       await toggle.click();
       await expect(toggle).toHaveAttribute("aria-checked", "false");
       await expect(firstItemRow).toBeVisible();
-      await expect(firstItemRow).toHaveAttribute("aria-pressed", "true");
+      await expect(firstItemRow.getByRole("checkbox")).toBeChecked();
     });
 
     test("토글 on + 미체크 0개 시 빈 상태 인라인 메시지가 노출된다", async ({
@@ -238,8 +238,8 @@ test.describe("design-bundle-d-uncheck-toggle-dday", () => {
       await seedHbStore(page, { customItems: [upcomingItem] });
       await page.goto(HB_PATH);
 
-      const row = page.getByRole("button", {
-        name: /출산 직전 짐 마지막 점검/,
+      const row = page.locator("label", {
+        hasText: /출산 직전 짐 마지막 점검/,
       });
       await expect(row).toBeVisible();
       const label = row.getByText("32주차에 챙기기");
@@ -268,12 +268,12 @@ test.describe("design-bundle-d-uncheck-toggle-dday", () => {
       await seedHbStore(page, { customItems: [upcomingItem] });
       await page.goto(HB_PATH);
 
-      const row = page.getByRole("button", {
-        name: /예비 양수 체크 키트/,
+      const row = page.locator("label", {
+        hasText: /예비 양수 체크 키트/,
       });
       await expect(row.getByText("30주차에 챙기기")).toBeVisible();
       await row.click();
-      await expect(row).toHaveAttribute("aria-pressed", "true");
+      await expect(row.getByRole("checkbox")).toBeChecked();
       await expect(row.getByText("30주차에 챙기기")).toHaveCount(0);
     });
 
@@ -294,7 +294,7 @@ test.describe("design-bundle-d-uncheck-toggle-dday", () => {
       await seedHbStore(page, { customItems: [matchingItem] });
       await page.goto(HB_PATH);
 
-      const row = page.getByRole("button", { name: /이번 주 산책로 메모/ });
+      const row = page.locator("label", { hasText: /이번 주 산책로 메모/ });
       await expect(row.getByText("이번 주 추천")).toBeVisible();
       await expect(row.getByText("22주차에 챙기기")).toHaveCount(0);
     });
@@ -408,12 +408,13 @@ test.describe("design-bundle-d-uncheck-toggle-dday", () => {
       await seedHbStore(page, { customItems: [upcomingItem] });
       await page.goto(HB_PATH);
 
-      const row = page.getByRole("button", { name: /출산 가방 최종 마감/ });
+      const row = page.locator("label", { hasText: /출산 가방 최종 마감/ });
+      const checkbox = row.getByRole("checkbox");
       await expect(row.getByText("35주차에 챙기기")).toBeVisible();
 
       // ON
       await row.click();
-      await expect(row).toHaveAttribute("aria-pressed", "true");
+      await expect(checkbox).toBeChecked();
       await expect.poll(async () => {
         const list = await getGtagCalls(page);
         return list.filter(
@@ -431,7 +432,7 @@ test.describe("design-bundle-d-uncheck-toggle-dday", () => {
 
       // OFF — 추가 발사 X
       await row.click();
-      await expect(row).toHaveAttribute("aria-pressed", "false");
+      await expect(checkbox).not.toBeChecked();
       const callsAfter = await getGtagCalls(page);
       const checkAfter = callsAfter.filter(
         (c) => c[0] === "event" && c[1] === "upcoming_item_check",
@@ -459,8 +460,8 @@ test.describe("design-bundle-d-uncheck-toggle-dday", () => {
       await seedHbStore(page, { customItems: [upcomingItem] });
       await page.goto(HB_PATH);
 
-      const row = page.getByRole("button", {
-        name: /주차 미입력 노출 검증 항목/,
+      const row = page.locator("label", {
+        hasText: /주차 미입력 노출 검증 항목/,
       });
       await expect(row).toBeVisible();
       await expect(row.getByText(/주차에 챙기기$/)).toHaveCount(0);
@@ -504,7 +505,7 @@ test.describe("design-bundle-d-uncheck-toggle-dday", () => {
       await seedHbStore(page, { customItems: [pastItem] });
       await page.goto(HB_PATH);
 
-      const row = page.getByRole("button", { name: /지난 주차 권장 항목/ });
+      const row = page.locator("label", { hasText: /지난 주차 권장 항목/ });
       await expect(row).toBeVisible();
       await expect(row.getByText(/주차에 챙기기$/)).toHaveCount(0);
       await expect(row.getByText("이번 주 추천")).toHaveCount(0);
@@ -557,7 +558,7 @@ test.describe("design-bundle-d-uncheck-toggle-dday", () => {
       await expect(toggle).toBeVisible();
       await expect(toggle).toBeInViewport();
 
-      const row = page.getByRole("button", { name: /모바일 출산준비 항목/ });
+      const row = page.locator("label", { hasText: /모바일 출산준비 항목/ });
       await expect(row).toBeVisible();
       await expect(row.getByText("30주차에 챙기기")).toBeVisible();
     });

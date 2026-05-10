@@ -1,25 +1,15 @@
 "use client";
 
 import { useCallback, useMemo, useState } from "react";
-import { Pencil, CalendarCheck } from "lucide-react";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { useChecklistStore } from "@/store/useChecklistStore";
-import { CATEGORY_OPTIONS } from "@/lib/constants";
+import { CATEGORY_OPTIONS, PRIORITY_LABEL } from "@/lib/constants";
 import { sendGAEvent } from "@/lib/analytics";
 import { classifyNote } from "@/lib/note-classifier";
+import { getCategoryTokenClass } from "@/lib/data-token-classes";
+import { ChecklistRow } from "@/components/checklist/ChecklistRow";
 import type { ChecklistItem } from "@/types/checklist";
-import { DeleteConfirmDialog } from "./DeleteConfirmDialog";
-
-const CATEGORY_COLORS: Record<string, string> = {
-  hospital: "#FFD4DE",
-  hospital_bag: "#FFE0CC",
-  baby_items: "#D0EDE2",
-  postpartum: "#E4D6F0",
-  admin: "#FFF4D4",
-};
 
 interface WeekChecklistSectionProps {
   items: ChecklistItem[];
@@ -102,12 +92,10 @@ export function WeekChecklistSection({
     <div className="space-y-2 pt-2 pb-3">
       {items.map((item) => {
         const isChecked = checkedIds.includes(item.id);
-        const catColor = CATEGORY_COLORS[item.category] ?? "#E4D6F0";
         const isHighlighted =
           currentPregnancyWeek !== null &&
           item.recommendedWeek !== 0 &&
           item.recommendedWeek === currentPregnancyWeek;
-        const showHighlightLabel = isHighlighted && !isChecked;
 
         if (editingId === item.id) {
           return (
@@ -160,71 +148,24 @@ export function WeekChecklistSection({
         }
 
         return (
-          <div
+          <ChecklistRow
             key={item.id}
-            role="button"
-            tabIndex={0}
-            aria-pressed={isChecked}
-            aria-label={`${item.title} ${isChecked ? "체크 해제" : "체크"}`}
-            className={`flex items-start gap-3 p-3 rounded-xl transition-all duration-200 cursor-pointer ${
-              isChecked
-                ? "bg-pastel-mint/20"
-                : "hover:bg-muted/50"
-            }`}
-            onClick={() => handleToggleItem(item)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                handleToggleItem(item);
-              }
-            }}
-          >
-            <Checkbox
-              checked={isChecked}
-              onCheckedChange={() => toggle(item.id)}
-              className="size-5 mt-0.5 rounded-md border-2 data-[state=checked]:bg-pastel-mint data-[state=checked]:border-pastel-mint data-[state=checked]:text-foreground border-gray-200 shrink-0"
-              onClick={(e) => e.stopPropagation()}
-              aria-label={`${item.title} 체크박스`}
-            />
-            <div className="flex-1 min-w-0">
-              <span
-                className={`block text-sm ${
-                  isChecked ? "line-through text-muted-foreground" : "text-foreground"
-                }`}
-              >
-                {item.title}
-              </span>
-              {showHighlightLabel && (
-                <span className="mt-1 flex items-center gap-1 text-xs font-medium text-foreground">
-                  <CalendarCheck size={11} className="shrink-0" aria-hidden="true" />
-                  <span>이번 주 추천</span>
-                </span>
-              )}
-            </div>
-            <Badge
-              className="text-xs px-2 py-0.5 rounded-md border-0 shrink-0 mt-0.5 text-foreground"
-              style={{ backgroundColor: `${catColor}40` }}
-            >
-              {item.categoryName}
-            </Badge>
-            {item.isCustom && (
-              <div className="flex items-center gap-1 shrink-0">
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    startEdit(item);
-                  }}
-                  className="p-2 rounded-lg text-muted-foreground hover:text-accent-purple hover:bg-pastel-lavender/20 transition-colors"
-                  aria-label="수정"
-                >
-                  <Pencil size={16} />
-                </button>
-                <span onClick={(e) => e.stopPropagation()}>
-                  <DeleteConfirmDialog onConfirm={() => removeCustomItem(item.id)} iconSize={16} />
-                </span>
-              </div>
-            )}
-          </div>
+            id={`timeline-row-${slug}-${item.id}`}
+            title={item.title}
+            isChecked={isChecked}
+            priority={item.priority}
+            priorityLabel={PRIORITY_LABEL[item.priority]}
+            categoryLabel={item.categoryName}
+            categoryToneClassName={getCategoryTokenClass(item.category)}
+            isHighlighted={isHighlighted}
+            showUpcomingLabel={false}
+            note={item.note}
+            noteType={item.note ? classifyNote(item.note) : undefined}
+            isCustom={item.isCustom}
+            onToggle={() => handleToggleItem(item)}
+            onStartEdit={() => startEdit(item)}
+            onRemove={() => removeCustomItem(item.id)}
+          />
         );
       })}
 

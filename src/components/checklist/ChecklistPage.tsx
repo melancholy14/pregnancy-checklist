@@ -320,6 +320,7 @@ export function ChecklistPage({ data, storeSlug, linkedArticles, linkedVideos }:
                       <ChecklistItemRow
                         key={item.id}
                         item={item}
+                        slug={meta.slug}
                         isChecked={effectiveCheckedIds.includes(item.id)}
                         isHighlighted={isHighlighted(item)}
                         isEditing={editingId === item.id}

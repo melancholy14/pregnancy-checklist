@@ -110,7 +110,7 @@ test.describe("checklist-recommendation-semantics", () => {
       await page.goto("/timeline");
 
       const card24 = await expandTimelineWeek(page, 24);
-      const row = card24.locator("[aria-pressed]", { hasText: /임신성 당뇨 검사/ });
+      const row = card24.locator("label", { hasText: /임신성 당뇨 검사/ });
       await expect(row).toBeVisible();
       await expect(row.getByText("이번 주 추천")).toBeVisible();
     });
@@ -122,11 +122,11 @@ test.describe("checklist-recommendation-semantics", () => {
       await page.goto("/timeline");
 
       const card24 = await expandTimelineWeek(page, 24);
-      const row = card24.locator("[aria-pressed]", { hasText: /임신성 당뇨 검사/ });
+      const row = card24.locator("label", { hasText: /임신성 당뇨 검사/ });
       await expect(row.getByText("이번 주 추천")).toBeVisible();
 
       await row.click();
-      await expect(row).toHaveAttribute("aria-pressed", "true");
+      await expect(row.getByRole("checkbox")).toBeChecked();
       await expect(row.getByText("이번 주 추천")).toHaveCount(0);
     });
 
@@ -171,7 +171,7 @@ test.describe("checklist-recommendation-semantics", () => {
       await page.goto("/timeline");
 
       const card24 = await expandTimelineWeek(page, 24);
-      const row = card24.locator("[aria-pressed]", { hasText: /임신성 당뇨 검사/ });
+      const row = card24.locator("label", { hasText: /임신성 당뇨 검사/ });
       await expect(row).toBeVisible();
       await row.click();
 
@@ -204,7 +204,7 @@ test.describe("checklist-recommendation-semantics", () => {
       await seedPregnancyWeek(page, 30);
       await page.goto("/checklist/hospital-bag");
 
-      const carseatRow = page.getByRole("button", { name: /카시트 \(차량 설치/ });
+      const carseatRow = page.locator("label", { hasText: /카시트 \(차량 설치/ });
       await expect(carseatRow).toBeVisible();
       const note = carseatRow.locator("span", { hasText: /도로교통법 제50조/ });
       await expect(note.first()).toHaveClass(/italic/);
@@ -218,9 +218,9 @@ test.describe("checklist-recommendation-semantics", () => {
       await seedPregnancyWeek(page, 30);
       await page.goto("/checklist/hospital-bag");
 
-      const carseatRow = page.getByRole("button", { name: /카시트 \(차량 설치/ });
+      const carseatRow = page.locator("label", { hasText: /카시트 \(차량 설치/ });
       await carseatRow.click();
-      await expect(carseatRow).toHaveAttribute("aria-pressed", "true");
+      await expect(carseatRow.getByRole("checkbox")).toBeChecked();
       await expect(page.getByText(/도로교통법 제50조/)).toBeVisible();
 
       const note = carseatRow.locator("span", { hasText: /도로교통법 제50조/ });
@@ -234,7 +234,7 @@ test.describe("checklist-recommendation-semantics", () => {
       await seedPregnancyWeek(page, 30);
       await page.goto("/checklist/hospital-bag");
 
-      const carseatRow = page.getByRole("button", { name: /카시트 \(차량 설치/ });
+      const carseatRow = page.locator("label", { hasText: /카시트 \(차량 설치/ });
       await carseatRow.click();
 
       const calls = await getGtagCalls(page);
@@ -315,12 +315,13 @@ test.describe("checklist-recommendation-semantics", () => {
       await page.goto("/timeline");
 
       const card24 = await expandTimelineWeek(page, 24);
-      const row = card24.locator("[aria-pressed]", { hasText: /임신성 당뇨 검사/ });
+      const row = card24.locator("label", { hasText: /임신성 당뇨 검사/ });
       await expect(row).toBeVisible();
+      const checkbox = row.getByRole("checkbox");
       await row.click(); // ON
-      await expect(row).toHaveAttribute("aria-pressed", "true");
+      await expect(checkbox).toBeChecked();
       await row.click(); // OFF
-      await expect(row).toHaveAttribute("aria-pressed", "false");
+      await expect(checkbox).not.toBeChecked();
 
       const calls = await getGtagCalls(page);
       const recCheck = calls.filter(
@@ -346,7 +347,7 @@ test.describe("checklist-recommendation-semantics", () => {
       await page.goto("/timeline");
 
       const card24 = await expandTimelineWeek(page, 24);
-      const row = card24.locator("[aria-pressed]", { hasText: /임신성 당뇨 검사/ });
+      const row = card24.locator("label", { hasText: /임신성 당뇨 검사/ });
       await expect(row).toBeVisible();
       await expect(row.getByText("이번 주 추천")).toBeVisible();
     });

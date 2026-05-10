@@ -289,7 +289,7 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
           icon="👶"
           title="베이비페어"
           href="/baby-fair"
-          color="#D0EDE2"
+          slot="babyfair"
           cta="일정 보기"
         >
           {upcomingFairs.length > 0 ? (
@@ -312,7 +312,7 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
           icon="⚖️"
           title="체중 기록"
           href="/weight"
-          color="#FFE0CC"
+          slot="weight"
           cta={latestWeight ? (latestWeight.diff !== null ? "기록하기" : "추가 기록") : "시작하기"}
         >
           {latestWeight ? (
@@ -338,7 +338,7 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
           icon="🎬"
           title="영상"
           href="/info?tab=videos"
-          color="#FFF4D4"
+          slot="video"
           cta="보러가기"
         >
           <p className="text-xs text-muted-foreground">추천 영상</p>
@@ -353,7 +353,7 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
           icon="📝"
           title="정보 & 가이드"
           href="/info"
-          color="#E4D6F0"
+          slot="info"
           cta="읽으러 가기"
         >
           {latestArticle ? (

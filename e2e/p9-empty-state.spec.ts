@@ -216,7 +216,7 @@ test.describe("P9 빈 상태 카피·CTA", () => {
       await expect(empty).toBeVisible();
 
       // 첫 항목 체크
-      const firstRow = page.locator('[role="button"][aria-pressed="false"]').first();
+      const firstRow = page.locator("label:has(input[type='checkbox']:not(:checked))").first();
       await firstRow.click();
 
       await expect(empty).not.toBeVisible();
@@ -235,7 +235,7 @@ test.describe("P9 빈 상태 카피·CTA", () => {
         .filter({ hasText: "체크 기록을 새로 시작해요" });
       await expect(alert).toBeVisible();
 
-      const firstRow = page.locator('[role="button"][aria-pressed="false"]').first();
+      const firstRow = page.locator("label:has(input[type='checkbox']:not(:checked))").first();
       await firstRow.click();
 
       await expect(alert).not.toBeVisible();
@@ -256,10 +256,10 @@ test.describe("P9 빈 상태 카피·CTA", () => {
       await seedStore(page, { checkedIds: allButOne });
       await page.goto(HB_PATH);
 
-      // hydration 완료 증거: seed된 31개 아이템이 aria-pressed="true"가 될 때까지 대기.
+      // hydration 완료 증거: seed된 31개 아이템이 checked 상태가 될 때까지 대기.
       // not.toBeVisible은 SSR 시점에도 즉시 통과되므로 hydration 동기화 신호로 부적합.
       await expect(
-        page.locator('[role="button"][aria-pressed="true"]'),
+        page.locator("input[type='checkbox']:checked"),
       ).toHaveCount(allButOne.length);
 
       // 진입 시 all_done=false → 토스트 미노출, 배지 미노출
@@ -270,7 +270,7 @@ test.describe("P9 빈 상태 카피·CTA", () => {
 
       // 마지막 미체크 항목 토글
       await page
-        .locator('[role="button"][aria-pressed="false"]')
+        .locator("label:has(input[type='checkbox']:not(:checked))")
         .first()
         .click();
 

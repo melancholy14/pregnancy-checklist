@@ -3,12 +3,16 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import {
+  getDashboardIconBgClass,
+  type DashboardSlot,
+} from "@/lib/data-token-classes";
 
 interface DashboardCardProps {
   icon: string;
   title: string;
   href: string;
-  color: string;
+  slot: DashboardSlot;
   children: React.ReactNode;
   cta?: string;
 }
@@ -17,7 +21,7 @@ export function DashboardCard({
   icon,
   title,
   href,
-  color,
+  slot,
   children,
   cta = "자세히 보기",
 }: DashboardCardProps) {
@@ -30,8 +34,7 @@ export function DashboardCard({
         <CardContent className="p-4">
           <div className="flex items-center gap-2 mb-3">
             <div
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-base"
-              style={{ backgroundColor: color }}
+              className={`w-8 h-8 rounded-lg flex items-center justify-center text-base ${getDashboardIconBgClass(slot)}`}
             >
               {icon}
             </div>
