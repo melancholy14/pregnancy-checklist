@@ -94,6 +94,7 @@
 ### 3.2 전환 체크리스트
 - [ ] `next.config.ts`: `output: "export"` → `output: "standalone"`
 - [ ] `images.unoptimized` 제거 → `next/image` 활성, `images.unsplash.com`·`img.youtube.com` 도메인 등록
+  - → next/image 마이그레이션은 design-bundle-l-image-system 라운드(2026-05-09)에서 plain `<img>` + width/height + `loading="lazy"`로 다운스코프됨. standalone 전환 시 `<img>`를 `<Image>`로 일괄 치환 + `images.unoptimized` 제거 + 도메인 등록 한 묶음 처리.
 - [ ] JSON `import` → `data-source.ts`의 `fetchFromGCS<T>()` 분기 (`DATA_SOURCE=gcs`)
 - [ ] API Routes 추가: `/api/checklist`·`/api/timeline`·`/api/baby-fair` 등 + `revalidate` 캐시
 - [ ] Admin API Routes: 베이비페어 승인·거부·크롤 트리거

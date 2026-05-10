@@ -616,7 +616,7 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 |----|------|------|
 | **IM-1** | `article-prose img`에 `rounded-2xl + shadow-sm + my-6 + max-w-full` 토큰 적용 | 신규 묶음 **L** |
 | **IM-2** | `figure > img + figcaption` 패턴 도입 — markdown remark 플러그인(`remark-figure-image` 등)으로 `![alt](path)`를 자동 figure 변환. caption은 alt 텍스트 그대로, `text-sm text-muted-foreground text-center mt-2`로 렌더 | L |
-| **IM-3** | `<img>` → `next/image` 전환 — fill 모드 + `sizes="(max-width: 768px) 100vw, 720px"`. 본문 폭 기준 `width=720, height=auto` 메타 도입 (md frontmatter에 width/height 추가하거나 빌드 시 추출) | L |
+| **IM-3** | `<img>` width/height attribute 자동 추출 (image-size 라이브러리) + `loading="lazy"` 적용. **next/image 전환은 본 라운드 범위 외 — standalone 모드 전환 라운드와 함께 진행** ([infra.md §3.2](../tech/infra.md#L94-L102)). | L |
 | **IM-4** | AI 생성 이미지의 시각 표시 — figcaption 끝에 `· AI 생성` 텍스트 라벨 또는 이미지 우하단 `bg-foreground/60 text-white text-xs` 칩(`Imagined with AI` 패턴 차용). §3.1 P14 결정에 따라 형태·문구 확정 | L (P14 결정 후) |
 | **IM-5** | 본문 이미지 lightbox / zoom 여부 결정 — 인포그래픽 텍스트가 모바일에서 작아 가독성 떨어짐. 탭 시 전체화면 확대(Radix Dialog) 도입 vs 원본 새 탭 열기 vs 미도입 | (결정) |
 | **IM-6** | 이미지 alt 작성 가이드라인 — 현재 alt가 "임신 초기 예비맘이 노트북으로 보험 상품을 비교하는 모습"처럼 장면 묘사형. 인포그래픽은 **그래프 데이터 핵심 수치**까지 포함해야 스크린리더 사용자가 정보 손실 없음. §3 P10 운영자 가이드와 통합 | S 묶음 |
@@ -625,11 +625,11 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 | 묶음 | 내용 | 의존성 | 임팩트 | 상태 (2026-05-09) |
 |---|---|---|---|---|
-| **L** | article-prose 이미지 시스템(IM-1~IM-4) — figure 패턴 + next/image + AI 표시 | P14 결정 | 큼 (전체 글에 적용) | ✅ unblock — IM-2·IM-4 P14 산출로 완료, IM-1·IM-3 잔여 |
+| **L** | article-prose 이미지 시스템(IM-1~IM-5) — figure 패턴 + plain `<img width=N height=N loading="lazy">` + 새 탭 anchor + AI 표시 | P14 결정 | 큼 (전체 글에 적용) | ✅ 완료 (2026-05-09 design-bundle-l-image-system 라운드) |
 
 권장 실행 순서: **P14 결정 → L 묶음 일괄 적용 → 기존 글 2건(`weekly-prenatal-checklist`, `prenatal-insurance-preparation-guide`) 마이그레이션 검증**.
 
-> **상태 (2026-05-09)**: P14 ✅ 완료로 IM-2(figure 패턴) + IM-4(AI 표시) 적용 완료. 발행 글 2건 마이그레이션 + e2e 11/11 통과. **잔여 IM-1**(article-prose img 토큰 적용) + **IM-3**(next/image 전환) + **IM-5**(lightbox 결정) + **IM-6**(alt 가이드라인)는 디자인 §2 라운드에서 처리.
+> **상태 (2026-05-09)**: design-bundle-l-image-system 라운드에서 IM-1(article-prose img 토큰 — rounded-2xl + shadow-sm + my-6 + max-w-full) + IM-3(plain `<img width=N height=N loading="lazy">` 다운스코프 + image-size 자동 추출) + IM-5(원본 새 탭 열기 — `target="_blank" rel="noopener noreferrer"` + ExternalLink 아이콘 분기) 완료. **next/image 전환은 standalone 모드 전환 라운드와 함께 — [infra.md §3.2](../tech/infra.md#L94-L102) 트리거 종속.** 잔여 **IM-6**(alt 가이드라인)는 P10 운영자 가이드와 통합되어 별도 묶음.
 
 ---
 

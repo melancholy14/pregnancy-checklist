@@ -97,6 +97,14 @@ exiftool -a -G1 image.png | grep -iE "DigitalSourceType|trainedAlgorithmicMedia"
 - ❌ 금지: figure 직후 즉시 광고 슬롯 (워터마크 칩 ↔ 광고 인접)
 - 이미지 + 광고 인접 발생 시 → 광고를 figure 외부로 이동(레이아웃 재검토)
 
+## 4.1 인포그래픽 우상단 영역 회피 (디자인 §2 라운드 결정, 2026-05-09)
+
+본문 이미지에 figcaption(markdown title 슬롯)을 비우면 figure 우상단(이미지 폭 720 기준 약 100×100px)에 ExternalLink 아이콘이 표시된다(원본 새 탭 열기 시각 마커). 인포그래픽 핵심 텍스트·수치를 우상단에 배치하지 말 것. figcaption을 채우면 아이콘은 figcaption 텍스트(`· 원본 보기`)로 대체되어 우상단 회피 불필요.
+
+### 4.2 markdown title 슬롯 권장
+
+신규 글 작성 시 `![alt](src "caption")` 형식으로 title 슬롯에 캡션을 채우는 것을 권장 — 시각 캡션 + 우상단 아이콘 회피 둘 다 충족. title 슬롯이 비어 있으면 figcaption 미렌더 + 우상단 ExternalLink 아이콘 분기로 전환된다.
+
 ## 5. 외부 이미지 정책
 
 `http://` / `https://` 절대 URL 이미지는 IPTC 메타 통제 불가 + CDN·캐시 정합성 문제. **사용 금지** 원칙.
