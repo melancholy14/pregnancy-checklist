@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import { Plus } from "lucide-react";
 import { toast } from "sonner";
 import { Card, CardContent } from "@/components/ui/card";
+import { Switch } from "@/components/ui/switch";
 import { PageDescription } from "@/components/common/PageDescription";
 import { ChecklistProgress } from "./ChecklistProgress";
 import { ChecklistRelatedContent } from "./ChecklistRelatedContent";
@@ -68,6 +69,7 @@ export function ChecklistPage({ data, storeSlug, linkedArticles, linkedVideos }:
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editTitle, setEditTitle] = useState("");
+  const [showUncheckedOnly, setShowUncheckedOnly] = useState(false);
 
   const allItems = useMemo<ChecklistItem[]>(
     () => [...baseItems, ...customItems],
@@ -192,6 +194,17 @@ export function ChecklistPage({ data, storeSlug, linkedArticles, linkedVideos }:
           slug: meta.slug,
         });
       }
+      if (
+        willCheck &&
+        currentPregnancyWeek !== null &&
+        item.recommendedWeek !== 0 &&
+        item.recommendedWeek > currentPregnancyWeek
+      ) {
+        sendGAEvent("upcoming_item_check", {
+          item_id: item.id,
+          weeks_ahead: item.recommendedWeek - currentPregnancyWeek,
+        });
+      }
     },
     [
       effectiveCheckedIds,
@@ -202,6 +215,22 @@ export function ChecklistPage({ data, storeSlug, linkedArticles, linkedVideos }:
       currentPregnancyWeek,
     ]
   );
+
+  const handleToggleUncheckedOnly = useCallback((checked: boolean) => {
+    setShowUncheckedOnly(checked);
+    sendGAEvent("checklist_filter", {
+      filter_type: "uncheck_only",
+      value: checked ? "on" : "off",
+    });
+  }, []);
+
+  const visibleItemCount = useMemo(() => {
+    if (!showUncheckedOnly) return allItems.length;
+    return allItems.filter((i) => !effectiveCheckedIds.includes(i.id)).length;
+  }, [allItems, effectiveCheckedIds, showUncheckedOnly]);
+
+  const showFilterEmptyState =
+    hydrated && showUncheckedOnly && visibleItemCount === 0 && allItems.length > 0;
 
   const startEdit = (item: ChecklistItem) => {
     setEditingId(item.id);
@@ -249,11 +278,33 @@ export function ChecklistPage({ data, storeSlug, linkedArticles, linkedVideos }:
           subcategories={meta.subcategories}
         />
 
+        {allItems.length > 0 && (
+          <div className="flex items-center justify-between mb-4 px-1">
+            <label
+              htmlFor="uncheck-only-toggle"
+              className="text-sm text-foreground select-none cursor-pointer"
+            >
+              미체크만 보기
+            </label>
+            <Switch
+              id="uncheck-only-toggle"
+              checked={showUncheckedOnly}
+              onCheckedChange={handleToggleUncheckedOnly}
+              className="data-[state=checked]:bg-pastel-lavender data-[state=unchecked]:bg-muted focus-visible:ring-2 focus-visible:ring-pastel-lavender focus-visible:ring-offset-2"
+              aria-label="미체크만 보기"
+            />
+          </div>
+        )}
+
         <div id={ITEMS_ANCHOR_ID} className="space-y-6 mb-8 scroll-mt-4">
           {meta.subcategories.map((sub) => {
             const subItems = allItems.filter((i) => i.category === sub.key);
             if (subItems.length === 0) return null;
             const subChecked = subItems.filter((i) => effectiveCheckedIds.includes(i.id)).length;
+            const subVisibleItems = showUncheckedOnly
+              ? subItems.filter((i) => !effectiveCheckedIds.includes(i.id))
+              : subItems;
+            if (subVisibleItems.length === 0) return null;
 
             return (
               <section key={sub.key}>
@@ -265,7 +316,7 @@ export function ChecklistPage({ data, storeSlug, linkedArticles, linkedVideos }:
                 </div>
                 <Card className="rounded-xl border border-black/4">
                   <CardContent className="p-2 space-y-1">
-                    {subItems.map((item) => (
+                    {subVisibleItems.map((item) => (
                       <ChecklistItemRow
                         key={item.id}
                         item={item}
@@ -273,6 +324,8 @@ export function ChecklistPage({ data, storeSlug, linkedArticles, linkedVideos }:
                         isHighlighted={isHighlighted(item)}
                         isEditing={editingId === item.id}
                         editTitle={editTitle}
+                        currentPregnancyWeek={currentPregnancyWeek}
+                        isHydrated={hydrated}
                         onToggle={() => handleToggle(item)}
                         onStartEdit={() => startEdit(item)}
                         onChangeEditTitle={setEditTitle}
@@ -286,6 +339,16 @@ export function ChecklistPage({ data, storeSlug, linkedArticles, linkedVideos }:
               </section>
             );
           })}
+          {showFilterEmptyState && (
+            <p
+              role="status"
+              aria-live="polite"
+              className="text-sm text-muted-foreground text-center py-6"
+              style={{ wordBreak: "keep-all" }}
+            >
+              지금 보이는 항목은 모두 체크했어요
+            </p>
+          )}
         </div>
 
         <ChecklistRelatedContent

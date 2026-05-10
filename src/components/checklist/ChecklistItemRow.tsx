@@ -1,10 +1,11 @@
 "use client";
 
-import { useMemo } from "react";
-import { Pencil, Info, Scale, CalendarCheck } from "lucide-react";
+import { useEffect, useMemo, useRef } from "react";
+import { Pencil, Info, Scale, CalendarCheck, Clock } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { DeleteConfirmDialog } from "@/components/timeline/DeleteConfirmDialog";
+import { sendGAEvent } from "@/lib/analytics";
 import { classifyNote, type NoteType } from "@/lib/note-classifier";
 import type { ChecklistItem } from "@/types/checklist";
 
@@ -20,6 +21,8 @@ interface ChecklistItemRowProps {
   isHighlighted: boolean;
   isEditing: boolean;
   editTitle: string;
+  currentPregnancyWeek: number | null;
+  isHydrated: boolean;
   onToggle: () => void;
   onStartEdit: () => void;
   onChangeEditTitle: (next: string) => void;
@@ -34,6 +37,8 @@ export function ChecklistItemRow({
   isHighlighted,
   isEditing,
   editTitle,
+  currentPregnancyWeek,
+  isHydrated,
   onToggle,
   onStartEdit,
   onChangeEditTitle,
@@ -41,6 +46,28 @@ export function ChecklistItemRow({
   onCancelEdit,
   onRemove,
 }: ChecklistItemRowProps) {
+  const noteType: NoteType = useMemo(() => classifyNote(item.note), [item.note]);
+  const showHighlightLabel = isHighlighted && !isChecked;
+  const showUpcomingLabel =
+    !isHighlighted &&
+    currentPregnancyWeek !== null &&
+    item.recommendedWeek > currentPregnancyWeek &&
+    item.recommendedWeek !== 0 &&
+    !isChecked;
+
+  const upcomingViewSentRef = useRef(false);
+  useEffect(() => {
+    if (!isHydrated) return;
+    if (!showUpcomingLabel) return;
+    if (upcomingViewSentRef.current) return;
+    if (currentPregnancyWeek === null) return;
+    upcomingViewSentRef.current = true;
+    sendGAEvent("upcoming_item_view", {
+      item_id: item.id,
+      weeks_ahead: item.recommendedWeek - currentPregnancyWeek,
+    });
+  }, [isHydrated, showUpcomingLabel, item.id, item.recommendedWeek, currentPregnancyWeek]);
+
   if (isEditing) {
     return (
       <div className="p-3 rounded-xl border border-pastel-lavender/30 bg-pastel-lavender/10 space-y-2">
@@ -77,8 +104,6 @@ export function ChecklistItemRow({
   }
 
   const priority = PRIORITY_DOT[item.priority];
-  const noteType: NoteType = useMemo(() => classifyNote(item.note), [item.note]);
-  const showHighlightLabel = isHighlighted && !isChecked;
 
   return (
     <div
@@ -120,6 +145,12 @@ export function ChecklistItemRow({
           <span className="mt-1 flex items-center gap-1 text-xs font-medium text-foreground">
             <CalendarCheck size={11} className="shrink-0" aria-hidden="true" />
             <span>이번 주 추천</span>
+          </span>
+        )}
+        {showUpcomingLabel && (
+          <span className="mt-1 flex items-center gap-1 text-xs font-normal text-muted-foreground">
+            <Clock size={11} className="shrink-0" aria-hidden="true" />
+            <span>{item.recommendedWeek}주차에 챙기기</span>
           </span>
         )}
         {item.note && (
