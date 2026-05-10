@@ -136,7 +136,7 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
                 onClick={() => setViewMode("videos")}
                 className={`px-4 py-2 rounded-xl border text-sm transition-all duration-200 ${
                   viewMode === "videos"
-                    ? "bg-pastel-pink/40 text-foreground border-pastel-pink/30"
+                    ? "bg-pastel-lavender/40 text-foreground border-pastel-lavender/30"
                     : "bg-white text-muted-foreground border-black/4 hover:bg-muted"
                 }`}
               >
@@ -147,7 +147,7 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
                 onClick={() => setViewMode("channels")}
                 className={`px-4 py-2 rounded-xl border text-sm transition-all duration-200 ${
                   viewMode === "channels"
-                    ? "bg-pastel-pink/40 text-foreground border-pastel-pink/30"
+                    ? "bg-pastel-lavender/40 text-foreground border-pastel-lavender/30"
                     : "bg-white text-muted-foreground border-black/4 hover:bg-muted"
                 }`}
               >
@@ -162,7 +162,7 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
                 onClick={() => handleCategoryChange("all")}
                 className={`px-4 py-2 rounded-xl border text-sm transition-all duration-200 ${
                   activeCategory === "all"
-                    ? "bg-pastel-pink/40 text-foreground border-pastel-pink/30"
+                    ? "bg-pastel-lavender/40 text-foreground border-pastel-lavender/30"
                     : "bg-white text-muted-foreground border-black/4 hover:bg-muted"
                 }`}
               >
@@ -175,7 +175,7 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
                   onClick={() => handleCategoryChange(cat)}
                   className={`px-4 py-2 rounded-xl border text-sm transition-all duration-200 ${
                     activeCategory === cat
-                      ? "bg-pastel-pink/40 text-foreground border-pastel-pink/30"
+                      ? "bg-pastel-lavender/40 text-foreground border-pastel-lavender/30"
                       : "bg-white text-muted-foreground border-black/4 hover:bg-muted"
                   }`}
                 >
