@@ -8,6 +8,7 @@ import { CATEGORY_OPTIONS, PRIORITY_LABEL } from "@/lib/constants";
 import { sendGAEvent } from "@/lib/analytics";
 import { classifyNote } from "@/lib/note-classifier";
 import { getCategoryTokenClass } from "@/lib/data-token-classes";
+import { restoreAtIndex, useDeleteWithUndo } from "@/lib/hooks/useDeleteWithUndo";
 import { ChecklistRow } from "@/components/checklist/ChecklistRow";
 import type { ChecklistItem } from "@/types/checklist";
 
@@ -29,6 +30,20 @@ export function WeekChecklistSection({
   const [editTitle, setEditTitle] = useState("");
   const [editCategory, setEditCategory] = useState<ChecklistItem["category"]>("hospital");
   const [editWeek, setEditWeek] = useState(0);
+
+  const restoreCustomChecklistItem = useCallback(
+    (item: ChecklistItem & { atIndex: number }) => {
+      const { atIndex, ...rest } = item;
+      restoreAtIndex<ChecklistItem>(useChecklistStore, rest, atIndex);
+    },
+    []
+  );
+
+  const handleDeleteCustomItem = useDeleteWithUndo<ChecklistItem & { atIndex: number }>({
+    removeFn: removeCustomItem,
+    restoreFn: restoreCustomChecklistItem,
+    label: "체크리스트 항목을 삭제했어요",
+  });
 
   const checked = useMemo(
     () => items.filter((i) => checkedIds.includes(i.id)).length,
@@ -164,7 +179,13 @@ export function WeekChecklistSection({
             isCustom={item.isCustom}
             onToggle={() => handleToggleItem(item)}
             onStartEdit={() => startEdit(item)}
-            onRemove={() => removeCustomItem(item.id)}
+            onRemove={() => {
+              const atIndex = useChecklistStore
+                .getState()
+                .customItems.findIndex((c) => c.id === item.id);
+              if (atIndex < 0) return;
+              handleDeleteCustomItem({ ...item, atIndex });
+            }}
           />
         );
       })}

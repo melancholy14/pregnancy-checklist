@@ -32,6 +32,7 @@ import {
   type ChecklistStoreSlug,
 } from "@/store/createChecklistStore";
 import { useDueDateStore } from "@/store/useDueDateStore";
+import { restoreAtIndex, useDeleteWithUndo } from "@/lib/hooks/useDeleteWithUndo";
 
 export type { ChecklistStoreSlug };
 
@@ -75,6 +76,20 @@ export function ChecklistPage({ data, storeSlug, linkedArticles, linkedVideos }:
     () => [...baseItems, ...customItems],
     [baseItems, customItems]
   );
+
+  const restoreCustomChecklistItem = useCallback(
+    (item: ChecklistItem & { atIndex: number }) => {
+      const { atIndex, ...rest } = item;
+      restoreAtIndex<ChecklistItem>(useStore, rest, atIndex);
+    },
+    [useStore]
+  );
+
+  const handleDeleteCustomItem = useDeleteWithUndo<ChecklistItem & { atIndex: number }>({
+    removeFn: removeCustomItem,
+    restoreFn: restoreCustomChecklistItem,
+    label: "체크리스트 항목을 삭제했어요",
+  });
 
   const effectiveCheckedIds = useMemo<string[]>(
     () => (hydrated ? checkedIds : EMPTY_CHECKED_IDS),
@@ -333,7 +348,11 @@ export function ChecklistPage({ data, storeSlug, linkedArticles, linkedVideos }:
                         onChangeEditTitle={setEditTitle}
                         onSaveEdit={saveEdit}
                         onCancelEdit={() => setEditingId(null)}
-                        onRemove={() => removeCustomItem(item.id)}
+                        onRemove={() => {
+                          const atIndex = customItems.findIndex((c) => c.id === item.id);
+                          if (atIndex < 0) return;
+                          handleDeleteCustomItem({ ...item, atIndex });
+                        }}
                       />
                     ))}
                   </CardContent>

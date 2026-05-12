@@ -7,9 +7,9 @@ import {
   Info,
   Pencil,
   Scale,
+  Trash2,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { DeleteConfirmDialog } from "@/components/timeline/DeleteConfirmDialog";
 import type { NoteType } from "@/lib/note-classifier";
 import type { ChecklistItem } from "@/types/checklist";
 
@@ -143,7 +143,16 @@ export function ChecklistRow({
               <Pencil size={14} />
             </button>
           )}
-          {onRemove && <DeleteConfirmDialog onConfirm={onRemove} iconSize={14} />}
+          {onRemove && (
+            <button
+              type="button"
+              onClick={onRemove}
+              className="p-2 rounded-lg text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors"
+              aria-label="삭제"
+            >
+              <Trash2 size={14} />
+            </button>
+          )}
         </div>
       )}
     </div>

@@ -46,8 +46,8 @@ test.describe("타임라인 페이지", () => {
     });
 
     test("커스텀 항목은 삭제할 수 있다", async ({ page }) => {
-      // 무엇을: 커스텀 항목에만 삭제 버튼이 있고 삭제 가능한지
-      // 왜: 기본 항목은 보호, 커스텀만 삭제 가능
+      // 무엇을: 커스텀 항목에만 삭제 버튼이 있고 삭제 시 즉시 사라진 뒤 sonner undo 토스트 노출
+      // 왜: 기본 항목은 보호, 커스텀만 삭제 가능. design-bundle-k 이후 AlertDialog confirm → undo-toast로 통일
       // 먼저 추가
       await page.locator('button[aria-label="항목 추가"]').click();
       await page.locator('input[value="timeline"]').click();
@@ -57,12 +57,11 @@ test.describe("타임라인 페이지", () => {
 
       await expect(page.getByText("삭제 테스트")).toBeVisible();
 
-      // 삭제 - AlertDialog 트리거 클릭 후 삭제 버튼 클릭
+      // 삭제 — confirm 다이얼 없이 즉시 사라지고 토스트 노출
       const card = page.locator('[data-slot="card"]').filter({ hasText: "삭제 테스트" });
-      await card.locator('button[aria-label="삭제"]').click();
-      await page.locator('[data-slot="alert-dialog-content"]').getByRole("button", { name: "삭제" }).click();
-
+      await card.getByRole("button", { name: "삭제" }).click();
       await expect(page.getByText("삭제 테스트")).not.toBeVisible();
+      await expect(page.getByText("타임라인 노트를 삭제했어요")).toBeVisible();
     });
   });
 

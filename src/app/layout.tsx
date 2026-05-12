@@ -59,7 +59,7 @@ export default function RootLayout({
           <Footer />
           <BottomNav />
         </div>
-        <Toaster position="top-center" richColors theme="light" />
+        <Toaster position="top-center" richColors theme="light" visibleToasts={3} />
         <ConsentGatedScripts />
         <CookieConsentBanner />
         <PageviewTracker />

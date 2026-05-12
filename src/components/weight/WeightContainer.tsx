@@ -6,11 +6,12 @@ import dynamic from "next/dynamic";
 import { ChevronRight, FileText, Plus, X } from "lucide-react";
 import { format, parseISO } from "date-fns";
 import { ko } from "date-fns/locale";
-import { useWeightStore } from "@/store/useWeightStore";
+import { useWeightStore, type WeightLog } from "@/store/useWeightStore";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { WeightForm } from "./WeightForm";
 import { PageDescription } from "@/components/common/PageDescription";
+import { useDeleteWithUndo } from "@/lib/hooks/useDeleteWithUndo";
 
 const WeightChart = dynamic(
   () => import("./WeightChart").then((m) => ({ default: m.WeightChart })),
@@ -25,6 +26,12 @@ export function WeightContainer() {
     () => useWeightStore.persist.hasHydrated(),
     () => false
   );
+
+  const handleDeleteLog = useDeleteWithUndo<WeightLog>({
+    removeFn: removeLog,
+    restoreFn: addLog,
+    label: "체중 기록을 삭제했어요",
+  });
 
   const handleSubmit = (date: string, weight: number) => {
     addLog({ id: Date.now().toString(), date, weight });
@@ -93,7 +100,8 @@ export function WeightContainer() {
                   <Button
                     variant="ghost"
                     size="icon"
-                    onClick={() => removeLog(entry.id)}
+                    onClick={() => handleDeleteLog(entry)}
+                    aria-label="체중 기록 삭제"
                     className="rounded-xl bg-destructive/10 text-destructive opacity-0 group-hover:opacity-100 transition-opacity hover:bg-destructive/20"
                   >
                     <X size={18} />
