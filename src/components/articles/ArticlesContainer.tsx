@@ -5,6 +5,7 @@ import { ArticleCard } from "./ArticleCard";
 import { TagFilter } from "./TagFilter";
 import type { ArticleMeta } from "@/types/article";
 import { PageDescription } from "@/components/common/PageDescription";
+import { sendGAEvent } from "@/lib/analytics";
 
 interface ArticlesContainerProps {
   articles: ArticleMeta[];
@@ -45,7 +46,17 @@ export function ArticlesContainer({ articles, allTags }: ArticlesContainerProps)
         ) : (
           <div className="space-y-4">
             {filteredArticles.map((article) => (
-              <ArticleCard key={article.slug} article={article} />
+              <ArticleCard
+                key={article.slug}
+                article={article}
+                onAnalyticsClick={() =>
+                  sendGAEvent("cta_click", {
+                    cta_id: "view_article",
+                    location: "article_hub",
+                    destination: `/articles/${article.slug}`,
+                  })
+                }
+              />
             ))}
           </div>
         )}

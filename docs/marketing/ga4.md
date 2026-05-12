@@ -166,14 +166,16 @@
   - 추천 클릭 후 `article_read_complete` 도달율 = **추천 품질**
 
 #### `share_click`
-- **목적**: Web Share([커밋 ba15a41](#)) 전환율
+- **목적**: Web Share([커밋 ba15a41](#)) 전환율 + 영역×위치별 도달률 비교(묶음 J, 4주 measurement window)
 - **트리거**: 공유 버튼 클릭 시 (실제 공유 완료 여부 무관)
 - **파라미터**:
   - `slug` (string)
   - `method` (string enum) — `web-share` / `copy-link`
   - `location` (string enum) — `article-bottom` / `header`
+  - `position` (string enum) — `top_right` / `bottom_center` — 모든 ShareButton 호출부 의무 prop. PII 0.
 - **층**: 보조
-- **분석**: 공유율 0.5% 미만이면 버튼 시각/위치 문제일 가능성. 콘텐츠 품질 문제는 보통 **재방문**에서 먼저 보임.
+- **분석**: 공유율 0.5% 미만이면 버튼 시각/위치 문제일 가능성. 콘텐츠 품질 문제는 보통 **재방문**에서 먼저 보임. 4주 후 영역×position별 카운트 차이 5%p 이상이면 다운스코프 라운드 발의.
+- **enum 확장 정책**: 위치 컨벤션이 다운스코프되어 단일 위치로 통일되면 enum도 다운스코프 — 4주 grace period 후 신/구 병행 종료.
 
 > 📌 **`video_progress` 미사용** — 영상은 [VideoCard.tsx:17-18](../../src/components/videos/VideoCard.tsx#L17-L18)에서 youtube.com으로 `target="_blank"` 외부 이동. 자체 임베드/iframe API 없음 → 시청 진행률은 우리 도메인에서 측정 불가능. 클릭 행동만 §3.E `external_link_click(context=video)` 으로 흡수해 한 곳에서 관리. 시청률 분석은 YouTube Studio 별도.
 

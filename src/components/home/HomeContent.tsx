@@ -17,6 +17,7 @@ import { useTimelineStore } from "@/store/useTimelineStore";
 import { useWeightStore } from "@/store/useWeightStore";
 import { OnboardingFlow } from "@/components/onboarding/OnboardingFlow";
 import { parseDateKST, getTodayKST } from "@/lib/date-kst";
+import { useScrollSignals } from "@/lib/use-scroll-signals";
 import { getChecklistByWeek } from "@/lib/checklist-week-map";
 import { BRAND_COPY, BRAND_PHASE } from "@/lib/constants";
 import checklistItems from "@/data/checklist_items.json";
@@ -36,6 +37,7 @@ export interface HomeContentProps {
 }
 
 export function HomeContent({ articles = [] }: HomeContentProps) {
+  useScrollSignals("home");
   const { dueDate, currentPregnancyWeek } = useDueDateStore();
   const { checkedIds, customItems } = useChecklistStore();
   const { customItems: customTimelineItems } = useTimelineStore();

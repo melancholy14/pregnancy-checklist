@@ -6,11 +6,18 @@ import { sendGAEvent } from "@/lib/analytics";
 
 interface ArticleCardProps {
   article: ArticleMeta;
+  onAnalyticsClick?: () => void;
 }
 
-export function ArticleCard({ article }: ArticleCardProps) {
+export function ArticleCard({ article, onAnalyticsClick }: ArticleCardProps) {
+  const handleClick = () => {
+    // legacy keep (4주 grace) — cleanup 라운드에서 제거.
+    sendGAEvent("content_click", { type: "article", title: article.title });
+    onAnalyticsClick?.();
+  };
+
   return (
-    <Link href={`/articles/${article.slug}`} className="no-underline block" onClick={() => sendGAEvent("content_click", { type: "article", title: article.title })}>
+    <Link href={`/articles/${article.slug}`} className="no-underline block" onClick={handleClick}>
       <Card className="rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 border border-black/4 hover:-translate-y-0.5">
         <CardContent className="p-4">
           <h3 className="leading-snug mb-2">{article.title}</h3>

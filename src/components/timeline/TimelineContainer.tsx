@@ -21,6 +21,7 @@ import { WeekChecklistSection } from "./WeekChecklistSection";
 import { PageDescription } from "@/components/common/PageDescription";
 import { ShareButton } from "@/components/share/ShareButton";
 import { sendGAEvent } from "@/lib/analytics";
+import { useScrollSignals } from "@/lib/use-scroll-signals";
 import { BASE_URL } from "@/lib/constants";
 
 interface TimelineContainerProps {
@@ -31,6 +32,7 @@ interface TimelineContainerProps {
 }
 
 export function TimelineContainer({ timelineItems, checklistItems, articles = [], videos = [] }: TimelineContainerProps) {
+  useScrollSignals("timeline");
   const { dueDate } = useDueDateStore();
   const { customItems: customTimelineItems } = useTimelineStore();
   const { checkedIds, customItems: customChecklistItems } = useChecklistStore();

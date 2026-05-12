@@ -1,6 +1,8 @@
 "use client";
 
+import { useEffect } from "react";
 import { ListChecks } from "lucide-react";
+import { sendGAEvent } from "@/lib/analytics";
 
 export type ChecklistEmptyStateCase = "first_visit" | "migration_lost" | "custom_only";
 
@@ -10,11 +12,25 @@ interface ChecklistEmptyStateProps {
   onMigrationConfirm?: () => void;
 }
 
+// catalog §3.E reason enum 매핑: first_visit/custom_only는 정상 비어있음, migration_lost는 검증 실패 신호.
+const REASON_BY_CASE: Record<ChecklistEmptyStateCase, string> = {
+  first_visit: "expected_empty",
+  custom_only: "expected_empty",
+  migration_lost: "validation",
+};
+
 export function ChecklistEmptyState({
   case: emptyCase,
   onBrowse,
   onMigrationConfirm,
 }: ChecklistEmptyStateProps) {
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    sendGAEvent("empty_state_view", {
+      page: window.location.pathname,
+      reason: REASON_BY_CASE[emptyCase],
+    });
+  }, [emptyCase]);
   if (emptyCase === "first_visit") {
     return (
       <section

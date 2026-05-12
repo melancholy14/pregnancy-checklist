@@ -11,6 +11,7 @@ import { MedicalDisclaimer } from "./MedicalDisclaimer";
 import { RelatedArticles } from "./RelatedArticles";
 import { RelatedContent } from "./RelatedContent";
 import { ShareButton } from "@/components/share/ShareButton";
+import { useScrollSignals } from "@/lib/use-scroll-signals";
 
 interface ArticleDetailProps {
   article: Article;
@@ -25,6 +26,7 @@ export function ArticleDetail({
   relatedChecklists = [],
   relatedVideos = [],
 }: ArticleDetailProps) {
+  useScrollSignals("article", { slug: article.slug });
   return (
     <div className="min-h-screen pb-24 px-4">
       <article className="pt-8">
@@ -117,7 +119,7 @@ export function ArticleDetail({
           videos={relatedVideos}
         />
 
-        <RelatedArticles articles={relatedArticles} />
+        <RelatedArticles articles={relatedArticles} fromSlug={article.slug} />
       </article>
     </div>
   );

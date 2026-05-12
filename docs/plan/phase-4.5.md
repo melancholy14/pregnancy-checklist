@@ -3,9 +3,9 @@
 > Phase 4 기록: [phase-4.md](phase-4.md)
 > Date: 2026-05-02
 > 목표 완료: TBD
-> Status: 🚧 기획 후반 / 디자인 진입 가능 (2026-05-09 갱신)
+> Status: 🚧 디자인 G·H·L·D 완료 / phase-4.6 분기 (2026-05-10 갱신)
 >
-> **진행 요약 (2026-05-09)**
+> **진행 요약 (2026-05-10)**
 >
 > - **기획 §3** — Critical 결정·구현 완료:
 >   P3·P4 ([pregnancy-week-onboarding](../pregnancy-week-onboarding/README.md)),
@@ -16,13 +16,17 @@
 >   P1 deferred (`checklist-data-model-bundle`).
 >   P5 P1과 묶여 자연 보류.
 >   P8·P10·P12·P13 결정 산출물 미발견.
-> - **디자인 §2** — **진행 가능 ✅**.
->   묶음 L (P14 unblock), 묶음 D (P3·P4 unblock) unblock 완료.
->   묶음 G(`#E0F0FF` Cross-1 헌법 결정)만 운영자 결정 1건 필요.
+> - **디자인 §2** — **묶음 G·H·L·D 4건 완료**:
+>   Cross-1 5-pastel 내 정정 ([design-bundle-g-pastel-remap](../design-bundle-g-pastel-remap/README.md)),
+>   Cross-2 탭/필터 = `lavender/40` 통일 ([design-bundle-h-tab-filter-color](../design-bundle-h-tab-filter-color/README.md)),
+>   article-prose 이미지 시스템 IM-1·IM-3·IM-5 마감 ([design-bundle-l-image-system](../design-bundle-l-image-system/README.md), next/image 전환은 standalone 라운드로 분리),
+>   "미체크만 보기" 토글 + "N주차에 챙기기" D-day 라벨 ([design-bundle-d-uncheck-toggle-dday](../design-bundle-d-uncheck-toggle-dday/README.md)).
+>   잔여 묶음: A·B·C·E·F·I·J·K·N·O.
 > - **마케팅 §1** — 묶음 G 부분 wiring (user properties + `pregnancy_week_set` 코드 머지),
->   `recommended_item_view`/`check`·`weight_log` 코드 wired.
->   D1(GA4 Property ID + Service Account 발급) 운영자 작업 미수행.
+>   `recommended_item_view`/`check`·`weight_log`·`checklist_filter`·`upcoming_item_view`/`check` 코드 wired.
+>   D1(GA4 Property ID + Service Account 발급) 운영자 작업 미수행 — [phase-4.6](phase-4.6.md) 선결조건 (마감 2026-05-18 시작).
 > - **개발 §4** — 미착수. P1 deferred 묶음과 함께 phase-4.5 종료 시 합류 예정.
+> - **분기**: 정보 구조 4축 정돈은 [phase-4.6.md](phase-4.6.md)로 분리 (D1 발급 + 2주 데이터 후 진입).
 
 ## Overview
 
@@ -124,7 +128,7 @@ GA4 인프라(consent 게이팅 + 수동 page_view + `sendGAEvent` 헬퍼)는 �
 | `article_view` | `slug`, `topic`, `format`(article/guide), `week_relevance` | 어떤 토픽이 잘 읽히나 |
 | `article_read_complete` | `slug`, `read_time_sec` | scroll 75%↑ + dwell 60s↑ — **진짜 읽힌 글** (GA4 기본 scroll 단독으로는 부족) |
 | `related_article_click` | `from_slug`, `to_slug`, `position` | 최근 만든 추천 기능([commit 0c25e04](../../scripts/generate-crosslinks.ts)) 효과 측정 |
-| `share_click` | `slug`, `method`(share/copy) | Web Share([commit ba15a41](../../src/components/share/ShareButton.tsx)) 전환율 |
+| `share_click` | `slug`, `method`(share/copy), `position`(`top_right`/`bottom_center`) | Web Share([commit ba15a41](../../src/components/share/ShareButton.tsx)) 전환율 + 영역×위치별 도달률(4주 measurement window, 묶음 J) |
 
 > 📌 영상은 자체 임베드가 아니라 [VideoCard.tsx](../../src/components/videos/VideoCard.tsx)에서 youtube.com으로 외부 이동. 시청 진행률(`video_progress`)은 우리 도메인에서 측정 불가 → §E `external_link_click`에 `video_id`·`channel_id` 파라미터로 흡수해 한 곳에서 본다. YouTube Studio 분석은 별도.
 
@@ -184,7 +188,7 @@ GA4 인프라(consent 게이팅 + 수동 page_view + `sendGAEvent` 헬퍼)는 �
 권장 실행 순서: **G → H → (1주 관찰) → I → J → L → M**
 (G·H 없이 I 먼저 가면 코호트 슬라이싱이 안 돼서 데이터가 평면적. L·M은 G~J가 1~2주 누적된 뒤 의미 있는 리포트가 나옴.)
 
-> **상태 (2026-05-09)**: 묶음 G 부분 wiring 완료 — `pregnancy_week_set` (DueDateInput·DueDateStep), user properties 3종 (PageviewTracker), `recommended_item_view`/`check` (ChecklistPage·TimelineContainer·WeekChecklistSection), `weight_log` (WeightForm) 코드 머지. ga4.md §8 추적표 미갱신. 묶음 H 카탈로그 정렬·`article_read_complete`·`search_submit` 잔여. I·J·L·M 미착수.
+> **상태 (2026-05-10)**: 묶음 G 부분 wiring 완료 — `pregnancy_week_set` (DueDateInput·DueDateStep), user properties 3종 (PageviewTracker), `recommended_item_view`/`check` (ChecklistPage·TimelineContainer·WeekChecklistSection), `weight_log` (WeightForm), `checklist_filter`·`upcoming_item_view`/`check` (design-bundle-d 머지) 코드 머지. ga4.md §8 추적표 미갱신. 묶음 H 카탈로그 정렬·`article_read_complete`·`search_submit` 잔여. I·J·L·M 미착수 — L·M은 D1 발급 후 진입 ([phase-4.6.md](phase-4.6.md) 선결조건).
 
 > 📌 §2(디자인) 작업 묶음 A~F와는 독립 진행 가능. 단 §2.6의 "미체크만 보기" 토글이 들어가면 묶음 H 정의에 `checklist_filter` 이벤트 1개 추가.
 
@@ -556,11 +560,11 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 | ID | 패턴 | 영향 영역 | 결정/대응 |
 |----|------|-----------|-----------|
-| **Cross-1** | `#E0F0FF` 비공식 6번째 pastel | home(H-3), timeline(T-2), baby-fair(B-1) | **시스템 결정 필요**: 6번째 pastel 헌법화 vs 5-pastel 내 정정 |
-| **Cross-2** | 탭/필터 활성색 컨벤션 미합의 | info(I-7), timeline(T-4), baby-fair(B-4) | **권장**: 탭·필터 활성 = `lavender/40` 통일 (pink=CTA만, role 정합) |
+| **Cross-1** | `#E0F0FF` 비공식 6번째 pastel | home(H-3), timeline(T-2), baby-fair(B-1) | ✅ **결정·구현 완료 (2026-05-09)** — **5-pastel 내 정정** (lavender/peach 재매핑). [design-bundle-g-pastel-remap](../design-bundle-g-pastel-remap/README.md) |
+| **Cross-2** | 탭/필터 활성색 컨벤션 미합의 | info(I-7), timeline(T-4), baby-fair(B-4) | ✅ **완료 (2026-05-10)** — `lavender/40` 통일 적용 (홈 제외 5개 영역). [design-bundle-h-tab-filter-color](../design-bundle-h-tab-filter-color/README.md) |
 | **Cross-3** | 페이지 셸 `bg-linear-to-* to-white` 위반 | checklist(C2), timeline(T-1) | A 묶음 — `bg-background` 단색 일괄 |
-| **Cross-4** | 인라인 hex `style={{ backgroundColor }}` | home(H-3), timeline(T-11), baby-fair(B-3) | **헬퍼 도입**: 데이터 매핑 layer가 토큰 클래스를 반환하도록 한 단계 추가 |
-| **Cross-5** | row-as-button + nested interactive | checklist(M1), timeline(WeekChecklistSection 공유) | B 묶음 — WeekChecklistSection 한 컴포넌트 정정으로 둘 다 해결 |
+| **Cross-4** | 인라인 hex `style={{ backgroundColor }}` | home(H-3), timeline(T-11), baby-fair(B-3) | ✅ **완료 (2026-05-10)** — `src/lib/data-token-classes.ts` 헬퍼 도입. [design-bundle-b-i-row-tokens](../features/design-bundle-b-i-row-tokens/spec.md) |
+| **Cross-5** | row-as-button + nested interactive | checklist(M1), timeline(WeekChecklistSection 공유) | ✅ **완료 (2026-05-10)** — `ChecklistRow` 공통 컴포넌트 추출로 두 파일(ChecklistItemRow + WeekChecklistSection) 동시 해결. [design-bundle-b-i-row-tokens](../features/design-bundle-b-i-row-tokens/spec.md) |
 | **Cross-6** | 인라인 size override (`text-[15px] font-medium`) | checklist(C4), timeline(T-9), info(I-5·I-6) | C 묶음 — 글로벌 h3·h4 자체를 카드용으로 조정 검토 |
 | **Cross-7** | "→" 텍스트 화살표 산재 | home(H-2), timeline(T-8), info(I-1), weight(W-5) | E 묶음 — `grep -rn "→" src/` 일괄 |
 | **Cross-8** | 정보 카드 `shadow-md` 위반 | timeline(T-10), info(검토), weight(W-2), baby-fair(B-2) | E 묶음 — `shadow-sm` 일괄 |
@@ -574,26 +578,26 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 > §2.7의 A~F는 체크리스트 기반. 다른 영역 위반·횡단 패턴까지 포함하면 묶음이 확장된다. 묶음 ID는 §2.7과 호환.
 
-| 묶음 | 내용 | 영역 | 난이도 | 임팩트 |
-|---|---|---|---|---|
-| **A** | 페이지 셸 그라디언트 정정 + radius 통일 + 우선순위 색 재매핑 (C1·C2·C3·T-1·T-6·T-7·W-3) | checklist+timeline+weight | S | 큼 |
-| **B** | WeekChecklistSection을 label 기반 마크업으로 (M1·T-5) | checklist+timeline (공유 컴포넌트) | M | 큼 |
-| **C** | h2/h3 인라인 size override 정리 (C4·T-9·I-5·I-6, Cross-6) — 글로벌 위계 조정 검토 포함 | 전 영역 | S~M | 중 |
-| **D** | "미체크만 보기" + 임신 주차 컨텍스트 라벨 | checklist | M | 큼 |
-| **E** | 마감 일괄(shadow / 화살표 / 토큰 외 red / 토큰 외 hex / Minor 전반) — Cross-7·Cross-8·Cross-9 포함 | 전 영역 | S | 큼 (영향 면적 큰 cleanup) |
-| **F** | 허브 카드 아이콘 패턴 통일 + "37주차" 핀 (M5·M6) | checklist | S | 중 |
-| **G** | **`#E0F0FF` 결정 + 일괄 정정** (Cross-1) | home+timeline+baby-fair | S (결정 후) | 큼 (헌법 정합성) |
-| **H** | **탭/필터 활성색 일괄 정렬 → lavender/40** (Cross-2) | info+timeline+baby-fair | S | 중 |
-| **I** | 데이터→토큰 매핑 헬퍼 도입 (Cross-4) | home+timeline+baby-fair | M | 중 |
-| **J** | ShareButton 위치 컨벤션 결정 + 일괄 정렬 (Cross-10) | checklist+info | S | 중 |
-| **K** | 삭제 패턴 통일 — undo 토스트 도입 (Cross-11) + 체중 confirm 추가 | checklist+timeline+weight | M | 중 |
-| **N** | 차트 색 결정 (W-1) — peach 라인 + 권장 범위 톤 재배치 | weight | S | 중 |
-| **O** | 외부 링크 보안 패턴 (B-5) — `rel="noopener noreferrer"` 표준 정렬 | baby-fair (확장 가능) | S | 낮 |
+| 묶음 | 내용 | 영역 | 난이도 | 임팩트 | 상태 (2026-05-10) |
+|---|---|---|---|---|---|
+| **A** | 페이지 셸 그라디언트 정정 + radius 통일 + 우선순위 색 재매핑 (C1·C2·C3·T-1·T-6·T-7·W-3) | checklist+timeline+weight | S | 큼 | ⚠️ 미착수 |
+| **B** | `ChecklistRow` 공통 컴포넌트 추출 + label 기반 마크업으로 (M1·T-5) | checklist+timeline (공유 컴포넌트) | M | 큼 | ✅ 완료 ([design-bundle-b-i-row-tokens](../features/design-bundle-b-i-row-tokens/spec.md)) |
+| **C** | h2/h3 인라인 size override 정리 (C4·T-9·I-5·I-6, Cross-6) — 글로벌 위계 조정 검토 포함 | 전 영역 | S~M | 중 | ⚠️ 미착수 |
+| **D** | "미체크만 보기" + 임신 주차 컨텍스트 라벨 | checklist | M | 큼 | ✅ 완료 ([design-bundle-d](../design-bundle-d-uncheck-toggle-dday/README.md)) |
+| **E** | 마감 일괄(shadow / 화살표 / 토큰 외 red / 토큰 외 hex / Minor 전반) — Cross-7·Cross-8·Cross-9 포함 | 전 영역 | S | 큼 (영향 면적 큰 cleanup) | ⚠️ 미착수 |
+| **F** | 허브 카드 아이콘 패턴 통일 + "37주차" 핀 (M5·M6) | checklist | S | 중 | 🟡 부분 (M6 "37주차" 핀은 P3 산출로 store 치환 완료) |
+| **G** | **`#E0F0FF` 결정 + 일괄 정정** (Cross-1) | home+timeline+baby-fair | S (결정 후) | 큼 (헌법 정합성) | ✅ 완료 ([design-bundle-g](../design-bundle-g-pastel-remap/README.md)) |
+| **H** | **탭/필터 활성색 일괄 정렬 → lavender/40** (Cross-2) | info+timeline+baby-fair | S | 중 | ✅ 완료 ([design-bundle-h](../design-bundle-h-tab-filter-color/README.md)) |
+| **I** | 데이터→토큰 매핑 헬퍼 도입 (Cross-4) | home+timeline+baby-fair | M | 중 | ✅ 완료 ([design-bundle-b-i-row-tokens](../features/design-bundle-b-i-row-tokens/spec.md)) |
+| **J** | ShareButton 위치 컨벤션 결정 + 일괄 정렬 (Cross-10) | checklist+info | S | 중 | ⚠️ 미착수 |
+| **K** | 삭제 패턴 통일 — undo 토스트 도입 (Cross-11) + 체중 confirm 추가 | checklist+timeline+weight | M | 중 | ⚠️ 미착수 |
+| **N** | 차트 색 결정 (W-1) — peach 라인 + 권장 범위 톤 재배치 | weight | S | 중 | ⚠️ 미착수 |
+| **O** | 외부 링크 보안 패턴 (B-5) — `rel="noopener noreferrer"` 표준 정렬 | baby-fair (확장 가능) | S | 낮 | ⚠️ 미착수 |
 
 권장 실행 순서: **G → H → A → C → E → F → B → I → J → K → N → O → D**
 (헌법 결정 G·H 먼저 → 토큰 일괄 정정 A·C·E → 마크업 리팩터 B·I → 시스템 컨벤션 J·K·N·O → 신규 UX D)
 
-> **상태 (2026-05-09)**: 모두 미착수. 선결조건 검토 결과 — 묶음 L (P14, §2.11) ✅ unblock 완료, 묶음 D (P3·P4, §2.6) ✅ unblock 완료. 묶음 G(`#E0F0FF` Cross-1 헌법 결정)만 운영자 결정 1건 필요 — 결정되면 G → H → 나머지 묶음 일괄 진행 가능.
+> **상태 (2026-05-10)**: G·H·D + (별도) L 4건 완료. 잔여 권장 순서 = **A → C → E → F → B → I → J → K → N → O**.
 
 ---
 
@@ -618,7 +622,7 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 | **IM-2** | `figure > img + figcaption` 패턴 도입 — markdown remark 플러그인(`remark-figure-image` 등)으로 `![alt](path)`를 자동 figure 변환. caption은 alt 텍스트 그대로, `text-sm text-muted-foreground text-center mt-2`로 렌더 | L |
 | **IM-3** | `<img>` width/height attribute 자동 추출 (image-size 라이브러리) + `loading="lazy"` 적용. **next/image 전환은 본 라운드 범위 외 — standalone 모드 전환 라운드와 함께 진행** ([infra.md §3.2](../tech/infra.md#L94-L102)). | L |
 | **IM-4** | AI 생성 이미지의 시각 표시 — figcaption 끝에 `· AI 생성` 텍스트 라벨 또는 이미지 우하단 `bg-foreground/60 text-white text-xs` 칩(`Imagined with AI` 패턴 차용). §3.1 P14 결정에 따라 형태·문구 확정 | L (P14 결정 후) |
-| **IM-5** | 본문 이미지 lightbox / zoom 여부 결정 — 인포그래픽 텍스트가 모바일에서 작아 가독성 떨어짐. 탭 시 전체화면 확대(Radix Dialog) 도입 vs 원본 새 탭 열기 vs 미도입 | (결정) |
+| **IM-5** | 본문 이미지 lightbox / zoom 여부 결정 — 인포그래픽 텍스트가 모바일에서 작아 가독성 떨어짐. 탭 시 전체화면 확대(Radix Dialog) 도입 vs 원본 새 탭 열기 vs 미도입 | ✅ **결정·구현 완료 (2026-05-10)** — 원본 새 탭 열기 채택 (design-bundle-l) |
 | **IM-6** | 이미지 alt 작성 가이드라인 — 현재 alt가 "임신 초기 예비맘이 노트북으로 보험 상품을 비교하는 모습"처럼 장면 묘사형. 인포그래픽은 **그래프 데이터 핵심 수치**까지 포함해야 스크린리더 사용자가 정보 손실 없음. §3 P10 운영자 가이드와 통합 | S 묶음 |
 
 #### 2.11.3 권장 작업 묶음

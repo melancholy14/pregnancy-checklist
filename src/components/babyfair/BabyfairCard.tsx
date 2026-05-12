@@ -48,7 +48,20 @@ export function BabyfairCard({ event, daysLeft }: BabyfairCardProps) {
   };
 
   const handleConfirmClick = () => {
+    // legacy keep (4주 grace) — cleanup 라운드에서 제거.
     sendGAEvent("outbound_click", { url: event.official_url, event_name: event.name });
+    let domain = "";
+    try {
+      domain = new URL(event.official_url).hostname;
+    } catch {
+      domain = "";
+    }
+    // TODO(bundle-O): rel="noopener noreferrer" 표준 정합 — design-bundle-O wiring 라운드
+    sendGAEvent("external_link_click", {
+      domain,
+      context: "babyfair",
+      from_slug: event.slug,
+    });
     setOpen(false);
   };
 

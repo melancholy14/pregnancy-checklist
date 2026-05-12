@@ -22,6 +22,7 @@ import { ChecklistEmptyState, type ChecklistEmptyStateCase } from "./ChecklistEm
 import { AllDoneBadge } from "./AllDoneBadge";
 import { ShareButton } from "@/components/share/ShareButton";
 import { sendGAEvent } from "@/lib/analytics";
+import { useScrollSignals } from "@/lib/use-scroll-signals";
 import { BASE_URL } from "@/lib/constants";
 import { classifyNote } from "@/lib/note-classifier";
 import type { ArticleMeta } from "@/types/article";
@@ -33,6 +34,7 @@ import {
 } from "@/store/createChecklistStore";
 import { useDueDateStore } from "@/store/useDueDateStore";
 import { restoreAtIndex, useDeleteWithUndo } from "@/lib/hooks/useDeleteWithUndo";
+import { useChecklistToggleEvent } from "@/lib/hooks/useChecklistToggleEvent";
 
 export type { ChecklistStoreSlug };
 
@@ -47,6 +49,8 @@ interface ChecklistPageProps {
 }
 
 export function ChecklistPage({ data, storeSlug, linkedArticles, linkedVideos }: ChecklistPageProps) {
+  useScrollSignals("checklist", { slug: data.meta.slug });
+  const fireToggleEvent = useChecklistToggleEvent();
   const { meta, items: baseItems } = data;
   const useStore = CHECKLIST_STORE_BY_SLUG[storeSlug];
   const {
@@ -196,6 +200,7 @@ export function ChecklistPage({ data, storeSlug, linkedArticles, linkedVideos }:
         slug: meta.slug,
         note_type: item.note ? noteType : null,
       });
+      fireToggleEvent(item, willCheck);
       if (
         willCheck &&
         currentPregnancyWeek !== null &&
@@ -228,6 +233,7 @@ export function ChecklistPage({ data, storeSlug, linkedArticles, linkedVideos }:
       migrationLostFlag,
       clearMigrationLost,
       currentPregnancyWeek,
+      fireToggleEvent,
     ]
   );
 

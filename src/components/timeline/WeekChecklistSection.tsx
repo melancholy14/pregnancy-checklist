@@ -9,6 +9,7 @@ import { sendGAEvent } from "@/lib/analytics";
 import { classifyNote } from "@/lib/note-classifier";
 import { getCategoryTokenClass } from "@/lib/data-token-classes";
 import { restoreAtIndex, useDeleteWithUndo } from "@/lib/hooks/useDeleteWithUndo";
+import { useChecklistToggleEvent } from "@/lib/hooks/useChecklistToggleEvent";
 import { ChecklistRow } from "@/components/checklist/ChecklistRow";
 import type { ChecklistItem } from "@/types/checklist";
 
@@ -75,6 +76,8 @@ export function WeekChecklistSection({
     setEditingId(null);
   };
 
+  const fireToggleEvent = useChecklistToggleEvent();
+
   const handleToggleItem = useCallback(
     (item: ChecklistItem) => {
       const willCheck = !checkedIds.includes(item.id);
@@ -87,6 +90,7 @@ export function WeekChecklistSection({
         slug,
         note_type: item.note ? noteType : null,
       });
+      fireToggleEvent(item, willCheck);
       const isHighlighted =
         currentPregnancyWeek !== null &&
         item.recommendedWeek !== 0 &&
@@ -100,7 +104,7 @@ export function WeekChecklistSection({
         });
       }
     },
-    [checkedIds, toggle, slug, currentPregnancyWeek],
+    [checkedIds, toggle, slug, currentPregnancyWeek, fireToggleEvent],
   );
 
   return (

@@ -18,7 +18,17 @@ export function VideoCard({ video, channelName }: VideoCardProps) {
       target="_blank"
       rel="noopener noreferrer"
       className="no-underline"
-      onClick={() => sendGAEvent("content_click", { type: "video", title: video.title })}
+      // TODO(bundle-O): rel="noopener noreferrer" 표준 정합 — design-bundle-O wiring 라운드
+      onClick={() => {
+        // legacy keep (4주 grace) — cleanup 라운드에서 제거.
+        sendGAEvent("content_click", { type: "video", title: video.title });
+        sendGAEvent("external_link_click", {
+          domain: "youtube.com",
+          context: "video",
+          video_id: video.id,
+          channel_id: video.channel_id,
+        });
+      }}
     >
       <Card className="rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-black/4 group hover:-translate-y-0.5">
         {/* Thumbnail */}

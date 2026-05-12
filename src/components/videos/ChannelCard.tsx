@@ -24,7 +24,16 @@ export function ChannelCard({ channel }: ChannelCardProps) {
       rel="noopener noreferrer"
       className="no-underline block"
       aria-label={`${channel.name} 유튜브 채널로 이동`}
-      onClick={() => sendGAEvent("content_click", { type: "channel", title: channel.name })}
+      // TODO(bundle-O): rel="noopener noreferrer" 표준 정합 — design-bundle-O wiring 라운드
+      onClick={() => {
+        // legacy keep (4주 grace) — cleanup 라운드에서 제거.
+        sendGAEvent("content_click", { type: "channel", title: channel.name });
+        sendGAEvent("external_link_click", {
+          domain: "youtube.com",
+          context: "channel",
+          channel_id: channel.id,
+        });
+      }}
     >
       <Card className="rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 border border-black/4 hover:-translate-y-0.5">
         <CardContent className="p-4 flex items-center gap-4">
