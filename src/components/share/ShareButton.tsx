@@ -3,7 +3,11 @@
 import { useState } from "react";
 import { Share2 } from "lucide-react";
 import { ShareModal } from "./ShareModal";
-import { triggerShare, type ShareContentType } from "@/lib/share";
+import {
+  triggerShare,
+  type ShareContentType,
+  type SharePosition,
+} from "@/lib/share";
 
 interface ShareButtonProps {
   title: string;
@@ -11,6 +15,7 @@ interface ShareButtonProps {
   url: string;
   contentType: ShareContentType;
   itemId: string;
+  position: SharePosition;
   className?: string;
   label?: string;
 }
@@ -21,6 +26,7 @@ export function ShareButton({
   url,
   contentType,
   itemId,
+  position,
   className = "",
   label = "공유하기",
 }: ShareButtonProps) {
@@ -31,6 +37,7 @@ export function ShareButton({
       data: { title, text: description, url },
       contentType,
       itemId,
+      position,
       onFallback: () => setModalOpen(true),
     });
   };
@@ -57,6 +64,7 @@ export function ShareButton({
         title={title}
         contentType={contentType}
         itemId={itemId}
+        position={position}
       />
     </>
   );

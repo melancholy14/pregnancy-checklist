@@ -222,6 +222,7 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
             url={`${BASE_URL}/timeline`}
             contentType="timeline"
             itemId="timeline"
+            position="top_right"
           />
         </div>
 

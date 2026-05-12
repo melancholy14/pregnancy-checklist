@@ -261,6 +261,7 @@ export function ChecklistPage({ data, storeSlug, linkedArticles, linkedVideos }:
             url={`${BASE_URL}/checklist/${meta.slug}`}
             contentType="checklist"
             itemId={meta.slug}
+            position="top_right"
           />
         </div>
 

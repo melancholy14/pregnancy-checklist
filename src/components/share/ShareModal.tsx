@@ -8,7 +8,11 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { copyShareLink, type ShareContentType } from "@/lib/share";
+import {
+  copyShareLink,
+  type ShareContentType,
+  type SharePosition,
+} from "@/lib/share";
 
 interface ShareModalProps {
   open: boolean;
@@ -17,6 +21,7 @@ interface ShareModalProps {
   title: string;
   contentType: ShareContentType;
   itemId: string;
+  position: SharePosition;
 }
 
 export function ShareModal({
@@ -26,9 +31,10 @@ export function ShareModal({
   title,
   contentType,
   itemId,
+  position,
 }: ShareModalProps) {
   const handleCopy = async () => {
-    await copyShareLink(url, { contentType, itemId });
+    await copyShareLink(url, { contentType, itemId, position });
     onOpenChange(false);
   };
 

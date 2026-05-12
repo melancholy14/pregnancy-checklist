@@ -74,6 +74,7 @@ export function ArticleDetail({
             url={article.canonical}
             contentType="article"
             itemId={article.slug}
+            position="top_right"
           />
         </div>
 
@@ -106,6 +107,7 @@ export function ArticleDetail({
             url={article.canonical}
             contentType="article"
             itemId={article.slug}
+            position="bottom_center"
             label="이 글 공유하기"
           />
         </div>
