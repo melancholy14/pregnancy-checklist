@@ -3,30 +3,33 @@
 > Phase 4 기록: [phase-4.md](phase-4.md)
 > Date: 2026-05-02
 > 목표 완료: TBD
-> Status: 🚧 디자인 G·H·L·D 완료 / phase-4.6 분기 (2026-05-10 갱신)
+> Status: ✅ 디자인 §2 전체 완료 / 마케팅 G·H·I·J 완료 — phase-4.6 진입 대기 (2026-05-12 갱신)
 >
-> **진행 요약 (2026-05-10)**
+> **진행 요약 (2026-05-12)**
 >
 > - **기획 §3** — Critical 결정·구현 완료:
 >   P3·P4 ([pregnancy-week-onboarding](../pregnancy-week-onboarding/README.md)),
 >   P14 ([p14-ai-image-label](../p14-ai-image-label/README.md)),
 >   P9 ([p9-empty-state](../p9-empty-state/README.md)),
 >   P2·P6·P7 ([checklist-recommendation-semantics](../checklist-recommendation-semantics/README.md)).
->   P11 spec·결정 완료 (vault 매트릭스 1차 작성 대기).
+>   P11 spec·결정 완료 (vault 매트릭스 작성 phase-4.6 종료 후로 이연 — 타임라인 흡수·4축 정합 반영).
 >   P1 deferred (`checklist-data-model-bundle`).
 >   P5 P1과 묶여 자연 보류.
 >   P8·P10·P12·P13 결정 산출물 미발견.
-> - **디자인 §2** — **묶음 G·H·L·D 4건 완료**:
->   Cross-1 5-pastel 내 정정 ([design-bundle-g-pastel-remap](../design-bundle-g-pastel-remap/README.md)),
->   Cross-2 탭/필터 = `lavender/40` 통일 ([design-bundle-h-tab-filter-color](../design-bundle-h-tab-filter-color/README.md)),
->   article-prose 이미지 시스템 IM-1·IM-3·IM-5 마감 ([design-bundle-l-image-system](../design-bundle-l-image-system/README.md), next/image 전환은 standalone 라운드로 분리),
->   "미체크만 보기" 토글 + "N주차에 챙기기" D-day 라벨 ([design-bundle-d-uncheck-toggle-dday](../design-bundle-d-uncheck-toggle-dday/README.md)).
->   잔여 묶음: A·B·C·E·F·I·J·K·N·O.
-> - **마케팅 §1** — 묶음 G 부분 wiring (user properties + `pregnancy_week_set` 코드 머지),
->   `recommended_item_view`/`check`·`weight_log`·`checklist_filter`·`upcoming_item_view`/`check` 코드 wired.
->   D1(GA4 Property ID + Service Account 발급) 운영자 작업 미수행 — [phase-4.6](phase-4.6.md) 선결조건 (마감 2026-05-18 시작).
-> - **개발 §4** — 미착수. P1 deferred 묶음과 함께 phase-4.5 종료 시 합류 예정.
-> - **분기**: 정보 구조 4축 정돈은 [phase-4.6.md](phase-4.6.md)로 분리 (D1 발급 + 2주 데이터 후 진입).
+> - **디자인 §2** — **잔여 묶음 전체 완료** (이전 G·H·L·D + 이번 라운드 A·B·C·E·F·I·J·K·N·O):
+>   - cleanup 묶음 5건 통합: A·C·E·F·O ([design-bundle-cleanup-round](../design-bundle-cleanup-round/README.md))
+>   - refactor 묶음 2건 통합: B·I ([design-bundle-b-i-row-tokens](../features/design-bundle-b-i-row-tokens/) — WeekChecklistSection label 마크업 + 데이터→토큰 헬퍼)
+>   - decision 묶음 3건: J ShareButton 위치 ([design-bundle-j-share-button-position](../design-bundle-j-share-button-position/README.md)), K 삭제 패턴 undo 토스트 ([design-bundle-k-delete-pattern](../design-bundle-k-delete-pattern/README.md)), N 차트 색 peach ([design-bundle-n-weight-chart-color](../design-bundle-n-weight-chart-color/README.md))
+>   - 잔여: IM-6 (alt 가이드라인, P10 운영자 가이드 통합 의존)
+> - **마케팅 §1** — **묶음 G·H·I·J wiring 완료** ([marketing-events-wiring](../marketing-events-wiring/README.md), 2026-05-12):
+>   카탈로그 정렬 + 신규 hook 2종(`useScrollSignals`·`useChecklistToggleEvent`) + 16개 파일 wiring.
+>   `article_read_complete` (75%/60s/visibility), `scroll_without_action` (4 page_type), `search_submit` (정규화+800ms 디바운스),
+>   `related_article_click`·`share_click`·`cta_click`·`empty_state_view`·`external_link_click` 발사 시작.
+>   잔여: ga4.md §8 추적표 G·H·I·J 체크박스 [x] 갱신 + §9 변경 이력 한 줄.
+>   L·M(자동 주간 리포트 + launchd)은 D1 선결조건이라 [phase-4.6](phase-4.6.md)으로 이연.
+> - **개발 §4** — 미착수. P1 deferred 묶음(`checklist-data-model-bundle`)과 함께 phase-4.5 종료 시 합류 예정.
+> - **운영자 작업 잔여**: D1 GA4 Property ID + Service Account 발급 ✅ 완료 (2026-05-12, `~/.config/pregnancy-checklist/ga4-sa.json` — `chmod 600` 잔여). P11 vault 매트릭스 1차 수기 작성은 phase-4.6 종료 후로 이연 (타임라인 흡수·4축 정합 반영).
+> - **분기**: 정보 구조 4축 정돈은 [phase-4.6.md](phase-4.6.md)로 분리 (D1 ✅ + 2주 데이터 수집 중, ~2026-05-26 진입 예상).
 
 ## Overview
 
@@ -188,7 +191,7 @@ GA4 인프라(consent 게이팅 + 수동 page_view + `sendGAEvent` 헬퍼)는 �
 권장 실행 순서: **G → H → (1주 관찰) → I → J → L → M**
 (G·H 없이 I 먼저 가면 코호트 슬라이싱이 안 돼서 데이터가 평면적. L·M은 G~J가 1~2주 누적된 뒤 의미 있는 리포트가 나옴.)
 
-> **상태 (2026-05-10)**: 묶음 G 부분 wiring 완료 — `pregnancy_week_set` (DueDateInput·DueDateStep), user properties 3종 (PageviewTracker), `recommended_item_view`/`check` (ChecklistPage·TimelineContainer·WeekChecklistSection), `weight_log` (WeightForm), `checklist_filter`·`upcoming_item_view`/`check` (design-bundle-d 머지) 코드 머지. ga4.md §8 추적표 미갱신. 묶음 H 카탈로그 정렬·`article_read_complete`·`search_submit` 잔여. I·J·L·M 미착수 — L·M은 D1 발급 후 진입 ([phase-4.6.md](phase-4.6.md) 선결조건).
+> **상태 (2026-05-12)**: ✅ **묶음 G·H·I·J wiring 전체 완료** ([marketing-events-wiring](../marketing-events-wiring/README.md)). 카탈로그 정렬 + 신규 hook 2종(`useScrollSignals`·`useChecklistToggleEvent`) + 16개 파일 wiring. `article_read_complete` (75%/60s/visibility), `scroll_without_action` (4 page_type), `search_submit` (정규화+800ms 디바운스), `related_article_click`·`share_click`·`cta_click`·`empty_state_view`·`external_link_click` 발사 시작. 잔여: ga4.md §8 추적표 G·H·I·J 체크박스 [x] 갱신 + §9 변경 이력 한 줄 추가. L·M은 D1 발급 후 진입 ([phase-4.6.md](phase-4.6.md) 선결조건).
 
 > 📌 §2(디자인) 작업 묶음 A~F와는 독립 진행 가능. 단 §2.6의 "미체크만 보기" 토글이 들어가면 묶음 H 정의에 `checklist_filter` 이벤트 1개 추가.
 
@@ -260,11 +263,12 @@ config/
 
 #### D1. GA4 Property ID + Service Account 발급
 
-> **상태 (2026-05-09)**: ⚠️ **운영자 작업 미수행** — `scripts/weekly-report/` 미존재, `~/.config/pregnancy-checklist/ga4-sa.json` 미발급. 묶음 L·M의 선결조건.
+> **상태 (2026-05-12)**: ✅ **운영자 작업 완료** — Property ID 확인 + Service Account JSON 키 발급 + GA4 Viewer 권한 부여. JSON 키 `~/.config/pregnancy-checklist/ga4-sa.json` (SoT 경로 그대로, 2352 bytes). ⚠️ **권한이 현재 644 — `chmod 600` 필요**. `scripts/weekly-report/`는 묶음 L에서 신규 생성 예정.
 
-- [ ] GA4 콘솔에서 Property ID 확인 (Measurement ID `G-XXX`와 다름)
-- [ ] GCP 콘솔에서 Service Account 생성 → JSON 키 다운로드
-- [ ] GA4 Property에 Service Account 이메일을 **Viewer 권한**으로 추가
+- [x] GA4 콘솔에서 Property ID 확인 (Measurement ID `G-XXX`와 다름)
+- [x] GCP 콘솔에서 Service Account 생성 → JSON 키 다운로드
+- [x] GA4 Property에 Service Account 이메일을 **Viewer 권한**으로 추가
+- [ ] **잔여**: `chmod 600 ~/.config/pregnancy-checklist/ga4-sa.json` (보안)
 - **보관 위치**: `~/.config/pregnancy-checklist/ga4-sa.json` (홈 밖, repo 밖). 환경변수 `GA4_SA_KEY_PATH`로 참조.
 
 #### D2. 스케줄러 — launchd 채택
@@ -580,24 +584,24 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 | 묶음 | 내용 | 영역 | 난이도 | 임팩트 | 상태 (2026-05-10) |
 |---|---|---|---|---|---|
-| **A** | 페이지 셸 그라디언트 정정 + radius 통일 + 우선순위 색 재매핑 (C1·C2·C3·T-1·T-6·T-7·W-3) | checklist+timeline+weight | S | 큼 | ⚠️ 미착수 |
+| **A** | 페이지 셸 그라디언트 정정 + radius 통일 + 우선순위 색 재매핑 (C2·C3·T-1·T-6·T-7·W-3, C1 적용 완료) | checklist+timeline+weight | S | 큼 | ✅ 완료 ([design-bundle-cleanup-round](../design-bundle-cleanup-round/README.md)) |
 | **B** | `ChecklistRow` 공통 컴포넌트 추출 + label 기반 마크업으로 (M1·T-5) | checklist+timeline (공유 컴포넌트) | M | 큼 | ✅ 완료 ([design-bundle-b-i-row-tokens](../features/design-bundle-b-i-row-tokens/spec.md)) |
-| **C** | h2/h3 인라인 size override 정리 (C4·T-9·I-5·I-6, Cross-6) — 글로벌 위계 조정 검토 포함 | 전 영역 | S~M | 중 | ⚠️ 미착수 |
+| **C** | h2/h3 인라인 size override 정리 (C4·T-9·I-5·I-6, Cross-6) — 글로벌 위계 조정 검토 포함 | 전 영역 | S~M | 중 | ✅ 완료 ([design-bundle-cleanup-round](../design-bundle-cleanup-round/README.md)) |
 | **D** | "미체크만 보기" + 임신 주차 컨텍스트 라벨 | checklist | M | 큼 | ✅ 완료 ([design-bundle-d](../design-bundle-d-uncheck-toggle-dday/README.md)) |
-| **E** | 마감 일괄(shadow / 화살표 / 토큰 외 red / 토큰 외 hex / Minor 전반) — Cross-7·Cross-8·Cross-9 포함 | 전 영역 | S | 큼 (영향 면적 큰 cleanup) | ⚠️ 미착수 |
-| **F** | 허브 카드 아이콘 패턴 통일 + "37주차" 핀 (M5·M6) | checklist | S | 중 | 🟡 부분 (M6 "37주차" 핀은 P3 산출로 store 치환 완료) |
+| **E** | 마감 일괄(shadow / 화살표 / 토큰 외 red / 토큰 외 hex / Minor 전반) — Cross-7·Cross-8·Cross-9 포함 | 전 영역 | S | 큼 (영향 면적 큰 cleanup) | ✅ 완료 ([design-bundle-cleanup-round](../design-bundle-cleanup-round/README.md)) |
+| **F** | 허브 카드 아이콘 패턴 통일 + "37주차" 핀 (M5·M6) | checklist | S | 중 | ✅ 완료 (M6 P3 산출 + M5 [design-bundle-cleanup-round](../design-bundle-cleanup-round/README.md)) |
 | **G** | **`#E0F0FF` 결정 + 일괄 정정** (Cross-1) | home+timeline+baby-fair | S (결정 후) | 큼 (헌법 정합성) | ✅ 완료 ([design-bundle-g](../design-bundle-g-pastel-remap/README.md)) |
 | **H** | **탭/필터 활성색 일괄 정렬 → lavender/40** (Cross-2) | info+timeline+baby-fair | S | 중 | ✅ 완료 ([design-bundle-h](../design-bundle-h-tab-filter-color/README.md)) |
 | **I** | 데이터→토큰 매핑 헬퍼 도입 (Cross-4) | home+timeline+baby-fair | M | 중 | ✅ 완료 ([design-bundle-b-i-row-tokens](../features/design-bundle-b-i-row-tokens/spec.md)) |
-| **J** | ShareButton 위치 컨벤션 결정 + 일괄 정렬 (Cross-10) | checklist+info | S | 중 | ⚠️ 미착수 |
-| **K** | 삭제 패턴 통일 — undo 토스트 도입 (Cross-11) + 체중 confirm 추가 | checklist+timeline+weight | M | 중 | ⚠️ 미착수 |
-| **N** | 차트 색 결정 (W-1) — peach 라인 + 권장 범위 톤 재배치 | weight | S | 중 | ⚠️ 미착수 |
-| **O** | 외부 링크 보안 패턴 (B-5) — `rel="noopener noreferrer"` 표준 정렬 | baby-fair (확장 가능) | S | 낮 | ⚠️ 미착수 |
+| **J** | ShareButton 위치 컨벤션 결정 + 일괄 정렬 (Cross-10) | checklist+info | S | 중 | ✅ 완료 ([design-bundle-j](../design-bundle-j-share-button-position/README.md)) |
+| **K** | 삭제 패턴 통일 — undo 토스트 도입 (Cross-11) + 체중 confirm 추가 | checklist+timeline+weight | M | 중 | ✅ 완료 ([design-bundle-k](../design-bundle-k-delete-pattern/README.md)) |
+| **N** | 차트 색 결정 (W-1) — peach 라인 + 권장 범위 톤 재배치 | weight | S | 중 | ✅ 완료 ([design-bundle-n](../design-bundle-n-weight-chart-color/README.md)) |
+| **O** | 외부 링크 보안 패턴 (B-5) — `rel="noopener noreferrer"` 표준 정렬 | baby-fair (확장 가능) | S | 낮 | ✅ 완료 ([design-bundle-cleanup-round](../design-bundle-cleanup-round/README.md)) |
 
 권장 실행 순서: **G → H → A → C → E → F → B → I → J → K → N → O → D**
 (헌법 결정 G·H 먼저 → 토큰 일괄 정정 A·C·E → 마크업 리팩터 B·I → 시스템 컨벤션 J·K·N·O → 신규 UX D)
 
-> **상태 (2026-05-10)**: G·H·D + (별도) L 4건 완료. 잔여 권장 순서 = **A → C → E → F → B → I → J → K → N → O**.
+> **상태 (2026-05-12)**: ✅ **전체 13개 묶음 완료**. 잔여 없음 — §2.11 IM-6(alt 가이드라인)만 P10 운영자 가이드 통합 의존으로 별도.
 
 ---
 
@@ -794,12 +798,16 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 #### P11. 콘텐츠 ↔ 체크리스트 매트릭스 1차 산출
 
-> **상태 (2026-05-09)**: 🟡 **결정 완료, 산출물 미작성** — (a) `~/Documents/pregnancy-checklist/30-domain/content-matrix.md`, (b) Phase 4.5 포함. spec까지 발행, vault 매트릭스 1차 수기 작성 대기. [features/p11-content-matrix/spec.md](../features/p11-content-matrix/spec.md).
+> **상태 (2026-05-12)**: 🟡 **결정 완료, 산출물 작성 시점 phase-4.6 종료 후로 이연**. spec까지 발행 ([features/p11-content-matrix/spec.md](../features/p11-content-matrix/spec.md)).
+>
+> **이연 사유**: [phase-4.6.md](phase-4.6.md)에서 정보 구조 4축 정돈 진행 — **타임라인 흡수** + 영상 자산 폐기 + BottomNav 4축 정합이 매트릭스의 행(주차)·열(토픽)·셀(timeline_items.json 매핑) 입력값을 모두 바꿈. 지금 1차 sketch 그리면 phase-4.6 종료 후 재작성 필요 → 한 번에 작성하는 게 효율적.
+>
+> phase-4.6 진입 차단 조건 아님 (선결조건은 D-Data 누적 14일 ~2026-05-26).
 
 - [x] **결정**: (a) 산출물 보관 위치 — Obsidian vault `30-domain/` / `60-analytics/` 신설
-- [x] **결정**: (b) 첫 그리기 Phase 4.5 포함 vs Phase 5
+- [x] **결정**: (b) 첫 그리기 Phase 4.5 포함 vs Phase 5 → **phase-4.6 종료 후로 정정**
 - **배경**: Phase 4 Step 5 자동 크로스링크는 "있는 콘텐츠끼리 잘 연결됐는지"만 보장. **"있어야 할 콘텐츠가 있는지"는 모름**. timeline_items.json을 보면 초기 주차에 동일 글 2~3개 반복 매핑됨
-- **연결**: §1.5 `search_submit` (results_count=0) 데이터가 1~2주 누적되기 전, 운영자가 한 번 수동으로 "주차 × 토픽" 빈칸을 그리면 콘텐츠 백로그가 미리 잡힘
+- **연결**: §1.5 `search_submit` (results_count=0) 데이터가 1~2주 누적되기 전, 운영자가 한 번 수동으로 "주차 × 토픽" 빈칸을 그리면 콘텐츠 백로그가 미리 잡힘 — 다만 phase-4.6 종료 후엔 4축 결정 + 타임라인 흡수까지 반영해서 그릴 수 있음
 
 #### P12. 양방향 크로스링크 정책 — 아티클 → 체크리스트 CTA
 
@@ -826,7 +834,7 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 |---|---|---|---|---|
 | **N** | P3·P4 — 임신 주차 입력 onboarding UX 결정 + 와이어프레임 | §1 G·H, §2.6 #2, P2 모두의 선결조건 | 큼 ⭐ | ✅ 완료 |
 | **O** | P5 — localStorage schema versioning 도입 | P1 결정 후 | 중 | 🟡 부분 (P3·P4 store만) |
-| **P** | P11 — 콘텐츠 매트릭스 1차 산출 (운영자 직접) | §1.9 자동 리포트와 정합 | 중 | 🟡 결정만, 매트릭스 미작성 |
+| **P** | P11 — 콘텐츠 매트릭스 1차 산출 (운영자 직접) | §1.9 자동 리포트와 정합 | 중 | 🟡 결정 완료, 작성 시점 phase-4.6 종료 후로 이연 (타임라인 흡수·4축 정합 반영) |
 | **Q** | P13 — 외부 링크 인벤토리 1회 수집 | §1.8 묶음 J 전 | 작음 | ⚠️ 미착수 |
 | **R** | P6·P7 — 데이터 모델 정합성 결정 (recommendedWeek / note_type) | P2 부활 결정 시 필수 | 중 | ✅ 완료 (필드 도입은 phase-5) |
 | **S** | P9·P10 — 빈 상태 명세 + 운영자 가이드 작성 | 독립 | 작음 | 🟡 P9 ✅, P10 부분 |
@@ -858,7 +866,7 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 | P8 | 카테고리 체계 | 낮음 | Phase 5 통합 검색 | ⚠️ 미결 |
 | P9 | 빈 상태 명세 | 보통 | 묶음 J 측정 의미 | ✅ 완료 |
 | P10 | 운영자 가이드 | 낮음 | 데이터 변경 사고 예방 | 🟡 부분 (image-sop §8 흡수) |
-| P11 | 콘텐츠 매트릭스 | 보통 | 콘텐츠 백로그 사전 정리 | 🟡 결정 완료, 매트릭스 미작성 |
+| P11 | 콘텐츠 매트릭스 | 보통 | 콘텐츠 백로그 사전 정리 | 🟡 결정 완료, 매트릭스 작성 phase-4.6 종료 후 이연 |
 | P12 | 양방향 크로스링크 | 보통 | 유입→도구 흐름 | ⚠️ 미결 |
 | P13 | 외부 링크 인벤토리 | 낮음 | 묶음 J 사전 작업 | ⚠️ 미결 |
 | P14 | AI 생성 이미지 표시 형태·문구 | 보통 | §2.11 L묶음, AdSense·E-E-A-T 정합성 (법적 강제 의무 가능성 낮음) | ✅ 완료 |
