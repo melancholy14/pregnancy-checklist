@@ -437,11 +437,11 @@ GA4는 한번 쌓이면 이름 변경 시 **과거 데이터와 단절**된다. 
 
 [phase-4.5/plan.md §1.8](../plan/phase-4.5.md) 작업 묶음과 동기. 발사 시작 시 체크.
 
-- [ ] **G** — User properties 3종 + `pregnancy_week_set`
-- [ ] **H** — `checklist_item_toggle`, `article_read_complete`, `weight_log`, `search_submit`
-- [ ] **I** — `related_article_click`, `share_click`, `cta_click`
-- [ ] **J** — `scroll_without_action`, `external_link_click`, `empty_state_view`, `feature_request_signal`
-- [ ] **L** — 자동 주간 리포트 스크립트
+- [x] **G** — User properties 3종 + `pregnancy_week_set` (2026-05-09 wired)
+- [x] **H** — `checklist_item_toggle`, `article_read_complete`, `weight_log`, `search_submit` (2026-05-12 wired)
+- [x] **I** — `related_article_click`, `share_click`, `cta_click` (2026-05-12 wired)
+- [x] **J** — `scroll_without_action`, `external_link_click`, `empty_state_view` (2026-05-12 wired). `feature_request_signal` won't (spec deferral)
+- [ ] **L** — 자동 주간 리포트 스크립트 (D1 ✅ 2026-05-12, 착수 예정)
 - [ ] **M** — launchd 등록 + 안정화
 
 ---
@@ -451,3 +451,4 @@ GA4는 한번 쌓이면 이름 변경 시 **과거 데이터와 단절**된다. 
 | 날짜 | 변경 | 사유 |
 |---|---|---|
 | 2026-05-03 | 최초 작성 | 이벤트 카탈로그·상관관계·분석 방법론 초기 정의 |
+| 2026-05-12 | G·H·I·J wiring 완료 + §8 추적표 갱신 | [marketing-events-wiring](../marketing-events-wiring/README.md) 라운드 — 카탈로그 정렬 + 신규 hook 2종 + 16개 파일 wiring. D1 ✅ 발급 완료. |

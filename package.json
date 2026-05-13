@@ -15,7 +15,9 @@
     "fetch-video-metadata:update": "npx tsx scripts/fetch-video-metadata.ts --update",
     "crosslinks": "npx tsx scripts/generate-crosslinks.ts --dry-run",
     "crosslinks:apply": "npx tsx scripts/generate-crosslinks.ts --apply",
-    "crosslinks:report": "npx tsx scripts/generate-crosslinks.ts --report"
+    "crosslinks:report": "npx tsx scripts/generate-crosslinks.ts --report",
+    "report:weekly": "npx tsx scripts/weekly-report/index.ts",
+    "report:weekly:dry-run": "npx tsx scripts/weekly-report/index.ts --dry-run"
   },
   "dependencies": {
     "@next/third-parties": "^16.2.2",
@@ -75,6 +77,8 @@
     "zustand": "^5.0.12"
   },
   "devDependencies": {
+    "@anthropic-ai/sdk": "^0.95.2",
+    "@google-analytics/data": "^5.2.2",
     "@playwright/test": "^1.58.2",
     "@tailwindcss/postcss": "4.1.12",
     "@types/node": "22.15.0",
