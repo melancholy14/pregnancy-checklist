@@ -147,7 +147,29 @@ GA4 Data API + Claude API(Sonnet 4.6) Node 스크립트로 매주 마크다운 �
 ## 운영 메모
 
 - 수동 실행: `npm run report:weekly` (프로젝트 루트에서)
-- 사실 확인용 dry-run: `npm run report:weekly:dry-run` — Claude 호출 없이 GA4 응답만 stdout. cohort approach 필드로 cohortSpec 가용성 확인.
-- 환경변수: `.env.local` — `GA4_PROPERTY_ID`, `GA4_SA_KEY_PATH` (절대경로, mode 0600), `ANTHROPIC_API_KEY`.
+- 사실 확인용 dry-run: `npm run report:weekly:dry-run` — LLM 호출 없이 GA4 응답만 stdout. cohort approach 필드로 cohortSpec 가용성 확인.
+- 환경변수: `.env.local` — `GA4_PROPERTY_ID`, `GA4_SA_KEY_PATH` (절대경로, mode 0600), `ANTHROPIC_API_KEY` (1순위), `OPENAI_API_KEY` (2순위 fallback, gpt-4o). 실 모드는 두 LLM 키 중 적어도 하나 필수.
 - 출력 위치: `~/Documents/pregnancy-checklist/60-analytics/weekly/YYYY-Www.md`. 실패 로그는 `_failed/YYYY-Www.log`, raw 백업은 `_raw/YYYY-Www.json`.
 - 후속 작업: 묶음 M (launchd `.plist` 등록), 8주차 raw 컷오프, 데이터 누적 후 첫 실데이터 검증.
+
+---
+
+## LLM Fallback (Claude → OpenAI)
+
+요구: "Claude API 없을 때 ChatGPT API 호출" — 2026-05-13 추가.
+
+| 항목 | 1순위 | 2순위 (fallback) |
+|------|-------|------------------|
+| Provider | Anthropic Claude | OpenAI |
+| 모델 | `claude-sonnet-4-6` | `gpt-4o` |
+| 단가 (cache-miss 기준) | input $3/M, output $15/M | input $2.50/M, output $10/M |
+| 캐싱 | 명시적 `cache_control: ephemeral` (TTL ~5분) | 자동 prefix caching (>1024 tok) |
+| Env 키 | `ANTHROPIC_API_KEY` | `OPENAI_API_KEY` |
+
+전환 트리거(둘 다 적용):
+1. 시작 시점에 `ANTHROPIC_API_KEY`가 비어 있음 → 즉시 OpenAI로
+2. Claude 호출이 throw(네트워크·5xx·인증) → 자동으로 OpenAI 재시도
+
+양쪽 모두 실패하면 raw GA4 JSON은 `_raw/`에 보존되고, `_failed/`에 "All LLM providers failed: claude=…, openai=…" 통합 에러 기록 + macOS 알림.
+
+출력 스키마는 `prompt-shared.ts`의 SYSTEM_PROMPT로 두 provider가 동일 §1.9.6 마크다운을 생성하도록 잠금. 톤 차이는 LLM 특성상 발생하나 frontmatter·6개 섹션 구조는 양쪽 모두 동일.

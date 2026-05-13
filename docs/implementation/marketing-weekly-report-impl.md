@@ -22,20 +22,33 @@
 ## 생성/수정 파일 목록
 
 ### 신규 생성
-- `scripts/weekly-report/types.ts` — 5개 GA4 쿼리·Claude 결과를 묶는 타입 정의
+- `scripts/weekly-report/types.ts` — 5개 GA4 쿼리·LLM 결과(`ReportResult`/`LlmUsage`)·provider 추상화 타입
 - `scripts/weekly-report/ga4-queries.ts` — `BetaAnalyticsDataClient` 래퍼 + Q1~Q5 + 코호트 fallback + ISO 주차 헬퍼
-- `scripts/weekly-report/claude-prompt.ts` — system 프롬프트(§1.7+§1.9.6 스키마), `cache_control` 마킹, 스키마 사후검증, usage→USD 환산
+- `scripts/weekly-report/prompt-shared.ts` — provider 공용 SYSTEM_PROMPT(§1.7+§1.9.6) + buildUserMessage + validateSchema + unwrapFencedMarkdown
+- `scripts/weekly-report/claude-prompt.ts` — Anthropic SDK 호출, `cache_control` 마킹, Sonnet 4.6 단가 환산 (1순위 LLM)
+- `scripts/weekly-report/openai-prompt.ts` — OpenAI SDK 호출(`gpt-4o`), 자동 prefix caching, 단가 환산 (Claude fallback)
 - `scripts/weekly-report/writer.ts` — vault 경로 보장, 본문/raw/실패 로그 출력, osascript 알림 헬퍼
-- `scripts/weekly-report/index.ts` — env 로드·SA mode 검증·dry-run 분기·실패 분기 오케스트레이션
-- `~/Documents/pregnancy-checklist/60-analytics/README.md` — vault 운영 안내(절차·스키마·지표 정의·PII 처리)
+- `scripts/weekly-report/index.ts` — env 로드·SA mode 검증·dry-run 분기·Claude→OpenAI fallback 오케스트레이션
+- `~/Documents/pregnancy-checklist/60-analytics/README.md` — vault 운영 안내(절차·스키마·지표 정의·PII 처리·LLM fallback)
 
 ### 수정
-- `package.json` — `report:weekly`, `report:weekly:dry-run` 스크립트 추가 + devDependencies `@anthropic-ai/sdk`, `@google-analytics/data` 추가
+- `package.json` — `report:weekly`, `report:weekly:dry-run` 스크립트 추가 + devDependencies `@anthropic-ai/sdk`, `@google-analytics/data`, `openai` 추가
 - `package-lock.json` — npm install 결과 (legacy peer deps; date-fns@^4 vs react-day-picker@8 기존 충돌 회피)
-- `.env.example` — `GA4_PROPERTY_ID`, `GA4_SA_KEY_PATH`, `ANTHROPIC_API_KEY` 3종 추가
+- `.env.example` — `GA4_PROPERTY_ID`, `GA4_SA_KEY_PATH`, `ANTHROPIC_API_KEY`, `OPENAI_API_KEY` 4종 추가
 
 ### 생성 안 함 (의도)
 - `~/Documents/pregnancy-checklist/60-analytics/weekly/_raw/`, `_failed/` — 디렉토리만 mkdir, 빈 폴더이므로 `.gitkeep`은 두지 않음(vault는 git 추적 대상 아님)
+
+## LLM Fallback 라운드 (2026-05-13 추가)
+
+운영자 요청으로 Claude 부재 시 OpenAI(gpt-4o) 자동 fallback을 추가.
+
+- **트리거**: `ANTHROPIC_API_KEY` 미설정이거나 Claude 호출이 throw하면 자동으로 OpenAI로 전환.
+- **모델**: `gpt-4o` (input $2.50/M, output $10/M, cached input $1.25/M — Claude Sonnet 4.6과 동급 가격대).
+- **공용화**: SYSTEM_PROMPT / buildUserMessage / validateSchema를 `prompt-shared.ts`로 추출. 두 provider가 동일 §1.9.6 스키마를 출력하도록 잠금.
+- **타입**: 기존 `ClaudeReportResult`/`ClaudeUsage`를 `ReportResult`/`LlmUsage`로 일반화하고 `provider: "claude" | "openai"` 필드 추가. 기존 별칭은 back-compat용으로 export 유지.
+- **env 정책**: 실 모드에서 두 키 중 적어도 하나는 필수. 둘 다 비면 즉시 차단. dry-run은 둘 다 없어도 통과.
+- **실패 경로**: Claude 실패 → OpenAI 시도 → 둘 다 실패하면 raw GA4 JSON 보존 + `_failed/` 로그에 통합 에러("All LLM providers failed: claude=..., openai=...") 기록.
 
 ## 주요 결정 사항
 

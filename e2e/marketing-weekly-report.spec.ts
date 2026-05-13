@@ -80,21 +80,23 @@ test.describe("Happy Path — 인프라 / 배포 산출물", () => {
     );
   });
 
-  test("devDependencies에 @google-analytics/data, @anthropic-ai/sdk 두 SDK 명시", () => {
-    // 무엇을: plan §1.9.7 L1 — 두 SDK 추가
+  test("devDependencies에 @google-analytics/data, @anthropic-ai/sdk, openai 3종 SDK 명시", () => {
+    // 무엇을: plan §1.9.7 L1 + Claude→OpenAI fallback 라운드
     // 왜: 누락 시 런타임 모듈 미발견. 빌드 단계가 잡지 못하는 영역이라 정적으로 확인
     const pkg = JSON.parse(fs.readFileSync(path.resolve("package.json"), "utf8"));
     expect(pkg.devDependencies["@google-analytics/data"]).toBeTruthy();
     expect(pkg.devDependencies["@anthropic-ai/sdk"]).toBeTruthy();
+    expect(pkg.devDependencies["openai"]).toBeTruthy();
   });
 
-  test(".env.example에 GA4 + Anthropic env 3종 정의", () => {
-    // 무엇을: spec §3 보안 — 환경변수 경유 원칙
-    // 왜: 운영자가 .env.local 만들 때 누락 없이 채워야 첫 실행이 통함
+  test(".env.example에 GA4 + LLM env 4종 정의 (Claude + OpenAI)", () => {
+    // 무엇을: spec §3 보안 — 환경변수 경유 원칙 + fallback 라운드의 OPENAI_API_KEY 추가
+    // 왜: 운영자가 .env.local 만들 때 누락 없이 채워야 첫 실행과 fallback이 모두 통함
     const envExample = fs.readFileSync(path.resolve(".env.example"), "utf8");
     expect(envExample).toContain("GA4_PROPERTY_ID");
     expect(envExample).toContain("GA4_SA_KEY_PATH");
     expect(envExample).toContain("ANTHROPIC_API_KEY");
+    expect(envExample).toContain("OPENAI_API_KEY");
   });
 
   test("vault 60-analytics/README.md 가 운영 안내·스키마 정의를 포함", () => {
@@ -111,15 +113,18 @@ test.describe("Happy Path — 인프라 / 배포 산출물", () => {
     expect(body).toContain("report:weekly:dry-run");
   });
 
-  test("스크립트 진입 파일이 BetaAnalyticsDataClient + Anthropic SDK를 가져온다", () => {
-    // 무엇을: spec §3 — 두 SDK를 직접 호출하는 Pattern C
-    // 왜: HTTP fetch 등으로 우회 구현되면 보안·캐싱 가정이 깨짐. 정적 grep으로 잠금
+  test("스크립트 진입 파일이 GA4 + Claude + OpenAI SDK를 직접 가져온다", () => {
+    // 무엇을: spec §3 — Pattern C는 SDK를 직접 호출. fallback도 동일하게 SDK 경유
+    // 왜: HTTP fetch 등으로 우회 구현되면 보안·캐싱·usage 회계 가정이 깨짐. 정적 grep으로 잠금
     const ga4 = fs.readFileSync(path.join(SCRIPT_DIR, "ga4-queries.ts"), "utf8");
     const claude = fs.readFileSync(path.join(SCRIPT_DIR, "claude-prompt.ts"), "utf8");
+    const openai = fs.readFileSync(path.join(SCRIPT_DIR, "openai-prompt.ts"), "utf8");
     expect(ga4).toContain('from "@google-analytics/data"');
     expect(claude).toContain('from "@anthropic-ai/sdk"');
     expect(claude).toContain('claude-sonnet-4-6');
     expect(claude).toContain('cache_control');
+    expect(openai).toContain('from "openai"');
+    expect(openai).toContain('"gpt-4o"');
   });
 });
 
@@ -148,28 +153,45 @@ test.describe("Error / Validation — env 검증", () => {
     expect(stderr).toContain("GA4_SA_KEY_PATH");
   });
 
-  test("실 모드에서 ANTHROPIC_API_KEY 미설정 시 비정상 종료", () => {
-    // 무엇을: spec §3 — Anthropic 호출 전제 조건
-    // 왜: 키 없이 호출되면 SDK가 모호한 401을 던지고 _failed/ 로그에 빈 키만 남음
+  test("실 모드에서 Claude·OpenAI 키가 모두 없으면 비정상 종료", () => {
+    // 무엇을: fallback 라운드 — 둘 다 비면 LLM 호출이 불가능
+    // 왜: 한 쪽만 있어도 통과시키는 게 fallback의 핵심. 둘 다 없을 때만 즉시 차단
     const { stderr, status } = runScript("", {
       GA4_PROPERTY_ID: "123456",
       GA4_SA_KEY_PATH: "/tmp/nonexistent",
       ANTHROPIC_API_KEY: "",
+      OPENAI_API_KEY: "",
     });
     expect(status).not.toBe(0);
     expect(stderr).toContain("ANTHROPIC_API_KEY");
+    expect(stderr).toContain("OPENAI_API_KEY");
   });
 
-  test("--dry-run 모드는 ANTHROPIC_API_KEY 없이도 env 단계를 통과한다", () => {
+  test("ANTHROPIC_API_KEY 없이 OPENAI_API_KEY만 있으면 env 단계를 통과한다 (OpenAI fallback)", () => {
+    // 무엇을: fallback 라운드 — Claude 키 부재 시 OpenAI로 자동 전환
+    // 왜: 본 라운드 가치의 핵심. 한 쪽이 비어도 다른 쪽으로 리포트가 끝까지 생성되어야 함
+    const { stderr } = runScript("", {
+      GA4_PROPERTY_ID: "123456",
+      GA4_SA_KEY_PATH: "/tmp/nonexistent",
+      ANTHROPIC_API_KEY: "",
+      OPENAI_API_KEY: "test",
+    });
+    // env 검증은 통과해야 한다. 실패는 GA4_SA_KEY_PATH 단계로 이동.
+    expect(stderr).not.toMatch(/Required env vars.*ANTHROPIC_API_KEY.*OPENAI_API_KEY/);
+    expect(stderr).toContain("GA4_SA_KEY_PATH");
+  });
+
+  test("--dry-run 모드는 두 LLM 키가 모두 없어도 env 단계를 통과한다", () => {
     // 무엇을: review.md 항목 2 옵션 C — dry-run으로 cohortSpec 사실 확인
-    // 왜: 첫 라운드 의사결정 비용을 줄이려면 Claude 키 없이도 GA4만 시도 가능해야 함
+    // 왜: 첫 라운드 의사결정 비용을 줄이려면 LLM 키 없이도 GA4만 시도 가능해야 함
     const { stderr } = runScript("--dry-run", {
       GA4_PROPERTY_ID: "123456",
       GA4_SA_KEY_PATH: "/tmp/nonexistent",
       ANTHROPIC_API_KEY: "",
+      OPENAI_API_KEY: "",
     });
-    // ANTHROPIC_API_KEY는 사유로 들어가지 않아야 한다. 실패는 GA4_SA_KEY_PATH 단계.
     expect(stderr).not.toContain('"ANTHROPIC_API_KEY"');
+    expect(stderr).not.toContain('"OPENAI_API_KEY"');
     expect(stderr).toContain("GA4_SA_KEY_PATH");
   });
 });

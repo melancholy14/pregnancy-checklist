@@ -94,19 +94,28 @@ export type Ga4Result = {
   trendWeeks: IsoWeek[];
 };
 
-// ── Claude usage ─────────────────────────────────────────────────────
-export type ClaudeUsage = {
+// ── LLM provider abstraction ─────────────────────────────────────────
+export type LlmProvider = "claude" | "openai";
+
+export type LlmUsage = {
+  provider: LlmProvider;
+  model: string;
   inputTokens: number;
   outputTokens: number;
-  cacheCreationInputTokens: number;
-  cacheReadInputTokens: number;
+  cacheCreationInputTokens: number; // 0 for providers without explicit cache write
+  cacheReadInputTokens: number;     // 0 for providers without cache read accounting
   approxUsd: number;
 };
 
-export type ClaudeReportResult = {
+export type ReportResult = {
+  provider: LlmProvider;
   markdown: string;
   schemaValid: boolean;
   schemaIssues: string[];
-  usage: ClaudeUsage;
+  usage: LlmUsage;
   raw: string;
 };
+
+// Legacy aliases — kept so older imports compile until callers migrate.
+export type ClaudeUsage = LlmUsage;
+export type ClaudeReportResult = ReportResult;

@@ -19,7 +19,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import { generateWeeklyReport } from "./claude-prompt.js";
+import { generateWeeklyReportClaude } from "./claude-prompt.js";
 import {
   collectGa4Result,
   createGa4Client,
@@ -27,11 +27,17 @@ import {
   lastCompletedIsoWeek,
   trendWeekLabels,
 } from "./ga4-queries.js";
+import { generateWeeklyReportOpenAI } from "./openai-prompt.js";
 import { notifyMacOS, writeFailureLog, writeRawGa4, writeWeeklyReport } from "./writer.js";
 
-import type { IsoWeek } from "./types.js";
+import type { Ga4Result, IsoWeek, ReportResult } from "./types.js";
 
-const REQUIRED_ENV = ["GA4_PROPERTY_ID", "GA4_SA_KEY_PATH", "ANTHROPIC_API_KEY"] as const;
+const REQUIRED_ENV = [
+  "GA4_PROPERTY_ID",
+  "GA4_SA_KEY_PATH",
+  "ANTHROPIC_API_KEY",
+  "OPENAI_API_KEY",
+] as const;
 
 function loadEnvLocal(): void {
   const envLocalPath = path.resolve(".env.local");
@@ -81,7 +87,15 @@ async function main(): Promise<void> {
 
   const propertyId = requireEnv("GA4_PROPERTY_ID");
   const saKeyPath = requireEnv("GA4_SA_KEY_PATH");
-  if (!dryRun) requireEnv("ANTHROPIC_API_KEY");
+
+  // Claude 우선, OpenAI fallback. 실 모드에서는 둘 중 적어도 하나는 있어야 한다.
+  const hasClaudeKey = !!process.env.ANTHROPIC_API_KEY;
+  const hasOpenAiKey = !!process.env.OPENAI_API_KEY;
+  if (!dryRun && !hasClaudeKey && !hasOpenAiKey) {
+    throw new Error(
+      `Required env vars: at least one of "ANTHROPIC_API_KEY" or "OPENAI_API_KEY" must be set. See .env.example and spec §1.9.5.`,
+    );
+  }
 
   verifySaKeyMode(saKeyPath);
 
@@ -115,38 +129,81 @@ async function main(): Promise<void> {
     return;
   }
 
-  let claudeResult;
-  try {
-    claudeResult = await generateWeeklyReport(ga4Result, new Date().toISOString());
-  } catch (error) {
-    // Spec §4: Claude 실패여도 raw GA4 JSON은 _raw/에 남겨 수동 분석 가능해야 한다.
-    const rawPath = writeRawGa4(isoWeek, ga4Result);
-    process.stderr.write(`[weekly-report] Claude failed — raw GA4 saved to ${rawPath}\n`);
-    handleFailure({ isoWeek, error, stage: "claude", propertyId });
-    process.exit(1);
-  }
+  const report = await runWithFallback({
+    ga4Result,
+    isoWeek,
+    propertyId,
+    hasClaudeKey,
+    hasOpenAiKey,
+  });
+  if (!report) process.exit(1);
 
   const { markdownPath } = writeWeeklyReport({
     isoWeek,
-    claude: claudeResult,
+    claude: report,
     ga4: ga4Result,
   });
 
+  const u = report.usage;
   process.stderr.write(
-    `[weekly-report] usage input=${claudeResult.usage.inputTokens} output=${claudeResult.usage.outputTokens} cache_read=${claudeResult.usage.cacheReadInputTokens} cache_write=${claudeResult.usage.cacheCreationInputTokens} cost=$${claudeResult.usage.approxUsd}\n`,
+    `[weekly-report] provider=${report.provider} model=${u.model} input=${u.inputTokens} output=${u.outputTokens} cache_read=${u.cacheReadInputTokens} cache_write=${u.cacheCreationInputTokens} cost=$${u.approxUsd}\n`,
   );
 
-  if (!claudeResult.schemaValid) {
+  if (!report.schemaValid) {
     process.stderr.write(
-      `⚠️ Claude output failed schema check: ${claudeResult.schemaIssues.join(", ")}. Raw response attached to ${markdownPath}.\n`,
+      `⚠️ ${report.provider} output failed schema check: ${report.schemaIssues.join(", ")}. Raw response attached to ${markdownPath}.\n`,
     );
     notifyMacOS(
       "Weekly report — schema mismatch",
-      `${isoWeek}: review ${path.basename(markdownPath)}`,
+      `${isoWeek} (${report.provider}): review ${path.basename(markdownPath)}`,
     );
   } else {
     process.stderr.write(`[weekly-report] wrote ${markdownPath}\n`);
   }
+}
+
+async function runWithFallback(params: {
+  ga4Result: Ga4Result;
+  isoWeek: IsoWeek;
+  propertyId: string;
+  hasClaudeKey: boolean;
+  hasOpenAiKey: boolean;
+}): Promise<ReportResult | null> {
+  const { ga4Result, isoWeek, propertyId, hasClaudeKey, hasOpenAiKey } = params;
+  const generatedIso = new Date().toISOString();
+  const errors: { provider: string; message: string }[] = [];
+
+  if (hasClaudeKey) {
+    try {
+      return await generateWeeklyReportClaude(ga4Result, generatedIso);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      errors.push({ provider: "claude", message });
+      process.stderr.write(`[weekly-report] Claude failed: ${message} — falling back to OpenAI\n`);
+    }
+  } else {
+    process.stderr.write(`[weekly-report] ANTHROPIC_API_KEY 미설정 — OpenAI fallback 사용\n`);
+  }
+
+  if (hasOpenAiKey) {
+    try {
+      return await generateWeeklyReportOpenAI(ga4Result, generatedIso);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      errors.push({ provider: "openai", message });
+    }
+  } else if (errors.length > 0) {
+    errors.push({ provider: "openai", message: "OPENAI_API_KEY 미설정 — fallback 불가" });
+  }
+
+  // 모든 provider 실패 — raw GA4 JSON은 보존하고 _failed/ 로그 작성.
+  const rawPath = writeRawGa4(isoWeek, ga4Result);
+  process.stderr.write(`[weekly-report] all providers failed — raw GA4 saved to ${rawPath}\n`);
+  const aggregate = new Error(
+    `All LLM providers failed: ${errors.map((e) => `${e.provider}=${e.message}`).join("; ")}`,
+  );
+  handleFailure({ isoWeek, error: aggregate, stage: "claude", propertyId });
+  return null;
 }
 
 function handleFailure(params: {
