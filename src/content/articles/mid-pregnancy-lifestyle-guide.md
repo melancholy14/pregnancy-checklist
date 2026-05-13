@@ -12,7 +12,6 @@ tags:
   - 임신여행
 date: "2026-04-29"
 author: "출산 준비 체크리스트 제작자 뿌까뽀까"
-reviewed_by: ""
 last_updated: "2026-04-29"
 linked_timeline_weeks: [14, 15, 20, 23, 24, 27]
 linked_video_ids: ["video_006", "video_009", "video_056"]

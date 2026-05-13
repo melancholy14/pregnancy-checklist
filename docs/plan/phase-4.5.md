@@ -894,10 +894,10 @@ Phase 4까지 기능은 모두 들어왔으나 다음 3개 영역에 부채가 �
 
 ### 4.2 Critical — Phase 5 차단 이슈
 
-#### D-C1. AdSense 스크립트 + `public/ads.txt` 미완 (Phase 3-0a 잔존)
-- **현 상태**: [src/app/layout.tsx](../../src/app/layout.tsx)에 `<meta name="google-adsense-account">` 만 있음. `adsbygoogle.js` 스크립트 태그 없음.
+#### D-C1. `public/ads.txt` 생성 (Phase 3-0a 잔존)
+- **현 상태**: [src/app/layout.tsx](../../src/app/layout.tsx)에 `<meta name="google-adsense-account">` 존재. `adsbygoogle.js` 스크립트는 [src/components/consent/ConsentGatedScripts.tsx](../../src/components/consent/ConsentGatedScripts.tsx)에서 consent-gated로 이미 주입됨.
 - **문제**: `public/`에 CNAME·og-image·home.png만 있고 `ads.txt` 미존재.
-- **수정**: `<head>`에 비동기 스크립트 추가 + `public/ads.txt` 생성 (`google.com, pub-6022771079735605, DIRECT, f08c47fec0942fa0`).
+- **수정**: `public/ads.txt` 생성 (`google.com, pub-6022771079735605, DIRECT, f08c47fec0942fa0`).
 - **검증**: 배포 후 AdSense 콘솔 사이트 크롤링 + `https://pregnancy-checklist.com/ads.txt` 200 응답.
 
 #### D-C2. `reviewed_by` 빈 필드 4건 (Phase 3-0e 잔존)
