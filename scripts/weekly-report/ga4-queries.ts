@@ -341,6 +341,10 @@ export async function queryZeroResultSearch(
 }
 
 // ── Q4. External link outflow TOP 10 ─────────────────────────────────
+// GA4 Enhanced Measurement가 자동 수집하는 `click` (outbound=true) 이벤트의 표준
+// dimension `linkDomain`을 사용. custom dimension 등록 불필요.
+// 우리가 별도로 발사하는 `external_link_click` 커스텀 이벤트는 Q5 이상치 추적용으로
+// 그대로 유지되며, Q4 도메인 분포는 GA4 표준에 위임한다.
 export async function queryExternalDomainOutflow(
   client: BetaAnalyticsDataClient,
   propertyId: string,
@@ -348,11 +352,11 @@ export async function queryExternalDomainOutflow(
 ): Promise<ExternalDomainOutflow> {
   const [response] = await client.runReport({
     property: propertyPath(propertyId),
-    dimensions: [{ name: "customEvent:domain" }],
+    dimensions: [{ name: "linkDomain" }],
     metrics: [{ name: "eventCount" }],
     dateRanges: [{ startDate: range.startDate, endDate: range.endDate }],
     dimensionFilter: {
-      filter: { fieldName: "eventName", stringFilter: { value: "external_link_click" } },
+      filter: { fieldName: "outbound", stringFilter: { value: "true" } },
     },
     orderBys: [{ metric: { metricName: "eventCount" }, desc: true }],
     limit: TOP_N,
@@ -363,7 +367,7 @@ export async function queryExternalDomainOutflow(
       domain: readString(row.dimensionValues?.[0]?.value),
       eventCount: readNumber(row.metricValues?.[0]?.value),
     }))
-    .filter((r) => r.domain !== "");
+    .filter((r) => r.domain !== "" && r.domain !== "(not set)");
 
   return { rows };
 }
@@ -441,6 +445,40 @@ export async function queryWeekOverWeekAnomaly(
 }
 
 // ── Aggregator ───────────────────────────────────────────────────────
+function describeGoogleError(error: unknown): string {
+  // GA4 Data API의 INVALID_ARGUMENT는 .message가 비고 detail은 다른 키에 들어간다.
+  // 진단을 위해 가능한 키를 모두 직렬화.
+  if (typeof error !== "object" || error === null) return String(error);
+  const e = error as Record<string, unknown> & { message?: string };
+  const fields: string[] = [];
+  if (e.message) fields.push(`message=${e.message}`);
+  if (typeof e.code === "number") fields.push(`grpc_code=${e.code}`);
+  if (e.details) fields.push(`details=${JSON.stringify(e.details)}`);
+  if (e.note) fields.push(`note=${e.note}`);
+  if (e.statusDetails) fields.push(`statusDetails=${JSON.stringify(e.statusDetails)}`);
+  if (e.metadata && typeof (e.metadata as { getMap?: () => unknown }).getMap === "function") {
+    try {
+      const map = (e.metadata as { getMap: () => unknown }).getMap();
+      fields.push(`metadata=${JSON.stringify(map)}`);
+    } catch {
+      // 메타데이터 직렬화 실패는 무시.
+    }
+  }
+  return fields.length > 0 ? fields.join(" | ") : String(error);
+}
+
+async function labelQuery<T>(label: string, run: () => Promise<T>): Promise<T> {
+  try {
+    return await run();
+  } catch (error) {
+    const detail = describeGoogleError(error);
+    const wrapped = new Error(`[${label}] ${detail}`);
+    // 원본 stack 보존.
+    if (error instanceof Error && error.stack) wrapped.stack = error.stack;
+    throw wrapped;
+  }
+}
+
 export async function collectGa4Result(params: {
   client: BetaAnalyticsDataClient;
   propertyId: string;
@@ -450,14 +488,42 @@ export async function collectGa4Result(params: {
   trendWeeks: IsoWeek[];
 }): Promise<Ga4Result> {
   const { client, propertyId, range, previous, isoWeek, trendWeeks } = params;
-  const [cohort, coreBehavior, zeroResultSearch, externalDomain, anomaly] =
-    await Promise.all([
-      queryCohortRetention(client, propertyId, range),
+
+  // 5개 쿼리를 동시 발사 — 하나가 실패해도 나머지 결과를 모두 수집해서 진단이 1회로 끝나도록 한다.
+  const settled = await Promise.allSettled([
+    labelQuery("Q1 cohort_retention", () => queryCohortRetention(client, propertyId, range)),
+    labelQuery("Q2 core_behavior_reach", () =>
       queryCoreBehaviorReach(client, propertyId, range, previous),
-      queryZeroResultSearch(client, propertyId, range),
+    ),
+    labelQuery("Q3 zero_result_search", () => queryZeroResultSearch(client, propertyId, range)),
+    labelQuery("Q4 external_domain_outflow", () =>
       queryExternalDomainOutflow(client, propertyId, range),
+    ),
+    labelQuery("Q5 anomaly", () =>
       queryWeekOverWeekAnomaly(client, propertyId, range, previous),
-    ]);
+    ),
+  ]);
+
+  const failures = settled
+    .map((r, i) => (r.status === "rejected" ? { index: i, reason: r.reason } : null))
+    .filter((f): f is { index: number; reason: unknown } => f !== null);
+  if (failures.length > 0) {
+    const messages = failures.map((f) => {
+      const m = f.reason instanceof Error ? f.reason.message : String(f.reason);
+      return m;
+    });
+    throw new Error(`GA4 queries failed (${failures.length}/5):\n  - ${messages.join("\n  - ")}`);
+  }
+
+  const [cohort, coreBehavior, zeroResultSearch, externalDomain, anomaly] = settled.map(
+    (r) => (r as PromiseFulfilledResult<unknown>).value,
+  ) as [
+    CohortRetention,
+    CoreBehaviorReach,
+    ZeroResultSearch,
+    ExternalDomainOutflow,
+    WeekOverWeekAnomaly,
+  ];
 
   return {
     propertyId,

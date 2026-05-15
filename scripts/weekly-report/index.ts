@@ -182,6 +182,7 @@ async function runWithFallback(params: {
       process.stderr.write(`[weekly-report] Claude failed: ${message} — falling back to OpenAI\n`);
     }
   } else {
+    errors.push({ provider: "claude", message: "skipped — ANTHROPIC_API_KEY 미설정" });
     process.stderr.write(`[weekly-report] ANTHROPIC_API_KEY 미설정 — OpenAI fallback 사용\n`);
   }
 
@@ -192,8 +193,8 @@ async function runWithFallback(params: {
       const message = error instanceof Error ? error.message : String(error);
       errors.push({ provider: "openai", message });
     }
-  } else if (errors.length > 0) {
-    errors.push({ provider: "openai", message: "OPENAI_API_KEY 미설정 — fallback 불가" });
+  } else {
+    errors.push({ provider: "openai", message: "skipped — OPENAI_API_KEY 미설정" });
   }
 
   // 모든 provider 실패 — raw GA4 JSON은 보존하고 _failed/ 로그 작성.
