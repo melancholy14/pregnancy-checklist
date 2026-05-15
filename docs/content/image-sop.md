@@ -113,13 +113,14 @@ exiftool -a -G1 image.png | grep -iE "DigitalSourceType|trainedAlgorithmicMedia"
 
 ## 6. 발행 체크리스트
 
-신규 글 발행 전 아래 5개 항목 통과 확인.
+신규 글 발행 전 아래 6개 항목 통과 확인.
 
 - [ ] 본문 모든 이미지에 alt 작성 (빌드 타임에 누락 시 경고)
 - [ ] AI 생성 이미지에 ` (AI 생성 이미지)` 후행 표기
 - [ ] AI 후보정 사진에는 위 마커 **미부착** (오라벨링 방지)
 - [ ] 이미지 직후 광고 슬롯 인접 없음
 - [ ] 외부 절대 URL 이미지 없음 (사용 시 사유 기록)
+- [ ] frontmatter `reviewed_by` 룰 적용 (§9 참조 — 빈 문자열 `""` 금지)
 
 ## 7. 운영자 시각 점검 (배포 후 1회)
 
@@ -134,3 +135,39 @@ exiftool -a -G1 image.png | grep -iE "DigitalSourceType|trainedAlgorithmicMedia"
 ## 8. 체크리스트 데이터 변경 룰 (시맨틱 한 줄)
 
 체크리스트 항목 JSON 편집 시 `recommendedWeek` 의미 — `0` 은 **미정/주차 무관**으로 P2 "이번 주 추천" 매칭 대상이 아니다 (출처: [docs/features/checklist-recommendation-semantics/](../features/checklist-recommendation-semantics/)). 본격 데이터 변경 룰(ID 재사용 금지, 삭제 deprecated 플래그 등)은 P10 통합 운영자 가이드 발행 시 합본.
+
+## 9. frontmatter `reviewed_by` 룰 (YMYL 신뢰도)
+
+> 출처: phase-4.5 §4.2 D-C2 (Phase 3-0e 잔존 → 2026-05-13 마감).
+
+블로그 글 frontmatter의 `reviewed_by` 필드는 다음 룰을 따른다.
+
+### 9.1 금지 패턴
+
+```yaml
+# ❌ 금지 — 빈 문자열
+reviewed_by: ""
+```
+
+**이유**: 빈 값 노출은 "리뷰받지 않았다"를 명시적으로 선언하는 것과 같음. 임신·출산은 YMYL(Your Money or Your Life) 도메인이라 검수자 표기 부재가 신뢰도에 마이너스로 작용 (Google Quality Rater Guidelines E-E-A-T 정합).
+
+### 9.2 허용 패턴 (3종 중 택1)
+
+| 케이스 | 패턴 | 예시 |
+|---|---|---|
+| 검수자 부재 | **필드 자체 제거** | (frontmatter에 `reviewed_by` 키 없음) |
+| 실제 검수자 받음 | 이름·자격 명시 | `reviewed_by: "산부인과 전문의 OOO (서울대병원)"` |
+| AI 페르소나 검수만 받음 | 페르소나·역할 명시 + AI 표기 | `reviewed_by: "산부인과 전문의, 가족·복지정책 전문가 (AI 페르소나 검수)"` |
+
+AI 페르소나 검수 패턴은 [early-pregnancy-tests.md](../../src/content/articles/early-pregnancy-tests.md) 사례 참조 — "AI 페르소나 검수" 명시로 투명성 확보 + E-E-A-T 정합.
+
+### 9.3 신규 글 발행 SOP
+
+- 검수 미받음 → `reviewed_by` 필드 자체 작성 금지 (key 없으면 frontmatter 파서가 undefined로 처리)
+- 검수 받은 뒤 추가 → 9.2 표 패턴 그대로 명시
+- 신규 글 작성 후 발행 전 `grep -l 'reviewed_by: ""' src/content/articles/*.md` 1회 실행, 결과 0건 확인
+
+### 9.4 위반 시 SoT 정정
+
+- 사이트 전체 빈 `reviewed_by: ""` 상태 = phase-4.5 §4.2 D-C2 회귀
+- 발견 시 phase-4.5.md §4.2 D-C2 상태를 ⚠️ 회귀로 갱신 + 즉시 정정 라운드

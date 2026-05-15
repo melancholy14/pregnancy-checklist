@@ -3,9 +3,9 @@
 > Phase 4 기록: [phase-4.md](phase-4.md)
 > Date: 2026-05-02
 > 목표 완료: TBD
-> Status: ✅ 디자인 §2 전체 완료 / 마케팅 G·H·I·J 완료 — phase-4.6 진입 대기 (2026-05-12 갱신)
+> Status: ✅ 마케팅 G·H·I·J·L 완료 / 개발 D-C1·D-C2 완료 — D-M1~M3 + D-Data 마감 대기 (2026-05-13 갱신)
 >
-> **진행 요약 (2026-05-12)**
+> **진행 요약 (2026-05-13)**
 >
 > - **기획 §3** — Critical 결정·구현 완료:
 >   P3·P4 ([pregnancy-week-onboarding](../pregnancy-week-onboarding/README.md)),
@@ -21,13 +21,13 @@
 >   - refactor 묶음 2건 통합: B·I ([design-bundle-b-i-row-tokens](../features/design-bundle-b-i-row-tokens/) — WeekChecklistSection label 마크업 + 데이터→토큰 헬퍼)
 >   - decision 묶음 3건: J ShareButton 위치 ([design-bundle-j-share-button-position](../design-bundle-j-share-button-position/README.md)), K 삭제 패턴 undo 토스트 ([design-bundle-k-delete-pattern](../design-bundle-k-delete-pattern/README.md)), N 차트 색 peach ([design-bundle-n-weight-chart-color](../design-bundle-n-weight-chart-color/README.md))
 >   - 잔여: IM-6 (alt 가이드라인, P10 운영자 가이드 통합 의존)
-> - **마케팅 §1** — **묶음 G·H·I·J wiring 완료** ([marketing-events-wiring](../marketing-events-wiring/README.md), 2026-05-12):
->   카탈로그 정렬 + 신규 hook 2종(`useScrollSignals`·`useChecklistToggleEvent`) + 16개 파일 wiring.
->   `article_read_complete` (75%/60s/visibility), `scroll_without_action` (4 page_type), `search_submit` (정규화+800ms 디바운스),
->   `related_article_click`·`share_click`·`cta_click`·`empty_state_view`·`external_link_click` 발사 시작.
->   잔여: ga4.md §8 추적표 G·H·I·J 체크박스 [x] 갱신 + §9 변경 이력 한 줄.
->   L·M(자동 주간 리포트 + launchd)은 D1 선결조건이라 [phase-4.6](phase-4.6.md)으로 이연.
-> - **개발 §4** — 미착수. P1 deferred 묶음(`checklist-data-model-bundle`)과 함께 phase-4.5 종료 시 합류 예정.
+> - **마케팅 §1** — **묶음 G·H·I·J·L 완료**:
+>   wiring ([marketing-events-wiring](../marketing-events-wiring/README.md), 2026-05-12) + 자동 주간 리포트 스크립트 ([marketing-weekly-report](../features/marketing-weekly-report/), 2026-05-13).
+>   `scripts/weekly-report/` 7개 파일(GA4 Data API + Claude/OpenAI 백업 + writer) + ga4.md §8/§9 갱신 완료.
+>   잔여: 묶음 M (launchd 등록 + 1차 수동 실행 검증 + 2주 안정화) — D-Data 마감 ~2026-05-26 직후 진입.
+> - **개발 §4** — **Critical D-C1·D-C2 완료** (2026-05-13):
+>   D-C1 = `public/ads.txt` + `adsbygoogle.js` consent-gated 주입 ([ConsentGatedScripts.tsx](../../src/components/consent/ConsentGatedScripts.tsx)). D-C2 = 원래 4건 + 신규 2건 빈 `reviewed_by` 모두 제거 완료 (사이트 전체 빈 `reviewed_by: ""` 0건). 새 글 SOP에 D-C2 룰 명문화 잔여.
+>   잔여: D-M1~M3 (CI/E2E/회귀) + P1 deferred 묶음(`checklist-data-model-bundle`).
 > - **운영자 작업 잔여**: D1 GA4 Property ID + Service Account 발급 ✅ 완료 (2026-05-12, `~/.config/pregnancy-checklist/ga4-sa.json` — `chmod 600` 잔여). P11 vault 매트릭스 1차 수기 작성은 phase-4.6 종료 후로 이연 (타임라인 흡수·4축 정합 반영).
 > - **분기**: 정보 구조 4축 정돈은 [phase-4.6.md](phase-4.6.md)로 분리 (D1 ✅ + 2주 데이터 수집 중, ~2026-05-26 진입 예상).
 
@@ -191,7 +191,7 @@ GA4 인프라(consent 게이팅 + 수동 page_view + `sendGAEvent` 헬퍼)는 �
 권장 실행 순서: **G → H → (1주 관찰) → I → J → L → M**
 (G·H 없이 I 먼저 가면 코호트 슬라이싱이 안 돼서 데이터가 평면적. L·M은 G~J가 1~2주 누적된 뒤 의미 있는 리포트가 나옴.)
 
-> **상태 (2026-05-12)**: ✅ **묶음 G·H·I·J wiring 전체 완료** ([marketing-events-wiring](../marketing-events-wiring/README.md)). 카탈로그 정렬 + 신규 hook 2종(`useScrollSignals`·`useChecklistToggleEvent`) + 16개 파일 wiring. `article_read_complete` (75%/60s/visibility), `scroll_without_action` (4 page_type), `search_submit` (정규화+800ms 디바운스), `related_article_click`·`share_click`·`cta_click`·`empty_state_view`·`external_link_click` 발사 시작. 잔여: ga4.md §8 추적표 G·H·I·J 체크박스 [x] 갱신 + §9 변경 이력 한 줄 추가. L·M은 D1 발급 후 진입 ([phase-4.6.md](phase-4.6.md) 선결조건).
+> **상태 (2026-05-13)**: ✅ **묶음 G·H·I·J·L 완료**. wiring ([marketing-events-wiring](../marketing-events-wiring/README.md), 2026-05-12) + 자동 주간 리포트 스크립트 ([marketing-weekly-report](../features/marketing-weekly-report/), 2026-05-13, `scripts/weekly-report/` 7개 파일 — GA4 Data API + Claude/OpenAI 백업 fallback + writer). ga4.md §8/§9 갱신 완료. **잔여: 묶음 M (launchd 등록 + 1차 수동 실행 검증 + 2주 안정화)** — D-Data 마감 ~2026-05-26 직후 진입.
 
 > 📌 §2(디자인) 작업 묶음 A~F와는 독립 진행 가능. 단 §2.6의 "미체크만 보기" 토글이 들어가면 묶음 H 정의에 `checklist_filter` 이벤트 1개 추가.
 
@@ -879,7 +879,7 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 > 출처: [docs/tech/technical-debt.md](../tech/technical-debt.md) P1 항목, [docs/tech/review.md](../tech/review.md) 리뷰 잔불, [docs/tech/impl.md](../tech/impl.md) 미구현 메모
 > 기준: Phase 5 착수 전에 처리해야 할 기술 부채만 모음. P2/P3는 [docs/tech/technical-debt.md](../tech/technical-debt.md)에 잔존.
 >
-> **상태 (2026-05-09)**: ⚠️ **미착수** — 기획·디자인·마케팅 라운드 종료 후 합류 예정. P2 ChecklistItem.tsx 미사용 코드는 [checklist-recommendation-semantics](../checklist-recommendation-semantics/README.md)에서 이미 삭제됨. P1 deferred 묶음(`checklist-data-model-bundle`)은 phase-4.5 종료 시 함께 처리.
+> **상태 (2026-05-13)**: 🟡 **D-A(D-C1·D-C2) 완료, D-B~E 미착수**. D-Data 14일 동안 D-B(CI/E2E 안전망) 진행 권장. P2 ChecklistItem.tsx 미사용 코드는 [checklist-recommendation-semantics](../checklist-recommendation-semantics/README.md)에서 이미 삭제됨. P1 deferred 묶음(`checklist-data-model-bundle`)은 phase-4.5 종료 시 함께 처리.
 
 ### 4.1 종합 평가
 
@@ -895,19 +895,26 @@ Phase 4까지 기능은 모두 들어왔으나 다음 3개 영역에 부채가 �
 ### 4.2 Critical — Phase 5 차단 이슈
 
 #### D-C1. `public/ads.txt` 생성 (Phase 3-0a 잔존)
-- **현 상태**: [src/app/layout.tsx](../../src/app/layout.tsx)에 `<meta name="google-adsense-account">` 존재. `adsbygoogle.js` 스크립트는 [src/components/consent/ConsentGatedScripts.tsx](../../src/components/consent/ConsentGatedScripts.tsx)에서 consent-gated로 이미 주입됨.
-- **문제**: `public/`에 CNAME·og-image·home.png만 있고 `ads.txt` 미존재.
-- **수정**: `public/ads.txt` 생성 (`google.com, pub-6022771079735605, DIRECT, f08c47fec0942fa0`).
-- **검증**: 배포 후 AdSense 콘솔 사이트 크롤링 + `https://pregnancy-checklist.com/ads.txt` 200 응답.
+
+> **상태 (2026-05-13)**: ✅ **완료** — `public/ads.txt` 생성 (`google.com, pub-6022771079735605, DIRECT, f08c47fec0942fa0`). `adsbygoogle.js`는 [ConsentGatedScripts.tsx](../../src/components/consent/ConsentGatedScripts.tsx)에서 consent-gated 동적 주입. AdUnit 컴포넌트도 존재.
+
+- [x] `public/ads.txt` 생성
+- [x] `adsbygoogle.js` consent-gated 주입
+- **검증 잔여**: 배포 후 AdSense 콘솔 사이트 크롤링 + `https://pregnancy-checklist.com/ads.txt` 200 응답 확인.
 
 #### D-C2. `reviewed_by` 빈 필드 4건 (Phase 3-0e 잔존)
-- **위치**:
+
+> **상태 (2026-05-13)**: ✅ **완료** — 원래 4건 + spec 외 신규 2건 모두 처리 (grep no-match 검증, 빈 `reviewed_by: ""` 패턴 사이트 전체에 0건).
+
+- [x] **원래 4건 (필드 제거)**:
   - [src/content/articles/early-pregnancy-fatigue-reasons.md](../../src/content/articles/early-pregnancy-fatigue-reasons.md)
   - [src/content/articles/mid-pregnancy-lifestyle-guide.md](../../src/content/articles/mid-pregnancy-lifestyle-guide.md)
   - [src/content/articles/pregnancy-foods-to-avoid.md](../../src/content/articles/pregnancy-foods-to-avoid.md)
   - [src/content/articles/pregnancy-weight-management.md](../../src/content/articles/pregnancy-weight-management.md)
-- **문제**: `reviewed_by: ""` 빈 값 노출은 "리뷰받지 않았다"를 명시하는 것과 같음 → YMYL 신뢰도 마이너스.
-- **수정**: 검수자 부재 시 필드 자체 제거. 향후 검수 받으면 실제 이름 명시.
+- [x] **신규 2건 (2026-05-13 처리)**:
+  - [src/content/articles/pregnancy-exercise-starter-guide.md](../../src/content/articles/pregnancy-exercise-starter-guide.md)
+  - [src/content/articles/pregnancy-supplements-by-week.md](../../src/content/articles/pregnancy-supplements-by-week.md)
+- [x] **SOP 보강 (2026-05-13)**: [docs/content/image-sop.md §9](../content/image-sop.md) 신규 섹션 "frontmatter `reviewed_by` 룰" 명문화 — 금지 패턴(빈 문자열) + 허용 패턴 3종(필드 제거 / 실제 검수자 / AI 페르소나) + 발행 SOP + 위반 시 SoT 정정 룰. §6 발행 체크리스트에도 항목 1개 추가. P10 통합 운영자 가이드 발행 시 합본 예정.
 
 ---
 
@@ -1020,13 +1027,13 @@ Phase 4까지 기능은 모두 들어왔으나 다음 3개 영역에 부채가 �
 
 ### 4.5 작업 묶음 (실행 단위)
 
-| 묶음 | 항목 | 우선순위 | 의존 |
-|------|------|---------|------|
-| **D-A** AdSense 인프라 마감 | D-C1, D-C2 | 즉시 | — |
-| **D-B** 자동화·회귀 안전망 | D-M1, D-M2, D-M3 | 다음 | GitHub Secrets 등록 |
-| **D-C** 코드 정돈 (의존성 다이어트) | D-Mn1, D-Mn2 | D-B 후 | — |
-| **D-D** 리뷰 잔불 일괄 | D-Mn3 ~ D-Mn16 | 시간 날 때 | 없음 (개별 처리 가능) |
-| **D-E** 트리거 대기 (의도적 보류) | D-Mn17, D-Mn18, D-Mn19, D-Mn20 | 트리거 도달 시 | D-Mn20만 Phase 5 vitest 의존 |
+| 묶음 | 항목 | 우선순위 | 의존 | 상태 (2026-05-13) |
+|------|------|---------|------|------|
+| **D-A** AdSense 인프라 마감 | D-C1, D-C2 | 즉시 | — | ✅ 완료 (D-C2 신규 글 2건 SOP 보강 잔여) |
+| **D-B** 자동화·회귀 안전망 | D-M1, D-M2, D-M3 | 다음 | GitHub Secrets 등록 | ⚠️ 미착수 (D-Data 14일 동안 진행 권장) |
+| **D-C** 코드 정돈 (의존성 다이어트) | D-Mn1, D-Mn2 | D-B 후 | — | ⚠️ 미착수 |
+| **D-D** 리뷰 잔불 일괄 | D-Mn3 ~ D-Mn16 | 시간 날 때 | 없음 (개별 처리 가능) | ⚠️ 미착수 |
+| **D-E** 트리거 대기 (의도적 보류) | D-Mn17, D-Mn18, D-Mn19, D-Mn20 | 트리거 도달 시 | D-Mn20만 Phase 5 vitest 의존 | ⏳ 대기 |
 
 ---
 
