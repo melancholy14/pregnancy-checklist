@@ -103,14 +103,6 @@ export function VideosContainer({ items, channels }: VideosContainerProps) {
 
   const isEmpty = items.length === 0;
 
-  const videosByCategory = useMemo(() => {
-    const map: Record<string, VideoItem[]> = {};
-    for (const key of categoryKeys) {
-      map[key] = items.filter((v) => v.category === key);
-    }
-    return map;
-  }, [items]);
-
   return (
     <div className="min-h-screen pb-24 px-4">
       <div className="pt-8">

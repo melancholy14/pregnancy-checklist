@@ -150,6 +150,7 @@ export const rehypeArticleFigure: Plugin<[RehypeArticleFigureOptions?], Root> = 
     const isAI = alt.includes(AI_MARKER);
     const dimensions = readImageDimensions(src);
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { title: _droppedTitle, ...imgPropsWithoutTitle } =
       img.properties ?? {};
     const cleanImgProps: Properties = {

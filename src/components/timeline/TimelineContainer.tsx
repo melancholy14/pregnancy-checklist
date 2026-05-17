@@ -44,7 +44,6 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
   const [showAddForm, setShowAddForm] = useState(false);
   const [activeCategory, setActiveCategory] = useState("all");
   const [showFirstCheckBanner, setShowFirstCheckBanner] = useState(false);
-  const prevCheckedCountRef = useRef<number | null>(null);
   const currentRef = useRef<HTMLDivElement>(null);
 
   const currentWeek = useMemo(() => {
@@ -140,20 +139,24 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
   // 첫 체크 시 인라인 배너 (1회성)
   useEffect(() => {
     if (!hydrated) return;
-    const count = checkedIds.length;
-    if (prevCheckedCountRef.current !== null && prevCheckedCountRef.current === 0 && count === 1) {
-      try {
-        const shown = localStorage.getItem("first-check-guide-shown");
-        if (!shown) {
-          setShowFirstCheckBanner(true);
-          localStorage.setItem("first-check-guide-shown", "true");
+    let prev = useChecklistStore.getState().checkedIds.length;
+    const unsubscribe = useChecklistStore.subscribe((state) => {
+      const next = state.checkedIds.length;
+      if (prev === 0 && next === 1) {
+        try {
+          const shown = localStorage.getItem("first-check-guide-shown");
+          if (!shown) {
+            setShowFirstCheckBanner(true);
+            localStorage.setItem("first-check-guide-shown", "true");
+          }
+        } catch {
+          // localStorage 접근 불가 시 무시
         }
-      } catch {
-        // localStorage 접근 불가 시 무시
       }
-    }
-    prevCheckedCountRef.current = count;
-  }, [hydrated, checkedIds]);
+      prev = next;
+    });
+    return unsubscribe;
+  }, [hydrated]);
 
   // 현재 주차로 자동 스크롤 (hash가 있으면 검색 등에서 특정 주차로 이동한 것이므로 생략)
   useEffect(() => {

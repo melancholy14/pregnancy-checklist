@@ -6,7 +6,6 @@ import { test, expect } from "@playwright/test";
 // - 베이비페어 소형 배지: #E4D6F0 (pastel-lavender) ← 기존 #E0F0FF
 // 회귀 0건: 3개 페이지 어디에도 #E0F0FF / rgb(224, 240, 255) 가 노출되면 안 된다.
 
-const LAVENDER_RGB = "rgb(228, 214, 240)";        // #E4D6F0
 const PEACH_25PCT_RGBA = "rgba(255, 224, 204, 0.25)"; // #FFE0CC40 (alpha 0x40 → 64/255 ≈ 0.25 in chromium)
 const OLD_HEX = "#E0F0FF";
 const OLD_RGB_PATTERN = "rgb(224, 240, 255)";

@@ -38,7 +38,7 @@ export function WeightContainer() {
     setShowAddForm(false);
   };
 
-  const entries = hydrated ? logs : [];
+  const entries = useMemo(() => (hydrated ? logs : []), [hydrated, logs]);
 
   const chartData = useMemo(
     () =>

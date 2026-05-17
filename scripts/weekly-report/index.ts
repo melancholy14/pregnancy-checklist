@@ -32,12 +32,11 @@ import { notifyMacOS, writeFailureLog, writeRawGa4, writeWeeklyReport } from "./
 
 import type { Ga4Result, IsoWeek, ReportResult } from "./types.js";
 
-const REQUIRED_ENV = [
-  "GA4_PROPERTY_ID",
-  "GA4_SA_KEY_PATH",
-  "ANTHROPIC_API_KEY",
-  "OPENAI_API_KEY",
-] as const;
+type RequiredEnv =
+  | "GA4_PROPERTY_ID"
+  | "GA4_SA_KEY_PATH"
+  | "ANTHROPIC_API_KEY"
+  | "OPENAI_API_KEY";
 
 function loadEnvLocal(): void {
   const envLocalPath = path.resolve(".env.local");
@@ -50,7 +49,7 @@ function loadEnvLocal(): void {
   }
 }
 
-function requireEnv(name: (typeof REQUIRED_ENV)[number]): string {
+function requireEnv(name: RequiredEnv): string {
   const value = process.env[name];
   if (!value) {
     throw new Error(`Required env var "${name}" is not set. See .env.example and spec §1.9.5.`);

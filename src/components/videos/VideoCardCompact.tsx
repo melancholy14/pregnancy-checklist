@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Play } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import type { VideoItem } from "@/types/video";
@@ -34,10 +35,13 @@ export function VideoCardCompact({ video, channelName }: VideoCardCompactProps) 
       <Card className="rounded-2xl shadow-sm hover:shadow-md transition-all duration-200 border border-black/4">
         <CardContent className="p-3 flex items-center gap-3">
           <div className="relative shrink-0 w-28 aspect-video rounded-xl overflow-hidden bg-muted">
-            <img
+            <Image
               src={thumbnailUrl}
               alt={video.title}
-              className="w-full h-full object-cover"
+              fill
+              sizes="112px"
+              className="object-cover"
+              unoptimized
             />
             <div className="absolute inset-0 bg-black/15 flex items-center justify-center">
               <div className="w-7 h-7 rounded-full bg-white/85 flex items-center justify-center shadow-sm">
