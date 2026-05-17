@@ -900,7 +900,10 @@ Phase 4까지 기능은 모두 들어왔으나 다음 3개 영역에 부채가 �
 
 - [x] `public/ads.txt` 생성
 - [x] `adsbygoogle.js` consent-gated 주입
-- **검증 잔여**: 배포 후 AdSense 콘솔 사이트 크롤링 + `https://pregnancy-checklist.com/ads.txt` 200 응답 확인.
+- [x] **배포 + `https://pregnancy-checklist.com/ads.txt` 200 응답 확인 (2026-05-13, `curl -I`)**
+- **검증 잔여**:
+  - `adsbygoogle.js` 동의 수락 시 200 OK / 거부 시 미주입 — D-M3 e2e 자동화로 흡수 예정 (그 전까지 수동 1회 권장)
+  - AdSense 콘솔 사이트 상태 = "준비됨" — AdSense 6월 신청 후 24~48시간 내 확인 ([phase-4.6](phase-4.6.md) 영역)
 
 #### D-C2. `reviewed_by` 빈 필드 4건 (Phase 3-0e 잔존)
 

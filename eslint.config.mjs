@@ -12,6 +12,7 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // 병렬 에이전트 worktree (scratch space) — lint 대상 아님
     ".claude/**",
   ]),
 ]);
