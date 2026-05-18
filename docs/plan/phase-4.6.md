@@ -258,6 +258,61 @@ Phase 4.5에서 토큰 디시플린·접근성·기획 결정을 정돈하고, *
 
 ---
 
+## 8. E2E 테스트 코드·스크립트 갱신
+
+> phase-4.6는 라우트 폐기(`/videos`·`/info`·`/timeline`) + BottomNav 재구성 + GA4 이벤트 namespace 마이그레이션을 동시에 한다. 본 섹션은 코드 변경에 종속되는 **테스트/스크립트 갱신 작업 자체를 작업 항목으로 박는다.** 회귀 검증(§7)이 통과 여부 검사라면, §8은 통과 가능 상태를 만드는 작업.
+
+### 8.1 영향 매트릭스 — e2e/
+
+V1=A(영상 전체 제거) + T1=A(타임라인 → 체중 흡수) + H1=A + N1=A 기준. 총 e2e/ 56 파일 중 **약 25 파일**이 갱신 또는 폐기 대상.
+
+| 분류 | 파일 | 작업 |
+|------|------|------|
+| **통째 폐기** | [info-tab-integration.spec.ts](../../e2e/info-tab-integration.spec.ts) | `/info` 통합 허브·영상 탭·`/articles`→`/info` redirect 시나리오 전체. `/articles` 단일화로 별도 spec 신규 작성 필요 시 [client-search.spec.ts](../../e2e/client-search.spec.ts) 등 흡수 |
+| **통째 폐기** | [timeline.spec.ts](../../e2e/timeline.spec.ts), [timeline-enhancement.spec.ts](../../e2e/timeline-enhancement.spec.ts), [timeline-retention.spec.ts](../../e2e/timeline-retention.spec.ts) | `/timeline` 라우트 가정 spec 3개. 시나리오는 흡수처(체중 또는 체크리스트) spec으로 마이그레이션 — "이번 주 할 일 카드"·"타임라인에서 확인하기" CTA는 흡수처 라벨로 재작성 |
+| **통째 폐기** | [cross-links-video-weight.spec.ts](../../e2e/cross-links-video-weight.spec.ts) Step 3 | 타임라인 → 영상 8개 주차 매핑 검증. Step 6 (체중↔블로그) 부분만 신규 spec으로 분리 보존 |
+| **통째 폐기** | [fetch-channel-thumbs.spec.ts](../../e2e/fetch-channel-thumbs.spec.ts), [phase-4-step-3-related-content.spec.ts](../../e2e/phase-4-step-3-related-content.spec.ts) | 영상 자산 의존(`/info?tab=videos#<id>` 매칭, `videoCategories`). V1=A 결정 시 통째 폐기 |
+| **부분 폐기** | [phase-4-step-5-crosslinks.spec.ts](../../e2e/phase-4-step-5-crosslinks.spec.ts) | `linked_video_ids`/`linked_video_ids_manual` 시나리오 제거, `linked_article_slugs` 부분만 보존. [scripts/generate-crosslinks.ts](../../scripts/generate-crosslinks.ts) 영상 매핑 제거에 동기 |
+| **재작성 (BottomNav·홈)** | [navigation.spec.ts](../../e2e/navigation.spec.ts) | 4탭 검증 — "홈/체크/페어/정보" → "체크/페어/블로그/체중" (N1=A 시). `nav.getByText("영상")` 미존재 assertion은 더 이상 무의미 |
+| **재작성 (BottomNav·홈)** | [home.spec.ts](../../e2e/home.spec.ts) | 미니 대시보드 4 카드 (베페·체중·영상·정보) → 4축 허브 (체크/페어/블로그/체중). 영상 카드·정보 카드 검증 삭제, 4축 카드 4개 신규 |
+| **재작성 (GA4 namespace)** | [ga4-events.spec.ts](../../e2e/ga4-events.spec.ts) | `timeline_week_view` → `weight_week_view` (T1=A), `content_click(type=video)` 제거, `/info?tab=videos` 진입 시나리오 제거, `axis_enter`·`axis_cross_link` 신규 spec 추가 |
+| **재작성 (GA4 namespace)** | [marketing-events-wiring.spec.ts](../../e2e/marketing-events-wiring.spec.ts) | `external_link_click(context=video)` 시나리오(`/videos` 진입) 제거, `/timeline` 진입 검증(L143~L168, L286~L359) 흡수처로 마이그레이션 |
+| **path 교체 (간단)** | [seo-metadata.spec.ts](../../e2e/seo-metadata.spec.ts), [seo-meta.spec.ts](../../e2e/seo-meta.spec.ts), [page-description.spec.ts](../../e2e/page-description.spec.ts), [sticky-header.spec.ts](../../e2e/sticky-header.spec.ts), [lighthouse-seo.spec.ts](../../e2e/lighthouse-seo.spec.ts), [canonical-url.spec.ts](../../e2e/canonical-url.spec.ts) | `TARGET_PAGES`·`paths` 배열에서 `/timeline`·`/info` 제거 후 `/articles` (또는 흡수처) 추가. title/canonical 기댓값 갱신 |
+| **path 교체 (회귀 진입 동선)** | [checklist.spec.ts](../../e2e/checklist.spec.ts), [checklist-recommendation-semantics.spec.ts](../../e2e/checklist-recommendation-semantics.spec.ts), [checklist-week-bug.spec.ts](../../e2e/checklist-week-bug.spec.ts), [cross-links.spec.ts](../../e2e/cross-links.spec.ts), [onboarding-flow.spec.ts](../../e2e/onboarding-flow.spec.ts), [pregnancy-week-onboarding.spec.ts](../../e2e/pregnancy-week-onboarding.spec.ts), [gamification.spec.ts](../../e2e/gamification.spec.ts), [plan.spec.ts](../../e2e/plan.spec.ts), [guides.spec.ts](../../e2e/guides.spec.ts), [content-enhancement.spec.ts](../../e2e/content-enhancement.spec.ts), design-bundle-* | `/timeline`·`/info`·`/videos` 진입 부분만 흡수처 라우트로 교체. 보조 검증이라 스코프 작음 |
+| **신규 spec** | `e2e/axis-funnel.spec.ts` (가칭), `e2e/timeline-migrate.spec.ts` (가칭) | (a) 4축 funnel — `axis_enter` 4종 발화 + `axis_cross_link` 검증, (b) zustand `migrate` 시나리오 — 기존 사용자 localStorage 잔존 → 흡수처 store 무손실 이전 (§7.1 양보 거부 항목) |
+
+> **삭제 vs 마이그레이션 판단 기준**: 영상·타임라인 라우트 자체를 검증하는 spec은 폐기, 라우트가 부수적 진입 동선인 spec은 path만 교체. 시나리오의 본질이 유지되면 마이그레이션.
+
+### 8.2 영향 매트릭스 — scripts/
+
+| 분류 | 파일 | 작업 |
+|------|------|------|
+| **통째 폐기 (V1=A 시)** | [scripts/fetch-video-metadata.ts](../../scripts/fetch-video-metadata.ts), [scripts/fetch-channel-thumbs.ts](../../scripts/fetch-channel-thumbs.ts), [scripts/verify-videos.ts](../../scripts/verify-videos.ts) | YouTube API 의존, `videos.json`/`channels.json` 처리. `package.json` `scripts` 4개(`fetch-channel-thumbs`·`fetch-video-metadata`·`fetch-channel-thumbs:force`·`fetch-video-metadata:update`) 제거 |
+| **부분 정리** | [scripts/generate-crosslinks.ts](../../scripts/generate-crosslinks.ts) | `TIMELINE_PATH`·`VIDEOS_PATH` 상수 + `linked_video_ids` 자동 매핑 로직 제거. T1 흡수 데이터 모델 반영 (timeline_items 데이터가 흡수처 JSON으로 이동 시 source path 갱신). `--apply` `--dry-run` 시나리오 e2e [phase-4-step-5-crosslinks.spec.ts](../../e2e/phase-4-step-5-crosslinks.spec.ts) 동기 갱신 |
+| **부분 정리** | [scripts/lighthouse-check.sh](../../scripts/lighthouse-check.sh) L15-23 | `PAGES` 배열에서 `/timeline.html`·`/info.html` 제거, `/articles.html` (또는 흡수처) 추가. [lighthouse-seo.spec.ts](../../e2e/lighthouse-seo.spec.ts)의 `TARGET_PAGES`와 동시 갱신 (인프라 검증 spec이 7개 path를 grep함) |
+| **부분 정리** | [scripts/seed-vault-media-notes.py](../../scripts/seed-vault-media-notes.py) | `videos.json`/`channels.json` 동기 부분 제거. vault `20-content/videos/`·`20-content/channels/` MOC 노트 자체 폐기 결정 시 스크립트 통째 삭제 후보 |
+| **GA4 query 갱신** | [scripts/weekly-report/ga4-queries.ts](../../scripts/weekly-report/ga4-queries.ts) (및 prompt-shared·types) | 주간 리포트가 `timeline_week_view`·`content_click(type=video)` 등을 dimension/metric으로 끌어쓰면 4축 funnel (`axis_enter`·`axis_cross_link`·`weight_week_view`) 기준으로 query 재작성. deprecated 이벤트 차트는 발화 0건 안내로 fallback |
+| **인프라 검증 spec 동기** | (위 스크립트 변경 시) | [fetch-channel-thumbs.spec.ts](../../e2e/fetch-channel-thumbs.spec.ts), [lighthouse-seo.spec.ts](../../e2e/lighthouse-seo.spec.ts) "Lighthouse 스크립트 인프라" describe, [phase-4-step-5-crosslinks.spec.ts](../../e2e/phase-4-step-5-crosslinks.spec.ts) sandbox 시나리오는 스크립트가 살아있어야 통과. 스크립트 폐기 시 e2e도 동시 폐기 |
+
+### 8.3 작업 순서 (구현 단계 §1~§4와 묶음)
+
+| 순서 | 단계 | 동기 갱신할 e2e·scripts |
+|------|------|--------------------------|
+| 1 | §1 영상 자산 일괄 제거 | scripts 3개 + 인프라 spec 1개 + `info-tab-integration.spec.ts`·`fetch-channel-thumbs.spec.ts`·`phase-4-step-3-related-content.spec.ts` 폐기, [ga4-events.spec.ts](../../e2e/ga4-events.spec.ts) `content_click(type=video)` 시나리오 제거 |
+| 2 | §2 타임라인 흡수 | timeline 3종 + `cross-links-video-weight.spec.ts` Step 3 폐기 → 흡수처 spec으로 마이그레이션. `timeline-migrate.spec.ts` 신규 (§7.1 zustand migrate 검증) |
+| 3 | §3·§4 홈 4축 허브 + BottomNav | [home.spec.ts](../../e2e/home.spec.ts), [navigation.spec.ts](../../e2e/navigation.spec.ts) 재작성 |
+| 4 | §5 GA4 카탈로그 4축 갱신 | [ga4-events.spec.ts](../../e2e/ga4-events.spec.ts), [marketing-events-wiring.spec.ts](../../e2e/marketing-events-wiring.spec.ts) 갱신 + `axis-funnel.spec.ts` 신규. [scripts/weekly-report/ga4-queries.ts](../../scripts/weekly-report/ga4-queries.ts) 동기 |
+| 5 | Sitemap·robots·canonical·redirect | SEO 6 spec(`seo-metadata`·`seo-meta`·`page-description`·`sticky-header`·`lighthouse-seo`·`canonical-url`) path 일괄 교체 + `scripts/lighthouse-check.sh` `PAGES` 배열 동기 |
+| 6 | 회귀 진입 동선 정리 | 보조 spec ~10개 `/timeline`·`/info` path만 교체. `npm run test:e2e` 풀 회귀 통과 확인 |
+
+### 8.4 양보 거부 항목
+
+- **e2e migrate 시나리오 없이 §2 머지 금지** — §7.1 자동 적용. `timeline-migrate.spec.ts`가 통과해야 zustand `migrate` 함수 검증 완료
+- **deprecated 이벤트 발화 검증 누락 금지** — `axis-funnel.spec.ts`에 "deprecated 이벤트(`content_click(type=video)`·`timeline_*`) 0건 발화" assertion 필수. DebugView 대신 gtag spy 패턴 ([ga4-events.spec.ts](../../e2e/ga4-events.spec.ts) `injectGtagSpy`) 재사용
+- **스크립트·e2e 동시 갱신** — `lighthouse-check.sh` PAGES 배열을 바꿨는데 `lighthouse-seo.spec.ts` `TARGET_PAGES`를 안 바꾸면 인프라 spec(L77~85)이 빨강. 같은 PR에 묶어 머지
+
+---
+
 ## 일정 계획
 
 | 마일스톤 | 날짜 | 비고 |
@@ -300,7 +355,10 @@ Phase 4.5에서 토큰 디시플린·접근성·기획 결정을 정돈하고, *
 - [ ] sitemap·robots·canonical 4축 정합
 - [ ] 30-domain/ 운영 가이드 갱신
 - [ ] 내부 링크 0건 깨짐 (`grep` 검증)
-- [ ] 사용자 데이터 손실 0건 (e2e migrate 시나리오)
+- [ ] 사용자 데이터 손실 0건 (e2e migrate 시나리오 = `timeline-migrate.spec.ts` 신규 통과)
+- [ ] §8.1 영향 매트릭스 25개 spec 갱신·폐기 완료 + `npm run test:e2e` 풀 회귀 통과
+- [ ] §8.2 영향 매트릭스 — `scripts/lighthouse-check.sh` PAGES, `scripts/generate-crosslinks.ts` video 매핑, `scripts/weekly-report/ga4-queries.ts` 4축 funnel, `scripts/fetch-*` + `verify-videos.ts` 폐기 동시 머지
+- [ ] `axis-funnel.spec.ts` 신규 + deprecated 이벤트 0건 발화 assertion 통과
 - [ ] AdSense 인프라 미회귀 (스크립트·ads.txt 무변경)
 - [ ] [adsense-audit.md](adsense-audit.md) CRITICAL/HIGH 0건
 - [ ] phase-4.5 디자인 §2 결과와 충돌 0건
