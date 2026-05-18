@@ -37,6 +37,11 @@ jobs:
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
 
+      # npm 옵셔널 디펜던시 버그(#4828) 워크어라운드:
+      # 락파일이 darwin에서 생성돼 linux 네이티브 바이너리 노드가 누락 → @tailwindcss/postcss build 실패.
+      - name: Install linux native binaries for lightningcss
+        run: npm install --no-save --legacy-peer-deps lightningcss-linux-x64-gnu
+
       - name: Type check
         run: npx tsc --noEmit
 
@@ -111,6 +116,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
+
+      - name: Install linux native binaries for lightningcss
+        run: npm install --no-save --legacy-peer-deps lightningcss-linux-x64-gnu
 
       - name: Build
         run: npm run build
