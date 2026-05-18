@@ -11,9 +11,9 @@
 
 | Secret 이름 | 값 (현재 운영) | 사용처 | 워크플로 env 매핑 |
 |---|---|---|---|
-| `GA_MEASUREMENT_ID` | `G-HT96X27T4K` | [ConsentGatedScripts.tsx](../../src/components/consent/ConsentGatedScripts.tsx) | `NEXT_PUBLIC_GA_MEASUREMENT_ID` |
-| `ADSENSE_CLIENT_ID` | `ca-pub-6022771079735605` | [ConsentGatedScripts.tsx](../../src/components/consent/ConsentGatedScripts.tsx), [AdUnit.tsx](../../src/components/ads/AdUnit.tsx), [layout.tsx](../../src/app/layout.tsx) | `NEXT_PUBLIC_ADSENSE_CLIENT_ID` |
-| `FEEDBACK_FORM_URL` | `https://forms.gle/iZrqyAd2LtTm7Gtm7` | [src/app/contact/page.tsx](../../src/app/contact/page.tsx) | `NEXT_PUBLIC_FEEDBACK_FORM_URL` |
+| `GA_MEASUREMENT_ID` |  | [ConsentGatedScripts.tsx](../../src/components/consent/ConsentGatedScripts.tsx) | `NEXT_PUBLIC_GA_MEASUREMENT_ID` |
+| `ADSENSE_CLIENT_ID` |  | [ConsentGatedScripts.tsx](../../src/components/consent/ConsentGatedScripts.tsx), [AdUnit.tsx](../../src/components/ads/AdUnit.tsx), [layout.tsx](../../src/app/layout.tsx) | `NEXT_PUBLIC_ADSENSE_CLIENT_ID` |
+| `FEEDBACK_FORM_URL` |  | [src/app/contact/page.tsx](../../src/app/contact/page.tsx) | `NEXT_PUBLIC_FEEDBACK_FORM_URL` |
 
 ### 1.2 선택 (1종) — 미설정 시 코드 기본값 사용
 
@@ -92,7 +92,7 @@ git push origin feat/some-branch  # PR 또는 main 외 브랜치
 ### Q. `ADSENSE_CLIENT_ID` 만 값을 바꿔야 한다
 
 ```bash
-gh secret set ADSENSE_CLIENT_ID --body "ca-pub-NEW_VALUE"
+gh secret set ADSENSE_CLIENT_ID --body ""
 ```
 
 기존 값 덮어쓰기. push 후 워크플로 재실행으로 반영.
