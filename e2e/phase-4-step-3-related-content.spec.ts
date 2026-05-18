@@ -1,6 +1,11 @@
 import { test, expect } from "@playwright/test";
+import { acceptCookieConsent } from "./helpers/consent";
 
 test.describe("아티클 하단 관련 콘텐츠 추천 (Phase 4 Step 3)", () => {
+  test.beforeEach(async ({ context }) => {
+    await acceptCookieConsent(context);
+  });
+
   test.describe("Happy Path", () => {
     test('/articles/early-pregnancy-tests 하단에 "📰 관련 콘텐츠" 섹션이 노출된다', async ({
       page,

@@ -1,7 +1,9 @@
 import { test, expect } from "@playwright/test";
+import { acceptCookieConsent } from "./helpers/consent";
 
 test.describe("About 페이지 → 만든 사람 스토리텔링 (Step 13)", () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ context, page }) => {
+    await acceptCookieConsent(context);
     await page.goto("/about", { waitUntil: "domcontentloaded" });
   });
 

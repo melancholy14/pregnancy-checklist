@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { acceptCookieConsent } from "./helpers/consent";
 
 /** gtag 목업을 주입하고 호출 기록을 반환하는 헬퍼 */
 async function injectGtagSpy(page: import("@playwright/test").Page) {
@@ -17,6 +18,10 @@ async function getGtagCalls(page: import("@playwright/test").Page) {
 }
 
 test.describe("GA4 커스텀 이벤트 (Step 1)", () => {
+  test.beforeEach(async ({ context }) => {
+    await acceptCookieConsent(context);
+  });
+
   test.describe("page_view (수동 페이지뷰)", () => {
     test("클라이언트 내비게이션 시 page_view 이벤트가 전송된다", async ({ page }) => {
       // 무엇을: 페이지 이동 시 수동 page_view 이벤트 발생 확인

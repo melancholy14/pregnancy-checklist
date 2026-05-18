@@ -1,7 +1,9 @@
 import { test, expect } from "@playwright/test";
+import { acceptCookieConsent } from "./helpers/consent";
 
 test.describe("홈 페이지", () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ context, page }) => {
+    await acceptCookieConsent(context);
     await page.goto("/");
     await page.evaluate(() => localStorage.setItem("onboarding-completed", "true"));
     await page.goto("/");
@@ -18,7 +20,7 @@ test.describe("홈 페이지", () => {
     test("출산 예정일 입력 카드가 보인다", async ({ page }) => {
       // 무엇을: 예정일 입력 UI가 정상 렌더링되는지
       // 왜: 핵심 퍼널 진입점
-      await expect(page.getByText("출산 예정일을 입력하세요")).toBeVisible();
+      await expect(page.getByRole("heading", { name: "예정일을 알려주세요" })).toBeVisible();
       await expect(page.locator('input[type="date"]')).toBeVisible();
     });
 
@@ -138,7 +140,7 @@ test.describe("홈 페이지", () => {
     test("예정일 미입력 시 입력 유도 카드가 표시된다", async ({ page }) => {
       // 무엇을: 예정일 없이 방문 시 유도 안내가 보이는지
       // 왜: 예정일이 핵심 데이터이므로 미입력 시 유도 필수
-      await expect(page.getByText("예정일을 입력하면 나에게 맞는 체크리스트와 타임라인을 볼 수 있어요")).toBeVisible();
+      await expect(page.getByText("예정일을 입력하면 주차별 체크리스트와 D-day로 정렬된 정보를 볼 수 있어요")).toBeVisible();
     });
 
     test("예정일 입력 후 유도 카드가 사라진다", async ({ page }) => {
@@ -149,7 +151,7 @@ test.describe("홈 페이지", () => {
       const dateStr = futureDate.toISOString().split("T")[0];
 
       await page.locator('input[type="date"]').fill(dateStr);
-      await expect(page.getByText("예정일을 입력하면 나에게 맞는 체크리스트와 타임라인을 볼 수 있어요")).not.toBeVisible();
+      await expect(page.getByText("예정일을 입력하면 주차별 체크리스트와 D-day로 정렬된 정보를 볼 수 있어요")).not.toBeVisible();
     });
   });
 

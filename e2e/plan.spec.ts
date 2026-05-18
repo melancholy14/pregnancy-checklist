@@ -1,7 +1,9 @@
 import { test, expect } from "@playwright/test";
+import { acceptCookieConsent } from "./helpers/consent";
 
 test.describe("Phase 1.5: 타임라인 + 체크리스트 통합", () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ context, page }) => {
+    await acceptCookieConsent(context);
     await page.goto("/timeline");
   });
 
@@ -10,7 +12,9 @@ test.describe("Phase 1.5: 타임라인 + 체크리스트 통합", () => {
       // 무엇을: 타임라인 제목, 설명, 전체 진행률이 보이는지
       // 왜: 통합 페이지의 정상 진입 확인
       await expect(page.getByRole("heading", { name: "임신 타임라인" })).toBeVisible();
-      await expect(page.getByText("주차별 일정과 체크리스트를 한눈에 확인하세요")).toBeVisible();
+      await expect(
+        page.getByText(/임신 주차에 맞춰 준비해야 할 항목을 한눈에 확인하세요/),
+      ).toBeVisible();
       await expect(page.getByText("전체 진행률")).toBeVisible();
     });
 
@@ -257,7 +261,7 @@ test.describe("Phase 1.5: 타임라인 + 체크리스트 통합", () => {
     test("기본 항목에는 수정/삭제 버튼이 없다", async ({ page }) => {
       // 무엇을: JSON 기본 타임라인 항목에 수정/삭제 아이콘이 없는지
       // 왜: 기본 데이터 보호
-      const firstCard = page.getByText("임신 확인 후 기본 일정 잡기").locator("..").locator("..");
+      const firstCard = page.getByText("임신 확인과 엽산 복용 시작").locator("..").locator("..");
       await expect(firstCard.locator('button[aria-label="수정"]')).not.toBeVisible();
       await expect(firstCard.locator('button[aria-label="삭제"]')).not.toBeVisible();
     });
@@ -322,7 +326,7 @@ test.describe("Phase 1.5: 타임라인 + 체크리스트 통합", () => {
       // 왜: 주요 타겟 기기 — 임산부 모바일 사용자
       await expect(page.getByRole("heading", { name: "임신 타임라인" })).toBeVisible();
       await expect(page.getByRole("button", { name: "전체" })).toBeVisible();
-      await expect(page.getByText("임신 확인 후 기본 일정 잡기")).toBeVisible();
+      await expect(page.getByText("임신 확인과 엽산 복용 시작")).toBeVisible();
       await expect(page.locator('button[aria-label="항목 추가"]')).toBeVisible();
     });
 

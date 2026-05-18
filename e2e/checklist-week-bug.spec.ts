@@ -1,11 +1,12 @@
 import { test, expect } from "@playwright/test";
+import { acceptCookieConsent } from "./helpers/consent";
 
 test.describe("체크리스트 주차 미존재 버그 수정 (Step 8)", () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ context, page }) => {
+    await acceptCookieConsent(context);
     await page.goto("/timeline");
-    // 쿠키 동의 + 이전 커스텀 데이터 초기화
+    // 이전 커스텀 데이터 초기화
     await page.evaluate(() => {
-      localStorage.setItem("cookie-consent", "accepted");
       localStorage.removeItem("checklist-storage");
       localStorage.removeItem("timeline-storage");
     });

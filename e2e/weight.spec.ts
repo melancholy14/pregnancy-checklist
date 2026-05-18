@@ -1,7 +1,9 @@
 import { test, expect } from "@playwright/test";
+import { acceptCookieConsent } from "./helpers/consent";
 
 test.describe("체중 기록 페이지", () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ context, page }) => {
+    await acceptCookieConsent(context);
     await page.goto("/weight");
   });
 

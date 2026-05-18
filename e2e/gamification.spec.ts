@@ -1,7 +1,9 @@
 import { test, expect } from "@playwright/test";
+import { acceptCookieConsent } from "./helpers/consent";
 
 test.describe("달성감 / 게이미피케이션 (Step 9)", () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ context, page }) => {
+    await acceptCookieConsent(context);
     await page.goto("/timeline");
     // 이전 데이터 초기화
     await page.evaluate(() => {

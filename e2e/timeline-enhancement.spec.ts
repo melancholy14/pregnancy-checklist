@@ -1,7 +1,9 @@
 import { test, expect } from "@playwright/test";
+import { acceptCookieConsent } from "./helpers/consent";
 
 test.describe("타임라인 정보 구체화 (Step 16)", () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ context, page }) => {
+    await acceptCookieConsent(context);
     await page.goto("/timeline");
   });
 
@@ -74,7 +76,7 @@ test.describe("타임라인 정보 구체화 (Step 16)", () => {
       const week32 = page.locator("#timeline-week-32");
       await expect(week32).toBeAttached();
       await expect(
-        week32.getByText("아래 체크리스트에서 하나씩 확인하세요"),
+        week32.getByText(/산모용·아기용·보호자용으로 나눠 입원 가방을 정리한다/),
       ).toBeVisible();
     });
   });

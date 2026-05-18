@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { acceptCookieConsent } from "./helpers/consent";
 
 /** 예정일을 설정하고 홈으로 이동하는 헬퍼 */
 async function setupWithDueDate(page: import("@playwright/test").Page) {
@@ -14,6 +15,10 @@ async function setupWithDueDate(page: import("@playwright/test").Page) {
 }
 
 test.describe("타임라인 유도 강화 + 데이터 보존", () => {
+  test.beforeEach(async ({ context }) => {
+    await acceptCookieConsent(context);
+  });
+
   test.describe("Happy Path", () => {
     test("홈 CTA 카드: 주차 + 미완료 수 + 체크 미리보기 + CTA 버튼 표시", async ({ page }) => {
       // 무엇을: 예정일 입력 후 이번 주 할 일 카드가 체크리스트 미리보기와 CTA 버튼을 포함하는지
