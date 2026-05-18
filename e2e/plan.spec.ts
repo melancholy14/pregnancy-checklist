@@ -45,8 +45,8 @@ test.describe("Phase 1.5: 타임라인 + 체크리스트 통합", () => {
       const accordionTrigger = page.getByText(/체크리스트 \d+개/).first();
       await accordionTrigger.click();
 
-      // 첫 번째 체크박스 클릭
-      const checkbox = page.locator('[data-slot="collapsible-content"]').first().locator('button[role="checkbox"]').first();
+      // 첫 번째 체크박스 클릭 (visible 한정으로 펼쳐진 카드 안의 체크박스)
+      const checkbox = page.locator('button[role="checkbox"]:visible').first();
       await checkbox.click();
 
       // 체크 상태 확인
@@ -66,7 +66,7 @@ test.describe("Phase 1.5: 타임라인 + 체크리스트 통합", () => {
       // 아코디언 펼치고 체크
       const accordionTrigger = page.getByText(/체크리스트 \d+개/).first();
       await accordionTrigger.click();
-      const checkbox = page.locator('[data-slot="collapsible-content"]').first().locator('button[role="checkbox"]').first();
+      const checkbox = page.locator('button[role="checkbox"]:visible').first();
       await checkbox.click();
 
       const after = await progressCard.textContent();
@@ -197,9 +197,9 @@ test.describe("Phase 1.5: 타임라인 + 체크리스트 통합", () => {
       await expect(page.getByText("수정 후 체크리스트")).toBeVisible();
     });
 
-    test("커스텀 항목을 삭제할 수 있다 (확인 다이얼로그 수락)", async ({ page }) => {
-      // 무엇을: 커스텀 타임라인 항목 삭제 시 AlertDialog → 삭제 버튼 → 삭제
-      // 왜: 삭제 실수 방지를 위한 확인 다이얼로그 + 수락 시 정상 삭제
+    test("커스텀 항목을 삭제할 수 있다 (undo 토스트)", async ({ page }) => {
+      // 무엇을: 커스텀 타임라인 항목 삭제 시 즉시 삭제 + undo 토스트 노출
+      // 왜: design-bundle-k에서 AlertDialog confirm → undo-toast 패턴으로 통일
       await page.locator('button[aria-label="항목 추가"]').click();
       await page.locator('input[value="timeline"]').click();
       await page.locator('input[type="number"]').fill("15");
@@ -208,20 +208,17 @@ test.describe("Phase 1.5: 타임라인 + 체크리스트 통합", () => {
 
       await expect(page.getByText("삭제 테스트 항목")).toBeVisible();
 
-      // AlertDialog 트리거 클릭
       const card = page.locator('[data-slot="card"]').filter({ hasText: "삭제 테스트 항목" });
-      await card.locator('button[aria-label="삭제"]').click();
+      await card.getByRole("button", { name: "삭제" }).click();
 
-      // AlertDialog가 열리고 "삭제" 버튼 클릭
-      await expect(page.getByText("이 항목을 삭제하시겠습니까?")).toBeVisible();
-      await page.locator('[data-slot="alert-dialog-content"]').getByRole("button", { name: "삭제" }).click();
-
+      // 즉시 삭제 + sonner 토스트 노출
       await expect(page.getByText("삭제 테스트 항목")).not.toBeVisible();
+      await expect(page.getByText(/노트를 삭제했어요/)).toBeVisible();
     });
 
-    test("커스텀 항목 삭제 시 취소하면 항목이 유지된다", async ({ page }) => {
-      // 무엇을: 삭제 AlertDialog에서 취소 시 항목이 그대로 남는지
-      // 왜: 실수 삭제 방지 기능 검증
+    test("커스텀 항목 삭제 후 되돌리기를 누르면 복원된다", async ({ page }) => {
+      // 무엇을: undo 토스트의 되돌리기 클릭 시 삭제된 항목이 복원되는지
+      // 왜: design-bundle-k undo 패턴 검증
       await page.locator('button[aria-label="항목 추가"]').click();
       await page.locator('input[value="timeline"]').click();
       await page.locator('input[type="number"]').fill("15");
@@ -230,15 +227,12 @@ test.describe("Phase 1.5: 타임라인 + 체크리스트 통합", () => {
 
       await expect(page.getByText("삭제 취소 테스트")).toBeVisible();
 
-      // AlertDialog 트리거 클릭
       const card = page.locator('[data-slot="card"]').filter({ hasText: "삭제 취소 테스트" });
-      await card.locator('button[aria-label="삭제"]').click();
+      await card.getByRole("button", { name: "삭제" }).click();
 
-      // AlertDialog에서 "취소" 클릭
-      await expect(page.getByText("이 항목을 삭제하시겠습니까?")).toBeVisible();
-      await page.locator('[data-slot="alert-dialog-content"]').getByRole("button", { name: "취소" }).click();
+      // undo 토스트에서 "되돌리기" 클릭
+      await page.getByRole("button", { name: /되돌리기/ }).click();
 
-      // 취소했으므로 항목이 여전히 존재
       await expect(page.getByText("삭제 취소 테스트")).toBeVisible();
     });
 
@@ -314,7 +308,9 @@ test.describe("Phase 1.5: 타임라인 + 체크리스트 통합", () => {
     test("온보딩 배너: 예정일 미입력 시 DueDateBanner 표시", async ({ page }) => {
       // 무엇을: 예정일 없이 타임라인 진입 시 배너가 보이는지
       // 왜: 예정일 입력 유도 (현재 주차 자동 펼침에 필요)
-      await expect(page.getByText("예정일을 입력하면 나에게 맞는 정보를 볼 수 있어요")).toBeVisible();
+      await expect(
+        page.getByText("예정일을 입력하면 주차별로 정렬된 체크리스트를 볼 수 있어요"),
+      ).toBeVisible();
     });
   });
 
@@ -336,10 +332,8 @@ test.describe("Phase 1.5: 타임라인 + 체크리스트 통합", () => {
       const accordionTrigger = page.getByText(/체크리스트 \d+개/).first();
       await accordionTrigger.click();
 
-      const expandedSection = page.locator('[data-slot="collapsible-content"]').first();
-      await expect(expandedSection).toBeVisible();
-
-      const checkbox = expandedSection.locator('button[role="checkbox"]').first();
+      const checkbox = page.locator('button[role="checkbox"]:visible').first();
+      await expect(checkbox).toBeVisible();
       await checkbox.click();
       await expect(checkbox).toHaveAttribute("data-state", "checked");
     });

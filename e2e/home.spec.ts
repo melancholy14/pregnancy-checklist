@@ -25,16 +25,16 @@ test.describe("홈 페이지", () => {
     });
 
     test("출산 예정일을 입력하면 대시보드가 표시된다", async ({ page }) => {
-      // 무엇을: 예정일 입력 후 현재 주차, D-day, 진행률이 표시되는지
+      // 무엇을: 예정일 입력 + 저장 후 현재 주차, 진행률이 표시되는지
       // 왜: 예정일 입력이 대시보드 활성화의 핵심 트리거
       const futureDate = new Date();
       futureDate.setDate(futureDate.getDate() + 100);
       const dateStr = futureDate.toISOString().split("T")[0];
 
       await page.locator('input[type="date"]').fill(dateStr);
-      await expect(page.getByText(/현재 임신/)).toBeVisible();
+      await page.getByRole("button", { name: "예정일 저장" }).click();
+      await expect(page.getByRole("heading", { name: /현재 \d+주차/ })).toBeVisible();
       await expect(page.getByText("체크리스트 진행률")).toBeVisible();
-      await expect(page.getByText("D-day")).toBeVisible();
     });
 
     test("예정일 입력 후 이번 주 CTA 카드가 표시된다", async ({ page }) => {
@@ -44,7 +44,8 @@ test.describe("홈 페이지", () => {
       futureDate.setDate(futureDate.getDate() + 100);
       const dateStr = futureDate.toISOString().split("T")[0];
       await page.locator('input[type="date"]').fill(dateStr);
-      await expect(page.getByText(/현재 임신/)).toBeVisible();
+      await page.getByRole("button", { name: "예정일 저장" }).click();
+      await expect(page.getByRole("heading", { name: /현재 \d+주차/ })).toBeVisible();
 
       await expect(page.getByText(/주차에.*할 일/)).toBeVisible();
       await expect(page.getByRole("button", { name: "타임라인에서 확인하기" })).toBeVisible();
@@ -55,18 +56,16 @@ test.describe("홈 페이지", () => {
     test("4개 미니 대시보드 카드가 렌더링된다", async ({ page }) => {
       // 무엇을: 기능 메뉴판 대신 미니 대시보드 카드 4개가 보이는지
       // 왜: Phase 2.5 Step 3 — 메뉴판→미니 대시보드 개편
-      const dashboard = page.locator(".grid.grid-cols-2");
-      await expect(dashboard.getByRole("link", { name: /베이비페어/ })).toBeVisible();
-      await expect(dashboard.getByRole("link", { name: /체중 기록/ })).toBeVisible();
-      await expect(dashboard.getByRole("link", { name: /영상/ })).toBeVisible();
-      await expect(dashboard.getByRole("link", { name: /정보/ })).toBeVisible();
+      await expect(page.locator('a[href="/baby-fair"]').first()).toBeVisible();
+      await expect(page.locator('a[href="/weight"]').first()).toBeVisible();
+      await expect(page.locator('a[href="/info?tab=videos"]').first()).toBeVisible();
+      await expect(page.locator('a[href="/info"]').first()).toBeVisible();
     });
 
     test("베이비페어 카드에 다가오는 행사 정보가 표시된다", async ({ page }) => {
       // 무엇을: 베이비페어 카드에 행사 수 또는 '없습니다' 메시지가 보이는지
       // 왜: 스냅샷 데이터로 클릭 동기 부여
-      const dashboard = page.locator(".grid.grid-cols-2");
-      await expect(dashboard.getByRole("link", { name: /베이비페어/ })).toBeVisible();
+      await expect(page.locator('a[href="/baby-fair"]').first()).toBeVisible();
       const hasEvents = await page.getByText(/다가오는 행사/).isVisible().catch(() => false);
       const hasNoEvents = await page.getByText(/예정된 베이비페어가 없습니다/).isVisible().catch(() => false);
       expect(hasEvents || hasNoEvents).toBe(true);
@@ -100,8 +99,7 @@ test.describe("홈 페이지", () => {
     test("베이비페어 카드 클릭 시 /baby-fair로 이동한다", async ({ page }) => {
       // 무엇을: 미니 대시보드 카드가 올바른 경로로 라우팅되는지
       // 왜: 네비게이션 정상 동작 확인
-      const dashboard = page.locator(".grid.grid-cols-2");
-      await dashboard.getByRole("link", { name: /베이비페어/ }).click();
+      await page.locator('a[href="/baby-fair"]').first().click();
       await expect(page).toHaveURL(/\/baby-fair/);
     });
 
@@ -131,7 +129,8 @@ test.describe("홈 페이지", () => {
       futureDate.setDate(futureDate.getDate() + 100);
       const dateStr = futureDate.toISOString().split("T")[0];
       await page.locator('input[type="date"]').fill(dateStr);
-      await expect(page.getByText(/현재 임신/)).toBeVisible();
+      await page.getByRole("button", { name: "예정일 저장" }).click();
+      await expect(page.getByRole("heading", { name: /현재 \d+주차/ })).toBeVisible();
       await expect(page.getByText(/주차에.*할 일|주차에 모든 할 일을 완료했어요/)).toBeVisible();
     });
   });
@@ -151,6 +150,7 @@ test.describe("홈 페이지", () => {
       const dateStr = futureDate.toISOString().split("T")[0];
 
       await page.locator('input[type="date"]').fill(dateStr);
+      await page.getByRole("button", { name: "예정일 저장" }).click();
       await expect(page.getByText("예정일을 입력하면 주차별 체크리스트와 D-day로 정렬된 정보를 볼 수 있어요")).not.toBeVisible();
     });
   });
@@ -163,9 +163,8 @@ test.describe("홈 페이지", () => {
       // 왜: 타겟 유저(임산부)의 주요 접근 기기
       await expect(page.getByRole("heading", { name: "출산 준비 체크리스트" })).toBeVisible();
       await expect(page.locator('input[type="date"]')).toBeVisible();
-      const dashboard = page.locator(".grid.grid-cols-2");
-      await expect(dashboard.getByRole("link", { name: /베이비페어/ })).toBeVisible();
-      await expect(dashboard.getByRole("link", { name: /체중 기록/ })).toBeVisible();
+      await expect(page.locator('a[href="/baby-fair"]').first()).toBeVisible();
+      await expect(page.locator('a[href="/weight"]').first()).toBeVisible();
     });
   });
 });

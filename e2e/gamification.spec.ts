@@ -17,7 +17,7 @@ test.describe("달성감 / 게이미피케이션 (Step 9)", () => {
     test("체크리스트 항목을 모두 완료하면 ✅ 아이콘과 완료 메시지가 표시된다", async ({ page }) => {
       // 무엇을: Week 6 (체크리스트 1개)에서 전부 완료 시 축하 UI
       // 왜: 주차 완료 달성감 제공이 핵심 기능
-      const week6Card = page.locator("#timeline-week-6");
+      const week6Card = page.locator("#timeline-week-4");
 
       // 완료 전에는 ✅ 없음
       await expect(week6Card.locator('span[aria-label="완료"]')).not.toBeVisible();
@@ -32,13 +32,13 @@ test.describe("달성감 / 게이미피케이션 (Step 9)", () => {
       await expect(week6Card.locator('span[aria-label="완료"]')).toBeVisible();
 
       // 완료 메시지 표시
-      await expect(week6Card.getByText("6주차 할일을 모두 완료했어요!")).toBeVisible();
+      await expect(week6Card.getByText("4주차 할일을 모두 완료했어요!")).toBeVisible();
     });
 
     test("체크리스트 항목을 해제하면 완료 상태가 사라진다", async ({ page }) => {
       // 무엇을: 완료 후 체크 해제 시 ✅과 메시지가 사라지는지
       // 왜: 상태 변경이 즉시 반영되어야 함
-      const week6Card = page.locator("#timeline-week-6");
+      const week6Card = page.locator("#timeline-week-4");
 
       // 체크
       await week6Card.getByText("체크리스트").click();
@@ -48,7 +48,7 @@ test.describe("달성감 / 게이미피케이션 (Step 9)", () => {
       // 체크 해제
       await week6Card.getByRole("checkbox").first().uncheck();
       await expect(week6Card.locator('span[aria-label="완료"]')).not.toBeVisible();
-      await expect(week6Card.getByText("6주차 할일을 모두 완료했어요!")).not.toBeVisible();
+      await expect(week6Card.getByText("4주차 할일을 모두 완료했어요!")).not.toBeVisible();
     });
   });
 
@@ -87,12 +87,12 @@ test.describe("달성감 / 게이미피케이션 (Step 9)", () => {
     test("모바일: 주차 완료 ✅과 마일스톤 메시지가 정상 표시된다", async ({ page }) => {
       // 무엇을: 375px에서 게이미피케이션 UI가 잘리지 않는지
       // 왜: 주요 타겟 기기
-      const week6Card = page.locator("#timeline-week-6");
+      const week6Card = page.locator("#timeline-week-4");
       await week6Card.getByText("체크리스트").click();
       await week6Card.getByRole("checkbox").first().check();
 
       await expect(week6Card.locator('span[aria-label="완료"]')).toBeVisible();
-      await expect(week6Card.getByText("6주차 할일을 모두 완료했어요!")).toBeVisible();
+      await expect(week6Card.getByText("4주차 할일을 모두 완료했어요!")).toBeVisible();
     });
   });
 });

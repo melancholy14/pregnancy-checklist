@@ -11,7 +11,8 @@ async function setupWithDueDate(page: import("@playwright/test").Page) {
   futureDate.setDate(futureDate.getDate() + 100);
   const dateStr = futureDate.toISOString().split("T")[0];
   await page.locator('input[type="date"]').fill(dateStr);
-  await expect(page.getByText(/현재 임신/)).toBeVisible();
+  await page.getByRole("button", { name: "예정일 저장" }).click();
+  await expect(page.getByRole("heading", { name: /현재 \d+주차/ })).toBeVisible();
 }
 
 test.describe("타임라인 유도 강화 + 데이터 보존", () => {

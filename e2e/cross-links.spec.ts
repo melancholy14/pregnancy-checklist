@@ -52,8 +52,9 @@ test.describe("타임라인 ↔ 블로그 크로스 링크", () => {
       // 왜: 블로그 → 타임라인 역방향 크로스 링크 확인
       await page.goto("/articles/babyfair-survival-guide");
       await expect(page.getByText("타임라인에서 체크하기")).toBeVisible();
-      await expect(page.getByText(/16주차/)).toBeVisible();
-      await expect(page.getByText(/32주차/)).toBeVisible();
+      const cta = page.getByText(/이 내용은.*주차.*할일에 있어요/);
+      await expect(cta).toContainText("16주차");
+      await expect(cta).toContainText("32주차");
     });
 
     test("타임라인 CTA 링크를 클릭하면 타임라인 페이지로 이동한다", async ({ page }) => {

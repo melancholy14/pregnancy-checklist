@@ -61,7 +61,7 @@ test.describe("의료 디스클레이머 + reviewed_by 정리 (Step 0e)", () => 
 
       await expect(page.getByText("reviewed_by")).not.toBeVisible();
       await expect(
-        page.getByRole("heading", { name: /산후조리원 어떻게 고르지/ }),
+        page.getByRole("heading", { name: /산후조리원 어떻게 고르지/, level: 1 }).first(),
       ).toBeVisible();
     });
   });
@@ -93,7 +93,7 @@ test.describe("의료 디스클레이머 + reviewed_by 정리 (Step 0e)", () => 
 
       await expect(page.getByText(/소아청소년과 전문의와 상담/)).toBeVisible();
       await expect(
-        page.getByRole("heading", { name: /산후조리원 어떻게 고르지/ }),
+        page.getByRole("heading", { name: /산후조리원 어떻게 고르지/, level: 1 }).first(),
       ).toBeVisible();
     });
   });

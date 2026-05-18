@@ -62,9 +62,10 @@ test.describe("타임라인 페이지", () => {
       await expect(page.getByText("삭제 테스트")).toBeVisible();
 
       // 삭제 — confirm 다이얼 없이 즉시 사라지고 토스트 노출
-      const card = page.locator('[data-slot="card"]').filter({ hasText: "삭제 테스트" });
+      const heading = page.getByRole("heading", { name: "삭제 테스트" });
+      const card = heading.locator("xpath=ancestor::*[self::div or self::button][1]");
       await card.getByRole("button", { name: "삭제" }).click();
-      await expect(page.getByText("삭제 테스트")).not.toBeVisible();
+      await expect(page.getByRole("heading", { name: "삭제 테스트" })).not.toBeVisible();
       await expect(page.getByText("타임라인 노트를 삭제했어요")).toBeVisible();
     });
   });

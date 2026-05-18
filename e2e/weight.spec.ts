@@ -12,7 +12,9 @@ test.describe("체중 기록 페이지", () => {
       // 무엇을: 체중 기록 페이지 기본 UI
       // 왜: 페이지 정상 진입 확인
       await expect(page.getByRole("heading", { name: "체중 기록" })).toBeVisible();
-      await expect(page.getByText("임신 중 체중 변화를 기록하고 확인하세요")).toBeVisible();
+      await expect(
+        page.getByText(/임신 중 체중 변화를 주차별로 기록하고 그래프로 확인하세요/),
+      ).toBeVisible();
     });
 
     test("기록이 없으면 빈 상태가 표시된다", async ({ page }) => {
@@ -64,7 +66,7 @@ test.describe("체중 기록 페이지", () => {
       await page.locator('input[type="number"]').fill("61.5");
       await page.getByRole("button", { name: "추가" }).click();
 
-      await expect(page.getByText(/대한산부인과학회/)).toBeVisible();
+      await expect(page.getByText(/대한산부인과학회/).first()).toBeVisible();
       await expect(page.getByText(/의료적 조언이 아닙니다/)).toBeVisible();
     });
   });
