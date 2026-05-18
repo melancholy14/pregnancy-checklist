@@ -39,7 +39,7 @@ export const OG_IMAGE = {
 export const TIMELINE_TYPE_CONFIG = {
   prep: { icon: "📦", label: "준비", color: "#FFD4DE" },
   shopping: { icon: "🛒", label: "쇼핑", color: "#FFF4D4" },
-  admin: { icon: "📋", label: "행정", color: "#E0F0FF" },
+  admin: { icon: "📋", label: "행정", color: "#FFE0CC" },
   education: { icon: "📚", label: "교육", color: "#E4D6F0" },
   wellbeing: { icon: "💚", label: "건강", color: "#D0EDE2" },
 } as const;
@@ -56,3 +56,9 @@ export const CATEGORY_FILTER_OPTIONS: { value: ChecklistItem["category"] | "all"
   { value: "all", label: "전체" },
   ...CATEGORY_OPTIONS,
 ];
+
+export const PRIORITY_LABEL: Record<ChecklistItem["priority"], string> = {
+  high: "높음",
+  medium: "보통",
+  low: "낮음",
+};

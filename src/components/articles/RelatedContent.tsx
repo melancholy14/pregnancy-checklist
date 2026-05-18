@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ListChecks, Play } from "lucide-react";
+import { ChevronRight, ListChecks, Play } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import type { ChecklistMeta } from "@/types/checklist";
 import type { VideoItem } from "@/types/video";
@@ -28,9 +28,12 @@ export function RelatedContent({ checklists, videos }: RelatedContentProps) {
                 <Link
                   key={c.slug}
                   href={`/checklist/${c.slug}`}
-                  className="block text-sm text-accent-purple hover:bg-pastel-lavender/10 rounded-lg px-2 py-1.5 -mx-2 transition-colors no-underline"
+                  className="flex items-center gap-1 text-sm text-accent-purple hover:bg-pastel-lavender/10 rounded-lg px-2 py-1.5 -mx-2 transition-colors no-underline"
                 >
-                  {c.icon} {c.title} →
+                  <span className="flex-1 min-w-0">
+                    {c.icon} {c.title}
+                  </span>
+                  <ChevronRight size={16} aria-hidden="true" className="shrink-0" />
                 </Link>
               ))}
             </div>
@@ -50,9 +53,10 @@ export function RelatedContent({ checklists, videos }: RelatedContentProps) {
                 <a
                   key={v.id}
                   href={`/info?tab=videos#${v.id}`}
-                  className="block text-sm text-accent-purple hover:bg-pastel-lavender/10 rounded-lg px-2 py-1.5 -mx-2 transition-colors no-underline"
+                  className="flex items-center gap-1 text-sm text-accent-purple hover:bg-pastel-lavender/10 rounded-lg px-2 py-1.5 -mx-2 transition-colors no-underline"
                 >
-                  {v.title} →
+                  <span className="flex-1 min-w-0">{v.title}</span>
+                  <ChevronRight size={16} aria-hidden="true" className="shrink-0" />
                 </a>
               ))}
             </div>

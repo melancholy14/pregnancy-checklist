@@ -3,14 +3,15 @@
 import { useState, useMemo, useSyncExternalStore } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { Plus, X, FileText } from "lucide-react";
+import { ChevronRight, FileText, Plus, X } from "lucide-react";
 import { format, parseISO } from "date-fns";
 import { ko } from "date-fns/locale";
-import { useWeightStore } from "@/store/useWeightStore";
+import { useWeightStore, type WeightLog } from "@/store/useWeightStore";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { WeightForm } from "./WeightForm";
 import { PageDescription } from "@/components/common/PageDescription";
+import { useDeleteWithUndo } from "@/lib/hooks/useDeleteWithUndo";
 
 const WeightChart = dynamic(
   () => import("./WeightChart").then((m) => ({ default: m.WeightChart })),
@@ -26,12 +27,18 @@ export function WeightContainer() {
     () => false
   );
 
+  const handleDeleteLog = useDeleteWithUndo<WeightLog>({
+    removeFn: removeLog,
+    restoreFn: addLog,
+    label: "체중 기록을 삭제했어요",
+  });
+
   const handleSubmit = (date: string, weight: number) => {
     addLog({ id: Date.now().toString(), date, weight });
     setShowAddForm(false);
   };
 
-  const entries = hydrated ? logs : [];
+  const entries = useMemo(() => (hydrated ? logs : []), [hydrated, logs]);
 
   const chartData = useMemo(
     () =>
@@ -78,7 +85,7 @@ export function WeightContainer() {
             .slice()
             .reverse()
             .map((entry) => (
-              <Card key={entry.id} className="rounded-xl border border-black/4">
+              <Card key={entry.id} className="rounded-2xl border border-black/4">
                 <CardContent className="p-4 flex justify-between items-center group">
                   <div>
                     <div className="text-sm text-muted-foreground mb-1">
@@ -93,8 +100,9 @@ export function WeightContainer() {
                   <Button
                     variant="ghost"
                     size="icon"
-                    onClick={() => removeLog(entry.id)}
-                    className="rounded-xl bg-red-50 text-red-500 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-100"
+                    onClick={() => handleDeleteLog(entry)}
+                    aria-label="체중 기록 삭제"
+                    className="rounded-xl bg-destructive/10 text-destructive opacity-0 group-hover:opacity-100 transition-opacity hover:bg-destructive/20"
                   >
                     <X size={18} />
                   </Button>
@@ -117,7 +125,7 @@ export function WeightContainer() {
                 <p className="text-sm font-medium text-foreground">임신 중 체중 관리 가이드</p>
                 <p className="text-xs text-muted-foreground">BMI별 권장 범위부터 안전한 운동법까지</p>
               </div>
-              <span className="text-muted-foreground text-sm">→</span>
+              <ChevronRight size={16} aria-hidden="true" className="text-muted-foreground shrink-0" />
             </CardContent>
           </Card>
         </Link>

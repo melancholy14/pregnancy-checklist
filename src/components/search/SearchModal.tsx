@@ -16,8 +16,16 @@ import type { SearchItem, SearchItemType } from "@/lib/search";
 import type { ArticleMeta } from "@/types/article";
 import type { TimelineItem } from "@/types/timeline";
 import type { VideoItem } from "@/types/video";
+import { sendGAEvent } from "@/lib/analytics";
 import timelineItems from "@/data/timeline_items.json";
 import videos from "@/data/videos.json";
+
+const SEARCH_SUBMIT_DEBOUNCE_MS = 800;
+const SEARCH_QUERY_MAX_LEN = 100;
+
+function normalizeSearchQuery(raw: string): string {
+  return raw.trim().toLowerCase().slice(0, SEARCH_QUERY_MAX_LEN);
+}
 
 interface SearchModalProps {
   articles: ArticleMeta[];
@@ -87,6 +95,30 @@ export function SearchModal({ articles }: SearchModalProps) {
   useEffect(() => {
     setActiveIndex(-1);
   }, [query]);
+
+  // PII 보호: query 원문이 아니라 정규화된 값(trim + lowercase + 100자 절단)만 발사한다.
+  const lastFiredQueryRef = useRef("");
+  useEffect(() => {
+    if (!isOpen) return;
+    const normalized = normalizeSearchQuery(query);
+    if (normalized.length < 2) return;
+    if (normalized === lastFiredQueryRef.current) return;
+    const resultsCount = results.length;
+    const timer = window.setTimeout(() => {
+      lastFiredQueryRef.current = normalized;
+      sendGAEvent("search_submit", {
+        query: normalized,
+        results_count: resultsCount,
+      });
+    }, SEARCH_SUBMIT_DEBOUNCE_MS);
+    return () => window.clearTimeout(timer);
+  }, [query, results.length, isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) {
+      lastFiredQueryRef.current = "";
+    }
+  }, [isOpen]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {

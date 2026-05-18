@@ -4,7 +4,6 @@ const ARTICLE_PATH = "/articles/early-pregnancy-tests";
 const ARTICLE_CANONICAL =
   "https://pregnancy-checklist.com/articles/early-pregnancy-tests";
 const CHECKLIST_PATH = "/checklist/hospital-bag";
-const CHECKLIST_URL = "https://pregnancy-checklist.com/checklist/hospital-bag";
 const TIMELINE_PATH = "/timeline";
 const TIMELINE_URL = "https://pregnancy-checklist.com/timeline";
 

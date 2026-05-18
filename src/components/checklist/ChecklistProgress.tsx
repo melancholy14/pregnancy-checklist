@@ -14,7 +14,7 @@ export function ChecklistProgress({ items, checkedIds, subcategories }: Checklis
   const percent = total > 0 ? (checked / total) * 100 : 0;
 
   return (
-    <Card className="rounded-2xl shadow-md mb-6 border border-black/4">
+    <Card className="rounded-2xl shadow-sm mb-6 border border-black/4">
       <CardContent className="p-4">
         <div className="flex justify-between items-center mb-2">
           <span className="text-sm text-muted-foreground">전체 진행률</span>

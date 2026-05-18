@@ -11,6 +11,7 @@ import { MedicalDisclaimer } from "./MedicalDisclaimer";
 import { RelatedArticles } from "./RelatedArticles";
 import { RelatedContent } from "./RelatedContent";
 import { ShareButton } from "@/components/share/ShareButton";
+import { useScrollSignals } from "@/lib/use-scroll-signals";
 
 interface ArticleDetailProps {
   article: Article;
@@ -25,6 +26,7 @@ export function ArticleDetail({
   relatedChecklists = [],
   relatedVideos = [],
 }: ArticleDetailProps) {
+  useScrollSignals("article", { slug: article.slug });
   return (
     <div className="min-h-screen pb-24 px-4">
       <article className="pt-8">
@@ -36,7 +38,7 @@ export function ArticleDetail({
           목록으로
         </Link>
 
-        <h1 className="text-xl mb-2">{article.title}</h1>
+        <h1 className="mb-2">{article.title}</h1>
         <p className="text-muted-foreground text-sm mb-4">
           {article.description}
         </p>
@@ -65,7 +67,7 @@ export function ArticleDetail({
           )}
         </span>
 
-        <div className="h-px bg-gradient-to-r from-transparent via-[#F0EBE6] to-transparent mb-4" />
+        <div className="h-px bg-gradient-to-r from-transparent via-black/5 to-transparent mb-4" />
 
         <div className="flex justify-end mb-6">
           <ShareButton
@@ -74,6 +76,7 @@ export function ArticleDetail({
             url={article.canonical}
             contentType="article"
             itemId={article.slug}
+            position="top_right"
           />
         </div>
 
@@ -106,6 +109,7 @@ export function ArticleDetail({
             url={article.canonical}
             contentType="article"
             itemId={article.slug}
+            position="bottom_center"
             label="이 글 공유하기"
           />
         </div>
@@ -115,7 +119,7 @@ export function ArticleDetail({
           videos={relatedVideos}
         />
 
-        <RelatedArticles articles={relatedArticles} />
+        <RelatedArticles articles={relatedArticles} fromSlug={article.slug} />
       </article>
     </div>
   );

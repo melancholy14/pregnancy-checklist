@@ -1,21 +1,25 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { getConsent, setConsent } from "@/lib/consent";
 
+const subscribe = () => () => {};
+
 export function CookieConsentBanner() {
-  const [visible, setVisible] = useState(false);
+  const isClient = useSyncExternalStore(
+    subscribe,
+    () => true,
+    () => false,
+  );
+  const [dismissed, setDismissed] = useState(false);
 
-  useEffect(() => {
-    if (getConsent() === "pending") setVisible(true);
-  }, []);
-
-  if (!visible) return null;
+  if (!isClient || dismissed) return null;
+  if (getConsent() !== "pending") return null;
 
   const handle = (choice: "accepted" | "rejected") => {
     setConsent(choice);
-    setVisible(false);
+    setDismissed(true);
     if (choice === "accepted") window.location.reload();
   };
 

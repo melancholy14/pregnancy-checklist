@@ -1,36 +1,50 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { Pencil } from "lucide-react";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Badge } from "@/components/ui/badge";
+import { useCallback, useMemo, useState } from "react";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { useChecklistStore } from "@/store/useChecklistStore";
-import { CATEGORY_OPTIONS } from "@/lib/constants";
+import { CATEGORY_OPTIONS, PRIORITY_LABEL } from "@/lib/constants";
 import { sendGAEvent } from "@/lib/analytics";
+import { classifyNote } from "@/lib/note-classifier";
+import { getCategoryTokenClass } from "@/lib/data-token-classes";
+import { restoreAtIndex, useDeleteWithUndo } from "@/lib/hooks/useDeleteWithUndo";
+import { useChecklistToggleEvent } from "@/lib/hooks/useChecklistToggleEvent";
+import { ChecklistRow } from "@/components/checklist/ChecklistRow";
 import type { ChecklistItem } from "@/types/checklist";
-import { DeleteConfirmDialog } from "./DeleteConfirmDialog";
-
-const CATEGORY_COLORS: Record<string, string> = {
-  hospital: "#FFD4DE",
-  hospital_bag: "#FFE0CC",
-  baby_items: "#D0EDE2",
-  postpartum: "#E4D6F0",
-  admin: "#FFF4D4",
-};
 
 interface WeekChecklistSectionProps {
   items: ChecklistItem[];
   checkedIds: string[];
+  currentPregnancyWeek: number | null;
+  slug: string;
 }
 
-export function WeekChecklistSection({ items, checkedIds }: WeekChecklistSectionProps) {
+export function WeekChecklistSection({
+  items,
+  checkedIds,
+  currentPregnancyWeek,
+  slug,
+}: WeekChecklistSectionProps) {
   const { toggle, removeCustomItem, updateCustomItem } = useChecklistStore();
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editTitle, setEditTitle] = useState("");
   const [editCategory, setEditCategory] = useState<ChecklistItem["category"]>("hospital");
   const [editWeek, setEditWeek] = useState(0);
+
+  const restoreCustomChecklistItem = useCallback(
+    (item: ChecklistItem & { atIndex: number }) => {
+      const { atIndex, ...rest } = item;
+      restoreAtIndex<ChecklistItem>(useChecklistStore, rest, atIndex);
+    },
+    []
+  );
+
+  const handleDeleteCustomItem = useDeleteWithUndo<ChecklistItem & { atIndex: number }>({
+    removeFn: removeCustomItem,
+    restoreFn: restoreCustomChecklistItem,
+    label: "체크리스트 항목을 삭제했어요",
+  });
 
   const checked = useMemo(
     () => items.filter((i) => checkedIds.includes(i.id)).length,
@@ -62,11 +76,45 @@ export function WeekChecklistSection({ items, checkedIds }: WeekChecklistSection
     setEditingId(null);
   };
 
+  const fireToggleEvent = useChecklistToggleEvent();
+
+  const handleToggleItem = useCallback(
+    (item: ChecklistItem) => {
+      const willCheck = !checkedIds.includes(item.id);
+      toggle(item.id);
+      const noteType = classifyNote(item.note);
+      sendGAEvent("checklist_check", {
+        category: item.category,
+        item_id: item.id,
+        checked: willCheck,
+        slug,
+        note_type: item.note ? noteType : null,
+      });
+      fireToggleEvent(item, willCheck);
+      const isHighlighted =
+        currentPregnancyWeek !== null &&
+        item.recommendedWeek !== 0 &&
+        item.recommendedWeek === currentPregnancyWeek;
+      if (willCheck && isHighlighted && currentPregnancyWeek !== null) {
+        sendGAEvent("recommended_item_check", {
+          item_id: item.id,
+          category: item.category,
+          week: currentPregnancyWeek,
+          slug,
+        });
+      }
+    },
+    [checkedIds, toggle, slug, currentPregnancyWeek, fireToggleEvent],
+  );
+
   return (
     <div className="space-y-2 pt-2 pb-3">
       {items.map((item) => {
         const isChecked = checkedIds.includes(item.id);
-        const catColor = CATEGORY_COLORS[item.category] ?? "#E4D6F0";
+        const isHighlighted =
+          currentPregnancyWeek !== null &&
+          item.recommendedWeek !== 0 &&
+          item.recommendedWeek === currentPregnancyWeek;
 
         if (editingId === item.id) {
           return (
@@ -119,66 +167,30 @@ export function WeekChecklistSection({ items, checkedIds }: WeekChecklistSection
         }
 
         return (
-          <div
+          <ChecklistRow
             key={item.id}
-            role="button"
-            tabIndex={0}
-            className={`flex items-center gap-3 p-3 rounded-xl transition-all duration-200 cursor-pointer ${
-              isChecked
-                ? "bg-pastel-mint/20"
-                : "hover:bg-muted/50"
-            }`}
-            onClick={() => {
-              const willCheck = !checkedIds.includes(item.id);
-              toggle(item.id);
-              sendGAEvent("checklist_check", { category: item.category, item_id: item.id, checked: willCheck });
+            id={`timeline-row-${slug}-${item.id}`}
+            title={item.title}
+            isChecked={isChecked}
+            priority={item.priority}
+            priorityLabel={PRIORITY_LABEL[item.priority]}
+            categoryLabel={item.categoryName}
+            categoryToneClassName={getCategoryTokenClass(item.category)}
+            isHighlighted={isHighlighted}
+            showUpcomingLabel={false}
+            note={item.note}
+            noteType={item.note ? classifyNote(item.note) : undefined}
+            isCustom={item.isCustom}
+            onToggle={() => handleToggleItem(item)}
+            onStartEdit={() => startEdit(item)}
+            onRemove={() => {
+              const atIndex = useChecklistStore
+                .getState()
+                .customItems.findIndex((c) => c.id === item.id);
+              if (atIndex < 0) return;
+              handleDeleteCustomItem({ ...item, atIndex });
             }}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                const willCheck = !checkedIds.includes(item.id);
-                toggle(item.id);
-                sendGAEvent("checklist_check", { category: item.category, item_id: item.id, checked: willCheck });
-              }
-            }}
-          >
-            <Checkbox
-              checked={isChecked}
-              onCheckedChange={() => toggle(item.id)}
-              className="size-5 rounded-md border-2 data-[state=checked]:bg-pastel-mint data-[state=checked]:border-pastel-mint data-[state=checked]:text-foreground border-gray-200 shrink-0"
-              onClick={(e) => e.stopPropagation()}
-            />
-            <span
-              className={`flex-1 text-sm ${
-                isChecked ? "line-through text-muted-foreground" : "text-foreground"
-              }`}
-            >
-              {item.title}
-            </span>
-            <Badge
-              className="text-xs px-2 py-0.5 rounded-md border-0 shrink-0"
-              style={{ backgroundColor: `${catColor}40`, color: "#3D4447" }}
-            >
-              {item.categoryName}
-            </Badge>
-            {item.isCustom && (
-              <div className="flex items-center gap-1 shrink-0">
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    startEdit(item);
-                  }}
-                  className="p-2 rounded-lg text-muted-foreground hover:text-accent-purple hover:bg-pastel-lavender/20 transition-colors"
-                  aria-label="수정"
-                >
-                  <Pencil size={16} />
-                </button>
-                <span onClick={(e) => e.stopPropagation()}>
-                  <DeleteConfirmDialog onConfirm={() => removeCustomItem(item.id)} iconSize={16} />
-                </span>
-              </div>
-            )}
-          </div>
+          />
         );
       })}
 

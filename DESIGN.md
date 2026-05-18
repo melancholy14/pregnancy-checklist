@@ -494,6 +494,16 @@ The product is **mobile-first**. Tablet and desktop behaviors are present but mi
   future use but is not part of the current brand surface). The product is
   light-only.
 
+### 데이터 → 토큰 매핑은 헬퍼 경유 의무
+
+도메인 데이터(예: 도시명, 카테고리, 규모)를 색으로 표시할 때 컴포넌트 내 인라인
+`style={{ backgroundColor: hex }}` 패턴 금지. [src/lib/data-token-classes.ts](src/lib/data-token-classes.ts)
+의 도메인별 named export(`getCityTokenClass`·`getScaleTokenClass`·`getCategoryTokenClass`
+·`getDashboardIconBgClass`)를 사용한다. 헬퍼 반환 타입 `DataToneClass`(pink 제외)
+가 컴파일 시점에 5-pastel role을 강제. 새 도메인 추가 시 헬퍼에 named export + lookup table 확장 —
+인라인 hex map 또는 동적 템플릿 리터럴(`bg-pastel-${tone}`) 금지 (Tailwind v4 source scan 미스캔).
+CTA 성격 슬롯(예: home 미니카드 진입)에는 `DashboardSlotClass`(pink 포함)를 사용한다.
+
 ---
 
 ## 11. Agent Prompt Examples

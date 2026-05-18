@@ -32,7 +32,7 @@ export function TagFilter({ tags, selectedTag, onSelect }: TagFilterProps) {
           onClick={() => onSelect(null)}
           className={`px-4 py-2 rounded-xl border text-sm transition-all duration-200 ${
             selectedTag === null
-              ? "bg-pastel-pink/40 text-foreground border-pastel-pink/30"
+              ? "bg-pastel-lavender/40 text-foreground border-pastel-lavender/30"
               : "bg-white text-muted-foreground border-black/4 hover:bg-muted"
           }`}
         >
@@ -45,7 +45,7 @@ export function TagFilter({ tags, selectedTag, onSelect }: TagFilterProps) {
             onClick={() => onSelect(tag)}
             className={`px-4 py-2 rounded-xl border text-sm transition-all duration-200 ${
               selectedTag === tag
-                ? "bg-pastel-pink/40 text-foreground border-pastel-pink/30"
+                ? "bg-pastel-lavender/40 text-foreground border-pastel-lavender/30"
                 : "bg-white text-muted-foreground border-black/4 hover:bg-muted"
             }`}
           >

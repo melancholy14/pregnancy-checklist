@@ -61,19 +61,6 @@ test.describe("달성감 / 게이미피케이션 (Step 9)", () => {
     test("체크리스트 항목을 체크하면 마일스톤 메시지가 표시된다", async ({ page }) => {
       // 무엇을: 25% 이상 달성 시 마일스톤 메시지 표시
       // 왜: 진행 동기 부여
-      // 전체 항목의 25% 이상을 한번에 체크하기 위해 localStorage로 직접 설정
-      const totalItems = await page.evaluate(() => {
-        const raw = localStorage.getItem("checklist-storage");
-        return raw ? JSON.parse(raw) : null;
-      });
-
-      // 전체 체크리스트 ID를 가져와 25% 이상 체크
-      const allChecklistIds: string[] = await page.evaluate(() => {
-        // 페이지에서 모든 체크박스의 data 추출
-        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-        return Array.from(checkboxes).map((cb) => cb.id).filter(Boolean);
-      });
-
       // 25%에 해당하는 수만큼 체크 (최소 테스트를 위해 localStorage 직접 설정)
       await page.evaluate(() => {
         // 모든 체크리스트 아이템 ID를 수집하기 어려우므로,

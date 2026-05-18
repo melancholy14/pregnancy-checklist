@@ -29,15 +29,15 @@ export function WeightChart({ data, baseWeight }: WeightChartProps) {
   const maxTarget = baseWeight ? baseWeight + 16 : undefined;
 
   return (
-    <Card className="rounded-2xl shadow-md mb-6 border border-black/4">
+    <Card className="rounded-2xl shadow-sm mb-6 border border-black/4">
       <CardContent className="p-4">
         <h3 className="mb-4">체중 추이</h3>
         <ResponsiveContainer width="100%" height={240}>
           <LineChart data={data}>
             <defs>
               <linearGradient id="weightGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#FFD4DE" stopOpacity={0.8} />
-                <stop offset="95%" stopColor="#E4D6F0" stopOpacity={0.2} />
+                <stop offset="5%" stopColor="#FFE0CC" stopOpacity={0.8} />
+                <stop offset="95%" stopColor="#FFE0CC" stopOpacity={0} />
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="#F8F6F4" />
@@ -63,7 +63,7 @@ export function WeightChart({ data, baseWeight }: WeightChartProps) {
             {minTarget && (
               <ReferenceLine
                 y={minTarget}
-                stroke="#D0EDE2"
+                stroke="#9CA0A4"
                 strokeDasharray="5 5"
                 strokeWidth={1.5}
                 label={{ value: "권장 하한", position: "right", fontSize: 11, fill: "#9CA0A4" }}
@@ -72,8 +72,8 @@ export function WeightChart({ data, baseWeight }: WeightChartProps) {
             {maxTarget && (
               <ReferenceLine
                 y={maxTarget}
-                stroke="#FFE0CC"
-                strokeDasharray="5 5"
+                stroke="#9CA0A4"
+                strokeDasharray="8 4 2 4"
                 strokeWidth={1.5}
                 label={{ value: "권장 상한", position: "right", fontSize: 11, fill: "#9CA0A4" }}
               />
@@ -81,9 +81,9 @@ export function WeightChart({ data, baseWeight }: WeightChartProps) {
             <Line
               type="monotone"
               dataKey="weight"
-              stroke="#FFD4DE"
+              stroke="#FFE0CC"
               strokeWidth={2.5}
-              dot={{ fill: "#FFD4DE", r: 4, strokeWidth: 2, stroke: "#fff" }}
+              dot={{ fill: "#FFE0CC", r: 4, strokeWidth: 2, stroke: "#fff" }}
               activeDot={{ r: 6, strokeWidth: 2, stroke: "#fff" }}
               fill="url(#weightGradient)"
             />

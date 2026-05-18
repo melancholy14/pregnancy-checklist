@@ -16,7 +16,8 @@ import { useChecklistStore } from "@/store/useChecklistStore";
 import { useTimelineStore } from "@/store/useTimelineStore";
 import { useWeightStore } from "@/store/useWeightStore";
 import { OnboardingFlow } from "@/components/onboarding/OnboardingFlow";
-import { calcPregnancyWeek } from "@/lib/week-calculator";
+import { parseDateKST, getTodayKST } from "@/lib/date-kst";
+import { useScrollSignals } from "@/lib/use-scroll-signals";
 import { getChecklistByWeek } from "@/lib/checklist-week-map";
 import { BRAND_COPY, BRAND_PHASE } from "@/lib/constants";
 import checklistItems from "@/data/checklist_items.json";
@@ -36,7 +37,8 @@ export interface HomeContentProps {
 }
 
 export function HomeContent({ articles = [] }: HomeContentProps) {
-  const { dueDate } = useDueDateStore();
+  useScrollSignals("home");
+  const { dueDate, currentPregnancyWeek } = useDueDateStore();
   const { checkedIds, customItems } = useChecklistStore();
   const { customItems: customTimelineItems } = useTimelineStore();
   const { logs: weightLogs } = useWeightStore();
@@ -100,10 +102,7 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
     }
   }, [hydrated, dueDate]);
 
-  const currentWeek = useMemo(() => {
-    if (!hydrated || !dueDate) return null;
-    return calcPregnancyWeek(new Date(dueDate));
-  }, [hydrated, dueDate]);
+  const currentWeek = hydrated ? currentPregnancyWeek : null;
 
   const allChecklistItems = useMemo(
     () => [...(checklistItems as ChecklistItem[]), ...customItems],
@@ -137,7 +136,8 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
   const daysLeft = useMemo(() => {
     if (!dueDate) return null;
     const diff = Math.ceil(
-      (new Date(dueDate).getTime() - new Date().getTime()) / 86400000
+      (parseDateKST(dueDate).getTime() - parseDateKST(getTodayKST()).getTime()) /
+        86400000
     );
     return Math.max(0, diff);
   }, [dueDate]);
@@ -236,7 +236,7 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
                     <span className="text-sm tabular-nums">
                       <strong>{hydrated ? progress.checked : 0}</strong>/{progress.total}
                     </span>
-                    <ChevronRight size={16} className="text-muted-foreground" />
+                    <ChevronRight size={16} aria-hidden="true" className="text-muted-foreground" />
                   </div>
                 </div>
                 <Progress value={hydrated ? progress.percent : 0} className="h-2 bg-muted" />
@@ -271,28 +271,16 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
                 </div>
                 <Link href="/timeline" className="no-underline block">
                   <Button
-                    className="w-full h-10 rounded-xl bg-pastel-lavender text-foreground hover:bg-pastel-lavender/80"
+                    className="w-full h-10 rounded-xl bg-pastel-lavender text-foreground hover:bg-pastel-lavender/80 inline-flex items-center justify-center gap-1"
                     aria-label="타임라인에서 확인하기"
                   >
-                    타임라인에서 확인하기 →
+                    타임라인에서 확인하기
+                    <ChevronRight size={16} aria-hidden="true" />
                   </Button>
                 </Link>
               </CardContent>
             </Card>
           )}
-        </div>
-      )}
-
-      {/* 예정일 미입력 시 안내 */}
-      {hydrated && !dueDate && (
-        <div className="mb-8 text-center">
-          <Card className="rounded-2xl border border-pastel-yellow/40 bg-pastel-yellow/20">
-            <CardContent className="p-6">
-              <p className="text-sm text-accent-olive">
-                예정일을 입력하면 나에게 맞는 체크리스트와 타임라인을 볼 수 있어요
-              </p>
-            </CardContent>
-          </Card>
         </div>
       )}
 
@@ -303,7 +291,7 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
           icon="👶"
           title="베이비페어"
           href="/baby-fair"
-          color="#D0EDE2"
+          slot="babyfair"
           cta="일정 보기"
         >
           {upcomingFairs.length > 0 ? (
@@ -326,7 +314,7 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
           icon="⚖️"
           title="체중 기록"
           href="/weight"
-          color="#FFE0CC"
+          slot="weight"
           cta={latestWeight ? (latestWeight.diff !== null ? "기록하기" : "추가 기록") : "시작하기"}
         >
           {latestWeight ? (
@@ -352,7 +340,7 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
           icon="🎬"
           title="영상"
           href="/info?tab=videos"
-          color="#FFF4D4"
+          slot="video"
           cta="보러가기"
         >
           <p className="text-xs text-muted-foreground">추천 영상</p>
@@ -367,7 +355,7 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
           icon="📝"
           title="정보 & 가이드"
           href="/info"
-          color="#E0F0FF"
+          slot="info"
           cta="읽으러 가기"
         >
           {latestArticle ? (

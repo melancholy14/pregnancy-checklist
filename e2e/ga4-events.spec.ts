@@ -48,7 +48,6 @@ test.describe("GA4 커스텀 이벤트 (Step 1)", () => {
 
       const filterButtons = page.locator("button").filter({ hasText: /검사|행정|준비/ });
       const firstFilter = filterButtons.first();
-      const filterText = await firstFilter.textContent();
       await firstFilter.click();
 
       const calls = await getGtagCalls(page);

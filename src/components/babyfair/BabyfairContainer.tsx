@@ -105,7 +105,7 @@ export function BabyfairContainer({ events }: BabyfairContainerProps) {
                       onClick={() => setSelectedCity(city)}
                       className={`px-4 py-2 rounded-xl text-sm whitespace-nowrap border transition-all ${
                         selectedCity === city
-                          ? "bg-pastel-mint/40 border-pastel-mint/30 text-foreground"
+                          ? "bg-pastel-lavender/40 border-pastel-lavender/30 text-foreground"
                           : "bg-white border-black/4 text-muted-foreground hover:bg-muted"
                       }`}
                     >
@@ -134,19 +134,19 @@ export function BabyfairContainer({ events }: BabyfairContainerProps) {
               <TabsList className="flex gap-2 mb-6 bg-transparent h-auto p-0">
                 <TabsTrigger
                   value="ongoing"
-                  className="px-4 py-2 rounded-xl border border-black/4 bg-white text-muted-foreground data-[state=active]:bg-pastel-mint/40 data-[state=active]:text-foreground data-[state=active]:border-pastel-mint/30 h-auto transition-all"
+                  className="px-4 py-2 rounded-xl border border-black/4 bg-white text-muted-foreground data-[state=active]:bg-pastel-lavender/40 data-[state=active]:text-foreground data-[state=active]:border-pastel-lavender/30 h-auto transition-all"
                 >
                   진행 중{ongoingEvents.length > 0 && ` (${ongoingEvents.length})`}
                 </TabsTrigger>
                 <TabsTrigger
                   value="upcoming"
-                  className="px-4 py-2 rounded-xl border border-black/4 bg-white text-muted-foreground data-[state=active]:bg-pastel-mint/40 data-[state=active]:text-foreground data-[state=active]:border-pastel-mint/30 h-auto transition-all"
+                  className="px-4 py-2 rounded-xl border border-black/4 bg-white text-muted-foreground data-[state=active]:bg-pastel-lavender/40 data-[state=active]:text-foreground data-[state=active]:border-pastel-lavender/30 h-auto transition-all"
                 >
                   예정
                 </TabsTrigger>
                 <TabsTrigger
                   value="ended"
-                  className="px-4 py-2 rounded-xl border border-black/4 bg-white text-muted-foreground data-[state=active]:bg-pastel-mint/40 data-[state=active]:text-foreground data-[state=active]:border-pastel-mint/30 h-auto transition-all"
+                  className="px-4 py-2 rounded-xl border border-black/4 bg-white text-muted-foreground data-[state=active]:bg-pastel-lavender/40 data-[state=active]:text-foreground data-[state=active]:border-pastel-lavender/30 h-auto transition-all"
                 >
                   지난 행사
                 </TabsTrigger>
@@ -198,7 +198,7 @@ export function BabyfairContainer({ events }: BabyfairContainerProps) {
         )}
 
         {/* Info Card */}
-        <Card className="mt-8 rounded-2xl shadow-md border border-black/4 bg-linear-to-r from-pastel-pink/40 to-pastel-lavender/40">
+        <Card className="mt-8 rounded-2xl shadow-sm border border-black/4 bg-linear-to-r from-pastel-pink/40 to-pastel-lavender/40">
           <CardContent className="p-6">
             <h3 className="mb-3">참관 팁</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">

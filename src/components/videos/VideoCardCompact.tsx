@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Play } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import type { VideoItem } from "@/types/video";
@@ -19,17 +20,28 @@ export function VideoCardCompact({ video, channelName }: VideoCardCompactProps) 
       rel="noopener noreferrer"
       className="no-underline block"
       aria-label={`${video.title} 유튜브에서 재생`}
-      onClick={() =>
-        sendGAEvent("content_click", { type: "video", title: video.title })
-      }
+      // TODO(bundle-O): rel="noopener noreferrer" 표준 정합 — design-bundle-O wiring 라운드
+      onClick={() => {
+        // legacy keep (4주 grace) — cleanup 라운드에서 제거.
+        sendGAEvent("content_click", { type: "video", title: video.title });
+        sendGAEvent("external_link_click", {
+          domain: "youtube.com",
+          context: "video",
+          video_id: video.id,
+          channel_id: video.channel_id,
+        });
+      }}
     >
       <Card className="rounded-2xl shadow-sm hover:shadow-md transition-all duration-200 border border-black/4">
         <CardContent className="p-3 flex items-center gap-3">
           <div className="relative shrink-0 w-28 aspect-video rounded-xl overflow-hidden bg-muted">
-            <img
+            <Image
               src={thumbnailUrl}
               alt={video.title}
-              className="w-full h-full object-cover"
+              fill
+              sizes="112px"
+              className="object-cover"
+              unoptimized
             />
             <div className="absolute inset-0 bg-black/15 flex items-center justify-center">
               <div className="w-7 h-7 rounded-full bg-white/85 flex items-center justify-center shadow-sm">

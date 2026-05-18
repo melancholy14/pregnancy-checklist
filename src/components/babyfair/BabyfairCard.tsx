@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { MapPin, Calendar } from "lucide-react";
-import { toast } from "sonner";
 import { sendGAEvent } from "@/lib/analytics";
 import { format, parseISO } from "date-fns";
 import { ko } from "date-fns/locale";
@@ -18,33 +17,13 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { getCityTokenClass, getScaleTokenClass } from "@/lib/data-token-classes";
 import type { BabyfairEvent } from "@/types/babyfair";
 
-const SCALE_CONFIG: Record<string, { label: string; color: string }> = {
-  large: { label: "대형", color: "#FFD4DE" },
-  medium: { label: "중형", color: "#FFF4D4" },
-  small: { label: "소형", color: "#E0F0FF" },
-};
-
-const CITY_COLORS: Record<string, string> = {
-  서울: "#FFD4DE",
-  "서울(마곡)": "#FFD4DE",
-  부산: "#E4D6F0",
-  대구: "#D0EDE2",
-  인천: "#FFE0CC",
-  경기: "#FFF4D4",
-  광주: "#FFD4DE",
-  대전: "#D0EDE2",
-  수원: "#FFF4D4",
-  "수원(광교)": "#FFF4D4",
-  "고양(일산)": "#FFE0CC",
-  청주: "#E4D6F0",
-  창원: "#D0EDE2",
-  김해: "#E4D6F0",
-  경주: "#FFE0CC",
-  강릉: "#D0EDE2",
-  익산: "#FFF4D4",
-  순천: "#FFD4DE",
+const SCALE_LABELS: Record<string, string> = {
+  large: "대형",
+  medium: "중형",
+  small: "소형",
 };
 
 function formatDateRange(startDate: string, endDate: string): string {
@@ -61,7 +40,6 @@ interface BabyfairCardProps {
 }
 
 export function BabyfairCard({ event, daysLeft }: BabyfairCardProps) {
-  const color = CITY_COLORS[event.city] ?? "#FFD4DE";
   const [open, setOpen] = useState(false);
   const hasUrl = !!event.official_url;
 
@@ -69,16 +47,21 @@ export function BabyfairCard({ event, daysLeft }: BabyfairCardProps) {
     if (hasUrl) setOpen(true);
   };
 
-  const handleConfirm = () => {
+  const handleConfirmClick = () => {
+    // legacy keep (4주 grace) — cleanup 라운드에서 제거.
     sendGAEvent("outbound_click", { url: event.official_url, event_name: event.name });
-    const newWindow = window.open(event.official_url, "_blank");
-    if (newWindow) {
-      newWindow.opener = null;
-    } else {
-      toast("팝업이 차단되었습니다", {
-        description: "브라우저 설정에서 팝업을 허용해주세요",
-      });
+    let domain = "";
+    try {
+      domain = new URL(event.official_url).hostname;
+    } catch {
+      domain = "";
     }
+    // TODO(bundle-O): rel="noopener noreferrer" 표준 정합 — design-bundle-O wiring 라운드
+    sendGAEvent("external_link_click", {
+      domain,
+      context: "babyfair",
+      from_slug: event.slug,
+    });
     setOpen(false);
   };
 
@@ -103,17 +86,15 @@ export function BabyfairCard({ event, daysLeft }: BabyfairCardProps) {
           {/* City Badge + Scale Badge + D-day */}
           <div className="flex justify-between items-start mb-4">
             <div className="flex items-center gap-2 flex-wrap">
-              {event.scale && SCALE_CONFIG[event.scale] && (
+              {event.scale && SCALE_LABELS[event.scale] && (
                 <Badge
-                  className="rounded-md text-xs border-0 px-2 py-1 text-foreground font-medium"
-                  style={{ backgroundColor: SCALE_CONFIG[event.scale].color }}
+                  className={`rounded-md text-xs border-0 px-2 py-1 font-medium ${getScaleTokenClass(event.scale)}`}
                 >
-                  {SCALE_CONFIG[event.scale].label}
+                  {SCALE_LABELS[event.scale]}
                 </Badge>
               )}
               <Badge
-                className="rounded-md text-sm border border-black/4 px-3 py-1 text-foreground font-medium"
-                style={{ backgroundColor: color }}
+                className={`rounded-md text-sm border border-black/4 px-3 py-1 font-medium ${getCityTokenClass(event.city)}`}
               >
                 {event.city}
               </Badge>
@@ -205,11 +186,16 @@ export function BabyfairCard({ event, daysLeft }: BabyfairCardProps) {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel className="rounded-xl text-sm">취소</AlertDialogCancel>
-            <AlertDialogAction
-              onClick={handleConfirm}
-              className="rounded-xl text-sm bg-accent-purple hover:bg-accent-purple/90 text-white"
-            >
-              이동
+            <AlertDialogAction asChild>
+              <a
+                href={event.official_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={handleConfirmClick}
+                className="rounded-xl text-sm bg-accent-purple hover:bg-accent-purple/90 text-white inline-flex items-center justify-center px-4 py-2 transition-colors"
+              >
+                이동
+              </a>
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

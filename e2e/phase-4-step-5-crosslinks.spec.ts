@@ -22,8 +22,6 @@ const UTILS_PATH = path.resolve("src/lib/crosslink-utils.ts");
 
 const TIMELINE_PATH = path.resolve("src/data/timeline_items.json");
 const HOSPITAL_BAG_PATH = path.resolve("src/data/hospital_bag_checklist.json");
-const PARTNER_PREP_PATH = path.resolve("src/data/partner_prep_checklist.json");
-const PREGNANCY_PREP_PATH = path.resolve("src/data/pregnancy_prep_checklist.json");
 const ARTICLES_DIR = path.resolve("src/content/articles");
 
 type TimelineItem = {

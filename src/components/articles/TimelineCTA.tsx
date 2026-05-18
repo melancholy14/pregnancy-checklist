@@ -1,6 +1,6 @@
 "use client";
 
-import { Calendar } from "lucide-react";
+import { Calendar, ChevronRight } from "lucide-react";
 
 interface TimelineCTAProps {
   weeks: number[];
@@ -29,7 +29,8 @@ export function TimelineCTA({ weeks }: TimelineCTAProps) {
             href={`/timeline#timeline-week-${firstWeek}`}
             className="inline-flex items-center gap-1 text-sm text-accent-purple hover:text-accent-purple-hover font-medium no-underline"
           >
-            타임라인 보기 →
+            타임라인 보기
+            <ChevronRight size={16} aria-hidden="true" />
           </a>
         </div>
       </div>

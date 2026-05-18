@@ -82,15 +82,15 @@ test.describe("베이비페어 페이지", () => {
     });
 
     test("팝업에서 이동 클릭 시 새 탭이 열린다", async ({ page, context }) => {
-      // 무엇을: 이동 버튼 클릭 시 window.open으로 새 탭 열기
-      // 왜: 현재 페이지 유지 + 공식 사이트 새 탭 이동
+      // 무엇을: "이동" anchor 클릭 시 새 탭 열림 (target=_blank + rel=noopener)
+      // 왜: design-bundle-cleanup-round 묶음 O 정렬 — window.open 우회 제거, 표준 anchor 패턴
       await page.getByRole("tab", { name: "지난 행사" }).click();
       await page.getByText("제49회 베페(BeFe) 베이비페어").click();
       await expect(page.getByRole("alertdialog")).toBeVisible();
 
       const [newPage] = await Promise.all([
         context.waitForEvent("page"),
-        page.getByRole("button", { name: "이동" }).click(),
+        page.getByRole("link", { name: "이동" }).click(),
       ]);
       expect(newPage.url()).toContain("befe.co.kr");
       await newPage.close();

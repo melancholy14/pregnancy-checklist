@@ -110,10 +110,11 @@ PoC(Phase 1) 배포 후 4주간 측정하여 Go/No-Go 판단.
 | 1.5 | 로컬 → 커스텀 도메인 | PoC 고도화 (기능 통합 + AdSense 기초 준비) | 2주 (완료: 2026-04-04) | ✅ 완료 |
 | 2 | 로컬 | 콘텐츠 강화 + AdSense 승인 | 3~4주 (완료: 2026-04-04) | ✅ 완료 |
 | 2.5 | 로컬 | UX 개선 + 리텐션 강화 | 5주 (완료: 2026-04-13) | ✅ 완료 |
-| 3 | 로컬 | 누락 기능 보완 (Analytics · 검색 · 크로스링크 · SEO 검증) | 2주 | 📋 기획 |
-| 4 | 로컬 | 사용자 경험 심화 + 콘텐츠 네트워크 강화 (체중 차트 · 관련 추천 · 공유 · 크로스링크 자동화) | 4주 | 📋 기획 |
-| 5 | 로컬 | 베이비페어 크롤러 & Admin UI | 2주 | |
-| 6 | GCP | 인프라 세팅 | 1주 | |
+| 3 | 로컬 | 누락 기능 보완 (Analytics · 검색 · 크로스링크 · SEO 검증) | 2주 | ✅ 완료 |
+| 4 | 로컬 | 사용자 경험 심화 + 콘텐츠 네트워크 강화 (체크리스트 허브 · 정보 통합 · 관련 추천 · 공유 · 크로스링크 자동화) | 4주 | ✅ 완료 |
+| 4.5 | 로컬 | 기존 기능 정돈 (마케팅·디자인·기획·개발 4축 개선) | 2~3주 | 📝 기획 |
+| 5 | 로컬 | 베이비페어 크롤러 & Admin UI · 체중 BMI/IOM 차트 · vitest · zod | 3주 | |
+| 6 | GCP | 인프라 세팅 · 에러 모니터링 SaaS | 1주 | |
 | 7 | GCP | 운영 배포 | 1주 | |
 
 > **PoC 검증 기간**: Phase 1 배포 후 4주간 KPI 측정 → Go/No-Go 판단.
@@ -655,7 +656,7 @@ AdSense 승인률을 높이기 위한 **콘텐츠 볼륨 + 깊이 확보**.
 
 ## Phase 2.5. UX 개선 + 리텐션 강화 — ✅ 완료
 
-> 상세 스펙: [../phase-2.5/plan.md](../phase-2.5/plan.md)
+> 상세 스펙: [phase-2.5.md](phase-2.5.md)
 > 구현 완료: 2026-04-12 | QA 통과: 2026-04-13
 
 유입된 유저가 타임라인을 중심으로 반복 방문하고 각 기능을 깊게 활용하는 구조 구축.
@@ -844,7 +845,7 @@ YouTube Data API v3 기반으로 채널 썸네일을 자동 수집하는 스크�
 
 ## Phase 4. 사용자 경험 심화 + 콘텐츠 네트워크 강화
 
-> 상세 스펙: [../phase-4/plan.md](../phase-4/plan.md)
+> 상세 스펙: [phase-4.md](phase-4.md)
 > Phase 3에서 AdSense 인프라를 갖춘 뒤, 세션 체류 시간 확대 · 콘텐츠 간 유기적 연결 · 바이럴 성장 채널을 확보한다.
 > 목표: ~2026-05-15
 
@@ -888,12 +889,45 @@ OG 메타 태그 정비 + GA4 `share` 이벤트 전송.
 
 ---
 
-## Phase 5. 베이비페어 크롤러 & Admin UI (로컬)
+## Phase 5. 베이비페어 크롤러 & Admin UI · 품질 인프라 (로컬)
 
-> 상세 스펙: [../specs/babyfair_crawler_spec.md](../specs/babyfair_crawler_spec.md)
+> 상세 스펙(크롤러): [specs/babyfair_crawler_spec.md](specs/babyfair_crawler_spec.md)
+> 상세 스펙(개발 부채): [../tech/technical-debt.md](../tech/technical-debt.md)
 
 > **기술 제약**: `output: 'export'` 모드이므로 API Routes 불가.
 > 크롤러와 Admin 검수는 **CLI + 로컬 스크립트** 방식으로 운영.
+
+### 5-0. Phase 4.5에서 이연된 품질 인프라
+
+#### 5-0a. 체중 BMI/IOM 권장 영역 차트
+
+- 임신 전 키/체중 입력 → BMI 자동 계산 → IOM 2009 기준 권장 범위 영역 표시.
+- ComposedChart(Line + Area), 커스텀 Tooltip, 요약 통계 카드.
+- **선행 조건**: 의료 면책 프레임워크 확립 + 개인정보처리방침 건강 정보 조항 추가 (Phase 4.5 기획 결정).
+- **법적 리스크 HIGH**: YMYL 의료정보, 개인 건강정보(localStorage), 의료기기법 저촉 주의.
+- **완료 조건**: BMI별 권장 범위 영역, 의료 면책 차트 하단 직접 배치, 미입력 시 기존 차트 하위 호환.
+
+#### 5-0b. Unit Test 도입 (vitest)
+
+- **도구**: vitest (Next.js 호환, Jest 대비 빠름) + `@testing-library/react` (컴포넌트 테스트 시).
+- **우선 테스트 대상**:
+
+  | 대상 | 파일 | 목적 |
+  | ---- | ---- | ---- |
+  | 주차 계산 | `src/lib/week-calculator.ts` | 경계값(1주, 40주), 과거/미래 |
+  | 크로스링크 토큰화 | `src/lib/crosslink-utils.ts` | 한·영 stopword, 길이 컷 회귀 |
+  | front matter 파서·라이터 | `scripts/generate-crosslinks.ts` | 정규식 in-place 치환 회귀 |
+  | Jaccard 점수 | `crosslink-utils.ts` / `related-content.ts` | 알고리즘 변경 시 회귀 |
+  | parseArticleMeta | `src/lib/articles.ts` | frontmatter 검증 |
+
+- **완료 조건**: vitest 설정, CI에 `npm test` 통합, 핵심 lib 5종 unit test 첫 라운드 통과.
+
+#### 5-0c. zod 런타임 검증 도입
+
+- **목적**: JSON 임포트의 `as VideoItem[]` 단언 같은 패턴을 zod 스키마 검증으로 교체.
+- **선행 작업**: Phase 4.5 D-Mn2(VideoCategory union 확장)와 일관성 유지.
+- **적용 범위**: `src/types/*.ts` 도메인 타입을 zod 스키마로 재정의 → 빌드 타임에 JSON 데이터 검증.
+- **완료 조건**: `videos.json`, `channels.json`, `babyfair_events.json`, `*_checklist.json` 모두 zod 검증 통과.
 
 ### 5-1. 크롤러 (`scripts/crawl-babyfair.ts`)
 
@@ -990,6 +1024,21 @@ gcloud artifacts repositories create pregnancy-checklist \
   --repository-format=docker \
   --location=asia-northeast3
 ```
+
+### 6-1. 에러 모니터링 SaaS 도입
+
+운영 트래픽이 시작되면서 클라이언트·서버 에러 가시성이 필요해진다.
+
+- **후보**:
+  - **Sentry** — 무료 티어 10K events/월, React/Next 통합 성숙. 1순위.
+  - **Cloud Error Reporting** — GCP 네이티브, Cloud Run 로그 자동 수집. 보조.
+  - Datadog은 비용·복잡도 대비 PoC 단계 과대.
+- **최소 설정**:
+  - React Error Boundary 글로벌 → Sentry 자동 캡처
+  - Zustand persist 실패 로깅 (`onRehydrateStorage` 콜백)
+  - 404/500 페이지 GA4 + Sentry 동시 이벤트
+  - 환경변수 `SENTRY_DSN` (Secret Manager로 주입)
+- **완료 조건**: Cloud Run 배포 후 의도적 에러 1건이 Sentry 콘솔에 도달, 트래픽 1주간 false-positive 5% 이하.
 
 ---
 
@@ -1196,8 +1245,9 @@ gsutil cp updated_checklist.json gs://pregnancy-prep-data/checklist/v1/checklist
 | M1.5: PoC 고도화 | 기능 통합 + AdSense 기초 준비 (SEO/가이드/영상) | ✅ |
 | M2: 콘텐츠 강화 | YouTube 세분화 + 정보글 시스템 + AdSense 승인 신청 | ✅ |
 | M2.5: UX 개선 | 온보딩 + 대시보드 개편 + 리텐션 강화 | ✅ |
-| M3: 누락 기능 + AdSense 준비 | 광고 인프라 · 도구 텍스트 · GA4 · 검색 · 크로스링크 | 📋 |
-| M4: UX 심화 + 콘텐츠 네트워크 | 체중 차트 BMI · 관련 추천 · 공유 · 크로스링크 자동화 | 📋 |
-| M5: 베이비페어 | 크롤러 → Admin 검수 → 데이터 반영 | |
-| M6: 인프라 | GCS 업로드, `DATA_SOURCE=gcs` 연결 | |
+| M3: 누락 기능 + AdSense 준비 | 광고 인프라 · 도구 텍스트 · GA4 · 검색 · 크로스링크 | ✅ |
+| M4: UX 심화 + 콘텐츠 네트워크 | 체크리스트 허브 · 정보 통합 · 관련 추천 · 공유 · 크로스링크 자동화 | ✅ |
+| M4.5: 기존 기능 정돈 | 마케팅·디자인·기획·개발 4축 개선 (AdSense 잔불 · 자동화 · 리뷰 잔불) | 📝 |
+| M5: 베이비페어 + 품질 인프라 | 크롤러 → Admin 검수 → 데이터 반영 + BMI 차트 + vitest + zod | |
+| M6: 인프라 | GCS 업로드, `DATA_SOURCE=gcs` 연결, 에러 모니터링 SaaS | |
 | M7: 운영 배포 | Cloud Run 배포, CI/CD 동작 확인 | |

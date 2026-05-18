@@ -1,19 +1,19 @@
 "use client";
 
-import { useState } from "react";
-import { ChevronDown, Pencil } from "lucide-react";
+import { useCallback, useState } from "react";
+import { ChevronDown, Pencil, Trash2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { useTimelineStore } from "@/store/useTimelineStore";
 import { TIMELINE_TYPE_CONFIG } from "@/lib/constants";
+import { restoreAtIndex, useDeleteWithUndo } from "@/lib/hooks/useDeleteWithUndo";
 import type { TimelineItem } from "@/types/timeline";
 import type { ChecklistItem } from "@/types/checklist";
 import type { ArticleMeta } from "@/types/article";
 import type { VideoItem } from "@/types/video";
 import { WeekChecklistSection } from "./WeekChecklistSection";
-import { DeleteConfirmDialog } from "./DeleteConfirmDialog";
 import { RelatedArticlesLink } from "./RelatedArticlesLink";
 import { RelatedVideosLink } from "./RelatedVideosLink";
 import { RelatedChecklistsLink } from "./RelatedChecklistsLink";
@@ -28,6 +28,7 @@ interface TimelineAccordionCardProps {
   relatedArticles?: ArticleMeta[];
   relatedVideos?: VideoItem[];
   defaultOpen?: boolean;
+  currentPregnancyWeek: number | null;
 }
 
 export function TimelineAccordionCard({
@@ -38,6 +39,7 @@ export function TimelineAccordionCard({
   relatedArticles = [],
   relatedVideos = [],
   defaultOpen = false,
+  currentPregnancyWeek,
 }: TimelineAccordionCardProps) {
   const { removeCustomItem, updateCustomItem } = useTimelineStore();
   const [isOpen, setIsOpen] = useState(defaultOpen);
@@ -45,6 +47,20 @@ export function TimelineAccordionCard({
   const [editTitle, setEditTitle] = useState(item.title);
   const [editDescription, setEditDescription] = useState(item.description);
   const [editWeek, setEditWeek] = useState(item.week);
+
+  const restoreCustomTimelineItem = useCallback(
+    (deleted: TimelineItem & { atIndex: number }) => {
+      const { atIndex, ...rest } = deleted;
+      restoreAtIndex<TimelineItem>(useTimelineStore, rest, atIndex);
+    },
+    []
+  );
+
+  const handleDeleteTimelineItem = useDeleteWithUndo<TimelineItem & { atIndex: number }>({
+    removeFn: removeCustomItem,
+    restoreFn: restoreCustomTimelineItem,
+    label: "타임라인 노트를 삭제했어요",
+  });
 
   const color = TIMELINE_TYPE_CONFIG[item.type]?.color ?? "#E4D6F0";
   const hasChecklist = checklistItems.length > 0;
@@ -80,7 +96,7 @@ export function TimelineAccordionCard({
         if (open) sendGAEvent("timeline_week_view", { week: item.week });
       }}>
         <Card
-          className={`rounded-xl shadow-sm transition-all border ${
+          className={`rounded-2xl shadow-sm transition-all border ${
             status === "current"
               ? "ring-2 ring-offset-2 border-black/4"
               : "border-black/4"
@@ -148,7 +164,7 @@ export function TimelineAccordionCard({
                           {TIMELINE_TYPE_CONFIG[item.type].label}
                         </Badge>
                       )}
-                      <h3 className="text-[15px] font-medium">{item.title}</h3>
+                      <h3>{item.title}</h3>
                       {item.isCustom && (
                         <Badge className="bg-pastel-lavender/40 text-accent-purple text-[10px] px-1.5 py-0 rounded border-0 hover:bg-pastel-lavender/40">
                           내 항목
@@ -197,7 +213,20 @@ export function TimelineAccordionCard({
                     >
                       <Pencil size={14} />
                     </button>
-                    <DeleteConfirmDialog onConfirm={() => removeCustomItem(item.id)} />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const atIndex = useTimelineStore
+                          .getState()
+                          .customItems.findIndex((c) => c.id === item.id);
+                        if (atIndex < 0) return;
+                        handleDeleteTimelineItem({ ...item, atIndex });
+                      }}
+                      className="p-2 rounded-lg text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors"
+                      aria-label="삭제"
+                    >
+                      <Trash2 size={16} />
+                    </button>
                   </div>
                 )}
               </div>
@@ -207,7 +236,12 @@ export function TimelineAccordionCard({
             {hasChecklist && !isEditing && (
               <CollapsibleContent>
                 <div className="border-t border-black/4 px-4">
-                  <WeekChecklistSection items={checklistItems} checkedIds={checkedIds} />
+                  <WeekChecklistSection
+                    items={checklistItems}
+                    checkedIds={checkedIds}
+                    currentPregnancyWeek={currentPregnancyWeek}
+                    slug="main"
+                  />
                 </div>
               </CollapsibleContent>
             )}

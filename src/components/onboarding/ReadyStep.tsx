@@ -1,6 +1,6 @@
 "use client";
 
-import { Lock, CheckCircle, Save } from "lucide-react";
+import { CheckCircle, ChevronRight, Lock, Save } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface ReadyStepProps {
@@ -45,10 +45,11 @@ export function ReadyStep({ onComplete }: ReadyStepProps) {
 
       <Button
         onClick={onComplete}
-        className="w-full max-w-xs h-12 rounded-2xl bg-pastel-pink text-foreground text-base hover:bg-pastel-pink/80"
+        className="w-full max-w-xs h-12 rounded-2xl bg-pastel-pink text-foreground text-base hover:bg-pastel-pink/80 inline-flex items-center justify-center gap-1"
         aria-label="체크리스트 보러가기"
       >
-        체크리스트 보러가기 →
+        체크리스트 보러가기
+        <ChevronRight size={18} aria-hidden="true" />
       </Button>
     </div>
   );

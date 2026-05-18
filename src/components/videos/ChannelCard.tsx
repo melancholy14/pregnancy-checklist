@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import type { ChannelItem } from "@/types/video";
 import { sendGAEvent } from "@/lib/analytics";
@@ -24,14 +25,26 @@ export function ChannelCard({ channel }: ChannelCardProps) {
       rel="noopener noreferrer"
       className="no-underline block"
       aria-label={`${channel.name} 유튜브 채널로 이동`}
-      onClick={() => sendGAEvent("content_click", { type: "channel", title: channel.name })}
+      // TODO(bundle-O): rel="noopener noreferrer" 표준 정합 — design-bundle-O wiring 라운드
+      onClick={() => {
+        // legacy keep (4주 grace) — cleanup 라운드에서 제거.
+        sendGAEvent("content_click", { type: "channel", title: channel.name });
+        sendGAEvent("external_link_click", {
+          domain: "youtube.com",
+          context: "channel",
+          channel_id: channel.id,
+        });
+      }}
     >
       <Card className="rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 border border-black/4 hover:-translate-y-0.5">
         <CardContent className="p-4 flex items-center gap-4">
-          <img
+          <Image
             src={channel.thumbnail_url}
             alt={channel.name}
+            width={56}
+            height={56}
             className="w-14 h-14 rounded-full object-cover shrink-0"
+            unoptimized
           />
           <div className="min-w-0">
             <h4 className="text-[15px] leading-snug truncate">{channel.name}</h4>

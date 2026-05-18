@@ -7,6 +7,7 @@ import { StickyHeader } from "@/components/layout/StickyHeader";
 import { ConsentGatedScripts } from "@/components/consent/ConsentGatedScripts";
 import { CookieConsentBanner } from "@/components/consent/CookieConsentBanner";
 import { PageviewTracker } from "@/components/analytics/PageviewTracker";
+import { OnboardingBannerProvider } from "@/components/providers/OnboardingBannerProvider";
 import { SearchModal } from "@/components/search/SearchModal";
 import { getAllArticles } from "@/lib/articles";
 import { BASE_URL, OG_IMAGE } from "@/lib/constants";
@@ -53,11 +54,12 @@ export default function RootLayout({
       <body>
         <StickyHeader />
         <div className="min-h-screen max-w-2xl mx-auto">
+          <OnboardingBannerProvider />
           {children}
           <Footer />
           <BottomNav />
         </div>
-        <Toaster position="top-center" richColors theme="light" />
+        <Toaster position="top-center" richColors theme="light" visibleToasts={3} />
         <ConsentGatedScripts />
         <CookieConsentBanner />
         <PageviewTracker />

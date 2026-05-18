@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ListChecks } from "lucide-react";
+import { ChevronRight, ListChecks } from "lucide-react";
 
 const CHECKLIST_META: Record<string, { title: string; icon: string }> = {
   "hospital-bag": { title: "출산가방 체크리스트", icon: "🧳" },
@@ -30,9 +30,12 @@ export function RelatedChecklistsLink({ slugs }: RelatedChecklistsLinkProps) {
             <Link
               key={slug}
               href={`/checklist/${slug}`}
-              className="block text-sm text-accent-purple hover:text-accent-purple-hover hover:bg-pastel-lavender/10 rounded-lg px-2 py-1.5 -mx-2 transition-colors no-underline"
+              className="flex items-center gap-1 text-sm text-accent-purple hover:text-accent-purple-hover hover:bg-pastel-lavender/10 rounded-lg px-2 py-1.5 -mx-2 transition-colors no-underline"
             >
-              <span aria-hidden="true">{meta.icon}</span> {meta.title} →
+              <span className="flex-1 min-w-0">
+                <span aria-hidden="true">{meta.icon}</span> {meta.title}
+              </span>
+              <ChevronRight size={16} aria-hidden="true" className="shrink-0" />
             </Link>
           );
         })}

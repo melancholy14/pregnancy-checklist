@@ -21,6 +21,7 @@ import { WeekChecklistSection } from "./WeekChecklistSection";
 import { PageDescription } from "@/components/common/PageDescription";
 import { ShareButton } from "@/components/share/ShareButton";
 import { sendGAEvent } from "@/lib/analytics";
+import { useScrollSignals } from "@/lib/use-scroll-signals";
 import { BASE_URL } from "@/lib/constants";
 
 interface TimelineContainerProps {
@@ -31,6 +32,7 @@ interface TimelineContainerProps {
 }
 
 export function TimelineContainer({ timelineItems, checklistItems, articles = [], videos = [] }: TimelineContainerProps) {
+  useScrollSignals("timeline");
   const { dueDate } = useDueDateStore();
   const { customItems: customTimelineItems } = useTimelineStore();
   const { checkedIds, customItems: customChecklistItems } = useChecklistStore();
@@ -42,13 +44,37 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
   const [showAddForm, setShowAddForm] = useState(false);
   const [activeCategory, setActiveCategory] = useState("all");
   const [showFirstCheckBanner, setShowFirstCheckBanner] = useState(false);
-  const prevCheckedCountRef = useRef<number | null>(null);
   const currentRef = useRef<HTMLDivElement>(null);
 
   const currentWeek = useMemo(() => {
     if (!hydrated || !dueDate) return null;
     return calcPregnancyWeek(new Date(dueDate));
   }, [hydrated, dueDate]);
+
+  const recommendedViewCount = useMemo(() => {
+    if (currentWeek === null) return 0;
+    const all = [...checklistItems, ...customChecklistItems];
+    return all.filter(
+      (item) =>
+        item.recommendedWeek !== 0 &&
+        item.recommendedWeek === currentWeek &&
+        !checkedIds.includes(item.id),
+    ).length;
+  }, [checklistItems, customChecklistItems, currentWeek, checkedIds]);
+
+  const recommendedViewSentRef = useRef(false);
+  useEffect(() => {
+    if (!hydrated) return;
+    if (recommendedViewSentRef.current) return;
+    if (currentWeek === null) return;
+    if (recommendedViewCount === 0) return;
+    recommendedViewSentRef.current = true;
+    sendGAEvent("recommended_item_view", {
+      count: recommendedViewCount,
+      week: currentWeek,
+      slug: "main",
+    });
+  }, [hydrated, currentWeek, recommendedViewCount]);
 
   const articleMap = useMemo(() => {
     const map = new Map<string, ArticleMeta>();
@@ -113,20 +139,24 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
   // 첫 체크 시 인라인 배너 (1회성)
   useEffect(() => {
     if (!hydrated) return;
-    const count = checkedIds.length;
-    if (prevCheckedCountRef.current !== null && prevCheckedCountRef.current === 0 && count === 1) {
-      try {
-        const shown = localStorage.getItem("first-check-guide-shown");
-        if (!shown) {
-          setShowFirstCheckBanner(true);
-          localStorage.setItem("first-check-guide-shown", "true");
+    let prev = useChecklistStore.getState().checkedIds.length;
+    const unsubscribe = useChecklistStore.subscribe((state) => {
+      const next = state.checkedIds.length;
+      if (prev === 0 && next === 1) {
+        try {
+          const shown = localStorage.getItem("first-check-guide-shown");
+          if (!shown) {
+            setShowFirstCheckBanner(true);
+            localStorage.setItem("first-check-guide-shown", "true");
+          }
+        } catch {
+          // localStorage 접근 불가 시 무시
         }
-      } catch {
-        // localStorage 접근 불가 시 무시
       }
-    }
-    prevCheckedCountRef.current = count;
-  }, [hydrated, checkedIds]);
+      prev = next;
+    });
+    return unsubscribe;
+  }, [hydrated]);
 
   // 현재 주차로 자동 스크롤 (hash가 있으면 검색 등에서 특정 주차로 이동한 것이므로 생략)
   useEffect(() => {
@@ -180,7 +210,7 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
   );
 
   return (
-    <div className="min-h-screen pb-24 px-4 bg-linear-to-b from-background to-white">
+    <div className="min-h-screen pb-24 px-4 bg-background">
       <div className="pt-8">
         <h1 className="mb-2 text-center">임신 타임라인</h1>
         <PageDescription>
@@ -197,12 +227,13 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
             url={`${BASE_URL}/timeline`}
             contentType="timeline"
             itemId="timeline"
+            position="top_right"
           />
         </div>
 
         {/* 현재 주차 카드 */}
         {hydrated && currentWeek !== null && (
-          <Card className="rounded-2xl shadow-md mb-4 border border-black/4">
+          <Card className="rounded-2xl shadow-sm mb-4 border border-black/4">
             <CardContent className="p-4 text-center">
               <span className="text-sm text-muted-foreground">현재</span>
               <div className="text-2xl mt-1">
@@ -214,7 +245,7 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
 
         {/* 전체 진행률 */}
         {hydrated && (
-          <Card className="rounded-2xl shadow-md mb-6 border border-black/4">
+          <Card className="rounded-2xl shadow-sm mb-6 border border-black/4">
             <CardContent className="p-4">
               <div className="flex justify-between items-center mb-2">
                 <span className="text-sm text-muted-foreground">전체 진행률</span>
@@ -285,13 +316,17 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
 
           <div className="space-y-6">
             {(() => {
-              let firstCurrentAssigned = false;
-              return allTimelineItems
-                .filter((item) => filteredWeekSet === null || filteredWeekSet.has(item.week))
-                .map((item) => {
+              const visibleItems = allTimelineItems.filter(
+                (item) => filteredWeekSet === null || filteredWeekSet.has(item.week)
+              );
+              const hasExactCurrent =
+                currentWeek !== null && visibleItems.some((i) => i.week === currentWeek);
+              const refTargetWeek = hasExactCurrent
+                ? currentWeek
+                : visibleItems.find((i) => getStatus(i.week) === "current")?.week ?? null;
+              return visibleItems.map((item) => {
                   const status = getStatus(item.week);
-                  const shouldRef = status === "current" && !firstCurrentAssigned;
-                  if (shouldRef) firstCurrentAssigned = true;
+                  const shouldRef = refTargetWeek !== null && item.week === refTargetWeek;
                   const weekChecklist = getFilteredChecklist(weekChecklistMap.get(item.week) ?? []);
                   const relatedArticles = (item.linked_article_slugs ?? [])
                     .map((slug) => articleMap.get(slug))
@@ -310,6 +345,7 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
                         relatedArticles={relatedArticles}
                         relatedVideos={relatedVideos}
                         defaultOpen={status === "current"}
+                        currentPregnancyWeek={currentWeek}
                       />
                     </div>
                   );
@@ -323,11 +359,16 @@ export function TimelineContainer({ timelineItems, checklistItems, articles = []
           <div className="mt-8">
             <div className="flex items-center gap-2 mb-3 pl-2">
               <span className="text-base">📦</span>
-              <h2 className="text-[15px] font-medium text-muted-foreground">기타 (주차 미지정)</h2>
+              <h2 className="text-muted-foreground">기타 (주차 미지정)</h2>
             </div>
-            <Card className="rounded-xl border border-black/4">
+            <Card className="rounded-2xl border border-black/4">
               <CardContent className="p-2">
-                <WeekChecklistSection items={unassignedChecklist} checkedIds={checkedIds} />
+                <WeekChecklistSection
+                  items={unassignedChecklist}
+                  checkedIds={checkedIds}
+                  currentPregnancyWeek={currentWeek}
+                  slug="main"
+                />
               </CardContent>
             </Card>
           </div>

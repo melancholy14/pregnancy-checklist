@@ -22,7 +22,7 @@ export function CategoryFilter({ activeCategory, onCategoryChange }: CategoryFil
             }}
             className={`px-4 py-2 rounded-xl whitespace-nowrap border text-sm transition-all duration-200 ${
               isActive
-                ? "bg-pastel-pink/40 text-foreground border-pastel-pink/30"
+                ? "bg-pastel-lavender/40 text-foreground border-pastel-lavender/30"
                 : "bg-white text-muted-foreground border-black/4 hover:bg-muted"
             }`}
           >

@@ -4,11 +4,15 @@ import { X } from "lucide-react";
 import { sendGAEvent } from "@/lib/analytics";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useWeightStore } from "@/store/useWeightStore";
+import { useDueDateStore } from "@/store/useDueDateStore";
 
 interface WeightFormProps {
   onSubmit: (date: string, weight: number) => void;
   onClose: () => void;
 }
+
+const DELTA_CLAMP = 15;
 
 export function WeightForm({ onSubmit, onClose }: WeightFormProps) {
   const [newDate, setNewDate] = useState("");
@@ -25,8 +29,18 @@ export function WeightForm({ onSubmit, onClose }: WeightFormProps) {
       toast("미래 날짜는 입력할 수 없어요", { duration: 3000 });
       return;
     }
+    const existingLogs = useWeightStore.getState().logs;
+    const isFirstLog = existingLogs.length === 0;
+    const lastLog = existingLogs.length > 0 ? existingLogs[existingLogs.length - 1] : null;
+    const rawDelta = lastLog ? weight - lastLog.weight : 0;
+    const deltaFromLast = Math.max(-DELTA_CLAMP, Math.min(DELTA_CLAMP, rawDelta));
+    const currentWeek = useDueDateStore.getState().currentPregnancyWeek;
     onSubmit(newDate, weight);
-    sendGAEvent("weight_log");
+    sendGAEvent("weight_log", {
+      week: currentWeek ?? null,
+      delta_from_last: isFirstLog ? null : Number(deltaFromLast.toFixed(2)),
+      is_first_log: isFirstLog,
+    });
     setNewDate("");
     setNewWeight("");
   };

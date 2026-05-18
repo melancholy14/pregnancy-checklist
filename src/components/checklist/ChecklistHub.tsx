@@ -2,11 +2,12 @@
 
 import { useMemo, useSyncExternalStore } from "react";
 import Link from "next/link";
-import { ChevronRight, Calendar } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { PageDescription } from "@/components/common/PageDescription";
 import { useChecklistStore } from "@/store/useChecklistStore";
+import { useDueDateStore } from "@/store/useDueDateStore";
 import {
   createChecklistStore,
   useHospitalBagStore,
@@ -66,8 +67,8 @@ function ChecklistCard({
             </span>
             <div className="flex-1 min-w-0">
               <div className="flex items-center justify-between gap-2 mb-1">
-                <h2 className="text-[15px] font-medium text-foreground">{title}</h2>
-                <ChevronRight size={18} className="text-muted-foreground shrink-0" />
+                <h2 className="text-foreground">{title}</h2>
+                <ChevronRight size={18} aria-hidden="true" className="text-muted-foreground shrink-0" />
               </div>
               <p className="text-xs text-muted-foreground leading-relaxed mb-3 line-clamp-2">
                 {description}
@@ -103,29 +104,39 @@ function TimelineCard({ baseTotal }: { baseTotal: number }) {
     () => useChecklistStore.persist.hasHydrated(),
     () => false
   );
+  const { currentPregnancyWeek } = useDueDateStore();
+  const dueHydrated = useSyncExternalStore(
+    (cb) => useDueDateStore.persist.onFinishHydration(cb),
+    () => useDueDateStore.persist.hasHydrated(),
+    () => false
+  );
   const total = baseTotal + (hydrated ? customItems.length : 0);
   const checked = hydrated ? checkedIds.length : 0;
   const percent = total > 0 ? (checked / total) * 100 : 0;
+  const weekLabel =
+    dueHydrated && currentPregnancyWeek !== null
+      ? `${currentPregnancyWeek}주차`
+      : "예정일 입력 시 추천";
 
   return (
     <Link href="/timeline" className="block no-underline">
       <Card className="rounded-2xl shadow-sm border border-black/4 hover:shadow-md transition-all duration-200">
         <CardContent className="p-5">
           <div className="flex items-start gap-3">
-            <span className="w-12 h-12 rounded-2xl bg-pastel-pink/40 flex items-center justify-center shrink-0">
-              <Calendar size={24} className="text-foreground" />
+            <span className="text-3xl shrink-0" aria-hidden>
+              🗓️
             </span>
             <div className="flex-1 min-w-0">
               <div className="flex items-center justify-between gap-2 mb-1">
-                <h2 className="text-[15px] font-medium text-foreground">주차별 타임라인</h2>
-                <ChevronRight size={18} className="text-muted-foreground shrink-0" />
+                <h2 className="text-foreground">주차별 타임라인</h2>
+                <ChevronRight size={18} aria-hidden="true" className="text-muted-foreground shrink-0" />
               </div>
               <p className="text-xs text-muted-foreground leading-relaxed mb-3 line-clamp-2">
                 임신 4주부터 40주까지 주차별로 해야 할 검사·준비를 알려드려요.
               </p>
               <div className="flex flex-wrap gap-1 mb-3">
                 <span className="text-[11px] px-2 py-0.5 rounded-md bg-pastel-pink/40 text-foreground">
-                  37주차
+                  {weekLabel}
                 </span>
                 <span className="text-[11px] px-2 py-0.5 rounded-md bg-pastel-yellow/40 text-foreground">
                   체크 항목 {baseTotal}개
@@ -161,7 +172,7 @@ export function ChecklistHub({
   );
 
   return (
-    <div className="min-h-screen pb-24 px-4 bg-linear-to-b from-background to-white">
+    <div className="min-h-screen pb-24 px-4 bg-background">
       <div className="pt-8">
         <h1 className="mb-2 text-center">✅ 체크리스트</h1>
         <PageDescription>
