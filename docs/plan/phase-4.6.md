@@ -46,6 +46,16 @@ Phase 4.5에서 토큰 디시플린·접근성·기획 결정을 정돈하고, *
 - 수집 대상: 영상 탭 도달률·클릭률 / 타임라인 페이지 도달률·체류 / 홈 카드별 클릭 분포 / `/info` vs `/articles` 직접 진입 비율 / `/weight` 회귀 방문률
 - **이 데이터 없이 결정 항목 D2~D5 결정 금지.**
 
+#### Weekly report manual run 일정 (묶음 M launchd 등록 전까지)
+
+| 일자 | 작업 | 데이터 커버 | 비고 |
+|---|---|---|---|
+| 2026-05-20 (화) | `npm run report:weekly` 1차 manual run | W20 (5/11~5/17 → D1 기준 5/12~5/17 = 6일 partial) | 5/19 monday 일정 1일 슬립 보정 — noise floor baseline |
+| 2026-05-25 (월) | `npm run report:weekly` 2차 manual run | W21 (5/18~5/24 = 7일 full) | 2 cycle 확보, phase-4.6 진입 직전 |
+| 2026-05-26 (화) | **phase-4.6 진입** | — | D2~D5 결정 데이터 기반 |
+
+대안 — 5/25 이전에 묶음 M(launchd 등록) 진행 시 자동 발사로 manual run 대체. launchd plist 작성 + `launchctl bootstrap` 등록 = 30분~1시간 작업.
+
 ---
 
 ## Scope
