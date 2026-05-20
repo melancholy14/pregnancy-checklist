@@ -1,7 +1,9 @@
 import { test, expect } from "@playwright/test";
+import { acceptCookieConsent } from "./helpers/consent";
 
 test.describe("About 페이지 → 만든 사람 스토리텔링 (Step 13)", () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ context, page }) => {
+    await acceptCookieConsent(context);
     await page.goto("/about", { waitUntil: "domcontentloaded" });
   });
 
@@ -14,26 +16,25 @@ test.describe("About 페이지 → 만든 사람 스토리텔링 (Step 13)", () 
       ).toBeVisible();
     });
 
-    test("'왜 만들었나' 스토리 섹션이 존재한다", async ({ page }) => {
-      // 무엇을: "왜 만들었나" 제목과 스토리 텍스트가 보이는지
+    test("'소개' 스토리 섹션이 존재한다", async ({ page }) => {
+      // 무엇을: "안녕하세요, 뿌까뽀까입니다" 제목과 스토리 텍스트가 보이는지
       // 왜: 개인 스토리텔링이 이번 리뉴얼의 핵심 가치
       await expect(
-        page.getByRole("heading", { name: "왜 만들었나" }),
+        page.getByRole("heading", { name: "안녕하세요, 뿌까뽀까입니다" }),
       ).toBeVisible();
       await expect(
-        page.getByText("첫 아이를 준비하면서 검색해보니"),
+        page.getByText(/첫 아이를 준비하면서 검색해보니/),
       ).toBeVisible();
       await expect(
-        page.getByText("개발자라 직접 만들기로 했어요"),
+        page.getByText(/답답해서 직접 만들기로 했어요/),
       ).toBeVisible();
     });
 
-    test("'왜 만들었나' 섹션이 강조 카드 스타일이다", async ({ page }) => {
-      // 무엇을: 스토리 섹션이 배경색 카드로 감싸져 있는지
-      // 왜: PRD에서 bg-[#FFF4D4]/10 카드로 강조 요구
-      const section = page.locator('section[aria-label="왜 만들었나"]');
+    test("'소개' 섹션이 의미 있는 region으로 감싸져 있다", async ({ page }) => {
+      // 무엇을: 스토리 섹션이 aria-label='소개' region으로 표시되는지
+      // 왜: 접근성 + 영역 의미 부여
+      const section = page.locator('section[aria-label="소개"]');
       await expect(section).toBeVisible();
-      await expect(section).toHaveClass(/rounded-xl/);
     });
 
     test("만든이 현재 주차가 자동 표시된다", async ({ page }) => {
@@ -115,7 +116,7 @@ test.describe("About 페이지 → 만든 사람 스토리텔링 (Step 13)", () 
         page.getByRole("heading", { level: 1, name: "만든 사람" }),
       ).toBeVisible();
       await expect(
-        page.getByRole("heading", { name: "왜 만들었나" }),
+        page.getByRole("heading", { name: "안녕하세요, 뿌까뽀까입니다" }),
       ).toBeVisible();
       await expect(page.getByText(/임신 \d+주차/)).toBeVisible();
       await expect(

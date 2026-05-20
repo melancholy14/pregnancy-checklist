@@ -42,12 +42,9 @@ test.describe("체크리스트 허브 + 신규 3종 (Phase 4 Step 1)", () => {
       // 초기 상태: 0/N 완료
       await expect(page.getByText(/0\/\d+ 완료/)).toBeVisible();
 
-      // 첫 항목 체크 — "산모용 잠옷"으로 텍스트 매칭
-      const item = page
-        .locator('[role="button"]')
-        .filter({ hasText: "산모용 잠옷" })
-        .first();
-      await item.click();
+      // 첫 항목 체크 — ChecklistRow는 label로 감싼 checkbox 구조
+      const checkbox = page.getByRole("checkbox", { name: /산모용 잠옷/ }).first();
+      await checkbox.dispatchEvent("click");
 
       // 진행률이 1로 증가 (1/N 표기 부분)
       await expect(page.getByText(/^1$/).first()).toBeVisible();
@@ -55,15 +52,15 @@ test.describe("체크리스트 허브 + 신규 3종 (Phase 4 Step 1)", () => {
       // 새로고침
       await page.reload();
 
-      // 체크 상태가 유지되는지 — line-through 클래스를 가진 텍스트가 보이는지
+      // 체크 상태가 유지되는지
       await expect(
-        page.locator(".line-through").filter({ hasText: "산모용 잠옷" })
-      ).toBeVisible();
+        page.getByRole("checkbox", { name: /산모용 잠옷/ }).first(),
+      ).toBeChecked();
     });
 
     test("남편준비 페이지에서 커스텀 항목을 추가하고 삭제할 수 있다", async ({ page }) => {
-      // 무엇을: FAB → 추가 폼 → 항목 추가 → 삭제 흐름
-      // 왜: AC #6 커스텀 아이템 기능
+      // 무엇을: FAB → 추가 폼 → 항목 추가 → undo 토스트 삭제 흐름
+      // 왜: AC #6 커스텀 아이템 기능 (design-bundle-k 이후 AlertDialog → undo-toast 전환)
       await page.goto("/checklist/partner-prep");
 
       // FAB 클릭
@@ -76,14 +73,14 @@ test.describe("체크리스트 허브 + 신규 3종 (Phase 4 Step 1)", () => {
       // 추가된 항목 확인
       await expect(page.getByText("E2E 테스트 항목")).toBeVisible();
 
-      // 삭제 — 추가된 카드의 삭제 버튼 클릭 후 확인
-      const card = page.locator('[role="button"]').filter({ hasText: "E2E 테스트 항목" });
-      await card.locator('button[aria-label="삭제"]').click();
-      await page
-        .locator('[data-slot="alert-dialog-content"]')
-        .getByRole("button", { name: "삭제" })
-        .click();
+      // 삭제 — ChecklistRow의 삭제 버튼 (label 옆 형제 요소)
+      const row = page
+        .locator("div")
+        .filter({ has: page.getByRole("checkbox", { name: /E2E 테스트 항목/ }) })
+        .first();
+      await row.getByRole("button", { name: "삭제", exact: true }).click();
 
+      // 즉시 삭제 + undo 토스트 노출
       await expect(page.getByText("E2E 테스트 항목")).not.toBeVisible();
     });
 
@@ -91,11 +88,7 @@ test.describe("체크리스트 허브 + 신규 3종 (Phase 4 Step 1)", () => {
       // 무엇을: 출산가방 체크가 임신준비 진행률에 영향 주지 않음
       // 왜: AC #5 — 데이터 격리
       await page.goto("/checklist/hospital-bag");
-      await page
-        .locator('[role="button"]')
-        .filter({ hasText: "산모용 잠옷" })
-        .first()
-        .click();
+      await page.getByRole("checkbox", { name: /산모용 잠옷/ }).first().dispatchEvent("click");
 
       // 임신 준비 페이지 이동 → 진행률 0 유지
       await page.goto("/checklist/pregnancy-prep");
@@ -139,7 +132,7 @@ test.describe("체크리스트 허브 + 신규 3종 (Phase 4 Step 1)", () => {
       await page.waitForURL(/\/timeline#timeline-week-32$/);
 
       await page.locator("nav").last().getByText("정보").click();
-      await page.waitForURL(/\/articles$/);
+      await page.waitForURL(/\/(info|articles)\/?$/);
 
       // 정보 리스트에서 임신 초기 검사 글로 클릭만으로 이동 (page.goto 사용 금지 — 버그 재현 조건)
       await page
@@ -240,14 +233,12 @@ test.describe("체크리스트 허브 + 신규 3종 (Phase 4 Step 1)", () => {
       await page.goto("/checklist/hospital-bag");
       await expect(page.locator('button[aria-label="항목 추가"]')).toBeVisible();
 
-      const item = page
-        .locator('[role="button"]')
-        .filter({ hasText: "산모용 잠옷" })
-        .first();
-      await item.click();
+      await page.getByRole("checkbox", { name: /산모용 잠옷/ }).first().dispatchEvent("click");
 
       // 체크 상태 확인 — 1로 진행
-      await expect(page.locator(".line-through").filter({ hasText: "산모용 잠옷" })).toBeVisible();
+      await expect(
+        page.getByRole("checkbox", { name: /산모용 잠옷/ }).first(),
+      ).toBeChecked();
     });
   });
 });

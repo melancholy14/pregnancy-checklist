@@ -1,16 +1,21 @@
 import { test, expect } from "@playwright/test";
+import { acceptCookieConsent } from "./helpers/consent";
 
 test.describe("아티클 authorNote 카드 (Step 14)", () => {
+  test.beforeEach(async ({ context }) => {
+    await acceptCookieConsent(context);
+  });
+
   test.describe("Happy Path", () => {
     test("authorNote가 있는 아티클에서 '만든이의 한마디' 카드가 표시된다", async ({
       page,
     }) => {
-      // 무엇을: hospital-bag 아티클에서 authorNote 카드가 보이는지
+      // 무엇을: babyfair-survival-guide 아티클에서 authorNote 카드가 보이는지
       // 왜: authorNote가 있는 아티클에서는 반드시 카드가 렌더링되어야 함
-      await page.goto("/articles/hospital-bag");
+      await page.goto("/articles/babyfair-survival-guide");
       await expect(page.getByText("만든이의 한마디")).toBeVisible();
       await expect(
-        page.getByText("블로그/인스타그램마다 리스트가 달라서 혼란스러웠어요"),
+        page.getByText(/베이비페어 가기 전에/),
       ).toBeVisible();
     });
 
@@ -19,7 +24,7 @@ test.describe("아티클 authorNote 카드 (Step 14)", () => {
     }) => {
       // 무엇을: authorNote 카드의 DOM 위치가 올바른지
       // 왜: PRD에서 제목과 본문 사이에 삽입 요구
-      await page.goto("/articles/hospital-bag");
+      await page.goto("/articles/babyfair-survival-guide");
       const card = page.locator("text=만든이의 한마디");
       const prose = page.locator(".article-prose");
       await expect(card).toBeVisible();
@@ -33,7 +38,7 @@ test.describe("아티클 authorNote 카드 (Step 14)", () => {
     test("authorNote 카드에 따뜻한 톤 스타일이 적용된다", async ({ page }) => {
       // 무엇을: 카드에 PRD 지정 스타일 클래스가 있는지
       // 왜: bg-[#FFF4D4]/15, border, rounded-xl 디자인 요구
-      await page.goto("/articles/hospital-bag");
+      await page.goto("/articles/babyfair-survival-guide");
       const card = page.locator(".rounded-xl", {
         hasText: "만든이의 한마디",
       });
@@ -65,15 +70,15 @@ test.describe("아티클 authorNote 카드 (Step 14)", () => {
       ).toBeVisible();
     });
 
-    test("postpartum-care 아티클에서 authorNote가 표시된다", async ({
+    test("postpartum-care-center-guide 아티클에서 authorNote가 표시된다", async ({
       page,
     }) => {
-      // 무엇을: postpartum-care authorNote 확인
+      // 무엇을: postpartum-care-center-guide authorNote 확인
       // 왜: 5개 대상 아티클 중 하나
-      await page.goto("/articles/postpartum-care");
+      await page.goto("/articles/postpartum-care-center-guide");
       await expect(page.getByText("만든이의 한마디")).toBeVisible();
       await expect(
-        page.getByText("뭘 기준으로 비교해야 하는지 몰라서 한참 헤맸어요"),
+        page.getByText(/어떤 글은 시설을 강조하고/),
       ).toBeVisible();
     });
 
@@ -116,10 +121,10 @@ test.describe("아티클 authorNote 카드 (Step 14)", () => {
     test("모바일: authorNote 카드가 잘리지 않고 표시된다", async ({ page }) => {
       // 무엇을: 375px에서 카드 텍스트가 모두 보이는지
       // 왜: 주요 타겟 기기에서 레이아웃 깨짐 방지
-      await page.goto("/articles/hospital-bag");
+      await page.goto("/articles/babyfair-survival-guide");
       await expect(page.getByText("만든이의 한마디")).toBeVisible();
       await expect(
-        page.getByText("블로그/인스타그램마다 리스트가 달라서 혼란스러웠어요"),
+        page.getByText(/베이비페어 가기 전에/),
       ).toBeVisible();
     });
 

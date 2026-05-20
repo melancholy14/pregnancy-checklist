@@ -1,11 +1,12 @@
 import { test, expect } from "@playwright/test";
+import { acceptCookieConsent } from "./helpers/consent";
 
 test.describe("체크리스트 주차 미존재 버그 수정 (Step 8)", () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ context, page }) => {
+    await acceptCookieConsent(context);
     await page.goto("/timeline");
-    // 쿠키 동의 + 이전 커스텀 데이터 초기화
+    // 이전 커스텀 데이터 초기화
     await page.evaluate(() => {
-      localStorage.setItem("cookie-consent", "accepted");
       localStorage.removeItem("checklist-storage");
       localStorage.removeItem("timeline-storage");
     });
@@ -30,9 +31,10 @@ test.describe("체크리스트 주차 미존재 버그 수정 (Step 8)", () => {
       // 폼이 닫히고, store에 저장되었는지 확인
       await expect(page.getByPlaceholder("할 일을 입력하세요")).not.toBeVisible();
       // 4주차 카드의 체크리스트 요약이 표시되고, 클릭하면 항목이 보임
+      // week 4는 default 1개(item_105) + 신규 1개 = 총 2개
       const week4Card = page.locator("#timeline-week-4");
-      await expect(week4Card.getByText("체크리스트 1개")).toBeVisible();
-      await week4Card.getByText("체크리스트 1개").click();
+      await expect(week4Card.getByText("체크리스트 2개")).toBeVisible();
+      await week4Card.getByText("체크리스트 2개").click();
       await expect(week4Card.getByText("정상 추가 테스트")).toBeVisible();
     });
 

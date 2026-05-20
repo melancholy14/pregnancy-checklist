@@ -80,8 +80,15 @@ test.describe("Lighthouse 스크립트 인프라", () => {
     const scriptPath = path.resolve("scripts/lighthouse-check.sh");
     const content = fs.readFileSync(scriptPath, "utf8");
 
+    // 정적 export는 path → path.html 형태로 빌드되므로 두 표기 모두 허용
     for (const { path: pagePath } of TARGET_PAGES) {
-      expect(content).toContain(`"${pagePath}"`);
+      const hasPath =
+        content.includes(`"${pagePath}"`) ||
+        content.includes(`"${pagePath}.html"`) ||
+        content.includes(`"${pagePath === "/" ? "/index.html" : pagePath}"`);
+      expect(hasPath, `lighthouse-check.sh가 ${pagePath}를 포함해야 합니다`).toBe(
+        true,
+      );
     }
   });
 

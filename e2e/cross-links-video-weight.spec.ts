@@ -1,8 +1,10 @@
 import { test, expect } from "@playwright/test";
+import { acceptCookieConsent } from "./helpers/consent";
 
 test.describe("Step 3: 타임라인 → 영상 크로스 링크", () => {
   test.describe("Happy Path", () => {
-    test.beforeEach(async ({ page }) => {
+    test.beforeEach(async ({ context, page }) => {
+      await acceptCookieConsent(context);
       await page.goto("/timeline");
     });
 
@@ -11,22 +13,22 @@ test.describe("Step 3: 타임라인 → 영상 크로스 링크", () => {
       // 왜: 타임라인 → 영상 크로스 링크 기본 동작 확인
       const card = page.locator('[id="timeline-week-21"]');
       await expect(card.getByText("관련 영상")).toBeVisible();
-      await expect(card.getByRole("link", { name: /임산부 스트레칭/ })).toBeVisible();
+      await expect(card.getByRole("link", { name: /임산부운동/ })).toBeVisible();
     });
 
     test("복수 영상이 매핑된 카드에서 모든 영상 링크가 표시된다", async ({ page }) => {
-      // 무엇을: 21주차에 3개 영상 링크가 모두 표시되는지
+      // 무엇을: 34주차에 5개 영상 링크가 모두 표시되는지
       // 왜: 1:N 매핑이 올바르게 렌더링되는지 확인
-      const card = page.locator('[id="timeline-week-21"]');
+      const card = page.locator('[id="timeline-week-34"]');
       const videoLinks = card.locator('a[href^="/info?tab=videos#video_"]');
-      await expect(videoLinks).toHaveCount(3);
+      await expect(videoLinks).toHaveCount(5);
     });
 
     test("관련 영상 링크를 클릭하면 통합 정보 허브 영상 탭으로 이동한다", async ({ page }) => {
       // 무엇을: 영상 링크 클릭 → /info?tab=videos#video_id 이동
       // 왜: Step 2 — 영상은 /info 통합 허브로 흡수됨
       const card = page.locator('[id="timeline-week-34"]');
-      await card.getByRole("link", { name: /출산 임박신호/ }).click();
+      await card.getByRole("link", { name: /출산 임박신호/ }).first().click();
       await expect(page).toHaveURL(/\/info\?tab=videos#video_014/);
     });
 
@@ -38,17 +40,17 @@ test.describe("Step 3: 타임라인 → 영상 크로스 링크", () => {
     });
 
     test("관련 글과 관련 영상이 동시에 표시될 수 있다", async ({ page }) => {
-      // 무엇을: 32주차 카드에 관련 글 + 관련 영상 둘 다 표시
+      // 무엇을: 24주차 카드에 관련 글 + 관련 영상 둘 다 표시
       // 왜: 두 크로스 링크가 충돌 없이 공존하는지 확인
-      const card = page.locator('[id="timeline-week-32"]');
+      const card = page.locator('[id="timeline-week-24"]');
       await expect(card.getByText("관련 글")).toBeVisible();
       await expect(card.getByText("관련 영상")).toBeVisible();
     });
 
     test("8개 카드에 관련 영상 섹션이 렌더링된다", async ({ page }) => {
-      // 무엇을: 매핑된 8개 주차 모두 확인 (12, 21, 22, 25, 30, 31, 32, 34)
+      // 무엇을: 매핑된 8개 주차 모두 확인
       // 왜: 전수 매핑 검증
-      const weeks = [12, 21, 22, 25, 30, 31, 32, 34];
+      const weeks = [17, 20, 23, 27, 30, 32, 34, 37];
       for (const week of weeks) {
         const card = page.locator(`[id="timeline-week-${week}"]`);
         await expect(card.getByText("관련 영상")).toBeVisible();
@@ -65,7 +67,9 @@ test.describe("Step 3: 타임라인 → 영상 크로스 링크", () => {
       await page.goto("/timeline");
       const card = page.locator('[id="timeline-week-34"]');
       await expect(card.getByText("관련 영상")).toBeVisible();
-      await expect(card.getByRole("link", { name: /출산 임박신호/ })).toBeVisible();
+      await expect(
+        card.getByRole("link", { name: /출산 임박신호/ }).first(),
+      ).toBeVisible();
     });
   });
 });

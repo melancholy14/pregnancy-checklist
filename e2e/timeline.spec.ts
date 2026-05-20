@@ -1,7 +1,9 @@
 import { test, expect } from "@playwright/test";
+import { acceptCookieConsent } from "./helpers/consent";
 
 test.describe("타임라인 페이지", () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ context, page }) => {
+    await acceptCookieConsent(context);
     await page.goto("/timeline");
   });
 
@@ -10,13 +12,15 @@ test.describe("타임라인 페이지", () => {
       // 무엇을: 타임라인 페이지 기본 UI
       // 왜: 페이지 정상 진입 확인
       await expect(page.getByRole("heading", { name: "임신 타임라인" })).toBeVisible();
-      await expect(page.getByText("주차별 일정과 체크리스트를 한눈에 확인하세요")).toBeVisible();
+      await expect(
+        page.getByText(/임신 주차에 맞춰 준비해야 할 항목을 한눈에 확인하세요/),
+      ).toBeVisible();
     });
 
     test("JSON 기반 타임라인 항목들이 주차순으로 표시된다", async ({ page }) => {
       // 무엇을: timeline_items.json의 항목들이 카드로 렌더링되는지
       // 왜: 기본 데이터 정상 렌더링 확인
-      await expect(page.getByText("임신 확인 후 기본 일정 잡기")).toBeVisible();
+      await expect(page.getByText("임신 확인과 엽산 복용 시작")).toBeVisible();
       await expect(page.getByText("4주", { exact: true })).toBeVisible();
     });
 
@@ -58,9 +62,12 @@ test.describe("타임라인 페이지", () => {
       await expect(page.getByText("삭제 테스트")).toBeVisible();
 
       // 삭제 — confirm 다이얼 없이 즉시 사라지고 토스트 노출
-      const card = page.locator('[data-slot="card"]').filter({ hasText: "삭제 테스트" });
-      await card.getByRole("button", { name: "삭제" }).click();
-      await expect(page.getByText("삭제 테스트")).not.toBeVisible();
+      // TimelineAccordionCard 는 [data-slot="card"] 안에 트리거(button) + 삭제 버튼이 형제로 위치
+      const card = page
+        .locator('[data-slot="card"]')
+        .filter({ has: page.getByRole("heading", { name: "삭제 테스트" }) });
+      await card.getByRole("button", { name: "삭제", exact: true }).click();
+      await expect(page.getByRole("heading", { name: "삭제 테스트" })).not.toBeVisible();
       await expect(page.getByText("타임라인 노트를 삭제했어요")).toBeVisible();
     });
   });
@@ -77,7 +84,7 @@ test.describe("타임라인 페이지", () => {
     test("기본 항목에는 삭제 버튼이 없다", async ({ page }) => {
       // 무엇을: JSON 기본 항목에 삭제 아이콘이 없는지
       // 왜: 기본 데이터 보호
-      const firstCard = page.getByText("임신 확인 후 기본 일정 잡기").locator("..").locator("..");
+      const firstCard = page.getByText("임신 확인과 엽산 복용 시작").locator("..").locator("..");
       await expect(firstCard.locator('button[aria-label="삭제"]')).not.toBeVisible();
     });
   });
@@ -101,7 +108,7 @@ test.describe("타임라인 페이지", () => {
     test("모바일: 타임라인 카드가 정상 렌더링된다", async ({ page }) => {
       // 무엇을: 375px에서 카드가 보이고 FAB가 접근 가능한지
       // 왜: 주요 타겟 기기
-      await expect(page.getByText("임신 확인 후 기본 일정 잡기")).toBeVisible();
+      await expect(page.getByText("임신 확인과 엽산 복용 시작")).toBeVisible();
       await expect(page.locator('button[aria-label="항목 추가"]')).toBeVisible();
     });
   });

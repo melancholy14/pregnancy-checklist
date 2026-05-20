@@ -1,6 +1,11 @@
 import { test, expect } from "@playwright/test";
+import { acceptCookieConsent } from "./helpers/consent";
 
 test.describe("개인정보처리방침 & 서비스 약관", () => {
+  test.beforeEach(async ({ context }) => {
+    await acceptCookieConsent(context);
+  });
+
   test.describe("Happy Path", () => {
     test("개인정보처리방침 페이지가 렌더링된다", async ({ page }) => {
       // 무엇을: /privacy 페이지 정상 접근 및 콘텐츠 표시

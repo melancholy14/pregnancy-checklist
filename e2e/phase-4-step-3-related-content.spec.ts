@@ -1,6 +1,11 @@
 import { test, expect } from "@playwright/test";
+import { acceptCookieConsent } from "./helpers/consent";
 
 test.describe("아티클 하단 관련 콘텐츠 추천 (Phase 4 Step 3)", () => {
+  test.beforeEach(async ({ context }) => {
+    await acceptCookieConsent(context);
+  });
+
   test.describe("Happy Path", () => {
     test('/articles/early-pregnancy-tests 하단에 "📰 관련 콘텐츠" 섹션이 노출된다', async ({
       page,
@@ -94,13 +99,13 @@ test.describe("아티클 하단 관련 콘텐츠 추천 (Phase 4 Step 3)", () =>
     test("매칭되는 체크리스트가 없는 글에서는 '관련 체크리스트' 섹션이 표시되지 않는다", async ({
       page,
     }) => {
-      // 무엇을: prenatal-insurance-preparation-guide는 어떤 체크리스트의 linked_article_slugs에도 없음
+      // 무엇을: babyfair-survival-guide는 어떤 체크리스트의 linked_article_slugs에도 없음
       // 왜: 빈 섹션이 노출되면 UX 잡음. AC #7과 직결
-      await page.goto("/articles/prenatal-insurance-preparation-guide");
+      await page.goto("/articles/babyfair-survival-guide");
 
       // 글이 정상 로드됐는지 먼저 확인
       await expect(
-        page.getByRole("heading", { name: /태아보험/, level: 1 }),
+        page.getByRole("heading", { name: /베이비페어/, level: 1 }).first(),
       ).toBeVisible();
 
       await expect(page.getByText("관련 체크리스트")).not.toBeVisible();
