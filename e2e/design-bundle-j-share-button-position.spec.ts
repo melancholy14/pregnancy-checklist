@@ -111,7 +111,7 @@ test.describe("ShareButton position 파라미터 (묶음 J)", () => {
       expect(events).toHaveLength(1);
       expect(events[0].params.position).toBe("top_right");
       expect(events[0].params.content_type).toBe("article");
-      expect(events[0].params.method).toBe("clipboard");
+      expect(events[0].params.method).toBe("copy-link");
     });
 
     test("아티클 중앙하단 ShareButton → share_click.position='bottom_center' 발사", async ({
@@ -362,7 +362,7 @@ test.describe("ShareButton position 파라미터 (묶음 J)", () => {
       const events = await getShareClickEvents(page);
       expect(events).toHaveLength(1);
       expect(events[0].params.position).toBe("top_right");
-      expect(events[0].params.method).toBe("web_share_api");
+      expect(events[0].params.method).toBe("web-share");
     });
 
     test("모바일: 아티클 중앙하단 버튼도 position=bottom_center로 발사된다", async ({
@@ -395,7 +395,7 @@ test.describe("ShareButton position 파라미터 (묶음 J)", () => {
       const events = await getShareClickEvents(page);
       expect(events).toHaveLength(1);
       expect(events[0].params.position).toBe("bottom_center");
-      expect(events[0].params.method).toBe("web_share_api");
+      expect(events[0].params.method).toBe("web-share");
     });
   });
 });

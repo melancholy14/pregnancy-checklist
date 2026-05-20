@@ -53,6 +53,7 @@ export async function triggerShare({
         slug: itemId,
         method: "web-share",
         location: locationFromPosition(position),
+        position,
         content_type: contentType,
       });
     } catch {
@@ -84,6 +85,7 @@ export async function copyShareLink(
       slug: ctx.itemId,
       method: "copy-link",
       location: locationFromPosition(ctx.position),
+      position: ctx.position,
       content_type: ctx.contentType,
     });
   } catch {
