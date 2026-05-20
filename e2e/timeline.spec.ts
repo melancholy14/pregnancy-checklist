@@ -62,9 +62,11 @@ test.describe("타임라인 페이지", () => {
       await expect(page.getByText("삭제 테스트")).toBeVisible();
 
       // 삭제 — confirm 다이얼 없이 즉시 사라지고 토스트 노출
-      const heading = page.getByRole("heading", { name: "삭제 테스트" });
-      const card = heading.locator("xpath=ancestor::*[self::div or self::button][1]");
-      await card.getByRole("button", { name: "삭제" }).click();
+      // TimelineAccordionCard 는 [data-slot="card"] 안에 트리거(button) + 삭제 버튼이 형제로 위치
+      const card = page
+        .locator('[data-slot="card"]')
+        .filter({ has: page.getByRole("heading", { name: "삭제 테스트" }) });
+      await card.getByRole("button", { name: "삭제", exact: true }).click();
       await expect(page.getByRole("heading", { name: "삭제 테스트" })).not.toBeVisible();
       await expect(page.getByText("타임라인 노트를 삭제했어요")).toBeVisible();
     });

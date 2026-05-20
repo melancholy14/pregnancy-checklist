@@ -102,16 +102,15 @@ test.describe("P14: AI 생성 이미지 표시", () => {
   });
 
   test.describe("Error / Validation", () => {
-    test("발행 글 2건은 캡션이 없으므로 figcaption이 미렌더된다", async ({
+    test("이미지에 markdown title이 있는 글은 figcaption이 렌더된다", async ({
       page,
     }) => {
-      // 무엇을: figcaption.article-figure__caption이 0개인지 (캡션 없음 → 미렌더)
-      // 왜: review.md §5.2 절충안 — 캡션 없으면 figcaption 자체 미렌더, 칩+alt만으로 표시
+      // 무엇을: weekly-prenatal-checklist 본문 이미지에 title="..." 속성 → figcaption 노출
+      // 왜: rehype-article-figure 가 title 슬롯을 figcaption 으로 변환 (image-sop.md 참고)
       await page.goto("/articles/weekly-prenatal-checklist");
 
-      await expect(
-        page.locator(".article-prose .article-figure__caption"),
-      ).toHaveCount(0);
+      const captions = page.locator(".article-prose .article-figure__caption");
+      await expect(captions.first()).toBeVisible();
     });
 
     test("이미지 없는 글에는 article-figure 자체가 노출되지 않는다", async ({

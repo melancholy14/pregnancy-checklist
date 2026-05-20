@@ -45,16 +45,13 @@ test.describe("Phase 1.5: 타임라인 + 체크리스트 통합", () => {
       const accordionTrigger = page.getByText(/체크리스트 \d+개/).first();
       await accordionTrigger.click();
 
-      // 첫 번째 체크박스 클릭 (visible 한정으로 펼쳐진 카드 안의 체크박스)
-      const checkbox = page.locator('button[role="checkbox"]:visible').first();
-      await checkbox.click();
+      // ChecklistRow는 sr-only input[type=checkbox]를 가진 label로 토글
+      const checkbox = page.getByRole("checkbox").first();
+      await checkbox.dispatchEvent("click");
+      await expect(checkbox).toBeChecked();
 
-      // 체크 상태 확인
-      await expect(checkbox).toHaveAttribute("data-state", "checked");
-
-      // 다시 클릭하여 해제
-      await checkbox.click();
-      await expect(checkbox).toHaveAttribute("data-state", "unchecked");
+      await checkbox.dispatchEvent("click");
+      await expect(checkbox).not.toBeChecked();
     });
 
     test("전체 진행률이 체크 상태에 따라 변한다", async ({ page }) => {
@@ -66,8 +63,7 @@ test.describe("Phase 1.5: 타임라인 + 체크리스트 통합", () => {
       // 아코디언 펼치고 체크
       const accordionTrigger = page.getByText(/체크리스트 \d+개/).first();
       await accordionTrigger.click();
-      const checkbox = page.locator('button[role="checkbox"]:visible').first();
-      await checkbox.click();
+      await page.locator('input[type="checkbox"]').first().dispatchEvent("click");
 
       const after = await progressCard.textContent();
       expect(before).not.toEqual(after);
@@ -208,11 +204,13 @@ test.describe("Phase 1.5: 타임라인 + 체크리스트 통합", () => {
 
       await expect(page.getByText("삭제 테스트 항목")).toBeVisible();
 
-      const card = page.locator('[data-slot="card"]').filter({ hasText: "삭제 테스트 항목" });
-      await card.getByRole("button", { name: "삭제" }).click();
+      const card = page
+        .locator('[data-slot="card"]')
+        .filter({ has: page.getByRole("heading", { name: "삭제 테스트 항목" }) });
+      await card.getByRole("button", { name: "삭제", exact: true }).click();
 
       // 즉시 삭제 + sonner 토스트 노출
-      await expect(page.getByText("삭제 테스트 항목")).not.toBeVisible();
+      await expect(page.getByRole("heading", { name: "삭제 테스트 항목" })).not.toBeVisible();
       await expect(page.getByText(/노트를 삭제했어요/)).toBeVisible();
     });
 
@@ -227,8 +225,10 @@ test.describe("Phase 1.5: 타임라인 + 체크리스트 통합", () => {
 
       await expect(page.getByText("삭제 취소 테스트")).toBeVisible();
 
-      const card = page.locator('[data-slot="card"]').filter({ hasText: "삭제 취소 테스트" });
-      await card.getByRole("button", { name: "삭제" }).click();
+      const card = page
+        .locator('[data-slot="card"]')
+        .filter({ has: page.getByRole("heading", { name: "삭제 취소 테스트" }) });
+      await card.getByRole("button", { name: "삭제", exact: true }).click();
 
       // undo 토스트에서 "되돌리기" 클릭
       await page.getByRole("button", { name: /되돌리기/ }).click();
@@ -332,10 +332,9 @@ test.describe("Phase 1.5: 타임라인 + 체크리스트 통합", () => {
       const accordionTrigger = page.getByText(/체크리스트 \d+개/).first();
       await accordionTrigger.click();
 
-      const checkbox = page.locator('button[role="checkbox"]:visible').first();
-      await expect(checkbox).toBeVisible();
-      await checkbox.click();
-      await expect(checkbox).toHaveAttribute("data-state", "checked");
+      const checkbox = page.getByRole("checkbox").first();
+      await checkbox.dispatchEvent("click");
+      await expect(checkbox).toBeChecked();
     });
 
     test("모바일: 카테고리 필터 칩이 스크롤 가능하다", async ({ page }) => {

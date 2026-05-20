@@ -23,10 +23,10 @@ test.describe("달성감 / 게이미피케이션 (Step 9)", () => {
       await expect(week6Card.locator('span[aria-label="완료"]')).not.toBeVisible();
 
       // 아코디언 열기
-      await week6Card.getByText("체크리스트").click();
+      await week6Card.getByText(/체크리스트 \d+개/).first().click();
 
       // 체크리스트 항목 체크
-      await week6Card.getByRole("checkbox").first().check();
+      await week6Card.locator('input[type="checkbox"]').first().dispatchEvent("click");
 
       // ✅ 아이콘 표시
       await expect(week6Card.locator('span[aria-label="완료"]')).toBeVisible();
@@ -41,12 +41,12 @@ test.describe("달성감 / 게이미피케이션 (Step 9)", () => {
       const week6Card = page.locator("#timeline-week-4");
 
       // 체크
-      await week6Card.getByText("체크리스트").click();
-      await week6Card.getByRole("checkbox").first().check();
+      await week6Card.getByText(/체크리스트 \d+개/).first().click();
+      await week6Card.locator('input[type="checkbox"]').first().dispatchEvent("click");
       await expect(week6Card.locator('span[aria-label="완료"]')).toBeVisible();
 
       // 체크 해제
-      await week6Card.getByRole("checkbox").first().uncheck();
+      await week6Card.locator('input[type="checkbox"]').first().dispatchEvent("click");
       await expect(week6Card.locator('span[aria-label="완료"]')).not.toBeVisible();
       await expect(week6Card.getByText("4주차 할일을 모두 완료했어요!")).not.toBeVisible();
     });
@@ -69,7 +69,8 @@ test.describe("달성감 / 게이미피케이션 (Step 9)", () => {
         // 충분한 수의 아이템을 체크한 상태를 시뮬레이션
         const storage = JSON.parse(localStorage.getItem("checklist-storage") || '{"state":{"checkedIds":[],"customItems":[]},"version":0}');
         // 기존 checkedIds에 많은 항목 추가하여 25% 이상 만들기
-        const fakeIds = Array.from({ length: 30 }, (_, i) => `item_${String(i + 1).padStart(3, "0")}`);
+        // checklist_items.json은 item_001~item_092 까지 있고 25% threshold = 23개 → 여유롭게 60개
+        const fakeIds = Array.from({ length: 60 }, (_, i) => `item_${String(i + 1).padStart(3, "0")}`);
         storage.state.checkedIds = fakeIds;
         localStorage.setItem("checklist-storage", JSON.stringify(storage));
       });
@@ -88,8 +89,8 @@ test.describe("달성감 / 게이미피케이션 (Step 9)", () => {
       // 무엇을: 375px에서 게이미피케이션 UI가 잘리지 않는지
       // 왜: 주요 타겟 기기
       const week6Card = page.locator("#timeline-week-4");
-      await week6Card.getByText("체크리스트").click();
-      await week6Card.getByRole("checkbox").first().check();
+      await week6Card.getByText(/체크리스트 \d+개/).first().click();
+      await week6Card.locator('input[type="checkbox"]').first().dispatchEvent("click");
 
       await expect(week6Card.locator('span[aria-label="완료"]')).toBeVisible();
       await expect(week6Card.getByText("4주차 할일을 모두 완료했어요!")).toBeVisible();
