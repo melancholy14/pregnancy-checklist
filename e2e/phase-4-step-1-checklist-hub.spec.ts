@@ -88,6 +88,8 @@ test.describe("체크리스트 허브 + 신규 3종 (Phase 4 Step 1)", () => {
       // 무엇을: 출산가방 체크가 임신준비 진행률에 영향 주지 않음
       // 왜: AC #5 — 데이터 격리
       await page.goto("/checklist/hospital-bag");
+      // hydration 전에 dispatchEvent를 쏘면 React onChange가 비어 클릭이 사라진다 — "0/N 완료"로 hydration 완료 대기
+      await expect(page.getByText(/0\/\d+ 완료/)).toBeVisible();
       const checkbox = page.getByRole("checkbox", { name: /산모용 잠옷/ }).first();
       await checkbox.dispatchEvent("click");
       // localStorage 쓰기가 page.goto 보다 늦으면 키가 비어 보이는 레이스 발생 — 영속화 완료를 기다린다
