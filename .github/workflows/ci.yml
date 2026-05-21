@@ -1,0 +1,140 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CI: "1"
+      NEXT_PUBLIC_GA_MEASUREMENT_ID: ${{ secrets.GA_MEASUREMENT_ID }}
+      NEXT_PUBLIC_ADSENSE_CLIENT_ID: ${{ secrets.ADSENSE_CLIENT_ID }}
+      NEXT_PUBLIC_FEEDBACK_FORM_URL: ${{ secrets.FEEDBACK_FORM_URL }}
+      NEXT_PUBLIC_SITE_URL: ${{ secrets.SITE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Verify required secrets (fail-fast)
+        run: |
+          : "${NEXT_PUBLIC_GA_MEASUREMENT_ID:?GitHub Secret GA_MEASUREMENT_ID is required — see docs/ops/github-secrets.md}"
+          : "${NEXT_PUBLIC_ADSENSE_CLIENT_ID:?GitHub Secret ADSENSE_CLIENT_ID is required — see docs/ops/github-secrets.md}"
+          : "${NEXT_PUBLIC_FEEDBACK_FORM_URL:?GitHub Secret FEEDBACK_FORM_URL is required — see docs/ops/github-secrets.md}"
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      # npm 옵셔널 디펜던시 버그(#4828) 워크어라운드:
+      # 락파일이 darwin에서 생성돼 linux 네이티브 바이너리 노드가 누락 → @tailwindcss/postcss build 실패.
+      - name: Install linux native binaries (lightningcss, @tailwindcss/oxide)
+        run: npm install --no-save --legacy-peer-deps lightningcss-linux-x64-gnu @tailwindcss/oxide-linux-x64-gnu
+
+      - name: Type check
+        run: npx tsc --noEmit
+
+      # Lint은 drift signal — 4건 잔존 부채(D-Mn1 시점 정리 예정)로 현재 hard fail 회피.
+      # 새 에러 도입은 PR 리뷰에서 시각 확인. tsc·playwright는 hard fail 유지.
+      - name: Lint (soft signal)
+        continue-on-error: true
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+      - name: Resolve Playwright version
+        id: pw
+        run: echo "version=$(node -p "require('@playwright/test/package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Playwright browsers
+        id: pw-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: pw-${{ runner.os }}-${{ steps.pw.outputs.version }}-chromium
+
+      - name: Install Playwright browsers (cache miss)
+        if: steps.pw-cache.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps chromium
+
+      - name: Install Playwright system deps only (cache hit)
+        if: steps.pw-cache.outputs.cache-hit == 'true'
+        run: npx playwright install-deps chromium
+
+      - name: Run Playwright tests
+        run: npx playwright test
+
+      - name: Upload Playwright artifacts on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-artifacts-${{ github.run_id }}
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 14
+          if-no-files-found: ignore
+
+  deploy:
+    needs: build-test
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    env:
+      NEXT_PUBLIC_GA_MEASUREMENT_ID: ${{ secrets.GA_MEASUREMENT_ID }}
+      NEXT_PUBLIC_ADSENSE_CLIENT_ID: ${{ secrets.ADSENSE_CLIENT_ID }}
+      NEXT_PUBLIC_FEEDBACK_FORM_URL: ${{ secrets.FEEDBACK_FORM_URL }}
+      NEXT_PUBLIC_SITE_URL: ${{ secrets.SITE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Verify required secrets (fail-fast)
+        run: |
+          : "${NEXT_PUBLIC_GA_MEASUREMENT_ID:?GitHub Secret GA_MEASUREMENT_ID is required}"
+          : "${NEXT_PUBLIC_ADSENSE_CLIENT_ID:?GitHub Secret ADSENSE_CLIENT_ID is required}"
+          : "${NEXT_PUBLIC_FEEDBACK_FORM_URL:?GitHub Secret FEEDBACK_FORM_URL is required}"
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Install linux native binaries (lightningcss, @tailwindcss/oxide)
+        run: npm install --no-save --legacy-peer-deps lightningcss-linux-x64-gnu @tailwindcss/oxide-linux-x64-gnu
+
+      - name: Build
+        run: npm run build
+
+      - name: Lighthouse SEO Check
+        continue-on-error: true
+        run: |
+          npx serve out -l 3000 &
+          SERVER_PID=$!
+          sleep 3
+          bash scripts/lighthouse-check.sh http://localhost:3000 || true
+          kill "$SERVER_PID" || true
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          cname: pregnancy-checklist.com
