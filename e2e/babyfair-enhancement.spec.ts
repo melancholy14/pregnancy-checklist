@@ -9,6 +9,8 @@ test.describe("베이비페어 정보 구체화 (Step 17)", () => {
     test("대형 행사에 scale 배지 '대형'이 표시된다", async ({ page }) => {
       // 무엇을: scale=large 행사에 "대형" 배지가 보이는지
       // 왜: 규모 시각적 구분이 핵심 개선 포인트
+      // 시간 경과로 large 행사가 ongoing/upcoming에서 사라질 수 있어 ended 탭에서 검증
+      await page.getByRole("tab", { name: /지난 행사/ }).click();
       await expect(page.getByText("대형").first()).toBeVisible();
     });
 
@@ -27,6 +29,8 @@ test.describe("베이비페어 정보 구체화 (Step 17)", () => {
     test("확장 정보가 있는 행사에 주차 안내가 표시된다", async ({ page }) => {
       // 무엇을: parking 필드가 있는 행사에 주차 정보가 보이는지
       // 왜: 대형 페어에서 주차가 핵심 의사결정 요소
+      // parking 보유 행사가 시간 경과로 ended 탭에 머무를 수 있어 명시적으로 이동
+      await page.getByRole("tab", { name: /지난 행사/ }).click();
       await expect(page.getByText(/주차장/).first()).toBeVisible();
     });
 
@@ -35,6 +39,8 @@ test.describe("베이비페어 정보 구체화 (Step 17)", () => {
     }) => {
       // 무엇을: highlights 배열이 있는 행사에 항목들이 보이는지
       // 왜: 행사 특징으로 방문 여부 판단
+      // "200+ 브랜드 참여" 행사가 시간 경과로 ended 탭에 머무를 수 있어 명시적으로 이동
+      await page.getByRole("tab", { name: /지난 행사/ }).click();
       await expect(page.getByText("200+ 브랜드 참여").first()).toBeVisible();
     });
 
@@ -78,6 +84,8 @@ test.describe("베이비페어 정보 구체화 (Step 17)", () => {
     }) => {
       // 무엇을: 375px에서 배지가 줄바꿈되어 정상 표시되는지
       // 왜: 배지 추가로 카드 헤더가 좁은 화면에서 깨질 수 있음
+      // large 행사가 ongoing/upcoming에서 사라질 수 있어 ended 탭에서 검증
+      await page.getByRole("tab", { name: /지난 행사/ }).click();
       await expect(page.getByText("대형").first()).toBeVisible();
     });
 
