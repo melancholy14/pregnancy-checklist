@@ -1,4 +1,4 @@
 User-Agent: *
 Allow: /
 
-Sitemap: https://pregnancy-checklist.com/sitemap.xml
+Sitemap: /sitemap.xml
