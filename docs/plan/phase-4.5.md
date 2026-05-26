@@ -3,9 +3,9 @@
 > Phase 4 기록: [phase-4.md](phase-4.md)
 > Date: 2026-05-02
 > 목표 완료: TBD
-> Status: ✅ 마케팅 G·H·I·J·L 완료 / 개발 D-C1·D-C2 완료 — D-M1~M3 + D-Data 마감 대기 (2026-05-13 갱신)
+> Status: ✅ 마케팅 G·H·I·J·L 완료 / 개발 D-A·D-B 완료 — 마케팅 묶음 M(launchd 안정화)만 잔여 (2026-05-26 갱신)
 >
-> **진행 요약 (2026-05-13)**
+> **진행 요약 (2026-05-26)**
 >
 > - **기획 §3** — Critical 결정·구현 완료:
 >   P3·P4 ([pregnancy-week-onboarding](../pregnancy-week-onboarding/README.md)),
@@ -21,14 +21,14 @@
 >   - refactor 묶음 2건 통합: B·I ([design-bundle-b-i-row-tokens](../features/design-bundle-b-i-row-tokens/) — WeekChecklistSection label 마크업 + 데이터→토큰 헬퍼)
 >   - decision 묶음 3건: J ShareButton 위치 ([design-bundle-j-share-button-position](../design-bundle-j-share-button-position/README.md)), K 삭제 패턴 undo 토스트 ([design-bundle-k-delete-pattern](../design-bundle-k-delete-pattern/README.md)), N 차트 색 peach ([design-bundle-n-weight-chart-color](../design-bundle-n-weight-chart-color/README.md))
 >   - 잔여: IM-6 (alt 가이드라인, P10 운영자 가이드 통합 의존)
-> - **마케팅 §1** — **묶음 G·H·I·J·L 완료**:
+> - **마케팅 §1** — **묶음 G·H·I·J·L 완료 + 묶음 M launchd 등록·1차 검증 통과 (2026-05-26)**:
 >   wiring ([marketing-events-wiring](../marketing-events-wiring/README.md), 2026-05-12) + 자동 주간 리포트 스크립트 ([marketing-weekly-report](../features/marketing-weekly-report/), 2026-05-13).
->   `scripts/weekly-report/` 7개 파일(GA4 Data API + Claude/OpenAI 백업 + writer) + ga4.md §8/§9 갱신 완료.
->   잔여: 묶음 M (launchd 등록 + 1차 수동 실행 검증 + 2주 안정화) — D-Data 마감 ~2026-05-26 직후 진입.
-> - **개발 §4** — **Critical D-C1·D-C2 완료** (2026-05-13):
->   D-C1 = `public/ads.txt` + `adsbygoogle.js` consent-gated 주입 ([ConsentGatedScripts.tsx](../../src/components/consent/ConsentGatedScripts.tsx)). D-C2 = 원래 4건 + 신규 2건 빈 `reviewed_by` 모두 제거 완료 (사이트 전체 빈 `reviewed_by: ""` 0건). 새 글 SOP에 D-C2 룰 명문화 잔여.
->   잔여: D-M1~M3 (CI/E2E/회귀) + P1 deferred 묶음(`checklist-data-model-bundle`).
-> - **운영자 작업 잔여**: D1 GA4 Property ID + Service Account 발급 ✅ 완료 (2026-05-12, `~/.config/pregnancy-checklist/ga4-sa.json` — `chmod 600` 잔여). P11 vault 매트릭스 1차 수기 작성은 phase-4.6 종료 후로 이연 (타임라인 흡수·4축 정합 반영).
+>   `scripts/weekly-report/` 7개 파일(GA4 Data API + Claude/OpenAI 백업 + writer) + ga4.md §8/§9 갱신 완료. 묶음 M plist 등록 + kickstart 즉시 검증 통과 (exit 0, 2026-W21.md §1.9.6 스키마 일치, OpenAI fallback).
+>   잔여: 2주 안정화 관찰 (~2026-06-15 누락/실패 0건 확인 시 묶음 M 종료).
+> - **개발 §4** — **D-A·D-B 완료** (2026-05-26):
+>   D-A(Critical) = D-C1 `public/ads.txt` + `adsbygoogle.js` consent-gated 주입 ([ConsentGatedScripts.tsx](../../src/components/consent/ConsentGatedScripts.tsx)) + D-C2 빈 `reviewed_by` 사이트 전체 0건. D-B(자동화·회귀 안전망) = D-M1~M3 (GitHub Actions CI/CD + Playwright webServer + 동의 거부 회귀 e2e) 완료.
+>   잔여: D-C(코드 정돈)·D-D(리뷰 잔불)·D-E(트리거 대기) — phase-4.5 종료 차단 아님. P1 deferred 묶음(`checklist-data-model-bundle`)은 phase-4.5 종료 시점 동반 처리.
+> - **운영자 작업 잔여**: D1 GA4 Property ID + Service Account 발급 ✅ 완료 (2026-05-12, `~/.config/pregnancy-checklist/ga4-sa.json` `chmod 600` 적용 완료). P11 vault 매트릭스 1차 수기 작성은 phase-4.6 종료 후로 이연 (타임라인 흡수·4축 정합 반영).
 > - **분기**: 정보 구조 4축 정돈은 [phase-4.6.md](phase-4.6.md)로 분리 (D1 ✅ + 2주 데이터 수집 중, ~2026-05-26 진입 예상).
 
 ## Overview
@@ -191,7 +191,7 @@ GA4 인프라(consent 게이팅 + 수동 page_view + `sendGAEvent` 헬퍼)는 �
 권장 실행 순서: **G → H → (1주 관찰) → I → J → L → M**
 (G·H 없이 I 먼저 가면 코호트 슬라이싱이 안 돼서 데이터가 평면적. L·M은 G~J가 1~2주 누적된 뒤 의미 있는 리포트가 나옴.)
 
-> **상태 (2026-05-13)**: ✅ **묶음 G·H·I·J·L 완료**. wiring ([marketing-events-wiring](../marketing-events-wiring/README.md), 2026-05-12) + 자동 주간 리포트 스크립트 ([marketing-weekly-report](../features/marketing-weekly-report/), 2026-05-13, `scripts/weekly-report/` 7개 파일 — GA4 Data API + Claude/OpenAI 백업 fallback + writer). ga4.md §8/§9 갱신 완료. **잔여: 묶음 M (launchd 등록 + 1차 수동 실행 검증 + 2주 안정화)** — D-Data 마감 ~2026-05-26 직후 진입.
+> **상태 (2026-05-26)**: ✅ **묶음 G·H·I·J·L 완료 + 묶음 M launchd 등록·1차 검증 통과**. wiring ([marketing-events-wiring](../marketing-events-wiring/README.md), 2026-05-12) + 자동 주간 리포트 스크립트 ([marketing-weekly-report](../features/marketing-weekly-report/), 2026-05-13). 묶음 M: `~/Library/LaunchAgents/com.melancholy14.pregnancy-checklist.weekly-report.plist` 등록 + `kickstart -k`로 즉시 실행 → exit 0 + 출력 `~/Documents/pregnancy-checklist/60-analytics/weekly/2026-W21.md` §1.9.6 스키마 통과 (OpenAI fallback, $0.0083). **잔여: 2주 안정화 관찰** — 다음 월요일 2026-06-01 09:00 자동 발사 → ~2026-06-15 누락/실패 0건 확인 시 묶음 M 종료.
 
 > 📌 §2(디자인) 작업 묶음 A~F와는 독립 진행 가능. 단 §2.6의 "미체크만 보기" 토글이 들어가면 묶음 H 정의에 `checklist_filter` 이벤트 1개 추가.
 
@@ -263,12 +263,12 @@ config/
 
 #### D1. GA4 Property ID + Service Account 발급
 
-> **상태 (2026-05-12)**: ✅ **운영자 작업 완료** — Property ID 확인 + Service Account JSON 키 발급 + GA4 Viewer 권한 부여. JSON 키 `~/.config/pregnancy-checklist/ga4-sa.json` (SoT 경로 그대로, 2352 bytes). ⚠️ **권한이 현재 644 — `chmod 600` 필요**. `scripts/weekly-report/`는 묶음 L에서 신규 생성 예정.
+> **상태 (2026-05-26)**: ✅ **완료** — Property ID 확인 + Service Account JSON 키 발급 + GA4 Viewer 권한 부여 + `chmod 600` 적용. JSON 키 `~/.config/pregnancy-checklist/ga4-sa.json`. `scripts/weekly-report/`는 묶음 L에서 신규 생성 완료.
 
 - [x] GA4 콘솔에서 Property ID 확인 (Measurement ID `G-XXX`와 다름)
 - [x] GCP 콘솔에서 Service Account 생성 → JSON 키 다운로드
 - [x] GA4 Property에 Service Account 이메일을 **Viewer 권한**으로 추가
-- [ ] **잔여**: `chmod 600 ~/.config/pregnancy-checklist/ga4-sa.json` (보안)
+- [x] `chmod 600 ~/.config/pregnancy-checklist/ga4-sa.json` (보안)
 - **보관 위치**: `~/.config/pregnancy-checklist/ga4-sa.json` (홈 밖, repo 밖). 환경변수 `GA4_SA_KEY_PATH`로 참조.
 
 #### D2. 스케줄러 — launchd 채택
@@ -350,11 +350,15 @@ ga4_property: <id>
 
 #### M. launchd 등록
 1. `~/Library/LaunchAgents/com.melancholy14.pregnancy-checklist.weekly-report.plist` 작성
-2. `StartCalendarInterval`: Weekday=2(Monday), Hour=9, Minute=0
-3. `WorkingDirectory`: 프로젝트 루트
-4. `StandardOutPath` / `StandardErrorPath`: `~/Library/Logs/pregnancy-checklist-report.log`
-5. `launchctl load` → 다음 월요일 자동 실행 확인
-6. **2주 관찰**: 누락/실패 0건이면 안정화 완료.
+2. `StartCalendarInterval`: Weekday=1(Monday), Hour=9, Minute=0
+   - ⚠️ Apple launchd 표준: Sunday=0/7, **Monday=1**, Tuesday=2 ... (cron의 `2=Tuesday`와 다름)
+3. `WorkingDirectory`: **지정 금지** — `~/Documents` 내부 경로를 cwd로 두면 macOS sandboxd가 `process.cwd()`를 EPERM으로 차단. 대신 `ProgramArguments`에 `node` + tsx CLI + `scripts/weekly-report/index.ts`를 모두 **절대경로**로 명시.
+4. `EnvironmentVariables`에 `GA4_PROPERTY_ID` / `GA4_SA_KEY_PATH` / `ANTHROPIC_API_KEY` / `OPENAI_API_KEY` 직접 박기 (코드의 `loadEnvLocal()`은 cwd-relative `.env.local`을 찾아서, WorkingDirectory가 없으면 skip됨).
+5. `StandardOutPath` / `StandardErrorPath`: `~/Library/Logs/pregnancy-checklist-report.log`
+6. `chmod 600` plist (env에 시크릿 박혀 있음)
+7. **운영자 GUI 1회**: 시스템 설정 → 개인정보 보호 및 보안 → **전체 디스크 접근 권한**에 `/Users/msgoh/.nvm/versions/node/v20.19.4/bin/node` 추가 + 토글 ON. (~/Documents 안에 vault 쓰기 권한 위해)
+8. `launchctl bootstrap gui/$UID` → `kickstart -k`로 즉시 1회 검증 → 다음 월요일 자동 실행 확인
+9. **2주 관찰**: 누락/실패 0건이면 안정화 완료.
 
 ### 1.9.8 회귀 안전장치
 
@@ -879,7 +883,7 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 > 출처: [docs/tech/technical-debt.md](../tech/technical-debt.md) P1 항목, [docs/tech/review.md](../tech/review.md) 리뷰 잔불, [docs/tech/impl.md](../tech/impl.md) 미구현 메모
 > 기준: Phase 5 착수 전에 처리해야 할 기술 부채만 모음. P2/P3는 [docs/tech/technical-debt.md](../tech/technical-debt.md)에 잔존.
 >
-> **상태 (2026-05-13)**: 🟡 **D-A(D-C1·D-C2) 완료, D-B~E 미착수**. D-Data 14일 동안 D-B(CI/E2E 안전망) 진행 권장. P2 ChecklistItem.tsx 미사용 코드는 [checklist-recommendation-semantics](../checklist-recommendation-semantics/README.md)에서 이미 삭제됨. P1 deferred 묶음(`checklist-data-model-bundle`)은 phase-4.5 종료 시 함께 처리.
+> **상태 (2026-05-26)**: ✅ **D-A·D-B 완료, D-C~E 미착수(phase-4.5 종료 차단 아님)**. D-B(D-M1 CI/CD + D-M2 webServer + D-M3 동의 거부 회귀 e2e) 완료. P2 ChecklistItem.tsx 미사용 코드는 [checklist-recommendation-semantics](../checklist-recommendation-semantics/README.md)에서 이미 삭제됨. P1 deferred 묶음(`checklist-data-model-bundle`)은 phase-4.5 종료 시 함께 처리.
 
 ### 4.1 종합 평가
 
@@ -1030,12 +1034,12 @@ Phase 4까지 기능은 모두 들어왔으나 다음 3개 영역에 부채가 �
 
 ### 4.5 작업 묶음 (실행 단위)
 
-| 묶음 | 항목 | 우선순위 | 의존 | 상태 (2026-05-13) |
+| 묶음 | 항목 | 우선순위 | 의존 | 상태 (2026-05-26) |
 |------|------|---------|------|------|
-| **D-A** AdSense 인프라 마감 | D-C1, D-C2 | 즉시 | — | ✅ 완료 (D-C2 신규 글 2건 SOP 보강 잔여) |
-| **D-B** 자동화·회귀 안전망 | D-M1, D-M2, D-M3 | 다음 | GitHub Secrets 등록 | ⚠️ 미착수 (D-Data 14일 동안 진행 권장) |
-| **D-C** 코드 정돈 (의존성 다이어트) | D-Mn1, D-Mn2 | D-B 후 | — | ⚠️ 미착수 |
-| **D-D** 리뷰 잔불 일괄 | D-Mn3 ~ D-Mn16 | 시간 날 때 | 없음 (개별 처리 가능) | ⚠️ 미착수 |
+| **D-A** AdSense 인프라 마감 | D-C1, D-C2 | 즉시 | — | ✅ 완료 |
+| **D-B** 자동화·회귀 안전망 | D-M1, D-M2, D-M3 | 다음 | GitHub Secrets 등록 | ✅ 완료 |
+| **D-C** 코드 정돈 (의존성 다이어트) | D-Mn1, D-Mn2 | D-B 후 | — | ⚠️ 미착수 (phase-4.5 종료 차단 아님) |
+| **D-D** 리뷰 잔불 일괄 | D-Mn3 ~ D-Mn16 | 시간 날 때 | 없음 (개별 처리 가능) | ⚠️ 미착수 (phase-4.5 종료 차단 아님) |
 | **D-E** 트리거 대기 (의도적 보류) | D-Mn17, D-Mn18, D-Mn19, D-Mn20 | 트리거 도달 시 | D-Mn20만 Phase 5 vitest 의존 | ⏳ 대기 |
 
 ---
