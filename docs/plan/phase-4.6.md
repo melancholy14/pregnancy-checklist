@@ -3,7 +3,8 @@
 > Phase 4.5 기록: [phase-4.5.md](phase-4.5.md)
 > Date: 2026-05-09
 > 목표 완료: 2026-06-14
-> Status: 🚧 D-Data 수집 중 (D1 ✅ 완료 2026-05-12 / 데이터 누적 ~2026-05-26)
+> Status: ✅ 결정 라운드 완료 (2026-05-26) — V1·T1·H1·N1 = 모두 기본값 A.
+> 구현 단계 진입. 결정 근거는 [선결 조건 §D-Data 결정 라운드 결과](#d-data-결정-라운드-결과-2026-05-26) 참고
 
 ## Overview
 
@@ -55,6 +56,57 @@ Phase 4.5에서 토큰 디시플린·접근성·기획 결정을 정돈하고, *
 | 2026-05-26 (화) | **phase-4.6 진입** | — | D2~D5 결정 데이터 기반 |
 
 대안 — 5/25 이전에 묶음 M(launchd 등록) 진행 시 자동 발사로 manual run 대체. launchd plist 작성 + `launchctl bootstrap` 등록 = 30분~1시간 작업.
+
+### D-Data 결정 라운드 결과 (2026-05-26)
+
+W19~W21 3주치 GA4 weekly report 분석 결과 V1·T1 데이터 의사결정 불가 —
+모두 기본값 A로 확정.
+
+#### 근거 1 — 표본이 노이즈 플로어
+
+- W19 (5/4~5/10, D1 이전): activeUsers 2, toggle 0, weight 0, article 0
+- W20 (5/11~5/17, D1 시작): activeUsers 3, toggle 2, weight 1, article 2
+- W21 (5/18~5/24, 첫 full): activeUsers 2, toggle 0, weight 0, article 5
+
+주당 active user 2~3명. 변동률(±100%, +150%)은 1 user의 행동 차이에 불과
+— 통계적 신호 floor 미도달.
+
+#### 근거 2 — 쿼리가 의사결정 항목을 안 잡음
+
+§D-Data 수집 대상 5종 중 현재
+[scripts/weekly-report/ga4-queries.ts](../../scripts/weekly-report/ga4-queries.ts)에서
+잡히는 게 0개:
+
+- 영상 탭 도달률·클릭률 → `content_click(type=video)` dimension 미수집
+- 타임라인 도달률·체류 → `pagePath` dimension 미수집
+- 홈 카드별 클릭 분포 → 카드 식별자 이벤트 없음
+- `/info` vs `/articles` 진입 비율 → 페이지 레벨 분리 없음
+- `/weight` 회귀 방문률 → 코호트 쿼리 `INVALID_ARGUMENT` 3주 연속 실패
+
+#### 결론
+
+"데이터 없이 결정 금지"(§1.1·§2.1) 원칙을 살리되, 2주 더 수집해도
+표본·쿼리 양쪽 다 안 풀린다. 기본값 A는 §3.3(AdSense low-value 정리) +
+§7.5(도구 우선) 룰과 이미 정합 — 데이터로 뒤집을 후보가 없는 결정.
+따라서 데이터 부재를 명시적으로 박고 기본값 채택이 §7.6을 가장 정직하게
+만족한다.
+
+#### 확정 결정
+
+- **V1 = A** (영상 전체 제거) — 클릭률 측정 불가 + §3.3 AdSense low-value
+  정리
+- **T1 = A** (체중관리로 흡수) — 도달률/회귀 비교 불가 + §3.1 시계열 두
+  도구 시너지
+- **H1 = A** (4축 허브) — V1·T1 A 채택 시 자연 도출
+- **N1 = A** (4탭, 홈 빼고) — H1 A 채택 시 자연 도출
+
+#### 후속 과제 (Phase 5 이연)
+
+- GA4 쿼리 보강: `pagePath` dimension 추가,
+  `axis_enter`/`axis_cross_link` 이벤트 카운트 (§5 카탈로그 갱신 시 동기)
+- 코호트 쿼리 fix:
+  `cohortSpec.cohorts.dimension="firstSessionDate"` 명시
+- 트래픽 floor 확보 후 (월 100+ users) phase-4.6 결정 데이터 검증 회고
 
 ---
 
@@ -349,15 +401,18 @@ V1=A(영상 전체 제거) + T1=A(타임라인 → 체중 흡수) + H1=A + N1=A 
 | H1 | 홈의 역할 | T1 결정 | 4축 허브 | §3, §4 |
 | N1 | BottomNav 탭 구성 | H1 결정 | 4탭 (홈 빼고) | §4 |
 
-> V1·T1은 데이터 의사결정. H1·N1은 V1·T1 결정에서 자연 도출.
+> ✅ **2026-05-26 결정 라운드 — V1·T1·H1·N1 모두 기본값 A 확정.**
+> V1·T1은 원래 데이터 의사결정이었으나 표본 노이즈 플로어 + 쿼리 mismatch로
+> 데이터 부재 명시 후 기본값 채택. 근거는
+> [§D-Data 결정 라운드 결과](#d-data-결정-라운드-결과-2026-05-26) 참고.
 
 ---
 
 ## QA 체크리스트
 
-- [ ] D1 GA4 Property ID + Service Account 발급 완료
-- [ ] 2주 데이터 수집 완료 (영상 클릭률·타임라인 도달률·체중 회귀 방문 확보)
-- [ ] V1·T1·H1·N1 4건 결정 + phase-4.6.md 결정 매트릭스 반영
+- [x] D1 GA4 Property ID + Service Account 발급 완료 (2026-05-12)
+- [x] 2주 데이터 수집 완료 (W19~W21 3주치, 단 표본·쿼리 mismatch 명시)
+- [x] V1·T1·H1·N1 4건 결정 + phase-4.6.md 결정 매트릭스 반영 (2026-05-26)
 - [ ] 영상 자산 일괄 제거 + redirect 301 동작
 - [ ] 타임라인 흡수 + zustand `migrate` 함수 e2e 검증
 - [ ] 홈 4축 허브 + BottomNav 4탭 동작
