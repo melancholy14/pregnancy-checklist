@@ -127,21 +127,6 @@ test.describe("design-bundle-h-tab-filter-color (탭/필터 활성색 lavender �
       }
     });
 
-    test("/info 탭 영역에 pink/40·mint/40 활성색이 잔존하지 않는다", async ({ page }) => {
-      // 무엇을: I-7 회귀 — info 탭 컨테이너 3개 버튼 모두 검사
-      // 왜: 런타임 빌드에서도 활성색 컨벤션 유지
-      await page.goto("/info");
-      // InfoContainer 는 Suspense + useSearchParams 패턴이라 첫 탭이 보일 때까지 대기 필수
-      await expect(page.getByRole("tab", { name: "전체" })).toBeVisible();
-      const tabs = page.getByRole("tab");
-      const count = await tabs.count();
-      expect(count).toBeGreaterThan(0);
-      for (let i = 0; i < count; i++) {
-        await expect(tabs.nth(i)).not.toHaveClass(FORBIDDEN_PINK_BG);
-        await expect(tabs.nth(i)).not.toHaveClass(FORBIDDEN_MINT_BG);
-      }
-    });
-
     test("/baby-fair 도시 필터 + 탭 트리거 영역에 mint/40·pink/40 활성색이 잔존하지 않는다", async ({ page }) => {
       // 무엇을: B-4 4곳 회귀 방지 — 도시 버튼 + Radix tabs trigger 모두 점검
       // 왜: 가장 변경이 많은 곳(4곳)이라 회귀 위험 최대

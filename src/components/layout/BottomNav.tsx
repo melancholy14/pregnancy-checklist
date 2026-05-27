@@ -29,7 +29,6 @@ export function BottomNav() {
       icon: FileText,
       label: "정보",
       match: "prefix",
-      alsoMatchPrefixes: ["/info"],
     },
   ];
 

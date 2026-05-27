@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { BASE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -14,7 +15,7 @@ export default function InfoRedirectPage() {
     <main className="min-h-screen flex items-center justify-center px-4 text-center">
       <meta httpEquiv="refresh" content="0;url=/articles" />
       <p className="text-sm text-muted-foreground">
-        이 페이지는 <a href="/articles" className="underline">/articles</a>로 이전됐어요.
+        이 페이지는 <Link href="/articles" className="underline">/articles</Link>로 이전됐어요.
       </p>
     </main>
   );

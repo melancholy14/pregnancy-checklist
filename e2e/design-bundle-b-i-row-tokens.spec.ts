@@ -370,7 +370,7 @@ test.describe("design-bundle-b-i-row-tokens", () => {
       await page.goto("/");
 
       const babyfairIcon = page.locator('a[href="/baby-fair"] div.w-8.h-8.rounded-lg').first();
-      const infoIcon = page.locator('a[href="/info"]', { hasText: "📝" }).locator("div.w-8.h-8.rounded-lg").first();
+      const infoIcon = page.locator('a[href="/articles"]', { hasText: "📝" }).locator("div.w-8.h-8.rounded-lg").first();
 
       await expect(babyfairIcon).toHaveClass(new RegExp(HELPER_CLASS.mint40.replace("/", "\\/")));
       await expect(infoIcon).toHaveClass(new RegExp(HELPER_CLASS.lavender40.replace("/", "\\/")));

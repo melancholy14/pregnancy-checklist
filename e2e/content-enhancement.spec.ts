@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 test.describe("정보글 시스템", () => {
   test.describe("Happy Path — 목록 페이지 (/info 통합 허브)", () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto("/info");
+      await page.goto("/articles");
       // 블로그 탭으로 이동해 글 목록만 노출시킨다
       await page.getByRole("tab", { name: "블로그" }).click();
     });
@@ -48,7 +48,7 @@ test.describe("정보글 시스템", () => {
 
   test.describe("Happy Path — 통합 태그 필터", () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto("/info");
+      await page.goto("/articles");
     });
 
     test("통합 태그 클릭 시 매칭된 글만 노출된다", async ({ page }) => {
@@ -99,7 +99,7 @@ test.describe("정보글 시스템", () => {
       // 왜: 뒤로가기 UX (목록은 /info로 통합됨)
       await page.goto("/articles/early-pregnancy-tests");
       await page.getByText("목록으로").click();
-      await expect(page).toHaveURL(/\/info\/?$/);
+      await expect(page).toHaveURL(/\/articles\/?$/);
     });
 
     test("각 정보글이 1,000자 이상 콘텐츠를 가진다", async ({ page }) => {
@@ -152,7 +152,7 @@ test.describe("정보글 시스템", () => {
     test("모바일: 통합 정보 허브가 정상 렌더링된다", async ({ page }) => {
       // 무엇을: 375px에서 /info 통합 허브 노출
       // 왜: 주요 타겟 기기
-      await page.goto("/info");
+      await page.goto("/articles");
       await expect(page.getByRole("heading", { name: /정보/, level: 1 })).toBeVisible();
       await expect(page.getByText("임신 초기 필수 검사 총정리")).toBeVisible();
     });
@@ -160,7 +160,7 @@ test.describe("정보글 시스템", () => {
     test("모바일: 통합 태그 필터가 줄바꿈되며 정상 동작한다", async ({ page }) => {
       // 무엇을: 좁은 화면에서 통합 태그 칩이 wrap되어 보이는지
       // 왜: 태그가 잘리거나 숨겨지면 안 됨
-      await page.goto("/info");
+      await page.goto("/articles");
       await expect(page.getByRole("button", { name: "전체" }).first()).toBeVisible();
       await page.getByRole("button", { name: /^#출산준비$/ }).click();
       await expect(
@@ -198,7 +198,7 @@ test.describe("네비게이션 & 대시보드 업데이트", () => {
       // 왜: 네비게이션 핵심 동작
       await page.goto("/");
       await page.locator("nav").getByText("정보").click();
-      await expect(page).toHaveURL(/\/info\/?$/);
+      await expect(page).toHaveURL(/\/articles\/?$/);
     });
 
     test("홈 대시보드에 정보 카드가 있다", async ({ page }) => {
@@ -208,7 +208,7 @@ test.describe("네비게이션 & 대시보드 업데이트", () => {
       await page.evaluate(() => localStorage.setItem("onboarding-completed", "true"));
       await page.goto("/");
       await expect(
-        page.locator('a[href="/info"]').first(),
+        page.locator('a[href="/articles"]').first(),
       ).toBeVisible();
     });
 
@@ -218,7 +218,7 @@ test.describe("네비게이션 & 대시보드 업데이트", () => {
       await page.goto("/");
       await page.evaluate(() => localStorage.setItem("onboarding-completed", "true"));
       await page.goto("/");
-      const infoLink = page.locator('a[href="/info"]').first();
+      const infoLink = page.locator('a[href="/articles"]').first();
       await expect(infoLink).toBeVisible();
       await expect(infoLink).toContainText("정보 & 가이드");
     });
@@ -242,7 +242,7 @@ test.describe("SEO — 정보글 메타데이터", () => {
   test("/info 통합 허브에 고유 title이 있다", async ({ page }) => {
     // 무엇을: /info 페이지 title 태그
     // 왜: SEO 색인 품질
-    await page.goto("/info");
+    await page.goto("/articles");
     await expect(page).toHaveTitle(/정보/);
   });
 

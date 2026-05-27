@@ -23,7 +23,7 @@ test.describe("design-bundle-g-pastel-remap (5-pastel role 정합 회복)", () =
       // 왜: spec must 1번 — design-bundle-b-i-row-tokens 라운드 이후 인라인 style → className 전환된 신 컨트랙트
       await gotoHomeOnboarded(page);
 
-      const infoCard = page.locator('a[href="/info"]', { hasText: "📝" }).first();
+      const infoCard = page.locator('a[href="/articles"]', { hasText: "📝" }).first();
       await expect(infoCard).toBeVisible();
 
       const iconBox = infoCard.locator("div.w-8.h-8.rounded-lg").first();
@@ -100,7 +100,7 @@ test.describe("design-bundle-g-pastel-remap (5-pastel role 정합 회복)", () =
       // 무엇을: 375px viewport에서도 lavender/40 클래스가 동일하게 적용되는지
       // 왜: 타겟 유저(임산부) 주요 디바이스 폭 기준 회귀 가드
       await gotoHomeOnboarded(page);
-      const infoCard = page.locator('a[href="/info"]', { hasText: "📝" }).first();
+      const infoCard = page.locator('a[href="/articles"]', { hasText: "📝" }).first();
       await expect(infoCard).toBeVisible();
       const iconBox = infoCard.locator("div.w-8.h-8.rounded-lg").first();
       await expect(iconBox).toHaveClass(/bg-pastel-lavender\/40/);

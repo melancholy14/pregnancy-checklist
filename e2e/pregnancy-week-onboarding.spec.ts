@@ -293,7 +293,7 @@ test.describe("pregnancy-week-onboarding", () => {
       await seedOnboardingState(page, { dueDate });
       await setupGtagSpy(page);
 
-      await page.goto("/info");
+      await page.goto("/articles");
 
       // PageviewTracker의 useEffect가 실행되어 set 호출이 들어갈 때까지 폴링
       await expect
@@ -329,7 +329,7 @@ test.describe("pregnancy-week-onboarding", () => {
       await seedOnboardingState(page);
       await setupGtagSpy(page);
 
-      await page.goto("/info");
+      await page.goto("/articles");
 
       await expect
         .poll(async () => {

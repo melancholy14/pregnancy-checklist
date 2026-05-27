@@ -333,7 +333,7 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
         <DashboardCard
           icon="📝"
           title="정보 & 가이드"
-          href="/info"
+          href="/articles"
           slot="info"
           cta="읽으러 가기"
         >

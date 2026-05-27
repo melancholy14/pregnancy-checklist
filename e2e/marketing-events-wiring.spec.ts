@@ -178,8 +178,7 @@ test.describe("marketing-events-wiring (G·H·I·J)", () => {
     }) => {
       // 무엇을: I3 — ArticleCard 일반 자리는 cta_click(cta_id=view_article)으로 흡수
       // 왜: 추천 외 진입을 별도 슬라이스로 분리
-      await page.goto("/info");
-      await page.getByRole("tab", { name: "블로그" }).click();
+      await page.goto("/articles");
 
       const articleCard = page.locator("a[href^='/articles/']").first();
       await articleCard.click();
@@ -194,7 +193,7 @@ test.describe("marketing-events-wiring (G·H·I·J)", () => {
       expect(canonical.length).toBe(1);
       const payload = canonical[0][2] as Record<string, string>;
       expect(payload.cta_id).toBe("view_article");
-      expect(payload.location).toBe("info_hub");
+      expect(payload.location).toBe("article_hub");
       expect(payload.destination.startsWith("/articles/")).toBe(true);
     });
 

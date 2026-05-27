@@ -69,7 +69,7 @@ test.describe("클라이언트 검색", () => {
     test("정보글 결과 클릭 시 /articles/slug 으로 이동한다", async ({ page }) => {
       // 무엇을: 정보글 검색 결과 클릭 시 해당 아티클로 이동하는지
       // 왜: 검색 → 아티클 연결이 콘텐츠 발견성의 핵심
-      await page.goto("/info");
+      await page.goto("/articles");
       await page.getByRole("button", { name: "검색" }).click();
 
       const dialog = searchDialog(page);
