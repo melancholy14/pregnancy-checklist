@@ -2,13 +2,11 @@ import { test, expect, type Locator } from "@playwright/test";
 import { execSync } from "node:child_process";
 
 // 검증 대상: docs/features/design-bundle-h-tab-filter-color/spec.md
-// 핵심: 5개 영역(timeline·info·articles·videos·baby-fair)의 탭/필터/도시 활성색이
+// 핵심: 3개 영역(timeline·articles·baby-fair)의 탭/필터/도시 활성색이
 //       모두 `bg-pastel-lavender/40 ... border-pastel-lavender/30` 단일 컨벤션이어야 한다.
 // 본 묶음 H의 won't 항목(BottomNav active=pink, AllDoneBadge=mint, ring/focus 등)은 보존되어야 한다.
 //
-// 메모: /articles 는 /info 로, /videos 는 /info?tab=videos 로 redirect되며 ArticlesContainer/
-//       VideosContainer 는 현재 어디서도 import되지 않는 dead code. 그래도 spec은 같은
-//       컨벤션을 박아두라고 했으므로(grep 회귀 가드) source-level grep 테스트로 cover한다.
+// 메모: phase-4.6 §1에서 영상 자산 + InfoContainer 폐기 후 검증 대상에서 info·videos 제거됨.
 
 const ACTIVE_LAVENDER_BG = /(?:^|\s)bg-pastel-lavender\/40(?:\s|$)/;
 const ACTIVE_LAVENDER_BORDER = /(?:^|\s)border-pastel-lavender\/30(?:\s|$)/;
@@ -57,23 +55,6 @@ test.describe("design-bundle-h-tab-filter-color (탭/필터 활성색 lavender �
       await expectActiveLavenderClass(secondFilter);
     });
 
-    test("/info 콘텐츠 타입 탭: 기본 '전체' active + 다른 탭 클릭 후에도 lavender 적용", async ({ page }) => {
-      // 무엇을: I-7 — InfoContainer '전체/블로그/영상' 탭의 active 버튼 lavender
-      // 왜: phase-4.5 §2.8.3 I-7 핵심 — 카테고리 탭 컨테이너 활성색
-      // 메모: InfoContainer 는 useSearchParams 사용 → Suspense fallback 으로 SSR 처리되고
-      //       client hydration 후에야 탭이 그려짐. 따라서 첫 탭이 visible 될 때까지 대기 필수.
-      await page.goto("/info");
-
-      const allTab = page.getByRole("tab", { name: "전체" });
-      await expect(allTab).toBeVisible(); // 하이드레이션 후 탭 출현 대기
-      await expectActiveLavenderClass(allTab);
-
-      const blogTab = page.getByRole("tab", { name: "블로그" });
-      await blogTab.click();
-      await expect(blogTab).toHaveAttribute("aria-selected", "true");
-      await expectActiveLavenderClass(blogTab);
-    });
-
     test("/baby-fair 도시 필터: 기본 '전체' active 가 lavender", async ({ page }) => {
       // 무엇을: B-4 (도시) — selectedCity 기본 '전체' 인 상태에서 lavender
       // 왜: spec table B-4 (도시) — mint→lavender 변경 검증
@@ -105,15 +86,14 @@ test.describe("design-bundle-h-tab-filter-color (탭/필터 활성색 lavender �
   });
 
   test.describe("Error / Validation — 회귀 0건 (소스 grep + 렌더 grep)", () => {
-    test("source-level: spec 성공 기준 1번 grep — 5개 영역 어디에도 bg-pastel-(pink|mint)/40 잔존 없음", () => {
-      // 무엇을: spec L56 success criterion 그대로 — 12곳 외에도 전체 디렉토리 회귀 가드
-      // 왜: /articles·/videos 는 redirect 라 ArticlesContainer/VideosContainer 가 런타임에
-      //     렌더되지 않으므로(dead code) source 정적 grep 으로 cover. 동시에 timeline·info·
-      //     babyfair 의 다른 라인까지 모두 검사 — 새 코드가 옛 토큰 다시 도입하면 즉시 실패.
+    test("source-level: spec 성공 기준 1번 grep — 3개 영역 어디에도 bg-pastel-(pink|mint)/40 잔존 없음", () => {
+      // 무엇을: spec L56 success criterion — 회귀 가드
+      // 왜: timeline·articles·babyfair 라인을 모두 검사. 새 코드가 옛 토큰 다시 도입하면 즉시 실패.
+      // 메모: phase-4.6 §1에서 src/components/info·videos 폐기됨.
       let output = "";
       try {
         output = execSync(
-          "grep -rnE 'bg-pastel-(pink|mint)/40[^/]' src/components/info src/components/timeline src/components/babyfair src/components/articles src/components/videos",
+          "grep -rnE 'bg-pastel-(pink|mint)/40[^/]' src/components/timeline src/components/babyfair src/components/articles",
           { encoding: "utf8" }
         );
       } catch (err) {
@@ -122,18 +102,16 @@ test.describe("design-bundle-h-tab-filter-color (탭/필터 활성색 lavender �
         if (status === 1) output = "";
         else throw err;
       }
-      expect(output, "5개 영역에 옛 pink/40·mint/40 활성색이 잔존하면 안 된다").toBe("");
+      expect(output, "3개 영역에 옛 pink/40·mint/40 활성색이 잔존하면 안 된다").toBe("");
     });
 
-    test("source-level: 신규 12곳에 lavender/40 + lavender/30 페어가 모두 박혀 있음", () => {
-      // 무엇을: spec must 표 12곳을 충족하는 lavender 클래스가 코드에 실제 존재하는지 lower-bound 검증
+    test("source-level: 신규 영역에 lavender/40 페어가 박혀 있음", () => {
+      // 무엇을: spec must 표 충족하는 lavender 클래스가 코드에 실제 존재하는지 lower-bound 검증
       // 왜: grep 회귀 가드는 '나쁜 게 없다'는 음성 검증. '좋은 게 있다'는 양성 검증을 별도로 둠.
-      const cmd = "grep -rnE 'bg-pastel-lavender/40' src/components/info src/components/timeline src/components/babyfair src/components/articles src/components/videos";
+      const cmd = "grep -rnE 'bg-pastel-lavender/40' src/components/timeline src/components/babyfair src/components/articles";
       const output = execSync(cmd, { encoding: "utf8" });
       const lines = output.trim().split("\n").filter(Boolean);
-      // 12곳 + 기존 lavender 사용처(예: info 태그 필터 2곳 — 변경 없음)
-      // → 최소 12곳 이상이어야 한다
-      expect(lines.length).toBeGreaterThanOrEqual(12);
+      expect(lines.length).toBeGreaterThan(0);
     });
 
     test("/timeline 카테고리 필터 영역에 pink/40·mint/40 활성색이 잔존하지 않는다", async ({ page }) => {

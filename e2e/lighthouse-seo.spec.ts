@@ -10,7 +10,7 @@ const TARGET_PAGES = [
   { path: "/timeline", name: "타임라인" },
   { path: "/baby-fair", name: "베이비페어" },
   { path: "/weight", name: "체중 관리" },
-  { path: "/info", name: "정보 통합 허브" },
+  { path: "/articles", name: "정보 & 가이드" },
   { path: "/checklist", name: "체크리스트 허브" },
   { path: "/articles/early-pregnancy-tests", name: "블로그 상세" },
 ];

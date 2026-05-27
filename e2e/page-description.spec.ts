@@ -32,14 +32,13 @@ test.describe("도구 페이지 설명 텍스트 (PageDescription)", () => {
       await expect(page.getByText("사전 등록 할인과 선착순 혜택 정보도 함께 안내합니다")).toBeVisible();
     });
 
-    test("/info 통합 허브에 설명 텍스트가 노출된다", async ({ page }) => {
-      // 무엇을: /info에 블로그·영상 통합 안내 설명이 렌더링되는지 확인
+    test("/articles 정보 허브에 설명 텍스트가 노출된다", async ({ page }) => {
+      // 무엇을: /articles에 블로그 안내 설명이 렌더링되는지 확인
       // 왜: AdSense 심사 봇이 텍스트를 파싱하므로 충분한 텍스트가 필요
-      await page.goto("/info");
+      await page.goto("/articles");
 
       await expect(page.getByRole("heading", { name: /정보/, level: 1 })).toBeVisible();
-      await expect(page.getByText("임신·출산에 필요한 블로그 글과 영상을 한곳에 모았어요")).toBeVisible();
-      await expect(page.getByText("영상은 검증된 채널에서 큐레이션했습니다")).toBeVisible();
+      await expect(page.getByText("경험 기반으로", { exact: false })).toBeVisible();
     });
   });
 
@@ -61,10 +60,8 @@ test.describe("도구 페이지 설명 텍스트 (PageDescription)", () => {
       await page.goto("/baby-fair");
       await expect(page.getByText("지역별·연도별 필터로 원하는 행사만 골라볼 수 있습니다")).toBeVisible();
 
-      await page.goto("/info");
-      await expect(
-        page.getByText("임신·출산에 필요한 블로그 글과 영상을 한곳에 모았어요"),
-      ).toBeVisible();
+      await page.goto("/articles");
+      await expect(page.getByText("경험 기반으로", { exact: false })).toBeVisible();
 
       await context.close();
     });

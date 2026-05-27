@@ -140,35 +140,6 @@ test.describe("marketing-events-wiring (G·H·I·J)", () => {
       expect(payload).toHaveProperty("from_slug");
     });
 
-    test("영상 카드 클릭 시 content_click + external_link_click(context=video) 둘 다 발사된다", async ({
-      page,
-    }) => {
-      // 무엇을: J2 — youtube.com 외부 링크에 video_id/channel_id 슬라이스 부여
-      // 왜: 카탈로그 §3.E `external_link_click(context=video)` 정합
-      await page.goto("/videos");
-
-      const videoLink = page.locator("a[href*='youtube.com/watch']").first();
-      if ((await videoLink.count()) === 0) {
-        test.skip();
-        return;
-      }
-      await videoLink.click({ modifiers: ["Meta"] });
-
-      const calls = await getCalls(page);
-      const legacy = eventsByName(calls, "content_click").filter(
-        (c) => (c[2] as Record<string, string>).type === "video",
-      );
-      const canonical = eventsByName(calls, "external_link_click");
-
-      expect(legacy.length).toBe(1);
-      expect(canonical.length).toBe(1);
-      const payload = canonical[0][2] as Record<string, string>;
-      expect(payload.domain).toBe("youtube.com");
-      expect(payload.context).toBe("video");
-      expect(payload).toHaveProperty("video_id");
-      expect(payload).toHaveProperty("channel_id");
-    });
-
     test("관련 콘텐츠 카드 클릭 시 content_click + related_article_click 둘 다 발사된다", async ({
       page,
     }) => {

@@ -118,27 +118,6 @@ test.describe("GA4 커스텀 이벤트 (Step 1)", () => {
       expect(clickCalls[0][2]).toHaveProperty("title");
     });
 
-    test("영상 카드 클릭 시 content_click 이벤트가 전송된다", async ({ page }) => {
-      // 무엇을: 영상 카드 클릭 시 GA4 이벤트 확인
-      // 왜: 어떤 영상이 사용자 관심을 끄는지 분석
-      await page.goto("/info?tab=videos");
-      await injectGtagSpy(page);
-
-      const videoCard = page.locator("a[href*='youtube.com/watch']").first();
-      if (await videoCard.count() === 0) {
-        test.skip();
-        return;
-      }
-
-      await videoCard.click({ modifiers: ["Meta"] });
-
-      const calls = await getGtagCalls(page);
-      const clickCalls = calls.filter(
-        (c) => c[0] === "event" && c[1] === "content_click",
-      );
-      expect(clickCalls.length).toBe(1);
-      expect((clickCalls[0][2] as Record<string, string>).type).toBe("video");
-    });
   });
 
   test.describe("send_page_view:false 설정", () => {

@@ -7,7 +7,7 @@ test.describe("SEO 메타데이터 & OG 태그", () => {
       { path: "/timeline", title: "임신 주차별 타임라인 & 체크리스트" },
       { path: "/baby-fair", title: "베이비페어 일정 모음" },
       { path: "/weight", title: "임신 체중 기록 & 변화 그래프" },
-      { path: "/info", title: "정보" },
+      { path: "/articles", title: "정보 & 가이드" },
       { path: "/about", title: "만든 사람" },
       { path: "/guides/weekly-prep", title: "임신 주차별 검사" },
     ];
@@ -53,7 +53,7 @@ test.describe("SEO 메타데이터 & OG 태그", () => {
       { path: "/", canonical: "https://pregnancy-checklist.com" },
       { path: "/timeline", canonical: "https://pregnancy-checklist.com/timeline" },
       { path: "/baby-fair", canonical: "https://pregnancy-checklist.com/baby-fair" },
-      { path: "/info", canonical: "https://pregnancy-checklist.com/info" },
+      { path: "/articles", canonical: "https://pregnancy-checklist.com/articles" },
       { path: "/articles/early-pregnancy-tests", canonical: "https://pregnancy-checklist.com/articles/early-pregnancy-tests" },
       { path: "/articles/weekly-prenatal-checklist", canonical: "https://pregnancy-checklist.com/articles/weekly-prenatal-checklist" },
     ];
@@ -75,7 +75,7 @@ test.describe("SEO 메타데이터 & OG 태그", () => {
       // 왜: AdSense + SEO 필수 요건
       const descriptions = new Set<string>();
 
-      const paths = ["/", "/timeline", "/baby-fair", "/weight", "/info", "/about"];
+      const paths = ["/", "/timeline", "/baby-fair", "/weight", "/articles", "/about"];
       for (const path of paths) {
         await page.goto(path);
         const desc = await page.locator('meta[name="description"]').getAttribute("content");
