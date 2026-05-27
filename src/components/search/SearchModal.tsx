@@ -2,7 +2,7 @@
 
 import { useMemo, useState, useCallback, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { Calendar, FileText, Search, Video } from "lucide-react";
+import { Calendar, FileText, Search } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -15,10 +15,8 @@ import { buildSearchIndex, createSearcher } from "@/lib/search";
 import type { SearchItem, SearchItemType } from "@/lib/search";
 import type { ArticleMeta } from "@/types/article";
 import type { TimelineItem } from "@/types/timeline";
-import type { VideoItem } from "@/types/video";
 import { sendGAEvent } from "@/lib/analytics";
 import timelineItems from "@/data/timeline_items.json";
-import videos from "@/data/videos.json";
 
 const SEARCH_SUBMIT_DEBOUNCE_MS = 800;
 const SEARCH_QUERY_MAX_LEN = 100;
@@ -34,7 +32,6 @@ interface SearchModalProps {
 const TYPE_CONFIG: Record<SearchItemType, { icon: typeof Calendar; label: string }> = {
   timeline: { icon: Calendar, label: "타임라인" },
   article: { icon: FileText, label: "정보글" },
-  video: { icon: Video, label: "영상" },
 };
 
 export function SearchModal({ articles }: SearchModalProps) {
@@ -48,7 +45,6 @@ export function SearchModal({ articles }: SearchModalProps) {
     const index = buildSearchIndex(
       timelineItems as TimelineItem[],
       articles,
-      videos as VideoItem[],
     );
     return createSearcher(index);
   }, [articles]);
@@ -62,7 +58,6 @@ export function SearchModal({ articles }: SearchModalProps) {
     const map: Record<SearchItemType, SearchItem[]> = {
       timeline: [],
       article: [],
-      video: [],
     };
     for (const item of results) {
       map[item.type].push(item);
@@ -159,7 +154,7 @@ export function SearchModal({ articles }: SearchModalProps) {
         <DialogHeader className="sr-only">
           <DialogTitle>검색</DialogTitle>
           <DialogDescription>
-            타임라인, 정보글, 영상을 검색하세요
+            타임라인, 정보글을 검색하세요
           </DialogDescription>
         </DialogHeader>
 
@@ -190,7 +185,7 @@ export function SearchModal({ articles }: SearchModalProps) {
               검색 결과가 없습니다
             </div>
           ) : (
-            (["timeline", "article", "video"] as const).map((type) => {
+            (["timeline", "article"] as const).map((type) => {
               const items = grouped[type];
               if (items.length === 0) return null;
               const { icon: Icon, label } = TYPE_CONFIG[type];

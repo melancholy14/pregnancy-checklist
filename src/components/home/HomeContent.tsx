@@ -23,7 +23,6 @@ import { BRAND_COPY, BRAND_PHASE } from "@/lib/constants";
 import checklistItems from "@/data/checklist_items.json";
 import timelineItems from "@/data/timeline_items.json";
 import babyfairEvents from "@/data/babyfair_events.json";
-import videosData from "@/data/videos.json";
 import type { ChecklistItem } from "@/types/checklist";
 import type { TimelineItem } from "@/types/timeline";
 
@@ -150,11 +149,6 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
     return babyfairEvents
       .filter((e) => e.end_date >= today)
       .sort((a, b) => a.start_date.localeCompare(b.start_date));
-  }, []);
-
-  const videoCategories = useMemo(() => {
-    const cats = new Set(videosData.map((v) => v.categoryName));
-    return cats.size;
   }, []);
 
   const latestWeight = useMemo(() => {
@@ -333,21 +327,6 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
               아직 기록이 없어요
             </p>
           )}
-        </DashboardCard>
-
-        {/* Video Card */}
-        <DashboardCard
-          icon="🎬"
-          title="영상"
-          href="/info?tab=videos"
-          slot="video"
-          cta="보러가기"
-        >
-          <p className="text-xs text-muted-foreground">추천 영상</p>
-          <p className="text-lg font-semibold">{videosData.length}건</p>
-          <p className="text-xs text-muted-foreground">
-            {videoCategories}개 카테고리
-          </p>
         </DashboardCard>
 
         {/* Articles Card */}

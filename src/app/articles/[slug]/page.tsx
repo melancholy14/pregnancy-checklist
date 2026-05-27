@@ -4,16 +4,13 @@ import { getAllArticles, getArticleBySlug } from "@/lib/articles";
 import {
   getRelatedArticles,
   getRelatedChecklists,
-  getRelatedVideos,
 } from "@/lib/related-content";
 import { ArticleDetail } from "@/components/articles/ArticleDetail";
 import { BASE_URL, OG_IMAGE } from "@/lib/constants";
 import hospitalBag from "@/data/hospital_bag_checklist.json";
 import partnerPrep from "@/data/partner_prep_checklist.json";
 import pregnancyPrep from "@/data/pregnancy_prep_checklist.json";
-import videos from "@/data/videos.json";
 import type { ChecklistData } from "@/types/checklist";
-import type { VideoItem } from "@/types/video";
 
 const allChecklistMetas = [
   (hospitalBag as ChecklistData).meta,
@@ -106,7 +103,6 @@ export default async function ArticlePage({
   const allArticles = getAllArticles();
   const relatedArticles = getRelatedArticles(article, allArticles);
   const relatedChecklists = getRelatedChecklists(slug, allChecklistMetas);
-  const relatedVideos = getRelatedVideos(article.tags, videos as VideoItem[]);
 
   return (
     <>
@@ -121,7 +117,6 @@ export default async function ArticlePage({
         article={article}
         relatedArticles={relatedArticles}
         relatedChecklists={relatedChecklists}
-        relatedVideos={relatedVideos}
       />
     </>
   );
