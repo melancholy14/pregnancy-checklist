@@ -80,7 +80,6 @@ export function jaccardSimilarity(a: string[], b: string[]): number {
 type UnifiedTagSource = {
   text?: string;
   articleTags?: string[];
-  videoCategory?: string;
 };
 
 export function inferUnifiedTagKeys(source: UnifiedTagSource): string[] {
@@ -96,10 +95,6 @@ export function inferUnifiedTagKeys(source: UnifiedTagSource): string[] {
       source.articleTags &&
       source.articleTags.some((t) => ut.articleTags.includes(t))
     ) {
-      keys.add(ut.key);
-      continue;
-    }
-    if (source.videoCategory && ut.videoCategories.includes(source.videoCategory)) {
       keys.add(ut.key);
     }
   }

@@ -4,7 +4,6 @@ export type UnifiedTag = {
   key: string;
   label: string;
   articleTags: string[];
-  videoCategories: string[];
 };
 
 export const UNIFIED_TAGS: UnifiedTag[] = [
@@ -12,37 +11,31 @@ export const UNIFIED_TAGS: UnifiedTag[] = [
     key: "pregnancy-early",
     label: "임신초기",
     articleTags: ["임신초기", "임신초기증상", "임신피로", "프로게스테론"],
-    videoCategories: [],
   },
   {
     key: "pregnancy-mid",
     label: "임신중기",
     articleTags: ["임신중기"],
-    videoCategories: [],
   },
   {
     key: "birth-prep",
     label: "출산준비",
     articleTags: ["출산준비"],
-    videoCategories: ["birth_prep"],
   },
   {
     key: "nutrition",
     label: "영양",
     articleTags: ["영양", "임산부영양"],
-    videoCategories: ["nutrition"],
   },
   {
     key: "exercise",
     label: "운동",
     articleTags: ["임산부운동"],
-    videoCategories: ["exercise"],
   },
   {
     key: "checkup",
     label: "검사",
     articleTags: ["검사", "산전검사", "NIPT", "정밀초음파", "기형아검사"],
-    videoCategories: ["prenatal_checkup"],
   },
   {
     key: "health",
@@ -54,19 +47,16 @@ export const UNIFIED_TAGS: UnifiedTag[] = [
       "임신중독증",
       "건강",
     ],
-    videoCategories: ["pregnancy_health"],
   },
   {
     key: "newborn",
     label: "신생아",
     articleTags: ["신생아"],
-    videoCategories: ["newborn_care"],
   },
   {
     key: "postpartum",
     label: "산후관리",
     articleTags: ["산후관리"],
-    videoCategories: [],
   },
   {
     key: "policy",
@@ -80,7 +70,6 @@ export const UNIFIED_TAGS: UnifiedTag[] = [
       "첫만남이용권",
       "임신지원금",
     ],
-    videoCategories: ["policy"],
   },
   {
     key: "insurance",
@@ -92,19 +81,16 @@ export const UNIFIED_TAGS: UnifiedTag[] = [
       "태아보험가입시기",
       "태아보험특약",
     ],
-    videoCategories: [],
   },
   {
     key: "weight",
     label: "체중관리",
     articleTags: ["체중관리"],
-    videoCategories: [],
   },
   {
     key: "pregnancy-prep",
     label: "임신준비",
     articleTags: ["임신준비"],
-    videoCategories: [],
   },
 ];
 
@@ -113,13 +99,6 @@ export function articleMatchesUnifiedTag(
   unifiedTag: UnifiedTag,
 ): boolean {
   return articleTags.some((t) => unifiedTag.articleTags.includes(t));
-}
-
-export function videoMatchesUnifiedTag(
-  category: string,
-  unifiedTag: UnifiedTag,
-): boolean {
-  return unifiedTag.videoCategories.includes(category);
 }
 
 export function getUsedUnifiedTags(

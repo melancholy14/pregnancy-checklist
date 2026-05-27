@@ -17,7 +17,7 @@ PAGES=(
   "/timeline.html"
   "/baby-fair.html"
   "/weight.html"
-  "/info.html"
+  "/articles.html"
   "/checklist.html"
   "/articles/early-pregnancy-tests.html"
 )

@@ -10,9 +10,9 @@
  *   *_manual: true 플래그가 sibling으로 있는 필드는 자동 매핑이 덮어쓰지 않습니다.
  *
  * 관리 대상 필드:
- *   - timeline_items.json[].linked_article_slugs / linked_video_ids
- *   - {hospital_bag,partner_prep,pregnancy_prep}_checklist.json meta.linked_article_slugs / linked_video_ids
- *   - src/content/articles/{slug}.md front matter linked_timeline_weeks / linked_video_ids
+ *   - timeline_items.json[].linked_article_slugs
+ *   - {hospital_bag,partner_prep,pregnancy_prep}_checklist.json meta.linked_article_slugs
+ *   - src/content/articles/{slug}.md front matter linked_timeline_weeks
  */
 
 import fs from "node:fs";
@@ -33,7 +33,6 @@ import {
 
 const ROOT = path.resolve(".");
 const TIMELINE_PATH = path.resolve("src/data/timeline_items.json");
-const VIDEOS_PATH = path.resolve("src/data/videos.json");
 const ARTICLES_DIR = path.resolve("src/content/articles");
 const CHECKLIST_FILES = [
   "src/data/hospital_bag_checklist.json",
@@ -58,24 +57,8 @@ type TimelineItem = {
   linked_checklist_slugs?: string[];
   linked_article_slugs?: string[];
   linked_article_slugs_manual?: boolean;
-  linked_video_ids?: string[];
-  linked_video_ids_manual?: boolean;
   seo_slug?: string;
   isCustom?: boolean;
-};
-
-type VideoItem = {
-  id: string;
-  title: string;
-  youtube_id: string;
-  category: string;
-  categoryName: string;
-  subcategory: string;
-  subcategoryName: string;
-  description?: string;
-  channel_id: string;
-  upload_date?: string;
-  is_short?: boolean;
 };
 
 type ChecklistMeta = {
@@ -87,8 +70,6 @@ type ChecklistMeta = {
   linked_timeline_weeks?: number[];
   linked_article_slugs?: string[];
   linked_article_slugs_manual?: boolean;
-  linked_video_ids?: string[];
-  linked_video_ids_manual?: boolean;
 };
 
 type ChecklistFile = {
@@ -108,13 +89,10 @@ type ArticleRecord = {
   tags: string[];
   linkedTimelineWeeks?: number[];
   linkedTimelineWeeksManual: boolean;
-  linkedVideoIds?: string[];
-  linkedVideoIdsManual: boolean;
 };
 
 type Loaded = {
   timeline: TimelineItem[];
-  videos: VideoItem[];
   articles: ArticleRecord[];
   checklists: { filePath: string; data: ChecklistFile }[];
 };
@@ -318,7 +296,6 @@ function setFrontMatterField(
 
 function loadAll(): Loaded {
   const timeline: TimelineItem[] = JSON.parse(fs.readFileSync(TIMELINE_PATH, "utf8"));
-  const videos: VideoItem[] = JSON.parse(fs.readFileSync(VIDEOS_PATH, "utf8"));
 
   const articleFiles = fs
     .readdirSync(ARTICLES_DIR)
@@ -337,10 +314,6 @@ function loadAll(): Loaded {
     const linkedTimelineWeeks = Array.isArray(ltw)
       ? (ltw as unknown[]).map((v) => Number(v)).filter((n) => !Number.isNaN(n))
       : undefined;
-    const lvi = fm.values.linked_video_ids;
-    const linkedVideoIds = Array.isArray(lvi)
-      ? (lvi as unknown[]).map(String)
-      : undefined;
     return {
       slug,
       filePath,
@@ -353,8 +326,6 @@ function loadAll(): Loaded {
       tags,
       linkedTimelineWeeks,
       linkedTimelineWeeksManual: fm.values.linked_timeline_weeks_manual === true,
-      linkedVideoIds,
-      linkedVideoIdsManual: fm.values.linked_video_ids_manual === true,
     };
   });
 
@@ -363,7 +334,7 @@ function loadAll(): Loaded {
     return { filePath, data };
   });
 
-  return { timeline, videos, articles, checklists };
+  return { timeline, articles, checklists };
 }
 
 // ──────────────────────────────────────────────────────────
@@ -376,14 +347,6 @@ function timelineFeatures(item: TimelineItem): Features {
   const fromWeek = unifiedTagsForWeek(item.week);
   return {
     unifiedTags: [...new Set([...fromText, ...fromWeek])],
-    keywords: tokenize(text),
-  };
-}
-
-function videoFeatures(item: VideoItem): Features {
-  const text = `${item.title} ${item.description ?? ""}`;
-  return {
-    unifiedTags: inferUnifiedTagKeys({ text, videoCategory: item.category }),
     keywords: tokenize(text),
   };
 }
@@ -461,16 +424,12 @@ function bipartiteMatch<L, R>(
 
 type ProposedLinks = {
   timelineToArticles: Map<string, string[]>;
-  timelineToVideos: Map<string, string[]>;
   articleToTimelineWeeks: Map<string, number[]>;
-  articleToVideos: Map<string, string[]>;
   checklistToArticles: Map<string, string[]>;
-  checklistToVideos: Map<string, string[]>;
 };
 
 function computeProposedLinks(loaded: Loaded): ProposedLinks {
   const tlFeatures = new Map(loaded.timeline.map((t) => [t.id, timelineFeatures(t)]));
-  const videoFeats = new Map(loaded.videos.map((v) => [v.id, videoFeatures(v)]));
   const articleFeats = new Map(loaded.articles.map((a) => [a.slug, articleFeatures(a)]));
   const checklistFeats = new Map(
     loaded.checklists.map((c) => [c.data.meta.slug, checklistFeatures(c.data)]),
@@ -535,22 +494,6 @@ function computeProposedLinks(loaded: Loaded): ProposedLinks {
     }
   }
 
-  const tlToVid = bipartiteMatch(
-    loaded.timeline,
-    loaded.videos,
-    tlFeatures,
-    videoFeats,
-    (tl) => tl.id,
-    (v) => v.id,
-  );
-  const artToVid = bipartiteMatch(
-    loaded.articles,
-    loaded.videos,
-    articleFeats,
-    videoFeats,
-    (a) => a.slug,
-    (v) => v.id,
-  );
   const clToArt = bipartiteMatch(
     loaded.checklists.map((c) => c.data),
     loaded.articles,
@@ -559,22 +502,11 @@ function computeProposedLinks(loaded: Loaded): ProposedLinks {
     (c) => c.meta.slug,
     (a) => a.slug,
   );
-  const clToVid = bipartiteMatch(
-    loaded.checklists.map((c) => c.data),
-    loaded.videos,
-    checklistFeats,
-    videoFeats,
-    (c) => c.meta.slug,
-    (v) => v.id,
-  );
 
   return {
     timelineToArticles: tlToArt,
-    timelineToVideos: tlToVid,
     articleToTimelineWeeks: artToTlWeeks,
-    articleToVideos: artToVid,
     checklistToArticles: clToArt,
-    checklistToVideos: clToVid,
   };
 }
 
@@ -610,10 +542,6 @@ function existingArticleSlugs(loaded: Loaded): Set<string> {
   return new Set(loaded.articles.map((a) => a.slug));
 }
 
-function existingVideoIds(loaded: Loaded): Set<string> {
-  return new Set(loaded.videos.map((v) => v.id));
-}
-
 function existingTimelineWeeks(loaded: Loaded): Set<number> {
   return new Set(loaded.timeline.map((t) => t.week));
 }
@@ -634,7 +562,6 @@ function computeChanges(
   articleChanges: FileChange[];
 } {
   const validArticles = existingArticleSlugs(loaded);
-  const validVideos = existingVideoIds(loaded);
   const validWeeks = existingTimelineWeeks(loaded);
 
   // Timeline
@@ -654,23 +581,6 @@ function computeChanges(
           targetId: tl.id,
           itemLabel,
           field: "linked_article_slugs",
-          diff: { kind: "string", before, after },
-        });
-      }
-    }
-
-    // linked_video_ids
-    if (!tl.linked_video_ids_manual) {
-      const before = tl.linked_video_ids ?? [];
-      const proposedIds = (proposed.timelineToVideos.get(tl.id) ?? []).filter((id) =>
-        validVideos.has(id),
-      );
-      const after = dedupSorted(proposedIds);
-      if (!arrayEquals(before, after)) {
-        tlChanges.push({
-          targetId: tl.id,
-          itemLabel,
-          field: "linked_video_ids",
           diff: { kind: "string", before, after },
         });
       }
@@ -703,21 +613,6 @@ function computeChanges(
         });
       }
     }
-    if (!meta.linked_video_ids_manual) {
-      const before = meta.linked_video_ids ?? [];
-      const proposedIds = (proposed.checklistToVideos.get(meta.slug) ?? []).filter((id) =>
-        validVideos.has(id),
-      );
-      const after = dedupSorted(proposedIds);
-      if (!arrayEquals(before, after)) {
-        changes.push({
-          targetId: meta.slug,
-          itemLabel,
-          field: "linked_video_ids",
-          diff: { kind: "string", before, after },
-        });
-      }
-    }
     return {
       filePath: cl.filePath,
       label: path.relative(ROOT, cl.filePath),
@@ -742,21 +637,6 @@ function computeChanges(
           itemLabel,
           field: "linked_timeline_weeks",
           diff: { kind: "number", before, after },
-        });
-      }
-    }
-    if (!a.linkedVideoIdsManual) {
-      const before = a.linkedVideoIds ?? [];
-      const proposedIds = (proposed.articleToVideos.get(a.slug) ?? []).filter((id) =>
-        validVideos.has(id),
-      );
-      const after = dedupSorted(proposedIds);
-      if (!arrayEquals(before, after)) {
-        changes.push({
-          targetId: a.slug,
-          itemLabel,
-          field: "linked_video_ids",
-          diff: { kind: "string", before, after },
         });
       }
     }
@@ -785,8 +665,6 @@ function applyChanges(
       if (!item) continue;
       if (change.field === "linked_article_slugs") {
         item.linked_article_slugs = change.diff.after as string[];
-      } else if (change.field === "linked_video_ids") {
-        item.linked_video_ids = change.diff.after as string[];
       }
     }
     fs.writeFileSync(TIMELINE_PATH, JSON.stringify(data, null, 2) + "\n");
@@ -802,8 +680,6 @@ function applyChanges(
     for (const change of cl.changes) {
       if (change.field === "linked_article_slugs") {
         meta.linked_article_slugs = change.diff.after as string[];
-      } else if (change.field === "linked_video_ids") {
-        meta.linked_video_ids = change.diff.after as string[];
       }
     }
     fs.writeFileSync(cl.filePath, JSON.stringify(checklist.data, null, 2) + "\n");
@@ -878,28 +754,22 @@ function printReport(loaded: Loaded) {
 
   // Timeline
   const tlArtCounts = loaded.timeline.map((t) => (t.linked_article_slugs ?? []).length);
-  const tlVidCounts = loaded.timeline.map((t) => (t.linked_video_ids ?? []).length);
   console.log(`Timeline (${loaded.timeline.length}개 아이템)`);
   console.log(`  linked_article_slugs: ${statline(tlArtCounts)}`);
-  console.log(`  linked_video_ids:     ${statline(tlVidCounts)}`);
 
   // Articles
   const artTlCounts = loaded.articles.map((a) => (a.linkedTimelineWeeks ?? []).length);
-  const artVidCounts = loaded.articles.map((a) => (a.linkedVideoIds ?? []).length);
   console.log(`\nArticles (${loaded.articles.length}개 아이템)`);
   console.log(`  linked_timeline_weeks: ${statline(artTlCounts)}`);
-  console.log(`  linked_video_ids:      ${statline(artVidCounts)}`);
 
   // Checklists
   console.log(`\nChecklists (${loaded.checklists.length}개 파일)`);
   for (const cl of loaded.checklists) {
     const meta = cl.data.meta;
     const arts = meta.linked_article_slugs ?? [];
-    const vids = meta.linked_video_ids ?? [];
     const tlw = meta.linked_timeline_weeks ?? [];
     console.log(`  ${meta.slug}`);
     console.log(`    linked_article_slugs:  ${arts.length}개`);
-    console.log(`    linked_video_ids:      ${vids.length}개`);
     console.log(`    linked_timeline_weeks: ${tlw.length}개 (수동 관리)`);
   }
 
@@ -923,15 +793,12 @@ function countManualFlags(loaded: Loaded): number {
   let n = 0;
   for (const tl of loaded.timeline) {
     if (tl.linked_article_slugs_manual) n++;
-    if (tl.linked_video_ids_manual) n++;
   }
   for (const cl of loaded.checklists) {
     if (cl.data.meta.linked_article_slugs_manual) n++;
-    if (cl.data.meta.linked_video_ids_manual) n++;
   }
   for (const a of loaded.articles) {
     if (a.linkedTimelineWeeksManual) n++;
-    if (a.linkedVideoIdsManual) n++;
   }
   return n;
 }
