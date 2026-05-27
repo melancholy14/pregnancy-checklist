@@ -52,7 +52,7 @@ test.describe("정보글 시스템", () => {
     test("통합 태그 클릭 시 매칭된 글만 노출된다", async ({ page }) => {
       // 무엇을: 통합 태그 필터 동작
       // 왜: 사용자가 관심 주제별로 글을 찾을 수 있어야 함
-      await page.getByRole("button", { name: /^#보험$/ }).click();
+      await page.getByRole("button", { name: /^#태아보험$/ }).click();
       await expect(
         page.getByRole("heading", { name: /태아보험.*가입 전에/ }),
       ).toBeVisible();
@@ -65,7 +65,7 @@ test.describe("정보글 시스템", () => {
     test("전체 버튼 클릭 시 모든 콘텐츠가 다시 노출된다", async ({ page }) => {
       // 무엇을: 필터 초기화
       // 왜: 태그 필터 후 전체 보기로 돌아갈 수 있어야 함
-      await page.getByRole("button", { name: /^#보험$/ }).click();
+      await page.getByRole("button", { name: /^#태아보험$/ }).click();
       await page
         .getByRole("button", { name: "전체", exact: true })
         .first()
