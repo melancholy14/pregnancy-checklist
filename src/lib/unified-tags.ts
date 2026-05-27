@@ -1,5 +1,4 @@
 import type { ArticleMeta } from "@/types/article";
-import type { VideoItem } from "@/types/video";
 
 export type UnifiedTag = {
   key: string;
@@ -125,13 +124,8 @@ export function videoMatchesUnifiedTag(
 
 export function getUsedUnifiedTags(
   articles: Pick<ArticleMeta, "tags">[],
-  videos: Pick<VideoItem, "category">[],
 ): UnifiedTag[] {
-  return UNIFIED_TAGS.filter((tag) => {
-    const articleHit = articles.some((a) =>
-      articleMatchesUnifiedTag(a.tags, tag),
-    );
-    const videoHit = videos.some((v) => videoMatchesUnifiedTag(v.category, tag));
-    return articleHit || videoHit;
-  });
+  return UNIFIED_TAGS.filter((tag) =>
+    articles.some((a) => articleMatchesUnifiedTag(a.tags, tag)),
+  );
 }
