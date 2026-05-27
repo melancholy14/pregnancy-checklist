@@ -3,8 +3,22 @@
 > Phase 4.5 기록: [phase-4.5.md](phase-4.5.md)
 > Date: 2026-05-09
 > 목표 완료: 2026-06-14
-> Status: ✅ 결정 라운드 완료 (2026-05-26) — V1·T1·H1·N1 = 모두 기본값 A.
-> 구현 단계 진입. 결정 근거는 [선결 조건 §D-Data 결정 라운드 결과](#d-data-결정-라운드-결과-2026-05-26) 참고
+> Status: 🚧 §1 V1=A 영상 자산 일괄 제거 완료 (2026-05-27) — §2 타임라인 흡수 라운드 대기
+>
+> **진행 요약 (2026-05-27)**
+>
+> - **결정 라운드** ✅ 완료 (2026-05-26, `5e3e3b4`) — V1·T1·H1·N1 = 모두 기본값 A. D-Data 표본 부족(주당 활성 사용자 2~3명) → "기본값을 뒤집을 시그널 없음"으로 정직 채택. 결정 근거는 [선결 조건 §D-Data 결정 라운드 결과](#d-data-결정-라운드-결과-2026-05-26) 참고.
+> - **§1 V1=A 영상 자산 일괄 제거** ✅ 완료 (8 단계 / 8 커밋, `cebd013`~`22ff0a7`):
+>   1. 영상 의존 끊기 (HomeContent / SearchModal / ArticleDetail·RelatedContent / Checklist 3종·Page·RelatedContent / TimelineContainer·AccordionCard)
+>   2. 라우트·컴포넌트·타입·데이터 삭제 + `/articles` listing 신설 (`ArticlesContainer` 재사용)
+>   3. frontmatter MD 7개 + JSON 4개(`timeline_items` + 체크리스트 3종) `linked_video_ids` 일괄 제거
+>   4. scripts 정리: `fetch-*` 3개 + `seed-vault-media-notes.py` 삭제, `generate-crosslinks.ts` 통째 재작성(video 의존 제거), `crosslink-utils.ts`·`unified-tags.ts` `videoCategories` 정리, `lighthouse-check.sh` PAGES, `package.json` scripts 4개
+>   5. sitemap·redirect: 정적 export 제약 발견 → `next.config redirects` 대신 `/info`·`/videos` 라우트를 **meta-refresh redirect 페이지**로 둠. BottomNav `/info`→`/articles`
+>   6. e2e 25 파일 갱신: 통째 폐기 3 (`info-tab-integration`·`fetch-channel-thumbs`·`phase-4-step-3-related-content`) + 부분 갱신 10 (`cross-links-video-weight` Step 3 폐기, `home`·`client-search`·`ga4-events`·`marketing-events-wiring` 영상 시나리오 제거, SEO 6 path 교체, `design-bundle-h` InfoContainer 검증 폐기, `design-bundle-b-i` 영상 카드 라벨 정리, `phase-4-step-5-crosslinks` linked_video_ids 시나리오 제거, `privacy-terms`·`sticky-header` path 교체)
+>   7. GA4 카탈로그 `ga4.md` §3.C/§3.E/§6.3 `content_click(type=video)`·`external_link_click(context=video)`·`video_id`·`channel_id` deprecated 마킹 (4주 grace 후 spec 삭제)
+>   8. `persona.md` §3.2 운영 가이드 정합
+> - **잔여 (운영자 수동)**: vault `~/Documents/pregnancy-checklist/20-content/videos/` (60개) + `20-content/channels/` (38개) MOC 노트 archive 또는 삭제. `seed-vault-media-notes.py` 폐기로 자동 갱신 끊김.
+> - **차단되는 다른 작업 0건** — §2 진입 가능.
 
 ## Overview
 
@@ -153,26 +167,30 @@ W19~W21 3주치 GA4 weekly report 분석 결과 V1·T1 데이터 의사결정 �
 
 #### V1. 영상 자산 처리 방식
 
-- **A. 전체 제거** ([/videos](../../src/app/videos/page.tsx) 라우트, [InfoContainer.tsx](../../src/components/info/InfoContainer.tsx) 영상 탭, [HomeContent.tsx:339](../../src/components/home/HomeContent.tsx) 영상 카드, [src/types/video.ts](../../src/types/video.ts) 타입, [src/data/videos.json](../../src/data/videos.json) 데이터, [src/data/channels.json](../../src/data/channels.json))
+- **A. 전체 제거** — /videos 라우트, InfoContainer 영상 탭, HomeContent 영상 카드, src/types/video.ts 타입, src/data/videos.json·channels.json 데이터 모두 폐기
 - **B. 본인 코멘트 1줄 의무화로 큐레이션 격상** (10편 이하로 축소, §7.4 경험 기반 발행 적용)
 - **C. 아티클 본문 임베드 슬롯으로만 좁힘** (정보 탭에서는 빼고 아티클 1~2개 임베드)
 
-> 기본값 **A (전체 제거)**. 데이터에서 영상 클릭률이 의미 있게 잡히면 C 검토.
+> **결정: A (전체 제거)** — 2026-05-26 확정, 2026-05-27 구현 완료. 진행 요약 참고.
 
-### 1.2 작업 (결정 A 기준)
+### 1.2 작업 (결정 A 기준) — ✅ 완료 (2026-05-27)
 
-| 작업 | 대상 |
-|------|------|
-| 라우트 제거 | [src/app/videos/page.tsx](../../src/app/videos/page.tsx), [src/app/info/page.tsx](../../src/app/info/page.tsx) (블로그로 단일화) |
-| 컴포넌트 제거 | [src/components/info/InfoContainer.tsx](../../src/components/info/InfoContainer.tsx)의 영상 탭, [src/components/videos/VideoCard.tsx](../../src/components/videos/VideoCard.tsx), [src/components/videos/VideoCardCompact.tsx](../../src/components/videos/VideoCardCompact.tsx) |
-| 타입 제거 | [src/types/video.ts](../../src/types/video.ts), [src/types/info.ts](../../src/types/info.ts) `InfoTab` 축소 또는 삭제 |
-| 데이터 제거 | [src/data/videos.json](../../src/data/videos.json), [src/data/channels.json](../../src/data/channels.json) |
-| 홈 카드 제거 | [HomeContent.tsx:339-353](../../src/components/home/HomeContent.tsx) (4축 허브화 §3 통합) |
-| Sitemap/Robots | [sitemap.ts](../../src/app/sitemap.ts), [robots.ts](../../src/app/robots.ts)에서 `/videos`·`/info` 제거 |
-| Redirect | `/videos` → `/articles`, `/info` → `/articles` (next.config redirects) |
-| GA4 | `content_click(type=video)` deprecated 마킹 + 카탈로그(§5)에서 삭제 |
-| 운영 가이드 | [30-domain/](../../../pregnancy-checklist/30-domain/)의 video 룰 폐기 |
-| E2E | `e2e/info-tab-integration.spec.ts` 등 영상 시나리오 갱신·삭제 |
+| 작업 | 대상 | 상태 |
+|------|------|------|
+| 라우트 제거 | `src/app/videos/page.tsx`, `src/app/info/page.tsx` (블로그 단일화) | ✅ 폐기 후 meta-refresh redirect 페이지로 재작성 (정적 export 제약) |
+| 컴포넌트 제거 | `src/components/info/` (InfoContainer·InfoCard), `src/components/videos/` (VideoCard·VideoCardCompact·ChannelCard·VideosContainer), `src/components/timeline/RelatedVideosLink.tsx` | ✅ |
+| 타입 제거 | `src/types/video.ts`, `src/types/info.ts` 통째, `types/checklist.ts`·`types/timeline.ts`의 `linked_video_ids?` 필드 | ✅ |
+| 데이터 제거 | `src/data/videos.json`, `src/data/channels.json` | ✅ |
+| 홈 카드 제거 | `HomeContent.tsx` 영상 카드 + `videoCategories` useMemo + `videosData` import | ✅ |
+| Sitemap | `sitemap.ts`에서 `/info` 제거, `/articles` 추가 | ✅ |
+| Redirect | next.config 정적 export 제약으로 server redirect 불가 → `/info`·`/videos` 라우트에 `<meta http-equiv="refresh">` + `robots: noindex` 페이지 | ✅ |
+| BottomNav | `/info` → `/articles` (alsoMatchPrefixes: `/info` 보존) | ✅ |
+| `/articles` listing | `ArticlesContainer` 재사용, metadata + canonical 신설 | ✅ |
+| frontmatter·JSON | MD 7개 + `timeline_items.json` + 체크리스트 3종 meta `linked_video_ids` 일괄 제거 | ✅ |
+| scripts | `fetch-video-metadata`·`fetch-channel-thumbs`·`verify-videos`·`seed-vault-media-notes` 삭제, `generate-crosslinks.ts` 통째 재작성, `crosslink-utils.ts`·`unified-tags.ts` `videoCategory`/`videoCategories` 정리, `lighthouse-check.sh` PAGES `/info.html` → `/articles.html`, `package.json` scripts 4개 제거 | ✅ |
+| GA4 카탈로그 | `ga4.md` §3.C/§3.E/§6.3 `content_click(type=video)`·`external_link_click(context=video)`·`video_id`/`channel_id` deprecated 마킹 (4주 grace) | ✅ |
+| 운영 가이드 | `persona.md` §3.2 영상 자산 폐기 명시. vault `20-content/videos/`·`channels/` MOC 노트는 운영자 수동 정리 잔여 | 🟡 vault 수동 |
+| E2E | 통째 폐기 3 + 부분 갱신 10 — §8.3 순서 1 표 참고 | ✅ |
 
 ---
 
@@ -358,14 +376,14 @@ V1=A(영상 전체 제거) + T1=A(타임라인 → 체중 흡수) + H1=A + N1=A 
 
 ### 8.3 작업 순서 (구현 단계 §1~§4와 묶음)
 
-| 순서 | 단계 | 동기 갱신할 e2e·scripts |
-|------|------|--------------------------|
-| 1 | §1 영상 자산 일괄 제거 | scripts 3개 + 인프라 spec 1개 + `info-tab-integration.spec.ts`·`fetch-channel-thumbs.spec.ts`·`phase-4-step-3-related-content.spec.ts` 폐기, [ga4-events.spec.ts](../../e2e/ga4-events.spec.ts) `content_click(type=video)` 시나리오 제거 |
-| 2 | §2 타임라인 흡수 | timeline 3종 + `cross-links-video-weight.spec.ts` Step 3 폐기 → 흡수처 spec으로 마이그레이션. `timeline-migrate.spec.ts` 신규 (§7.1 zustand migrate 검증) |
-| 3 | §3·§4 홈 4축 허브 + BottomNav | [home.spec.ts](../../e2e/home.spec.ts), [navigation.spec.ts](../../e2e/navigation.spec.ts) 재작성 |
-| 4 | §5 GA4 카탈로그 4축 갱신 | [ga4-events.spec.ts](../../e2e/ga4-events.spec.ts), [marketing-events-wiring.spec.ts](../../e2e/marketing-events-wiring.spec.ts) 갱신 + `axis-funnel.spec.ts` 신규. [scripts/weekly-report/ga4-queries.ts](../../scripts/weekly-report/ga4-queries.ts) 동기 |
-| 5 | Sitemap·robots·canonical·redirect | SEO 6 spec(`seo-metadata`·`seo-meta`·`page-description`·`sticky-header`·`lighthouse-seo`·`canonical-url`) path 일괄 교체 + `scripts/lighthouse-check.sh` `PAGES` 배열 동기 |
-| 6 | 회귀 진입 동선 정리 | 보조 spec ~10개 `/timeline`·`/info` path만 교체. `npm run test:e2e` 풀 회귀 통과 확인 |
+| 순서 | 단계 | 동기 갱신할 e2e·scripts | 상태 |
+|------|------|--------------------------|------|
+| 1 | §1 영상 자산 일괄 제거 | scripts 4개 (fetch-* 3 + seed-vault-media-notes) 폐기, e2e 통째 폐기 3 (`info-tab-integration`·`fetch-channel-thumbs`·`phase-4-step-3-related-content`) + 부분 갱신 10 (`cross-links-video-weight` Step 3, `home`·`client-search`·`ga4-events`·`marketing-events-wiring` 영상 시나리오, `design-bundle-h`·`design-bundle-b-i`, `phase-4-step-5-crosslinks` linked_video_ids 시나리오, `privacy-terms`·`sticky-header`·SEO 6 path 교체) | ✅ 완료 (2026-05-27, 커밋 `cebd013`~`22ff0a7`) |
+| 2 | §2 타임라인 흡수 | timeline 3종 + `cross-links-video-weight.spec.ts` 잔여 부분 → 흡수처 spec으로 마이그레이션. `timeline-migrate.spec.ts` 신규 (§7.1 zustand migrate 검증) | ⏳ 대기 |
+| 3 | §3·§4 홈 4축 허브 + BottomNav | [home.spec.ts](../../e2e/home.spec.ts), [navigation.spec.ts](../../e2e/navigation.spec.ts) 재작성 | ⏳ 대기 |
+| 4 | §5 GA4 카탈로그 4축 갱신 | [ga4-events.spec.ts](../../e2e/ga4-events.spec.ts), [marketing-events-wiring.spec.ts](../../e2e/marketing-events-wiring.spec.ts) 갱신 + `axis-funnel.spec.ts` 신규. [scripts/weekly-report/ga4-queries.ts](../../scripts/weekly-report/ga4-queries.ts) 동기 | ⏳ 대기 |
+| 5 | Sitemap·robots·canonical·redirect | SEO 6 spec path 일괄 교체 + `scripts/lighthouse-check.sh` `PAGES` 동기 | 🟡 §1 라운드에서 부분 선행 (SEO 6 spec `/info`→`/articles`, lighthouse-check.sh `/info.html`→`/articles.html`). `/timeline` 부분은 §2와 함께 |
+| 6 | 회귀 진입 동선 정리 | 보조 spec ~10개 `/timeline`·`/info` path만 교체. `npm run test:e2e` 풀 회귀 통과 확인 | ⏳ 대기 (§2~§5 후) |
 
 ### 8.4 양보 거부 항목
 
@@ -379,14 +397,16 @@ V1=A(영상 전체 제거) + T1=A(타임라인 → 체중 흡수) + H1=A + N1=A 
 
 | 마일스톤 | 날짜 | 비고 |
 |----------|------|------|
-| D1 GA4 발급 시작 | 2026-05-18 | phase-4.5 진행 중 백그라운드 |
-| 데이터 수집 시작 | 2026-05-18 ~ | phase-4.5와 병행 |
-| phase-4.5 마무리 | 2026-05-31 (목표) | 디자인 §2 묶음 일괄 |
-| 데이터 수집 종료 | 2026-06-01 | 2주 데이터 확보 |
-| **phase-4.6 결정 라운드** | 2026-06-01 ~ 2026-06-04 | V1·T1·H1·N1 결정 |
-| **phase-4.6 구현** | 2026-06-04 ~ 2026-06-12 | 영상 제거 → 타임라인 흡수 → 홈 허브 → BottomNav → GA4 |
-| 회귀 검증 + e2e | 2026-06-12 ~ 2026-06-14 | §7 회귀 안전장치 전체 |
-| AdSense 신청 | 2026-06-15 ~ | [adsense-audit.md](adsense-audit.md) CRITICAL/HIGH 0건 확인 후 |
+| D1 GA4 발급 (시작) | 2026-05-12 | ✅ 조기 완료 — `chmod 600` + 환경변수 반영 |
+| 데이터 수집 | 2026-05-12 ~ 2026-05-26 | ✅ W19~W21 raw 3 cycle 누적 (launchd 자동) |
+| phase-4.5 디자인 §2 마무리 | 2026-05-12 | ✅ 통합 묶음 13개 조기 완료 (목표 5/31 대비) |
+| **phase-4.6 결정 라운드** | 2026-05-26 | ✅ 완료 — V1·T1·H1·N1 = 모두 A (`5e3e3b4`) |
+| **phase-4.6 §1 영상 자산 제거** | 2026-05-27 | ✅ 완료 — 8 커밋 (`cebd013`~`22ff0a7`) |
+| phase-4.6 §2 타임라인 흡수 | 2026-05-28 ~ | 🚧 다음 라운드 — zustand `migrate` + `timeline-migrate.spec.ts` |
+| phase-4.6 §3·§4 홈 4축 허브 + BottomNav | TBD | ⏳ §2 후 |
+| phase-4.6 §5 GA4 카탈로그 4축 | TBD | ⏳ §3 후 |
+| 회귀 검증 + e2e 풀 회귀 | TBD | §7 회귀 안전장치 전체 |
+| AdSense 신청 | 2026-06-15 ~ (목표 유지) | [adsense-audit.md](adsense-audit.md) CRITICAL/HIGH 0건 확인 후 |
 
 > 7월 중순 휴가 + 8월 13일 출산 일정 고려 — phase-4.6은 6월 14일 안에 마감, AdSense 신청은 6월 안에 완료. 산후 3개월 휴면 기간 동안 정책 검사 통과 가능 상태로 둠.
 
