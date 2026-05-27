@@ -124,7 +124,9 @@
 
 ---
 
-### 3.C 콘텐츠 — 아티클 / 영상 / 가이드
+### 3.C 콘텐츠 — 아티클 / 가이드
+
+> ⚠️ **영상 자산 deprecated (phase-4.6 §1, 2026-05-27)** — `/videos`·`/info` 영상 탭 폐기. `content_click(type=video)`, `external_link_click(context=video)`, `video_id`, `channel_id` 파라미터는 deprecated. 측정 시 무시. 4주 grace 후 spec에서 완전 삭제.
 
 #### `article_view`
 - **목적**: 어떤 토픽이 잘 읽히나 (basic CTR과 다름, 진입만 잡음)
@@ -132,7 +134,7 @@
 - **파라미터**:
   - `slug` (string)
   - `topic` (string, enum §6.2) — `nutrition` / `exercise` / `medical` / `product` / `policy` / `lifestyle`
-  - `format` (string enum) — `article` / `guide` (영상은 detail 페이지가 없어 `article_view` 미발사 — §3.E `external_link_click(context=video)` 참조)
+  - `format` (string enum) — `article` / `guide`
   - `week_relevance` (int, optional) — 콘텐츠가 권장하는 주차 (있으면)
 - **층**: 보조 (article_read_complete와 짝)
 - **분석**: view 단독 해석 금지. **`article_read_complete` 비율**과 항상 같이 본다.
@@ -177,7 +179,7 @@
 - **분석**: 공유율 0.5% 미만이면 버튼 시각/위치 문제일 가능성. 콘텐츠 품질 문제는 보통 **재방문**에서 먼저 보임. 4주 후 영역×position별 카운트 차이 5%p 이상이면 다운스코프 라운드 발의.
 - **enum 확장 정책**: 위치 컨벤션이 다운스코프되어 단일 위치로 통일되면 enum도 다운스코프 — 4주 grace period 후 신/구 병행 종료.
 
-> 📌 **`video_progress` 미사용** — 영상은 [VideoCard.tsx:17-18](../../src/components/videos/VideoCard.tsx#L17-L18)에서 youtube.com으로 `target="_blank"` 외부 이동. 자체 임베드/iframe API 없음 → 시청 진행률은 우리 도메인에서 측정 불가능. 클릭 행동만 §3.E `external_link_click(context=video)` 으로 흡수해 한 곳에서 관리. 시청률 분석은 YouTube Studio 별도.
+> 📌 **`video_progress` 미사용** — phase-4.6 §1에서 영상 자산 전체 폐기. 본 메모는 deprecated, 4주 grace 후 삭제.
 
 ---
 
@@ -238,20 +240,17 @@
 - **층**: 진단
 - **분석**: location × cta_id 매트릭스로 CTR 비교. 같은 카피가 위치 따라 5배 차이 나는 경우 흔함.
 
-#### `external_link_click` ⭐ 자체화 후보 식별 + YouTube 클릭 추적
-- **목적**: 정부24·병원 사이트로 새는 양 = 자체 페이지화 후보. **YouTube 영상 클릭도 이 이벤트로 통합 추적**.
+#### `external_link_click` ⭐ 자체화 후보 식별
+- **목적**: 정부24·병원 사이트로 새는 양 = 자체 페이지화 후보.
 - **트리거**: 외부 도메인 링크 클릭 시 (`<a target="_blank">` 또는 `rel*=external`)
 - **파라미터**:
   - `domain` (string) — 호스트만 (path 제외)
-  - `context` (string enum) — `article` / `checklist` / `policy_guide` / **`video`**
+  - `context` (string enum) — `article` / `checklist` / `policy_guide` (`video`는 deprecated, phase-4.6 §1)
   - `from_slug` (string, optional) — 진입 출처 페이지 slug
-  - `video_id` (string, optional) — `context=video`일 때만. YouTube ID
-  - `channel_id` (string, optional) — `context=video`일 때만. 채널 식별자
+  - `video_id` / `channel_id` (deprecated, phase-4.6 §1) — `context=video` 발화가 0이 된 후 4주 grace 후 삭제
 - **층**: 진단
 - **분석**:
   - 도메인별 클릭 수 TOP 10 → 자체 콘텐츠 흡수 후보. 정부 사이트 비중 높으면 정책 가이드 강화.
-  - `context=video` 슬라이스: 어떤 채널/영상이 가장 클릭되나. 채널 디렉토리 큐레이션(Phase 5) 우선순위.
-  - 시청률(완시청·평균 시청시간)은 GA4 데이터로 답할 수 없음 → **YouTube Studio에서 별도 확인** 후 주간 리포트에 수기 종합.
 
 #### `scroll_without_action`
 - **목적**: 머물지만 클릭 안 하는 페이지 진단
@@ -404,7 +403,6 @@ join_week=24  78%   55%   40%   33%
 
 ### 6.3 `format` (`article_view`)
 - `article` / `guide`
-- (영상은 detail 페이지 없음 → `article_view` 미발사. `external_link_click(context=video)`로만 추적)
 
 ### 6.4 `source` (`pregnancy_week_set`)
 - `onboarding` / `manual_update` / `correction`
