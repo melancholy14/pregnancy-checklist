@@ -26,7 +26,6 @@ import { useScrollSignals } from "@/lib/use-scroll-signals";
 import { BASE_URL } from "@/lib/constants";
 import { classifyNote } from "@/lib/note-classifier";
 import type { ArticleMeta } from "@/types/article";
-import type { VideoItem } from "@/types/video";
 import type { ChecklistData, ChecklistItem } from "@/types/checklist";
 import {
   CHECKLIST_STORE_BY_SLUG,
@@ -45,10 +44,9 @@ interface ChecklistPageProps {
   data: ChecklistData;
   storeSlug: ChecklistStoreSlug;
   linkedArticles: ArticleMeta[];
-  linkedVideos: VideoItem[];
 }
 
-export function ChecklistPage({ data, storeSlug, linkedArticles, linkedVideos }: ChecklistPageProps) {
+export function ChecklistPage({ data, storeSlug, linkedArticles }: ChecklistPageProps) {
   useScrollSignals("checklist", { slug: data.meta.slug });
   const fireToggleEvent = useChecklistToggleEvent();
   const { meta, items: baseItems } = data;
@@ -381,7 +379,6 @@ export function ChecklistPage({ data, storeSlug, linkedArticles, linkedVideos }:
         <ChecklistRelatedContent
           linkedArticles={linkedArticles}
           linkedTimelineWeeks={meta.linked_timeline_weeks ?? []}
-          linkedVideos={linkedVideos}
         />
 
         {showAddForm && (

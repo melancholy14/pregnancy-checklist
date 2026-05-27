@@ -53,13 +53,12 @@ test.describe("홈 페이지", () => {
   });
 
   test.describe("미니 대시보드 카드", () => {
-    test("4개 미니 대시보드 카드가 렌더링된다", async ({ page }) => {
-      // 무엇을: 기능 메뉴판 대신 미니 대시보드 카드 4개가 보이는지
+    test("미니 대시보드 카드가 렌더링된다", async ({ page }) => {
+      // 무엇을: 기능 메뉴판 대신 미니 대시보드 카드가 보이는지
       // 왜: Phase 2.5 Step 3 — 메뉴판→미니 대시보드 개편
       await expect(page.locator('a[href="/baby-fair"]').first()).toBeVisible();
       await expect(page.locator('a[href="/weight"]').first()).toBeVisible();
-      await expect(page.locator('a[href="/info?tab=videos"]').first()).toBeVisible();
-      await expect(page.locator('a[href="/info"]').first()).toBeVisible();
+      await expect(page.locator('a[href="/articles"]').first()).toBeVisible();
     });
 
     test("베이비페어 카드에 다가오는 행사 정보가 표시된다", async ({ page }) => {
@@ -69,15 +68,6 @@ test.describe("홈 페이지", () => {
       const hasEvents = await page.getByText(/다가오는 행사/).isVisible().catch(() => false);
       const hasNoEvents = await page.getByText(/예정된 베이비페어가 없습니다/).isVisible().catch(() => false);
       expect(hasEvents || hasNoEvents).toBe(true);
-    });
-
-    test("영상 카드에 총 영상 수와 카테고리가 표시된다", async ({ page }) => {
-      // 무엇을: 영상 카드에 영상 건수와 카테고리 수가 보이는지
-      // 왜: 콘텐츠 볼륨 표시로 탐색 유도
-      const dashboard = page.locator(".grid.grid-cols-2");
-      await expect(dashboard.getByRole("link", { name: /영상/ })).toBeVisible();
-      await expect(page.getByText(/추천 영상/)).toBeVisible();
-      await expect(page.getByText(/카테고리/)).toBeVisible();
     });
 
     test("정보 카드에 아티클 정보가 표시된다", async ({ page }) => {
@@ -103,14 +93,6 @@ test.describe("홈 페이지", () => {
       await expect(page).toHaveURL(/\/baby-fair/);
     });
 
-    test("영상 카드는 /info?tab=videos로 직접 연결된다", async ({ page }) => {
-      // 무엇을: Phase 4 Step 2에서 /videos 폐기 후 통합 정보 허브의 영상 탭으로 직접 연결
-      // 왜: 리다이렉트 우회로 깜빡임 제거
-      const dashboard = page.locator(".grid.grid-cols-2");
-      const videoLink = dashboard.locator('a[href="/info?tab=videos"]').first();
-      await expect(videoLink).toBeVisible();
-      await expect(videoLink).toContainText("영상");
-    });
   });
 
   test.describe("Footer 링크", () => {

@@ -18,7 +18,7 @@ async function setupGtagSpy(context: BrowserContext) {
   });
 }
 
-async function injectGtagSpy(_page: import("@playwright/test").Page) {
+async function injectGtagSpy() {
   // setupGtagSpy 가 context 레벨에서 이미 주입함 — no-op (각 테스트가 page 단위 reset 원하면 호출)
 }
 
@@ -38,18 +38,18 @@ test.describe("GA4 커스텀 이벤트 (Step 1)", () => {
       // 무엇을: 페이지 이동 시 수동 page_view 이벤트 발생 확인
       // 왜: SPA 내비게이션에서 GA4 자동 페이지뷰가 누락되므로 수동 트래킹 필요
       await page.goto("/");
-      await injectGtagSpy(page);
+      await injectGtagSpy();
 
       // Phase 4 Step 1+2 이후 nav에 타임라인 탭이 없으므로 정보 탭으로 검증
       await page.locator("nav").getByText("정보").click();
-      await expect(page).toHaveURL(/\/info\/?$/);
+      await expect(page).toHaveURL(/\/articles\/?$/);
 
       const calls = await getGtagCalls(page);
       const infoPageView = calls.find(
         (c) =>
           c[0] === "event" &&
           c[1] === "page_view" &&
-          (c[2] as Record<string, string>).page_path === "/info",
+          (c[2] as Record<string, string>).page_path === "/articles",
       );
       expect(infoPageView).toBeTruthy();
     });
@@ -60,7 +60,7 @@ test.describe("GA4 커스텀 이벤트 (Step 1)", () => {
       // 무엇을: 타임라인 카테고리 필터 변경 시 GA4 이벤트 확인
       // 왜: 사용자의 관심 카테고리 분석을 위한 이벤트
       await page.goto("/timeline");
-      await injectGtagSpy(page);
+      await injectGtagSpy();
 
       const filterButtons = page.locator("button").filter({ hasText: /검사|행정|준비/ });
       const firstFilter = filterButtons.first();
@@ -80,7 +80,7 @@ test.describe("GA4 커스텀 이벤트 (Step 1)", () => {
       // 무엇을: 주차 카드 펼침 시 GA4 이벤트 확인
       // 왜: 사용자가 어떤 주차 정보에 관심이 있는지 분석
       await page.goto("/timeline");
-      await injectGtagSpy(page);
+      await injectGtagSpy();
 
       const card = page.locator("button").filter({ hasText: /체크리스트 \d+개/ }).first();
       await card.click();
@@ -101,9 +101,8 @@ test.describe("GA4 커스텀 이벤트 (Step 1)", () => {
     test.skip("아티클 카드 클릭 시 content_click 이벤트가 전송된다", async ({ page }) => {
       // 무엇을: 정보글 카드 클릭 시 GA4 이벤트 확인
       // 왜: 어떤 글이 사용자 관심을 끄는지 분석
-      await page.goto("/info");
-      await page.getByRole("tab", { name: "블로그" }).click();
-      await injectGtagSpy(page);
+      await page.goto("/articles");
+      await injectGtagSpy();
 
       // 영상 카드 테스트와 같은 패턴 — Meta+click 로 새 탭 분기 → 현재 페이지 그대로 두고 GA 이벤트만 검증
       const articleCard = page.locator("a").filter({ hasText: /총정리|가이드|체크리스트/ }).first();
@@ -118,27 +117,6 @@ test.describe("GA4 커스텀 이벤트 (Step 1)", () => {
       expect(clickCalls[0][2]).toHaveProperty("title");
     });
 
-    test("영상 카드 클릭 시 content_click 이벤트가 전송된다", async ({ page }) => {
-      // 무엇을: 영상 카드 클릭 시 GA4 이벤트 확인
-      // 왜: 어떤 영상이 사용자 관심을 끄는지 분석
-      await page.goto("/info?tab=videos");
-      await injectGtagSpy(page);
-
-      const videoCard = page.locator("a[href*='youtube.com/watch']").first();
-      if (await videoCard.count() === 0) {
-        test.skip();
-        return;
-      }
-
-      await videoCard.click({ modifiers: ["Meta"] });
-
-      const calls = await getGtagCalls(page);
-      const clickCalls = calls.filter(
-        (c) => c[0] === "event" && c[1] === "content_click",
-      );
-      expect(clickCalls.length).toBe(1);
-      expect((clickCalls[0][2] as Record<string, string>).type).toBe("video");
-    });
   });
 
   test.describe("send_page_view:false 설정", () => {

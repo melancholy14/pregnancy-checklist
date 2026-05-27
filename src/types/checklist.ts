@@ -46,7 +46,6 @@ export type ChecklistMeta = {
   subcategories: ChecklistSubcategory[];
   linked_timeline_weeks?: number[];
   linked_article_slugs?: string[];
-  linked_video_ids?: string[];
 };
 
 export type ChecklistData = {

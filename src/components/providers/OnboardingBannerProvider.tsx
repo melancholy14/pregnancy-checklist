@@ -9,7 +9,7 @@ import { sendGAEvent } from "@/lib/analytics";
 const ONBOARDING_COMPLETED_KEY = "onboarding-completed";
 const BANNER_DISMISSED_KEY = "onboarding-banner-dismissed";
 
-type SourcePage = "articles" | "checklist" | "timeline" | "weight" | "info";
+type SourcePage = "articles" | "checklist" | "timeline" | "weight";
 
 interface BannerStorageSnapshot {
   onboardingDone: boolean;
@@ -71,7 +71,6 @@ function detectSourcePage(pathname: string): SourcePage | null {
   if (pathname.startsWith("/checklist")) return "checklist";
   if (pathname.startsWith("/timeline")) return "timeline";
   if (pathname.startsWith("/weight")) return "weight";
-  if (pathname.startsWith("/info")) return "info";
   return null;
 }
 

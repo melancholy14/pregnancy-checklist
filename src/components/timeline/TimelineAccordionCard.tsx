@@ -12,10 +12,8 @@ import { restoreAtIndex, useDeleteWithUndo } from "@/lib/hooks/useDeleteWithUndo
 import type { TimelineItem } from "@/types/timeline";
 import type { ChecklistItem } from "@/types/checklist";
 import type { ArticleMeta } from "@/types/article";
-import type { VideoItem } from "@/types/video";
 import { WeekChecklistSection } from "./WeekChecklistSection";
 import { RelatedArticlesLink } from "./RelatedArticlesLink";
-import { RelatedVideosLink } from "./RelatedVideosLink";
 import { RelatedChecklistsLink } from "./RelatedChecklistsLink";
 import { sendGAEvent } from "@/lib/analytics";
 
@@ -26,7 +24,6 @@ interface TimelineAccordionCardProps {
   checklistItems: ChecklistItem[];
   checkedIds: string[];
   relatedArticles?: ArticleMeta[];
-  relatedVideos?: VideoItem[];
   defaultOpen?: boolean;
   currentPregnancyWeek: number | null;
 }
@@ -37,7 +34,6 @@ export function TimelineAccordionCard({
   checklistItems,
   checkedIds,
   relatedArticles = [],
-  relatedVideos = [],
   defaultOpen = false,
   currentPregnancyWeek,
 }: TimelineAccordionCardProps) {
@@ -256,10 +252,6 @@ export function TimelineAccordionCard({
               <RelatedArticlesLink articles={relatedArticles} />
             )}
 
-            {/* Related videos */}
-            {!isEditing && relatedVideos.length > 0 && (
-              <RelatedVideosLink videos={relatedVideos} />
-            )}
           </CardContent>
         </Card>
       </Collapsible>

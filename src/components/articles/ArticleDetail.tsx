@@ -5,7 +5,6 @@ import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { Article, ArticleMeta } from "@/types/article";
 import type { ChecklistMeta } from "@/types/checklist";
-import type { VideoItem } from "@/types/video";
 import { TimelineCTA } from "./TimelineCTA";
 import { MedicalDisclaimer } from "./MedicalDisclaimer";
 import { RelatedArticles } from "./RelatedArticles";
@@ -17,21 +16,19 @@ interface ArticleDetailProps {
   article: Article;
   relatedArticles?: ArticleMeta[];
   relatedChecklists?: ChecklistMeta[];
-  relatedVideos?: VideoItem[];
 }
 
 export function ArticleDetail({
   article,
   relatedArticles = [],
   relatedChecklists = [],
-  relatedVideos = [],
 }: ArticleDetailProps) {
   useScrollSignals("article", { slug: article.slug });
   return (
     <div className="min-h-screen pb-24 px-4">
       <article className="pt-8">
         <Link
-          href="/info"
+          href="/articles"
           className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6 no-underline"
         >
           <ArrowLeft size={16} />
@@ -114,10 +111,7 @@ export function ArticleDetail({
           />
         </div>
 
-        <RelatedContent
-          checklists={relatedChecklists}
-          videos={relatedVideos}
-        />
+        <RelatedContent checklists={relatedChecklists} />
 
         <RelatedArticles articles={relatedArticles} fromSlug={article.slug} />
       </article>

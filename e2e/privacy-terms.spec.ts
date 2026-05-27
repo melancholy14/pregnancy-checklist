@@ -44,7 +44,7 @@ test.describe("개인정보처리방침 & 서비스 약관", () => {
     test("모든 페이지에 의료 면책 문구가 표시된다", async ({ page }) => {
       // 무엇을: Footer의 면책 고지가 각 페이지에 표시되는지
       // 왜: Phase 1 의료 면책 요구사항
-      const pages = ["/", "/checklist", "/timeline", "/baby-fair", "/weight", "/videos"];
+      const pages = ["/", "/checklist", "/timeline", "/baby-fair", "/weight", "/articles"];
       for (const path of pages) {
         await page.goto(path);
         await expect(page.getByText("본 서비스는 의료적 조언을 제공하지 않습니다")).toBeVisible();

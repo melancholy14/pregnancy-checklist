@@ -1,7 +1,5 @@
 import type { ArticleMeta } from "@/types/article";
 import type { ChecklistMeta } from "@/types/checklist";
-import type { VideoItem } from "@/types/video";
-import { UNIFIED_TAGS } from "@/lib/unified-tags";
 
 export function getRelatedArticles(
   current: ArticleMeta,
@@ -46,24 +44,4 @@ export function getRelatedChecklists(
   return checklists.filter((c) =>
     (c.linked_article_slugs ?? []).includes(articleSlug),
   );
-}
-
-export function getRelatedVideos(
-  articleTags: string[],
-  videos: VideoItem[],
-  limit = 3,
-): VideoItem[] {
-  const matchedTags = UNIFIED_TAGS.filter((tag) =>
-    articleTags.some((t) => tag.articleTags.includes(t)),
-  );
-  const categories = new Set(matchedTags.flatMap((t) => t.videoCategories));
-  if (categories.size === 0) return [];
-
-  return videos
-    .filter((v) => categories.has(v.category))
-    .sort(
-      (a, b) =>
-        new Date(b.upload_date).getTime() - new Date(a.upload_date).getTime(),
-    )
-    .slice(0, limit);
 }

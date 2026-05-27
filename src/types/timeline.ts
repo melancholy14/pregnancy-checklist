@@ -8,7 +8,6 @@ export type TimelineItem = {
   linked_checklist_ids?: string[];
   linked_checklist_slugs?: string[];
   linked_article_slugs?: string[];
-  linked_video_ids?: string[];
   seo_slug?: string;
   isCustom?: boolean;
 };

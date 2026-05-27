@@ -25,11 +25,10 @@ export function BottomNav() {
     },
     { path: "/baby-fair", icon: Users, label: "베이비페어", match: "exact" },
     {
-      path: "/info",
+      path: "/articles",
       icon: FileText,
       label: "정보",
       match: "prefix",
-      alsoMatchPrefixes: ["/articles", "/videos"],
     },
   ];
 

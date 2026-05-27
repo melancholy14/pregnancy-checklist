@@ -69,7 +69,7 @@ test.describe("클라이언트 검색", () => {
     test("정보글 결과 클릭 시 /articles/slug 으로 이동한다", async ({ page }) => {
       // 무엇을: 정보글 검색 결과 클릭 시 해당 아티클로 이동하는지
       // 왜: 검색 → 아티클 연결이 콘텐츠 발견성의 핵심
-      await page.goto("/info");
+      await page.goto("/articles");
       await page.getByRole("button", { name: "검색" }).click();
 
       const dialog = searchDialog(page);
@@ -81,23 +81,6 @@ test.describe("클라이언트 검색", () => {
       await result.click();
 
       await expect(page).toHaveURL(/\/articles\//);
-    });
-
-    test("영상 결과 클릭 시 /info?tab=videos#video_id 로 이동한다", async ({ page }) => {
-      // 무엇을: 영상 검색 결과 클릭 시 통합 정보 허브의 영상 탭 + 해당 카드로 이동
-      // 왜: Step 2에서 /videos는 폐기되고 /info로 통합됨. hash 스크롤 + 하이라이트 유지
-      await page.goto("/info?tab=videos");
-      await page.getByRole("button", { name: "검색" }).click();
-
-      const dialog = searchDialog(page);
-      await dialog.getByPlaceholder("검색어를 입력하세요 (2자 이상)").fill("스트레칭");
-
-      await expect(dialog.locator("[role='listbox']").getByText("영상", { exact: true })).toBeVisible();
-      const result = dialog.locator("[role='option']").filter({ hasText: "스트레칭" }).first();
-      await expect(result).toBeVisible();
-      await result.click();
-
-      await expect(page).toHaveURL(/\/info\?tab=videos#video_/);
     });
 
     test("모달 닫기 버튼 클릭 시 모달이 닫힌다", async ({ page }) => {

@@ -29,15 +29,12 @@ type TimelineItem = {
   week: number;
   linked_article_slugs?: string[];
   linked_article_slugs_manual?: boolean;
-  linked_video_ids?: string[];
-  linked_video_ids_manual?: boolean;
 };
 
 type ChecklistFile = {
   meta: {
     slug: string;
     linked_article_slugs?: string[];
-    linked_video_ids?: string[];
   };
 };
 
@@ -163,7 +160,6 @@ test.describe("--report 모드", () => {
     expect(stdout).toContain("Articles");
     expect(stdout).toContain("Checklists");
     expect(stdout).toContain("linked_article_slugs");
-    expect(stdout).toContain("linked_video_ids");
   });
 });
 
@@ -274,13 +270,6 @@ test.describe("--apply 모드 (sandbox)", () => {
     try {
       runScript("--apply", { cwd: sandbox.dir });
 
-      const validVideoIds = new Set<string>(
-        (
-          JSON.parse(
-            fs.readFileSync(path.join(sandbox.dir, "src/data/videos.json"), "utf8"),
-          ) as { id: string }[]
-        ).map((v) => v.id),
-      );
       const validArticleSlugs = new Set<string>(
         fs
           .readdirSync(path.join(sandbox.dir, "src/content/articles"))
@@ -295,9 +284,6 @@ test.describe("--apply 모드 (sandbox)", () => {
         for (const slug of item.linked_article_slugs ?? []) {
           expect(validArticleSlugs.has(slug)).toBe(true);
         }
-        for (const id of item.linked_video_ids ?? []) {
-          expect(validVideoIds.has(id)).toBe(true);
-        }
       }
     } finally {
       sandbox.cleanup();
@@ -310,7 +296,7 @@ test.describe("--apply 모드 (sandbox)", () => {
 // ──────────────────────────────────────────────────────────────────────
 
 test.describe("manual 플래그 보호", () => {
-  test("linked_video_ids_manual: true가 있는 항목은 --apply에서 변경되지 않는다", () => {
+  test("linked_article_slugs_manual: true가 있는 항목은 --apply에서 변경되지 않는다", () => {
     const sandbox = makeSandbox();
     try {
       const tlPath = path.join(sandbox.dir, "src/data/timeline_items.json");
@@ -318,9 +304,9 @@ test.describe("manual 플래그 보호", () => {
 
       // 첫 아이템에 manual 플래그를 강제로 추가
       const targetId = tlData[0].id;
-      const protectedVideos = ["video_999_protected"];
-      tlData[0].linked_video_ids = protectedVideos;
-      tlData[0].linked_video_ids_manual = true;
+      const protectedSlugs = ["sentinel-protected-article"];
+      tlData[0].linked_article_slugs = protectedSlugs;
+      tlData[0].linked_article_slugs_manual = true;
       fs.writeFileSync(tlPath, JSON.stringify(tlData, null, 2) + "\n");
 
       const { status } = runScript("--apply", { cwd: sandbox.dir });
@@ -328,33 +314,8 @@ test.describe("manual 플래그 보호", () => {
 
       const after: TimelineItem[] = JSON.parse(fs.readFileSync(tlPath, "utf8"));
       const protectedItem = after.find((t) => t.id === targetId)!;
-      expect(protectedItem.linked_video_ids).toEqual(protectedVideos);
-      expect(protectedItem.linked_video_ids_manual).toBe(true);
-    } finally {
-      sandbox.cleanup();
-    }
-  });
-
-  test("linked_article_slugs_manual: true가 있어도 linked_video_ids는 자동 갱신된다", () => {
-    const sandbox = makeSandbox();
-    try {
-      const tlPath = path.join(sandbox.dir, "src/data/timeline_items.json");
-      const tlData: TimelineItem[] = JSON.parse(fs.readFileSync(tlPath, "utf8"));
-
-      const targetId = tlData[0].id;
-      const protectedSlugs = ["sentinel-protected-article"];
-      tlData[0].linked_article_slugs = protectedSlugs;
-      tlData[0].linked_article_slugs_manual = true;
-      fs.writeFileSync(tlPath, JSON.stringify(tlData, null, 2) + "\n");
-
-      runScript("--apply", { cwd: sandbox.dir });
-
-      const after: TimelineItem[] = JSON.parse(fs.readFileSync(tlPath, "utf8"));
-      const item = after.find((t) => t.id === targetId)!;
-      // article 측은 보호
-      expect(item.linked_article_slugs).toEqual(protectedSlugs);
-      // video 측은 보호되지 않음 — undefined가 아니어야 하고 sentinel과 다름
-      expect(item.linked_video_ids).toBeDefined();
+      expect(protectedItem.linked_article_slugs).toEqual(protectedSlugs);
+      expect(protectedItem.linked_article_slugs_manual).toBe(true);
     } finally {
       sandbox.cleanup();
     }

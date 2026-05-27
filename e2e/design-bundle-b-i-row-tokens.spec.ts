@@ -69,10 +69,10 @@ async function expandTimelineWeek(page: Page, week: number): Promise<Locator> {
 
 test.describe("design-bundle-b-i-row-tokens", () => {
   test.describe("Happy Path — 묶음 I 데이터→토큰 매핑", () => {
-    test("home 미니카드 4개 아이콘 배경이 헬퍼 결과 클래스로 적용된다 (style 미사용)", async ({
+    test("home 미니카드 아이콘 배경이 헬퍼 결과 클래스로 적용된다 (style 미사용)", async ({
       page,
     }) => {
-      // 무엇을: babyfair=mint/40, weight=peach/40, video=yellow/40, info=lavender/40
+      // 무엇을: babyfair=mint/40, weight=peach/40, articles=lavender/40
       // 왜: spec §2.4 HomeContent 매트릭스 — slot prop + getDashboardIconBgClass 결과 검증
       await seedPregnancyWeek(page, 24);
       await page.goto("/");
@@ -83,13 +83,10 @@ test.describe("design-bundle-b-i-row-tokens", () => {
 
       await expect(iconBox("/baby-fair")).toHaveClass(new RegExp(HELPER_CLASS.mint40.replace("/", "\\/")));
       await expect(iconBox("/weight")).toHaveClass(new RegExp(HELPER_CLASS.peach40.replace("/", "\\/")));
-      await expect(iconBox("/info?tab=videos")).toHaveClass(new RegExp(HELPER_CLASS.yellow40.replace("/", "\\/")));
-      // /info 는 ?tab=videos 와 충돌하므로 가장 마지막 카드 (📝) 로 매칭
-      const infoIcon = page.locator('a[href="/info"]', { hasText: "📝" }).locator("div.w-8.h-8.rounded-lg").first();
-      await expect(infoIcon).toHaveClass(new RegExp(HELPER_CLASS.lavender40.replace("/", "\\/")));
+      await expect(iconBox("/articles")).toHaveClass(new RegExp(HELPER_CLASS.lavender40.replace("/", "\\/")));
 
-      // style 인라인 미사용 (className 기반) — 4 아이콘 모두 style attribute 미부착
-      for (const icon of [iconBox("/baby-fair"), iconBox("/weight"), iconBox("/info?tab=videos"), infoIcon]) {
+      // style 인라인 미사용 (className 기반) — 아이콘 모두 style attribute 미부착
+      for (const icon of [iconBox("/baby-fair"), iconBox("/weight"), iconBox("/articles")]) {
         const styleAttr = await icon.getAttribute("style");
         expect(styleAttr ?? "").not.toContain("background-color");
       }
@@ -373,7 +370,7 @@ test.describe("design-bundle-b-i-row-tokens", () => {
       await page.goto("/");
 
       const babyfairIcon = page.locator('a[href="/baby-fair"] div.w-8.h-8.rounded-lg').first();
-      const infoIcon = page.locator('a[href="/info"]', { hasText: "📝" }).locator("div.w-8.h-8.rounded-lg").first();
+      const infoIcon = page.locator('a[href="/articles"]', { hasText: "📝" }).locator("div.w-8.h-8.rounded-lg").first();
 
       await expect(babyfairIcon).toHaveClass(new RegExp(HELPER_CLASS.mint40.replace("/", "\\/")));
       await expect(infoIcon).toHaveClass(new RegExp(HELPER_CLASS.lavender40.replace("/", "\\/")));
