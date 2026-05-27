@@ -16,7 +16,6 @@
       "early-pregnancy-fatigue-reasons",
       "pregnancy-foods-to-avoid"
     ],
-    "linked_video_ids": [],
     "seo_slug": "week-4"
   },
   {
@@ -32,7 +31,6 @@
       "early-pregnancy-tests",
       "pregnancy-foods-to-avoid"
     ],
-    "linked_video_ids": [],
     "seo_slug": "week-5"
   },
   {
@@ -46,13 +44,6 @@
     "linked_article_slugs": [
       "early-pregnancy-tests",
       "weekly-prenatal-checklist"
-    ],
-    "linked_video_ids": [
-      "video_040",
-      "video_043",
-      "video_045",
-      "video_046",
-      "video_047"
     ],
     "seo_slug": "week-7"
   },
@@ -73,7 +64,6 @@
       "early-pregnancy-fatigue-reasons",
       "pregnancy-foods-to-avoid"
     ],
-    "linked_video_ids": [],
     "seo_slug": "week-8"
   },
   {
@@ -87,13 +77,6 @@
     "linked_article_slugs": [
       "early-pregnancy-tests",
       "weekly-prenatal-checklist"
-    ],
-    "linked_video_ids": [
-      "video_040",
-      "video_042",
-      "video_044",
-      "video_046",
-      "video_047"
     ],
     "seo_slug": "week-9"
   },
@@ -113,13 +96,6 @@
       "pregnancy-government-benefits-2026",
       "weekly-prenatal-checklist"
     ],
-    "linked_video_ids": [
-      "video_040",
-      "video_044",
-      "video_045",
-      "video_046",
-      "video_047"
-    ],
     "seo_slug": "week-10"
   },
   {
@@ -133,13 +109,6 @@
     "linked_article_slugs": [
       "early-pregnancy-tests",
       "weekly-prenatal-checklist"
-    ],
-    "linked_video_ids": [
-      "video_040",
-      "video_043",
-      "video_045",
-      "video_046",
-      "video_047"
     ],
     "seo_slug": "week-11"
   },
@@ -159,7 +128,6 @@
       "early-pregnancy-fatigue-reasons",
       "pregnancy-foods-to-avoid"
     ],
-    "linked_video_ids": [],
     "seo_slug": "week-12"
   },
   {
@@ -175,7 +143,6 @@
       "early-pregnancy-tests",
       "pregnancy-foods-to-avoid"
     ],
-    "linked_video_ids": [],
     "seo_slug": "week-13"
   },
   {
@@ -187,13 +154,6 @@
     "priority": "high",
     "linked_checklist_ids": [
       "item_107"
-    ],
-    "linked_video_ids": [
-      "video_040",
-      "video_041",
-      "video_045",
-      "video_046",
-      "video_047"
     ],
     "seo_slug": "week-14",
     "linked_article_slugs": [
@@ -211,13 +171,6 @@
     "linked_article_slugs": [
       "mid-pregnancy-lifestyle-guide"
     ],
-    "linked_video_ids": [
-      "video_040",
-      "video_041",
-      "video_045",
-      "video_046",
-      "video_047"
-    ],
     "seo_slug": "week-15"
   },
   {
@@ -233,7 +186,6 @@
       "item_102",
       "item_093"
     ],
-    "linked_video_ids": [],
     "seo_slug": "week-16"
   },
   {
@@ -246,9 +198,6 @@
     "linked_checklist_ids": [],
     "linked_article_slugs": [
       "pregnancy-foods-to-avoid"
-    ],
-    "linked_video_ids": [
-      "video_009"
     ],
     "seo_slug": "week-17"
   },
@@ -263,9 +212,6 @@
     "linked_article_slugs": [
       "pregnancy-foods-to-avoid"
     ],
-    "linked_video_ids": [
-      "video_009"
-    ],
     "seo_slug": "week-18"
   },
   {
@@ -278,9 +224,6 @@
     "linked_checklist_ids": [],
     "linked_article_slugs": [
       "pregnancy-foods-to-avoid"
-    ],
-    "linked_video_ids": [
-      "video_009"
     ],
     "seo_slug": "week-19"
   },
@@ -295,13 +238,6 @@
       "item_108",
       "item_002",
       "item_008"
-    ],
-    "linked_video_ids": [
-      "video_040",
-      "video_041",
-      "video_042",
-      "video_043",
-      "video_044"
     ],
     "seo_slug": "week-20",
     "linked_article_slugs": [
@@ -319,9 +255,6 @@
     "linked_article_slugs": [
       "pregnancy-foods-to-avoid"
     ],
-    "linked_video_ids": [
-      "video_009"
-    ],
     "seo_slug": "week-21"
   },
   {
@@ -333,9 +266,6 @@
     "priority": "medium",
     "linked_checklist_ids": [
       "item_089"
-    ],
-    "linked_video_ids": [
-      "video_009"
     ],
     "seo_slug": "week-22",
     "linked_article_slugs": [
@@ -353,13 +283,6 @@
     "linked_article_slugs": [
       "mid-pregnancy-lifestyle-guide"
     ],
-    "linked_video_ids": [
-      "video_040",
-      "video_041",
-      "video_043",
-      "video_046",
-      "video_047"
-    ],
     "seo_slug": "week-23"
   },
   {
@@ -374,13 +297,6 @@
       "item_057",
       "item_090",
       "item_012"
-    ],
-    "linked_video_ids": [
-      "video_040",
-      "video_041",
-      "video_043",
-      "video_046",
-      "video_047"
     ],
     "seo_slug": "week-24",
     "linked_article_slugs": [
@@ -399,9 +315,6 @@
     "linked_article_slugs": [
       "pregnancy-foods-to-avoid"
     ],
-    "linked_video_ids": [
-      "video_009"
-    ],
     "seo_slug": "week-25"
   },
   {
@@ -413,9 +326,6 @@
     "priority": "high",
     "linked_checklist_ids": [
       "item_058"
-    ],
-    "linked_video_ids": [
-      "video_009"
     ],
     "seo_slug": "week-26",
     "linked_article_slugs": [
@@ -433,13 +343,6 @@
     "linked_article_slugs": [
       "mid-pregnancy-lifestyle-guide"
     ],
-    "linked_video_ids": [
-      "video_040",
-      "video_041",
-      "video_043",
-      "video_046",
-      "video_047"
-    ],
     "seo_slug": "week-27"
   },
   {
@@ -456,13 +359,6 @@
       "item_081"
     ],
     "linked_article_slugs": [],
-    "linked_video_ids": [
-      "video_021",
-      "video_023",
-      "video_024",
-      "video_026",
-      "video_028"
-    ],
     "seo_slug": "week-28"
   },
   {
@@ -474,13 +370,6 @@
     "priority": "medium",
     "linked_checklist_ids": [],
     "linked_article_slugs": [],
-    "linked_video_ids": [
-      "video_012",
-      "video_013",
-      "video_014",
-      "video_015",
-      "video_016"
-    ],
     "seo_slug": "week-29"
   },
   {
@@ -499,13 +388,6 @@
       "item_079"
     ],
     "linked_article_slugs": [],
-    "linked_video_ids": [
-      "video_012",
-      "video_013",
-      "video_014",
-      "video_015",
-      "video_016"
-    ],
     "seo_slug": "week-30"
   },
   {
@@ -517,13 +399,6 @@
     "priority": "medium",
     "linked_checklist_ids": [],
     "linked_article_slugs": [],
-    "linked_video_ids": [
-      "video_012",
-      "video_013",
-      "video_015",
-      "video_020",
-      "video_030"
-    ],
     "seo_slug": "week-31"
   },
   {
@@ -548,13 +423,6 @@
       "hospital-bag"
     ],
     "linked_article_slugs": [],
-    "linked_video_ids": [
-      "video_021",
-      "video_023",
-      "video_024",
-      "video_026",
-      "video_028"
-    ],
     "seo_slug": "week-32"
   },
   {
@@ -566,13 +434,6 @@
     "priority": "medium",
     "linked_checklist_ids": [],
     "linked_article_slugs": [],
-    "linked_video_ids": [
-      "video_021",
-      "video_023",
-      "video_024",
-      "video_026",
-      "video_028"
-    ],
     "seo_slug": "week-33"
   },
   {
@@ -600,13 +461,6 @@
       "item_084",
       "item_085"
     ],
-    "linked_video_ids": [
-      "video_012",
-      "video_013",
-      "video_014",
-      "video_020",
-      "video_030"
-    ],
     "seo_slug": "week-34"
   },
   {
@@ -622,13 +476,6 @@
     ],
     "linked_checklist_slugs": [
       "hospital-bag"
-    ],
-    "linked_video_ids": [
-      "video_012",
-      "video_013",
-      "video_014",
-      "video_015",
-      "video_016"
     ],
     "seo_slug": "week-35"
   },
@@ -656,13 +503,6 @@
     "linked_article_slugs": [
       "weekly-prenatal-checklist"
     ],
-    "linked_video_ids": [
-      "video_012",
-      "video_013",
-      "video_014",
-      "video_015",
-      "video_041"
-    ],
     "seo_slug": "week-36"
   },
   {
@@ -679,13 +519,6 @@
       "item_077"
     ],
     "linked_article_slugs": [],
-    "linked_video_ids": [
-      "video_012",
-      "video_013",
-      "video_014",
-      "video_015",
-      "video_016"
-    ],
     "seo_slug": "week-37"
   },
   {
@@ -696,13 +529,6 @@
     "type": "prep",
     "priority": "high",
     "linked_checklist_ids": [],
-    "linked_video_ids": [
-      "video_012",
-      "video_013",
-      "video_014",
-      "video_015",
-      "video_016"
-    ],
     "seo_slug": "week-38"
   },
   {
@@ -713,13 +539,6 @@
     "type": "wellbeing",
     "priority": "medium",
     "linked_checklist_ids": [],
-    "linked_video_ids": [
-      "video_012",
-      "video_013",
-      "video_014",
-      "video_015",
-      "video_016"
-    ],
     "seo_slug": "week-39"
   },
   {
@@ -730,13 +549,6 @@
     "type": "prep",
     "priority": "high",
     "linked_checklist_ids": [],
-    "linked_video_ids": [
-      "video_012",
-      "video_013",
-      "video_014",
-      "video_015",
-      "video_016"
-    ],
     "seo_slug": "week-40"
   }
 ]
