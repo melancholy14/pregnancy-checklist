@@ -4,8 +4,6 @@ test.describe("정보글 시스템", () => {
   test.describe("Happy Path — 목록 페이지 (/info 통합 허브)", () => {
     test.beforeEach(async ({ page }) => {
       await page.goto("/articles");
-      // 블로그 탭으로 이동해 글 목록만 노출시킨다
-      await page.getByRole("tab", { name: "블로그" }).click();
     });
 
     test("제목이 렌더링된다", async ({ page }) => {

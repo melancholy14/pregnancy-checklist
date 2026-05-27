@@ -49,7 +49,7 @@ export function TagFilter({ tags, selectedTag, onSelect }: TagFilterProps) {
                 : "bg-white text-muted-foreground border-black/4 hover:bg-muted"
             }`}
           >
-            {tag}
+            #{tag}
           </button>
         ))}
       </div>
