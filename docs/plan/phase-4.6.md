@@ -3,7 +3,9 @@
 > Phase 4.5 기록: [phase-4.5.md](phase-4.5.md)
 > Date: 2026-05-09
 > 목표 완료: 2026-06-14
-> Status: 🚧 §1 V1=A 영상 자산 일괄 제거 완료 (2026-05-27) — §2 타임라인 흡수 라운드 대기
+> Status: 🚧 §1 V1=A 영상 자산 일괄 제거 완료 (2026-05-27).
+> 후속 정리 (2026-05-30, `a9e6110`) 후 §2 타임라인 흡수 라운드 대기
+> (착수 미정, 일정 슬립 4일).
 >
 > **진행 요약 (2026-05-27)**
 >
@@ -19,6 +21,19 @@
 >   8. `persona.md` §3.2 운영 가이드 정합
 > - **잔여 (운영자 수동)**: vault `~/Documents/pregnancy-checklist/20-content/videos/` (60개) + `20-content/channels/` (38개) MOC 노트 archive 또는 삭제. `seed-vault-media-notes.py` 폐기로 자동 갱신 끊김.
 > - **차단되는 다른 작업 0건** — §2 진입 가능.
+>
+> **후속 정리 (2026-05-30, `a9e6110`)**
+>
+> - `/info`·`/videos` redirect 페이지 `next/link` → 일반 `<a>` 교체
+>   (정적 export build 에러 대응). meta-refresh 동작 무영향.
+> - BottomNav 정보 탭 `alsoMatchPrefixes: ["/info"]` 추가
+>   — §1.2 표 항목의 코드 반영 마무리.
+> - 신규 아티클 1편 `pregnancy-sleep-positions-guide.md` 추가,
+>   draft `2026-parental-leave-guide-draft.md` 폐기. §1 스코프 외 콘텐츠 작업.
+>
+> **현 시점 (2026-05-31)** — §2 타임라인 흡수 미착수.
+> 일정 표 `2026-05-28 ~` 대비 4일 슬립.
+> 6/14 phase 마감 + 7월 중순 휴가 백스톱은 아직 여유 있음.
 
 ## Overview
 
@@ -402,7 +417,7 @@ V1=A(영상 전체 제거) + T1=A(타임라인 → 체중 흡수) + H1=A + N1=A 
 | phase-4.5 디자인 §2 마무리 | 2026-05-12 | ✅ 통합 묶음 13개 조기 완료 (목표 5/31 대비) |
 | **phase-4.6 결정 라운드** | 2026-05-26 | ✅ 완료 — V1·T1·H1·N1 = 모두 A (`5e3e3b4`) |
 | **phase-4.6 §1 영상 자산 제거** | 2026-05-27 | ✅ 완료 — 8 커밋 (`cebd013`~`22ff0a7`) |
-| phase-4.6 §2 타임라인 흡수 | 2026-05-28 ~ | 🚧 다음 라운드 — zustand `migrate` + `timeline-migrate.spec.ts` |
+| phase-4.6 §2 타임라인 흡수 | 2026-06-01 ~ (4일 슬립) | 🚧 다음 라운드 — zustand `migrate` + `timeline-migrate.spec.ts` |
 | phase-4.6 §3·§4 홈 4축 허브 + BottomNav | TBD | ⏳ §2 후 |
 | phase-4.6 §5 GA4 카탈로그 4축 | TBD | ⏳ §3 후 |
 | 회귀 검증 + e2e 풀 회귀 | TBD | §7 회귀 안전장치 전체 |
