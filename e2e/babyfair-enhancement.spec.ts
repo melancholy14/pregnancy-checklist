@@ -17,12 +17,16 @@ test.describe("베이비페어 정보 구체화 (Step 17)", () => {
     test("확장 정보가 있는 행사에 운영시간이 표시된다", async ({ page }) => {
       // 무엇을: operating_hours 필드가 있는 행사에 시간 정보가 보이는지
       // 왜: 운영시간은 방문 의사결정에 핵심 정보
+      // 기본 탭(ongoing/upcoming)은 날짜 경과로 operating_hours 보유 행사가 없을 수 있어 ended 탭에서 검증
+      await page.getByRole("tab", { name: /지난 행사/ }).click();
       await expect(page.getByText(/10:00~18:00/).first()).toBeVisible();
     });
 
     test("확장 정보가 있는 행사에 입장 안내가 표시된다", async ({ page }) => {
       // 무엇을: admission 필드가 있는 행사에 입장 정보가 보이는지
       // 왜: 입장료 정보 부재가 PRD에서 지적한 문제점
+      // 기본 탭은 날짜 경과로 admission 보유 행사가 없을 수 있어 ended 탭에서 검증
+      await page.getByRole("tab", { name: /지난 행사/ }).click();
       await expect(page.getByText(/사전등록 무료/).first()).toBeVisible();
     });
 
@@ -92,6 +96,8 @@ test.describe("베이비페어 정보 구체화 (Step 17)", () => {
     test("모바일: 확장 정보가 잘리지 않고 표시된다", async ({ page }) => {
       // 무엇을: 운영시간/입장료/주차 정보가 모바일에서 정상 표시되는지
       // 왜: 텍스트가 길어 모바일에서 잘릴 수 있음
+      // 기본 탭은 날짜 경과로 admission 보유 행사가 없을 수 있어 ended 탭에서 검증
+      await page.getByRole("tab", { name: /지난 행사/ }).click();
       await expect(page.getByText(/사전등록 무료/).first()).toBeVisible();
     });
   });
