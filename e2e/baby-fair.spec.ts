@@ -113,6 +113,15 @@ test.describe("베이비페어 페이지", () => {
       await page.getByRole("tab", { name: "지난 행사" }).click();
       await expect(page.getByText("대전 베이비페어")).toBeVisible();
     });
+
+    test("탭 전환 시 이전 탭의 항목이 사라진다", async ({ page }) => {
+      // 무엇을: 지난 행사 → 예정 탭 전환 시 지난 항목이 사라지는지
+      // 왜: 탭 상태 관리 정상 동작 (필터링이 누적되지 않음)
+      await page.getByRole("tab", { name: "지난 행사" }).click();
+      await expect(page.getByText("대전 베이비페어", { exact: true })).toBeVisible();
+      await page.getByRole("tab", { name: "예정" }).click();
+      await expect(page.getByText("대전 베이비페어", { exact: true })).not.toBeVisible();
+    });
   });
 
   test.describe("반응형 (Mobile 375px)", () => {
