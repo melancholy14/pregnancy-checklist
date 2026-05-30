@@ -1,19 +1,19 @@
 # design-bundle-b-i-row-tokens 코드 리뷰
 
 > 리뷰일: 2026-05-10
-> 관련 스펙: [spec.md](../features/design-bundle-b-i-row-tokens/spec.md)
+> 관련 스펙: [spec.md](../../features/design-bundle-b-i-row-tokens/spec.md)
 > 관련 구현 문서: [impl.md](../implementation/design-bundle-b-i-row-tokens-impl.md)
 
 ## 리뷰 대상 파일
 
-- [src/lib/data-token-classes.ts](../../src/lib/data-token-classes.ts) (신규)
-- [src/components/checklist/ChecklistRow.tsx](../../src/components/checklist/ChecklistRow.tsx) (신규)
-- [src/components/babyfair/BabyfairCard.tsx](../../src/components/babyfair/BabyfairCard.tsx) (수정)
-- [src/components/timeline/WeekChecklistSection.tsx](../../src/components/timeline/WeekChecklistSection.tsx) (수정)
-- [src/components/checklist/ChecklistItemRow.tsx](../../src/components/checklist/ChecklistItemRow.tsx) (수정)
-- [src/components/checklist/ChecklistPage.tsx](../../src/components/checklist/ChecklistPage.tsx) (수정)
-- [src/components/home/DashboardCard.tsx](../../src/components/home/DashboardCard.tsx) (수정)
-- [src/components/home/HomeContent.tsx](../../src/components/home/HomeContent.tsx) (수정)
+- [src/lib/data-token-classes.ts](../../../src/lib/data-token-classes.ts) (신규)
+- [src/components/checklist/ChecklistRow.tsx](../../../src/components/checklist/ChecklistRow.tsx) (신규)
+- [src/components/babyfair/BabyfairCard.tsx](../../../src/components/babyfair/BabyfairCard.tsx) (수정)
+- [src/components/timeline/WeekChecklistSection.tsx](../../../src/components/timeline/WeekChecklistSection.tsx) (수정)
+- [src/components/checklist/ChecklistItemRow.tsx](../../../src/components/checklist/ChecklistItemRow.tsx) (수정)
+- [src/components/checklist/ChecklistPage.tsx](../../../src/components/checklist/ChecklistPage.tsx) (수정)
+- [src/components/home/DashboardCard.tsx](../../../src/components/home/DashboardCard.tsx) (수정)
+- [src/components/home/HomeContent.tsx](../../../src/components/home/HomeContent.tsx) (수정)
 
 총 8개 프로덕션 소스 파일 (E2E spec + markdown 변경은 리뷰 대상 외).
 
@@ -28,22 +28,22 @@
 ## Warning (수정 권장)
 
 ### 1. ChecklistRow.tsx — 편집 버튼이 `onStartEdit` 미정의 상태에서 silent fail
-- **위치**: [src/components/checklist/ChecklistRow.tsx:136-143](../../src/components/checklist/ChecklistRow.tsx#L136-L143)
+- **위치**: [src/components/checklist/ChecklistRow.tsx:136-143](../../../src/components/checklist/ChecklistRow.tsx#L136-L143)
 - **문제**: `<button onClick={onStartEdit}>` 가 `isCustom===true` 분기에서 무조건 렌더되지만 `onStartEdit` prop 은 optional. 호출부가 `isCustom={true}` 만 넘기고 `onStartEdit` 을 누락하면 클릭해도 아무 일도 안 일어나는 silent fail. 같은 영역의 `DeleteConfirmDialog` 는 `{onRemove && <DeleteConfirmDialog ... />}` 가드가 있어 비대칭.
 - **권장 수정**: `onStartEdit && <button>...</button>` 패턴으로 가드 추가하거나, 타입을 `isCustom === true → onStartEdit·onRemove 필수` 로 좁히는 discriminated union 으로 변환. 현 호출부 2곳(ChecklistItemRow + WeekChecklistSection) 모두 정상 전달이라 즉시 위험 X.
 
 ### 2. WeekChecklistSection.tsx — `noteType`·`categoryToneClassName` 매 렌더 inline 계산
-- **위치**: [src/components/timeline/WeekChecklistSection.tsx:165-169](../../src/components/timeline/WeekChecklistSection.tsx#L165-L169)
+- **위치**: [src/components/timeline/WeekChecklistSection.tsx:165-169](../../../src/components/timeline/WeekChecklistSection.tsx#L165-L169)
 - **문제**: `items.map` 안에서 매 렌더마다 `getCategoryTokenClass(item.category)` + `classifyNote(item.note)` 가 실행됨. items 배열이 안정되어 있어 영향은 미미하지만 타임라인 한 카드에 ~20개 항목이 있어 누적 비용 발생 가능.
 - **권장 수정**: `useMemo` 로 `items` 별 `(toneClass, noteType)` 튜플을 미리 계산. 단, 두 함수 모두 정적 lookup·정규식으로 cheap 하므로 우선순위 낮음.
 
 ### 3. ChecklistRow.tsx — `categoryToneClassName ?? ""` 사실상 도달 불가능 fallback
-- **위치**: [src/components/checklist/ChecklistRow.tsx:127](../../src/components/checklist/ChecklistRow.tsx#L127)
+- **위치**: [src/components/checklist/ChecklistRow.tsx:127](../../../src/components/checklist/ChecklistRow.tsx#L127)
 - **문제**: Badge 자체가 `categoryLabel` 있을 때만 렌더되는데, `categoryToneClassName ?? ""` 빈 문자열 fallback 은 호출부 컨벤션상 `categoryLabel` 와 항상 페어로 전달되는 값이라 실제로는 도달 안 됨.
 - **권장 수정**: 타입에서 둘을 페어 처리 (`categoryLabel?: string` → `category?: { label: string; toneClassName: string }`) 하면 누락 시 컴파일 에러로 잡힘. 현 구조는 호출부 컨벤션에 의존.
 
 ### 4. ChecklistRow.tsx + ChecklistItemRow.tsx — `PRIORITY_LABEL` 중복 정의
-- **위치**: [src/components/checklist/ChecklistItemRow.tsx:10-14](../../src/components/checklist/ChecklistItemRow.tsx#L10-L14), [src/components/timeline/WeekChecklistSection.tsx:14-18](../../src/components/timeline/WeekChecklistSection.tsx#L14-L18)
+- **위치**: [src/components/checklist/ChecklistItemRow.tsx:10-14](../../../src/components/checklist/ChecklistItemRow.tsx#L10-L14), [src/components/timeline/WeekChecklistSection.tsx:14-18](../../../src/components/timeline/WeekChecklistSection.tsx#L14-L18)
 - **문제**: 같은 우선순위 레이블 매핑이 두 wrapper 에 중복. `ChecklistRow` 가 priority + priorityLabel 을 둘 다 받는 구조라 우선순위 시각/음성 정합성을 wrapper 가 책임지지만, 매핑 자체는 도메인 상수.
 - **권장 수정**: `src/types/checklist.ts` 또는 `src/lib/constants.ts` 에 `PRIORITY_LABEL` named export 로 단일화.
 

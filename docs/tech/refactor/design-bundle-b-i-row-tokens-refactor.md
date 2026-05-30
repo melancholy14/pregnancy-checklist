@@ -5,10 +5,10 @@
 
 ## 리팩토링한 파일 목록
 
-- [src/lib/constants.ts](../../src/lib/constants.ts) — `PRIORITY_LABEL` named export 추가
-- [src/components/checklist/ChecklistItemRow.tsx](../../src/components/checklist/ChecklistItemRow.tsx) — local `PRIORITY_LABEL` 제거, import 로 교체
-- [src/components/timeline/WeekChecklistSection.tsx](../../src/components/timeline/WeekChecklistSection.tsx) — 동일
-- [src/components/checklist/ChecklistRow.tsx](../../src/components/checklist/ChecklistRow.tsx) — 편집 버튼에 `onStartEdit &&` 가드 추가
+- [src/lib/constants.ts](../../../src/lib/constants.ts) — `PRIORITY_LABEL` named export 추가
+- [src/components/checklist/ChecklistItemRow.tsx](../../../src/components/checklist/ChecklistItemRow.tsx) — local `PRIORITY_LABEL` 제거, import 로 교체
+- [src/components/timeline/WeekChecklistSection.tsx](../../../src/components/timeline/WeekChecklistSection.tsx) — 동일
+- [src/components/checklist/ChecklistRow.tsx](../../../src/components/checklist/ChecklistRow.tsx) — 편집 버튼에 `onStartEdit &&` 가드 추가
 
 총 4파일 수정.
 
@@ -23,7 +23,7 @@
 
 ### 2. PRIORITY_LABEL 단일화
 - **출처**: Warning #4 (review.md)
-- **무엇을**: 동일한 `Record<ChecklistItem["priority"], string>` 매핑이 `ChecklistItemRow.tsx` 와 `WeekChecklistSection.tsx` 에 중복 정의되어 있던 것을 [src/lib/constants.ts](../../src/lib/constants.ts) 로 옮기고 두 wrapper 가 import.
+- **무엇을**: 동일한 `Record<ChecklistItem["priority"], string>` 매핑이 `ChecklistItemRow.tsx` 와 `WeekChecklistSection.tsx` 에 중복 정의되어 있던 것을 [src/lib/constants.ts](../../../src/lib/constants.ts) 로 옮기고 두 wrapper 가 import.
 - **왜**: 우선순위 라벨은 도메인 상수. 한쪽만 수정하면 다른 쪽이 어긋날 위험 → 단일 source of truth 로 통합.
 
 ---

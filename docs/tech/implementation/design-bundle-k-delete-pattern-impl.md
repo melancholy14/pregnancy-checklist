@@ -1,9 +1,9 @@
 # design-bundle-k-delete-pattern Implementation
 
 > 작성일: 2026-05-10
-> 관련 스펙: [spec.md](../features/design-bundle-k-delete-pattern/spec.md)
-> 관련 디자인: [design.md](../features/design-bundle-k-delete-pattern/design.md)
-> 관련 리뷰: [review.md](../features/design-bundle-k-delete-pattern/review.md)
+> 관련 스펙: [spec.md](../../features/design-bundle-k-delete-pattern/spec.md)
+> 관련 디자인: [design.md](../../features/design-bundle-k-delete-pattern/design.md)
+> 관련 리뷰: [review.md](../../features/design-bundle-k-delete-pattern/review.md)
 
 ## 완료 조건 충족 여부
 
@@ -21,16 +21,16 @@
 
 ### 신규
 
-- [src/lib/hooks/useDeleteWithUndo.ts](../../src/lib/hooks/useDeleteWithUndo.ts) — 제너릭 훅. `removeFn`/`restoreFn`/`label` 받아 `(item) => void` 트리거 반환. 7000ms `toast.action` 발사 + 클로저로 item 임시 보관. `useRef`로 opts 최신화 + `useCallback`으로 트리거 안정 식별자 유지.
+- [src/lib/hooks/useDeleteWithUndo.ts](../../../src/lib/hooks/useDeleteWithUndo.ts) — 제너릭 훅. `removeFn`/`restoreFn`/`label` 받아 `(item) => void` 트리거 반환. 7000ms `toast.action` 발사 + 클로저로 item 임시 보관. `useRef`로 opts 최신화 + `useCallback`으로 트리거 안정 식별자 유지.
 
 ### 수정
 
-- [src/app/layout.tsx](../../src/app/layout.tsx) — `<Toaster>`에 `visibleToasts={3}` 추가. 기존 props 유지.
-- [src/components/checklist/ChecklistRow.tsx](../../src/components/checklist/ChecklistRow.tsx) — `DeleteConfirmDialog` import 제거 + `Trash2` 직접 사용. 삭제 버튼이 `onRemove` 즉시 호출(confirm 다이얼 없음). 시각 토큰·`iconSize=14`·`aria-label="삭제"` 유지.
-- [src/components/checklist/ChecklistPage.tsx](../../src/components/checklist/ChecklistPage.tsx) — `useDeleteWithUndo<ChecklistItem & { atIndex: number }>` 셋업. `onRemove`에서 `customItems.findIndex`로 atIndex 계산 후 트리거. `restoreFn`은 `useStore.setState`로 splice 복원 (스토어 시그니처 변경 없음, 호출부 책임).
-- [src/components/timeline/WeekChecklistSection.tsx](../../src/components/timeline/WeekChecklistSection.tsx) — 동일 패턴(`useChecklistStore` 대상). `atIndex`는 `useChecklistStore.getState().customItems`에서 계산.
-- [src/components/timeline/TimelineAccordionCard.tsx](../../src/components/timeline/TimelineAccordionCard.tsx) — `DeleteConfirmDialog` 사용처 제거 + `Trash2` 인라인 버튼으로 교체. `useDeleteWithUndo<TimelineItem & { atIndex: number }>` 셋업. `restoreFn`은 `useTimelineStore.setState` splice. 라벨 "타임라인 노트를 삭제했어요".
-- [src/components/weight/WeightContainer.tsx](../../src/components/weight/WeightContainer.tsx) — 직접 `removeLog(entry.id)` 호출을 `handleDeleteLog(entry)`로 교체. `addLog`가 자동 정렬하므로 위치 보존 자연 처리(atIndex 불필요). X 버튼 `aria-label` 명확화("체중 기록 삭제").
+- [src/app/layout.tsx](../../../src/app/layout.tsx) — `<Toaster>`에 `visibleToasts={3}` 추가. 기존 props 유지.
+- [src/components/checklist/ChecklistRow.tsx](../../../src/components/checklist/ChecklistRow.tsx) — `DeleteConfirmDialog` import 제거 + `Trash2` 직접 사용. 삭제 버튼이 `onRemove` 즉시 호출(confirm 다이얼 없음). 시각 토큰·`iconSize=14`·`aria-label="삭제"` 유지.
+- [src/components/checklist/ChecklistPage.tsx](../../../src/components/checklist/ChecklistPage.tsx) — `useDeleteWithUndo<ChecklistItem & { atIndex: number }>` 셋업. `onRemove`에서 `customItems.findIndex`로 atIndex 계산 후 트리거. `restoreFn`은 `useStore.setState`로 splice 복원 (스토어 시그니처 변경 없음, 호출부 책임).
+- [src/components/timeline/WeekChecklistSection.tsx](../../../src/components/timeline/WeekChecklistSection.tsx) — 동일 패턴(`useChecklistStore` 대상). `atIndex`는 `useChecklistStore.getState().customItems`에서 계산.
+- [src/components/timeline/TimelineAccordionCard.tsx](../../../src/components/timeline/TimelineAccordionCard.tsx) — `DeleteConfirmDialog` 사용처 제거 + `Trash2` 인라인 버튼으로 교체. `useDeleteWithUndo<TimelineItem & { atIndex: number }>` 셋업. `restoreFn`은 `useTimelineStore.setState` splice. 라벨 "타임라인 노트를 삭제했어요".
+- [src/components/weight/WeightContainer.tsx](../../../src/components/weight/WeightContainer.tsx) — 직접 `removeLog(entry.id)` 호출을 `handleDeleteLog(entry)`로 교체. `addLog`가 자동 정렬하므로 위치 보존 자연 처리(atIndex 불필요). X 버튼 `aria-label` 명확화("체중 기록 삭제").
 
 ### 삭제
 

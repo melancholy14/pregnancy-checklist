@@ -2,7 +2,7 @@
 
 > 작성일: 2026-05-10  size: S
 > 출처: [docs/plan/phase-4.5.md §2.10 묶음 A](../../plan/phase-4.5.md), §2.3 C1·C2·C3, §2.8.2 T-1·T-6·T-7, §2.8.4 W-3, §2.9 Cross-3
-> 라운드: [design-bundle-cleanup-round](../../design-bundle-cleanup-round/README.md)
+> 라운드: [design-bundle-cleanup-round (phase-4.5 §2.10)](../../plan/phase-4.5.md)
 
 ## 0. 사전 확정 결정 (사용자 입력, 2026-05-10)
 

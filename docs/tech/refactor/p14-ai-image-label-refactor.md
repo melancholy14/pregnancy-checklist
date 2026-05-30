@@ -5,8 +5,8 @@
 
 ## 리팩토링한 파일 목록
 
-- [src/lib/articles.ts](../../src/lib/articles.ts)
-- [src/lib/markdown/rehype-article-figure.ts](../../src/lib/markdown/rehype-article-figure.ts)
+- [src/lib/articles.ts](../../../src/lib/articles.ts)
+- [src/lib/markdown/rehype-article-figure.ts](../../../src/lib/markdown/rehype-article-figure.ts)
 
 ---
 

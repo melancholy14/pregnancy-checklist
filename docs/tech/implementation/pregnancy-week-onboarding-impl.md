@@ -1,8 +1,8 @@
 # pregnancy-week-onboarding Implementation
 
 > 구현일: 2026-05-05
-> 관련 스펙: [docs/features/pregnancy-week-onboarding/spec.md](../features/pregnancy-week-onboarding/spec.md)
-> 결정 근거: [docs/features/pregnancy-week-onboarding/review.md](../features/pregnancy-week-onboarding/review.md)
+> 관련 스펙: [docs/features/pregnancy-week-onboarding/spec.md](../../features/pregnancy-week-onboarding/spec.md)
+> 결정 근거: [docs/features/pregnancy-week-onboarding/review.md](../../features/pregnancy-week-onboarding/review.md)
 
 ## 완료 조건 충족 여부
 
@@ -29,7 +29,7 @@
 
 - `src/lib/date-kst.ts` — KST 기준 `YYYY-MM-DD` 문자열 생성 헬퍼 (`Intl.DateTimeFormat` 사용)
 - `src/components/providers/OnboardingBannerProvider.tsx` — 글로벌 슬림 배너. 홈 외 5개 섹션(`/articles`, `/checklist`, `/timeline`, `/weight`, `/info`)에서 onboarding 미완 + dismissed 미설정 사용자에게 노출. view/click/dismiss GA4 이벤트 3종 연결
-- `docs/implementation/pregnancy-week-onboarding-impl.md` — 본 문서
+- `docs/tech/implementation/pregnancy-week-onboarding-impl.md` — 본 문서
 
 ### 수정
 

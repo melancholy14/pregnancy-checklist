@@ -17,13 +17,13 @@ review.md Warning 2건(ChevronRight `aria-hidden` 누락)만 정리. Suggestion 
 
 ### 1. ChecklistHub 카드 우측 데코 ChevronRight `aria-hidden` 추가
 - **출처**: review.md Warning 1
-- **위치**: [src/components/checklist/ChecklistHub.tsx:71](../../src/components/checklist/ChecklistHub.tsx#L71), [src/components/checklist/ChecklistHub.tsx:132](../../src/components/checklist/ChecklistHub.tsx#L132)
+- **위치**: [src/components/checklist/ChecklistHub.tsx:71](../../../src/components/checklist/ChecklistHub.tsx#L71), [src/components/checklist/ChecklistHub.tsx:132](../../../src/components/checklist/ChecklistHub.tsx#L132)
 - **무엇을**: `<ChevronRight size={18} className="text-muted-foreground shrink-0" />` → `<ChevronRight size={18} aria-hidden="true" className="text-muted-foreground shrink-0" />`
 - **왜**: 라운드에서 신규 추가한 ChevronRight 11곳은 모두 `aria-hidden="true"` 일관 적용. 본 두 위치만 pre-existing 잔재라 컨벤션에서 어긋남. 데코 인디케이터를 스크린리더에서 잡음으로 읽지 않도록 차단.
 
 ### 2. HomeContent 첫 체크 배너 ChevronRight `aria-hidden` 추가
 - **출처**: review.md Warning 2
-- **위치**: [src/components/home/HomeContent.tsx:237](../../src/components/home/HomeContent.tsx#L237)
+- **위치**: [src/components/home/HomeContent.tsx:237](../../../src/components/home/HomeContent.tsx#L237)
 - **무엇을**: `<ChevronRight size={16} className="text-muted-foreground" />` → `<ChevronRight size={16} aria-hidden="true" className="text-muted-foreground" />`
 - **왜**: 위와 동일 결.
 

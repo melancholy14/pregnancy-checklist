@@ -163,4 +163,4 @@ phase-4.5.md §2.6 UX 기회 1·2를 한 라운드에 마감. (1) 체크리스�
 
 - phase-4.5.md §2.6 UX 기회 1·2 마감. §1.8 묶음 H의 `checklist_filter` 이벤트 정의 일부 흡수.
 - P5 localStorage schema versioning(deferred): 토글 상태를 zustand persist에 추가하면 schema 변동. 페어 3에서 다룰 항목 — migrate 핸들러 의무 검토.
-- P2 부활 라벨과 통합/별도 결정에 따라 [docs/features/checklist-recommendation-semantics](../checklist-recommendation-semantics/README.md)의 시맨틱 표면이 갱신될 수 있음.
+- P2 부활 라벨과 통합/별도 결정에 따라 [docs/features/checklist-recommendation-semantics](../checklist-recommendation-semantics/spec.md)의 시맨틱 표면이 갱신될 수 있음.

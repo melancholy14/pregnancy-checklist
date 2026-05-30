@@ -1,17 +1,17 @@
 # design-bundle-n-weight-chart-color Implementation
 
 > 작성일: 2026-05-10
-> 관련 스펙: [../features/design-bundle-n-weight-chart-color/spec.md](../features/design-bundle-n-weight-chart-color/spec.md)
-> 관련 디자인: [../features/design-bundle-n-weight-chart-color/design.md](../features/design-bundle-n-weight-chart-color/design.md)
+> 관련 스펙: [../features/design-bundle-n-weight-chart-color/spec.md](../../features/design-bundle-n-weight-chart-color/spec.md)
+> 관련 디자인: [../features/design-bundle-n-weight-chart-color/design.md](../../features/design-bundle-n-weight-chart-color/design.md)
 
 ## 완료 조건 충족 여부
 
 | 조건 | 상태 | 비고 |
 |------|------|------|
-| M1. Line stroke + dot fill = `#FFE0CC` (peach) | ✅ 완료 | [WeightChart.tsx:84-86](../../src/components/weight/WeightChart.tsx#L84-L86) |
-| M2. linearGradient 양쪽 stop = `#FFE0CC`, stop2 opacity 0 | ✅ 완료 | [WeightChart.tsx:39-40](../../src/components/weight/WeightChart.tsx#L39-L40) |
-| M3-하한. ReferenceLine stroke `#9CA0A4` + dash `5 5` 유지 | ✅ 완료 | [WeightChart.tsx:64-70](../../src/components/weight/WeightChart.tsx#L64-L70) |
-| M3-상한. ReferenceLine stroke `#9CA0A4` + dash `8 4 2 4` | ✅ 완료 | [WeightChart.tsx:73-79](../../src/components/weight/WeightChart.tsx#L73-L79) |
+| M1. Line stroke + dot fill = `#FFE0CC` (peach) | ✅ 완료 | [WeightChart.tsx:84-86](../../../src/components/weight/WeightChart.tsx#L84-L86) |
+| M2. linearGradient 양쪽 stop = `#FFE0CC`, stop2 opacity 0 | ✅ 완료 | [WeightChart.tsx:39-40](../../../src/components/weight/WeightChart.tsx#L39-L40) |
+| M3-하한. ReferenceLine stroke `#9CA0A4` + dash `5 5` 유지 | ✅ 완료 | [WeightChart.tsx:64-70](../../../src/components/weight/WeightChart.tsx#L64-L70) |
+| M3-상한. ReferenceLine stroke `#9CA0A4` + dash `8 4 2 4` | ✅ 완료 | [WeightChart.tsx:73-79](../../../src/components/weight/WeightChart.tsx#L73-L79) |
 | M4. chrome 토큰(grid·axis·Tooltip·카피) 변경 0 | ✅ 완료 | diff 미발생 |
 | `pnpm build` 성공 + TS 에러 0 | ✅ 완료 | Next 16.2.0 Turbopack 빌드 통과, 32 static pages 생성 |
 
@@ -19,7 +19,7 @@
 
 ### 신규 생성
 
-- `docs/implementation/design-bundle-n-weight-chart-color-impl.md` — 본 구현 요약 문서.
+- `docs/tech/implementation/design-bundle-n-weight-chart-color-impl.md` — 본 구현 요약 문서.
 
 ### 수정
 
@@ -38,7 +38,7 @@
 
 ## 가정 사항
 
-- `--from=2`로 진입했고 `docs/plan/design-bundle-n-weight-chart-color-plan.md`가 존재하지 않으나, [spec.md](../features/design-bundle-n-weight-chart-color/spec.md)가 라인 단위 변경을 명시한 prescriptive plan 역할을 수행 — 이를 plan source로 채택.
+- `--from=2`로 진입했고 `docs/plan/design-bundle-n-weight-chart-color-plan.md`가 존재하지 않으나, [spec.md](../../features/design-bundle-n-weight-chart-color/spec.md)가 라인 단위 변경을 명시한 prescriptive plan 역할을 수행 — 이를 plan source로 채택.
 - `pastel-peach`/`muted-foreground` 토큰의 hex 값은 spec·design 문서가 명시한 raw hex(`#FFE0CC`/`#9CA0A4`)를 그대로 사용. recharts는 CSS variable을 stroke prop으로 직접 받지 못하므로(Tailwind class 미적용 환경) 차트 영역에서는 raw hex 유지가 기존 컨벤션.
 - `activeDot`은 fill 미설정 그대로 — recharts 기본 stroke만 사용(spec.md M1 명시).
 

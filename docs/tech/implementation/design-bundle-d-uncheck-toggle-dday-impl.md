@@ -1,9 +1,9 @@
 # design-bundle-d-uncheck-toggle-dday Implementation
 
 > 구현일: 2026-05-10
-> 관련 스펙: [docs/features/design-bundle-d-uncheck-toggle-dday/spec.md](../features/design-bundle-d-uncheck-toggle-dday/spec.md)
-> 관련 디자인: [docs/features/design-bundle-d-uncheck-toggle-dday/design.md](../features/design-bundle-d-uncheck-toggle-dday/design.md)
-> 관련 측정: [docs/features/design-bundle-d-uncheck-toggle-dday/ga4.md](../features/design-bundle-d-uncheck-toggle-dday/ga4.md)
+> 관련 스펙: [docs/features/design-bundle-d-uncheck-toggle-dday/spec.md](../../features/design-bundle-d-uncheck-toggle-dday/spec.md)
+> 관련 디자인: [docs/features/design-bundle-d-uncheck-toggle-dday/design.md](../../features/design-bundle-d-uncheck-toggle-dday/design.md)
+> 관련 측정: [docs/features/design-bundle-d-uncheck-toggle-dday/ga4.md](../../features/design-bundle-d-uncheck-toggle-dday/ga4.md)
 
 ## 완료 조건 충족 여부
 

@@ -1,7 +1,7 @@
 # design-bundle-j-share-button-position 코드 리뷰
 
 > 작성일: 2026-05-10
-> 관련 spec: [docs/features/design-bundle-j-share-button-position/spec.md](../features/design-bundle-j-share-button-position/spec.md)
+> 관련 spec: [docs/features/design-bundle-j-share-button-position/spec.md](../../features/design-bundle-j-share-button-position/spec.md)
 > 관련 impl: [docs/implementation/design-bundle-j-share-button-position-impl.md](../implementation/design-bundle-j-share-button-position-impl.md)
 
 ## 리뷰 대상 파일

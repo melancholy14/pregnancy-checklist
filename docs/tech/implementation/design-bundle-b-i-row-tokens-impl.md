@@ -1,8 +1,8 @@
 # design-bundle-b-i-row-tokens Implementation
 
 > 작성일: 2026-05-10
-> 관련 스펙: [spec.md](../features/design-bundle-b-i-row-tokens/spec.md)
-> 관련 디자인: [design.md](../features/design-bundle-b-i-row-tokens/design.md)
+> 관련 스펙: [spec.md](../../features/design-bundle-b-i-row-tokens/spec.md)
+> 관련 디자인: [design.md](../../features/design-bundle-b-i-row-tokens/design.md)
 
 ## 완료 조건 충족 여부
 
@@ -38,7 +38,7 @@
 
 - `src/lib/data-token-classes.ts` — 도메인 데이터 → 토큰 클래스 매핑 헬퍼 (4종 named export + `DataToneClass`·`DashboardSlotClass` union literal 타입)
 - `src/components/checklist/ChecklistRow.tsx` — checklist + timeline 공유 row 컴포넌트 (label 기반 native checkbox 마크업)
-- `docs/implementation/design-bundle-b-i-row-tokens-impl.md` — 본 문서
+- `docs/tech/implementation/design-bundle-b-i-row-tokens-impl.md` — 본 문서
 
 ### 수정
 
@@ -59,7 +59,7 @@
 ### DashboardSlot enum 확장
 
 - **결정**: `DashboardSlot` 을 spec의 4종(`checklist|timeline|weight|info`)에 추가로 `babyfair|video` 2종 더 정의 (총 6종).
-- **이유**: 스펙은 home 미니카드를 "checklist/timeline/weight/info" 4개로 가정하지만 실제 [HomeContent.tsx](../../src/components/home/HomeContent.tsx) 의 미니카드 4개는 baby-fair·weight·video·articles 다. 스펙의 "won't 색 변화 0" 제약을 지키려면 yellow(video) + mint(baby-fair) 매핑이 필요. spec 4종은 정의 그대로 보존하여 success criterion `bg-pastel-pink` 1건(=checklist 슬롯) 통과는 만족.
+- **이유**: 스펙은 home 미니카드를 "checklist/timeline/weight/info" 4개로 가정하지만 실제 [HomeContent.tsx](../../../src/components/home/HomeContent.tsx) 의 미니카드 4개는 baby-fair·weight·video·articles 다. 스펙의 "won't 색 변화 0" 제약을 지키려면 yellow(video) + mint(baby-fair) 매핑이 필요. spec 4종은 정의 그대로 보존하여 success criterion `bg-pastel-pink` 1건(=checklist 슬롯) 통과는 만족.
 - **매핑**: `babyfair → bg-pastel-mint/40` (현 #D0EDE2 보존), `video → bg-pastel-yellow/40` (현 #FFF4D4 보존). 나머지는 spec 그대로.
 
 ### `Partial<Record<...>>` 사용

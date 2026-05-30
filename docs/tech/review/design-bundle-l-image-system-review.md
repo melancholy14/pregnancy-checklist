@@ -1,7 +1,7 @@
 # design-bundle-l-image-system 코드 리뷰
 
 > 리뷰일: 2026-05-10
-> 관련 spec: [docs/features/design-bundle-l-image-system/spec.md](../features/design-bundle-l-image-system/spec.md)
+> 관련 spec: [docs/features/design-bundle-l-image-system/spec.md](../../features/design-bundle-l-image-system/spec.md)
 > 관련 impl: [docs/implementation/design-bundle-l-image-system-impl.md](../implementation/design-bundle-l-image-system-impl.md)
 
 ## 리뷰 대상 파일
@@ -23,7 +23,7 @@
 
 ### 1. `rehype-article-figure.ts` — `path.join` 정규화로 인한 빌드 타임 path traversal 가능성
 
-- **위치**: [src/lib/markdown/rehype-article-figure.ts:21](../../src/lib/markdown/rehype-article-figure.ts#L21)
+- **위치**: [src/lib/markdown/rehype-article-figure.ts:21](../../../src/lib/markdown/rehype-article-figure.ts#L21)
 - **문제**: `src` 값이 `"/../../etc/passwd"` 같은 형식이면 `path.join(PUBLIC_DIR, src)`가 `..`를 정규화하여 PUBLIC_DIR 바깥 파일을 읽을 수 있음. 결과가 PNG/JPEG 헤더 검사를 통과하지 않으면 `undefined`를 반환하므로 실제 정보 누설은 0이지만, 빌드 머신에서 임의 파일 read syscall이 발생.
 - **권장 수정**: `fs.readFileSync` 호출 직전에 정규화된 절대 경로가 `PUBLIC_DIR`로 시작하는지 검증.
   ```ts
@@ -37,7 +37,7 @@
 
 ### 2. `globals.css` — `outline: none` + focus-visible box-shadow가 focus-visible 미지원 환경에서 키보드 포커스 미표시
 
-- **위치**: [src/app/globals.css:396](../../src/app/globals.css#L396)
+- **위치**: [src/app/globals.css:396](../../../src/app/globals.css#L396)
 - **문제**: `.article-figure__link { outline: none }`로 기본 outline을 제거하고 `:focus-visible` 의사 클래스에서만 box-shadow ring으로 대체. focus-visible를 미지원하는 브라우저(예: IE 11, 일부 구버전 모바일 브라우저)에서는 키보드 사용자가 anchor에 포커스되었는지 시각적으로 인식 불가.
 - **권장 수정**: focus-visible 미지원 폴백으로 일반 `:focus`에도 ring 적용 후, `:focus:not(:focus-visible)`로 마우스 클릭 시 ring 제거 (modern 패턴).
   ```css

@@ -5,7 +5,7 @@
 
 ## 리팩토링한 파일 목록
 
-- [src/components/checklist/ChecklistPage.tsx](../../src/components/checklist/ChecklistPage.tsx)
+- [src/components/checklist/ChecklistPage.tsx](../../../src/components/checklist/ChecklistPage.tsx)
 
 ---
 
@@ -14,7 +14,7 @@
 ### 1. ChecklistPage.tsx — `handleToggle` GA4 willCheck 계산을 `effectiveCheckedIds` 기준으로 통일
 
 - **출처**: review.md Warning 1
-- **무엇을**: [src/components/checklist/ChecklistPage.tsx:131](../../src/components/checklist/ChecklistPage.tsx#L131) 의 `const willCheck = !checkedIds.includes(item.id);` 를 `effectiveCheckedIds` 기준으로 변경. `useCallback` deps도 `checkedIds` → `effectiveCheckedIds`로 정렬.
+- **무엇을**: [src/components/checklist/ChecklistPage.tsx:131](../../../src/components/checklist/ChecklistPage.tsx#L131) 의 `const willCheck = !checkedIds.includes(item.id);` 를 `effectiveCheckedIds` 기준으로 변경. `useCallback` deps도 `checkedIds` → `effectiveCheckedIds`로 정렬.
 - **왜**: `checkedIds`(raw 스토어 값)는 hydration 가드를 통과하지 않은 값입니다. hydration이 늦거나 실패한 순간 사용자 클릭이 들어오면 GA4 `checklist_check.checked` 파라미터가 실제 사용자 인지(UI 상 unchecked)와 불일치하게 보고될 수 있습니다. `effectiveCheckedIds`는 `hydrated ? checkedIds : EMPTY_CHECKED_IDS` 결과라 UI에 노출되는 상태와 동기화되어 측정 정확도가 보장됩니다. 동작은 동일(`toggle(item.id)`은 그대로 raw 액션 호출).
 
 ---

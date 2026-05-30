@@ -1,7 +1,7 @@
 # design-bundle-g-pastel-remap Implementation
 
 > 구현일: 2026-05-09
-> spec: [docs/features/design-bundle-g-pastel-remap/spec.md](../features/design-bundle-g-pastel-remap/spec.md)
+> spec: [docs/features/design-bundle-g-pastel-remap/spec.md](../../features/design-bundle-g-pastel-remap/spec.md)
 
 ## 완료 조건 충족 여부
 
@@ -17,9 +17,9 @@
 - 없음
 
 ### 수정
-- [src/components/home/HomeContent.tsx:355](../../src/components/home/HomeContent.tsx#L355) — 정보 & 가이드 미니카드 `color` prop `#E0F0FF` → `#E4D6F0` (`--pastel-lavender`)
-- [src/lib/constants.ts:42](../../src/lib/constants.ts#L42) — `TIMELINE_TYPE_CONFIG.admin.color` `#E0F0FF` → `#FFE0CC` (`--pastel-peach`)
-- [src/components/babyfair/BabyfairCard.tsx:26](../../src/components/babyfair/BabyfairCard.tsx#L26) — `SCALE_CONFIG.small.color` `#E0F0FF` → `#E4D6F0` (`--pastel-lavender`)
+- [src/components/home/HomeContent.tsx:355](../../../src/components/home/HomeContent.tsx#L355) — 정보 & 가이드 미니카드 `color` prop `#E0F0FF` → `#E4D6F0` (`--pastel-lavender`)
+- [src/lib/constants.ts:42](../../../src/lib/constants.ts#L42) — `TIMELINE_TYPE_CONFIG.admin.color` `#E0F0FF` → `#FFE0CC` (`--pastel-peach`)
+- [src/components/babyfair/BabyfairCard.tsx:26](../../../src/components/babyfair/BabyfairCard.tsx#L26) — `SCALE_CONFIG.small.color` `#E0F0FF` → `#E4D6F0` (`--pastel-lavender`)
 
 ## 주요 결정 사항
 

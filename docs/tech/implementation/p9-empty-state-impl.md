@@ -1,9 +1,9 @@
 # P9 빈 상태 카피·CTA — Implementation
 
 > 구현일: 2026-05-07
-> spec: [docs/features/p9-empty-state/spec.md](../features/p9-empty-state/spec.md)
-> design: [docs/features/p9-empty-state/design.md](../features/p9-empty-state/design.md)
-> review: [docs/features/p9-empty-state/review.md](../features/p9-empty-state/review.md)
+> spec: [docs/features/p9-empty-state/spec.md](../../features/p9-empty-state/spec.md)
+> design: [docs/features/p9-empty-state/design.md](../../features/p9-empty-state/design.md)
+> review: [docs/features/p9-empty-state/review.md](../../features/p9-empty-state/review.md)
 
 ## 완료 조건 충족 여부
 
@@ -24,13 +24,13 @@
 
 ### 신규 생성
 
-- [src/components/checklist/ChecklistEmptyState.tsx](../../src/components/checklist/ChecklistEmptyState.tsx) — `case` prop으로 3종 분기. first_visit는 카드 + 둘러보기 CTA, migration_lost는 peach inline alert + 확인 CTA, custom_only는 prose-muted 색 1줄 안내.
-- [src/components/checklist/AllDoneBadge.tsx](../../src/components/checklist/AllDoneBadge.tsx) — 모두 완료 헤더 격려 텍스트. mint/40 배경 + accent-green 텍스트 + Check 아이콘.
+- [src/components/checklist/ChecklistEmptyState.tsx](../../../src/components/checklist/ChecklistEmptyState.tsx) — `case` prop으로 3종 분기. first_visit는 카드 + 둘러보기 CTA, migration_lost는 peach inline alert + 확인 CTA, custom_only는 prose-muted 색 1줄 안내.
+- [src/components/checklist/AllDoneBadge.tsx](../../../src/components/checklist/AllDoneBadge.tsx) — 모두 완료 헤더 격려 텍스트. mint/40 배경 + accent-green 텍스트 + Check 아이콘.
 
 ### 수정
 
-- [src/store/createChecklistStore.ts](../../src/store/createChecklistStore.ts) — `migrationLostFlag` 상태 + `clearMigrationLost` 액션 추가. `onRehydrateStorage` 콜백에서 hydration 에러 캐치 → `queueMicrotask`로 default state 복구 + 플래그 켬. `partialize`로 플래그는 persist 제외(in-session only).
-- [src/components/checklist/ChecklistPage.tsx](../../src/components/checklist/ChecklistPage.tsx) — `emptyStateCase` 판정 로직, `allDone` 판정, 1회 토스트 effect, 둘러보기 anchor scroll, 첫 체크 시 migrationLost 플래그 클리어 통합.
+- [src/store/createChecklistStore.ts](../../../src/store/createChecklistStore.ts) — `migrationLostFlag` 상태 + `clearMigrationLost` 액션 추가. `onRehydrateStorage` 콜백에서 hydration 에러 캐치 → `queueMicrotask`로 default state 복구 + 플래그 켬. `partialize`로 플래그는 persist 제외(in-session only).
+- [src/components/checklist/ChecklistPage.tsx](../../../src/components/checklist/ChecklistPage.tsx) — `emptyStateCase` 판정 로직, `allDone` 판정, 1회 토스트 effect, 둘러보기 anchor scroll, 첫 체크 시 migrationLost 플래그 클리어 통합.
 
 ### 미수정 (의도)
 
@@ -38,7 +38,7 @@
 
 ## 주요 결정 사항
 
-- **InlineToast 컴포넌트 미생성**: design.md는 "외부 라이브러리 추가 회피, 기존 패턴 부재 시" 신규 도입을 명시. 코드베이스에 `sonner` Toaster가 [src/app/layout.tsx](../../src/app/layout.tsx#L62)에 이미 마운트되어 있어 sonner를 활용. spec.md §3 must "기존 사용 중인 것 활용" 조건 정합.
+- **InlineToast 컴포넌트 미생성**: design.md는 "외부 라이브러리 추가 회피, 기존 패턴 부재 시" 신규 도입을 명시. 코드베이스에 `sonner` Toaster가 [src/app/layout.tsx](../../../src/app/layout.tsx#L62)에 이미 마운트되어 있어 sonner를 활용. spec.md §3 must "기존 사용 중인 것 활용" 조건 정합.
 - **first_visit 카드는 items 위에 렌더, items는 그대로 노출**: design.md §1 플로우의 "[둘러보기] 탭 → 페이지 내 항목 리스트로 스크롤·전환 (라우팅 변경 X)" 정합. 빈 상태 카드가 items를 대체하지 않고, anchor `#checklist-items`로 스크롤. 사용자가 첫 체크하면 `checkedIds.length > 0`이 되어 자동으로 빈 상태 사라짐.
 - **케이스 우선순위**: `migration_lost > first_visit > custom_only`. 데이터 손실은 가장 강한 인지 필요(role="alert"), first_visit는 체크·custom 모두 0개, custom_only는 base=0 && custom≥1. spec.md §4 edge case "기본 0 + custom 0 = first_visit"도 자연스럽게 충족.
 - **all_done 토스트는 마운트 직후 평가 1회**: spec.md §4 edge case "체크 toggle 직후 모두 완료 → 토스트는 다음 마운트까지 미발사"를 위해 `allDoneToastEvaluatedRef`를 hydration 완료 직후 1회만 평가하도록 설계. 세션 중 all_done 전환은 헤더 텍스트만 갱신, 토스트 미발사. 페이지 재진입(언마운트→마운트) 시 ref 초기화로 다시 평가.

@@ -1,7 +1,7 @@
 # design-bundle-g-pastel-remap 코드 리뷰
 
 > 리뷰일: 2026-05-09
-> spec: [docs/features/design-bundle-g-pastel-remap/spec.md](../features/design-bundle-g-pastel-remap/spec.md)
+> spec: [docs/features/design-bundle-g-pastel-remap/spec.md](../../features/design-bundle-g-pastel-remap/spec.md)
 > impl: [docs/implementation/design-bundle-g-pastel-remap-impl.md](../implementation/design-bundle-g-pastel-remap-impl.md)
 
 ## 리뷰 대상 파일

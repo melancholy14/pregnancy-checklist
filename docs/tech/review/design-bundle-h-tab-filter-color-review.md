@@ -1,16 +1,16 @@
 # design-bundle-h-tab-filter-color 코드 리뷰
 
 > 작성일: 2026-05-09
-> 출처: [docs/features/design-bundle-h-tab-filter-color/spec.md](../features/design-bundle-h-tab-filter-color/spec.md)
+> 출처: [docs/features/design-bundle-h-tab-filter-color/spec.md](../../features/design-bundle-h-tab-filter-color/spec.md)
 > 구현 요약: [docs/implementation/design-bundle-h-tab-filter-color-impl.md](../implementation/design-bundle-h-tab-filter-color-impl.md)
 
 ## 리뷰 대상 파일
 
-- [src/components/info/InfoContainer.tsx](../../src/components/info/InfoContainer.tsx) — L145 (1곳)
-- [src/components/timeline/CategoryFilter.tsx](../../src/components/timeline/CategoryFilter.tsx) — L25 (1곳)
-- [src/components/babyfair/BabyfairContainer.tsx](../../src/components/babyfair/BabyfairContainer.tsx) — L108, L137, L143, L149 (4곳)
-- [src/components/articles/TagFilter.tsx](../../src/components/articles/TagFilter.tsx) — L35, L48 (2곳)
-- [src/components/videos/VideosContainer.tsx](../../src/components/videos/VideosContainer.tsx) — L139, L150, L165, L178 (4곳)
+- [src/components/info/InfoContainer.tsx](../../../src/components/info/InfoContainer.tsx) — L145 (1곳)
+- [src/components/timeline/CategoryFilter.tsx](../../../src/components/timeline/CategoryFilter.tsx) — L25 (1곳)
+- [src/components/babyfair/BabyfairContainer.tsx](../../../src/components/babyfair/BabyfairContainer.tsx) — L108, L137, L143, L149 (4곳)
+- [src/components/articles/TagFilter.tsx](../../../src/components/articles/TagFilter.tsx) — L35, L48 (2곳)
+- [src/components/videos/VideosContainer.tsx](../../../src/components/videos/VideosContainer.tsx) — L139, L150, L165, L178 (4곳)
 
 총 **5개 파일 / 12 라인**. 모두 Tailwind 클래스 문자열 치환(`bg-pastel-{pink|mint}/40` → `bg-pastel-lavender/40`, `border-…/30` 동일 치환)이며, JSX 구조·핸들러·타입·이벤트는 변경되지 않았다.
 

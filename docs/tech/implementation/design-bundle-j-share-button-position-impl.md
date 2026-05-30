@@ -1,7 +1,7 @@
 # design-bundle-j-share-button-position Implementation
 
 > 작성일: 2026-05-10
-> 관련 spec: [docs/features/design-bundle-j-share-button-position/spec.md](../features/design-bundle-j-share-button-position/spec.md)
+> 관련 spec: [docs/features/design-bundle-j-share-button-position/spec.md](../../features/design-bundle-j-share-button-position/spec.md)
 
 ## 완료 조건 충족 여부
 
@@ -17,7 +17,7 @@
 ## 생성/수정 파일 목록
 
 ### 신규 생성
-- `docs/implementation/design-bundle-j-share-button-position-impl.md` — 본 문서
+- `docs/tech/implementation/design-bundle-j-share-button-position-impl.md` — 본 문서
 
 ### 수정
 - `src/lib/share.ts` — `SharePosition` 타입 export, `ShareContext`에 `position` 필수 필드 추가, GA 이벤트명 `share` → `share_click`로 SoT 정합, payload에 `position` 동봉(양 분기)

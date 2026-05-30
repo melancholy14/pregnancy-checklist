@@ -1,7 +1,7 @@
 # design-bundle-k-delete-pattern 코드 리뷰
 
 > 작성일: 2026-05-10
-> 관련 스펙: [spec.md](../features/design-bundle-k-delete-pattern/spec.md)
+> 관련 스펙: [spec.md](../../features/design-bundle-k-delete-pattern/spec.md)
 > 관련 구현: [impl.md](../implementation/design-bundle-k-delete-pattern-impl.md)
 
 ## 리뷰 대상 파일

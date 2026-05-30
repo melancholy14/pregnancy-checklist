@@ -1,7 +1,7 @@
 # design-bundle-h-tab-filter-color Implementation
 
 > 작성일: 2026-05-09
-> 출처: [docs/features/design-bundle-h-tab-filter-color/spec.md](../features/design-bundle-h-tab-filter-color/spec.md)
+> 출처: [docs/features/design-bundle-h-tab-filter-color/spec.md](../../features/design-bundle-h-tab-filter-color/spec.md)
 
 ## 완료 조건 충족 여부
 
@@ -18,12 +18,12 @@
 - 없음 (클래스 문자열만 치환)
 
 ### 수정
-- [src/components/info/InfoContainer.tsx:145](../../src/components/info/InfoContainer.tsx#L145) — I-7 카테고리 탭 active 클래스 pink → lavender
-- [src/components/timeline/CategoryFilter.tsx:25](../../src/components/timeline/CategoryFilter.tsx#L25) — T-4 카테고리 필터 active 클래스 pink → lavender
-- [src/components/babyfair/BabyfairContainer.tsx:108](../../src/components/babyfair/BabyfairContainer.tsx#L108) — B-4 도시 선택 active 클래스 mint → lavender
-- [src/components/babyfair/BabyfairContainer.tsx:137,143,149](../../src/components/babyfair/BabyfairContainer.tsx#L137) — B-4 진행중·예정·지난 탭 `data-[state=active]` 클래스 mint → lavender (3곳)
-- [src/components/articles/TagFilter.tsx:35,48](../../src/components/articles/TagFilter.tsx#L35) — 태그 필터 "전체" + 개별 태그 active 클래스 pink → lavender (2곳)
-- [src/components/videos/VideosContainer.tsx:139,150,165,178](../../src/components/videos/VideosContainer.tsx#L139) — 영상/채널 토글 + 카테고리 "전체"/개별 active 클래스 pink → lavender (4곳)
+- [src/components/info/InfoContainer.tsx:145](../../../src/components/info/InfoContainer.tsx#L145) — I-7 카테고리 탭 active 클래스 pink → lavender
+- [src/components/timeline/CategoryFilter.tsx:25](../../../src/components/timeline/CategoryFilter.tsx#L25) — T-4 카테고리 필터 active 클래스 pink → lavender
+- [src/components/babyfair/BabyfairContainer.tsx:108](../../../src/components/babyfair/BabyfairContainer.tsx#L108) — B-4 도시 선택 active 클래스 mint → lavender
+- [src/components/babyfair/BabyfairContainer.tsx:137,143,149](../../../src/components/babyfair/BabyfairContainer.tsx#L137) — B-4 진행중·예정·지난 탭 `data-[state=active]` 클래스 mint → lavender (3곳)
+- [src/components/articles/TagFilter.tsx:35,48](../../../src/components/articles/TagFilter.tsx#L35) — 태그 필터 "전체" + 개별 태그 active 클래스 pink → lavender (2곳)
+- [src/components/videos/VideosContainer.tsx:139,150,165,178](../../../src/components/videos/VideosContainer.tsx#L139) — 영상/채널 토글 + 카테고리 "전체"/개별 active 클래스 pink → lavender (4곳)
 
 ## 주요 결정 사항
 

@@ -13,9 +13,9 @@ docs/
 │   ├── impl.md                 구현 인덱스 (검색·스크립트 상세)
 │   ├── review.md               리팩토링 미완료 항목 인덱스
 │   ├── technical-debt.md       살아있는 기술 부채만
-│   ├── implementation/         step별 구현 보고서
-│   ├── review/                 step별 코드 리뷰 결과
-│   └── refactor/               step별 리팩토링 결과
+│   ├── implementation/         feature별 구현 보고서
+│   ├── review/                 feature별 코드 리뷰 결과
+│   └── refactor/               feature별 리팩토링 결과
 ├── marketing/                  마케팅 단일 진실
 │   ├── persona.md              마케터 페르소나·룰
 │   └── ga4.md                  GA4 이벤트 카탈로그
@@ -26,12 +26,16 @@ docs/
 │   ├── persona.md              기획자 페르소나·룰
 │   ├── done.md                 구현 완료 정리 (기획 시각)
 │   ├── plan.md                 미구현 영역 (기획 시각)
-│   └── backlog.md              이월·보류 항목
+│   ├── backlog.md              이월·보류 항목
+│   ├── blog-writer-persona.md  블로그 작성 페르소나 SoT
+│   └── image-sop.md            AI 이미지 운영 SOP
 ├── plan/                       4축 횡단 plan + PRD
 │   ├── plan.md                 마스터 PRD + Phase 0~7 전체 계획
-│   ├── phase-2.5.md, phase-3.md, phase-4.md, phase-4.5.md  phase별 plan
+│   ├── phase-2.5.md ~ phase-5.md  phase별 plan
 │   ├── adsense-audit.md        AdSense 신청 직전 체크리스트
 │   └── specs/babyfair_crawler_spec.md  Phase 5 크롤러 스펙
+├── features/                   feature-plan 산출물 (spec·meta·design·ga4·review)
+├── ops/                        운영 문서 (operating-model·github-secrets·adsense-application-checklist)
 └── README.md                   이 인덱스
 ```
 

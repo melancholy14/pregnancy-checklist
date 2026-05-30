@@ -1,6 +1,6 @@
 # marketing-events-wiring Implementation
 
-> 작성일: 2026-05-12  spec: [docs/features/marketing-events-wiring/spec.md](../features/marketing-events-wiring/spec.md)
+> 작성일: 2026-05-12  spec: [docs/features/marketing-events-wiring/spec.md](../../features/marketing-events-wiring/spec.md)
 > review.md 결정 1·2·3·4·5·6 반영. 신/구 병행 grace 4주 — 2026-06-07 cleanup 라운드 예정.
 
 ## 완료 조건 충족 여부

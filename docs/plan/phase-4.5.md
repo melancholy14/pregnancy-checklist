@@ -8,21 +8,21 @@
 > **진행 요약 (2026-05-26)**
 >
 > - **기획 §3** — Critical 결정·구현 완료:
->   P3·P4 ([pregnancy-week-onboarding](../pregnancy-week-onboarding/README.md)),
->   P14 ([p14-ai-image-label](../p14-ai-image-label/README.md)),
->   P9 ([p9-empty-state](../p9-empty-state/README.md)),
->   P2·P6·P7 ([checklist-recommendation-semantics](../checklist-recommendation-semantics/README.md)).
+>   P3·P4 ([pregnancy-week-onboarding](../features/pregnancy-week-onboarding/spec.md)),
+>   P14 ([p14-ai-image-label](../features/p14-ai-image-label/spec.md)),
+>   P9 ([p9-empty-state](../features/p9-empty-state/spec.md)),
+>   P2·P6·P7 ([checklist-recommendation-semantics](../features/checklist-recommendation-semantics/spec.md)).
 >   P11 spec·결정 완료 (vault 매트릭스 작성 phase-4.6 종료 후로 이연 — 타임라인 흡수·4축 정합 반영).
 >   P1 deferred (`checklist-data-model-bundle`).
 >   P5 P1과 묶여 자연 보류.
 >   P8·P10·P12·P13 결정 산출물 미발견.
 > - **디자인 §2** — **잔여 묶음 전체 완료** (이전 G·H·L·D + 이번 라운드 A·B·C·E·F·I·J·K·N·O):
->   - cleanup 묶음 5건 통합: A·C·E·F·O ([design-bundle-cleanup-round](../design-bundle-cleanup-round/README.md))
+>   - cleanup 묶음 5건 통합: A·C·E·F·O (design-bundle-cleanup-round)
 >   - refactor 묶음 2건 통합: B·I ([design-bundle-b-i-row-tokens](../features/design-bundle-b-i-row-tokens/) — WeekChecklistSection label 마크업 + 데이터→토큰 헬퍼)
->   - decision 묶음 3건: J ShareButton 위치 ([design-bundle-j-share-button-position](../design-bundle-j-share-button-position/README.md)), K 삭제 패턴 undo 토스트 ([design-bundle-k-delete-pattern](../design-bundle-k-delete-pattern/README.md)), N 차트 색 peach ([design-bundle-n-weight-chart-color](../design-bundle-n-weight-chart-color/README.md))
+>   - decision 묶음 3건: J ShareButton 위치 ([design-bundle-j-share-button-position](../features/design-bundle-j-share-button-position/spec.md)), K 삭제 패턴 undo 토스트 ([design-bundle-k-delete-pattern](../features/design-bundle-k-delete-pattern/spec.md)), N 차트 색 peach ([design-bundle-n-weight-chart-color](../features/design-bundle-n-weight-chart-color/spec.md))
 >   - 잔여: IM-6 (alt 가이드라인, P10 운영자 가이드 통합 의존)
 > - **마케팅 §1** — **묶음 G·H·I·J·L 완료 + 묶음 M launchd 등록·1차 검증 통과 (2026-05-26)**:
->   wiring ([marketing-events-wiring](../marketing-events-wiring/README.md), 2026-05-12) + 자동 주간 리포트 스크립트 ([marketing-weekly-report](../features/marketing-weekly-report/), 2026-05-13).
+>   wiring ([marketing-events-wiring](../features/marketing-events-wiring/spec.md), 2026-05-12) + 자동 주간 리포트 스크립트 ([marketing-weekly-report](../features/marketing-weekly-report/), 2026-05-13).
 >   `scripts/weekly-report/` 7개 파일(GA4 Data API + Claude/OpenAI 백업 + writer) + ga4.md §8/§9 갱신 완료. 묶음 M plist 등록 + kickstart 즉시 검증 통과 (exit 0, 2026-W21.md §1.9.6 스키마 일치, OpenAI fallback).
 >   잔여: 2주 안정화 관찰 (~2026-06-15 누락/실패 0건 확인 시 묶음 M 종료).
 > - **개발 §4** — **D-A·D-B 완료** (2026-05-26):
@@ -191,7 +191,7 @@ GA4 인프라(consent 게이팅 + 수동 page_view + `sendGAEvent` 헬퍼)는 �
 권장 실행 순서: **G → H → (1주 관찰) → I → J → L → M**
 (G·H 없이 I 먼저 가면 코호트 슬라이싱이 안 돼서 데이터가 평면적. L·M은 G~J가 1~2주 누적된 뒤 의미 있는 리포트가 나옴.)
 
-> **상태 (2026-05-26)**: ✅ **묶음 G·H·I·J·L 완료 + 묶음 M launchd 등록·1차 검증 통과**. wiring ([marketing-events-wiring](../marketing-events-wiring/README.md), 2026-05-12) + 자동 주간 리포트 스크립트 ([marketing-weekly-report](../features/marketing-weekly-report/), 2026-05-13). 묶음 M: `~/Library/LaunchAgents/com.melancholy14.pregnancy-checklist.weekly-report.plist` 등록 + `kickstart -k`로 즉시 실행 → exit 0 + 출력 `~/Documents/pregnancy-checklist/60-analytics/weekly/2026-W21.md` §1.9.6 스키마 통과 (OpenAI fallback, $0.0083). **잔여: 2주 안정화 관찰** — 다음 월요일 2026-06-01 09:00 자동 발사 → ~2026-06-15 누락/실패 0건 확인 시 묶음 M 종료.
+> **상태 (2026-05-26)**: ✅ **묶음 G·H·I·J·L 완료 + 묶음 M launchd 등록·1차 검증 통과**. wiring ([marketing-events-wiring](../features/marketing-events-wiring/spec.md), 2026-05-12) + 자동 주간 리포트 스크립트 ([marketing-weekly-report](../features/marketing-weekly-report/), 2026-05-13). 묶음 M: `~/Library/LaunchAgents/com.melancholy14.pregnancy-checklist.weekly-report.plist` 등록 + `kickstart -k`로 즉시 실행 → exit 0 + 출력 `~/Documents/pregnancy-checklist/60-analytics/weekly/2026-W21.md` §1.9.6 스키마 통과 (OpenAI fallback, $0.0083). **잔여: 2주 안정화 관찰** — 다음 월요일 2026-06-01 09:00 자동 발사 → ~2026-06-15 누락/실패 0건 확인 시 묶음 M 종료.
 
 > 📌 §2(디자인) 작업 묶음 A~F와는 독립 진행 가능. 단 §2.6의 "미체크만 보기" 토글이 들어가면 묶음 H 정의에 `checklist_filter` 이벤트 1개 추가.
 
@@ -568,8 +568,8 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 | ID | 패턴 | 영향 영역 | 결정/대응 |
 |----|------|-----------|-----------|
-| **Cross-1** | `#E0F0FF` 비공식 6번째 pastel | home(H-3), timeline(T-2), baby-fair(B-1) | ✅ **결정·구현 완료 (2026-05-09)** — **5-pastel 내 정정** (lavender/peach 재매핑). [design-bundle-g-pastel-remap](../design-bundle-g-pastel-remap/README.md) |
-| **Cross-2** | 탭/필터 활성색 컨벤션 미합의 | info(I-7), timeline(T-4), baby-fair(B-4) | ✅ **완료 (2026-05-10)** — `lavender/40` 통일 적용 (홈 제외 5개 영역). [design-bundle-h-tab-filter-color](../design-bundle-h-tab-filter-color/README.md) |
+| **Cross-1** | `#E0F0FF` 비공식 6번째 pastel | home(H-3), timeline(T-2), baby-fair(B-1) | ✅ **결정·구현 완료 (2026-05-09)** — **5-pastel 내 정정** (lavender/peach 재매핑). [design-bundle-g-pastel-remap](../features/design-bundle-g-pastel-remap/spec.md) |
+| **Cross-2** | 탭/필터 활성색 컨벤션 미합의 | info(I-7), timeline(T-4), baby-fair(B-4) | ✅ **완료 (2026-05-10)** — `lavender/40` 통일 적용 (홈 제외 5개 영역). [design-bundle-h-tab-filter-color](../features/design-bundle-h-tab-filter-color/spec.md) |
 | **Cross-3** | 페이지 셸 `bg-linear-to-* to-white` 위반 | checklist(C2), timeline(T-1) | A 묶음 — `bg-background` 단색 일괄 |
 | **Cross-4** | 인라인 hex `style={{ backgroundColor }}` | home(H-3), timeline(T-11), baby-fair(B-3) | ✅ **완료 (2026-05-10)** — `src/lib/data-token-classes.ts` 헬퍼 도입. [design-bundle-b-i-row-tokens](../features/design-bundle-b-i-row-tokens/spec.md) |
 | **Cross-5** | row-as-button + nested interactive | checklist(M1), timeline(WeekChecklistSection 공유) | ✅ **완료 (2026-05-10)** — `ChecklistRow` 공통 컴포넌트 추출로 두 파일(ChecklistItemRow + WeekChecklistSection) 동시 해결. [design-bundle-b-i-row-tokens](../features/design-bundle-b-i-row-tokens/spec.md) |
@@ -588,19 +588,19 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 | 묶음 | 내용 | 영역 | 난이도 | 임팩트 | 상태 (2026-05-10) |
 |---|---|---|---|---|---|
-| **A** | 페이지 셸 그라디언트 정정 + radius 통일 + 우선순위 색 재매핑 (C2·C3·T-1·T-6·T-7·W-3, C1 적용 완료) | checklist+timeline+weight | S | 큼 | ✅ 완료 ([design-bundle-cleanup-round](../design-bundle-cleanup-round/README.md)) |
+| **A** | 페이지 셸 그라디언트 정정 + radius 통일 + 우선순위 색 재매핑 (C2·C3·T-1·T-6·T-7·W-3, C1 적용 완료) | checklist+timeline+weight | S | 큼 | ✅ 완료 (design-bundle-cleanup-round) |
 | **B** | `ChecklistRow` 공통 컴포넌트 추출 + label 기반 마크업으로 (M1·T-5) | checklist+timeline (공유 컴포넌트) | M | 큼 | ✅ 완료 ([design-bundle-b-i-row-tokens](../features/design-bundle-b-i-row-tokens/spec.md)) |
-| **C** | h2/h3 인라인 size override 정리 (C4·T-9·I-5·I-6, Cross-6) — 글로벌 위계 조정 검토 포함 | 전 영역 | S~M | 중 | ✅ 완료 ([design-bundle-cleanup-round](../design-bundle-cleanup-round/README.md)) |
-| **D** | "미체크만 보기" + 임신 주차 컨텍스트 라벨 | checklist | M | 큼 | ✅ 완료 ([design-bundle-d](../design-bundle-d-uncheck-toggle-dday/README.md)) |
-| **E** | 마감 일괄(shadow / 화살표 / 토큰 외 red / 토큰 외 hex / Minor 전반) — Cross-7·Cross-8·Cross-9 포함 | 전 영역 | S | 큼 (영향 면적 큰 cleanup) | ✅ 완료 ([design-bundle-cleanup-round](../design-bundle-cleanup-round/README.md)) |
-| **F** | 허브 카드 아이콘 패턴 통일 + "37주차" 핀 (M5·M6) | checklist | S | 중 | ✅ 완료 (M6 P3 산출 + M5 [design-bundle-cleanup-round](../design-bundle-cleanup-round/README.md)) |
-| **G** | **`#E0F0FF` 결정 + 일괄 정정** (Cross-1) | home+timeline+baby-fair | S (결정 후) | 큼 (헌법 정합성) | ✅ 완료 ([design-bundle-g](../design-bundle-g-pastel-remap/README.md)) |
-| **H** | **탭/필터 활성색 일괄 정렬 → lavender/40** (Cross-2) | info+timeline+baby-fair | S | 중 | ✅ 완료 ([design-bundle-h](../design-bundle-h-tab-filter-color/README.md)) |
+| **C** | h2/h3 인라인 size override 정리 (C4·T-9·I-5·I-6, Cross-6) — 글로벌 위계 조정 검토 포함 | 전 영역 | S~M | 중 | ✅ 완료 (design-bundle-cleanup-round) |
+| **D** | "미체크만 보기" + 임신 주차 컨텍스트 라벨 | checklist | M | 큼 | ✅ 완료 ([design-bundle-d](../features/design-bundle-d-uncheck-toggle-dday/spec.md)) |
+| **E** | 마감 일괄(shadow / 화살표 / 토큰 외 red / 토큰 외 hex / Minor 전반) — Cross-7·Cross-8·Cross-9 포함 | 전 영역 | S | 큼 (영향 면적 큰 cleanup) | ✅ 완료 (design-bundle-cleanup-round) |
+| **F** | 허브 카드 아이콘 패턴 통일 + "37주차" 핀 (M5·M6) | checklist | S | 중 | ✅ 완료 (M6 P3 산출 + M5 design-bundle-cleanup-round) |
+| **G** | **`#E0F0FF` 결정 + 일괄 정정** (Cross-1) | home+timeline+baby-fair | S (결정 후) | 큼 (헌법 정합성) | ✅ 완료 ([design-bundle-g](../features/design-bundle-g-pastel-remap/spec.md)) |
+| **H** | **탭/필터 활성색 일괄 정렬 → lavender/40** (Cross-2) | info+timeline+baby-fair | S | 중 | ✅ 완료 ([design-bundle-h](../features/design-bundle-h-tab-filter-color/spec.md)) |
 | **I** | 데이터→토큰 매핑 헬퍼 도입 (Cross-4) | home+timeline+baby-fair | M | 중 | ✅ 완료 ([design-bundle-b-i-row-tokens](../features/design-bundle-b-i-row-tokens/spec.md)) |
-| **J** | ShareButton 위치 컨벤션 결정 + 일괄 정렬 (Cross-10) | checklist+info | S | 중 | ✅ 완료 ([design-bundle-j](../design-bundle-j-share-button-position/README.md)) |
-| **K** | 삭제 패턴 통일 — undo 토스트 도입 (Cross-11) + 체중 confirm 추가 | checklist+timeline+weight | M | 중 | ✅ 완료 ([design-bundle-k](../design-bundle-k-delete-pattern/README.md)) |
-| **N** | 차트 색 결정 (W-1) — peach 라인 + 권장 범위 톤 재배치 | weight | S | 중 | ✅ 완료 ([design-bundle-n](../design-bundle-n-weight-chart-color/README.md)) |
-| **O** | 외부 링크 보안 패턴 (B-5) — `rel="noopener noreferrer"` 표준 정렬 | baby-fair (확장 가능) | S | 낮 | ✅ 완료 ([design-bundle-cleanup-round](../design-bundle-cleanup-round/README.md)) |
+| **J** | ShareButton 위치 컨벤션 결정 + 일괄 정렬 (Cross-10) | checklist+info | S | 중 | ✅ 완료 ([design-bundle-j](../features/design-bundle-j-share-button-position/spec.md)) |
+| **K** | 삭제 패턴 통일 — undo 토스트 도입 (Cross-11) + 체중 confirm 추가 | checklist+timeline+weight | M | 중 | ✅ 완료 ([design-bundle-k](../features/design-bundle-k-delete-pattern/spec.md)) |
+| **N** | 차트 색 결정 (W-1) — peach 라인 + 권장 범위 톤 재배치 | weight | S | 중 | ✅ 완료 ([design-bundle-n](../features/design-bundle-n-weight-chart-color/spec.md)) |
+| **O** | 외부 링크 보안 패턴 (B-5) — `rel="noopener noreferrer"` 표준 정렬 | baby-fair (확장 가능) | S | 낮 | ✅ 완료 (design-bundle-cleanup-round) |
 
 권장 실행 순서: **G → H → A → C → E → F → B → I → J → K → N → O → D**
 (헌법 결정 G·H 먼저 → 토큰 일괄 정정 A·C·E → 마크업 리팩터 B·I → 시스템 컨벤션 J·K·N·O → 신규 UX D)
@@ -672,7 +672,7 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 #### P2. ChecklistItem.tsx의 `isHighlighted` ("이번 주차 추천") UX 부활 여부
 
-> **상태 (2026-05-09)**: ✅ **완료** — 부활 결정. ChecklistItemRow + WeekChecklistSection으로 surface 이식, `recommended_item_view/check` 이벤트 + 마이크로 라벨(CalendarCheck) 구현. [checklist-recommendation-semantics](../checklist-recommendation-semantics/README.md).
+> **상태 (2026-05-09)**: ✅ **완료** — 부활 결정. ChecklistItemRow + WeekChecklistSection으로 surface 이식, `recommended_item_view/check` 이벤트 + 마이크로 라벨(CalendarCheck) 구현. [checklist-recommendation-semantics](../features/checklist-recommendation-semantics/spec.md).
 
 - [x] **결정**: 부활 / 삭제
 - **현황**: [ChecklistItem.tsx:68-72](../../src/components/checklist/ChecklistItem.tsx#L68-L72)에 `isHighlighted` prop과 "이번 주차에 추천하는 항목이에요" 문구가 정의돼 있으나, 현재 사용처가 없음(허브·상세 모두 [ChecklistItemRow.tsx](../../src/components/checklist/ChecklistItemRow.tsx)만 사용). **잠재 가치 있는 UX가 사장된 상태**.
@@ -683,7 +683,7 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 #### P3. 임신 주차 입력(onboarding) UX의 형태 ⭐ Critical
 
-> **상태 (2026-05-09)**: ✅ **완료** — (a) 예정일 직접 입력 + 자동 주차 산출, (b) 홈은 풀스크린 onboarding + 그 외 5개 섹션은 글로벌 슬림 배너, (c) 미입력자 사용 허용. ChecklistHub 하드코딩 "37주차" 핀도 store 값으로 치환. [pregnancy-week-onboarding](../pregnancy-week-onboarding/README.md).
+> **상태 (2026-05-09)**: ✅ **완료** — (a) 예정일 직접 입력 + 자동 주차 산출, (b) 홈은 풀스크린 onboarding + 그 외 5개 섹션은 글로벌 슬림 배너, (c) 미입력자 사용 허용. ChecklistHub 하드코딩 "37주차" 핀도 store 값으로 치환. [pregnancy-week-onboarding](../features/pregnancy-week-onboarding/spec.md).
 
 - [x] **결정**: (a) 입력 방식 — 예정일 직접 입력 / 주차 직접 입력 / 둘 다
 - [x] **결정**: (b) 입력 시점 — 첫 방문 풀스크린 onboarding / 홈 상단 카드 / 헤더 고정 위젯 / 체크리스트 진입 시 모달
@@ -702,7 +702,7 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 #### P4. `current_pregnancy_week` 영속성·갱신 정책
 
-> **상태 (2026-05-09)**: ✅ **완료** — (a) 예정일 단일 입력, (b) `lastCalcDate !== todayKST`일 때만 재계산(KST 자정 기준), (c) PageviewTracker가 매 page_view 직전 refresh + user_properties set. zustand persist v0→v1 migrate로 무손실 마이그레이션. [pregnancy-week-onboarding](../pregnancy-week-onboarding/README.md).
+> **상태 (2026-05-09)**: ✅ **완료** — (a) 예정일 단일 입력, (b) `lastCalcDate !== todayKST`일 때만 재계산(KST 자정 기준), (c) PageviewTracker가 매 page_view 직전 refresh + user_properties set. zustand persist v0→v1 migrate로 무손실 마이그레이션. [pregnancy-week-onboarding](../features/pregnancy-week-onboarding/spec.md).
 
 - [x] **결정**: (a) 입력 단위 — 예정일(자동 계산) / 주차 직접
 - [x] **결정**: (b) 갱신 주기 — 자동 매주 / 사용자 명시 갱신만
@@ -722,7 +722,7 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 #### P6. `recommendedWeek: 0`의 의미 정의
 
-> **상태 (2026-05-09)**: ✅ **완료** — 0 = "미정/주차 무관"으로 명문화. `ChecklistItem.recommendedWeek` JSDoc + 매칭 가드(`recommendedWeek !== 0`) 적용. 데이터 구조 변경(`null` / `alwaysRecommended`)은 phase-5 schema versioning 묶음으로 이연. [checklist-recommendation-semantics](../checklist-recommendation-semantics/README.md).
+> **상태 (2026-05-09)**: ✅ **완료** — 0 = "미정/주차 무관"으로 명문화. `ChecklistItem.recommendedWeek` JSDoc + 매칭 가드(`recommendedWeek !== 0`) 적용. 데이터 구조 변경(`null` / `alwaysRecommended`)은 phase-5 schema versioning 묶음으로 이연. [checklist-recommendation-semantics](../features/checklist-recommendation-semantics/spec.md).
 
 - [x] **결정**: 0의 시맨틱 — "추천 주차 미정/시점 무관" / "항상 추천" / "잘못된 데이터" 중 하나
 - [ ] **결정**: 의미 분리 필요 시 — `recommendedWeek: null` 도입 vs 별도 필드(`alwaysRecommended: true`) (phase-5 이연)
@@ -731,7 +731,7 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 #### P7. `note` 필드 콘텐츠 타입 분류
 
-> **상태 (2026-05-09)**: ✅ **부분 완료** — 텍스트 패턴 기반 `legal` 분기 시각 적용 (Scale 아이콘 + italic) + `checklist_check.note_type` 파라미터 추가 (`legal`/`default`/`null`). `note_type` 필드 신규 도입은 phase-5 schema versioning 묶음으로 이연 (락인 §6: 필드 도입 시 자동 채워짐). [checklist-recommendation-semantics](../checklist-recommendation-semantics/README.md).
+> **상태 (2026-05-09)**: ✅ **부분 완료** — 텍스트 패턴 기반 `legal` 분기 시각 적용 (Scale 아이콘 + italic) + `checklist_check.note_type` 파라미터 추가 (`legal`/`default`/`null`). `note_type` 필드 신규 도입은 phase-5 schema versioning 묶음으로 이연 (락인 §6: 필드 도입 시 자동 채워짐). [checklist-recommendation-semantics](../features/checklist-recommendation-semantics/spec.md).
 
 - [x] **결정**: `note_type` 필드 도입 여부 — `action` / `context` / `legal` / 단순 string 유지 (Phase 4.5: 패턴 분류, 필드 도입은 phase-5)
 - **현황**: "병원 전화 확인" / "도로교통법 제50조" / "제왕절개 시" 등 성격 다른 노트가 한 필드에 섞여 있음
@@ -750,7 +750,7 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 #### P9. 빈 상태(empty state) 카피·CTA 명세
 
-> **상태 (2026-05-09)**: ✅ **완료** — 4종 케이스 구현 (first_visit / all_done / migration_lost / custom_only). `ChecklistEmptyState`·`AllDoneBadge` + sonner 토스트 + a11y(`role="status"`/`alert`/`aria-live`) + 다크 패턴 회피 (lavender/peach/mint만 사용). `empty_state_view` GA4 이벤트는 §1.8 묶음 J에서 별도 도입. [p9-empty-state](../p9-empty-state/README.md).
+> **상태 (2026-05-09)**: ✅ **완료** — 4종 케이스 구현 (first_visit / all_done / migration_lost / custom_only). `ChecklistEmptyState`·`AllDoneBadge` + sonner 토스트 + a11y(`role="status"`/`alert`/`aria-live`) + 다크 패턴 회피 (lavender/peach/mint만 사용). `empty_state_view` GA4 이벤트는 §1.8 묶음 J에서 별도 도입. [p9-empty-state](../features/p9-empty-state/spec.md).
 
 - [x] **결정**: 케이스별 카피·CTA — 첫 방문(체크 0개) / 모두 체크 완료 / 마이그레이션 후 데이터 사라진 경우 / 커스텀만 있고 기본 0개일 때
 - **현황**: §1.5 `empty_state_view`가 측정 항목인데, 정작 빈 상태가 어떤 페이지에 어떤 형태로 보이는지 미정의
@@ -767,7 +767,7 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 #### P14. 블로그 본문 AI 생성 이미지 표시 의무 ⭐ Critical (법적 리스크)
 
-> **상태 (2026-05-09)**: ✅ **완료** — (a) figcaption + 우하단 워터마크 칩 둘 다(figcaption은 markdown title 슬롯에 캡션이 있을 때만 조건부), (b) `Imagined with AI`, (c) alt 마커 `(AI 생성 이미지)` + sanitize 스키마 확장, (d) 인포그래픽 우선 적용. `rehype-article-figure` 플러그인 빌드 타임 자동 부착 + 발행 글 2건 마이그레이션 + e2e 11/11 통과 + [docs/content/image-sop.md](../content/image-sop.md) 운영자 SOP 발행. [p14-ai-image-label](../p14-ai-image-label/README.md).
+> **상태 (2026-05-09)**: ✅ **완료** — (a) figcaption + 우하단 워터마크 칩 둘 다(figcaption은 markdown title 슬롯에 캡션이 있을 때만 조건부), (b) `Imagined with AI`, (c) alt 마커 `(AI 생성 이미지)` + sanitize 스키마 확장, (d) 인포그래픽 우선 적용. `rehype-article-figure` 플러그인 빌드 타임 자동 부착 + 발행 글 2건 마이그레이션 + e2e 11/11 통과 + [docs/content/image-sop.md](../content/image-sop.md) 운영자 SOP 발행. [p14-ai-image-label](../features/p14-ai-image-label/spec.md).
 
 - [x] **결정**: (a) 표시 형태 — figcaption 텍스트 라벨(`· AI 생성`) / 이미지 우하단 가시 워터마크 칩 / 둘 다
 - [x] **결정**: (b) 표시 문구 — `AI 생성` / `AI로 만든 이미지` / `Imagined with AI` (한글/영문)
@@ -883,7 +883,7 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 > 출처: [docs/tech/technical-debt.md](../tech/technical-debt.md) P1 항목, [docs/tech/review.md](../tech/review.md) 리뷰 잔불, [docs/tech/impl.md](../tech/impl.md) 미구현 메모
 > 기준: Phase 5 착수 전에 처리해야 할 기술 부채만 모음. P2/P3는 [docs/tech/technical-debt.md](../tech/technical-debt.md)에 잔존.
 >
-> **상태 (2026-05-26)**: ✅ **D-A·D-B 완료, D-C~E 미착수(phase-4.5 종료 차단 아님)**. D-B(D-M1 CI/CD + D-M2 webServer + D-M3 동의 거부 회귀 e2e) 완료. P2 ChecklistItem.tsx 미사용 코드는 [checklist-recommendation-semantics](../checklist-recommendation-semantics/README.md)에서 이미 삭제됨. P1 deferred 묶음(`checklist-data-model-bundle`)은 phase-4.5 종료 시 함께 처리.
+> **상태 (2026-05-26)**: ✅ **D-A·D-B 완료, D-C~E 미착수(phase-4.5 종료 차단 아님)**. D-B(D-M1 CI/CD + D-M2 webServer + D-M3 동의 거부 회귀 e2e) 완료. P2 ChecklistItem.tsx 미사용 코드는 [checklist-recommendation-semantics](../features/checklist-recommendation-semantics/spec.md)에서 이미 삭제됨. P1 deferred 묶음(`checklist-data-model-bundle`)은 phase-4.5 종료 시 함께 처리.
 
 ### 4.1 종합 평가
 

@@ -2,7 +2,7 @@
 
 > 작성일: 2026-05-10  size: S (영향 면적 큰 cleanup)
 > 출처: [docs/plan/phase-4.5.md §2.10 묶음 E](../../plan/phase-4.5.md), §2.5 Minor, §2.8.x M3·M4 제외, §2.9 Cross-7·Cross-8·Cross-9
-> 라운드: [design-bundle-cleanup-round](../../design-bundle-cleanup-round/README.md)
+> 라운드: [design-bundle-cleanup-round (phase-4.5 §2.10)](../../plan/phase-4.5.md)
 
 ## 0. 사전 확정 결정 (사용자 입력, 2026-05-10)
 

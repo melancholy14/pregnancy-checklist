@@ -1,6 +1,6 @@
 # marketing-weekly-report Implementation
 
-> 작성일: 2026-05-13  size: M  근거: [spec.md](../features/marketing-weekly-report/spec.md), [ga4.md](../features/marketing-weekly-report/ga4.md), [phase-4.5 §1.9](../plan/phase-4.5.md)
+> 작성일: 2026-05-13  size: M  근거: [spec.md](../../features/marketing-weekly-report/spec.md), [ga4.md](../../features/marketing-weekly-report/ga4.md), [phase-4.5 §1.9](../../plan/phase-4.5.md)
 
 ## 완료 조건 충족 여부
 

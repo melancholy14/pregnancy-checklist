@@ -1,8 +1,8 @@
 # design-bundle-l-image-system Implementation
 
 > 구현일: 2026-05-10
-> 관련 spec: [docs/features/design-bundle-l-image-system/spec.md](../features/design-bundle-l-image-system/spec.md)
-> 관련 design: [docs/features/design-bundle-l-image-system/design.md](../features/design-bundle-l-image-system/design.md)
+> 관련 spec: [docs/features/design-bundle-l-image-system/spec.md](../../features/design-bundle-l-image-system/spec.md)
+> 관련 design: [docs/features/design-bundle-l-image-system/design.md](../../features/design-bundle-l-image-system/design.md)
 
 ## 완료 조건 충족 여부
 

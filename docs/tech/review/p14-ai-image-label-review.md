@@ -2,13 +2,13 @@
 
 > 작성일: 2026-05-08
 > 관련 구현: [docs/implementation/p14-ai-image-label-impl.md](../implementation/p14-ai-image-label-impl.md)
-> 관련 스펙: [docs/features/p14-ai-image-label/spec.md](../features/p14-ai-image-label/spec.md)
+> 관련 스펙: [docs/features/p14-ai-image-label/spec.md](../../features/p14-ai-image-label/spec.md)
 
 ## 리뷰 대상 파일
 
-- [src/lib/markdown/rehype-article-figure.ts](../../src/lib/markdown/rehype-article-figure.ts)
-- [src/lib/articles.ts](../../src/lib/articles.ts)
-- [src/app/globals.css](../../src/app/globals.css)
+- [src/lib/markdown/rehype-article-figure.ts](../../../src/lib/markdown/rehype-article-figure.ts)
+- [src/lib/articles.ts](../../../src/lib/articles.ts)
+- [src/app/globals.css](../../../src/app/globals.css)
 
 총 3개 파일 (impl.md "생성/수정 파일 목록" 기준). MD 콘텐츠/문서 파일은 코드 리뷰 범위 밖.
 
@@ -30,19 +30,19 @@
 
 ### 1. articles.ts — 모듈 상수 정의 위치가 import 그룹을 가른다
 
-- **위치**: [src/lib/articles.ts:9-18](../../src/lib/articles.ts#L9-L18)
+- **위치**: [src/lib/articles.ts:9-18](../../../src/lib/articles.ts#L9-L18)
 - **문제**: `rehypeArticleFigure` import (라인 9) 직후에 `sanitizeSchema` 모듈 상수가 정의되고(라인 11-17), 그 뒤에 다시 `ArticleMeta`/`Article`/`BASE_URL` 타입·상수 import가 이어진다. ESLint는 통과하지만 import 블록을 끊어 코드 구조 일관성을 약하게 만든다. 다른 모듈 import 정렬 규칙(`import-order` 등) 도입 시 자동 정렬에 걸려 불필요한 diff 생성.
 - **권장 수정**: `sanitizeSchema` 정의를 모든 import 다음, `ARTICLES_DIR` 상수 부근으로 이동.
 
 ### 2. rehype-article-figure.ts — 외부 절대 URL 이미지가 경고만 발생, 빌드는 통과
 
-- **위치**: [src/lib/markdown/rehype-article-figure.ts:40-44](../../src/lib/markdown/rehype-article-figure.ts#L40-L44)
+- **위치**: [src/lib/markdown/rehype-article-figure.ts:40-44](../../../src/lib/markdown/rehype-article-figure.ts#L40-L44)
 - **문제**: spec.md §3 should "외부 이미지 사용 금지" 룰을 `console.warn`으로만 알림. CI/배포 로그에서 경고가 묻히면 운영자가 SOP 위반 이미지를 그대로 발행할 수 있다. 발행 글에 외부 이미지 0건이라 현재는 영향 없으나, IPTC 메타 통제 불가 + CDN 정합성 리스크가 누적될 수 있다.
 - **권장 수정**: `strict` 옵션을 활용하거나 외부 URL에 한해서만 throw 하는 별도 옵션을 추가. articles.ts 호출 측에서 production 빌드 시 활성화 검토.
 
 ### 3. rehype-article-figure.ts — 입력 AST를 직접 mutate
 
-- **위치**: [src/lib/markdown/rehype-article-figure.ts:48-50](../../src/lib/markdown/rehype-article-figure.ts#L48-L50), [src/lib/markdown/rehype-article-figure.ts:111](../../src/lib/markdown/rehype-article-figure.ts#L111)
+- **위치**: [src/lib/markdown/rehype-article-figure.ts:48-50](../../../src/lib/markdown/rehype-article-figure.ts#L48-L50), [src/lib/markdown/rehype-article-figure.ts:111](../../../src/lib/markdown/rehype-article-figure.ts#L111)
 - **문제**: `delete img.properties.title`와 `node.children = transformChildren(...)`로 입력 hast 트리를 직접 변형. rehype 컨벤션상 허용 패턴이며 현재 파이프라인에서 동일 트리 재사용 케이스가 없어 영향 없으나, 향후 다른 plugin이 같은 트리를 참조하면 의도치 않은 사이드이펙트 가능.
 - **권장 수정**: 변경이 필요한 노드만 얕은 복사 후 새 트리를 반환하는 방식으로 전환. 우선순위는 낮음.
 
@@ -57,7 +57,7 @@
 
 ### 2. 마커 상수가 코드와 SOP 문서에 듀얼 source
 
-- `(AI 생성 이미지)` 문자열이 plugin (`AI_MARKER`)과 [docs/content/image-sop.md](../content/image-sop.md), 발행 글 2건 alt에 각각 박혀 있다. 변경 시 한쪽만 수정하면 정합성 깨짐.
+- `(AI 생성 이미지)` 문자열이 plugin (`AI_MARKER`)과 [docs/content/image-sop.md](../../content/image-sop.md), 발행 글 2건 alt에 각각 박혀 있다. 변경 시 한쪽만 수정하면 정합성 깨짐.
 - MD 문서에서 코드 상수를 동적으로 참조하기는 어려우므로, SOP 문서와 plugin 모두 "변경 금지 토큰"으로 명시(주석)하는 정도가 현실적.
 
 ### 3. 광고 슬롯 충돌 자동 검사 미구현

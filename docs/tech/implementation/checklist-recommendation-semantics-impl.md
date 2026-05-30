@@ -1,7 +1,7 @@
 # checklist-recommendation-semantics Implementation
 
 > 작성일: 2026-05-08
-> 관련 산출물: [spec](../features/checklist-recommendation-semantics/spec.md) · [design](../features/checklist-recommendation-semantics/design.md) · [ga4](../features/checklist-recommendation-semantics/ga4.md) · [review](../features/checklist-recommendation-semantics/review.md)
+> 관련 산출물: [spec](../../features/checklist-recommendation-semantics/spec.md) · [design](../../features/checklist-recommendation-semantics/design.md) · [ga4](../../features/checklist-recommendation-semantics/ga4.md) · [review](../../features/checklist-recommendation-semantics/review.md)
 
 ## 완료 조건 충족 여부
 
@@ -21,7 +21,7 @@
 ### 신규 생성
 
 - `src/lib/note-classifier.ts` — `classifyNote(text)` 단일 함수. `[법령]` 접두 / `「...」` / `〈...〉` / `○○법 제N조` 4 패턴 중 하나라도 매칭되면 `"legal"`, 아니면 `"default"`. phase-5 `note_type` 필드 도입 시 같은 함수가 필드 우선 + 패턴 폴백 형태로 확장.
-- `docs/implementation/checklist-recommendation-semantics-impl.md` — 본 문서.
+- `docs/tech/implementation/checklist-recommendation-semantics-impl.md` — 본 문서.
 
 ### 수정
 

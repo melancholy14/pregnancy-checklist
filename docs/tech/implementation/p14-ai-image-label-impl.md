@@ -1,30 +1,30 @@
 # P14: AI 생성 이미지 표시 의무 — Implementation
 
 > 작성일: 2026-05-07
-> 관련 스펙: [docs/features/p14-ai-image-label/spec.md](../features/p14-ai-image-label/spec.md)
-> 관련 디자인: [docs/features/p14-ai-image-label/design.md](../features/p14-ai-image-label/design.md)
-> 관련 리뷰: [docs/features/p14-ai-image-label/review.md](../features/p14-ai-image-label/review.md)
+> 관련 스펙: [docs/features/p14-ai-image-label/spec.md](../../features/p14-ai-image-label/spec.md)
+> 관련 디자인: [docs/features/p14-ai-image-label/design.md](../../features/p14-ai-image-label/design.md)
+> 관련 리뷰: [docs/features/p14-ai-image-label/review.md](../../features/p14-ai-image-label/review.md)
 
 ## 완료 조건 충족 여부
 
 | 조건 | 상태 | 비고 |
 |------|------|------|
-| 발행된 글 2건 인포그래픽이 figure + 워터마크 칩(우하단) + figcaption(`· AI 생성`) + alt(`(AI 생성 이미지)`)로 렌더 | ✅ 완료 | [weekly-prenatal-checklist.md:41](../../src/content/articles/weekly-prenatal-checklist.md#L41), [prenatal-insurance-preparation-guide.md:20](../../src/content/articles/prenatal-insurance-preparation-guide.md#L20) — 빌드 출력 HTML에서 figure 구조 확인 |
+| 발행된 글 2건 인포그래픽이 figure + 워터마크 칩(우하단) + figcaption(`· AI 생성`) + alt(`(AI 생성 이미지)`)로 렌더 | ✅ 완료 | [weekly-prenatal-checklist.md:41](../../../src/content/articles/weekly-prenatal-checklist.md#L41), [prenatal-insurance-preparation-guide.md:20](../../../src/content/articles/prenatal-insurance-preparation-guide.md#L20) — 빌드 출력 HTML에서 figure 구조 확인 |
 | 신규 글 작성 시 alt 컨벤션만 따르면 후처리 0 | ✅ 완료 | rehype-article-figure 플러그인이 빌드 타임에 alt 마커 감지 후 자동 부착 |
-| 운영자 SOP 1장이 P10 운영자 가이드 통합 위치에 존재 | ✅ 부분 완료 | P10 통합 문서 자체는 미정. 본 SOP는 [docs/content/image-sop.md](../content/image-sop.md) 단독 문서로 작성, P10 통합 시 흡수 예정 |
+| 운영자 SOP 1장이 P10 운영자 가이드 통합 위치에 존재 | ✅ 부분 완료 | P10 통합 문서 자체는 미정. 본 SOP는 [docs/content/image-sop.md](../../content/image-sop.md) 단독 문서로 작성, P10 통합 시 흡수 예정 |
 
 ## 생성/수정 파일 목록
 
 ### 신규 생성
-- [src/lib/markdown/rehype-article-figure.ts](../../src/lib/markdown/rehype-article-figure.ts) — rehype 플러그인. hast 트리에서 image-only 단락(`<p><img></p>`)을 찾아 `<figure class="article-figure">` 구조로 치환. alt에 `(AI 생성 이미지)` 마커가 있으면 워터마크 칩 + figcaption 자동 부착. alt 누락 시 콘솔 경고, 외부 절대 URL 이미지도 경고.
-- [docs/content/image-sop.md](../content/image-sop.md) — 운영자 이미지 SOP. 표시 트리거 1줄 룰, 도구별 분류 표(빈 칸 락인 회피), 신규 도구 도입 시 IPTC 검증 절차, 광고 슬롯 충돌 회피, 발행 체크리스트.
+- [src/lib/markdown/rehype-article-figure.ts](../../../src/lib/markdown/rehype-article-figure.ts) — rehype 플러그인. hast 트리에서 image-only 단락(`<p><img></p>`)을 찾아 `<figure class="article-figure">` 구조로 치환. alt에 `(AI 생성 이미지)` 마커가 있으면 워터마크 칩 + figcaption 자동 부착. alt 누락 시 콘솔 경고, 외부 절대 URL 이미지도 경고.
+- [docs/content/image-sop.md](../../content/image-sop.md) — 운영자 이미지 SOP. 표시 트리거 1줄 룰, 도구별 분류 표(빈 칸 락인 회피), 신규 도구 도입 시 IPTC 검증 절차, 광고 슬롯 충돌 회피, 발행 체크리스트.
 - [docs/implementation/p14-ai-image-label-impl.md](./p14-ai-image-label-impl.md) — 본 문서.
 
 ### 수정
-- [src/lib/articles.ts](../../src/lib/articles.ts) — `getArticleBySlug` remark 파이프라인에 `rehypeArticleFigure`를 추가. `rehypeSanitize` **뒤**에 위치(이유: §주요 결정 사항 1).
-- [src/app/globals.css](../../src/app/globals.css) — `.article-prose` 하위에 `.article-figure`, `.article-figure__media`, `.article-figure__chip`, `.article-figure__caption` 4개 셀렉터 추가. 기존 prose 토큰(`--prose-muted`)과 root 토큰(`#3D4447` foreground 60% alpha)만 사용, 새 hex 인라인 없음.
-- [src/content/articles/weekly-prenatal-checklist.md](../../src/content/articles/weekly-prenatal-checklist.md) — 41번 줄 인포그래픽 alt 끝에 ` (AI 생성 이미지)` 후행 추가.
-- [src/content/articles/prenatal-insurance-preparation-guide.md](../../src/content/articles/prenatal-insurance-preparation-guide.md) — 20번 줄 이미지 alt 끝에 ` (AI 생성 이미지)` 후행 추가.
+- [src/lib/articles.ts](../../../src/lib/articles.ts) — `getArticleBySlug` remark 파이프라인에 `rehypeArticleFigure`를 추가. `rehypeSanitize` **뒤**에 위치(이유: §주요 결정 사항 1).
+- [src/app/globals.css](../../../src/app/globals.css) — `.article-prose` 하위에 `.article-figure`, `.article-figure__media`, `.article-figure__chip`, `.article-figure__caption` 4개 셀렉터 추가. 기존 prose 토큰(`--prose-muted`)과 root 토큰(`#3D4447` foreground 60% alpha)만 사용, 새 hex 인라인 없음.
+- [src/content/articles/weekly-prenatal-checklist.md](../../../src/content/articles/weekly-prenatal-checklist.md) — 41번 줄 인포그래픽 alt 끝에 ` (AI 생성 이미지)` 후행 추가.
+- [src/content/articles/prenatal-insurance-preparation-guide.md](../../../src/content/articles/prenatal-insurance-preparation-guide.md) — 20번 줄 이미지 alt 끝에 ` (AI 생성 이미지)` 후행 추가.
 
 ## 주요 결정 사항
 

@@ -1,13 +1,13 @@
 # AdSense 인프라 마감 Implementation
 
-> 출처: [docs/features/adsense-infra-finalize/spec.md](../features/adsense-infra-finalize/spec.md) (D-A: D-C1·D-C2)
+> 출처: [docs/features/adsense-infra-finalize/spec.md](../../features/adsense-infra-finalize/spec.md) (D-A: D-C1·D-C2)
 > 작업일: 2026-05-13
 
 ## 완료 조건 충족 여부
 
 | 조건 | 상태 | 비고 |
 |------|------|------|
-| **M1**. `public/ads.txt` 생성 (단일 라인 `google.com, pub-6022771079735605, DIRECT, f08c47fec0942fa0`) | ✅ 완료 | [public/ads.txt](../../public/ads.txt) — 1줄 + trailing newline |
+| **M1**. `public/ads.txt` 생성 (단일 라인 `google.com, pub-6022771079735605, DIRECT, f08c47fec0942fa0`) | ✅ 완료 | [public/ads.txt](../../../public/ads.txt) — 1줄 + trailing newline |
 | **M2**. 빈 `reviewed_by: ""` 4건 제거 | ✅ 완료 | 4개 article frontmatter에서 필드 자체 삭제 (빈 문자열 유지 X) |
 | **M3**. 파서·타입 정의 깨지지 않음 | ✅ 완료 | `ArticleMeta` 타입은 `reviewed_by` 미포함이라 optional 처리 불필요. `parseArticleMeta`도 해당 필드 미사용. `npm run build` 무오류 |
 | **M4**. phase-4.5.md D-C1 정정 (실제 상태 반영, 스크립트 추가 부분 삭제) | ✅ 완료 | "스크립트 태그 없음" → "ConsentGatedScripts에 consent-gated로 이미 주입됨"으로 갱신, 제목·수정 항목도 ads.txt 범위로 좁힘 |
@@ -19,14 +19,14 @@
 ## 생성/수정 파일 목록
 
 ### 신규 생성
-- [public/ads.txt](../../public/ads.txt) — AdSense 콘솔 크롤링용 게시자 ID 선언
+- [public/ads.txt](../../../public/ads.txt) — AdSense 콘솔 크롤링용 게시자 ID 선언
 
 ### 수정
-- [src/content/articles/early-pregnancy-fatigue-reasons.md](../../src/content/articles/early-pregnancy-fatigue-reasons.md) — frontmatter에서 `reviewed_by: ""` 삭제
-- [src/content/articles/mid-pregnancy-lifestyle-guide.md](../../src/content/articles/mid-pregnancy-lifestyle-guide.md) — frontmatter에서 `reviewed_by: ""` 삭제
-- [src/content/articles/pregnancy-foods-to-avoid.md](../../src/content/articles/pregnancy-foods-to-avoid.md) — frontmatter에서 `reviewed_by: ""` 삭제
-- [src/content/articles/pregnancy-weight-management.md](../../src/content/articles/pregnancy-weight-management.md) — frontmatter에서 `reviewed_by: ""` 삭제
-- [docs/plan/phase-4.5.md](../plan/phase-4.5.md) §4.2 D-C1 — 실제 상태로 갱신, 작업 범위를 ads.txt로 좁힘
+- [src/content/articles/early-pregnancy-fatigue-reasons.md](../../../src/content/articles/early-pregnancy-fatigue-reasons.md) — frontmatter에서 `reviewed_by: ""` 삭제
+- [src/content/articles/mid-pregnancy-lifestyle-guide.md](../../../src/content/articles/mid-pregnancy-lifestyle-guide.md) — frontmatter에서 `reviewed_by: ""` 삭제
+- [src/content/articles/pregnancy-foods-to-avoid.md](../../../src/content/articles/pregnancy-foods-to-avoid.md) — frontmatter에서 `reviewed_by: ""` 삭제
+- [src/content/articles/pregnancy-weight-management.md](../../../src/content/articles/pregnancy-weight-management.md) — frontmatter에서 `reviewed_by: ""` 삭제
+- [docs/plan/phase-4.5.md](../../plan/phase-4.5.md) §4.2 D-C1 — 실제 상태로 갱신, 작업 범위를 ads.txt로 좁힘
 
 ## 주요 결정 사항
 
@@ -38,7 +38,7 @@
 
 - AdSense 게시자 ID `pub-6022771079735605`는 spec.md에 명시된 운영자 보유 ID. 운영자 확인이 끝난 값으로 가정.
 - 배포 후 ads.txt가 `https://pregnancy-checklist.com/ads.txt`로 정적 서빙됨 — Next.js `public/` 정적 서빙 동작에 따라 빌드 산출물에 자동 포함. 별도 라우트·설정 추가 불필요.
-- consent 거부 시 AdSense 비활성화는 이미 [ConsentGatedScripts.tsx:25-32](../../src/components/consent/ConsentGatedScripts.tsx#L25-L32)에서 `adsenseId &&` + `useConsentAccepted()` 게이팅으로 처리됨. 별도 회귀 작업 불필요.
+- consent 거부 시 AdSense 비활성화는 이미 [ConsentGatedScripts.tsx:25-32](../../../src/components/consent/ConsentGatedScripts.tsx#L25-L32)에서 `adsenseId &&` + `useConsentAccepted()` 게이팅으로 처리됨. 별도 회귀 작업 불필요.
 
 ## 미구현 항목
 

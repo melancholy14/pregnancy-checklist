@@ -1,7 +1,7 @@
 # design-bundle-cleanup-round Implementation
 
 > 작성일: 2026-05-10 · 라운드: design-bundle-cleanup-round (5 묶음 통합)
-> 출처: [docs/design-bundle-cleanup-round/README.md](../design-bundle-cleanup-round/README.md)
+> 출처: [docs/plan/phase-4.5.md §2.10](../../plan/phase-4.5.md)
 
 5개 cleanup 묶음(A·C·E·F·O)을 한 라운드 PR로 통합 구현. 모두 className·마크업 텍스트 교체 또는 메커니즘 정렬이며 인터랙션·상태·GA 이벤트 변경 없음.
 
