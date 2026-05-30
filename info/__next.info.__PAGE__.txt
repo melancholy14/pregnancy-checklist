@@ -1,6 +1,5 @@
 1:"$Sreact.fragment"
-2:I[22016,["/_next/static/chunks/1230gw4dk.e~k.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0bu47qis3rhfg.js","/_next/static/chunks/0.43tujx0hgpd.js"],""]
-3:I[97367,["/_next/static/chunks/1230gw4dk.e~k.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0bu47qis3rhfg.js","/_next/static/chunks/0.43tujx0hgpd.js"],"OutletBoundary"]
-4:"$Sreact.suspense"
-0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"className":"min-h-screen flex items-center justify-center px-4 text-center","children":[["$","meta",null,{"httpEquiv":"refresh","content":"0;url=/articles"}],["$","p",null,{"className":"text-sm text-muted-foreground","children":["이 페이지는 ",["$","$L2",null,{"href":"/articles","className":"underline","children":"/articles"}],"로 이전됐어요."]}]]}],null,["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"n0HIQD65FjSVii72xNZBy"}
-5:null
+2:I[97367,["/_next/static/chunks/1230gw4dk.e~k.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/1860zsbcg5z1o.js","/_next/static/chunks/0bu47qis3rhfg.js","/_next/static/chunks/0qsy_dybv_~ro.js"],"OutletBoundary"]
+3:"$Sreact.suspense"
+0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"className":"min-h-screen flex items-center justify-center px-4 text-center","children":[["$","meta",null,{"httpEquiv":"refresh","content":"0;url=/articles"}],["$","p",null,{"className":"text-sm text-muted-foreground","children":["이 페이지는 ",["$","a",null,{"href":"/articles","className":"underline","children":"/articles"}],"로 이전됐어요."]}]]}],null,["$","$L2",null,{"children":["$","$3",null,{"name":"Next.MetadataOutlet","children":"$@4"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"-1t2qDqhXfF7jINSrP4D1"}
+4:null
