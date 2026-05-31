@@ -65,6 +65,13 @@
 - `new Date()`를 그대로 쓰는 함수는 testable 설계 위반. 함수가 `today: Date = new Date()` 형태로 주입받아야 unit 가능.
 - 시간 의존 함수의 테스트를 작성하다 today 주입이 없으면, **테스트 작성을 중단하고 "함수 리팩토링 필요" 보고 후 종료**한다. 임의로 mock 하지 않음.
 
+### 3.6 기존 테스트 영향 분석 — "신규만 짜고 갱신을 미루지 않는다"
+
+- 새 기능을 받으면 **신규 테스트 작성보다 기존 테스트 영향 식별이 먼저**다. `feature-plan` Phase 8-A 의 스캔 절차가 이를 강제한다 (qa.md §1 채우기).
+- 영향 식별 결과는 `docs/features/<f>/qa.md §1.1` 표에 박힌다. write-unit-tests / write-e2e-tests 가 그 표를 보고 **갱신 → 신규 순서**로 작업한다.
+- 신규 spec 만 쓰고 기존 spec 갱신을 빠뜨리면 `/run-e2e` 가 회귀 빨강을 잡는다 — 그 단계에서 잡히는 건 늦다. plan 시점에서 잡는 게 본 절차의 핵심.
+- schema 변경(localStorage·store partialize·`src/data/*.json` 구조)은 자동으로 §1.2 점검 대상. migration 없으면 spec.md 결정부터 다시.
+
 ---
 
 ## 4. 작업 흐름
