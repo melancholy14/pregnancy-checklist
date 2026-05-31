@@ -176,7 +176,7 @@ CTA 성격 슬롯(예: home 미니카드 진입)에는 `DashboardSlotClass`(pink
 
 - **§2.9 Cross-4 행** (L566) — 본문에 ✅ 완료(2026-05-10) 마크 + 산출물 링크 추가.
 - **§2.9 Cross-5 행** (L567) — "WeekChecklistSection 한 컴포넌트 정정으로 둘 다 해결" → "`ChecklistRow` 공통 컴포넌트 추출로 두 파일(ChecklistItemRow + WeekChecklistSection) 동시 해결" 정정. ✅ 완료 마크.
-- **§2.10 묶음 B 행** (L584) — "WeekChecklistSection을 label 기반 마크업으로" → "`ChecklistRow` 공통 컴포넌트 추출 + label 기반 마크업으로". ✅ 완료 마크 + [design-bundle-b-i-row-tokens](../features/design-bundle-b-i-row-tokens/README.md) 링크.
+- **§2.10 묶음 B 행** (L584) — "WeekChecklistSection을 label 기반 마크업으로" → "`ChecklistRow` 공통 컴포넌트 추출 + label 기반 마크업으로". ✅ 완료 마크 + [design-bundle-b-i-row-tokens](./spec.md) 링크.
 - **§2.10 묶음 I 행** (L591) — ✅ 완료 마크 + 동일 링크.
 
 #### 2.10 [묶음 B] E2E 셀렉터 마이그레이션 (B-6=A)

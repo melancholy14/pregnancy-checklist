@@ -449,4 +449,4 @@ GA4는 한번 쌓이면 이름 변경 시 **과거 데이터와 단절**된다. 
 | 날짜 | 변경 | 사유 |
 |---|---|---|
 | 2026-05-03 | 최초 작성 | 이벤트 카탈로그·상관관계·분석 방법론 초기 정의 |
-| 2026-05-12 | G·H·I·J wiring 완료 + §8 추적표 갱신 | [marketing-events-wiring](../marketing-events-wiring/README.md) 라운드 — 카탈로그 정렬 + 신규 hook 2종 + 16개 파일 wiring. D1 ✅ 발급 완료. |
+| 2026-05-12 | G·H·I·J wiring 완료 + §8 추적표 갱신 | [marketing-events-wiring](../features/marketing-events-wiring/spec.md) 라운드 — 카탈로그 정렬 + 신규 hook 2종 + 16개 파일 wiring. D1 ✅ 발급 완료. |

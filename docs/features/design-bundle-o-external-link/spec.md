@@ -2,7 +2,7 @@
 
 > 작성일: 2026-05-10  size: S
 > 출처: [docs/plan/phase-4.5.md §2.10 묶음 O](../../plan/phase-4.5.md), §2.8.5 B-5, [docs/design/persona.md §6 (2026-05-03)](../../design/persona.md) 외부 링크 보안 메모
-> 라운드: [design-bundle-cleanup-round](../../design-bundle-cleanup-round/README.md)
+> 라운드: [design-bundle-cleanup-round (phase-4.5 §2.10)](../../plan/phase-4.5.md)
 
 ## 0. 사전 확정 결정 (사용자 입력, 2026-05-10)
 
