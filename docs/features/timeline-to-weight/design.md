@@ -215,3 +215,182 @@ B. /timeline?week=24 외부 진입
 - [docs/design/weight/](../../design/weight/) 의 ux.md / ui.md 에 WeekContextRow 컴포넌트 정의 추가
 - [docs/design/timeline/](../../design/timeline/) 폴더 통째 폐기 후보 — 흡수 머지 후 docs-cleanup 스킬로 정리
 - [DESIGN.md](../../../DESIGN.md) 본 phase 신규 토큰 도입 없음 (기존 lavender·yellow·muted 활용)
+
+## 7. Addendum: 흡수 후 UX gap 보강 (2026-06-01)
+
+> 추가 작성일: 2026-06-01
+> 관련: [spec.md §6](./spec.md), [review.md §7](./review.md)
+> 본 Addendum 은 흡수 머지 후 발견된 "카드 약속 ↔ 도착 화면 불일치" 와 "콘텐츠 squash" 두 gap 의 시각 디자인을 정의
+
+### 7.1 영향받는 화면 (추가)
+
+| 화면 | 변경 |
+|---|---|
+| `/checklist` 허브 ([src/components/checklist/ChecklistHub.tsx](../../../src/components/checklist/ChecklistHub.tsx)) | "주차별 타임라인" 카드 → "체중과 주차별 가이드" 로 카피·메트릭 정정 + 페이지 본문 `PageDescription` 도 카드 카피와 정합 갱신. 카드 시각 자체는 동일 패턴 유지 |
+| `/weight` ([src/components/weight/WeightContainer.tsx](../../../src/components/weight/)) | **WeightChart 아래**에 **"전체 40주 미리 보기 (1·2·3기)" 토글** 신규 추가. 펼친 상태에서 트라이메스터 3그룹 + 36개 mini row 렌더 (1기 9·2기 14·3기 13) |
+
+### 7.2 ChecklistHub 카드 시안
+
+**AS-IS** (현재 출시):
+```
+🗓️ 주차별 타임라인                                 →
+   임신 4주부터 40주까지 주차별로 해야 할 검사·준비
+   [24주차] [체크 항목 12개]
+   ▓▓▓▓▓▓▓▓░░░░░░░░░░  3/12
+```
+
+**TO-BE** (Addendum 정정):
+```
+🗓️ 체중과 주차별 가이드                            →
+   이번 주 행정 일정과 체중 변화를 함께 확인하세요
+   [24주차] [체중 기록 8건 · 최근 5/30]
+```
+
+**TO-BE — 체중 기록 0건 분기**:
+```
+🗓️ 체중과 주차별 가이드                            →
+   이번 주 행정 일정과 체중 변화를 함께 확인하세요
+   [24주차] [기록 시작하기]   ← peach 톤 CTA
+```
+
+- 제목 "체중과 주차별 가이드": 한국어 자연어 + 형제 카드 명사구 톤 정합 + 도착 `/weight` H1 "체중 기록" 첫 단어 일치. "&" ampersand 대신 "과" 조사로 한국어 정합
+- 설명 "이번 주 행정 일정과 체중 변화를 함께 확인하세요": "행정 일정" 으로 timeline 콘텐츠 (검사·준비) 의 진짜 가치 묘사, "함께" 가 흡수의 본질
+- 진행률 Progress bar 제거: weight 축은 "달성률" 의미가 약함 (체중 증가는 누적·시간 축이지 목표 비율 X). 체크리스트 진행률은 본 카드 위 형제 카드 3개 (출산 가방·남편·임신 준비)와 의미 중복
+- 메트릭 배지 2개: `{N}주차` (기존 유지) + `체중 기록 N건 · 최근 M/D`
+- 기록 0건 시 두 번째 배지: `"기록 시작하기"` (peach 톤) — yellow 톤은 dueDate 미입력 자리에 양보
+
+### 7.2-bis ChecklistHub 페이지 본문 `PageDescription` 시안
+
+**AS-IS** ([src/components/checklist/ChecklistHub.tsx:179-182](../../../src/components/checklist/ChecklistHub.tsx#L179-L182)):
+```
+임신부터 출산까지, 빠뜨리지 않고 준비하세요.
+주차별 타임라인부터 출산가방·남편준비·임신준비까지
+목적에 맞는 체크리스트를 골라 사용할 수 있어요.
+체크 상태는 기기에 자동 저장되어 다시 방문해도 그대로 남아 있어요.
+```
+
+**TO-BE**:
+```
+임신부터 출산까지, 빠뜨리지 않고 준비하세요.
+체중·주차 가이드부터 출산가방·남편준비·임신준비까지
+목적에 맞는 체크리스트를 골라 사용할 수 있어요.
+체크 상태는 기기에 자동 저장되어 다시 방문해도 그대로 남아 있어요.
+```
+
+- 사유: 카드만 정정하면 본문이 카드 제목과 어긋남. fs-level 가드 (`grep -rn "주차별 타임라인" src/` 0건) 도 본문 문구 잡음. middle-dot 으로 "체중·주차" 짧게 압축
+
+### 7.3 /weight "전체 주차 보기" 토글 시안
+
+#### 7.3.1 닫힌 상태 (default)
+
+```
+[24주차 · 임신성 당뇨 검사 및 유모차 구매      →]   ← WeekContextRow 그대로
+[체중 그래프]                                       ← WeightChart 즉시 노출
+[       전체 40주 미리 보기 (1·2·3기)      ▾   ]   ← 신규 토글, ghost 톤
+[체중 입력 리스트]
+```
+
+- **토글 위치 (변경)**: WeightChart **아래**, 체중 리스트 위. 사유: 사용자 진입 의도 1순위 = 체중 (도구 행동) — chart 즉시 노출 우선. 전체 주차 미리보기는 3순위 (다른 주차 탐색)
+- 토글 텍스트: `"전체 40주 미리 보기 (1·2·3기)"` — 콘텐츠 양 (40주) + 구조 (1·2·3기) 명시로 발견율 ↑
+- 토글 버튼: `bg-transparent border border-black/4 text-muted-foreground text-sm px-4 py-2.5 rounded-xl`
+- chevron 아이콘: `ChevronDown` (`text-muted-foreground`)
+- hover/focus: `hover:bg-pastel-lavender/15 focus-visible:ring-2 focus-visible:ring-pastel-pink/60`
+
+#### 7.3.2 펼친 상태
+
+```
+[24주차 · 임신성 당뇨 검사 및 유모차 구매      →]   ← WeekContextRow
+[체중 그래프]
+[       전체 40주 미리 보기 (1·2·3기)      ▴   ]   ← 토글 (열림)
+
+  ── 1기 (4~13주, 9개)
+   [ 4주차 · 임신 확인                       →]   ← mini row (linked, chevron→)
+   [ 5주차 · 임신 초기 생활 습관 점검         ▾]
+   ...
+   [13주차 · 1차 기형아 검사                  ▾]
+   * 6주차 데이터 누락 (자리 비움)
+
+  ── 2기 (14~27주, 14개)
+   [14주차 · ...                              ▾]
+   ...
+   │[24주차 · 임신성 당뇨 검사 및 유모차 구매 ▾] ← 현재 주차 (좌측 thick pink)
+   ...
+   [27주차 · ...                              ▾]
+
+  ── 3기 (28~40주, 13개)
+   [28주차 · ...                              ▾]
+   ...
+   [32주차 · 입원 가방 점검                   →]   ← linked
+   ...
+   [40주차 · ...                              ▾]
+
+[체중 입력 리스트]
+```
+
+- 그룹 헤더: `text-xs font-medium text-muted-foreground px-2 py-2` + 위아래 `mt-4 mb-1`. 우측에 `({N}개)` 카운트 (1기 9·2기 14·3기 13 실측)
+- mini row 톤: `bg-pastel-lavender/20` (현재 WeekContextRow 의 `/30` 보다 한 단계 약함 — 위계상 보조 정보)
+- mini row 사이즈: `px-3 py-2.5 text-xs rounded-xl` — **radius 는 WeekContextRow 와 동일 `rounded-xl` 일관** (2px 차이 인지 미미, 위계는 size·tone·left-border 로 충분)
+- **현재 주차 mini row 강조 (변경)**: `border-l-4 border-l-pastel-pink/60` — 좌측 thick border 만. list-selection 익숙 패턴 (Notion·Linear·VSCode 사이드바). 전체 둘러싸는 `border` 대신 좌측만 — pink 가 CTA 색이라 "여기 클릭하면 뭔가 일어남" 오해 방지. AP1 의도 (5종 type 을 pink shade 로 줄세우기 금지) 침범 안 함 — 좌측 indicator 는 self-marker, data 분류 X
+- linked 분기 chevron: linked 있음 `ChevronRight` (실측 4개: 4·32·35·36주차), 없음 `ChevronDown` (실측 32개 — 주된 동선) — WeekContextRow 와 동일 규칙
+
+#### 7.3.3 linked 없는 mini row inline expand
+
+```
+[ 5주차 · 임신 초기 생활 습관 점검         ▾]
+  ┌─────────────────────────────────────────┐
+  │ 임신 5~6주는 입덧이 시작될 수 있는 시기   │  ← description, keep-all
+  │ 입니다. 충분한 휴식과 균형 잡힌 영양 …    │
+  └─────────────────────────────────────────┘
+[ 6주차 · 첫 산전 검진                      →]
+```
+
+- expand 영역: `WeekContextExpanded` 컴포넌트 재사용. 단 mini 사이즈에 맞게 `px-3 py-2.5 text-xs` 오버라이드 (or props 화)
+- 토글 행위: row 의 `aria-expanded` 토글. 동시에 여러 개 열기 허용 (accordion 단일 선택 강제 X — 사용자가 비교 보고 싶을 수 있음)
+
+### 7.4 인터랙션·애니메이션 (추가)
+
+#### 7.4.1 "전체 주차 보기" 토글
+
+- 트리거: 버튼 tap/click
+- 피드백: `transition-all duration-200 ease-out` — 트라이메스터 그룹 영역 fade-in + height auto (max-h-0 → max-h-screen)
+- 첫 펼침 시 현재 주차 mini row 로 자동 스크롤: `scrollIntoView({ block: "center", behavior: "smooth" })` — should 항목 (spec §6.2.2)
+- GA4: `week_context_browse_all_toggle(state: open|close)` 발사
+
+#### 7.4.2 mini row 클릭 (전체 보기 안)
+
+- linked 있음: `useRouter().push('/checklist?slug=...')` + `axis_cross_link(source="browse_all")` 발사
+- linked 없음: 같은 mini row 아래 inline expand 토글 + `week_context_expand(source="browse_all", state)` 발사
+- WeekContextRow (현재 주차) swap **하지 않음** — 사용자가 자기 주차 상실 위험 (spec §6.2.3 won't)
+
+### 7.5 토큰·접근성 (추가)
+
+#### 7.5.1 사용 토큰
+
+| 용도 | 토큰 | 비고 |
+|---|---|---|
+| 전체 보기 토글 버튼 | `bg-transparent border-black/4` | ghost — primary 자리 아님 |
+| mini row 배경 | `bg-pastel-lavender/20` | WeekContextRow `/30` 보다 한 단계 약함 |
+| 현재 주차 mini row 강조 | `border-l-4 border-l-pastel-pink/60` | list-selection 좌측 thick (Notion·Linear·VSCode 사이드바 익숙 패턴). 전체 둘러싸기 X — pink 가 CTA 색이라 "클릭하면 뭔가 일어남" 오해 방지 |
+| 그룹 헤더 | `text-muted-foreground text-xs` | secondary 정보 위계 + 우측 `({N}개)` 카운트 |
+| mini row radius | `rounded-xl` | **WeekContextRow 와 동일 일관** (radius 사다리 제거 — 위계는 size·tone·left-border 로 충분) |
+| mini row chevron | `text-muted-foreground` | 동일 (aria-hidden) |
+
+#### 7.5.2 접근성
+
+- 토글 버튼: `<button aria-expanded={open}>` + `aria-controls="week-context-browse-all"`
+- 펼친 영역: `<section id="week-context-browse-all" role="region" aria-label="전체 주차 가이드">`
+- 트라이메스터 그룹: `<h3 className="sr-only-style 적용 X — 시각 헤더 그대로">1기 (4~13주)</h3>`. 스크린리더 헤더로 인식되도록 시맨틱 보존
+- mini row aria-label: WeekContextRow 와 동일 패턴 `"{week}주차 · {title}, {linked ? '체크리스트로 이동' : '자세히 보기'}"`
+- 펼친 상태에서 키보드 탭 순서: 토글 → 1기 첫 row → 1기 두번째 row → ... → 40주차 row → 다음 페이지 영역. 트라이메스터 헤더는 탭 stop 아님
+- 현재 주차 강조: pink border 외에 `aria-current="true"` 박음 — 스크린리더가 "현재 주차" 안내
+
+#### 7.5.3 안티패턴 회피 (추가)
+
+- AP1 (pink 를 데이터에 사용): **예외 적용** — 현재 주차 self-marker 는 데이터 분류 (type 별 색) 아님, 사용자 본인 위치 표시. designer §5 AP1 의 의도 (5종 type 을 5개 pink shade 로 줄세우기 금지) 와 충돌 안 함. 또한 `border-l-4` 좌측 thick 패턴은 list-selection 의 보편 indicator 라 사용자가 "여기 클릭" 보다 "내 위치" 로 인지. focus indicator 의 `focus-visible:ring-pastel-pink/60` 과도 시각 분리 (focus 는 ring, self-marker 는 border-l)
+- AP9 (`rounded-xl`/`rounded-2xl` 혼용): mini row 는 WeekContextRow 와 동일 `rounded-xl` — radius 사다리 제거. 위계는 size (`text-sm` vs `text-xs`)·tone (`/30` vs `/20`)·left-border 로 충분. 페이지 카드 `rounded-2xl` / 모든 row `rounded-xl` 2단계 유지
+
+### 7.6 화면별 영향 SoT 갱신 (추가)
+
+- [docs/design/weight/](../../design/weight/) ux.md / ui.md 에 "전체 주차 보기" 토글 + 트라이메스터 그룹 시안 추가
+- [docs/design/checklist/](../../design/checklist/) ui.md 에 "주차별 가이드 & 체중" 카드 카피·메트릭 갱신
+- [DESIGN.md](../../../DESIGN.md) 신규 토큰 도입 없음 (기존 lavender·pink·muted 의 위계 조합)
