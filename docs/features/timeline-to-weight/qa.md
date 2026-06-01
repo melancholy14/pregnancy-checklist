@@ -252,3 +252,151 @@ test.beforeEach(async ({ page }) => {
 - **§1.3 fs-level 가드 7개** 갱신 없이 통과 (변경이 가드 약화로 처리되지 않음).
 - **GA4 DebugView 캡처** PR 첨부 (ga4.md §5.3 + marketer §5.1) — weight_week_view·axis_cross_link·week_context_expand·timeline_* dual-fire 4종.
 - **cleanup PR (별도, 2026-07-06)**: timeline_* 발사 0건 검증 + axis-funnel.spec.ts skip 해제.
+
+## 7. Addendum: 흡수 후 UX gap 보강 (2026-06-01)
+
+> 추가 작성일: 2026-06-01
+> 관련: [spec.md §6](./spec.md), [design.md §7](./design.md), [review.md §7](./review.md), [ga4.md §8](./ga4.md)
+> 본 Addendum 은 카드 카피 정정 + `/weight` 내부 "전체 주차 보기" expand 의 테스트 전략 정의
+
+### 7.1 기존 테스트 영향 분석 (Addendum 작업분)
+
+신규/수정 대상 (spec §6.2 + design §7.1):
+
+- 신규: `src/components/weight/WeekContextBrowseAll.tsx` (또는 기존 WeekContextRow 확장)
+- 신규: `src/lib/group-by-trimester.ts` 또는 `src/lib/weight-context-trimester.ts` — pure fn `groupItemsByTrimester(items): { trimester1, trimester2, trimester3 }`
+- 변경: `src/components/checklist/ChecklistHub.tsx` (TimelineCard 카피·메트릭 정정)
+- 변경: `src/components/weight/WeightContainer.tsx` (browse all 토글·렌더 통합)
+- 변경: `src/lib/analytics.ts` 또는 GA4 발사 호출부 (`source` 파라미터 확장, `week_context_browse_all_toggle` 신규)
+
+#### 영향받는 기존 unit/E2E 테스트
+
+| 영향받는 테스트 파일 | 어떤 부분이 영향받나 | 깨질 가능성 | 수정 방향 |
+|---|---|---|---|
+| `e2e/checklist-hub.spec.ts` (또는 `e2e/checklist.spec.ts`) | "주차별 타임라인" 카드 텍스트·메트릭 assertion | 높음 | "주차별 가이드 & 체중" 으로 텍스트 갱신, Progress bar assertion 제거, "체중 기록 N건" 배지 assertion 추가 |
+| `e2e/ga4-events.spec.ts` (§1.1 표 에서 갱신됨) | `axis_cross_link source="week_context"` assertion | 높음 | `source="current_week"` 로 enum 갱신. `week_context_browse_all_toggle` 신규 assertion 추가 |
+| `e2e/cross-links.spec.ts` | `/weight` ↔ `/checklist` 크로스링크 | 중간 | browse_all source 시나리오 추가 검토 (현 phase 미포함 시 별도 spec) |
+| `e2e/design-bundle-cleanup-round.spec.ts` (fs-level grep 가드) | "주차별 타임라인" 텍스트 회귀 가드 | 신규 가드 추가 | `grep -rn "주차별 타임라인" src/` 0건 가드 추가 (markdown 본문 제외 — `src/**/*.tsx?` 한정) |
+| `src/lib/__tests__/checklist-week-map.test.ts` | TimelineItem 의존 — 본 Addendum 무관 | 0% | 변경 없음 |
+
+#### 데이터·schema 변경 점검 — **N**
+
+- localStorage 키 변경: 없음
+- Zustand store schema 변경: 없음 (browse_all 토글 상태는 useState — persist 안 함)
+- `weight_context_items.json` 구조 변경: 없음 (노출만 추가)
+- 본 Addendum 은 UI·이벤트 layer 만 — migration 부담 0
+
+#### 회귀 가드 충돌 — **부분 Y, 우회 X**
+
+- 신규 fs-level 가드: `"주차별 타임라인" src/**/*.tsx 0건` — design-bundle-cleanup-round.spec.ts 에 추가. `src/content/**/*.md` 제외 (의미 보존)
+- `useTimelineStore`/`/timeline` 가드 (기존): 변경 없음, 통과 유지
+
+#### 영향 요약 (Addendum 작업분)
+
+- **갱신 필요한 기존 테스트**: 3개 (checklist-hub, ga4-events, design-bundle-cleanup-round)
+- **신규 테스트 작성 대상**: 3개
+  - unit: `src/lib/__tests__/group-by-trimester.test.ts` 3 case (1기·2기·3기 경계)
+  - e2e: `e2e/weight-week-context.spec.ts` (browse all 토글·렌더·클릭 분기)
+  - e2e: 카드 카피 회귀 — `e2e/checklist-hub.spec.ts` 안 describe 추가
+- **합계**: **6개**
+
+### 7.2 테스트 레이어 분류 (Addendum 작업분)
+
+spec §6.3 시나리오 (7·8·9) 매핑:
+
+| 시나리오 (spec §6.3) | 레이어 | 근거 |
+|---|---|---|
+| 7. `/checklist` 진입 사용자 카드 신뢰 | **e2e** | 카드 텍스트·메트릭 노출 + 진입 흐름 — UI 흐름 |
+| 8. 전체 주차 미리 보기 (linked 있음) | **e2e** | 토글 + mini row 렌더 + 클릭 라우팅 + GA4 발사 |
+| 9. 전체 주차 보기 안 linked 없는 row 클릭 | **e2e** | 토글 + mini row inline expand + GA4 발사 |
+
+pure fn `groupItemsByTrimester` 만 unit 분류 (시나리오에 직접 매핑되지 않으나 §6.2.1 must 의 트라이메스터 그룹화 로직).
+
+### 7.3 Unit 테스트 대상 (Addendum)
+
+- `src/lib/group-by-trimester.ts::groupItemsByTrimester` — 신규
+  - 케이스 (1): 실측 36개 항목 입력 → `{ trimester1: 9, trimester2: 14, trimester3: 13 }` 분포. 1기 9개인 이유: `weight_context_items.json` 에 **6주차 데이터 누락** (실측 weeks: [4,5,7,8,9,10,11,12,13]). 그룹 경계: 4~13 = 1기, 14~27 = 2기, 28~40 = 3기, week 4 시작·40 끝 inclusive
+  - 케이스 (2): 빈 배열 → 세 그룹 모두 빈 배열 (boundary)
+  - 케이스 (3): 경계 (week=13, 14, 27, 28) → 13→1기, 14→2기, 27→2기, 28→3기 (경계 명세)
+  - 케이스 (4): 6주차 같은 데이터 누락 주차는 함수 입력에서 자체적으로 없음 — 그룹 결과에 placeholder 끼우지 않음 (실측 9·14·13 그대로). UI 단에서 누락 주차 표시 결정 (design §7.3.2 의 "자리 비움" 또는 skip 처리는 e2e f case 에서 검증)
+
+### 7.4 E2E 테스트 대상 (Addendum)
+
+**`e2e/weight-week-context.spec.ts`** (신규, 또는 기존 `e2e/weight.spec.ts` 확장):
+
+- **Happy Path (a)**: 24주차 사용자 시드 → /weight 진입 → 토글 노출 (WeightChart 아래 위치 검증) + 닫힘 default + 토글 텍스트 `"전체 40주 미리 보기 (1·2·3기)"` 노출 → 토글 클릭 → 3 그룹 헤더 (`1기 (4~13주, 9개)` · `2기 (14~27주, 14개)` · `3기 (28~40주, 13개)`) + 36 mini row 렌더 + 현재 주차 (24주차) mini row 강조 (`border-l-4 border-l-pastel-pink/60` 좌측 thick + `aria-current="true"`) 시각 검증
+- **Happy Path (b)**: 위 (a) 펼친 상태 → 3기 32주차 mini row 클릭 (linked 실측 4개 중 하나) → `/checklist?slug=hospital-bag` 이동 + `axis_cross_link(source="browse_all", slug="hospital-bag", week=32)` 발사
+- **Happy Path (c)**: 위 (a) 펼친 상태 → 1기 12주차 mini row 클릭 (linked 없음 — 실측 32개 의 주된 동선) → mini row 아래 inline expand + `week_context_expand(source="browse_all", state="open", week=12)` 발사 → 다시 클릭 → close + 발사
+- **권한/인증 (d)**: dueDate 미입력 사용자 → 토글 노출 + 펼침 시 3 그룹 정상 (헤더 카운트 9·14·13 그대로) + 현재 주차 강조 **없음** (`aria-current` 0건, `border-l-pink` 0건)
+- **반응형 (e)**: 375px viewport 펼친 상태 — mini row 한 줄 또는 2줄 wrap 시각 검증 + clickable area ≥ 44px + 좌측 `border-l-4` 가 mobile 에서 잘리지 않는지 확인
+- **Error/Validation (f)**: `weight_context_items.json` 의 6주차 데이터 누락 실측 — 1기 그룹 안에서 6주차 자리는 skip (placeholder 미렌더). 렌더된 1기 weeks: [4,5,7,8,9,10,11,12,13] 9개. silent fail, 사용자 알림 X. 정책 변경 시 (placeholder 추가) skip 해제
+
+**`e2e/checklist-hub.spec.ts` 갱신** (기존):
+
+- **describe 추가**: "체중과 주차별 가이드" 카드
+  - (a) 카드 제목 `"체중과 주차별 가이드"` 노출
+  - (b) 카드 설명 `"이번 주 행정 일정과 체중 변화를 함께 확인하세요"` 노출
+  - (c) Progress bar 없음 (`role="progressbar"` 0건)
+  - (d) 메트릭 배지 2종: `{N}주차` + `체중 기록 N건 · 최근 M/D` (또는 0건 시 `"기록 시작하기"` peach 톤)
+  - (e) `href="/weight"` 유지
+  - (f) 페이지 본문 `PageDescription` 갱신 검증: `"체중·주차 가이드부터 출산가방·남편준비·…"` 노출 + `"주차별 타임라인부터"` 미노출
+
+**`e2e/ga4-events.spec.ts` 갱신**:
+
+- `axis_cross_link.source` enum 검증 갱신 (`current_week` · `browse_all`)
+- `week_context_browse_all_toggle` open/close 양방향 발사 검증
+- `week_context_expand.source` 신규 파라미터 검증
+
+#### 회귀 가드 (Addendum 추가분)
+
+- fs-level: `grep -rn "주차별 타임라인" src/**/*.tsx 0건` — design-bundle-cleanup-round.spec.ts 에 추가
+- fs-level: `grep -rn 'source: "week_context"' src/ 0건` — `axis_cross_link` 의 옛 source enum 잔재 0건
+
+#### 시드 데이터 (Addendum)
+
+`weight-week-context.spec.ts` 시드:
+
+```ts
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem("due-date-storage", JSON.stringify({
+      state: { dueDate: "2026-08-13" },  // 24주차 시점 2026-06-01
+      version: 0
+    }));
+    localStorage.setItem("weight-storage", JSON.stringify({
+      state: {
+        logs: [{ id: "log_1", date: "2026-05-30", weight: 58.5 }],
+        weekContext: { customItems: [] }
+      },
+      version: 1
+    }));
+    localStorage.setItem("cookie-consent", "accepted");
+  });
+});
+```
+
+### 7.5 GA4 이벤트 검증 (ga4.md §8 와 일치)
+
+- `week_context_browse_all_toggle`: 토글 클릭 → 1회 발사, param `state="open"` 또는 `"close"`, `current_week=24`
+- `axis_cross_link(source="current_week")`: WeekContextRow (현재 주차) linked 클릭 시 — 기존 발사 검증
+- `axis_cross_link(source="browse_all")`: 전체 보기 안 linked mini row 클릭 시 — 신규
+- `week_context_expand(source="current_week"|"browse_all", state="open"|"close")`: 두 source × 두 state = 4 조합 모두 검증
+
+### 7.6 Skip / Defer (Addendum)
+
+| 항목 | 보류 이유 | 제거 조건 | 제거 deadline |
+|---|---|---|---|
+| 트라이메스터 그룹 헤더 색 힌트 검증 (peach·lavender·yellow) | spec §6.2.2 should — 단일 톤 default 채택 시 검증 대상 아님 | should 항목이 must 로 격상 시 | (조건부) Phase 5 P11 콘텐츠 매트릭스 sketch 후 |
+| 자동 스크롤 (`scrollIntoView`) 검증 | spec §6.2.2 should | 위와 동일 | 위와 동일 |
+| `weight_context_items.json` 누락 항목 placeholder 시각 검증 (§7.4 e2e f) | 손상 데이터 정책이 silent fail — 우선순위 낮음 | 정책 변경 시 (사용자 알림 추가) | (조건부) 정책 변경 PR 시 |
+
+> ⚠️ deadline 없는 skip 추가 0건 (qa §7.1 정합)
+
+### 7.7 성공 기준 (Addendum)
+
+- **Unit**: `group-by-trimester` 3 case 모두 통과. 소요 < 50ms
+- **E2E**: `weight-week-context.spec.ts` (5+ describe) + `checklist-hub.spec.ts` 5 describe + `ga4-events.spec.ts` 갱신 = 11+ describe 통과. flaky retry 0회
+- **§7.1 갱신 대상 기존 3개 테스트** 모두 통과 — 회귀 0건
+- **fs-level 가드** `"주차별 타임라인"` · `'source: "week_context"'` 0건 통과
+- **GA4 DebugView 캡처** PR 첨부 — `week_context_browse_all_toggle`·`axis_cross_link(browse_all)`·`week_context_expand(browse_all)` 3종 추가 (기존 4종 + Addendum 4종 = 총 8종 — ga4.md §8.8)
+- spec §6.3 시나리오 7·8·9 전수 가 §7.2 매트릭스에 매핑됨

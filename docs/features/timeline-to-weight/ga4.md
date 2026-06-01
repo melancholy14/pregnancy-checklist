@@ -110,3 +110,90 @@ session_start
 - ga4.md timeline_* spec 행 삭제
 - weekly-report dimension 의 timeline_* secondary 제거
 - 머지 후 DebugView 에서 timeline_* 0건 발사 확인 (E2E `axis-funnel.spec.ts` (phase-4.6 §8.3 순서 4 신규) 의 deprecated 이벤트 0건 발사 assertion 동기)
+
+## 8. Addendum: 흡수 후 UX gap 보강 (2026-06-01)
+
+> 추가 작성일: 2026-06-01
+> 관련: [spec.md §6](./spec.md), [design.md §7](./design.md), [review.md §7](./review.md)
+> 본 Addendum 은 `/weight` 내부 "전체 주차 보기" expand 도입에 따른 신규·기존 이벤트 갱신을 정의
+
+### 8.1 측정 목표 (추가)
+
+- **핵심 질문 3**: 흡수 후 squash 된 `weight_context_items.json` 36개 콘텐츠가 "전체 주차 보기" expand 동선으로 노출되었을 때 실제 사용되는가? → `week_context_browse_all_toggle(state=open)` 발사율 + 펼침 후 `axis_cross_link(source="browse_all")` 또는 `week_context_expand(source="browse_all")` 발사율
+- **핵심 질문 4**: `/checklist` 허브 카드 카피 정정이 도착 페이지 신뢰 회복으로 작동하는가? → `/checklist` → `/weight` (`axis_enter(weight)`) 진입 후 `weight_week_view` 도달률 + 카드 변경 전후 비교
+- **의사결정 연결**:
+  - 전체 보기 발사율 < 5% 시 닫힌 default → 열린 default 로 전환 검토 (sun­set 후보 아님 — 콘텐츠 보존 의무)
+  - 전체 보기 안 클릭률 (browse_all source) 이 current_week source 의 1/10 미만이면 트라이메스터 그룹화 효과 재검토
+
+### 8.2 신규 이벤트 (즉시 발사 시작 — 본 Addendum 머지 시점)
+
+| event_name | 트리거 | 파라미터 (이름 / 타입 / 예시) | 비고 |
+|---|---|---|---|
+| `week_context_browse_all_toggle` | `/weight` 의 "전체 주차 보기" 토글 버튼 클릭 | `state` / string / `open`\|`close`, `current_week` / int / `24` (dueDate 미입력 시 `0`) | open/close 양방향 발사. 같은 세션 다중 토글 모두 발사 |
+
+### 8.3 기존 이벤트 파라미터 확장
+
+| event_name | 추가 파라미터 | 값 |
+|---|---|---|
+| `axis_cross_link` | `source` (기존) | `"week_context"` (WeekContextRow 직진) → `"current_week"` 또는 `"browse_all"` 로 분리 |
+| `week_context_expand` | `source` (신규) | `"current_week"` (WeekContextRow expand) \| `"browse_all"` (전체 보기 안 mini row expand) |
+
+- **호환성 / marketer §3.6 grace 면제 사유**: 기존 `axis_cross_link source="week_context"` 발사도 본 Addendum 머지 후 즉시 `"current_week"` 로 교체 — 4주 grace 없음. marketer §3.6 "변경은 신/구 병행 발사 4주 grace" 룰의 면제 사유 명시:
+  1. **baseline 데이터 양 미미**: 흡수 머지 (2026-06-01) ~ 본 Addendum 머지 (≈ 2026-06-01 ~ 06-03) 간 옛 source 발사 데이터 약 1~3일치. cohort 비교 baseline 으로 의미 있는 양 아님 (marketer §3.6 의 "과거 데이터 단절 = 의사결정 능력의 영구 손실" 의도는 cohort 수개월 baseline 보호 — 본 케이스는 무관)
+  2. **분기 식별자 vs namespace cutover 구분**: `source` 는 단일 이벤트 내 분기 라벨 (이벤트 자체 namespace 는 `axis_cross_link` 그대로 유지). namespace cutover (`timeline_*` → `weight_*` §2.2) 와 다른 결정 축. namespace 는 4주 grace, source 라벨은 single primary 단일화가 정합
+  3. **double-count 위험 0**: dual-fire 시 같은 클릭에서 `source="week_context"` 와 `"current_week"` 두 발사 → funnel 보고서에서 두 분기로 카운트되어 분모 왜곡. namespace dual-fire (이벤트가 다름) 는 보고서 룰로 회피 가능하지만 같은 이벤트의 source dual-fire 는 룰로 회피 어려움
+- **dimension 갱신**: `scripts/weekly-report/ga4-queries.ts` 에서 `axis_cross_link.source` 값 enum 갱신 (`week_context` → `current_week`·`browse_all` 2종). 옛 `week_context` source 발사분은 GA4 raw export 에서 `current_week` 로 사후 매핑 (운영자 해석 룰: weekly-report `prompt-shared.ts` 에 명시)
+
+### 8.4 PII 체크 (추가)
+
+- `current_week` 은 int 4~40 또는 0 (dueDate 미입력) — PII 아님
+- `state` 은 enum `open`\|`close` — PII 아님
+- `source` enum 도 정적 — PII 아님
+
+### 8.5 깔때기 갱신
+
+```
+session_start
+  → page_view (/weight)
+    → weight_week_view (dueDate 입력 사용자)
+      → 분기 A1: axis_cross_link(source="current_week", to=checklist)   ← WeekContextRow (현재 주차) linked 클릭
+      → 분기 A2: week_context_expand(source="current_week")              ← WeekContextRow (현재 주차) linked 없음 클릭
+      → 분기 D: week_context_browse_all_toggle(state="open")             ← 전체 주차 보기 토글
+        → 분기 D-A1: axis_cross_link(source="browse_all", to=checklist) ← 전체 보기 안 linked mini row 클릭
+        → 분기 D-A2: week_context_expand(source="browse_all")            ← 전체 보기 안 linked 없음 mini row 클릭
+      → 분기 C: weight_log_submit                                        ← 체중 입력 (행동 도구)
+```
+
+- 새 분기 D 가 추가되어 깔때기가 한 단계 깊어짐
+- 분기 C (체중 입력) 도달률은 분기 A·D 발사 여부와 무관하게 측정 — 흡수 의도 (행동 도구 단일 정체성) 유지 검증
+- 분기 D 발사율 cohort 비교: `/checklist` 진입 (카드 클릭) 사용자 vs BottomNav 직접 진입 vs 홈 4축 카드 진입
+
+### 8.6 세그먼트 갱신
+
+- `/weight` 진입 방식 세그먼트 (기존):
+  - redirect (구 `/timeline` 진입)
+  - BottomNav
+  - 홈 4축 카드
+  - **신규** — `/checklist` 카드 ("주차별 가이드 & 체중" 카드 카피 정정 후 전용 세그먼트로 추적). `axis_enter(from=checklist, to=weight)` 발사 (기존 이벤트 활용)
+
+### 8.7 대시보드 항목 갱신
+
+- Funnel exploration §8.5 그대로 GA4 에 박음
+- `week_context_browse_all_toggle` open/close 비율: 펼침 후 닫음 비율 (사용자가 펼치고 바로 닫으면 콘텐츠 부적합 signal)
+- `axis_cross_link.source` breakdown: `current_week` vs `browse_all` 비율 (전체 보기 동선 가치 측정)
+
+### 8.8 DebugView 검증 (PR 의무, 추가)
+
+- `week_context_browse_all_toggle` 2종 캡처 (open, close)
+- `axis_cross_link(source="browse_all")` 1종 캡처 (전체 보기 안 linked row 클릭)
+- `week_context_expand(source="browse_all")` 1종 캡처 (전체 보기 안 linked 없음 row 클릭)
+- 합계 4종 추가 캡처 (기존 §5.3 의 4종 + 본 Addendum 4종 = 총 8종)
+
+### 8.9 운영 가이드 갱신
+
+- [docs/marketing/ga4.md](../../marketing/ga4.md) §3 트래커 섹션:
+  - `week_context_browse_all_toggle` 신규 등재
+  - `axis_cross_link.source` 값 enum 갱신
+  - `week_context_expand.source` 신규 파라미터 등재
+- [docs/plan/phase-4.5.md §1.5](../../plan/phase-4.5.md) GA4 카탈로그 동기 갱신
+- weekly-report `prompt-shared.ts` 에 `browse_all` source 해석 안내 ("전체 주차 보기 안 클릭 — 콘텐츠 미리보기 의도")

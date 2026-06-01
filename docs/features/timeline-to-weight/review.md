@@ -162,3 +162,97 @@ phase-4.6 §2 타임라인 흡수 — `/timeline` 라우트 폐기 후 `useTimel
 - **항목 3 결정 (C 변형 채택)** → phase-4.6 §3.2 H1 화면 영향: /weight 상단 1줄 컨텍스트 추가 (디자인 design.md). /checklist 허브 변경 없음 — 체크리스트 허브의 첫 화면 결정과 무관. `weight_context_items.json` rename 으로 `scripts/generate-crosslinks.ts`·`crosslink-utils.ts` 의 timeline 참조도 갱신 대상
 - 다른 phase-4.6 결정(V1=A, H1=A, N1=A)에는 변경 없음
 - phase 5 spec.md §"기능 요구사항" 에 위 결정 3개를 review 참조 섹션으로 박고, 본문이 어긋나면 결정 보호 룰 발동
+
+## 7. Addendum: 흡수 후 UX gap 보강 (2026-06-01)
+
+> 추가 작성일: 2026-06-01
+> 상태: decided (운영자 1인 의사결정, 출산 D-day 임박 시간 압박 하 휴먼 게이트 통과)
+> 트리거: 흡수 머지(65a11aa) 후 운영자 실측 — 카드 약속과 도착 화면 불일치
+> 관련: [spec.md §6](./spec.md), [design.md §7](./design.md), [ga4.md §8](./ga4.md), [qa.md §7](./qa.md)
+
+### 7.1 발견된 gap (요약)
+
+흡수 직후 운영자 실측:
+
+1. `/checklist` "주차별 타임라인" 카드 약속 ("4~40주 검사·준비") ≠ 도착 `/weight` 화면 (H1 "체중 기록", timeline 정보 1줄)
+2. `weight_context_items.json` 36개 콘텐츠가 "현재 주차 1개" 로 squash — 다른 주차는 검색·우연 외 동선 없음
+
+본 Addendum 은 1·2 를 한 번에 해소. 라우트 부활(`/timeline` 복원) 은 명시적 거부.
+
+### 7.2 검토한 대안
+
+| 옵션 | 즉시 비용 | 보존 비용 | UX 회복 | 정보구조 결정 무손상 |
+|---|---|---|---|---|
+| A — `/timeline` 라우트 부활 | 매우 큼 (9 컴포넌트 + store + type + 17 link + GA4 + sitemap revert) | 4축 → 5축, BottomNav 5탭/햄버거, AdSense 정책 노이즈 | 큼 (멘탈 모델 회복) | X (phase-4.6 §2 T1=A 결정 도미노로 흔들림) |
+| B — 카드 카피 정정만 | 매우 적음 (~30분) | 카드 약속 정합화. 콘텐츠 squash 미해결 | 중 | O |
+| **C — B + `/weight` 내부 "전체 주차 보기" expand** (채택) | 중간 (반나절 ~ 1일) | 카드 약속 정합화 + 36개 콘텐츠 노출 동선 확보 | 큼 | O (`/weight` 내부 작업만, 정보구조 결정 무손상) |
+
+### 7.3 의사결정 (1인 운영자 휴먼 게이트, 2026-06-01)
+
+#### 결정 4 — 카드 카피·메트릭·본문 정정
+
+**옵션 채택: ChecklistHub "주차별 타임라인" 카드 카피·메트릭 + 페이지 본문 `PageDescription` 동시 정정**
+
+- 카드 제목: `"주차별 타임라인"` → `"체중과 주차별 가이드"` (한국어 자연어, "&" 대신 "과" 조사. 형제 카드 명사구 톤 정합 + 도착 H1 "체중 기록" 첫 단어 일치)
+- 카드 설명: `"이번 주 행정 일정과 체중 변화를 함께 확인하세요"` ("행정 일정" 으로 timeline 콘텐츠 가치 묘사, "함께" 가 흡수의 본질)
+- 진행률 Progress bar 제거 — weight 축은 누적·시간 도구, "달성률" 의미 약함. 다른 체크리스트 카드 3개와 의미 중복 회피
+- 메트릭 배지: `{N}주차` + `체중 기록 N건 · 최근 M/D` (기록 0건 시 `"기록 시작하기"` peach 톤 CTA)
+- **페이지 본문 `PageDescription` 동시 정정**: `"주차별 타임라인부터 출산가방·남편준비·…"` → `"체중·주차 가이드부터 출산가방·남편준비·…"`. 카드만 바꾸면 본문이 어긋남 + fs-level 가드 (`"주차별 타임라인" 0건`) 본문에서 트리거
+- 근거: review §3.3 페어 3 designer §3.5 인지부하 + planner §7.5 체크리스트 흐름. 흡수 의도 (4축 정돈) 보존하면서 진입점 정직성 회복
+
+**카피 후보 비교 (자기 검토 기록)**
+
+| 후보 | 채택 여부 | 사유 |
+|---|---|---|
+| `주차별 가이드 & 체중` | X | `&` 한국어 UI 부적절, 형제 카드 (명사구) 톤 불일치 |
+| `이번 주 가이드 · 체중 기록` | X | "이번 주" 가 약속 → 전체 보기 콘텐츠 못 본다고 오해 |
+| `체중 기록 · 주차 가이드` | X | "주차 가이드" 모호 (timeline 정확한 묘사 X) |
+| `체중과 주차별 가이드` | **채택** | 한국어 자연 + 형제 카드 톤 + H1 첫 단어 일치 |
+
+#### 결정 5 — `/weight` 내부 "전체 주차 보기" expand
+
+**옵션 채택: WeightChart 아래 토글 + 트라이메스터 3그룹 + 36개 mini row**
+
+- 위치: **WeightChart 아래**, 체중 리스트 위 (사용자 진입 의도 1순위 = 체중 도구 보존 — chart 즉시 노출 우선. 전체 주차 미리보기는 3순위)
+- 토글 텍스트: `"전체 40주 미리 보기 (1·2·3기)"` (콘텐츠 양 + 구조 명시로 발견율 ↑)
+- 디자인 일관: page card `rounded-2xl` / 모든 row (WeekContextRow + mini row) `rounded-xl` **2단계 사다리** (이전 3단계 안에서 mini row `rounded-lg` 제거 — 2px 차이 인지 미미, 위계는 size·tone·left-border 로 충분)
+- 트라이메스터 (실측 분포): 1기 4~13주 **9개** (6주차 데이터 누락) / 2기 14~27주 14개 / 3기 28~40주 13개. 합계 36개
+- 현재 주차 mini row 강조: **`border-l-4 border-l-pastel-pink/60`** 좌측 thick — list-selection 익숙 패턴 (Notion·Linear·VSCode 사이드바). 전체 둘러싸기 X (pink 가 CTA 색이라 "클릭하면 뭔가 일어남" 오해 방지). AP1 예외 사유 강화 — focus indicator `ring-pink/60` 과도 시각 분리
+- mini row 클릭 동작 (실측 비율): linked 있음 **4개** (4·32·35·36주차) → `/checklist?slug=…` (`axis_cross_link source="browse_all"`) / linked 없음 **32개 — 주된 동선** → inline expand
+- **WeekContextRow swap 금지**: 사용자가 자기 주차 상실 위험 (spec §6.2.3 won't 명문화)
+- 근거: review §3.3 페어 3 designer §3 N7 "데이터 보존" — 흡수 시 보존된 36개 항목이 실제 노출 동선을 가짐. planner §7.5 "체크리스트 흐름" 충돌 0건 — `/weight` 내부 작업이라 체크리스트 허브 위계는 무손상
+
+**디자인 결정 자기 검토 기록**
+
+| 항목 | 초안 | 정정 | 사유 |
+|---|---|---|---|
+| 토글 위치 | WeightChart 위 | WeightChart 아래 | 체중 도구 가시성 우선 (사용자 진입 의도 1순위 = 체중) |
+| 토글 텍스트 | "전체 주차 보기" | "전체 40주 미리 보기 (1·2·3기)" | 콘텐츠 양·구조 명시로 발견율 ↑ |
+| 현재 주차 강조 | `border border-pink/40` 전체 둘러싸기 | `border-l-4 border-l-pink/60` 좌측 thick | CTA 오해 방지 + list-selection 보편 패턴 |
+| mini row radius | `rounded-lg` | `rounded-xl` (WeekContextRow 와 일관) | 2px 차이 인지 미미, 위계 단순화 |
+| 1기 카운트 | 10 (가정) | 9 (실측 — 6주차 누락) | spec §6.3 보정 |
+| linked 비율 | 17개 (review §5 결정 3 본문 가정) | 4개 (실측 — 4·32·35·36) | linked 동선은 보조, expand 가 주된 동선 |
+
+### 7.4 명시적 거부 항목 (do-not 리스트)
+
+- `/timeline` 라우트 부활: §7.2 옵션 A. phase-4.6 §2 T1=A 결정 (2026-05-26) 의 운영자 의도 (4축 + AdSense 정책 통과 2026-06-15) 가 본 Addendum 작성 시점에도 유효. UX gap 은 라우트 부활 없이 §7.3 결정 4·5 로 해소 가능
+- `/checklist` 허브에 별도 "이번 주" 블록 추가: review §5 결정 3 의 거부 유지 (카피만 정정)
+- WeekContextRow 의 "현재 주차" 다른 주차로 swap: spec §6.2.3 won't 명문화. 자기 주차 상실 위험
+- `weight_context_items.json` 항목 추가·편집: 본 Addendum 은 노출 UX 만 다룸
+
+### 7.5 페어 단축 사유
+
+본 Addendum 은 흡수 머지 후 발견 gap 의 보강이라 review §3 의 페어 충돌 라운드 (T1·T2·T3) 를 다시 돌리지 않음. 사유:
+
+- 핵심 의사결정 축 (정보구조·측정·UX) 은 §5 결정 1·2·3 으로 이미 확정. 본 Addendum 의 결정 4·5 는 그 결정의 운영적 확장이지 새 축 아님
+- 운영자 1인 환경, 출산 D-day 임박 (2026-08-13, D-73) — 페어 라운드 풀로 돌릴 시간 비용 > Addendum 결정의 위험도
+- 결정 4 (카드 카피) 는 reversible (텍스트 변경) — 페어 라운드 자료 없이도 사후 조정 가능
+- 결정 5 (전체 주차 보기) 는 새 컴포넌트지만 기존 패턴 재사용 (WeekContextRow·WeekContextExpanded) — 새 디자인 결정 최소화
+
+### 7.6 우선순위 영향
+
+- **결정 4** → ChecklistHub 카피·메트릭 정정 1 PR. `e2e/checklist-hub.spec.ts` 의 "주차별 타임라인" 텍스트 assertion 갱신 (qa §7 참조). 회귀 가드: `grep -rn "주차별 타임라인" src/` 0건
+- **결정 5** → `/weight` 내부 신규 컴포넌트 `WeekContextBrowseAll.tsx` (또는 기존 컴포넌트 확장). 트라이메스터 그룹 로직 pure fn `groupItemsByTrimester(items: WeightContextItem[])` 추출 가능 — unit test 1 case. e2e 1 spec 신규 (qa §7.2)
+- **GA4 신규 이벤트** `week_context_browse_all_toggle` 추가 + 기존 `axis_cross_link`·`week_context_expand` 의 `source` 파라미터 확장 — ga4.md §8 의무
+- 다른 결정 (1·2·3) 에는 변경 없음. cleanup PR (2026-07-06 timeline_* 발사 제거) 일정도 무손상
+- 본 Addendum 작업은 `/feature-pipeline` 의 `/implement-feature` 단계로 진입 (size: M, 반나절~1일 예상)
