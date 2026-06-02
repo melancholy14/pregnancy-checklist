@@ -3,7 +3,7 @@ import { getAllArticles } from "@/lib/articles";
 
 export const dynamic = "force-static";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://pregnancy-checklist.com";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pregnancy-checklist.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const articles = getAllArticles();
