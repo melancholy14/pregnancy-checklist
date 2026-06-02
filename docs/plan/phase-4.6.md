@@ -6,7 +6,8 @@
 > Status: 🚧 §1 V1=A 영상 자산 일괄 제거 완료 (2026-05-27).
 > §2 T1=A 흡수 라운드 → **2026-06-02 rollback** (옛 `/timeline` 유지).
 > H1·N1 도미노 재결정 (2026-06-02) → **N1=B 5탭, H1=B 홈 유지**.
-> §3 폐기, §4·§5 내용 변경, 잔여 §4 BottomNav 5탭 적용 대기.
+> §3 폐기. §4 BottomNav 5탭 적용 ✅ 완료 (2026-06-02, `2c1730c`).
+> 잔여: §5 GA4 5탭 funnel.
 >
 > **진행 요약 (2026-05-27)**
 >
@@ -347,27 +348,20 @@ W19~W21 3주치 GA4 weekly report 분석 결과 V1·T1 데이터 의사결정 �
 > - /timeline 은 별도 탭 X — 홈 카드 + 체크리스트 카드 경유 진입 유지
 > - 탭 순서: 도구(체크·체중) 가운데, 시즌(베이비페어)·정보 우측
 
-### 4.2 작업 (N1=B 5탭 기준)
-
-현재 BottomNav 상태 ([src/components/layout/BottomNav.tsx:18-34](../../src/components/layout/BottomNav.tsx)):
-홈 / 체크리스트 / 베이비페어 / 정보(path=/articles) 4탭.
-"체중" 탭만 추가하면 5탭 완성.
+### 4.2 작업 (N1=B 5탭 기준) — ✅ 완료 (2026-06-02, `2c1730c`)
 
 | 작업 | 대상 | 상태 |
 | --- | --- | --- |
-| Scale 아이콘 import | lucide-react | ⏳ |
-| navItems 항목 추가 | /weight, 라벨 "체중", match prefix | ⏳ |
-| 탭 순서 정렬 | 홈 / 체크 / 체중 / 페어 / 정보 | ⏳ |
+| Scale 아이콘 import | lucide-react | ✅ |
+| navItems 항목 추가 | /weight, 라벨 "체중", match prefix | ✅ |
+| 탭 순서 정렬 | 홈 / 체크 / 체중 / 페어 / 정보 | ✅ |
 | 라벨 변경 폐기 | "정보"→"블로그" 변경 자체 폐기 | ✅ 자연 해소 |
 | alsoMatchPrefixes | /info 보존, /videos 제거 | ✅ §1.2 |
-| DESIGN.md 영향 | 5탭 탭당 폭 ~64px 검증, 라벨 줄바꿈 검증 | ⏳ |
-| 활성 상태 시각 | 인접 active 시각 충돌 없음 검증 | ⏳ |
+| DESIGN.md 영향 | 5탭 탭당 폭 ~64px 검증, 라벨 줄바꿈 검증 | ✅ |
+| 활성 상태 시각 | 인접 active 시각 충돌 없음 검증 | ✅ |
 
-추가될 navItem 예시:
-
-```ts
-{ path: "/weight", icon: Scale, label: "체중", match: "prefix" }
-```
+산출물: [docs/bottomnav-weight-tab/README.md](../bottomnav-weight-tab/README.md)
+(plan·impl·review·refactor 5축 문서)
 
 ---
 
@@ -506,7 +500,7 @@ V1=A(영상 전체 제거) + T1=A(타임라인 → 체중 흡수) + H1=A + N1=A 
 | 1 | §1 영상 자산 일괄 제거 | scripts 4개 (fetch-* 3 + seed-vault-media-notes) 폐기, e2e 통째 폐기 3 (`info-tab-integration`·`fetch-channel-thumbs`·`phase-4-step-3-related-content`) + 부분 갱신 10 (`cross-links-video-weight` Step 3, `home`·`client-search`·`ga4-events`·`marketing-events-wiring` 영상 시나리오, `design-bundle-h`·`design-bundle-b-i`, `phase-4-step-5-crosslinks` linked_video_ids 시나리오, `privacy-terms`·`sticky-header`·SEO 6 path 교체) | ✅ 완료 (2026-05-27, 커밋 `cebd013`~`22ff0a7`) |
 | 2 | §2 타임라인 흡수 | — | ⛔ ROLLBACK — timeline spec·migrate 작업 폐기 |
 | 3 | §3 홈 4축 허브 | — | ⛔ 폐기 (H1=B) |
-| 4 | §4 BottomNav 5탭 | `navigation.spec.ts` 5탭 재작성, "체중" active 검증 | ⏳ 대기 |
+| 4 | §4 BottomNav 5탭 | `navigation.spec.ts` 5탭 재작성, active 검증 | ✅ `2c1730c` |
 | 5 | §5 GA4 5탭 funnel | `ga4-events` 갱신 + `axis-funnel` 신규 | ⏳ 대기 |
 | 6 | 회귀 진입 동선 | `/timeline` 살아있어 path 교체 축소. `test:e2e` 풀 회귀 | ⏳ 대기 |
 
@@ -536,8 +530,8 @@ V1=A(영상 전체 제거) + T1=A(타임라인 → 체중 흡수) + H1=A + N1=A 
 | §2 타임라인 흡수 | 2026-05-31 ~ 2026-06-02 | ⛔ ROLLBACK (`f7ba341`) — T1=A 폐기 |
 | IA 재결정 (H1·N1) | 2026-06-02 | ✅ H1=B, N1=B 5탭 확정 |
 | §3 홈 4축 허브화 | — | ⛔ 폐기 (H1=B 도미노) |
-| §4 BottomNav 5탭 적용 | TBD | ⏳ "체중" 탭 추가 + 순서 정렬 |
-| §5 GA4 5탭 funnel | TBD | ⏳ §4 후 — timeline_* deprecated 취소 |
+| §4 BottomNav 5탭 적용 | 2026-06-02 | ✅ 완료 (`2c1730c`) |
+| §5 GA4 5탭 funnel | TBD | ⏳ 다음 라운드 — timeline_* deprecated 취소 |
 | 회귀 검증 + e2e 풀 회귀 | TBD | §7 회귀 안전장치 전체 |
 | AdSense 신청 | 2026-06-15 ~ (목표 유지) | [adsense-audit.md](adsense-audit.md) CRITICAL/HIGH 0건 확인 후 |
 
@@ -576,7 +570,7 @@ V1=A(영상 전체 제거) + T1=A(타임라인 → 체중 흡수) + H1=A + N1=A 
 - [x] ~~타임라인 흡수 + zustand `migrate` 함수 e2e 검증~~ ⛔ ROLLBACK 2026-06-02
 - [x] IA 재결정 (H1·N1 도미노) — H1=B, N1=B 5탭 (2026-06-02)
 - [x] ~~홈 4축 허브 + BottomNav 4탭 동작~~ ⛔ §3 폐기 (H1=B 도미노)
-- [ ] BottomNav 5탭 적용 — "체중" 탭 추가 + 탭 순서 정렬
+- [x] BottomNav 5탭 적용 — "체중" 탭 추가 + 탭 순서 정렬 (2026-06-02, `2c1730c`)
 - [ ] GA4 카탈로그 갱신 + funnel DebugView 발화 검증
 - [ ] sitemap·robots·canonical 4축 정합
 - [ ] 30-domain/ 운영 가이드 갱신

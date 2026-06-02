@@ -28,3 +28,26 @@ export function setUserProperties(
     properties
   );
 }
+
+export type TabId = "home" | "checklist" | "weight" | "baby-fair" | "info";
+
+// pathname → BottomNav 5탭 매핑 (phase-4.6 §5 axis_enter 발화용).
+// /articles 와 /info 는 둘 다 "정보" 탭 — alsoMatchPrefixes 정합.
+// 매핑 외 경로(/timeline, /articles/[slug] 등)는 null = axis_enter 발화 안 함.
+export function pathToTab(pathname: string): TabId | null {
+  if (pathname === "/") return "home";
+  if (pathname === "/checklist" || pathname.startsWith("/checklist/")) {
+    return "checklist";
+  }
+  if (pathname === "/weight" || pathname.startsWith("/weight/")) {
+    return "weight";
+  }
+  if (pathname === "/baby-fair") return "baby-fair";
+  if (pathname === "/articles" || pathname.startsWith("/articles/")) {
+    return "info";
+  }
+  if (pathname === "/info" || pathname.startsWith("/info/")) {
+    return "info";
+  }
+  return null;
+}

@@ -52,6 +52,8 @@ const ANOMALY_EVENTS = [
   "external_link_click",
   "empty_state_view",
   "scroll_without_action",
+  "axis_enter",
+  "axis_cross_link",
 ] as const;
 
 const COHORT_LOOKBACK_WEEKS = 8;

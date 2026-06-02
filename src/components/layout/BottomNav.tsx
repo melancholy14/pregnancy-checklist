@@ -3,6 +3,7 @@
 import { Home, ListChecks, Scale, Users, FileText } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { pathToTab, sendGAEvent } from "@/lib/analytics";
 
 type NavItem = {
   path: string;
@@ -63,6 +64,13 @@ export function BottomNav() {
               key={item.path}
               href={item.path}
               aria-current={isActive ? "page" : undefined}
+              onClick={() => {
+                const from = pathToTab(pathname);
+                const to = pathToTab(item.path);
+                if (from && to && from !== to) {
+                  sendGAEvent("axis_cross_link", { from, to });
+                }
+              }}
               className={`flex flex-col items-center gap-1 px-3 py-2 rounded-2xl transition-all duration-200 ${
                 isActive
                   ? "bg-pastel-pink/40 text-foreground"
