@@ -126,8 +126,11 @@ W19~W21 3주치 GA4 weekly report 분석 결과 V1·T1 데이터 의사결정 �
   정리
 - **T1 = A** (체중관리로 흡수) — 도달률/회귀 비교 불가 + §3.1 시계열 두
   도구 시너지
+  - ⛔ **retroactive 무효 2026-06-02** — 흡수 후 운영자 실측에서 "두 의도(체중 도구 + 주차 가이드) 한 페이지 동거 자체가 부자연스러움" 신호 + AdSense 정책 원문 재확인 결과 "4축 = AdSense" 등식이 운영자 추측이었음 (실제 정책은 IA 강제 X, 광고와 탐색 거리만 강제). 흡수 코드 commit 전 stash 처리, `/timeline` 라우트 원상 복귀. 상세: [docs/features/_archived/timeline-to-weight-2026-06-02/ROLLBACK.md](../features/_archived/timeline-to-weight-2026-06-02/ROLLBACK.md)
 - **H1 = A** (4축 허브) — V1·T1 A 채택 시 자연 도출
+  - ⚠ T1 무효 (2026-06-02) 로 자연 도출 근거 일부 약화. V1=A 만으로도 4축 도출 가능 여부 재검토 필요
 - **N1 = A** (4탭, 홈 빼고) — H1 A 채택 시 자연 도출
+  - ⚠ T1 무효 (2026-06-02) 로 timeline 이 별도 탭 후보 부활. 4탭 (timeline 빼고) vs 5탭 (timeline 포함) vs 4탭 + More 메뉴 재검토 필요. 별도 phase 또는 hotfix 에서 결정
 
 #### 후속 과제 (Phase 5 이연)
 
