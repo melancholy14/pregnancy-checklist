@@ -56,8 +56,12 @@ export async function triggerShare({
         position,
         content_type: contentType,
       });
-    } catch {
-      // AbortError(사용자가 시트 닫음)·일시 오류는 무시. 자동 모달 노출은 사용자 의도와 어긋날 수 있음.
+    } catch (err) {
+      // AbortError(사용자가 시트 닫음)는 무시. 그 외엔 사용자에게 실패를 알리되 자동 모달은 띄우지 않는다.
+      const name = err instanceof Error ? err.name : "";
+      if (name !== "AbortError") {
+        toast.error("공유에 실패했어요. 다시 시도해 주세요.");
+      }
     }
     return;
   }
@@ -67,11 +71,12 @@ export async function triggerShare({
 export async function copyShareLink(
   url: string,
   ctx: ShareContext,
-): Promise<void> {
+): Promise<boolean> {
+  if (typeof navigator === "undefined" || !navigator.clipboard) {
+    toast.error("이 브라우저는 복사를 지원하지 않아요. 입력란을 길게 눌러 복사해 주세요.");
+    return false;
+  }
   try {
-    if (typeof navigator === "undefined" || !navigator.clipboard) {
-      throw new Error("clipboard not supported");
-    }
     await navigator.clipboard.writeText(url);
     toast.success("링크가 복사되었습니다");
     // legacy keep (4주 grace) — cleanup 라운드에서 제거.
@@ -88,7 +93,9 @@ export async function copyShareLink(
       position: ctx.position,
       content_type: ctx.contentType,
     });
+    return true;
   } catch {
     toast.error("링크 복사에 실패했어요. 직접 선택해 복사해 주세요.");
+    return false;
   }
 }
