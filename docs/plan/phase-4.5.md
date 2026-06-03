@@ -12,7 +12,10 @@
 >   P14 ([p14-ai-image-label](../features/p14-ai-image-label/spec.md)),
 >   P9 ([p9-empty-state](../features/p9-empty-state/spec.md)),
 >   P2·P6·P7 ([checklist-recommendation-semantics](../features/checklist-recommendation-semantics/spec.md)).
->   P11 spec·결정 완료 (vault 매트릭스 작성 phase-4.6 종료 후로 이연 — 타임라인 흡수·4축 정합 반영).
+>   P11 spec·결정 완료, vault 매트릭스 1차 sketch 작성 완료
+>   (`~/Documents/pregnancy-checklist/30-domain/content-matrix.md`, 2026-06-03).
+>   이연 사유였던 타임라인 흡수·4축 정합은 [phase-4.6.md](phase-4.6.md)
+>   T1·H1 결정 뒤집기로 자연 해소.
 >   P1 deferred (`checklist-data-model-bundle`).
 >   P5 P1과 묶여 자연 보류.
 >   P8·P10·P12·P13 결정 산출물 미발견.
@@ -28,7 +31,10 @@
 > - **개발 §4** — **D-A·D-B 완료** (2026-05-26):
 >   D-A(Critical) = D-C1 `public/ads.txt` + `adsbygoogle.js` consent-gated 주입 ([ConsentGatedScripts.tsx](../../src/components/consent/ConsentGatedScripts.tsx)) + D-C2 빈 `reviewed_by` 사이트 전체 0건. D-B(자동화·회귀 안전망) = D-M1~M3 (GitHub Actions CI/CD + Playwright webServer + 동의 거부 회귀 e2e) 완료.
 >   잔여: D-C(코드 정돈)·D-D(리뷰 잔불)·D-E(트리거 대기) — phase-4.5 종료 차단 아님. P1 deferred 묶음(`checklist-data-model-bundle`)은 phase-4.5 종료 시점 동반 처리.
-> - **운영자 작업 잔여**: D1 GA4 Property ID + Service Account 발급 ✅ 완료 (2026-05-12, `~/.config/pregnancy-checklist/ga4-sa.json` `chmod 600` 적용 완료). P11 vault 매트릭스 1차 수기 작성은 phase-4.6 종료 후로 이연 (타임라인 흡수·4축 정합 반영).
+> - **운영자 작업 잔여**: D1 GA4 Property ID + Service Account 발급 ✅ 완료
+>   (2026-05-12, `~/.config/pregnancy-checklist/ga4-sa.json` `chmod 600` 적용 완료).
+>   P11 vault 매트릭스 1차 sketch 작성 완료 (2026-06-03,
+>   phase-4.6 T1·H1 뒤집기로 이연 사유 해소 후).
 > - **분기**: 정보 구조 4축 정돈은 [phase-4.6.md](phase-4.6.md)로 분리 (D1 ✅ + 2주 데이터 수집 중, ~2026-05-26 진입 예상).
 
 ## Overview
@@ -802,11 +808,19 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 #### P11. 콘텐츠 ↔ 체크리스트 매트릭스 1차 산출
 
-> **상태 (2026-05-12)**: 🟡 **결정 완료, 산출물 작성 시점 phase-4.6 종료 후로 이연**. spec까지 발행 ([features/p11-content-matrix/spec.md](../features/p11-content-matrix/spec.md)).
+> **상태 (2026-06-03)**: ✅ **1차 sketch 작성 완료**. spec
+> ([features/p11-content-matrix/spec.md](../features/p11-content-matrix/spec.md))
+> 발행 및 vault 산출물 작성 완료
+> (`~/Documents/pregnancy-checklist/30-domain/content-matrix.md`).
 >
-> **이연 사유**: [phase-4.6.md](phase-4.6.md)에서 정보 구조 4축 정돈 진행 — **타임라인 흡수** + 영상 자산 폐기 + BottomNav 4축 정합이 매트릭스의 행(주차)·열(토픽)·셀(timeline_items.json 매핑) 입력값을 모두 바꿈. 지금 1차 sketch 그리면 phase-4.6 종료 후 재작성 필요 → 한 번에 작성하는 게 효율적.
+> **이연 → 해소 경과**: 2026-05-12에는 [phase-4.6.md](phase-4.6.md) 4축 정돈
+> (**타임라인 흡수** + BottomNav 4축 정합)이 매트릭스 행·열·셀 입력값을
+> 모두 바꿀 예정이라 이연. 그러나 phase-4.6 진행 중 T1 rollback (`f7ba341`,
+> `/timeline` 유지) + H1=B (5탭 유지, 4축 미도입)로 결정이 뒤집히면서
+> 이연 사유 2건 모두 자연 해소. 2026-06-03 spec 그대로 1차 작성.
 >
-> phase-4.6 진입 차단 조건 아님 (선결조건은 D-Data 누적 14일 ~2026-05-26).
+> **첫 사용 (Phase 5)**: `search_submit results_count=0` 데이터 1~2주
+> 누적 후 매트릭스 빈칸과 비교해 휴리스틱 정확도 점검.
 
 - [x] **결정**: (a) 산출물 보관 위치 — Obsidian vault `30-domain/` / `60-analytics/` 신설
 - [x] **결정**: (b) 첫 그리기 Phase 4.5 포함 vs Phase 5 → **phase-4.6 종료 후로 정정**
@@ -838,7 +852,7 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 |---|---|---|---|---|
 | **N** | P3·P4 — 임신 주차 입력 onboarding UX 결정 + 와이어프레임 | §1 G·H, §2.6 #2, P2 모두의 선결조건 | 큼 ⭐ | ✅ 완료 |
 | **O** | P5 — localStorage schema versioning 도입 | P1 결정 후 | 중 | 🟡 부분 (P3·P4 store만) |
-| **P** | P11 — 콘텐츠 매트릭스 1차 산출 (운영자 직접) | §1.9 자동 리포트와 정합 | 중 | 🟡 결정 완료, 작성 시점 phase-4.6 종료 후로 이연 (타임라인 흡수·4축 정합 반영) |
+| **P** | P11 — 콘텐츠 매트릭스 1차 산출 (운영자 직접) | §1.9 자동 리포트와 정합 | 중 | ✅ 완료 (2026-06-03, `30-domain/content-matrix.md`) |
 | **Q** | P13 — 외부 링크 인벤토리 1회 수집 | §1.8 묶음 J 전 | 작음 | ⚠️ 미착수 |
 | **R** | P6·P7 — 데이터 모델 정합성 결정 (recommendedWeek / note_type) | P2 부활 결정 시 필수 | 중 | ✅ 완료 (필드 도입은 phase-5) |
 | **S** | P9·P10 — 빈 상태 명세 + 운영자 가이드 작성 | 독립 | 작음 | 🟡 P9 ✅, P10 부분 |
@@ -870,7 +884,7 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 | P8 | 카테고리 체계 | 낮음 | Phase 5 통합 검색 | ⚠️ 미결 |
 | P9 | 빈 상태 명세 | 보통 | 묶음 J 측정 의미 | ✅ 완료 |
 | P10 | 운영자 가이드 | 낮음 | 데이터 변경 사고 예방 | 🟡 부분 (image-sop §8 흡수) |
-| P11 | 콘텐츠 매트릭스 | 보통 | 콘텐츠 백로그 사전 정리 | 🟡 결정 완료, 매트릭스 작성 phase-4.6 종료 후 이연 |
+| P11 | 콘텐츠 매트릭스 | 보통 | 콘텐츠 백로그 사전 정리 | ✅ 완료 (2026-06-03, `30-domain/content-matrix.md`) |
 | P12 | 양방향 크로스링크 | 보통 | 유입→도구 흐름 | ⚠️ 미결 |
 | P13 | 외부 링크 인벤토리 | 낮음 | 묶음 J 사전 작업 | ⚠️ 미결 |
 | P14 | AI 생성 이미지 표시 형태·문구 | 보통 | §2.11 L묶음, AdSense·E-E-A-T 정합성 (법적 강제 의무 가능성 낮음) | ✅ 완료 |

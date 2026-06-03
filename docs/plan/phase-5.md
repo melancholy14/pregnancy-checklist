@@ -111,6 +111,45 @@ Phase 4.6에서 4축(체크리스트·베이비페어·블로그·체중)으로 
 
 ---
 
+## F2. E2E hydration race cleanup (phase-4.6에서 이입)
+
+### F2.1 배경
+
+- phase-4.6 §5 라운드 (2026-06-03) 풀 회귀에서 13건 spec random 실패.
+- 단독 spec 실행은 통과, 풀 회귀에서만 재현 → timing race 확정.
+- CI=1 (retries:1) 로 cover됨 (552/557 통과, 0 failed) — 머지는 가능하나
+  근본 원인 미해결 누적 부채.
+- 영향 spec: ga4-events.spec.ts (2건), gamification.spec.ts (3건),
+  phase-4-step-1-checklist-hub.spec.ts (3건), plan.spec.ts (4건),
+  timeline-retention.spec.ts (1건).
+- 공통 패턴: timeline/체크리스트 페이지의 sr-only checkbox에
+  `dispatchEvent("click")` 시 React onChange 누락.
+
+### F2.2 의심 원인
+
+| 후보 | 근거 |
+|---|---|
+| useDueDateStore hydration race | timeline-retention.spec.ts:88 `test.skip` 주석에 명시된 "useMemo([hydrated])와 last-visit useEffect 사이 race" |
+| sr-only input + controlled component | `<input className="sr-only peer" checked={isChecked} onChange={onToggle}>` — Playwright `dispatchEvent("click")`이 native change 합성 못 함 |
+| webServer 응답 누적 | `npx serve out` 단일 인스턴스가 9분간 1500+ test 처리 시 응답 지연 |
+
+### F2.3 작업
+
+| 작업 | 대상 |
+|---|---|
+| 진단 1 — 컴포넌트 측 | [ChecklistRow.tsx](../../src/components/checklist/ChecklistRow.tsx) sr-only input + label 구조 검증. `label.click()` 또는 별도 visible toggle 도입 검토 |
+| 진단 2 — store hydration | [useDueDateStore](../../src/store/useDueDateStore.ts) `refreshWeekIfNeeded` + hydrated flag race 핀포인트 |
+| spec 안정화 (보수안) | 13 spec의 `dispatchEvent("click")` 앞에 `waitFor({state:"attached"})` 추가 |
+| 페르소나 §7.1 정합 | retry 의존 부채 해소 — 로컬 retries:0 환경에서도 통과 보장 |
+| 검증 | 로컬 `npm run test:e2e` 풀 회귀 0 failure (retry 없이 통과) |
+
+### F2.4 선결 조건
+
+- phase-4.6 §5 ga4-axis-funnel-5tab 라운드 머지 완료
+- AdSense 신청 완료 (목표 6/15) — 신청 전후 안정성 가드라 신청 이후 진입 가능
+
+---
+
 ## Out of scope (Phase 5에서도 제외)
 
 - Phase 4.6 in-scope 재방문 (이미 완료된 4축 정돈)
