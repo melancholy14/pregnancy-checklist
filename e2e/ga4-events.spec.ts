@@ -40,7 +40,7 @@ test.describe("GA4 커스텀 이벤트 (Step 1)", () => {
       await page.goto("/");
       await injectGtagSpy();
 
-      // Phase 4 Step 1+2 이후 nav에 타임라인 탭이 없으므로 정보 탭으로 검증
+      // BottomNav 5탭(홈/체크/체중/페어/정보) 중 정보 탭으로 클라이언트 nav 검증
       await page.locator("nav").getByText("정보").click();
       await expect(page).toHaveURL(/\/articles\/?$/);
 

@@ -182,13 +182,12 @@ test.describe("정보글 시스템", () => {
 test.describe("네비게이션 & 대시보드 업데이트", () => {
   test.describe("Happy Path", () => {
     test("하단 네비에 정보 탭이 있다", async ({ page }) => {
-      // 무엇을: 체중 탭이 정보 탭으로 교체되었는지
-      // 왜: 콘텐츠 강화 Phase에서 네비 재구성
+      // 무엇을: 정보 탭이 BottomNav에 노출되는지
+      // 왜: phase-4.6 §4 N1=B 5탭 결정 — "체중 제거" 단언은 폐기
+      //     (체중 탭이 5탭 재구성에서 다시 추가됨, navigation.spec.ts가 정합 검증)
       await page.goto("/");
       const nav = page.locator("nav");
       await expect(nav.getByText("정보")).toBeVisible();
-      // 체중 탭은 네비에서 제거됨
-      await expect(nav.getByText("체중")).not.toBeVisible();
     });
 
     test("정보 탭 클릭 시 /info로 이동한다", async ({ page }) => {

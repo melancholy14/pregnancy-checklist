@@ -12,7 +12,10 @@
 >   P14 ([p14-ai-image-label](../features/p14-ai-image-label/spec.md)),
 >   P9 ([p9-empty-state](../features/p9-empty-state/spec.md)),
 >   P2·P6·P7 ([checklist-recommendation-semantics](../features/checklist-recommendation-semantics/spec.md)).
->   P11 spec·결정 완료 (vault 매트릭스 작성 phase-4.6 종료 후로 이연 — 타임라인 흡수·4축 정합 반영).
+>   P11 spec·결정 완료, vault 매트릭스 1차 sketch 작성 완료
+>   (`~/Documents/pregnancy-checklist/30-domain/content-matrix.md`, 2026-06-03).
+>   이연 사유였던 타임라인 흡수·4축 정합은 [phase-4.6.md](phase-4.6.md)
+>   T1·H1 결정 뒤집기로 자연 해소.
 >   P1 deferred (`checklist-data-model-bundle`).
 >   P5 P1과 묶여 자연 보류.
 >   P8·P10·P12·P13 결정 산출물 미발견.
@@ -20,7 +23,7 @@
 >   - cleanup 묶음 5건 통합: A·C·E·F·O (design-bundle-cleanup-round)
 >   - refactor 묶음 2건 통합: B·I ([design-bundle-b-i-row-tokens](../features/design-bundle-b-i-row-tokens/) — WeekChecklistSection label 마크업 + 데이터→토큰 헬퍼)
 >   - decision 묶음 3건: J ShareButton 위치 ([design-bundle-j-share-button-position](../features/design-bundle-j-share-button-position/spec.md)), K 삭제 패턴 undo 토스트 ([design-bundle-k-delete-pattern](../features/design-bundle-k-delete-pattern/spec.md)), N 차트 색 peach ([design-bundle-n-weight-chart-color](../features/design-bundle-n-weight-chart-color/spec.md))
->   - 잔여: IM-6 (alt 가이드라인, P10 운영자 가이드 통합 의존)
+>   - IM-6 (alt 가이드라인) ✅ 완료 (2026-06-03, blog-writer-persona.md §6.5)
 > - **마케팅 §1** — **묶음 G·H·I·J·L 완료 + 묶음 M launchd 등록·1차 검증 통과 (2026-05-26)**:
 >   wiring ([marketing-events-wiring](../features/marketing-events-wiring/spec.md), 2026-05-12) + 자동 주간 리포트 스크립트 ([marketing-weekly-report](../features/marketing-weekly-report/), 2026-05-13).
 >   `scripts/weekly-report/` 7개 파일(GA4 Data API + Claude/OpenAI 백업 + writer) + ga4.md §8/§9 갱신 완료. 묶음 M plist 등록 + kickstart 즉시 검증 통과 (exit 0, 2026-W21.md §1.9.6 스키마 일치, OpenAI fallback).
@@ -28,7 +31,10 @@
 > - **개발 §4** — **D-A·D-B 완료** (2026-05-26):
 >   D-A(Critical) = D-C1 `public/ads.txt` + `adsbygoogle.js` consent-gated 주입 ([ConsentGatedScripts.tsx](../../src/components/consent/ConsentGatedScripts.tsx)) + D-C2 빈 `reviewed_by` 사이트 전체 0건. D-B(자동화·회귀 안전망) = D-M1~M3 (GitHub Actions CI/CD + Playwright webServer + 동의 거부 회귀 e2e) 완료.
 >   잔여: D-C(코드 정돈)·D-D(리뷰 잔불)·D-E(트리거 대기) — phase-4.5 종료 차단 아님. P1 deferred 묶음(`checklist-data-model-bundle`)은 phase-4.5 종료 시점 동반 처리.
-> - **운영자 작업 잔여**: D1 GA4 Property ID + Service Account 발급 ✅ 완료 (2026-05-12, `~/.config/pregnancy-checklist/ga4-sa.json` `chmod 600` 적용 완료). P11 vault 매트릭스 1차 수기 작성은 phase-4.6 종료 후로 이연 (타임라인 흡수·4축 정합 반영).
+> - **운영자 작업 잔여**: D1 GA4 Property ID + Service Account 발급 ✅ 완료
+>   (2026-05-12, `~/.config/pregnancy-checklist/ga4-sa.json` `chmod 600` 적용 완료).
+>   P11 vault 매트릭스 1차 sketch 작성 완료 (2026-06-03,
+>   phase-4.6 T1·H1 뒤집기로 이연 사유 해소 후).
 > - **분기**: 정보 구조 4축 정돈은 [phase-4.6.md](phase-4.6.md)로 분리 (D1 ✅ + 2주 데이터 수집 중, ~2026-05-26 진입 예상).
 
 ## Overview
@@ -631,7 +637,7 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 | **IM-3** | `<img>` width/height attribute 자동 추출 (image-size 라이브러리) + `loading="lazy"` 적용. **next/image 전환은 본 라운드 범위 외 — standalone 모드 전환 라운드와 함께 진행** ([infra.md §3.2](../tech/infra.md#L94-L102)). | L |
 | **IM-4** | AI 생성 이미지의 시각 표시 — figcaption 끝에 `· AI 생성` 텍스트 라벨 또는 이미지 우하단 `bg-foreground/60 text-white text-xs` 칩(`Imagined with AI` 패턴 차용). §3.1 P14 결정에 따라 형태·문구 확정 | L (P14 결정 후) |
 | **IM-5** | 본문 이미지 lightbox / zoom 여부 결정 — 인포그래픽 텍스트가 모바일에서 작아 가독성 떨어짐. 탭 시 전체화면 확대(Radix Dialog) 도입 vs 원본 새 탭 열기 vs 미도입 | ✅ **결정·구현 완료 (2026-05-10)** — 원본 새 탭 열기 채택 (design-bundle-l) |
-| **IM-6** | 이미지 alt 작성 가이드라인 — 현재 alt가 "임신 초기 예비맘이 노트북으로 보험 상품을 비교하는 모습"처럼 장면 묘사형. 인포그래픽은 **그래프 데이터 핵심 수치**까지 포함해야 스크린리더 사용자가 정보 손실 없음. §3 P10 운영자 가이드와 통합 | S 묶음 |
+| **IM-6** | 이미지 alt 작성 가이드라인 — 현재 alt가 "임신 초기 예비맘이 노트북으로 보험 상품을 비교하는 모습"처럼 장면 묘사형. 인포그래픽은 **그래프 데이터 핵심 수치**까지 포함해야 스크린리더 사용자가 정보 손실 없음 | ✅ **완료 (2026-06-03)** — [blog-writer-persona.md §6.5](../content/blog-writer-persona.md)에 alt 작성 룰 추가. blog-pipeline draft 단계에서 자동 적용. P10 의존 매핑 정정 (체크리스트 데이터 룰과 무관) |
 
 #### 2.11.3 권장 작업 묶음
 
@@ -641,7 +647,7 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 권장 실행 순서: **P14 결정 → L 묶음 일괄 적용 → 기존 글 2건(`weekly-prenatal-checklist`, `prenatal-insurance-preparation-guide`) 마이그레이션 검증**.
 
-> **상태 (2026-05-09)**: design-bundle-l-image-system 라운드에서 IM-1(article-prose img 토큰 — rounded-2xl + shadow-sm + my-6 + max-w-full) + IM-3(plain `<img width=N height=N loading="lazy">` 다운스코프 + image-size 자동 추출) + IM-5(원본 새 탭 열기 — `target="_blank" rel="noopener noreferrer"` + ExternalLink 아이콘 분기) 완료. **next/image 전환은 standalone 모드 전환 라운드와 함께 — [infra.md §3.2](../tech/infra.md#L94-L102) 트리거 종속.** 잔여 **IM-6**(alt 가이드라인)는 P10 운영자 가이드와 통합되어 별도 묶음.
+> **상태 (2026-05-09)**: design-bundle-l-image-system 라운드에서 IM-1(article-prose img 토큰 — rounded-2xl + shadow-sm + my-6 + max-w-full) + IM-3(plain `<img width=N height=N loading="lazy">` 다운스코프 + image-size 자동 추출) + IM-5(원본 새 탭 열기 — `target="_blank" rel="noopener noreferrer"` + ExternalLink 아이콘 분기) 완료. **next/image 전환은 standalone 모드 전환 라운드와 함께 — [infra.md §3.2](../tech/infra.md#L94-L102) 트리거 종속.** **IM-6(alt 가이드라인) ✅ 완료 (2026-06-03)** — [blog-writer-persona.md §6.5](../content/blog-writer-persona.md)에 alt 작성 룰 등재. P10 의존 매핑 정정 (체크리스트 데이터 룰과 다른 영역).
 
 ---
 
@@ -802,11 +808,19 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 #### P11. 콘텐츠 ↔ 체크리스트 매트릭스 1차 산출
 
-> **상태 (2026-05-12)**: 🟡 **결정 완료, 산출물 작성 시점 phase-4.6 종료 후로 이연**. spec까지 발행 ([features/p11-content-matrix/spec.md](../features/p11-content-matrix/spec.md)).
+> **상태 (2026-06-03)**: ✅ **1차 sketch 작성 완료**. spec
+> ([features/p11-content-matrix/spec.md](../features/p11-content-matrix/spec.md))
+> 발행 및 vault 산출물 작성 완료
+> (`~/Documents/pregnancy-checklist/30-domain/content-matrix.md`).
 >
-> **이연 사유**: [phase-4.6.md](phase-4.6.md)에서 정보 구조 4축 정돈 진행 — **타임라인 흡수** + 영상 자산 폐기 + BottomNav 4축 정합이 매트릭스의 행(주차)·열(토픽)·셀(timeline_items.json 매핑) 입력값을 모두 바꿈. 지금 1차 sketch 그리면 phase-4.6 종료 후 재작성 필요 → 한 번에 작성하는 게 효율적.
+> **이연 → 해소 경과**: 2026-05-12에는 [phase-4.6.md](phase-4.6.md) 4축 정돈
+> (**타임라인 흡수** + BottomNav 4축 정합)이 매트릭스 행·열·셀 입력값을
+> 모두 바꿀 예정이라 이연. 그러나 phase-4.6 진행 중 T1 rollback (`f7ba341`,
+> `/timeline` 유지) + H1=B (5탭 유지, 4축 미도입)로 결정이 뒤집히면서
+> 이연 사유 2건 모두 자연 해소. 2026-06-03 spec 그대로 1차 작성.
 >
-> phase-4.6 진입 차단 조건 아님 (선결조건은 D-Data 누적 14일 ~2026-05-26).
+> **첫 사용 (Phase 5)**: `search_submit results_count=0` 데이터 1~2주
+> 누적 후 매트릭스 빈칸과 비교해 휴리스틱 정확도 점검.
 
 - [x] **결정**: (a) 산출물 보관 위치 — Obsidian vault `30-domain/` / `60-analytics/` 신설
 - [x] **결정**: (b) 첫 그리기 Phase 4.5 포함 vs Phase 5 → **phase-4.6 종료 후로 정정**
@@ -838,7 +852,7 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 |---|---|---|---|---|
 | **N** | P3·P4 — 임신 주차 입력 onboarding UX 결정 + 와이어프레임 | §1 G·H, §2.6 #2, P2 모두의 선결조건 | 큼 ⭐ | ✅ 완료 |
 | **O** | P5 — localStorage schema versioning 도입 | P1 결정 후 | 중 | 🟡 부분 (P3·P4 store만) |
-| **P** | P11 — 콘텐츠 매트릭스 1차 산출 (운영자 직접) | §1.9 자동 리포트와 정합 | 중 | 🟡 결정 완료, 작성 시점 phase-4.6 종료 후로 이연 (타임라인 흡수·4축 정합 반영) |
+| **P** | P11 — 콘텐츠 매트릭스 1차 산출 (운영자 직접) | §1.9 자동 리포트와 정합 | 중 | ✅ 완료 (2026-06-03, `30-domain/content-matrix.md`) |
 | **Q** | P13 — 외부 링크 인벤토리 1회 수집 | §1.8 묶음 J 전 | 작음 | ⚠️ 미착수 |
 | **R** | P6·P7 — 데이터 모델 정합성 결정 (recommendedWeek / note_type) | P2 부활 결정 시 필수 | 중 | ✅ 완료 (필드 도입은 phase-5) |
 | **S** | P9·P10 — 빈 상태 명세 + 운영자 가이드 작성 | 독립 | 작음 | 🟡 P9 ✅, P10 부분 |
@@ -870,7 +884,7 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 | P8 | 카테고리 체계 | 낮음 | Phase 5 통합 검색 | ⚠️ 미결 |
 | P9 | 빈 상태 명세 | 보통 | 묶음 J 측정 의미 | ✅ 완료 |
 | P10 | 운영자 가이드 | 낮음 | 데이터 변경 사고 예방 | 🟡 부분 (image-sop §8 흡수) |
-| P11 | 콘텐츠 매트릭스 | 보통 | 콘텐츠 백로그 사전 정리 | 🟡 결정 완료, 매트릭스 작성 phase-4.6 종료 후 이연 |
+| P11 | 콘텐츠 매트릭스 | 보통 | 콘텐츠 백로그 사전 정리 | ✅ 완료 (2026-06-03, `30-domain/content-matrix.md`) |
 | P12 | 양방향 크로스링크 | 보통 | 유입→도구 흐름 | ⚠️ 미결 |
 | P13 | 외부 링크 인벤토리 | 낮음 | 묶음 J 사전 작업 | ⚠️ 미결 |
 | P14 | AI 생성 이미지 표시 형태·문구 | 보통 | §2.11 L묶음, AdSense·E-E-A-T 정합성 (법적 강제 의무 가능성 낮음) | ✅ 완료 |
@@ -954,14 +968,13 @@ Phase 4까지 기능은 모두 들어왔으나 다음 3개 영역에 부채가 �
 - **주의**: `npx shadcn add` 명령으로 다시 생성될 수 있으므로 [DESIGN.md](../../DESIGN.md) 또는 [docs/tech/spec.md](../tech/spec.md)에 "추가 금지 리스트" 명시.
 - **검증**: `tsc --noEmit` + e2e 회귀 통과 + 번들 사이즈 비교 (`@next/bundle-analyzer` 일회성 측정).
 
-#### D-Mn2. info-tab `as VideoItem[]` 단언 (Phase 4 step 2 Warning #4 보류)
-- **위치**: [src/app/info/page.tsx:28-29](../../src/app/info/page.tsx#L28-L29) + `/videos/page.tsx` 등 동일 패턴.
-- **해결**: `src/types/video.ts`의 `VideoCategory` union을 실 데이터 7종(`pregnancy_health`·`prenatal_checkup`·`nutrition`·`policy` 포함)에 맞춰 확장.
-- **참고**: zod 도입은 Phase 5(plan/plan.md §5에 합류). 이 항목은 zod 없이 union 확장만으로 해결.
+#### D-Mn2. info-tab `as VideoItem[]` 단언 (Phase 4 step 2 Warning #4 보류) — ✅ 자연 소멸 (2026-06-03)
+- **상태**: phase-4.6 §1 영상 자산 일괄 제거(V1=A, 커밋 `c4bdf5e`/`2d89df9`)로 흡수됨. `src/types/video.ts`·`VideoItem`·`VideoCategory`·`as VideoItem[]` 전부 삭제, `/info`·`/videos`는 `/articles`로 가는 redirect-only 페이지로 축소.
+- **(원본 메모)** 위치: `src/app/info/page.tsx:28-29` + `/videos/page.tsx` 등 동일 패턴. 해결: `src/types/video.ts`의 `VideoCategory` union을 실 데이터 7종에 맞춰 확장. — **별도 작업 불필요**.
 
-#### D-Mn3. info-tab searchParams useEffect/useState 중복 (Phase 4 step 2 Warning #3 보류)
-- **위치**: [src/components/info/InfoContainer.tsx:42-49](../../src/components/info/InfoContainer.tsx#L42-L49)
-- **해결**: 동작 보존(브라우저 뒤로가기로 `?tab=` 변경 시 동기화) 깨지 않는 패턴 검토 — `useSyncExternalStore` 또는 `searchParams.toString()` 비교.
+#### D-Mn3. info-tab searchParams useEffect/useState 중복 (Phase 4 step 2 Warning #3 보류) — ✅ 자연 소멸 (2026-06-03)
+- **상태**: phase-4.6 §1 영상 자산 일괄 제거로 `src/components/info/InfoContainer.tsx` 자체가 삭제됨. `/info`는 `/articles`로 가는 redirect-only 페이지로 축소돼 searchParams useEffect/useState 패턴이 사라졌다.
+- **(원본 메모)** 위치: `src/components/info/InfoContainer.tsx:42-49`. 해결: `useSyncExternalStore` 또는 `searchParams.toString()` 비교. — **별도 작업 불필요**.
 
 #### D-Mn4. RelatedContent 체크리스트 링크 GA `content_click` 미전송 (step 3 Suggestion #3)
 - **위치**: [src/components/articles/RelatedContent.tsx](../../src/components/articles/RelatedContent.tsx)
@@ -1005,9 +1018,9 @@ Phase 4까지 기능은 모두 들어왔으나 다음 3개 영역에 부채가 �
 - **현재**: 분류·제목만.
 - **수정**: 우선순위 select + 노트 textarea. 단, 기획 §3 P1 결정(편집 모드에서 priority/note 수정 허용) 결과에 따라 함께 정돈.
 
-#### D-Mn15. `/videos` hash 앵커 스크롤 동작 검증 (step 1 Suggestion #1)
-- **현재**: ChecklistRelatedContent 영상 링크가 hash 형식. `/info?tab=videos#{id}`로 통합 라우트는 동작하지만 `/videos` 직접 접근 시도 hash 동작하는지 확인.
-- **수정**: 통합 후 `/videos` 페이지가 hash 받았을 때 스크롤·하이라이트 동작 보장.
+#### D-Mn15. `/videos` hash 앵커 스크롤 동작 검증 (step 1 Suggestion #1) — ✅ 자연 소멸 (2026-06-03)
+- **상태**: phase-4.6 §1 영상 자산 일괄 제거로 `/videos`·`/info` 모두 `/articles`로 가는 redirect-only 페이지로 축소. ChecklistRelatedContent의 영상 hash 링크도 함께 제거됨 — 검증 대상 자체 소멸.
+- **(원본 메모)** ChecklistRelatedContent 영상 링크가 hash 형식이라 `/info?tab=videos#{id}` 통합 라우트 동작 확인 필요. — **별도 작업 불필요**.
 
 #### D-Mn16. ChecklistProgress "완벽하게 준비되었어요!" 라인 (step 1 Suggestion #4)
 - **현재**: `>= 100` 조건. customItems 추가로 100% 도달 가능.
@@ -1038,8 +1051,8 @@ Phase 4까지 기능은 모두 들어왔으나 다음 3개 영역에 부채가 �
 |------|------|---------|------|------|
 | **D-A** AdSense 인프라 마감 | D-C1, D-C2 | 즉시 | — | ✅ 완료 |
 | **D-B** 자동화·회귀 안전망 | D-M1, D-M2, D-M3 | 다음 | GitHub Secrets 등록 | ✅ 완료 |
-| **D-C** 코드 정돈 (의존성 다이어트) | D-Mn1, D-Mn2 | D-B 후 | — | ⚠️ 미착수 (phase-4.5 종료 차단 아님) |
-| **D-D** 리뷰 잔불 일괄 | D-Mn3 ~ D-Mn16 | 시간 날 때 | 없음 (개별 처리 가능) | ⚠️ 미착수 (phase-4.5 종료 차단 아님) |
+| **D-C** 코드 정돈 (의존성 다이어트) | D-Mn1, D-Mn2 | D-B 후 | — | ✅ 완료 (2026-06-03) — D-Mn1 일괄 제거(번들 −44 KB·node_modules −7.79 MB, [bundle-size-d-c-2026-06-03.md](../lighthouse-seo/bundle-size-d-c-2026-06-03.md)), D-Mn2는 phase-4.6 §1 영상 폐기로 자연 소멸 |
+| **D-D** 리뷰 잔불 일괄 | D-Mn3 ~ D-Mn16 | 시간 날 때 | 없음 (개별 처리 가능) | ✅ 9건 완료 / ✅ 3건 자연 소멸 / ⏳ 3건 기획 §3 대기 (2026-06-03) — 완료: D-Mn4·5·6·7·8·9·10·11·13. 자연 소멸: D-Mn3·15(phase-4.6 §1 흡수), D-Mn2(D-C 메모 참고). 대기: D-Mn12·14·16(기획 §3 결정 후 묶음 처리) |
 | **D-E** 트리거 대기 (의도적 보류) | D-Mn17, D-Mn18, D-Mn19, D-Mn20 | 트리거 도달 시 | D-Mn20만 Phase 5 vitest 의존 | ⏳ 대기 |
 
 ---

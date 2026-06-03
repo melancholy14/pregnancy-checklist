@@ -83,7 +83,11 @@ function ChecklistCard({
                   </span>
                 ))}
               </div>
-              <div className="flex items-center justify-between gap-2">
+              <div
+                className={`flex items-center justify-between gap-2 transition-opacity duration-300 ${
+                  hydrated ? "opacity-100" : "opacity-0"
+                }`}
+              >
                 <Progress value={percent} className="h-1.5 bg-muted flex-1" />
                 <span className="text-[11px] tabular-nums text-muted-foreground shrink-0">
                   {checked}/{total}
@@ -142,7 +146,11 @@ function TimelineCard({ baseTotal }: { baseTotal: number }) {
                   체크 항목 {baseTotal}개
                 </span>
               </div>
-              <div className="flex items-center justify-between gap-2">
+              <div
+                className={`flex items-center justify-between gap-2 transition-opacity duration-300 ${
+                  hydrated ? "opacity-100" : "opacity-0"
+                }`}
+              >
                 <Progress value={percent} className="h-1.5 bg-muted flex-1" />
                 <span className="text-[11px] tabular-nums text-muted-foreground shrink-0">
                   {checked}/{total}

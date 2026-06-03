@@ -269,6 +269,33 @@
   - `context` (string)
 - **층**: 진단
 
+#### `axis_enter` ⭐ 5탭 funnel 진입
+- **목적**: BottomNav 5탭(홈/체크/체중/페어/정보) 진입률 측정 — phase-4.6 §5 funnel의 두 번째 단계
+- **트리거**: 5탭 path 진입 시 1회 — `usePathname()` 변경 → `pathToTab()` 매핑 성공
+- **파라미터**:
+  - `tab` (string enum) — `home` / `checklist` / `weight` / `baby-fair` / `info`
+- **층**: 진단 (5탭 funnel 단계)
+- **발사 위치**: [src/components/analytics/PageviewTracker.tsx](../../src/components/analytics/PageviewTracker.tsx) — `page_view` 직후 같은 useEffect 안
+- **분석**:
+  - 탭별 진입률 = `axis_enter(tab=X)` 발화 사용자 수 / `session_start` 사용자 수
+  - 진입률 < 10% 탭 → BottomNav 노출 위치·라벨 재검토
+  - "정보" vs "체중" 진입률 비교로 콘텐츠 축 vs 도구 축 가중치 결정
+- **주의**: 매핑 외 path(`/timeline`, `/articles/[slug]` 등)에서는 발사 X. funnel 단계는 5탭 한정.
+
+#### `axis_cross_link` ⭐ 탭 간 흐름
+- **목적**: 한 탭에서 다른 탭으로 명시적 이동 — 콘텐츠↔도구 흐름 정량화
+- **트리거**: BottomNav `<Link>` 클릭 시. `from !== to` 인 경우만 발사 (같은 탭 클릭은 무시)
+- **파라미터**:
+  - `from` (string enum, `TabId`) — 클릭 직전 active 탭
+  - `to` (string enum, `TabId`) — 클릭한 탭
+- **층**: 진단
+- **발사 위치**: [src/components/layout/BottomNav.tsx](../../src/components/layout/BottomNav.tsx) — Link `onClick` 핸들러
+- **분석**:
+  - `from=info, to=weight` 또는 `from=info, to=checklist` 비중 = 콘텐츠 읽고 도구로 가는 사용자 = 가장 가치 있는 코호트
+  - `from=home` cross-link 분포로 홈 카드 우선순위 검증
+  - 매트릭스(from × to)의 비대칭이 BottomNav 순서 결정 신호
+- **주의**: `from` 결정은 `pathToTab(pathname)` 결과. 매핑 외 경로에서 BottomNav 클릭한 경우(`from = null`)는 발사 X — 데이터 깨끗하게 유지.
+
 #### `error_view` / `empty_state_view`
 - **목적**: 마찰점 식별
 - **트리거**: 에러/빈상태 컴포넌트 마운트 시
@@ -364,6 +391,23 @@ join_week=24  78%   55%   40%   33%
 3. `related_article_click` 또는 `share_click` (목표 15%)
 4. 다른 article view (목표 50%) — 깊이
 
+**5탭 funnel** (phase-4.6 §5, 2026-06-03~):
+
+1. `session_start`
+2. `axis_enter` 5종 합계 (목표: 세션의 80%+가 최소 1개 탭 진입)
+3. core_action — 탭별 핵심 행동 (목표 50%):
+   - `checklist_item_toggle` (체크리스트)
+   - `weight_log` (체중)
+   - `article_read_complete` (정보)
+   - `external_link_click(context=baby-fair)` (베이비페어)
+   - `timeline_week_view` (홈/기타 진입)
+4. `axis_cross_link` (목표 20%) — 콘텐츠↔도구 흐름의 정량 지표
+5. 다음주 `session_start` (W+1 리텐션, 목표 70%)
+
+이 funnel의 핵심은 **2→3 dropoff**(탭 진입했는데 핵심 행동 없이
+나가는 비율)와 **4→5의 상관**(cross-link 있는 세션의 W+1 리텐션이
+없는 세션보다 높아야 BottomNav 가치 검증).
+
 ### 5.4 0-결과 검색 → 콘텐츠 백로그 자동화
 
 매주 자동 리포트(§1.9 Pattern C)에서 `search_submit WHERE results_count=0` TOP 50을 추출한다. 이 리스트가 곧 콘텐츠 작성 우선순위. **임의로 우선순위를 흔들지 말 것** — 데이터가 정한다.
@@ -450,3 +494,4 @@ GA4는 한번 쌓이면 이름 변경 시 **과거 데이터와 단절**된다. 
 |---|---|---|
 | 2026-05-03 | 최초 작성 | 이벤트 카탈로그·상관관계·분석 방법론 초기 정의 |
 | 2026-05-12 | G·H·I·J wiring 완료 + §8 추적표 갱신 | [marketing-events-wiring](../features/marketing-events-wiring/spec.md) 라운드 — 카탈로그 정렬 + 신규 hook 2종 + 16개 파일 wiring. D1 ✅ 발급 완료. |
+| 2026-06-03 | `axis_*` 2종 + 5탭 funnel | phase-4.6 §5 wiring |

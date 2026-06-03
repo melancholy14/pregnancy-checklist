@@ -3,9 +3,18 @@
 > Phase 4.5 기록: [phase-4.5.md](phase-4.5.md)
 > Date: 2026-05-09
 > 목표 완료: 2026-06-14
-> Status: 🚧 §1 V1=A 영상 자산 일괄 제거 완료 (2026-05-27).
-> 후속 정리 (2026-05-30, `a9e6110`) 후 §2 타임라인 흡수 라운드 대기
-> (착수 미정, 일정 슬립 4일).
+> Status: ✅ §1·§4·§5 구현 완료. §2 rollback / §3 폐기 도미노 처리 완료.
+> §1 V1=A 영상 자산 일괄 제거 (2026-05-27, `22ff0a7`).
+> §2 T1=A 흡수 → **2026-06-02 rollback** (옛 `/timeline` 유지, `f7ba341`).
+> H1·N1 도미노 재결정 (2026-06-02) → **N1=B 5탭, H1=B 홈 유지**.
+> §3 폐기. §4 BottomNav 5탭 적용 (2026-06-02, `2c1730c`).
+> §5 GA4 5탭 funnel (axis_enter / axis_cross_link wiring + ga4.md 카탈로그
+> + ANOMALY_EVENTS 확장 + axis-funnel.spec.ts) — 2026-06-03 완료.
+> 잔여 §7 회귀 13건 — 2026-06-03 진단 결과 timeline/체크리스트 페이지
+> hydration race (단독 spec 통과, 풀 회귀에서만 random 실패).
+> **CI=1 로컬 풀 회귀로 retry:1 통과 검증 완료** (552 passed / 0 failed,
+> 7.7m) → CI 머지 가능. 근본 race fix는 **phase-5 cleanup 라운드로 이입**.
+> AdSense 신청 영향 없음 (목표 6/15).
 >
 > **진행 요약 (2026-05-27)**
 >
@@ -31,9 +40,23 @@
 > - 신규 아티클 1편 `pregnancy-sleep-positions-guide.md` 추가,
 >   draft `2026-parental-leave-guide-draft.md` 폐기. §1 스코프 외 콘텐츠 작업.
 >
-> **현 시점 (2026-05-31)** — §2 타임라인 흡수 미착수.
-> 일정 표 `2026-05-28 ~` 대비 4일 슬립.
-> 6/14 phase 마감 + 7월 중순 휴가 백스톱은 아직 여유 있음.
+> **§2 라운드 흐름 (2026-05-31 ~ 2026-06-02)**
+>
+> - 2026-05-31 (`65a11aa`) — feature-plan 6 문서
+>   (spec·design·ga4·qa·review·meta) 머지, T1=A 흡수 시안 확정
+> - 2026-06-01 (`c39f703`) — Addendum 6 문서 머지, 카드 카피 정정 +
+>   `/weight` 안 "전체 주차 보기" 토글 보강안
+> - 2026-06-02 (`f7ba341`) — **ROLLBACK**. 보강안 구현 후에도 어색함
+>   잔존 → "두 의도(체중 도구 + 주차 가이드) 한 페이지 동거 자체가
+>   부자연스러움" 신호 + AdSense 4축 등식이 운영자 추측이었음 (정책
+>   원문 재확인 결과 IA 강제 X). 흡수 코드 stash 처리(`stash@{0}`),
+>   `/timeline` 라우트 원상 복귀. 상세:
+>   [ROLLBACK.md](../features/_archived/timeline-to-weight-2026-06-02/ROLLBACK.md)
+>
+> **현 시점 (2026-06-02)** — §2 T1=A 결정 폐기, 옛 `/timeline` 라우트 유지.
+> H1=A·N1=A 도미노 재검토 대기 (별도 phase 또는 hotfix).
+> §3·§4·§5 진입 전 IA 재결정 선행 필요.
+> 6/14 phase 마감 일정은 IA 재결정 사이즈에 따라 슬립 가능.
 
 ## Overview
 
@@ -128,9 +151,15 @@ W19~W21 3주치 GA4 weekly report 분석 결과 V1·T1 데이터 의사결정 �
   도구 시너지
   - ⛔ **retroactive 무효 2026-06-02** — 흡수 후 운영자 실측에서 "두 의도(체중 도구 + 주차 가이드) 한 페이지 동거 자체가 부자연스러움" 신호 + AdSense 정책 원문 재확인 결과 "4축 = AdSense" 등식이 운영자 추측이었음 (실제 정책은 IA 강제 X, 광고와 탐색 거리만 강제). 흡수 코드 commit 전 stash 처리, `/timeline` 라우트 원상 복귀. 상세: [docs/features/_archived/timeline-to-weight-2026-06-02/ROLLBACK.md](../features/_archived/timeline-to-weight-2026-06-02/ROLLBACK.md)
 - **H1 = A** (4축 허브) — V1·T1 A 채택 시 자연 도출
-  - ⚠ T1 무효 (2026-06-02) 로 자연 도출 근거 일부 약화. V1=A 만으로도 4축 도출 가능 여부 재검토 필요
+  - ⚠ T1 무효 (2026-06-02) 로 자연 도출 근거 약화
+  - 🔄 **재결정 2026-06-02 → H1 = B** (홈 유지). N1=B 5탭과 자연
+    정합. 홈은 별도 탭이며 4축 허브 아님. §3 폐기.
 - **N1 = A** (4탭, 홈 빼고) — H1 A 채택 시 자연 도출
-  - ⚠ T1 무효 (2026-06-02) 로 timeline 이 별도 탭 후보 부활. 4탭 (timeline 빼고) vs 5탭 (timeline 포함) vs 4탭 + More 메뉴 재검토 필요. 별도 phase 또는 hotfix 에서 결정
+  - ⚠ T1 무효 (2026-06-02) 로 timeline 이 별도 탭 후보 부활
+  - 🔄 **재결정 2026-06-02 → N1 = B** (5탭: 홈 / 체크리스트 / 체중
+    / 베이비페어 / 정보). /timeline 은 별도 탭 X — 홈/체크리스트
+    카드 경유 진입. "정보" 라벨 유지, path=`/articles`
+    (alsoMatchPrefixes `/info`).
 
 #### 후속 과제 (Phase 5 이연)
 
@@ -214,6 +243,18 @@ W19~W21 3주치 GA4 weekly report 분석 결과 V1·T1 데이터 의사결정 �
 
 ## 2. 타임라인 흡수
 
+> ⛔ **2026-06-02 ROLLBACK** — T1=A (체중 흡수) 결정 폐기. 옛
+> `/timeline` 라우트 유지, 흡수 코드 stash 처리(`stash@{0}`).
+> 본 섹션의 작업 표(§2.2)·산출물 메모(§2.4)는 폐기된 시안 기준으로,
+> 이력 보존 목적으로만 남김. **착수하지 말 것.**
+>
+> 사유 요약: 보강안(카드 카피 + `/weight` 토글) 구현 후에도 "두 의도
+> 한 페이지 동거" 어색함 잔존 + AdSense 4축 등식 운영자 추측이었음
+> (IA 강제 X). 상세:
+> [ROLLBACK.md](../features/_archived/timeline-to-weight-2026-06-02/ROLLBACK.md)
+>
+> 후속: H1=A·N1=A 도미노 재검토 (별도 phase/hotfix).
+
 ### 2.1 결정 사항 (선결: 데이터)
 
 #### T1. 타임라인 흡수 위치
@@ -250,14 +291,33 @@ W19~W21 3주치 GA4 weekly report 분석 결과 V1·T1 데이터 의사결정 �
 
 ### 2.4 후속 산출물 — P11 콘텐츠 매트릭스 (phase-4.5 §3.2)
 
-- phase-4.5 P11 vault 매트릭스 1차 작성이 본 phase 종료 후로 이연 ([phase-4.5.md §3.2 P11](phase-4.5.md)).
-- 사유: 타임라인 흡수가 매트릭스 행(주차)·셀(timeline_items.json 매핑)을 모두 재계산하게 함 + 4축 정합으로 열(토픽 카테고리) 그룹화 재정렬 가능성.
-- 본 phase 종료 시 흡수 결과(timeline → weight/checklist)를 SoT로 매트릭스 1차 sketch 작성.
-- 사용자 체크 상태 손실 0 검증 (e2e 시나리오 + 수동 시나리오)
+- ✅ 완료 (2026-06-03): vault 1차 sketch 작성 →
+  `~/Documents/pregnancy-checklist/30-domain/content-matrix.md`.
+- 이연 사유 변동: 당초 "타임라인 흡수가 매트릭스 행·셀을 재계산하게 함 +
+  4축 정합으로 열 그룹화 재정렬"이었으나, T1 rollback (`/timeline` 유지) +
+  H1=B (5탭 유지, 4축 미도입)로 두 사유 모두 자연 해소.
+- 매트릭스 SoT: `src/data/timeline_items.json` +
+  `src/data/checklist_items.json` + 3종 체크리스트
+  (`hospital_bag_checklist.json` · `partner_prep_checklist.json` ·
+  `pregnancy_prep_checklist.json`) + `src/content/articles/` +
+  `src/content/draft/` 5개 자산을 그대로 사용
+  (흡수 결과 없음 — T1 rollback 반영).
 
 ---
 
 ## 3. 홈 4축 허브화
+
+> ⛔ **2026-06-02 섹션 폐기** — H1=A (4축 허브) 결정이 H1=B (홈 유지)
+> 로 뒤집힘. 본 섹션 작업표(§3.2)는 H1=A 전제라 무효.
+>
+> 자연 해소된 작업:
+>
+> - 영상 카드 제거 → §1.2 V1=A 라운드에서 이미 완료 (`22ff0a7`)
+> - 타임라인 카드 처리 → §2 T1 rollback 으로 흡수 안 함, 홈 카드
+>   그대로 유지
+> - 홈 재작성 / BottomNav 첫 자리 → H1=B 이므로 작업 X
+>
+> 실질 잔여 작업: **0**. 이력 보존 목적으로만 남김.
 
 ### 3.1 결정 사항
 
@@ -266,7 +326,11 @@ W19~W21 3주치 GA4 weekly report 분석 결과 V1·T1 데이터 의사결정 �
 - **A. 4축 허브 + BottomNav 4탭(체크/페어/블로그/체중)** — 홈을 별도 탭에서 빼고 4축 카드 4개로 단순화. 첫 진입은 `/`
 - **B. 홈 유지 + BottomNav 5탭** — 익숙하지만 모바일 UX 빡빡
 
-> **A 권장.** 홈은 허브이지 축이 아님. 4축이 명확하면 홈은 4개로 가는 관문.
+> ~~**A 권장.** 홈은 허브이지 축이 아님. 4축이 명확하면 홈은 4개로 가는 관문.~~
+>
+> 🔄 **2026-06-02 재결정 → H1 = B** (홈 유지). T1 rollback 으로 "4축
+> 자연 도출" 근거가 약화 + 운영자 판단으로 홈을 별도 탭으로 유지.
+> 모바일 UX "빡빡함" 우려는 5탭 실측 후 재평가.
 
 ### 3.2 작업 (결정 A 기준)
 
@@ -288,49 +352,79 @@ W19~W21 3주치 GA4 weekly report 분석 결과 V1·T1 데이터 의사결정 �
 - **A. 4탭 (체크리스트 / 베이비페어 / 블로그 / 체중)** — 홈은 `/`로만 접근, 4축 균등
 - **B. 5탭 (홈 / 체크리스트 / 베이비페어 / 블로그 / 체중)** — 홈 탭 유지
 
-> H1과 묶어서 결정. A 권장.
+> ~~H1과 묶어서 결정. A 권장.~~
+>
+> 🔄 **2026-06-02 재결정 → N1 = B 변형 5탭**:
+> **홈 / 체크리스트 / 체중 / 베이비페어 / 정보**.
+>
+> - "정보" 라벨 유지 (B 안의 "블로그" 라벨 변경 폐기) — path=`/articles`
+> - "체중" 탭 신규 추가 — path=`/weight`
+> - /timeline 은 별도 탭 X — 홈 카드 + 체크리스트 카드 경유 진입 유지
+> - 탭 순서: 도구(체크·체중) 가운데, 시즌(베이비페어)·정보 우측
 
-### 4.2 작업
+### 4.2 작업 (N1=B 5탭 기준) — ✅ 완료 (2026-06-02, `2c1730c`)
 
-| 작업 | 대상 |
-|------|------|
-| BottomNav 갱신 | [BottomNav.tsx:18-34](../../src/components/layout/BottomNav.tsx) `navItems` 재구성 |
-| 라벨 갱신 | "정보" → "블로그" (또는 4탭이면 "정보" 제거 + "체중" 추가) |
-| 라우트 정합 | "블로그" → `/articles`, "체중" → `/weight` |
-| `alsoMatchPrefixes` | `/videos` 제거, 필요 시 `/articles` `/guides` 정렬 |
-| DESIGN.md 영향 | 아이콘 `w-5 h-5` → `w-6 h-6` (phase-4.5 §2.8.1 H-5 자연 해소) |
+| 작업 | 대상 | 상태 |
+| --- | --- | --- |
+| Scale 아이콘 import | lucide-react | ✅ |
+| navItems 항목 추가 | /weight, 라벨 "체중", match prefix | ✅ |
+| 탭 순서 정렬 | 홈 / 체크 / 체중 / 페어 / 정보 | ✅ |
+| 라벨 변경 폐기 | "정보"→"블로그" 변경 자체 폐기 | ✅ 자연 해소 |
+| alsoMatchPrefixes | /info 보존, /videos 제거 | ✅ §1.2 |
+| DESIGN.md 영향 | 5탭 탭당 폭 ~64px 검증, 라벨 줄바꿈 검증 | ✅ |
+| 활성 상태 시각 | 인접 active 시각 충돌 없음 검증 | ✅ |
+
+산출물: [docs/bottomnav-weight-tab/README.md](../bottomnav-weight-tab/README.md)
+(plan·impl·review·refactor 5축 문서)
 
 ---
 
 ## 5. GA4 이벤트 카탈로그 4축 기준 재정의
+
+> ✅ **2026-06-03 완료** — ga4-axis-funnel-5tab 라운드.
+> [docs/ga4-axis-funnel-5tab/README.md](../ga4-axis-funnel-5tab/README.md)
+> 산출물: `axis_enter`·`axis_cross_link` 신규 wiring +
+> [ga4.md](../marketing/ga4.md) §3.E 등재 + §5.3 5탭 funnel +
+> ANOMALY_EVENTS 확장 + `e2e/axis-funnel.spec.ts` 신규 (5 테스트) +
+> `src/lib/__tests__/analytics.test.ts` unit (37 테스트).
+>
+> 🔄 **2026-06-02 부분 재정의** — T1 rollback + N1=B 5탭 결정 반영.
+> "4축 funnel" 가정이 흔들렸고, timeline 이벤트는 흡수 안 함.
 
 ### 5.1 phase-4.5 §1.5 갱신
 
 기존 카탈로그(phase-4.5 §1.5):
 
 - A. 자동 (GA4 기본) — 변경 없음
-- B. 핵심 기능 — 체크리스트 — 4축 namespace 정렬
-- C. 콘텐츠 — 아티클/영상/가이드 — **영상 deprecated**
-- D. 개인화 트래커 — 체중/타임라인 — **타임라인 흡수처로 namespace 이동**
-- E. 신호 (Signals) — 4축 funnel 기준 재설계
+- B. 핵심 기능 — 체크리스트 — 5탭 namespace 정렬
+- C. 콘텐츠 — 아티클/영상/가이드 — **영상 deprecated** (V1=A 확정)
+- D. 개인화 트래커 — 체중/타임라인 — **둘 다 유지** (T1 rollback)
+- E. 신호 (Signals) — 5탭 funnel 기준 재설계
 
 ### 5.2 신규/변경 이벤트
 
 | 이벤트 | 의미 | 비고 |
 |--------|------|------|
-| `axis_enter` | 4축 진입 (체크/페어/블로그/체중) | 4축 진입률 측정 |
-| `axis_cross_link` | 한 축에서 다른 축으로 이동 | 콘텐츠↔도구 흐름 측정 |
-| `weight_week_view` | 체중에서 주차 컨텍스트 조회 (§2.2 A 결정 시) | timeline 이벤트 흡수 |
-| `content_click(type=video)` | **deprecated** | §1.2 V1 결정 후 카탈로그에서 삭제 |
-| `timeline_*` | **deprecated** | §2.2 결정에 따라 흡수처 namespace로 마이그레이션 |
+| `axis_enter` | 5탭 진입 | 탭별 진입률. "4축"→"5탭" 명칭 변경 |
+| `axis_cross_link` | 탭 간 이동 | 콘텐츠↔도구 흐름 측정 |
+| `timeline_week_view` | 타임라인 주차 조회 | T1 rollback 으로 **유지** |
+| `content_click(type=video)` | **deprecated** | §1.2 V1 확정, 4주 grace |
+| `timeline_*` | **deprecated 취소** | T1 rollback, namespace 이동 폐기 |
 
 ### 5.3 funnel 정의
 
-`session_start → axis_enter → core_action(체크리스트 토글 / 체중 입력 / 아티클 스크롤 / 페어 외부링크) → return_visit_n_days`
+`session_start → axis_enter(5탭) → core_action(체크리스트 토글 /
+체중 입력 / 아티클 스크롤 / 타임라인 주차 조회 / 페어 외부링크) →
+return_visit_n_days`
 
 ---
 
 ## 6. 데이터 마이그레이션 룰 (§5.1·§7.1 적용)
+
+> 🔄 **2026-06-02 업데이트** — T1 rollback 으로 timeline 흡수 안 함.
+> useTimelineStore migrate / timeline_items.json 흡수처 통합 / timeline
+> 4주 deprecated / e2e migrate 시나리오 모두 **무효**. 본 표는 향후
+> store schema 변경 시 일반 룰로만 의미 있음.
 
 | 룰 | 적용 |
 |----|------|
@@ -342,6 +436,13 @@ W19~W21 3주치 GA4 weekly report 분석 결과 V1·T1 데이터 의사결정 �
 ---
 
 ## 7. 회귀 안전장치
+
+> 🔄 **2026-06-02 업데이트** — T1 rollback + V1=A 완료 반영:
+>
+> - "4축 라우트" → "5탭 라우트" (홈 포함)
+> - Redirect 대상에서 `/timeline` 제거 — 라우트 살아있음
+> - 내부 링크 grep 에서 `/timeline` 제외 (`/videos`·`/info` 만 검사)
+> - "타임라인 항목 0건 손실" 검증 자연 충족 — 흡수 안 했으니 손실 가능성 없음
 
 | 항목 | 검증 |
 |------|------|
@@ -359,6 +460,27 @@ W19~W21 3주치 GA4 weekly report 분석 결과 V1·T1 데이터 의사결정 �
 ## 8. E2E 테스트 코드·스크립트 갱신
 
 > phase-4.6는 라우트 폐기(`/videos`·`/info`·`/timeline`) + BottomNav 재구성 + GA4 이벤트 namespace 마이그레이션을 동시에 한다. 본 섹션은 코드 변경에 종속되는 **테스트/스크립트 갱신 작업 자체를 작업 항목으로 박는다.** 회귀 검증(§7)이 통과 여부 검사라면, §8은 통과 가능 상태를 만드는 작업.
+>
+> 🔄 **2026-06-02 업데이트** — T1 rollback + H1=B + N1=B 5탭 도미노로
+> §8.1·§8.2 표의 다음 행이 무효/축소:
+>
+> - timeline 3종 (`timeline.spec.ts`·`timeline-enhancement.spec.ts`·
+>   `timeline-retention.spec.ts`) **폐기 취소** — `/timeline` 유지
+>   되니 spec도 그대로
+> - `cross-links-video-weight.spec.ts` Step 6 **유지** — 흡수처 분리
+>   불필요
+> - `ga4-events.spec.ts` `timeline_week_view` → `weight_week_view`
+>   마이그 **취소** — timeline_* namespace 유지
+> - `marketing-events-wiring.spec.ts` `/timeline` 진입 검증 **유지**
+> - SEO/path 교체 spec 들의 `/timeline` 제거 **취소** — 라우트
+>   살아있음
+> - `timeline-migrate.spec.ts` 신규 **폐기** — 흡수 안 함 = migrate
+>   함수 없음
+> - `navigation.spec.ts` 4탭 → 5탭 (홈/체크/체중/페어/정보) 재작성
+> - `home.spec.ts` "4축 허브" 재작성 **폐기** — H1=B 로 홈 카드 구조
+>   유지, 영상 카드만 제거 (§1.2 완료)
+> - `axis-funnel.spec.ts` 신규 — 4축 funnel → 5탭 funnel 로 의미 변경,
+>   여전히 작성 필요
 
 ### 8.1 영향 매트릭스 — e2e/
 
@@ -397,16 +519,23 @@ V1=A(영상 전체 제거) + T1=A(타임라인 → 체중 흡수) + H1=A + N1=A 
 | 순서 | 단계 | 동기 갱신할 e2e·scripts | 상태 |
 |------|------|--------------------------|------|
 | 1 | §1 영상 자산 일괄 제거 | scripts 4개 (fetch-* 3 + seed-vault-media-notes) 폐기, e2e 통째 폐기 3 (`info-tab-integration`·`fetch-channel-thumbs`·`phase-4-step-3-related-content`) + 부분 갱신 10 (`cross-links-video-weight` Step 3, `home`·`client-search`·`ga4-events`·`marketing-events-wiring` 영상 시나리오, `design-bundle-h`·`design-bundle-b-i`, `phase-4-step-5-crosslinks` linked_video_ids 시나리오, `privacy-terms`·`sticky-header`·SEO 6 path 교체) | ✅ 완료 (2026-05-27, 커밋 `cebd013`~`22ff0a7`) |
-| 2 | §2 타임라인 흡수 | timeline 3종 + `cross-links-video-weight.spec.ts` 잔여 부분 → 흡수처 spec으로 마이그레이션. `timeline-migrate.spec.ts` 신규 (§7.1 zustand migrate 검증) | ⏳ 대기 |
-| 3 | §3·§4 홈 4축 허브 + BottomNav | [home.spec.ts](../../e2e/home.spec.ts), [navigation.spec.ts](../../e2e/navigation.spec.ts) 재작성 | ⏳ 대기 |
-| 4 | §5 GA4 카탈로그 4축 갱신 | [ga4-events.spec.ts](../../e2e/ga4-events.spec.ts), [marketing-events-wiring.spec.ts](../../e2e/marketing-events-wiring.spec.ts) 갱신 + `axis-funnel.spec.ts` 신규. [scripts/weekly-report/ga4-queries.ts](../../scripts/weekly-report/ga4-queries.ts) 동기 | ⏳ 대기 |
-| 5 | Sitemap·robots·canonical·redirect | SEO 6 spec path 일괄 교체 + `scripts/lighthouse-check.sh` `PAGES` 동기 | 🟡 §1 라운드에서 부분 선행 (SEO 6 spec `/info`→`/articles`, lighthouse-check.sh `/info.html`→`/articles.html`). `/timeline` 부분은 §2와 함께 |
-| 6 | 회귀 진입 동선 정리 | 보조 spec ~10개 `/timeline`·`/info` path만 교체. `npm run test:e2e` 풀 회귀 통과 확인 | ⏳ 대기 (§2~§5 후) |
+| 2 | §2 타임라인 흡수 | — | ⛔ ROLLBACK — timeline spec·migrate 작업 폐기 |
+| 3 | §3 홈 4축 허브 | — | ⛔ 폐기 (H1=B) |
+| 4 | §4 BottomNav 5탭 | `navigation.spec.ts` 5탭 재작성, active 검증 | ✅ `2c1730c` |
+| 5 | §5 GA4 5탭 funnel | `axis-funnel.spec.ts` 신규 + 주석 정합 | ✅ 2026-06-03 |
+| 6 | 회귀 진입 동선 | `test:e2e` 풀 회귀 — 본 §5 변경 100% 통과 | ✅ |
+| 7 | 13건 기존 회귀 — CI retry cover | CI=1 풀 회귀 552/557 (7.7m) | ➡️ phase-5 fix |
 
 ### 8.4 양보 거부 항목
 
-- **e2e migrate 시나리오 없이 §2 머지 금지** — §7.1 자동 적용. `timeline-migrate.spec.ts`가 통과해야 zustand `migrate` 함수 검증 완료
-- **deprecated 이벤트 발화 검증 누락 금지** — `axis-funnel.spec.ts`에 "deprecated 이벤트(`content_click(type=video)`·`timeline_*`) 0건 발화" assertion 필수. DebugView 대신 gtag spy 패턴 ([ga4-events.spec.ts](../../e2e/ga4-events.spec.ts) `injectGtagSpy`) 재사용
+- ~~**e2e migrate 시나리오 없이 §2 머지 금지**~~ ⛔ T1 rollback 으로
+  무효. zustand migrate 자체 폐기 — timeline·weight store 별도 유지
+- **deprecated 이벤트 발화 검증 누락 금지** — `axis-funnel.spec.ts`에
+  "deprecated 이벤트(`content_click(type=video)`) 0건 발화" assertion
+  필수. `timeline_*` 는 T1 rollback 으로 deprecated 취소.
+  DebugView 대신 gtag spy 패턴
+  ([ga4-events.spec.ts](../../e2e/ga4-events.spec.ts) `injectGtagSpy`)
+  재사용
 - **스크립트·e2e 동시 갱신** — `lighthouse-check.sh` PAGES 배열을 바꿨는데 `lighthouse-seo.spec.ts` `TARGET_PAGES`를 안 바꾸면 인프라 spec(L77~85)이 빨강. 같은 PR에 묶어 머지
 
 ---
@@ -420,9 +549,11 @@ V1=A(영상 전체 제거) + T1=A(타임라인 → 체중 흡수) + H1=A + N1=A 
 | phase-4.5 디자인 §2 마무리 | 2026-05-12 | ✅ 통합 묶음 13개 조기 완료 (목표 5/31 대비) |
 | **phase-4.6 결정 라운드** | 2026-05-26 | ✅ 완료 — V1·T1·H1·N1 = 모두 A (`5e3e3b4`) |
 | **phase-4.6 §1 영상 자산 제거** | 2026-05-27 | ✅ 완료 — 8 커밋 (`cebd013`~`22ff0a7`) |
-| phase-4.6 §2 타임라인 흡수 | 2026-06-01 ~ (4일 슬립) | 🚧 다음 라운드 — zustand `migrate` + `timeline-migrate.spec.ts` |
-| phase-4.6 §3·§4 홈 4축 허브 + BottomNav | TBD | ⏳ §2 후 |
-| phase-4.6 §5 GA4 카탈로그 4축 | TBD | ⏳ §3 후 |
+| §2 타임라인 흡수 | 2026-05-31 ~ 2026-06-02 | ⛔ ROLLBACK (`f7ba341`) — T1=A 폐기 |
+| IA 재결정 (H1·N1) | 2026-06-02 | ✅ H1=B, N1=B 5탭 확정 |
+| §3 홈 4축 허브화 | — | ⛔ 폐기 (H1=B 도미노) |
+| §4 BottomNav 5탭 적용 | 2026-06-02 | ✅ 완료 (`2c1730c`) |
+| §5 GA4 5탭 funnel | 2026-06-03 | ✅ 완료 — axis_* wiring + 카탈로그 |
 | 회귀 검증 + e2e 풀 회귀 | TBD | §7 회귀 안전장치 전체 |
 | AdSense 신청 | 2026-06-15 ~ (목표 유지) | [adsense-audit.md](adsense-audit.md) CRITICAL/HIGH 0건 확인 후 |
 
@@ -432,17 +563,23 @@ V1=A(영상 전체 제거) + T1=A(타임라인 → 체중 흡수) + H1=A + N1=A 
 
 ## 결정 매트릭스 (운영자 결정용)
 
-| ID | 결정 | 선결 | 기본값 | 영향 |
-|----|------|------|--------|------|
-| V1 | 영상 자산 처리 | 데이터 (영상 클릭률) | 전체 제거 | §1, GA4 카탈로그, 운영 가이드 |
-| T1 | 타임라인 흡수 위치 | 데이터 (타임라인 vs 체중 도달·체류) | 체중관리 | §2, store migrate, GA4 namespace |
-| H1 | 홈의 역할 | T1 결정 | 4축 허브 | §3, §4 |
-| N1 | BottomNav 탭 구성 | H1 결정 | 4탭 (홈 빼고) | §4 |
+| ID | 결정 | 선결 | 기본값 | 최종 | 영향 |
+| --- | --- | --- | --- | --- | --- |
+| V1 | 영상 자산 처리 | 데이터 (클릭률) | A 전체 제거 | ✅ **A** | §1 완료 |
+| T1 | 타임라인 흡수 | 데이터 (도달·체류) | A 체중 흡수 | ⛔ **rollback** | §2 폐기 |
+| H1 | 홈의 역할 | T1 결정 | A 4축 허브 | 🔄 **B** | §3 폐기 |
+| N1 | BottomNav 탭 구성 | H1 결정 | A 4탭 | 🔄 **B 5탭** | §4 재작성 |
 
-> ✅ **2026-05-26 결정 라운드 — V1·T1·H1·N1 모두 기본값 A 확정.**
-> V1·T1은 원래 데이터 의사결정이었으나 표본 노이즈 플로어 + 쿼리 mismatch로
-> 데이터 부재 명시 후 기본값 채택. 근거는
-> [§D-Data 결정 라운드 결과](#d-data-결정-라운드-결과-2026-05-26) 참고.
+> ✅ **2026-05-26 1차 결정** — V1·T1·H1·N1 모두 기본값 A.
+>
+> 🔄 **2026-06-02 도미노 재결정** — T1=A 흡수 시안 rollback 후
+> H1·N1 도미노 재결정:
+>
+> - H1=A → **B** (홈 유지, 별도 탭)
+> - N1=A → **B 5탭** (홈/체크/체중/페어/정보, 라벨 "정보" 유지)
+>
+> 근거: [§D-Data 결정 라운드 결과](#d-data-결정-라운드-결과-2026-05-26) +
+> [ROLLBACK.md](../features/_archived/timeline-to-weight-2026-06-02/ROLLBACK.md)
 
 ---
 
@@ -452,16 +589,20 @@ V1=A(영상 전체 제거) + T1=A(타임라인 → 체중 흡수) + H1=A + N1=A 
 - [x] 2주 데이터 수집 완료 (W19~W21 3주치, 단 표본·쿼리 mismatch 명시)
 - [x] V1·T1·H1·N1 4건 결정 + phase-4.6.md 결정 매트릭스 반영 (2026-05-26)
 - [ ] 영상 자산 일괄 제거 + redirect 301 동작
-- [ ] 타임라인 흡수 + zustand `migrate` 함수 e2e 검증
-- [ ] 홈 4축 허브 + BottomNav 4탭 동작
-- [ ] GA4 카탈로그 갱신 + funnel DebugView 발화 검증
+- [x] ~~타임라인 흡수 + zustand `migrate` 함수 e2e 검증~~ ⛔ ROLLBACK 2026-06-02
+- [x] IA 재결정 (H1·N1 도미노) — H1=B, N1=B 5탭 (2026-06-02)
+- [x] ~~홈 4축 허브 + BottomNav 4탭 동작~~ ⛔ §3 폐기 (H1=B 도미노)
+- [x] BottomNav 5탭 적용 — "체중" 탭 추가 + 탭 순서 정렬 (2026-06-02, `2c1730c`)
+- [x] GA4 카탈로그 갱신 + axis_*  wiring (2026-06-03, ga4-axis-funnel-5tab 라운드)
 - [ ] sitemap·robots·canonical 4축 정합
 - [ ] 30-domain/ 운영 가이드 갱신
 - [ ] 내부 링크 0건 깨짐 (`grep` 검증)
 - [ ] 사용자 데이터 손실 0건 (e2e migrate 시나리오 = `timeline-migrate.spec.ts` 신규 통과)
-- [ ] §8.1 영향 매트릭스 25개 spec 갱신·폐기 완료 + `npm run test:e2e` 풀 회귀 통과
-- [ ] §8.2 영향 매트릭스 — `scripts/lighthouse-check.sh` PAGES, `scripts/generate-crosslinks.ts` video 매핑, `scripts/weekly-report/ga4-queries.ts` 4축 funnel, `scripts/fetch-*` + `verify-videos.ts` 폐기 동시 머지
-- [ ] `axis-funnel.spec.ts` 신규 + deprecated 이벤트 0건 발화 assertion 통과
+- [🟡] §8.1 영향 매트릭스 — §5 라운드 직접 영향 100% 통과.
+  13건 기존 회귀(timeline/체크리스트 dispatchEvent 타임아웃) cleanup 필요
+- [x] §8.2 영향 매트릭스 — `scripts/weekly-report/ga4-queries.ts`
+  ANOMALY_EVENTS 확장 (2026-06-03). 다른 scripts 항목은 §1 완료분 유지
+- [x] `axis-funnel.spec.ts` 신규 + deprecated content_click(type=video) 0건 발화 assertion 통과 (2026-06-03)
 - [ ] AdSense 인프라 미회귀 (스크립트·ads.txt 무변경)
 - [ ] [adsense-audit.md](adsense-audit.md) CRITICAL/HIGH 0건
 - [ ] phase-4.5 디자인 §2 결과와 충돌 0건

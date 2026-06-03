@@ -1,8 +1,9 @@
 "use client";
 
-import { Home, ListChecks, Users, FileText } from "lucide-react";
+import { Home, ListChecks, Scale, Users, FileText } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { pathToTab, sendGAEvent } from "@/lib/analytics";
 
 type NavItem = {
   path: string;
@@ -23,6 +24,7 @@ export function BottomNav() {
       label: "체크리스트",
       match: "prefix",
     },
+    { path: "/weight", icon: Scale, label: "체중", match: "prefix" },
     { path: "/baby-fair", icon: Users, label: "베이비페어", match: "exact" },
     {
       path: "/articles",
@@ -48,7 +50,10 @@ export function BottomNav() {
   }
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-xl border-t border-black/4 px-2 py-2 bottom-nav-safe z-50">
+    <nav
+      aria-label="주요 메뉴"
+      className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-xl border-t border-black/4 px-2 py-2 bottom-nav-safe z-50"
+    >
       <div className="max-w-2xl mx-auto flex justify-around items-center">
         {navItems.map((item) => {
           const Icon = item.icon;
@@ -58,6 +63,14 @@ export function BottomNav() {
             <Link
               key={item.path}
               href={item.path}
+              aria-current={isActive ? "page" : undefined}
+              onClick={() => {
+                const from = pathToTab(pathname);
+                const to = pathToTab(item.path);
+                if (from && to && from !== to) {
+                  sendGAEvent("axis_cross_link", { from, to });
+                }
+              }}
               className={`flex flex-col items-center gap-1 px-3 py-2 rounded-2xl transition-all duration-200 ${
                 isActive
                   ? "bg-pastel-pink/40 text-foreground"

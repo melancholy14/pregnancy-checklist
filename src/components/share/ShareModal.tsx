@@ -34,8 +34,8 @@ export function ShareModal({
   position,
 }: ShareModalProps) {
   const handleCopy = async () => {
-    await copyShareLink(url, { contentType, itemId, position });
-    onOpenChange(false);
+    const ok = await copyShareLink(url, { contentType, itemId, position });
+    if (ok) onOpenChange(false);
   };
 
   return (

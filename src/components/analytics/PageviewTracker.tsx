@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { sendGAEvent, setUserProperties } from "@/lib/analytics";
+import { pathToTab, sendGAEvent, setUserProperties } from "@/lib/analytics";
 import { useDueDateStore } from "@/store/useDueDateStore";
 
 export function PageviewTracker() {
@@ -20,6 +20,9 @@ export function PageviewTracker() {
     });
 
     sendGAEvent("page_view", { page_path: pathname });
+
+    const tab = pathToTab(pathname);
+    if (tab) sendGAEvent("axis_enter", { tab });
   }, [pathname]);
 
   return null;
