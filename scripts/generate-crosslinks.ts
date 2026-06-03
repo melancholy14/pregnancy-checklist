@@ -45,6 +45,7 @@ const CHECKLIST_FILES = [
 // ──────────────────────────────────────────────────────────
 
 type RunMode = "dry-run" | "apply" | "report";
+type RunOptions = { mode: RunMode; topN: number; threshold: number };
 
 type TimelineItem = {
   id: string;
@@ -103,23 +104,53 @@ type Features = ContentFeatures;
 // 인자 파싱
 // ──────────────────────────────────────────────────────────
 
-function parseArgs(argv: string[]): RunMode | null {
+function parseArgs(argv: string[]): RunOptions | null {
   const flags = argv.slice(2);
-  const known = new Set(["--dry-run", "--apply", "--report"]);
-  const unknown = flags.filter((f) => !known.has(f));
-  if (unknown.length > 0) {
-    console.error(`❌ 알 수 없는 옵션: ${unknown.join(", ")}`);
+  const modeKnown = new Set(["--dry-run", "--apply", "--report"]);
+  let mode: RunMode | null = null;
+  let topN = CROSSLINK_TOP_N;
+  let threshold = CROSSLINK_THRESHOLD;
+
+  for (const f of flags) {
+    if (modeKnown.has(f)) {
+      if (mode !== null) {
+        console.error("❌ 모드 옵션은 하나만 지정할 수 있습니다.");
+        return null;
+      }
+      if (f === "--dry-run") mode = "dry-run";
+      else if (f === "--apply") mode = "apply";
+      else mode = "report";
+      continue;
+    }
+    const tuneMatch = f.match(/^--(threshold|top)=(.+)$/);
+    if (tuneMatch) {
+      const [, name, valueRaw] = tuneMatch;
+      const value = Number(valueRaw);
+      if (!Number.isFinite(value)) {
+        console.error(`❌ --${name} 값이 숫자가 아닙니다: ${valueRaw}`);
+        return null;
+      }
+      if (name === "threshold") {
+        if (value < 0 || value > 1) {
+          console.error(`❌ --threshold 는 0~1 사이여야 합니다 (입력: ${value}).`);
+          return null;
+        }
+        threshold = value;
+      } else {
+        if (!Number.isInteger(value) || value < 1) {
+          console.error(`❌ --top 은 1 이상 정수여야 합니다 (입력: ${value}).`);
+          return null;
+        }
+        topN = value;
+      }
+      continue;
+    }
+    console.error(`❌ 알 수 없는 옵션: ${f}`);
     return null;
   }
-  if (flags.length === 0) return null;
-  if (flags.length > 1) {
-    console.error("❌ 모드 옵션은 하나만 지정할 수 있습니다.");
-    return null;
-  }
-  if (flags[0] === "--dry-run") return "dry-run";
-  if (flags[0] === "--apply") return "apply";
-  if (flags[0] === "--report") return "report";
-  return null;
+
+  if (mode === null) return null;
+  return { mode, topN, threshold };
 }
 
 function printUsage() {
@@ -127,6 +158,10 @@ function printUsage() {
   console.log("  npx tsx scripts/generate-crosslinks.ts --dry-run   # 변경 미리보기");
   console.log("  npx tsx scripts/generate-crosslinks.ts --apply     # 파일에 반영");
   console.log("  npx tsx scripts/generate-crosslinks.ts --report    # 현재 통계");
+  console.log("");
+  console.log("튜닝 옵션 (dry-run/apply 에만 적용):");
+  console.log(`  --threshold=<0~1>   # 매칭 점수 임계값 (기본 ${CROSSLINK_THRESHOLD})`);
+  console.log(`  --top=<정수>        # 항목당 최대 링크 수 (기본 ${CROSSLINK_TOP_N})`);
 }
 
 // ──────────────────────────────────────────────────────────
@@ -249,7 +284,9 @@ function formatYamlInlineArray(values: (string | number)[]): string {
   if (typeof values[0] === "number") {
     return `[${values.join(", ")}]`;
   }
-  return `[${values.map((v) => `"${String(v).replace(/"/g, '\\"')}"`).join(", ")}]`;
+  return `[${values
+    .map((v) => `"${String(v).replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`)
+    .join(", ")}]`;
 }
 
 function setFrontMatterField(
@@ -405,6 +442,7 @@ function bipartiteMatch<L, R>(
   rightFeats: Map<string, Features>,
   leftKey: (item: L) => string,
   rightKey: (item: R) => string,
+  tuning: { topN: number; threshold: number },
 ): Map<string, string[]> {
   const out = new Map<string, string[]>();
   for (const l of left) {
@@ -416,7 +454,7 @@ function bipartiteMatch<L, R>(
     }));
     out.set(
       lk,
-      pickTopN(scored).map((r) => rightKey(r)),
+      pickTopN(scored, tuning.topN, tuning.threshold).map((r) => rightKey(r)),
     );
   }
   return out;
@@ -428,14 +466,17 @@ type ProposedLinks = {
   checklistToArticles: Map<string, string[]>;
 };
 
-function computeProposedLinks(loaded: Loaded): ProposedLinks {
+function computeProposedLinks(
+  loaded: Loaded,
+  tuning: { topN: number; threshold: number },
+): ProposedLinks {
   const tlFeatures = new Map(loaded.timeline.map((t) => [t.id, timelineFeatures(t)]));
   const articleFeats = new Map(loaded.articles.map((a) => [a.slug, articleFeatures(a)]));
   const checklistFeats = new Map(
     loaded.checklists.map((c) => [c.data.meta.slug, checklistFeatures(c.data)]),
   );
 
-  // Timeline ↔ Article (양방향, 점수 0.2 이상이면 양쪽 등록)
+  // Timeline ↔ Article (양방향, 점수가 threshold 이상이면 양쪽 등록)
   const tlToArt = new Map<string, string[]>();
   const artToTlWeeks = new Map<string, number[]>();
   {
@@ -446,7 +487,7 @@ function computeProposedLinks(loaded: Loaded): ProposedLinks {
         item: a,
         score: relevanceScore(tlF, articleFeats.get(a.slug)!),
       }));
-      const topArticles = pickTopN(scored);
+      const topArticles = pickTopN(scored, tuning.topN, tuning.threshold);
       tlToArt.set(tl.id, topArticles.map((a) => a.slug));
       for (const a of topArticles) {
         const arr = pairScores.get(a.slug) ?? [];
@@ -465,7 +506,7 @@ function computeProposedLinks(loaded: Loaded): ProposedLinks {
         item: tl,
         score: relevanceScore(aF, tlFeatures.get(tl.id)!),
       }));
-      const topTimelines = pickTopN(scored);
+      const topTimelines = pickTopN(scored, tuning.topN, tuning.threshold);
       const fromArticleSide = topTimelines.map((tl) => tl.week);
       const fromTimelineSide = (pairScores.get(a.slug) ?? []).map((p) => p.week);
       const merged = [...new Set([...fromArticleSide, ...fromTimelineSide])].sort(
@@ -501,6 +542,7 @@ function computeProposedLinks(loaded: Loaded): ProposedLinks {
     articleFeats,
     (c) => c.meta.slug,
     (a) => a.slug,
+    tuning,
   );
 
   return {
@@ -773,11 +815,8 @@ function printReport(loaded: Loaded) {
     console.log(`    linked_timeline_weeks: ${tlw.length}개 (수동 관리)`);
   }
 
-  // Manual flag 보호 항목
-  const manualCount = countManualFlags(loaded);
-  if (manualCount > 0) {
-    console.log(`\n🔒 manual 보호 필드: ${manualCount}개`);
-  }
+  // Manual flag 보호 항목 (D-Mn11: 분포)
+  printManualProtections(loaded);
 }
 
 function statline(counts: number[]): string {
@@ -789,18 +828,63 @@ function statline(counts: number[]): string {
   return `평균 ${avg}개, 커버리지 ${coverage}% (${nonzero}/${counts.length})`;
 }
 
-function countManualFlags(loaded: Loaded): number {
-  let n = 0;
+type ManualProtection = {
+  scope: "timeline" | "checklist" | "article";
+  label: string;
+  field: string;
+};
+
+function collectManualProtections(loaded: Loaded): ManualProtection[] {
+  const rows: ManualProtection[] = [];
   for (const tl of loaded.timeline) {
-    if (tl.linked_article_slugs_manual) n++;
+    if (tl.linked_article_slugs_manual) {
+      rows.push({
+        scope: "timeline",
+        label: `[week ${tl.week}] ${tl.id}`,
+        field: "linked_article_slugs",
+      });
+    }
   }
   for (const cl of loaded.checklists) {
-    if (cl.data.meta.linked_article_slugs_manual) n++;
+    if (cl.data.meta.linked_article_slugs_manual) {
+      rows.push({
+        scope: "checklist",
+        label: cl.data.meta.slug,
+        field: "linked_article_slugs",
+      });
+    }
   }
   for (const a of loaded.articles) {
-    if (a.linkedTimelineWeeksManual) n++;
+    if (a.linkedTimelineWeeksManual) {
+      rows.push({
+        scope: "article",
+        label: a.slug,
+        field: "linked_timeline_weeks",
+      });
+    }
   }
-  return n;
+  return rows;
+}
+
+function printManualProtections(loaded: Loaded) {
+  const rows = collectManualProtections(loaded);
+  if (rows.length === 0) return;
+  console.log(`\n🔒 manual 보호로 자동 매핑 skip — ${rows.length}개`);
+  const byScope = new Map<ManualProtection["scope"], ManualProtection[]>();
+  for (const r of rows) {
+    const arr = byScope.get(r.scope) ?? [];
+    arr.push(r);
+    byScope.set(r.scope, arr);
+  }
+  const order: ManualProtection["scope"][] = ["timeline", "checklist", "article"];
+  for (const scope of order) {
+    const list = byScope.get(scope);
+    if (!list || list.length === 0) continue;
+    console.log(`  ${scope} (${list.length})`);
+    for (const r of list) {
+      console.log(`    🔒 ${r.label} — ${r.field}`);
+    }
+  }
 }
 
 // ──────────────────────────────────────────────────────────
@@ -808,11 +892,12 @@ function countManualFlags(loaded: Loaded): number {
 // ──────────────────────────────────────────────────────────
 
 function main() {
-  const mode = parseArgs(process.argv);
-  if (!mode) {
+  const opts = parseArgs(process.argv);
+  if (!opts) {
     printUsage();
     process.exit(1);
   }
+  const { mode, topN, threshold } = opts;
 
   const loaded = loadAll();
 
@@ -821,12 +906,15 @@ function main() {
     return;
   }
 
-  const proposed = computeProposedLinks(loaded);
+  const proposed = computeProposedLinks(loaded, { topN, threshold });
   const result = computeChanges(loaded, proposed);
 
   if (mode === "dry-run") {
-    console.log("🔍 드라이런 — 파일은 수정되지 않습니다.");
+    console.log(
+      `🔍 드라이런 — 파일은 수정되지 않습니다. (threshold=${threshold}, top=${topN})`,
+    );
     printChanges(result);
+    printManualProtections(loaded);
     return;
   }
 
