@@ -23,7 +23,7 @@
 >   - cleanup 묶음 5건 통합: A·C·E·F·O (design-bundle-cleanup-round)
 >   - refactor 묶음 2건 통합: B·I ([design-bundle-b-i-row-tokens](../features/design-bundle-b-i-row-tokens/) — WeekChecklistSection label 마크업 + 데이터→토큰 헬퍼)
 >   - decision 묶음 3건: J ShareButton 위치 ([design-bundle-j-share-button-position](../features/design-bundle-j-share-button-position/spec.md)), K 삭제 패턴 undo 토스트 ([design-bundle-k-delete-pattern](../features/design-bundle-k-delete-pattern/spec.md)), N 차트 색 peach ([design-bundle-n-weight-chart-color](../features/design-bundle-n-weight-chart-color/spec.md))
->   - 잔여: IM-6 (alt 가이드라인, P10 운영자 가이드 통합 의존)
+>   - IM-6 (alt 가이드라인) ✅ 완료 (2026-06-03, blog-writer-persona.md §6.5)
 > - **마케팅 §1** — **묶음 G·H·I·J·L 완료 + 묶음 M launchd 등록·1차 검증 통과 (2026-05-26)**:
 >   wiring ([marketing-events-wiring](../features/marketing-events-wiring/spec.md), 2026-05-12) + 자동 주간 리포트 스크립트 ([marketing-weekly-report](../features/marketing-weekly-report/), 2026-05-13).
 >   `scripts/weekly-report/` 7개 파일(GA4 Data API + Claude/OpenAI 백업 + writer) + ga4.md §8/§9 갱신 완료. 묶음 M plist 등록 + kickstart 즉시 검증 통과 (exit 0, 2026-W21.md §1.9.6 스키마 일치, OpenAI fallback).
@@ -637,7 +637,7 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 | **IM-3** | `<img>` width/height attribute 자동 추출 (image-size 라이브러리) + `loading="lazy"` 적용. **next/image 전환은 본 라운드 범위 외 — standalone 모드 전환 라운드와 함께 진행** ([infra.md §3.2](../tech/infra.md#L94-L102)). | L |
 | **IM-4** | AI 생성 이미지의 시각 표시 — figcaption 끝에 `· AI 생성` 텍스트 라벨 또는 이미지 우하단 `bg-foreground/60 text-white text-xs` 칩(`Imagined with AI` 패턴 차용). §3.1 P14 결정에 따라 형태·문구 확정 | L (P14 결정 후) |
 | **IM-5** | 본문 이미지 lightbox / zoom 여부 결정 — 인포그래픽 텍스트가 모바일에서 작아 가독성 떨어짐. 탭 시 전체화면 확대(Radix Dialog) 도입 vs 원본 새 탭 열기 vs 미도입 | ✅ **결정·구현 완료 (2026-05-10)** — 원본 새 탭 열기 채택 (design-bundle-l) |
-| **IM-6** | 이미지 alt 작성 가이드라인 — 현재 alt가 "임신 초기 예비맘이 노트북으로 보험 상품을 비교하는 모습"처럼 장면 묘사형. 인포그래픽은 **그래프 데이터 핵심 수치**까지 포함해야 스크린리더 사용자가 정보 손실 없음. §3 P10 운영자 가이드와 통합 | S 묶음 |
+| **IM-6** | 이미지 alt 작성 가이드라인 — 현재 alt가 "임신 초기 예비맘이 노트북으로 보험 상품을 비교하는 모습"처럼 장면 묘사형. 인포그래픽은 **그래프 데이터 핵심 수치**까지 포함해야 스크린리더 사용자가 정보 손실 없음 | ✅ **완료 (2026-06-03)** — [blog-writer-persona.md §6.5](../content/blog-writer-persona.md)에 alt 작성 룰 추가. blog-pipeline draft 단계에서 자동 적용. P10 의존 매핑 정정 (체크리스트 데이터 룰과 무관) |
 
 #### 2.11.3 권장 작업 묶음
 
@@ -647,7 +647,7 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 권장 실행 순서: **P14 결정 → L 묶음 일괄 적용 → 기존 글 2건(`weekly-prenatal-checklist`, `prenatal-insurance-preparation-guide`) 마이그레이션 검증**.
 
-> **상태 (2026-05-09)**: design-bundle-l-image-system 라운드에서 IM-1(article-prose img 토큰 — rounded-2xl + shadow-sm + my-6 + max-w-full) + IM-3(plain `<img width=N height=N loading="lazy">` 다운스코프 + image-size 자동 추출) + IM-5(원본 새 탭 열기 — `target="_blank" rel="noopener noreferrer"` + ExternalLink 아이콘 분기) 완료. **next/image 전환은 standalone 모드 전환 라운드와 함께 — [infra.md §3.2](../tech/infra.md#L94-L102) 트리거 종속.** 잔여 **IM-6**(alt 가이드라인)는 P10 운영자 가이드와 통합되어 별도 묶음.
+> **상태 (2026-05-09)**: design-bundle-l-image-system 라운드에서 IM-1(article-prose img 토큰 — rounded-2xl + shadow-sm + my-6 + max-w-full) + IM-3(plain `<img width=N height=N loading="lazy">` 다운스코프 + image-size 자동 추출) + IM-5(원본 새 탭 열기 — `target="_blank" rel="noopener noreferrer"` + ExternalLink 아이콘 분기) 완료. **next/image 전환은 standalone 모드 전환 라운드와 함께 — [infra.md §3.2](../tech/infra.md#L94-L102) 트리거 종속.** **IM-6(alt 가이드라인) ✅ 완료 (2026-06-03)** — [blog-writer-persona.md §6.5](../content/blog-writer-persona.md)에 alt 작성 룰 등재. P10 의존 매핑 정정 (체크리스트 데이터 룰과 다른 영역).
 
 ---
 
