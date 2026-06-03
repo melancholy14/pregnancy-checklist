@@ -561,3 +561,53 @@ CTA 성격 슬롯(예: home 미니카드 진입)에는 `DashboardSlotClass`(pink
 7. **The cream + pink + warm-purple trio is the brand.** Mint, peach, yellow are
    functional. Don't reverse the priority — a page that leads with mint reads as a
    different product.
+
+---
+
+## 13. Do-not-add Dependency List
+
+These packages were removed during phase-4.5 D-Mn1 (2026-06-03) after a full-tree
+audit found 0 external imports. Re-adding any of them — typically by running
+`npx shadcn add <component>` — silently restores 1–5 transitive dependencies and
+re-enlarges the security/dependabot surface. Don't add them back without a
+documented reason; if you genuinely need one, also note *why* in the PR
+description so future audits don't reverse the decision blindly.
+
+Measurement context: bundle savings were modest (-44 KB chunks), but
+node_modules shrank by **−7.79 MB**. See
+[docs/lighthouse-seo/bundle-size-d-c-2026-06-03.md](docs/lighthouse-seo/bundle-size-d-c-2026-06-03.md)
+for the full diff.
+
+### shadcn/ui components (29)
+
+> `aspect-ratio` · `avatar` · `breadcrumb` · `carousel` · `calendar` · `chart` ·
+> `command` · `context-menu` · `drawer` · `dropdown-menu` · `form` ·
+> `hover-card` · `input-otp` · `menubar` · `navigation-menu` · `pagination` ·
+> `popover` · `radio-group` · `resizable` · `scroll-area` · `separator` ·
+> `sheet` · `sidebar` · `skeleton` · `slider` · `sonner` · `toggle` ·
+> `toggle-group` · `tooltip`
+
+**Note on `sonner`**: this refers to the shadcn `<Toaster>` *wrapper*
+(`src/components/ui/sonner.tsx`). The npm package `sonner` itself is kept and
+used directly via `import { toast } from "sonner"` and `<Toaster />` in
+`src/app/layout.tsx`.
+
+### Non-radix dependencies (8)
+
+> `vaul` · `cmdk` · `react-day-picker` · `embla-carousel-react` ·
+> `react-resizable-panels` · `input-otp` · `next-themes` · `react-hook-form`
+
+### Radix-UI primitives (15)
+
+> `@radix-ui/react-aspect-ratio` · `@radix-ui/react-avatar` ·
+> `@radix-ui/react-context-menu` · `@radix-ui/react-dropdown-menu` ·
+> `@radix-ui/react-hover-card` · `@radix-ui/react-menubar` ·
+> `@radix-ui/react-navigation-menu` · `@radix-ui/react-popover` ·
+> `@radix-ui/react-radio-group` · `@radix-ui/react-scroll-area` ·
+> `@radix-ui/react-separator` · `@radix-ui/react-slider` ·
+> `@radix-ui/react-toggle` · `@radix-ui/react-toggle-group` ·
+> `@radix-ui/react-tooltip`
+
+**Kept Radix primitives (in use)**: `react-accordion`, `react-alert-dialog`,
+`react-checkbox`, `react-collapsible`, `react-dialog`, `react-label`,
+`react-progress`, `react-select`, `react-slot`, `react-switch`, `react-tabs`.
