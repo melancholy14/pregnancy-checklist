@@ -968,14 +968,13 @@ Phase 4까지 기능은 모두 들어왔으나 다음 3개 영역에 부채가 �
 - **주의**: `npx shadcn add` 명령으로 다시 생성될 수 있으므로 [DESIGN.md](../../DESIGN.md) 또는 [docs/tech/spec.md](../tech/spec.md)에 "추가 금지 리스트" 명시.
 - **검증**: `tsc --noEmit` + e2e 회귀 통과 + 번들 사이즈 비교 (`@next/bundle-analyzer` 일회성 측정).
 
-#### D-Mn2. info-tab `as VideoItem[]` 단언 (Phase 4 step 2 Warning #4 보류)
-- **위치**: [src/app/info/page.tsx:28-29](../../src/app/info/page.tsx#L28-L29) + `/videos/page.tsx` 등 동일 패턴.
-- **해결**: `src/types/video.ts`의 `VideoCategory` union을 실 데이터 7종(`pregnancy_health`·`prenatal_checkup`·`nutrition`·`policy` 포함)에 맞춰 확장.
-- **참고**: zod 도입은 Phase 5(plan/plan.md §5에 합류). 이 항목은 zod 없이 union 확장만으로 해결.
+#### D-Mn2. info-tab `as VideoItem[]` 단언 (Phase 4 step 2 Warning #4 보류) — ✅ 자연 소멸 (2026-06-03)
+- **상태**: phase-4.6 §1 영상 자산 일괄 제거(V1=A, 커밋 `c4bdf5e`/`2d89df9`)로 흡수됨. `src/types/video.ts`·`VideoItem`·`VideoCategory`·`as VideoItem[]` 전부 삭제, `/info`·`/videos`는 `/articles`로 가는 redirect-only 페이지로 축소.
+- **(원본 메모)** 위치: `src/app/info/page.tsx:28-29` + `/videos/page.tsx` 등 동일 패턴. 해결: `src/types/video.ts`의 `VideoCategory` union을 실 데이터 7종에 맞춰 확장. — **별도 작업 불필요**.
 
-#### D-Mn3. info-tab searchParams useEffect/useState 중복 (Phase 4 step 2 Warning #3 보류)
-- **위치**: [src/components/info/InfoContainer.tsx:42-49](../../src/components/info/InfoContainer.tsx#L42-L49)
-- **해결**: 동작 보존(브라우저 뒤로가기로 `?tab=` 변경 시 동기화) 깨지 않는 패턴 검토 — `useSyncExternalStore` 또는 `searchParams.toString()` 비교.
+#### D-Mn3. info-tab searchParams useEffect/useState 중복 (Phase 4 step 2 Warning #3 보류) — ✅ 자연 소멸 (2026-06-03)
+- **상태**: phase-4.6 §1 영상 자산 일괄 제거로 `src/components/info/InfoContainer.tsx` 자체가 삭제됨. `/info`는 `/articles`로 가는 redirect-only 페이지로 축소돼 searchParams useEffect/useState 패턴이 사라졌다.
+- **(원본 메모)** 위치: `src/components/info/InfoContainer.tsx:42-49`. 해결: `useSyncExternalStore` 또는 `searchParams.toString()` 비교. — **별도 작업 불필요**.
 
 #### D-Mn4. RelatedContent 체크리스트 링크 GA `content_click` 미전송 (step 3 Suggestion #3)
 - **위치**: [src/components/articles/RelatedContent.tsx](../../src/components/articles/RelatedContent.tsx)
@@ -1019,9 +1018,9 @@ Phase 4까지 기능은 모두 들어왔으나 다음 3개 영역에 부채가 �
 - **현재**: 분류·제목만.
 - **수정**: 우선순위 select + 노트 textarea. 단, 기획 §3 P1 결정(편집 모드에서 priority/note 수정 허용) 결과에 따라 함께 정돈.
 
-#### D-Mn15. `/videos` hash 앵커 스크롤 동작 검증 (step 1 Suggestion #1)
-- **현재**: ChecklistRelatedContent 영상 링크가 hash 형식. `/info?tab=videos#{id}`로 통합 라우트는 동작하지만 `/videos` 직접 접근 시도 hash 동작하는지 확인.
-- **수정**: 통합 후 `/videos` 페이지가 hash 받았을 때 스크롤·하이라이트 동작 보장.
+#### D-Mn15. `/videos` hash 앵커 스크롤 동작 검증 (step 1 Suggestion #1) — ✅ 자연 소멸 (2026-06-03)
+- **상태**: phase-4.6 §1 영상 자산 일괄 제거로 `/videos`·`/info` 모두 `/articles`로 가는 redirect-only 페이지로 축소. ChecklistRelatedContent의 영상 hash 링크도 함께 제거됨 — 검증 대상 자체 소멸.
+- **(원본 메모)** ChecklistRelatedContent 영상 링크가 hash 형식이라 `/info?tab=videos#{id}` 통합 라우트 동작 확인 필요. — **별도 작업 불필요**.
 
 #### D-Mn16. ChecklistProgress "완벽하게 준비되었어요!" 라인 (step 1 Suggestion #4)
 - **현재**: `>= 100` 조건. customItems 추가로 100% 도달 가능.
