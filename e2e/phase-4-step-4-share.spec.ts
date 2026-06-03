@@ -209,7 +209,9 @@ test.describe("공유 기능 (Phase 4 Step 4)", () => {
       await dialog.getByRole("button", { name: "링크 복사" }).click();
 
       await expect(
-        page.getByText("링크 복사에 실패했어요. 직접 선택해 복사해 주세요."),
+        page.getByText(
+          "이 브라우저는 복사를 지원하지 않아요. 입력란을 길게 눌러 복사해 주세요.",
+        ),
       ).toBeVisible();
     });
   });
