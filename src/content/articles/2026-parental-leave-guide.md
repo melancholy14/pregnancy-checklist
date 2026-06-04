@@ -2,7 +2,6 @@
 title: "2026년 출산휴가·육아휴직 정책 총정리 — 급여·기간·신청 절차부터 맞벌이 부부 최적 조합까지"
 description: "2026년 출산전후휴가·배우자 출산휴가·육아휴직의 급여 상한, 기간, 신청 절차를 한 글에 정리했어요. 1~3개월 250만 원·4~6개월 200만 원 구간별 급여와 6+6 부모육아휴직제, 맞벌이 부부가 최대 4,960만 원까지 받는 조합 시나리오 시뮬레이션까지 담았습니다."
 author: "출산 준비 체크리스트 제작자 뿌까뽀까"
-reviewed_by: ""
 last_updated: "2026-05-22"
 canonical: "https://pregnancy-checklist.com/articles/2026-parental-leave-guide"
 slug: "2026-parental-leave-guide"

@@ -19,11 +19,32 @@ import path from "node:path";
 const REPO = path.resolve(__dirname, "..");
 
 async function setupGtagSpy(page: Page) {
+  // layout.tsx 의 head 인라인 부트스트랩이 window.gtag 를 덮어쓰므로 dataLayer.push 를 가로챈다.
   await page.addInitScript(() => {
-    const w = window as unknown as Record<string, unknown>;
-    w.__gtagCalls = [];
-    w.gtag = (...args: unknown[]) => {
-      (w.__gtagCalls as unknown[][]).push(args);
+    type Win = Record<string, unknown>;
+    const calls: unknown[][] = [];
+    (window as unknown as Win).__gtagCalls = calls;
+
+    const dl: unknown[] = [];
+    const origPush = Array.prototype.push;
+    Object.defineProperty(dl, "push", {
+      value(this: unknown[], ...args: unknown[]) {
+        for (const a of args) {
+          if (a && typeof a === "object" && "length" in (a as Record<string, unknown>)) {
+            calls.push(Array.from(a as ArrayLike<unknown>));
+          }
+        }
+        return origPush.apply(this, args);
+      },
+      configurable: true,
+      writable: true,
+    });
+    (window as unknown as Win).dataLayer = dl;
+
+    (window as unknown as { gtag: (...args: unknown[]) => void }).gtag = (
+      ...args: unknown[]
+    ) => {
+      calls.push(args);
     };
   });
 }

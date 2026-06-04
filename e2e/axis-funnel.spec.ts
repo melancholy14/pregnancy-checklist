@@ -1,8 +1,10 @@
 import { test, expect, type BrowserContext, type Page } from "@playwright/test";
 
 /** cookie-consent=rejected + gtag spy 를 context.addInitScript 로 주입.
- *  rejected면 ConsentGatedScripts가 null 반환 → 실제 gtag 스크립트가 로드되지 않으므로
- *  우리 spy가 sendGAEvent가 호출하는 유일한 gtag로 유지된다. (ga4-events.spec.ts와 같은 패턴)
+ *  layout.tsx 의 head 인라인 부트스트랩이 `function gtag(){dataLayer.push(arguments)}` 로
+ *  window.gtag 를 덮어쓰므로, dataLayer.push 를 가로채는 방식으로 sendGAEvent → gtag → dataLayer
+ *  파이프라인을 캡처한다. consent='default'/'update' 등 헤드 부트스트랩 호출도 같이 흘러오지만
+ *  c[0]==='event' 필터로 분리된다. (ga4-events.spec.ts / marketing-events-wiring.spec.ts와 같은 패턴)
  */
 async function setupGtagSpy(context: BrowserContext) {
   await context.addInitScript(() => {
@@ -11,11 +13,30 @@ async function setupGtagSpy(context: BrowserContext) {
     } catch {
       /* SSR safe */
     }
-    (window as unknown as Record<string, unknown>).__gtagCalls = [];
-    (window as unknown as Record<string, unknown>).gtag = (
+    type Win = Record<string, unknown>;
+    const calls: unknown[][] = [];
+    (window as unknown as Win).__gtagCalls = calls;
+
+    const dl: unknown[] = [];
+    const origPush = Array.prototype.push;
+    Object.defineProperty(dl, "push", {
+      value(this: unknown[], ...args: unknown[]) {
+        for (const a of args) {
+          if (a && typeof a === "object" && "length" in (a as Record<string, unknown>)) {
+            calls.push(Array.from(a as ArrayLike<unknown>));
+          }
+        }
+        return origPush.apply(this, args);
+      },
+      configurable: true,
+      writable: true,
+    });
+    (window as unknown as Win).dataLayer = dl;
+
+    (window as unknown as { gtag: (...args: unknown[]) => void }).gtag = (
       ...args: unknown[]
     ) => {
-      ((window as unknown as Record<string, unknown[]>).__gtagCalls).push(args);
+      calls.push(args);
     };
   });
 }
