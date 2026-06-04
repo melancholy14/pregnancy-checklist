@@ -1,6 +1,6 @@
 1:"$Sreact.fragment"
-3:I[97367,["/_next/static/chunks/0y980e6q5xx_a.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/0r.vgerf_j.zo.js","/_next/static/chunks/0bu47qis3rhfg.js","/_next/static/chunks/1860zsbcg5z1o.js"],"OutletBoundary"]
+3:I[97367,["/_next/static/chunks/0y980e6q5xx_a.js","/_next/static/chunks/0w0412nbnq_jy.js","/_next/static/chunks/0c4et2y0_~k_u.js","/_next/static/chunks/11rkbm-uv55.0.js","/_next/static/chunks/0bu47qis3rhfg.js","/_next/static/chunks/1860zsbcg5z1o.js"],"OutletBoundary"]
 4:"$Sreact.suspense"
-0:{"rsc":["$","$1","c",{"children":["$L2",null,["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"CsAC_k3845eBE-wRfqYkr"}
+0:{"rsc":["$","$1","c",{"children":["$L2",null,["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"PzfZm6kAKlJNOxTwbbS8f"}
 5:null
 2:E{"digest":"NEXT_REDIRECT;replace;/articles/weekly-prenatal-checklist;307;"}
