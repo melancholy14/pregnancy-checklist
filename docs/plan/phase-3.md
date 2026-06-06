@@ -1054,7 +1054,7 @@ echo "PASS: All pages scored 90+"
 
 | 마일스톤 | 완료 기준 | 목표일 | 상태 |
 |---------|----------|--------|------|
-| M3-A: AdSense 인프라 | 스크립트 로드 + AdUnit + ads.txt + 쿠키 배너 | 4/20 | ✅ 완료 (4/19) |
+| M3-A: AdSense 인프라 | 스크립트 로드 + AdUnit + ads.txt + 쿠키 배너 | 4/20 | ⚠️ 부분 완료 (4/19) — AdUnit 배치는 2026-06-06 재진단 시 미배치 확인. [phase-4.7 Auto Ads 채택](phase-4.7.md#의사결정-기록)으로 코드 배치 자체가 obsolete |
 | M3-B: YMYL 보완 | canonical + reviewed_by + 디스클레이머 + 도구 설명 | 4/23 | ✅ 완료 (4/19) |
 | M3-C: 누락 기능 | GA4 + 검색 + 크로스링크 + Lighthouse | 5/01 | ✅ 완료 (4/20) |
 | M3-D: 콘텐츠 (운영자) | URL-NEEDED + PERSONAL EXPERIENCE + 신규 6개+ | 5/01 | 🟡 진행 중 |
@@ -1069,7 +1069,7 @@ echo "PASS: All pages scored 90+"
 
 - [x] `adsbygoogle.js` 스크립트가 페이지 소스에 포함됨
 - [x] `ads.txt`가 루트 URL에서 접근 가능
-- [x] AdUnit이 아티클 상세, 홈, 타임라인에 렌더링됨
+- [ ] ~~AdUnit이 아티클 상세, 홈, 타임라인에 렌더링됨~~ — 4/20 ✅ 마킹됐으나 2026-06-06 재진단 시 미배치 확인. [phase-4.7 Auto Ads 채택](phase-4.7.md#의사결정-기록)으로 코드 배치 자체가 obsolete
 - [x] 환경변수 미설정 시 광고 관련 요소 미렌더링
 
 ### 쿠키 동의

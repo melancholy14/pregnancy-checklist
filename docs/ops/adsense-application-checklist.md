@@ -21,7 +21,7 @@
 ### 1.2 크롤링 가능성
 
 - [ ] `https://pregnancy-checklist.com/robots.txt` 접근 가능 → `User-agent: *` 허용 + Disallow 정책 점검
-- [ ] `https://pregnancy-checklist.com/sitemap.xml` 200 OK + phase-4.6 후 4축 라우트만 포함 (`/videos`·`/info`·`/timeline` 제거 확인)
+- [ ] `https://pregnancy-checklist.com/sitemap.xml` 200 OK + phase-4.6 후 라우트 정합 (`/videos`·`/info` 제거 / `/timeline`은 2026-06-02 rollback으로 유지)
 - [ ] Google Search Console에 등록되어 있고 소유권 인증 완료
 
 ### 1.3 광고 슬롯 DOM 존재
