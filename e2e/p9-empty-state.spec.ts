@@ -2,6 +2,8 @@ import { test, expect } from "@playwright/test";
 import type { Page } from "@playwright/test";
 import fs from "node:fs";
 import path from "node:path";
+import { seedStorage } from "./helpers/seedStorage";
+import type { ChecklistItem as ChecklistItemFull } from "../src/types/checklist";
 
 /**
  * P9 빈 상태 카피·CTA — 4종 케이스 검증.
@@ -32,33 +34,20 @@ async function clearStorage(page: Page) {
   }, HB_STORAGE_KEY);
 }
 
-/** persist 형식으로 store에 시드 */
+/** persist 형식으로 store에 시드. version 필드는 seedStorage helper 기본값(현재 1) 사용 */
 async function seedStore(
   page: Page,
-  state: { checkedIds?: string[]; customItems?: unknown[] } = {},
+  state: { checkedIds?: string[]; customItems?: ChecklistItemFull[] } = {},
 ) {
-  await page.addInitScript(
-    ({ key, payload }) => {
-      localStorage.setItem("cookie-consent", "accepted");
-      localStorage.setItem(
-        key,
-        JSON.stringify({
-          state: {
-            checkedIds: payload.checkedIds ?? [],
-            customItems: payload.customItems ?? [],
-          },
-          version: 0,
-        }),
-      );
-    },
-    {
-      key: HB_STORAGE_KEY,
-      payload: {
+  await seedStorage(page, {
+    consent: "accepted",
+    checklist: {
+      "hospital-bag": {
         checkedIds: state.checkedIds,
         customItems: state.customItems,
       },
     },
-  );
+  });
 }
 
 /** 손상된 JSON을 storage에 박아 hydration 실패를 유도 */

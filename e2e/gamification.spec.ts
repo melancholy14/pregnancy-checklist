@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { acceptCookieConsent } from "./helpers/consent";
+import { seedStorage } from "./helpers/seedStorage";
 
 test.describe("달성감 / 게이미피케이션 (Step 9)", () => {
   test.beforeEach(async ({ context, page }) => {
@@ -63,16 +64,12 @@ test.describe("달성감 / 게이미피케이션 (Step 9)", () => {
     test("체크리스트 항목을 체크하면 마일스톤 메시지가 표시된다", async ({ page }) => {
       // 무엇을: 25% 이상 달성 시 마일스톤 메시지 표시
       // 왜: 진행 동기 부여
-      // 25%에 해당하는 수만큼 체크 (최소 테스트를 위해 localStorage 직접 설정)
-      await page.evaluate(() => {
-        // 모든 체크리스트 아이템 ID를 수집하기 어려우므로,
-        // 충분한 수의 아이템을 체크한 상태를 시뮬레이션
-        const storage = JSON.parse(localStorage.getItem("checklist-storage") || '{"state":{"checkedIds":[],"customItems":[]},"version":0}');
-        // 기존 checkedIds에 많은 항목 추가하여 25% 이상 만들기
-        // checklist_items.json은 item_001~item_092 까지 있고 25% threshold = 23개 → 여유롭게 60개
-        const fakeIds = Array.from({ length: 60 }, (_, i) => `item_${String(i + 1).padStart(3, "0")}`);
-        storage.state.checkedIds = fakeIds;
-        localStorage.setItem("checklist-storage", JSON.stringify(storage));
+      // 25% threshold = 23개 → 여유롭게 60개 시드 (useChecklistStore = "checklist-storage" 키)
+      const fakeIds = Array.from({ length: 60 }, (_, i) => `item_${String(i + 1).padStart(3, "0")}`);
+      await seedStorage(page, {
+        checklist: {
+          checklist: { checkedIds: fakeIds, customItems: [] },
+        },
       });
       await page.reload();
 

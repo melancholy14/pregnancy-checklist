@@ -1,5 +1,8 @@
 import { test, expect } from "@playwright/test";
 import type { Page, Locator } from "@playwright/test";
+import fs from "node:fs";
+import path from "node:path";
+import { seedStorage } from "./helpers/seedStorage";
 
 // 검증 대상: docs/features/design-bundle-b-i-row-tokens/spec.md
 //
@@ -219,28 +222,22 @@ test.describe("design-bundle-b-i-row-tokens", () => {
       // 무엇을: edit/delete 가 label 안 nested 상태가 아닌 sibling div 안
       // 왜: spec §2.5 — interactive 중첩 제거 (WCAG 4.1.2)
       await seedPregnancyWeek(page, 22);
-      await page.addInitScript(() => {
-        localStorage.setItem(
-          "hospital-bag-storage",
-          JSON.stringify({
-            state: {
-              checkedIds: [],
-              customItems: [
-                {
-                  id: "custom_b_test_01",
-                  title: "테스트 커스텀 항목",
-                  category: "bag_mom",
-                  categoryName: "엄마 가방",
-                  recommendedWeek: 22,
-                  priority: "medium",
-                  isCustom: true,
-                },
-              ],
-              migrationLostFlag: false,
-            },
-            version: 0,
-          }),
-        );
+      await seedStorage(page, {
+        checklist: {
+          "hospital-bag": {
+            customItems: [
+              {
+                id: "custom_b_test_01",
+                title: "테스트 커스텀 항목",
+                category: "bag_mom",
+                categoryName: "엄마 가방",
+                recommendedWeek: 22,
+                priority: "medium",
+                isCustom: true,
+              },
+            ],
+          },
+        },
       });
       await page.goto("/checklist/hospital-bag");
 
@@ -319,6 +316,38 @@ test.describe("design-bundle-b-i-row-tokens", () => {
       await checkPage("/timeline", "/timeline");
       await checkPage("/baby-fair", "/baby-fair");
       await checkPage("/checklist/hospital-bag", "/checklist/hospital-bag");
+    });
+
+    test("EditItemForm·PrioritySelect 새 슬롯에 토큰 외 hex/border-gray·bg-gray 0건 (fs-level 가드)", async ({}) => {
+      // 무엇을: checklist-data-model-bundle 로 추가된 편집 모드 컴포넌트 2개의 토큰 정합
+      // 왜: qa.md §1.3 — 본 묶음의 새 UI 슬롯이 design-bundle row 토큰 룰을 깨뜨리지 않는지 강화 가드
+      const REPO = path.resolve(__dirname, "..");
+      const TARGETS = [
+        "src/components/checklist/EditItemForm.tsx",
+        "src/components/checklist/PrioritySelect.tsx",
+      ];
+      const FORBIDDEN_PATTERNS: { pattern: RegExp; label: string }[] = [
+        { pattern: /#[0-9a-fA-F]{3,8}\b/, label: "raw hex" },
+        { pattern: /\b(bg|text|border|hover:bg|hover:text)-gray-\d/, label: "gray-N utility" },
+        { pattern: /\b(bg|text|border|hover:bg|hover:text)-red-\d/, label: "red-N utility" },
+        { pattern: /border-black\/(?:2|0\.)/, label: "border-black non-token alpha" },
+        { pattern: /shadow-md/, label: "shadow-md (form 카드는 shadow-sm 사용)" },
+        { pattern: /→/, label: "arrow → in source" },
+      ];
+
+      const violations: string[] = [];
+      for (const rel of TARGETS) {
+        const full = path.join(REPO, rel);
+        const content = fs.readFileSync(full, "utf8");
+        content.split("\n").forEach((line, idx) => {
+          for (const { pattern, label } of FORBIDDEN_PATTERNS) {
+            if (pattern.test(line)) {
+              violations.push(`${rel}:${idx + 1}  ${label}  → ${line.trim()}`);
+            }
+          }
+        });
+      }
+      expect(violations).toEqual([]);
     });
 
     test("ChecklistItemRow 와 WeekChecklistSection 행에 role='button' / aria-pressed 0건", async ({

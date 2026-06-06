@@ -8,6 +8,7 @@ import { ConsentGatedScripts } from "@/components/consent/ConsentGatedScripts";
 import { CookieConsentBanner } from "@/components/consent/CookieConsentBanner";
 import { PageviewTracker } from "@/components/analytics/PageviewTracker";
 import { OnboardingBannerProvider } from "@/components/providers/OnboardingBannerProvider";
+import { MigrationFlushClient } from "@/components/providers/MigrationFlushClient";
 import { SearchModal } from "@/components/search/SearchModal";
 import { getAllArticles } from "@/lib/articles";
 import { BASE_URL, OG_IMAGE } from "@/lib/constants";
@@ -73,6 +74,7 @@ export default function RootLayout({
           <BottomNav />
         </div>
         <Toaster position="top-center" richColors theme="light" visibleToasts={3} />
+        <MigrationFlushClient />
         <ConsentGatedScripts />
         <CookieConsentBanner />
         <PageviewTracker />

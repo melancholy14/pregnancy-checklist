@@ -18,6 +18,7 @@ import { ChecklistProgress } from "./ChecklistProgress";
 import { ChecklistRelatedContent } from "./ChecklistRelatedContent";
 import { ChecklistAddForm } from "./ChecklistAddForm";
 import { ChecklistItemRow } from "./ChecklistItemRow";
+import type { EditItemFormValues } from "./EditItemForm";
 import { ChecklistEmptyState, type ChecklistEmptyStateCase } from "./ChecklistEmptyState";
 import { AllDoneBadge } from "./AllDoneBadge";
 import { ShareButton } from "@/components/share/ShareButton";
@@ -71,7 +72,6 @@ export function ChecklistPage({ data, storeSlug, linkedArticles }: ChecklistPage
 
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
-  const [editTitle, setEditTitle] = useState("");
   const [showUncheckedOnly, setShowUncheckedOnly] = useState(false);
 
   const allItems = useMemo<ChecklistItem[]>(
@@ -253,12 +253,40 @@ export function ChecklistPage({ data, storeSlug, linkedArticles }: ChecklistPage
 
   const startEdit = (item: ChecklistItem) => {
     setEditingId(item.id);
-    setEditTitle(item.title);
   };
 
-  const saveEdit = () => {
-    if (!editingId || !editTitle.trim()) return;
-    updateCustomItem(editingId, { title: editTitle.trim() });
+  const cancelEdit = () => setEditingId(null);
+
+  const saveEdit = (original: ChecklistItem, next: EditItemFormValues) => {
+    const title = next.title.trim();
+    if (!title) return;
+    const trimmedNote = next.note.trim();
+    const nextNote = trimmedNote.length > 0 ? trimmedNote : undefined;
+    updateCustomItem(original.id, {
+      title,
+      priority: next.priority,
+      note: nextNote,
+    });
+
+    if (next.priority !== original.priority) {
+      sendGAEvent("custom_item_priority_set", {
+        item_id: original.id,
+        from_priority: original.priority,
+        to_priority: next.priority,
+        slug: meta.slug,
+      });
+    }
+
+    const originalNote = original.note ?? "";
+    if (trimmedNote !== originalNote) {
+      sendGAEvent("custom_item_note_set", {
+        item_id: original.id,
+        note_changed: true,
+        note_length: trimmedNote.length,
+        slug: meta.slug,
+      });
+    }
+
     setEditingId(null);
   };
 
@@ -344,14 +372,12 @@ export function ChecklistPage({ data, storeSlug, linkedArticles }: ChecklistPage
                         isChecked={effectiveCheckedIds.includes(item.id)}
                         isHighlighted={isHighlighted(item)}
                         isEditing={editingId === item.id}
-                        editTitle={editTitle}
                         currentPregnancyWeek={currentPregnancyWeek}
                         isHydrated={hydrated}
                         onToggle={() => handleToggle(item)}
                         onStartEdit={() => startEdit(item)}
-                        onChangeEditTitle={setEditTitle}
-                        onSaveEdit={saveEdit}
-                        onCancelEdit={() => setEditingId(null)}
+                        onSaveEdit={(next) => saveEdit(item, next)}
+                        onCancelEdit={cancelEdit}
                         onRemove={() => {
                           const atIndex = customItems.findIndex((c) => c.id === item.id);
                           if (atIndex < 0) return;

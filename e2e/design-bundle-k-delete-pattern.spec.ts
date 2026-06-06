@@ -1,5 +1,9 @@
 import { test, expect } from "@playwright/test";
 import type { Page } from "@playwright/test";
+import { seedStorage } from "./helpers/seedStorage";
+import type { ChecklistItem } from "../src/types/checklist";
+import type { TimelineItem } from "../src/types/timeline";
+import type { WeightLog } from "../src/store/useWeightStore";
 
 /**
  * design-bundle-k-delete-pattern
@@ -19,15 +23,7 @@ const WEIGHT_PATH = "/weight";
 const TIMELINE_PATH = "/timeline";
 const HB_PATH = "/checklist/hospital-bag";
 
-const WEIGHT_STORAGE_KEY = "weight-storage";
-const TIMELINE_STORAGE_KEY = "timeline-storage";
-const HB_STORAGE_KEY = "hospital-bag-storage";
-
-interface WeightLogSeed {
-  id: string;
-  date: string;
-  weight: number;
-}
+type WeightLogSeed = WeightLog;
 
 interface ChecklistCustomSeed {
   id: string;
@@ -56,49 +52,21 @@ async function dismissOverlays(page: Page) {
 }
 
 async function seedWeightLogs(page: Page, logs: WeightLogSeed[]) {
-  await page.addInitScript(
-    ({ key, payload }) => {
-      localStorage.setItem(
-        key,
-        JSON.stringify({ state: { logs: payload }, version: 0 })
-      );
-    },
-    { key: WEIGHT_STORAGE_KEY, payload: logs }
-  );
+  await seedStorage(page, { weight: { logs } });
 }
 
-async function seedHbCustomItems(page: Page, customItems: ChecklistCustomSeed[]) {
-  await page.addInitScript(
-    ({ key, payload }) => {
-      localStorage.setItem(
-        key,
-        JSON.stringify({
-          state: {
-            checkedIds: [],
-            customItems: payload.map((i) => ({ ...i, isCustom: true })),
-            migrationLostFlag: false,
-          },
-          version: 0,
-        })
-      );
+async function seedHbCustomItems(page: Page, items: ChecklistCustomSeed[]) {
+  const customItems: ChecklistItem[] = items.map((i) => ({ ...i, isCustom: true }));
+  await seedStorage(page, {
+    checklist: {
+      "hospital-bag": { customItems },
     },
-    { key: HB_STORAGE_KEY, payload: customItems }
-  );
+  });
 }
 
-async function seedTimelineCustomItems(page: Page, customItems: TimelineCustomSeed[]) {
-  await page.addInitScript(
-    ({ key, payload }) => {
-      localStorage.setItem(
-        key,
-        JSON.stringify({
-          state: { customItems: payload.map((i) => ({ ...i, isCustom: true })) },
-          version: 0,
-        })
-      );
-    },
-    { key: TIMELINE_STORAGE_KEY, payload: customItems }
-  );
+async function seedTimelineCustomItems(page: Page, items: TimelineCustomSeed[]) {
+  const customItems: TimelineItem[] = items.map((i) => ({ ...i, isCustom: true }));
+  await seedStorage(page, { timeline: { customItems } });
 }
 
 function weightLogCard(page: Page, weight: string) {
