@@ -9,7 +9,7 @@
 MD 본문에서 AI 생성 이미지를 삽입할 때 **alt 텍스트 끝에 ` (AI 생성 이미지)` 후행 표기**만 붙이면 끝.
 
 ```md
-![임신 주차별 검사 및 준비 타임라인 요약 인포그래픽 (AI 생성 이미지)](/articles/weekly-prenatal-checklist.png)
+![임신 주차별 검사 및 준비 타임라인 요약 인포그래픽 (AI 생성 이미지)](/articles/weekly-prenatal-checklist.webp)
 ```
 
 빌드 타임에 rehype 플러그인([src/lib/markdown/rehype-article-figure.ts](../../src/lib/markdown/rehype-article-figure.ts))이 자동으로 다음을 부착한다.
@@ -25,7 +25,7 @@ MD 본문에서 AI 생성 이미지를 삽입할 때 **alt 텍스트 끝에 ` (A
 원본 캡션(이미지 출처, 보조 설명 등)을 붙이고 싶으면 **markdown image title 슬롯**을 사용한다.
 
 ```md
-![alt 텍스트 (AI 생성 이미지)](/path/image.png "원본 캡션 텍스트")
+![alt 텍스트 (AI 생성 이미지)](/path/image.webp "원본 캡션 텍스트")
 ```
 
 빌드 타임에 plugin이 title을 추출해 figcaption으로 옮긴다.

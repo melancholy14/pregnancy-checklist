@@ -21,7 +21,7 @@ export function WelcomeStep({ onNext }: WelcomeStepProps) {
       <div className="mb-10">
         <div className="w-28 h-28 mx-auto rounded-full bg-linear-to-br from-pastel-pink via-pastel-lavender to-pastel-mint flex items-center justify-center shadow-lg overflow-hidden">
           <Image
-            src="/home.png"
+            src="/home.webp"
             alt="출산 준비"
             width={112}
             height={112}

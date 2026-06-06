@@ -41,7 +41,7 @@
 ## 가정 사항
 
 - **발행 글 2건 모두 markdown title 슬롯 보유** (분기 A 케이스): `weekly-prenatal-checklist.md`와 `prenatal-insurance-preparation-guide.md` 둘 다 `![alt](src "caption")` 형식으로 캡션 보유. 분기 B(figcaption 부재 + 우상단 ExternalLink) 케이스는 신규 글에서 발현 가능 — 빌드 검증은 분기 A만 자동 통과, 분기 B는 운영자가 신규 글 작성 시 검증 필요.
-- **`public/articles/<slug>.png` 파일 경로 매핑**: rehype 플러그인이 `process.cwd() + '/public' + src`로 파일 시스템 접근. Next.js 빌드는 프로젝트 루트에서 실행되므로 안전. 다른 프레임워크/스크립트에서 호출 시 cwd 가정 깨질 수 있음.
+- **`public/articles/<slug>.webp` 파일 경로 매핑**: rehype 플러그인이 `process.cwd() + '/public' + src`로 파일 시스템 접근. Next.js 빌드는 프로젝트 루트에서 실행되므로 안전. 다른 프레임워크/스크립트에서 호출 시 cwd 가정 깨질 수 있음.
 - **rehype-sanitize 단계가 article-figure 이전 실행**: `articles.ts:97-99` 파이프라인 순서가 sanitize → article-figure → stringify. 따라서 article-figure가 출력하는 anchor·SVG·className·aria-label 등은 sanitize 영향 없음.
 - **PNG·JPEG 외 포맷 미지원**: WebP, AVIF, GIF 등은 width/height 미설정 fallback + 콘솔 경고. 발행 글 정책상 PNG만 사용하므로 현 시점 영향 없음.
 

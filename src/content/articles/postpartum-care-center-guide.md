@@ -18,7 +18,7 @@ authorNote: "산후조리원 알아보다 보니 어떤 글은 시설을 강조�
 
 # 산후조리원 어떻게 고르지? 비교 기준 7가지와 임신 주차별 예약 캘린더
 
-<!-- ![산후조리원 비교 기준 7가지 핵심 요약 인포그래픽](/articles/postpartum-care-center-guide.png) -->
+<!-- ![산후조리원 비교 기준 7가지 핵심 요약 인포그래픽](/articles/postpartum-care-center-guide.webp) -->
 
 <!-- image: 산후조리원 비교 기준 7가지 핵심 요약 인포그래픽 -->
 
