@@ -3,22 +3,24 @@
 > Phase 4 기록: [phase-4.md](phase-4.md)
 > Date: 2026-05-02
 > 목표 완료: TBD
-> Status: ✅ 마케팅 G·H·I·J·L 완료 / 개발 D-A·D-B 완료 — 마케팅 묶음 M(launchd 안정화)만 잔여 (2026-05-26 갱신)
+> Status: ✅ 마케팅 G·H·I·J·L·M(2주 관찰 중) / 개발 D-A·D-B / 기획 P1·P5 묶음 완료 (2026-06-06 갱신)
 >
-> **진행 요약 (2026-05-26)**
+> **진행 요약 (2026-06-06)**
 >
 > - **기획 §3** — Critical 결정·구현 완료:
 >   P3·P4 ([pregnancy-week-onboarding](../features/pregnancy-week-onboarding/spec.md)),
 >   P14 ([p14-ai-image-label](../features/p14-ai-image-label/spec.md)),
 >   P9 ([p9-empty-state](../features/p9-empty-state/spec.md)),
->   P2·P6·P7 ([checklist-recommendation-semantics](../features/checklist-recommendation-semantics/spec.md)).
+>   P2·P6·P7 ([checklist-recommendation-semantics](../features/checklist-recommendation-semantics/spec.md)),
+>   **P1·P5 묶음 완료** ([checklist-data-model-bundle](../features/checklist-data-model-bundle/spec.md), 2026-06-06)
+>   — custom 항목 priority/note 편집 + 4개 store schema versioning + GA4 4종(`custom_item_priority_set`·`custom_item_note_set`·`schema_migration_run`·`schema_migration_failed`) +
+>   e2e 시드 헬퍼 신설 및 기존 spec 6건 이관 + design-bundle-b-i fs 가드 강화.
+>   최종 README: [docs/checklist-data-model-bundle/README.md](../checklist-data-model-bundle/README.md).
 >   P11 spec·결정 완료, vault 매트릭스 1차 sketch 작성 완료
 >   (`~/Documents/pregnancy-checklist/30-domain/content-matrix.md`, 2026-06-03).
 >   이연 사유였던 타임라인 흡수·4축 정합은 [phase-4.6.md](phase-4.6.md)
 >   T1·H1 결정 뒤집기로 자연 해소.
->   P1 deferred (`checklist-data-model-bundle`).
->   P5 P1과 묶여 자연 보류.
->   P8·P10·P12·P13 결정 산출물 미발견.
+>   P8·P10(통합 본체)·P12·P13 결정 산출물 미발견 — phase-5 권장 또는 별도 결정.
 > - **디자인 §2** — **잔여 묶음 전체 완료** (이전 G·H·L·D + 이번 라운드 A·B·C·E·F·I·J·K·N·O):
 >   - cleanup 묶음 5건 통합: A·C·E·F·O (design-bundle-cleanup-round)
 >   - refactor 묶음 2건 통합: B·I ([design-bundle-b-i-row-tokens](../features/design-bundle-b-i-row-tokens/) — WeekChecklistSection label 마크업 + 데이터→토큰 헬퍼)
@@ -667,9 +669,9 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 #### P1. 편집 모드에서 priority/note 수정 허용 여부
 
-> **상태 (2026-05-09)**: 🟡 **deferred** — `checklist-data-model-bundle (TBD)`로 이연. [features/p1-priority-note-edit/meta.md](../features/p1-priority-note-edit/meta.md).
+> **상태 (2026-06-06)**: ✅ **완료** — 허용 결정 (4.2=A). custom 항목 한정으로 편집 모드에 title + priority + note 한 폼 노출 (4.6=A). 기본 항목은 편집 버튼 비노출 (4.3=A). `custom_item_priority_set`/`custom_item_note_set` GA4 신설 + 변경 필드별 발사. [checklist-data-model-bundle](../features/checklist-data-model-bundle/spec.md) / [구현 기록](../implementation/checklist-data-model-bundle-impl.md).
 
-- [ ] **결정**: 허용 / 미허용
+- [x] **결정**: 허용 (custom 한정)
 - **현황**: [ChecklistItemRow.tsx:42-73](../../src/components/checklist/ChecklistItemRow.tsx#L42-L73) 편집 모드는 **title만** 수정 가능. 추가 폼([ChecklistAddForm.tsx:43](../../src/components/checklist/ChecklistAddForm.tsx#L43))도 priority를 받지 않고 `medium` 하드코딩.
 - **고려할 트레이드오프**:
   - 허용 → 사용자 자율성↑ (커스텀 항목을 "꼭 챙길 것 = high"로 표시 가능). 폼 복잡도·유효성 처리 증가.
@@ -718,11 +720,11 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 #### P5. localStorage schema versioning 도입
 
-> **상태 (2026-05-09)**: 🟡 **부분 진행 / 자연 보류** — useDueDateStore에 v0→v1 migrate 1건 적용 (P3·P4 산출). 전역 schema versioning 정책은 P1 deferred에 묶여 `checklist-data-model-bundle (TBD)`로 이연.
+> **상태 (2026-06-06)**: ✅ **완료** — P1 묶음 동반 도입. 4개 store (`useDueDateStore`·`useChecklistStore`·`useTimelineStore`·`useWeightStore`) 모두 `version: 1` + 명시 `migrate` 함수 부착. identity migrate (v0→v1), 미지 버전은 throw → `migrationLostFlag` + sonner toast 1회. `schema_migration_run`/`schema_migration_failed` GA4 신설 + `MigrationFlushClient` 가 subscribe 패턴으로 늦은 store hydrate도 flush. [checklist-data-model-bundle](../features/checklist-data-model-bundle/spec.md).
 
-- [ ] **결정**: (a) version 필드 도입 시점 — Phase 4.5 일괄 vs P1 결정 시 함께
-- [ ] **결정**: (b) 마이그레이션 함수 위치 — zustand `persist`의 `migrate` 옵션 / 별도 helper
-- [ ] **결정**: (c) 버전 충돌 시 사용자 데이터 처리 — 보존 / 초기화 + 알림 / 자동 백업 후 초기화
+- [x] **결정**: (a) version 필드 도입 시점 — P1 결정 시 함께 (묶음 채택)
+- [x] **결정**: (b) 마이그레이션 함수 위치 — zustand `persist`의 `migrate` 옵션 (각 store 파일 안에 inline)
+- [x] **결정**: (c) 버전 충돌 시 사용자 데이터 처리 — default state로 fallback + sonner toast 1회 + `schema_migration_failed` 이벤트 (보존 X, 안내 O)
 - **현황**: zustand `persist`에 schema version 필드 없음. P1(priority 편집 허용) 결정 시 customItems 스키마가 바뀌면 기존 사용자의 체크 상태 호환성 문제
 - **연결**: P1 결정 직후 즉시 도입. 향후 "공유된 체크 상태 복원"(Phase 5+) 기능 도입 시에도 동일 인프라 활용
 
@@ -851,7 +853,7 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 | 묶음 | 내용 | 의존성 / 트리거 | 임팩트 | 상태 (2026-05-09) |
 |---|---|---|---|---|
 | **N** | P3·P4 — 임신 주차 입력 onboarding UX 결정 + 와이어프레임 | §1 G·H, §2.6 #2, P2 모두의 선결조건 | 큼 ⭐ | ✅ 완료 |
-| **O** | P5 — localStorage schema versioning 도입 | P1 결정 후 | 중 | 🟡 부분 (P3·P4 store만) |
+| **O** | P5 — localStorage schema versioning 도입 | P1 결정 후 | 중 | ✅ 완료 (2026-06-06, `checklist-data-model-bundle` 묶음 동반) |
 | **P** | P11 — 콘텐츠 매트릭스 1차 산출 (운영자 직접) | §1.9 자동 리포트와 정합 | 중 | ✅ 완료 (2026-06-03, `30-domain/content-matrix.md`) |
 | **Q** | P13 — 외부 링크 인벤토리 1회 수집 | §1.8 묶음 J 전 | 작음 | ⚠️ 미착수 |
 | **R** | P6·P7 — 데이터 모델 정합성 결정 (recommendedWeek / note_type) | P2 부활 결정 시 필수 | 중 | ✅ 완료 (필드 도입은 phase-5) |
@@ -874,11 +876,11 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 | ID | 결정 항목 | 시급도 | 차단되는 작업 | 상태 (2026-05-09) |
 |----|---------|-------|--------------|------|
-| P1 | priority/note 수정 허용 | 보통 | O묶음(versioning), 폼 작업 | 🟡 deferred (`checklist-data-model-bundle`) |
+| P1 | priority/note 수정 허용 | 보통 | O묶음(versioning), 폼 작업 | ✅ 완료 (2026-06-06, `checklist-data-model-bundle`) |
 | P2 | isHighlighted 부활 | 낮음 | R·N 결정 후 | ✅ 완료 |
 | **P3** | **주차 입력 UX 형태** | **높음 ⭐** | **G·H, P2, §2.6 #2** | ✅ 완료 |
 | **P4** | **주차 영속성·갱신 정책** | **높음 ⭐** | **G·H** | ✅ 완료 |
-| P5 | schema versioning | 보통 | O묶음 | 🟡 부분 (P3·P4 store만) |
+| P5 | schema versioning | 보통 | O묶음 | ✅ 완료 (2026-06-06, 4개 store + GA4 2종 + toast) |
 | P6 | recommendedWeek 0 의미 | 보통 | P2 부활 시 필수 | ✅ 완료 |
 | P7 | note_type 필드 | 낮음 | UX #5 진행 시 | ✅ 부분 (패턴 분류, 필드는 phase-5) |
 | P8 | 카테고리 체계 | 낮음 | Phase 5 통합 검색 | ⚠️ 미결 |
@@ -897,7 +899,7 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 > 출처: [docs/tech/technical-debt.md](../tech/technical-debt.md) P1 항목, [docs/tech/review.md](../tech/review.md) 리뷰 잔불, [docs/tech/impl.md](../tech/impl.md) 미구현 메모
 > 기준: Phase 5 착수 전에 처리해야 할 기술 부채만 모음. P2/P3는 [docs/tech/technical-debt.md](../tech/technical-debt.md)에 잔존.
 >
-> **상태 (2026-05-26)**: ✅ **D-A·D-B 완료, D-C~E 미착수(phase-4.5 종료 차단 아님)**. D-B(D-M1 CI/CD + D-M2 webServer + D-M3 동의 거부 회귀 e2e) 완료. P2 ChecklistItem.tsx 미사용 코드는 [checklist-recommendation-semantics](../features/checklist-recommendation-semantics/spec.md)에서 이미 삭제됨. P1 deferred 묶음(`checklist-data-model-bundle`)은 phase-4.5 종료 시 함께 처리.
+> **상태 (2026-06-06)**: ✅ **D-A·D-B·D-C 완료, D-D 부분 / D-E 일부 트리거 도달**. P2 ChecklistItem.tsx 미사용 코드는 [checklist-recommendation-semantics](../features/checklist-recommendation-semantics/spec.md)에서 이미 삭제됨. **P1 deferred 묶음(`checklist-data-model-bundle`) 완료** (2026-06-06) — 부산물로 D-Mn14(priority 입력) 부분 흡수, e2e 시드 헬퍼 신설, design-bundle-b-i fs 가드 강화, vitest 본격 활용(unit 156개 통과)으로 D-Mn20 트리거 도달.
 
 ### 4.1 종합 평가
 
@@ -1015,8 +1017,8 @@ Phase 4까지 기능은 모두 들어왔으나 다음 3개 영역에 부채가 �
 - **수정**: Skeleton 또는 `opacity-0` fade-in 패턴. 진행률은 hydrate 완료 시점에만 표시.
 
 #### D-Mn14. ChecklistAddForm 우선순위·노트 입력 (step 1 Suggestion #6)
-- **현재**: 분류·제목만.
-- **수정**: 우선순위 select + 노트 textarea. 단, 기획 §3 P1 결정(편집 모드에서 priority/note 수정 허용) 결과에 따라 함께 정돈.
+- **상태 (2026-06-06)**: 🟡 **부분 완료** — `checklist-data-model-bundle` (P1) 묶음에서 우선순위 셀렉터 추가(PrioritySelect, 기본값 medium). **노트 textarea는 추가 폼에 미도입** — 편집 모드(EditItemForm)에만 노출. 추가 시점에 note 입력은 의도적 제외 (designer §3 원칙 5 부담 감수, P1 묶음 결정).
+- **(원본 메모)** 분류·제목만. 우선순위 select + 노트 textarea. 기획 §3 P1 결정에 따라 함께 정돈.
 
 #### D-Mn15. `/videos` hash 앵커 스크롤 동작 검증 (step 1 Suggestion #1) — ✅ 자연 소멸 (2026-06-03)
 - **상태**: phase-4.6 §1 영상 자산 일괄 제거로 `/videos`·`/info` 모두 `/articles`로 가는 redirect-only 페이지로 축소. ChecklistRelatedContent의 영상 hash 링크도 함께 제거됨 — 검증 대상 자체 소멸.
@@ -1041,7 +1043,8 @@ Phase 4까지 기능은 모두 들어왔으나 다음 3개 영역에 부채가 �
 - **현 시점**: 미실행.
 
 #### D-Mn20. crosslinks front matter 파서 단위 테스트 (step 5 Suggestion #4)
-- **블록 의존**: vitest 도입(plan/plan.md Phase 5). 도입 후 `parseSimpleYaml`·`setFrontMatterField` 단위 테스트 추가.
+- **상태 (2026-06-06)**: ⏳ **트리거 도달 — 즉시 가능**. vitest는 phase-4.5 중반 도입 후 본 phase 후반 `checklist-data-model-bundle` 묶음에서 본격 활용(unit 156개). 도입 의존 해소 → `parseSimpleYaml`·`setFrontMatterField` 단위 테스트 작성 가능.
+- **(원본 메모)** 블록 의존: vitest 도입. 도입 후 `parseSimpleYaml`·`setFrontMatterField` 단위 테스트 추가.
 
 ---
 
@@ -1052,8 +1055,8 @@ Phase 4까지 기능은 모두 들어왔으나 다음 3개 영역에 부채가 �
 | **D-A** AdSense 인프라 마감 | D-C1, D-C2 | 즉시 | — | ✅ 완료 |
 | **D-B** 자동화·회귀 안전망 | D-M1, D-M2, D-M3 | 다음 | GitHub Secrets 등록 | ✅ 완료 |
 | **D-C** 코드 정돈 (의존성 다이어트) | D-Mn1, D-Mn2 | D-B 후 | — | ✅ 완료 (2026-06-03) — D-Mn1 일괄 제거(번들 −44 KB·node_modules −7.79 MB, [bundle-size-d-c-2026-06-03.md](../lighthouse-seo/bundle-size-d-c-2026-06-03.md)), D-Mn2는 phase-4.6 §1 영상 폐기로 자연 소멸 |
-| **D-D** 리뷰 잔불 일괄 | D-Mn3 ~ D-Mn16 | 시간 날 때 | 없음 (개별 처리 가능) | ✅ 9건 완료 / ✅ 3건 자연 소멸 / ⏳ 3건 기획 §3 대기 (2026-06-03) — 완료: D-Mn4·5·6·7·8·9·10·11·13. 자연 소멸: D-Mn3·15(phase-4.6 §1 흡수), D-Mn2(D-C 메모 참고). 대기: D-Mn12·14·16(기획 §3 결정 후 묶음 처리) |
-| **D-E** 트리거 대기 (의도적 보류) | D-Mn17, D-Mn18, D-Mn19, D-Mn20 | 트리거 도달 시 | D-Mn20만 Phase 5 vitest 의존 | ⏳ 대기 |
+| **D-D** 리뷰 잔불 일괄 | D-Mn3 ~ D-Mn16 | 시간 날 때 | 없음 (개별 처리 가능) | ✅ 9건 완료 / ✅ 3건 자연 소멸 / 🟡 D-Mn14 부분 (priority만 흡수, note 의도적 제외) / ⏳ 2건 기획 §3 대기 (2026-06-06 갱신) — 완료: D-Mn4·5·6·7·8·9·10·11·13. 자연 소멸: D-Mn3·15(phase-4.6 §1), D-Mn2(D-C). 부분: D-Mn14 (`checklist-data-model-bundle` 묶음 흡수). 대기: D-Mn12·16 |
+| **D-E** 트리거 대기 (의도적 보류) | D-Mn17, D-Mn18, D-Mn19, D-Mn20 | 트리거 도달 시 | D-Mn20 vitest 의존 해소(2026-06-06) | 🟡 D-Mn20 트리거 도달 / 나머지 3건 대기 |
 
 ---
 
