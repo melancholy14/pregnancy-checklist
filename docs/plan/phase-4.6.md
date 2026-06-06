@@ -4,17 +4,24 @@
 > Date: 2026-05-09
 > 목표 완료: 2026-06-14
 > Status: ✅ §1·§4·§5 구현 완료. §2 rollback / §3 폐기 도미노 처리 완료.
+> QA 잔여 검증 8건 완료 (2026-06-07) — sitemap·robots·canonical / 30-domain
+> 가이드 / 내부 링크 / AdSense 인프라 / 디자인 §2 충돌 모두 정합 확인.
+> adsense-audit.md 재진단 결과 CRITICAL/HIGH 0건 (item 6 도구 페이지 설명
+> 텍스트 보강까지 완료, 2026-06-07).
 > §1 V1=A 영상 자산 일괄 제거 (2026-05-27, `22ff0a7`).
 > §2 T1=A 흡수 → **2026-06-02 rollback** (옛 `/timeline` 유지, `f7ba341`).
 > H1·N1 도미노 재결정 (2026-06-02) → **N1=B 5탭, H1=B 홈 유지**.
 > §3 폐기. §4 BottomNav 5탭 적용 (2026-06-02, `2c1730c`).
 > §5 GA4 5탭 funnel (axis_enter / axis_cross_link wiring + ga4.md 카탈로그
 > + ANOMALY_EVENTS 확장 + axis-funnel.spec.ts) — 2026-06-03 완료.
-> 잔여 §7 회귀 13건 — 2026-06-03 진단 결과 timeline/체크리스트 페이지
+> §7 회귀 13건 — 2026-06-03 진단 결과 timeline/체크리스트 페이지
 > hydration race (단독 spec 통과, 풀 회귀에서만 random 실패).
 > **CI=1 로컬 풀 회귀로 retry:1 통과 검증 완료** (552 passed / 0 failed,
-> 7.7m) → CI 머지 가능. 근본 race fix는 **phase-5 cleanup 라운드로 이입**.
-> AdSense 신청 영향 없음 (목표 6/15).
+> 7.7m) → CI 머지 가능. 근본 race fix는 **[phase-5.md F2](phase-5.md)로
+> 정식 이입 완료**. AdSense 신청 영향 없음 (목표 6/15).
+>
+> **phase-4.6 작업 완료 (2026-06-07)** — QA 체크리스트 전부 [x],
+> 운영자 vault 정리 ✅, §8.1 회귀 phase-5 이관 ✅. 잔여 0건.
 >
 > **진행 요약 (2026-05-27)**
 >
@@ -28,7 +35,9 @@
 >   6. e2e 25 파일 갱신: 통째 폐기 3 (`info-tab-integration`·`fetch-channel-thumbs`·`phase-4-step-3-related-content`) + 부분 갱신 10 (`cross-links-video-weight` Step 3 폐기, `home`·`client-search`·`ga4-events`·`marketing-events-wiring` 영상 시나리오 제거, SEO 6 path 교체, `design-bundle-h` InfoContainer 검증 폐기, `design-bundle-b-i` 영상 카드 라벨 정리, `phase-4-step-5-crosslinks` linked_video_ids 시나리오 제거, `privacy-terms`·`sticky-header` path 교체)
 >   7. GA4 카탈로그 `ga4.md` §3.C/§3.E/§6.3 `content_click(type=video)`·`external_link_click(context=video)`·`video_id`·`channel_id` deprecated 마킹 (4주 grace 후 spec 삭제)
 >   8. `persona.md` §3.2 운영 가이드 정합
-> - **잔여 (운영자 수동)**: vault `~/Documents/pregnancy-checklist/20-content/videos/` (60개) + `20-content/channels/` (38개) MOC 노트 archive 또는 삭제. `seed-vault-media-notes.py` 폐기로 자동 갱신 끊김.
+> - **잔여 (운영자 수동)**: ✅ 완료 (2026-06-07 확인) — vault
+>   `~/Documents/pregnancy-checklist/20-content/videos/` 및
+>   `20-content/channels/` 디렉터리 0건. 운영자 이미 정리 완료.
 > - **차단되는 다른 작업 0건** — §2 진입 가능.
 >
 > **후속 정리 (2026-05-30, `a9e6110`)**
@@ -588,24 +597,48 @@ V1=A(영상 전체 제거) + T1=A(타임라인 → 체중 흡수) + H1=A + N1=A 
 - [x] D1 GA4 Property ID + Service Account 발급 완료 (2026-05-12)
 - [x] 2주 데이터 수집 완료 (W19~W21 3주치, 단 표본·쿼리 mismatch 명시)
 - [x] V1·T1·H1·N1 4건 결정 + phase-4.6.md 결정 매트릭스 반영 (2026-05-26)
-- [ ] 영상 자산 일괄 제거 + redirect 301 동작
+- [x] 영상 자산 일괄 제거 + meta-refresh redirect 동작 (2026-05-27, §1.2
+  — 정적 export 제약으로 301 대신 `<meta http-equiv="refresh">`)
 - [x] ~~타임라인 흡수 + zustand `migrate` 함수 e2e 검증~~ ⛔ ROLLBACK 2026-06-02
 - [x] IA 재결정 (H1·N1 도미노) — H1=B, N1=B 5탭 (2026-06-02)
 - [x] ~~홈 4축 허브 + BottomNav 4탭 동작~~ ⛔ §3 폐기 (H1=B 도미노)
 - [x] BottomNav 5탭 적용 — "체중" 탭 추가 + 탭 순서 정렬 (2026-06-02, `2c1730c`)
 - [x] GA4 카탈로그 갱신 + axis_*  wiring (2026-06-03, ga4-axis-funnel-5tab 라운드)
-- [ ] sitemap·robots·canonical 4축 정합
-- [ ] 30-domain/ 운영 가이드 갱신
-- [ ] 내부 링크 0건 깨짐 (`grep` 검증)
-- [ ] 사용자 데이터 손실 0건 (e2e migrate 시나리오 = `timeline-migrate.spec.ts` 신규 통과)
-- [🟡] §8.1 영향 매트릭스 — §5 라운드 직접 영향 100% 통과.
-  13건 기존 회귀(timeline/체크리스트 dispatchEvent 타임아웃) cleanup 필요
+- [x] sitemap·robots·canonical 5탭 정합 검증 (2026-06-07) — `sitemap.ts`
+  13개 라우트 5탭 정합(`/videos`·`/info` 미포함, `/timeline`·`/weight`·
+  `/articles` 포함), `robots.ts` `userAgent:* allow:/`, canonical
+  placeholder 0건
+- [x] 30-domain/ 운영 가이드 갱신 (2026-06-07) —
+  `timeline-birth-prep.md:29` 스키마에서 `linked_video_ids` 제거
+  (phase-4.6 §1 V1=A 정합). 그 외 30-domain `.md` 4건 영상·timeline 룰
+  잔재 0건
+- [x] 내부 링크 0건 깨짐 (2026-06-07) — `src/**/*.{ts,tsx}` grep 결과
+  `/videos`·`/info` href 0건. `src/lib/analytics.ts:49` `/info`
+  pathToTab 매핑은 의도적 backward-compat (alsoMatchPrefixes 정합)
+- [x] ~~사용자 데이터 손실 0건 (e2e migrate 시나리오)~~ ⛔ T1 rollback으로
+  timeline 흡수 안 함 = migrate 자체 불필요
+- [x] §8.1 영향 매트릭스 — §5 라운드 직접 영향 100% 통과. CI=1 풀 회귀
+  552/557 (retry:1 cover, 0 failed). 13건 기존 회귀(timeline/체크리스트
+  dispatchEvent 타임아웃) 근본 race fix는 [phase-5.md F2](phase-5.md)로
+  정식 이관 — AdSense 신청(6/15) 이후 진입, phase-4.6 차단 항목 아님
 - [x] §8.2 영향 매트릭스 — `scripts/weekly-report/ga4-queries.ts`
   ANOMALY_EVENTS 확장 (2026-06-03). 다른 scripts 항목은 §1 완료분 유지
 - [x] `axis-funnel.spec.ts` 신규 + deprecated content_click(type=video) 0건 발화 assertion 통과 (2026-06-03)
-- [ ] AdSense 인프라 미회귀 (스크립트·ads.txt 무변경)
-- [ ] [adsense-audit.md](adsense-audit.md) CRITICAL/HIGH 0건
-- [ ] phase-4.5 디자인 §2 결과와 충돌 0건
+- [x] AdSense 인프라 미회귀 (2026-06-07) — `public/ads.txt` 유지
+  (D-C1), `ConsentGatedScripts.tsx` consent-gated `adsbygoogle.js`
+  주입 유지 (D-A). phase-4.6 §1~§5 변경분에 광고 인프라 접촉 0건
+- [x] [adsense-audit.md](adsense-audit.md) CRITICAL/HIGH 재진단
+  (2026-06-07) — CRITICAL 4건 + HIGH 5건 모두 해소. 스크립트 ✅ D-A /
+  AdUnit Auto Ads obsolete / URL-NEEDED 0건 / PERSONAL EXPERIENCE 0건 /
+  아티클 15편 ≥ 권장 15+ / reviewed_by 0건 / 쿠키 배너
+  `CookieConsentBanner.tsx` / canonical placeholder 0건 / item 6 도구
+  페이지 설명 텍스트 보강 — `/weight` empty state onboarding +
+  `WeightContainer.tsx` 활용 팁 yellow 카드 + `BabyfairContainer.tsx`
+  "처음이세요? 베이비페어 200% 활용법" 안내 박스 추가
+- [x] phase-4.5 디자인 §2 결과와 충돌 0건 (2026-06-07) — 영상·timeline
+  관련 §2.8 위반(I-3·I-4·T-1~T-12)은 §1 V1=A로 자연 소멸. /timeline
+  유지 결정(T1 rollback)으로 T-1·T-6은 phase-4.5 §2 통합 묶음에서
+  처리 완료
 
 ---
 

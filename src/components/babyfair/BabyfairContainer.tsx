@@ -197,8 +197,44 @@ export function BabyfairContainer({ events }: BabyfairContainerProps) {
           </>
         )}
 
+        {/* Intro */}
+        <Card className="mt-8 rounded-2xl shadow-sm border border-pastel-yellow/30 bg-pastel-yellow/10">
+          <CardContent className="p-6">
+            <h3 className="mb-3 text-base font-semibold flex items-center gap-2">
+              <span aria-hidden="true">📌</span>
+              처음이세요? 베이비페어 200% 활용법
+            </h3>
+            <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
+              <p>
+                베이비페어는 유아동·임산부 용품 브랜드를 한자리에서 비교·구매할
+                수 있는 박람회예요. 보통 4일간 진행되고, 사전 등록하면
+                입장료가 무료거나 50% 이상 할인됩니다.
+              </p>
+              <div>
+                <p className="font-medium text-foreground mb-1.5">
+                  추천 방문 시기: 임신 18~24주
+                </p>
+                <ul className="space-y-1.5">
+                  <li className="flex items-start gap-2">
+                    <span aria-hidden="true" className="w-1 h-1 rounded-full bg-pastel-yellow mt-2 shrink-0" />
+                    18주 전후: 카시트·유모차 같은 대형 품목 후보 추리기 좋은 시점
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span aria-hidden="true" className="w-1 h-1 rounded-full bg-pastel-yellow mt-2 shrink-0" />
+                    22~24주: 정밀초음파로 성별 확정 후 의류·침구 구매에 적기
+                  </li>
+                </ul>
+              </div>
+              <p>
+                행사장 즉석 할인은 온라인 대비 5~15% 큰 경우가 많고,
+                1+1·세트 묶음·체험 사은품이 가장 매력적인 혜택이에요.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Info Card */}
-        <Card className="mt-8 rounded-2xl shadow-sm border border-black/4 bg-linear-to-r from-pastel-pink/40 to-pastel-lavender/40">
+        <Card className="mt-4 rounded-2xl shadow-sm border border-black/4 bg-linear-to-r from-pastel-pink/40 to-pastel-lavender/40">
           <CardContent className="p-6">
             <h3 className="mb-3">참관 팁</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">

@@ -1,7 +1,12 @@
 # 구글 애드센스 승인 분석 리포트
 
-> 작성일: 2026-04-13
+> 작성일: 2026-04-13 · 재진단: 2026-06-07 (phase-4.6 QA 정합)
 > 대상: pregnancy-checklist.com
+>
+> **재진단 요약 (2026-06-07)**: CRITICAL 4건 + HIGH 5건 + MEDIUM 3건
+> 모두 해소. item 6 도구 페이지 설명 텍스트는 `/weight` empty state
+> onboarding + 활용 팁 yellow 카드 + `/baby-fair` "처음이세요?" 안내
+> 박스 추가로 보강 완료. AdSense 신청(목표 2026-06-15) 차단 항목 0건.
 
 ## 현재 상태 요약
 
