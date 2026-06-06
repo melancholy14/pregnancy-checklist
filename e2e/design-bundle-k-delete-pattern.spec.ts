@@ -234,7 +234,9 @@ test.describe("design-bundle-k-delete-pattern", () => {
       // 항목 영구 삭제
       await expect(weightLogCard(page, "63")).toHaveCount(0);
       // 빈 상태 메시지 노출
-      await expect(page.getByText("아직 기록이 없어요")).toBeVisible();
+      await expect(
+        page.getByText("체중 기록은 임신 건강의 가장 직관적인 신호예요"),
+      ).toBeVisible();
     });
   });
 
