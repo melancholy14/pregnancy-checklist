@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { sendGAEvent } from "@/lib/analytics";
 import type { ChecklistCategory, ChecklistItem, ChecklistSubcategory } from "@/types/checklist";
+import { PrioritySelect } from "./PrioritySelect";
 
 interface ChecklistAddFormProps {
   storeSlug: string;
@@ -20,6 +21,7 @@ export function ChecklistAddForm({ storeSlug, subcategories, onAdd, onClose }: C
   const [category, setCategory] = useState<ChecklistCategory | "">(
     subcategories[0]?.key ?? ""
   );
+  const [priority, setPriority] = useState<ChecklistItem["priority"]>("medium");
 
   if (subcategories.length === 0) {
     if (process.env.NODE_ENV !== "production") {
@@ -41,10 +43,15 @@ export function ChecklistAddForm({ storeSlug, subcategories, onAdd, onClose }: C
       category,
       categoryName: sub?.label ?? "",
       recommendedWeek: 0,
-      priority: "medium",
+      priority,
       isCustom: true,
     });
-    sendGAEvent("custom_item_add", { target: "checklist", category, slug: storeSlug });
+    sendGAEvent("custom_item_add", {
+      target: "checklist",
+      category,
+      slug: storeSlug,
+      priority,
+    });
     onClose();
   };
 
@@ -80,6 +87,11 @@ export function ChecklistAddForm({ storeSlug, subcategories, onAdd, onClose }: C
               autoFocus
               aria-label="할 일 제목"
             />
+          </div>
+
+          <div>
+            <label className="block text-sm text-muted-foreground mb-1">우선순위</label>
+            <PrioritySelect value={priority} onChange={setPriority} />
           </div>
 
           <div className="flex gap-2 justify-end pt-1">

@@ -64,6 +64,45 @@ function readImageDimensions(src: string): ImageDimensions | undefined {
     }
   }
 
+  if (
+    buf.length >= 30 &&
+    buf[0] === 0x52 &&
+    buf[1] === 0x49 &&
+    buf[2] === 0x46 &&
+    buf[3] === 0x46 &&
+    buf[8] === 0x57 &&
+    buf[9] === 0x45 &&
+    buf[10] === 0x42 &&
+    buf[11] === 0x50
+  ) {
+    const chunk = buf.toString("ascii", 12, 16);
+
+    if (chunk === "VP8 ") {
+      return {
+        width: buf.readUInt16LE(26) & 0x3fff,
+        height: buf.readUInt16LE(28) & 0x3fff,
+      };
+    }
+
+    if (chunk === "VP8L") {
+      const b1 = buf[21];
+      const b2 = buf[22];
+      const b3 = buf[23];
+      const b4 = buf[24];
+      return {
+        width: (((b2 & 0x3f) << 8) | b1) + 1,
+        height: (((b4 & 0x0f) << 10) | (b3 << 2) | (b2 >> 6)) + 1,
+      };
+    }
+
+    if (chunk === "VP8X") {
+      return {
+        width: (buf[24] | (buf[25] << 8) | (buf[26] << 16)) + 1,
+        height: (buf[27] | (buf[28] << 8) | (buf[29] << 16)) + 1,
+      };
+    }
+  }
+
   console.warn(`[rehype-article-figure] unsupported image format: ${src}`);
   return undefined;
 }

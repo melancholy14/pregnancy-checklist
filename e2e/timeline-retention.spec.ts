@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { acceptCookieConsent } from "./helpers/consent";
+import { seedStorage } from "./helpers/seedStorage";
 
 /** 예정일을 설정하고 홈으로 이동하는 헬퍼 */
 async function setupWithDueDate(page: import("@playwright/test").Page) {
@@ -94,20 +95,20 @@ test.describe("타임라인 유도 강화 + 데이터 보존", () => {
       // 1. UI로 예정일 설정
       await setupWithDueDate(page);
 
-      // 2. localStorage 직접 조작 — 어제 방문 + 체크 1개 기록
-      await page.evaluate(() => {
-        const yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);
-        localStorage.setItem("last-visit-date", yesterday.toISOString().split("T")[0]);
-        const storage = JSON.parse(
-          localStorage.getItem("checklist-storage") ||
-            '{"state":{"checkedIds":[],"customItems":[]},"version":0}',
-        );
-        storage.state.checkedIds = ["item_105"];
-        localStorage.setItem("checklist-storage", JSON.stringify(storage));
+      // 2. 어제 방문 마커 + 체크 1개 시드 (useChecklistStore = "checklist-storage" 키)
+      const yesterday = new Date();
+      yesterday.setDate(yesterday.getDate() - 1);
+      const yesterdayStr = yesterday.toISOString().split("T")[0];
+      await page.evaluate((v) => {
+        localStorage.setItem("last-visit-date", v);
+      }, yesterdayStr);
+      await seedStorage(page, {
+        checklist: {
+          checklist: { checkedIds: ["item_105"], customItems: [] },
+        },
       });
 
-      // 3. 홈으로 재방문
+      // 3. 홈으로 재방문 (addInitScript 가 reload 에서 재적용됨)
       await page.goto("/");
       await expect(
         page.getByText(/돌아오셨군요! 지난번에 \d+개 체크하셨어요/),

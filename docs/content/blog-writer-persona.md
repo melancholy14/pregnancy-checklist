@@ -237,16 +237,16 @@ days_from_LMP = floor((오늘 - 2025-11-06) / 1일)
 **모드 A — 내러티브 일러스트** (체험형·후기형 글)
 - 인물 1명 + 글 주제를 보여주는 장면 (베이비페어 방문, 거실 소파에서 자료 비교 등)
 - 텍스트 미포함 또는 배너·소품에만 짧은 한글
-- 예: `babyfair-survival-guide.png`, `prenatal-insurance-preparation-guide.png`
+- 예: `babyfair-survival-guide.webp`, `prenatal-insurance-preparation-guide.webp`
 
 **모드 B — 인포그래픽 타임라인/표** (정보형·체크리스트형 글)
 - 인물 X, 데이터·아이콘·구획 중심
 - 한글 헤더 + 단계별 아이콘 + 시기 라벨
-- 예: `weekly-prenatal-checklist.png`
+- 예: `weekly-prenatal-checklist.webp`
 
 ### 6.3 ChatGPT 이미지 프롬프트 템플릿
 
-`/blog-draft`가 초안에 다음 형식으로 **이미지 프롬프트 블록을 같이 박는다**. 운영자가 ChatGPT에 그대로 붙여 넣어 이미지를 생성한 뒤 `public/articles/<slug>.png`로 저장.
+`/blog-draft`가 초안에 다음 형식으로 **이미지 프롬프트 블록을 같이 박는다**. 운영자가 ChatGPT에 그대로 붙여 넣어 이미지를 생성한 뒤 PNG로 받아 WebP로 변환해 `public/articles/<slug>.webp`로 저장 (phase-4.7 R1 결정 — LCP 최적화).
 
 #### 6.3.1 모드 A 템플릿 (내러티브)
 
@@ -310,7 +310,7 @@ crowded layout, English-only labels.
 
 ### 6.3.3 슬롯 사용 규칙
 
-- **헤더 이미지(필수):** H1 직후 `![alt (AI 생성 이미지)](/articles/<slug>.png)` 마크다운 라인을 박는다. 위 IMAGE-PROMPT 주석은 그 **위쪽**에 둔다(운영자가 프롬프트 확인 후 ChatGPT로 생성).
+- **헤더 이미지(필수):** H1 직후 `![alt (AI 생성 이미지)](/articles/<slug>.webp)` 마크다운 라인을 박는다. 위 IMAGE-PROMPT 주석은 그 **위쪽**에 둔다(운영자가 프롬프트 확인 후 ChatGPT로 PNG 생성 → WebP 변환).
 - **본문 보조 이미지(선택):** 글 중간에 모드 B 인포그래픽이 더 필요한 경우 `<!-- image: [설명] -->` 주석으로 자리만 잡고, 별도 IMAGE-PROMPT 블록을 같이 두면 됨.
 - `alt` 텍스트 끝에 ` (AI 생성 이미지)` 후행 표기 필수 ([image-sop.md](image-sop.md) §1 참조).
 

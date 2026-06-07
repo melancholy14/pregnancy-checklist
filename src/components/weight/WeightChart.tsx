@@ -6,7 +6,6 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  ReferenceLine,
 } from "recharts";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -22,11 +21,6 @@ interface WeightChartProps {
 
 export function WeightChart({ data, baseWeight }: WeightChartProps) {
   if (data.length === 0) return null;
-
-  // 권장 체중 증가 범위 (대한산부인과학회 기준, 정상 BMI 기준)
-  // 정상 BMI(18.5~24.9): 총 11.5~16kg 증가 권장
-  const minTarget = baseWeight ? baseWeight + 11.5 : undefined;
-  const maxTarget = baseWeight ? baseWeight + 16 : undefined;
 
   return (
     <Card className="rounded-2xl shadow-sm mb-6 border border-black/4">
@@ -60,24 +54,6 @@ export function WeightChart({ data, baseWeight }: WeightChartProps) {
               }}
               formatter={(value: number) => [`${value} kg`, "체중"]}
             />
-            {minTarget && (
-              <ReferenceLine
-                y={minTarget}
-                stroke="#9CA0A4"
-                strokeDasharray="5 5"
-                strokeWidth={1.5}
-                label={{ value: "권장 하한", position: "right", fontSize: 11, fill: "#9CA0A4" }}
-              />
-            )}
-            {maxTarget && (
-              <ReferenceLine
-                y={maxTarget}
-                stroke="#9CA0A4"
-                strokeDasharray="8 4 2 4"
-                strokeWidth={1.5}
-                label={{ value: "권장 상한", position: "right", fontSize: 11, fill: "#9CA0A4" }}
-              />
-            )}
             <Line
               type="monotone"
               dataKey="weight"
@@ -91,8 +67,8 @@ export function WeightChart({ data, baseWeight }: WeightChartProps) {
         </ResponsiveContainer>
         <p className="mt-3 text-[11px] text-muted-foreground leading-relaxed">
           {baseWeight
-            ? `권장 범위: 임신 전 체중(${baseWeight}kg) 기준 +11.5~16kg (정상 BMI 기준)`
-            : "첫 기록을 기준 체중으로 사용합니다. 기록이 2개 이상이면 권장 범위가 표시됩니다."}
+            ? `첫 기록(${baseWeight}kg) 대비 추이입니다. 정상 BMI 기준 임신 중 총 11.5~16kg 증가가 권장됩니다.`
+            : "기록이 누적되면 추이를 확인할 수 있어요. 정상 BMI 기준 임신 중 총 11.5~16kg 증가가 권장됩니다."}
           <br />
           출처: 대한산부인과학회 임신 중 체중 관리 가이드라인
           <br />

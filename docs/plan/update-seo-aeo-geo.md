@@ -78,7 +78,7 @@
 **효과**: Google에 글 메타 정보 풍부하게 전달. 미세하지만 누적 효과.
 
 **현재** [src/app/articles/[slug]/page.tsx:62-81](../../src/app/articles/[slug]/page.tsx#L62-L81) 누락:
-- `image` (글마다 `/articles/{slug}.png` 존재함)
+- `image` (글마다 `/articles/{slug}.webp` 존재함)
 - `mainEntityOfPage`
 - `keywords` (frontmatter `tags` 활용)
 - `articleSection` (frontmatter 카테고리 신설 또는 첫 tag)

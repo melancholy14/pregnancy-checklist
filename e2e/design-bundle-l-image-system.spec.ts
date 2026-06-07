@@ -55,11 +55,11 @@ test.describe("design-bundle-l-image-system: article 이미지 새 탭 열기 + 
 
       const link = page.locator(".article-prose .article-figure__link");
       const href = await link.getAttribute("href");
-      expect(href).toMatch(/weekly-prenatal-checklist\.png$/);
+      expect(href).toMatch(/weekly-prenatal-checklist\.webp$/);
 
       const img = link.locator("> img");
       const src = await img.getAttribute("src");
-      expect(src).toMatch(/weekly-prenatal-checklist\.png$/);
+      expect(src).toMatch(/weekly-prenatal-checklist\.webp$/);
     });
 
     test("img에 loading=lazy + width/height attribute가 자동 부착된다", async ({

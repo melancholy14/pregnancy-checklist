@@ -11,7 +11,9 @@ test.describe("체중 기록 페이지", () => {
     test("제목과 설명이 렌더링된다", async ({ page }) => {
       // 무엇을: 체중 기록 페이지 기본 UI
       // 왜: 페이지 정상 진입 확인
-      await expect(page.getByRole("heading", { name: "체중 기록" })).toBeVisible();
+      await expect(
+        page.getByRole("heading", { name: "체중 기록", exact: true }),
+      ).toBeVisible();
       await expect(
         page.getByText(/임신 중 체중 변화를 주차별로 기록하고 그래프로 확인하세요/),
       ).toBeVisible();
@@ -20,7 +22,9 @@ test.describe("체중 기록 페이지", () => {
     test("기록이 없으면 빈 상태가 표시된다", async ({ page }) => {
       // 무엇을: 초기 상태에서 안내 메시지 표시
       // 왜: 사용자에게 다음 행동 유도
-      await expect(page.getByText("아직 기록이 없어요")).toBeVisible();
+      await expect(
+        page.getByText("체중 기록은 임신 건강의 가장 직관적인 신호예요"),
+      ).toBeVisible();
     });
 
     test("FAB 버튼이 보인다", async ({ page }) => {
@@ -90,7 +94,9 @@ test.describe("체중 기록 페이지", () => {
     test("모바일: 빈 상태와 FAB가 정상 표시된다", async ({ page }) => {
       // 무엇을: 375px에서 핵심 UI 표시
       // 왜: 주요 타겟 기기
-      await expect(page.getByText("아직 기록이 없어요")).toBeVisible();
+      await expect(
+        page.getByText("체중 기록은 임신 건강의 가장 직관적인 신호예요"),
+      ).toBeVisible();
       await expect(page.locator("button.fixed")).toBeVisible();
     });
   });

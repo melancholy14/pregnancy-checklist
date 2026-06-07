@@ -19,7 +19,7 @@
 
 ## 2. 사용자 시나리오
 
-- **시나리오 1 (모바일 인포그래픽 가독성)**: 사용자 A가 [/articles/weekly-prenatal-checklist](src/content/articles/weekly-prenatal-checklist.md) 본문에서 주차별 검사 인포그래픽을 본다 → 텍스트가 작아 핵심 수치를 놓침 → 이미지를 탭한다 → 새 창에서 원본 이미지(`/articles/weekly-prenatal-checklist.png`)가 열려 핀치 줌 가능 → 원하는 정보 확인 후 새 창 닫고 본문 흐름으로 복귀.
+- **시나리오 1 (모바일 인포그래픽 가독성)**: 사용자 A가 [/articles/weekly-prenatal-checklist](src/content/articles/weekly-prenatal-checklist.md) 본문에서 주차별 검사 인포그래픽을 본다 → 텍스트가 작아 핵심 수치를 놓침 → 이미지를 탭한다 → 새 창에서 원본 이미지(`/articles/weekly-prenatal-checklist.webp`)가 열려 핀치 줌 가능 → 원하는 정보 확인 후 새 창 닫고 본문 흐름으로 복귀.
 - **시나리오 2 (키보드 사용자 접근성)**: 사용자 B가 본문 이미지를 키보드 Tab으로 도달 → focus-visible ring(`ring-pastel-lavender`)이 표시 → Enter/Space 입력 → 새 탭에서 원본 열림. 스크린리더는 "원본 이미지 새 창에서 보기" 라벨 음성 출력으로 동작 예측.
 - **시나리오 3 (figcaption 분기)**: 발행 글 2건 — markdown title 슬롯 보유 → figcaption 끝 "· 원본 보기" 텍스트 추가 분기로 동작. 신규 글 운영자가 title 슬롯 비우면 → 우상단 ExternalLink 아이콘 분기로 동작.
 - **시나리오 4 (CLS·LCP)**: 사용자 C가 article 페이지에 진입 → 이미지가 width/height attribute로 사전 공간 확보 → layout shift 0 → LCP 이미지가 `loading="lazy"` 미적용(첫 이미지) 또는 `loading="lazy"` 적용(이후 이미지)으로 의도된 우선순위 로딩.
@@ -40,7 +40,7 @@
 #### M2. `rehype-article-figure` 플러그인 확장 (IM-3 + IM-5)
 
 - [src/lib/markdown/rehype-article-figure.ts](src/lib/markdown/rehype-article-figure.ts) 확장. 기존 P14 figure 변환 로직은 보존.
-- **width/height 자동 추출**: 빌드 타임에 [`image-size`](https://www.npmjs.com/package/image-size) 라이브러리 (`probe-image-size`도 후보)로 `public/articles/<slug>.png` 등 `src` 경로의 실제 이미지 크기를 읽어 `<img width=N height=N>` attribute 추가. 외부 URL(http/https로 시작)은 width/height 미설정 — 운영자 SOP에 외부 이미지 비권장이 이미 명시.
+- **width/height 자동 추출**: 빌드 타임에 자체 헤더 파서(image-size 라이브러리 대체 — runtime dep 회피)로 `public/articles/<slug>.webp` 등 `src` 경로의 실제 이미지 크기를 읽어 `<img width=N height=N>` attribute 추가. 외부 URL(http/https로 시작)은 width/height 미설정 — 운영자 SOP에 외부 이미지 비권장이 이미 명시.
 - **`<img>`를 `<a>` 래핑**: 변환된 figure의 `cleanImg`를 `<a href={src} target="_blank" rel="noopener noreferrer" aria-label="원본 이미지 새 창에서 보기" class="article-figure__link">`로 감쌈. anchor는 img만 — figcaption은 anchor 외.
 - **figcaption 보유 케이스**: 기존 P14 로직 유지(title 슬롯 → figcaption 텍스트). figcaption 끝에 "· 원본 보기" 텍스트 suffix 추가 (AI 칩 케이스에서는 "· AI 생성 · 원본 보기"가 되도록 P14 `AI_CAPTION_SUFFIX`와 순서 조합).
 - **figcaption 부재 케이스**: figure media 슬롯(`.article-figure__media`) 내부에 우상단 ExternalLink 아이콘을 추가 — `<span class="article-figure__external" aria-hidden="true">`(시각 마커 전용, anchor 라벨이 음성 채널 담당). lucide-react `ExternalLink` 또는 동등한 인라인 SVG. 위치: media 슬롯에 `position: relative` + 마커에 `position: absolute; top: 0.5rem; right: 0.5rem`.

@@ -2,6 +2,8 @@ import { test, expect } from "@playwright/test";
 import type { Page } from "@playwright/test";
 import fs from "node:fs";
 import path from "node:path";
+import { seedStorage } from "./helpers/seedStorage";
+import type { ChecklistItem } from "../src/types/checklist";
 
 /**
  * design-bundle-d-uncheck-toggle-dday
@@ -20,15 +22,14 @@ import path from "node:path";
  */
 
 const HB_PATH = "/checklist/hospital-bag";
-const HB_STORAGE_KEY = "hospital-bag-storage";
 
-type ChecklistItem = { id: string; title: string; category: string };
+type HbChecklistRecord = { id: string; title: string; category: string };
 const hbData = JSON.parse(
   fs.readFileSync(
     path.resolve(__dirname, "../src/data/hospital_bag_checklist.json"),
     "utf8",
   ),
-) as { items: ChecklistItem[] };
+) as { items: HbChecklistRecord[] };
 
 const ALL_HB_IDS: string[] = hbData.items.map((i) => i.id);
 
@@ -112,36 +113,23 @@ async function seedNoWeek(page: Page) {
   });
 }
 
-/** hospital-bag-storage 에 checkedIds·customItems 를 시드한다. */
+/** hospital-bag-storage 에 checkedIds·customItems 를 시드한다. version 은 seedStorage 기본값. */
 async function seedHbStore(
   page: Page,
   state: { checkedIds?: string[]; customItems?: SeedCustomItem[] } = {},
 ) {
-  await page.addInitScript(
-    ({ key, payload }) => {
-      localStorage.setItem(
-        key,
-        JSON.stringify({
-          state: {
-            checkedIds: payload.checkedIds ?? [],
-            customItems: (payload.customItems ?? []).map((i) => ({
-              ...i,
-              isCustom: true,
-            })),
-            migrationLostFlag: false,
-          },
-          version: 0,
-        }),
-      );
-    },
-    {
-      key: HB_STORAGE_KEY,
-      payload: {
+  const customItems: ChecklistItem[] | undefined = state.customItems?.map((i) => ({
+    ...i,
+    isCustom: true,
+  }));
+  await seedStorage(page, {
+    checklist: {
+      "hospital-bag": {
         checkedIds: state.checkedIds,
-        customItems: state.customItems,
+        customItems,
       },
     },
-  );
+  });
 }
 
 test.describe("design-bundle-d-uncheck-toggle-dday", () => {

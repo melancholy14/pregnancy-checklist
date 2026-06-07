@@ -36,7 +36,7 @@ export function StickyHeader() {
     >
       <div className="max-w-2xl mx-auto h-full flex items-center gap-2 px-4">
         <Image
-          src="/home.png"
+          src="/home.webp"
           alt=""
           width={20}
           height={20}

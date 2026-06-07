@@ -36,10 +36,10 @@
 <!-- 분기 A: figcaption 보유 -->
 <figure class="article-figure">
   <span class="article-figure__media">
-    <a href="/articles/x.png" target="_blank" rel="noopener noreferrer"
+    <a href="/articles/x.webp" target="_blank" rel="noopener noreferrer"
        class="article-figure__link"
        aria-label="원본 이미지 새 창에서 보기">
-      <img src="/articles/x.png" alt="..." width="720" height="480" loading="lazy" />
+      <img src="/articles/x.webp" alt="..." width="720" height="480" loading="lazy" />
     </a>
     <!-- AI 마커 alt 보유 시 추가 -->
     <span class="article-figure__chip" aria-hidden="true">Imagined with AI</span>
@@ -53,10 +53,10 @@
 <!-- 분기 B: figcaption 부재 -->
 <figure class="article-figure">
   <span class="article-figure__media">
-    <a href="/articles/x.png" target="_blank" rel="noopener noreferrer"
+    <a href="/articles/x.webp" target="_blank" rel="noopener noreferrer"
        class="article-figure__link"
        aria-label="원본 이미지 새 창에서 보기">
-      <img src="/articles/x.png" alt="..." width="720" height="480" loading="lazy" />
+      <img src="/articles/x.webp" alt="..." width="720" height="480" loading="lazy" />
     </a>
     <span class="article-figure__external" aria-hidden="true">
       <!-- lucide ExternalLink 인라인 SVG -->

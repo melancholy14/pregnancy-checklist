@@ -1,7 +1,12 @@
 # 구글 애드센스 승인 분석 리포트
 
-> 작성일: 2026-04-13
+> 작성일: 2026-04-13 · 재진단: 2026-06-07 (phase-4.6 QA 정합)
 > 대상: pregnancy-checklist.com
+>
+> **재진단 요약 (2026-06-07)**: CRITICAL 4건 + HIGH 5건 + MEDIUM 3건
+> 모두 해소. item 6 도구 페이지 설명 텍스트는 `/weight` empty state
+> onboarding + 활용 팁 yellow 카드 + `/baby-fair` "처음이세요?" 안내
+> 박스 추가로 보강 완료. AdSense 신청(목표 2026-06-15) 차단 항목 0건.
 
 ## 현재 상태 요약
 
@@ -37,6 +42,8 @@
 - **위치**: `src/components/ads/AdUnit.tsx`
 - **문제**: 컴포넌트가 존재하지만 실제 페이지에서 import하는 곳이 0개
 - **필요 조치**: 최소 아티클 상세 페이지, 홈, 타임라인 페이지에 광고 슬롯 배치
+
+> **Status 정정 (2026-06-06)**: 본 항목은 수동 슬롯 모델 가정으로 작성됨. phase-3 §M3-A에서 ✅ 완료(4/19)로 마킹됐으나 6월 재진단 시 prod에서 미배치 확인. [phase-4.7 의사결정](phase-4.7.md#의사결정-기록)에서 광고 게재 방식 = **Auto Ads** 채택 → 광고 슬롯 코드 배치 자체가 불필요해짐. 본 CRITICAL 항목 **obsolete**. 승인 후 콘솔에서 자동 광고 ON 토글로 게재 시작.
 
 ### 3. 참고 자료 URL이 전부 빠져 있음 (URL-NEEDED)
 
@@ -134,7 +141,7 @@ google.com, pub-6022771079735605, DIRECT, f08c47fec0942fa0
 
 | 순위 | 작업 | 중요도 |
 |------|------|--------|
-| 1 | AdSense 스크립트 로드 + AdUnit 실제 배치 | CRITICAL |
+| 1 | AdSense 스크립트 로드 + AdUnit 실제 배치 | 스크립트 로드 ✅ phase-4.5 D-A 완료 / AdUnit 배치 → [phase-4.7 Auto Ads 채택](phase-4.7.md#의사결정-기록)으로 obsolete |
 | 2 | URL-NEEDED 참고자료 링크 전부 채우기 | CRITICAL |
 | 3 | PERSONAL EXPERIENCE 섹션 실제 경험담으로 채우기 | CRITICAL |
 | 4 | 아티클 6개 이상 추가 (최소 15개 목표) | HIGH |

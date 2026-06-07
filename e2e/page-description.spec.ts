@@ -17,7 +17,9 @@ test.describe("도구 페이지 설명 텍스트 (PageDescription)", () => {
       // 왜: 도구 페이지에 텍스트가 없으면 "가치 낮은 콘텐츠"로 판정 위험
       await page.goto("/weight");
 
-      await expect(page.getByRole("heading", { name: "체중 기록" })).toBeVisible();
+      await expect(
+        page.getByRole("heading", { name: "체중 기록", exact: true }),
+      ).toBeVisible();
       await expect(page.getByText("대한산부인과학회 기준 BMI별 적정 체중 증가 범위를 참고할 수")).toBeVisible();
       await expect(page.getByText("담당 의료진과 함께 체중 추이를")).toBeVisible();
     });
@@ -80,7 +82,9 @@ test.describe("도구 페이지 설명 텍스트 (PageDescription)", () => {
       await expect(page.getByText("출산 예정일을 입력하면 현재 주차가 자동으로 하이라이트됩니다")).toBeVisible();
 
       await page.goto("/weight");
-      await expect(page.getByRole("heading", { name: "체중 기록" })).toBeVisible();
+      await expect(
+        page.getByRole("heading", { name: "체중 기록", exact: true }),
+      ).toBeVisible();
       await expect(page.getByText("대한산부인과학회 기준 BMI별 적정 체중 증가 범위를 참고할 수")).toBeVisible();
 
       await page.goto("/baby-fair");

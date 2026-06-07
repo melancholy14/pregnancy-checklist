@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useMemo, useRef } from "react";
-import { Button } from "@/components/ui/button";
 import { sendGAEvent } from "@/lib/analytics";
 import { classifyNote, type NoteType } from "@/lib/note-classifier";
 import { PRIORITY_LABEL } from "@/lib/constants";
 import type { ChecklistItem } from "@/types/checklist";
 import { ChecklistRow } from "./ChecklistRow";
+import { EditItemForm, type EditItemFormValues } from "./EditItemForm";
 
 interface ChecklistItemRowProps {
   item: ChecklistItem;
@@ -14,13 +14,11 @@ interface ChecklistItemRowProps {
   isChecked: boolean;
   isHighlighted: boolean;
   isEditing: boolean;
-  editTitle: string;
   currentPregnancyWeek: number | null;
   isHydrated: boolean;
   onToggle: () => void;
   onStartEdit: () => void;
-  onChangeEditTitle: (next: string) => void;
-  onSaveEdit: () => void;
+  onSaveEdit: (next: EditItemFormValues) => void;
   onCancelEdit: () => void;
   onRemove: () => void;
 }
@@ -31,12 +29,10 @@ export function ChecklistItemRow({
   isChecked,
   isHighlighted,
   isEditing,
-  editTitle,
   currentPregnancyWeek,
   isHydrated,
   onToggle,
   onStartEdit,
-  onChangeEditTitle,
   onSaveEdit,
   onCancelEdit,
   onRemove,
@@ -60,40 +56,19 @@ export function ChecklistItemRow({
       item_id: item.id,
       weeks_ahead: item.recommendedWeek - currentPregnancyWeek,
     });
-  }, [isHydrated, showUpcomingLabel, item.id, item.recommendedWeek, currentPregnancyWeek]);
+    // slug 의존성은 GA 발사 자체가 slug-aware하지 않으므로 생략.
+    void slug;
+  }, [isHydrated, showUpcomingLabel, item.id, item.recommendedWeek, currentPregnancyWeek, slug]);
 
   if (isEditing) {
     return (
-      <div className="p-3 rounded-xl border border-pastel-lavender/30 bg-pastel-lavender/10 space-y-2">
-        <input
-          type="text"
-          value={editTitle}
-          onChange={(e) => onChangeEditTitle(e.target.value)}
-          className="w-full px-3 py-1.5 rounded-lg border border-black/6 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-pastel-lavender/50"
-          autoFocus
-          aria-label="제목 수정"
-        />
-        <div className="flex gap-2 justify-end">
-          <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            onClick={onCancelEdit}
-            className="rounded-lg h-8 text-xs"
-          >
-            취소
-          </Button>
-          <Button
-            type="button"
-            size="sm"
-            onClick={onSaveEdit}
-            disabled={!editTitle.trim()}
-            className="rounded-lg h-8 text-xs bg-pastel-lavender text-foreground hover:bg-pastel-lavender/80"
-          >
-            저장
-          </Button>
-        </div>
-      </div>
+      <EditItemForm
+        initialTitle={item.title}
+        initialPriority={item.priority}
+        initialNote={item.note ?? ""}
+        onSave={onSaveEdit}
+        onCancel={onCancelEdit}
+      />
     );
   }
 
