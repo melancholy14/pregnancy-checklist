@@ -11,6 +11,7 @@ import hospitalBag from "@/data/hospital_bag_checklist.json";
 import partnerPrep from "@/data/partner_prep_checklist.json";
 import pregnancyPrep from "@/data/pregnancy_prep_checklist.json";
 import type { ChecklistData } from "@/types/checklist";
+import type { Article } from "@/types/article";
 
 const allChecklistMetas = [
   (hospitalBag as ChecklistData).meta,
@@ -46,19 +47,28 @@ export async function generateMetadata({
   };
 }
 
+type ArticleJsonLdProps = Pick<
+  Article,
+  | "title"
+  | "description"
+  | "canonical"
+  | "date"
+  | "updated"
+  | "slug"
+  | "tags"
+  | "wordCount"
+>;
+
 function ArticleJsonLd({
   title,
   description,
   canonical,
   date,
   updated,
-}: {
-  title: string;
-  description: string;
-  canonical: string;
-  date: string;
-  updated?: string;
-}) {
+  slug,
+  tags,
+  wordCount,
+}: ArticleJsonLdProps) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -67,6 +77,16 @@ function ArticleJsonLd({
     url: canonical,
     datePublished: date,
     ...(updated && { dateModified: updated }),
+    image: `${BASE_URL}/articles/${slug}.webp`,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": canonical,
+    },
+    ...(tags.length > 0 && {
+      keywords: tags.join(", "),
+      articleSection: tags[0],
+    }),
+    wordCount,
     author: {
       "@type": "Person",
       name: "뿌까뽀까",
@@ -112,6 +132,9 @@ export default async function ArticlePage({
         canonical={article.canonical}
         date={article.date}
         updated={article.updated}
+        slug={article.slug}
+        tags={article.tags}
+        wordCount={article.wordCount}
       />
       <ArticleDetail
         article={article}

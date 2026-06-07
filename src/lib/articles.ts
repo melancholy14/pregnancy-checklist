@@ -12,6 +12,14 @@ import { BASE_URL } from "@/lib/constants";
 
 const ARTICLES_DIR = path.join(process.cwd(), "src/content/articles");
 
+export function countWords(markdown: string): number {
+  const withoutCodeFences = markdown.replace(/```[\s\S]*?```/g, " ");
+  const withoutInlineCode = withoutCodeFences.replace(/`[^`]*`/g, " ");
+  const withoutImages = withoutInlineCode.replace(/!\[[^\]]*\]\([^)]*\)/g, " ");
+  const tokens = withoutImages.split(/\s+/).filter(Boolean);
+  return tokens.length;
+}
+
 const sanitizeSchema = {
   ...defaultSchema,
   attributes: {
@@ -92,17 +100,20 @@ export async function getArticleBySlug(
     ? disclaimerLines.join(" ")
     : undefined;
 
+  const mainContent = contentLines.join("\n");
+
   const result = await remark()
     .use(remarkGfm)
     .use(remarkRehype)
     .use(rehypeSanitize, sanitizeSchema)
     .use(rehypeArticleFigure)
     .use(rehypeStringify)
-    .process(contentLines.join("\n"));
+    .process(mainContent);
 
   return {
     ...parseArticleMeta(data),
     content: result.toString(),
     disclaimer,
+    wordCount: countWords(mainContent),
   };
 }

@@ -13,4 +13,5 @@ export type ArticleMeta = {
 export type Article = ArticleMeta & {
   content: string;
   disclaimer?: string;
+  wordCount: number;
 };
