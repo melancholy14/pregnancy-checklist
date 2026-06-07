@@ -59,6 +59,14 @@ const ANOMALY_EVENTS = [
 const COHORT_LOOKBACK_WEEKS = 8;
 const TOP_N = 10;
 
+// Q4 자체 도메인 거짓 양성 제거 — pregnancy-checklist.com 변종을 자체화 후보에서 제외.
+// CNAME은 `pregnancy-checklist.com` 단일이지만 enhanced measurement의 linkDomain은
+// www 서브도메인 형태로도 들어올 수 있어 두 변종을 모두 차단.
+const SELF_DOMAINS = new Set<string>([
+  "pregnancy-checklist.com",
+  "www.pregnancy-checklist.com",
+]);
+
 export function createGa4Client(): BetaAnalyticsDataClient {
   return new BetaAnalyticsDataClient();
 }
@@ -116,13 +124,21 @@ async function runCohortViaSpec(
   range: WeeklyDateRange,
 ): Promise<CohortRow[]> {
   const cohortStart = addDays(parseISO(range.endDate), -7 * COHORT_LOOKBACK_WEEKS + 1);
-  type CohortBlock = { name: string; dateRange: { startDate: string; endDate: string } };
+  // GA4 Data API: 각 cohort 블록에 `dimension: "firstSessionDate"` 필수.
+  // 누락 시 `INVALID_ARGUMENT: The dimension field in cohortSpec.cohorts.dimension
+  // is required and must be the string "firstSessionDate"` 가 떨어진다 (W22 raw 기록).
+  type CohortBlock = {
+    name: string;
+    dimension: "firstSessionDate";
+    dateRange: { startDate: string; endDate: string };
+  };
   const cohorts: CohortBlock[] = [];
   for (let i = 0; i < COHORT_LOOKBACK_WEEKS; i += 1) {
     const start = addDays(cohortStart, i * 7);
     const end = addDays(start, 6);
     cohorts.push({
       name: isoWeekLabel(start),
+      dimension: "firstSessionDate",
       dateRange: {
         startDate: format(start, "yyyy-MM-dd"),
         endDate: format(end, "yyyy-MM-dd"),
@@ -151,14 +167,16 @@ async function runCohortViaSpec(
   }));
 }
 
-function parseCohortJoinWeek(label: string): Date | null {
-  // PageviewTracker가 vault에 적는 cohort_join_week 라벨은 "YYYY-Www" ISO 주차.
-  const match = label.match(/^(\d{4})-W(\d{2})$/);
-  if (!match) return null;
-  const year = Number(match[1]);
-  const week = Number(match[2]);
-  // ISO 8601: 1월 4일은 항상 주차 1에 속한다 → 거기서 (week-1)주를 더해 해당 주의 월요일을 얻는다.
-  return startOfISOWeek(addDays(new Date(Date.UTC(year, 0, 4)), (week - 1) * 7));
+function firstSessionDateToMonday(yyyymmdd: string): Date | null {
+  // GA4 표준 dimension `firstSessionDate`는 "YYYYMMDD" 문자열.
+  // 운영자가 `cohort_join_week` user-scoped custom dimension을 GA4 콘솔에 등록하지
+  // 않아도 동작하도록, 사용자의 첫 세션 날짜를 ISO 주차의 월요일로 환원해서
+  // cohort_join_week 라벨을 유도한다.
+  if (!/^\d{8}$/.test(yyyymmdd)) return null;
+  const year = Number(yyyymmdd.slice(0, 4));
+  const month = Number(yyyymmdd.slice(4, 6));
+  const day = Number(yyyymmdd.slice(6, 8));
+  return startOfISOWeek(new Date(Date.UTC(year, month - 1, day)));
 }
 
 async function runCohortViaManual(
@@ -166,35 +184,51 @@ async function runCohortViaManual(
   propertyId: string,
   range: WeeklyDateRange,
 ): Promise<CohortRow[]> {
-  const lookbackStart = format(
+  // cohortStartMonday는 lookback 윈도의 첫 ISO 월요일 — cohortSpec 경로와 동일한
+  // "지난 8주에 첫 세션을 가진 사용자" 집합으로 좁히기 위한 기준점.
+  const cohortStartMonday = startOfISOWeek(
     addDays(parseISO(range.endDate), -7 * COHORT_LOOKBACK_WEEKS + 1),
-    "yyyy-MM-dd",
   );
+  const lookbackStart = format(cohortStartMonday, "yyyy-MM-dd");
   const [response] = await client.runReport({
     property: propertyPath(propertyId),
-    dimensions: [{ name: "customUser:cohort_join_week" }, { name: "isoWeek" }, { name: "isoYear" }],
+    dimensions: [{ name: "firstSessionDate" }, { name: "isoWeek" }, { name: "isoYear" }],
     metrics: [{ name: "activeUsers" }],
     dateRanges: [{ startDate: lookbackStart, endDate: range.endDate }],
   });
 
-  return (response.rows ?? [])
-    .map((row) => {
-      const cohortJoinWeek = readString(row.dimensionValues?.[0]?.value);
-      const isoWeek = readNumber(row.dimensionValues?.[1]?.value);
-      const isoYear = readNumber(row.dimensionValues?.[2]?.value);
-      const activeUsers = readNumber(row.metricValues?.[0]?.value);
-      const joinMonday = parseCohortJoinWeek(cohortJoinWeek);
-      const activeMonday =
-        isoWeek > 0 && isoYear > 0
-          ? startOfISOWeek(addDays(new Date(Date.UTC(isoYear, 0, 4)), (isoWeek - 1) * 7))
-          : null;
-      const nthWeek =
-        joinMonday && activeMonday
-          ? differenceInCalendarISOWeeks(activeMonday, joinMonday)
-          : -1;
-      return { cohortJoinWeek, nthWeek, activeUsers };
-    })
-    .filter((r) => r.cohortJoinWeek !== "" && r.nthWeek >= 0);
+  // firstSessionDate별로 여러 행이 나올 수 있으므로 (cohortJoinWeek, nthWeek) 키로 합산.
+  const aggregated = new Map<string, { cohortJoinWeek: string; nthWeek: number; activeUsers: number }>();
+  for (const row of response.rows ?? []) {
+    const firstSessionDate = readString(row.dimensionValues?.[0]?.value);
+    const isoWeek = readNumber(row.dimensionValues?.[1]?.value);
+    const isoYear = readNumber(row.dimensionValues?.[2]?.value);
+    const activeUsers = readNumber(row.metricValues?.[0]?.value);
+
+    const joinMonday = firstSessionDateToMonday(firstSessionDate);
+    const activeMonday =
+      isoWeek > 0 && isoYear > 0
+        ? startOfISOWeek(addDays(new Date(Date.UTC(isoYear, 0, 4)), (isoWeek - 1) * 7))
+        : null;
+    if (!joinMonday || !activeMonday) continue;
+    // dateRanges는 active 세션 날짜만 제한하므로, 오래 전 join한 사용자가
+    // 이번 lookback 안에서 활성이면 결과에 섞여 들어온다. cohortSpec와 같은
+    // 8주 cohort 집합으로 맞추기 위해 joinMonday를 명시적으로 컷오프.
+    if (joinMonday < cohortStartMonday) continue;
+
+    const cohortJoinWeek = isoWeekLabel(joinMonday);
+    const nthWeek = differenceInCalendarISOWeeks(activeMonday, joinMonday);
+    if (nthWeek < 0) continue;
+
+    const key = `${cohortJoinWeek}::${nthWeek}`;
+    const existing = aggregated.get(key);
+    if (existing) {
+      existing.activeUsers += activeUsers;
+    } else {
+      aggregated.set(key, { cohortJoinWeek, nthWeek, activeUsers });
+    }
+  }
+  return [...aggregated.values()];
 }
 
 export async function queryCohortRetention(
@@ -288,10 +322,16 @@ export async function queryCoreBehaviorReach(
   const rows: CoreBehaviorRow[] = CORE_BEHAVIOR_EVENTS.map((eventName) => {
     const cur = currentMap.get(eventName) ?? { eventCount: 0, totalUsers: 0 };
     const prev = previousMap.get(eventName) ?? { eventCount: 0, totalUsers: 0 };
-    const wowDelta =
-      prev.eventCount > 0
-        ? Number((((cur.eventCount - prev.eventCount) / prev.eventCount) * 100).toFixed(1))
-        : null;
+    // 3-way: prev>0 → 숫자 %; prev=0 && cur>0 → "new" (신규 발현);
+    // 양주 모두 0 → null (비교 의미 없음 — 본문에서 "데이터 없음" 처리).
+    let wowDelta: number | "new" | null;
+    if (prev.eventCount > 0) {
+      wowDelta = Number((((cur.eventCount - prev.eventCount) / prev.eventCount) * 100).toFixed(1));
+    } else if (cur.eventCount > 0) {
+      wowDelta = "new";
+    } else {
+      wowDelta = null;
+    }
     return {
       eventName,
       eventCount: cur.eventCount,
@@ -369,7 +409,7 @@ export async function queryExternalDomainOutflow(
       domain: readString(row.dimensionValues?.[0]?.value),
       eventCount: readNumber(row.metricValues?.[0]?.value),
     }))
-    .filter((r) => r.domain !== "" && r.domain !== "(not set)");
+    .filter((r) => r.domain !== "" && r.domain !== "(not set)" && !SELF_DOMAINS.has(r.domain));
 
   return { rows };
 }
