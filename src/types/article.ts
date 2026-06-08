@@ -1,3 +1,8 @@
+export type FaqItem = {
+  q: string;
+  a: string;
+};
+
 export type ArticleMeta = {
   title: string;
   description: string;
@@ -8,10 +13,12 @@ export type ArticleMeta = {
   linked_timeline_weeks?: number[];
   authorNote?: string;
   canonical: string;
+  faq?: FaqItem[];
 };
 
 export type Article = ArticleMeta & {
   content: string;
   disclaimer?: string;
   wordCount: number;
+  faqHtmlAnswers?: string[];
 };

@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getAllArticles, getArticleBySlug } from "@/lib/articles";
+import {
+  getAllArticles,
+  getArticleBySlug,
+  faqAnswerToPlainText,
+} from "@/lib/articles";
 import {
   getRelatedArticles,
   getRelatedChecklists,
@@ -11,7 +15,7 @@ import hospitalBag from "@/data/hospital_bag_checklist.json";
 import partnerPrep from "@/data/partner_prep_checklist.json";
 import pregnancyPrep from "@/data/pregnancy_prep_checklist.json";
 import type { ChecklistData } from "@/types/checklist";
-import type { Article } from "@/types/article";
+import type { Article, FaqItem } from "@/types/article";
 
 const allChecklistMetas = [
   (hospitalBag as ChecklistData).meta,
@@ -108,6 +112,28 @@ function ArticleJsonLd({
   );
 }
 
+function FaqPageJsonLd({ faq }: { faq: FaqItem[] }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faqAnswerToPlainText(item.a),
+      },
+    })),
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}
+
 export default async function ArticlePage({
   params,
 }: {
@@ -136,6 +162,9 @@ export default async function ArticlePage({
         tags={article.tags}
         wordCount={article.wordCount}
       />
+      {article.faq && article.faq.length > 0 && (
+        <FaqPageJsonLd faq={article.faq} />
+      )}
       <ArticleDetail
         article={article}
         relatedArticles={relatedArticles}
