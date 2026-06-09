@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
+import { getBreadcrumbForPath } from "@/lib/breadcrumb-labels";
 import { BASE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -17,6 +19,7 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <div className="min-h-screen pb-24 px-4">
+      <BreadcrumbJsonLd items={getBreadcrumbForPath("/terms")} />
       <div className="pt-8 prose prose-sm">
         <h1 className="text-center text-xl mb-8">서비스 이용약관</h1>
 

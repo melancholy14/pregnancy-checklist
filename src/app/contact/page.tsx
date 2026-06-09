@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
+import { getBreadcrumbForPath } from "@/lib/breadcrumb-labels";
 import { BASE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -19,6 +21,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div className="min-h-screen pb-24 px-4">
+      <BreadcrumbJsonLd items={getBreadcrumbForPath("/contact")} />
       <div className="pt-8 max-w-lg mx-auto">
         <h1 className="text-center text-xl font-bold mb-8">의견 보내기</h1>
 

@@ -10,6 +10,8 @@ import {
   getRelatedChecklists,
 } from "@/lib/related-content";
 import { ArticleDetail } from "@/components/articles/ArticleDetail";
+import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
+import { getBreadcrumbForPath } from "@/lib/breadcrumb-labels";
 import { BASE_URL, OG_IMAGE } from "@/lib/constants";
 import hospitalBag from "@/data/hospital_bag_checklist.json";
 import partnerPrep from "@/data/partner_prep_checklist.json";
@@ -165,6 +167,12 @@ export default async function ArticlePage({
       {article.faq && article.faq.length > 0 && (
         <FaqPageJsonLd faq={article.faq} />
       )}
+      <BreadcrumbJsonLd
+        items={getBreadcrumbForPath(`/articles/${article.slug}`, {
+          title: article.title,
+          slug: article.slug,
+        })}
+      />
       <ArticleDetail
         article={article}
         relatedArticles={relatedArticles}

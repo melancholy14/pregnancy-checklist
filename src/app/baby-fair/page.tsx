@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import babyfairEvents from "@/data/babyfair_events.json";
 import type { BabyfairEvent } from "@/types/babyfair";
 import { BabyfairContainer } from "@/components/babyfair/BabyfairContainer";
+import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
+import { getBreadcrumbForPath } from "@/lib/breadcrumb-labels";
 import { BASE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -18,5 +20,10 @@ export const metadata: Metadata = {
 };
 
 export default function BabyFairPage() {
-  return <BabyfairContainer events={babyfairEvents as BabyfairEvent[]} />;
+  return (
+    <>
+      <BreadcrumbJsonLd items={getBreadcrumbForPath("/baby-fair")} />
+      <BabyfairContainer events={babyfairEvents as BabyfairEvent[]} />
+    </>
+  );
 }

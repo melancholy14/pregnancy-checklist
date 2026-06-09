@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import data from "@/data/hospital_bag_checklist.json";
 import { ChecklistPage } from "@/components/checklist/ChecklistPage";
+import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
 import { getAllArticles } from "@/lib/articles";
+import { getBreadcrumbForPath } from "@/lib/breadcrumb-labels";
 import { BASE_URL, OG_IMAGE } from "@/lib/constants";
 import type { ChecklistData } from "@/types/checklist";
 
@@ -27,10 +29,13 @@ export default function HospitalBagChecklistPage() {
   const linkedArticles = allArticles.filter((a) => linkedSlugs.has(a.slug));
 
   return (
-    <ChecklistPage
-      data={checklistData}
-      storeSlug="hospital-bag"
-      linkedArticles={linkedArticles}
-    />
+    <>
+      <BreadcrumbJsonLd items={getBreadcrumbForPath("/checklist/hospital-bag")} />
+      <ChecklistPage
+        data={checklistData}
+        storeSlug="hospital-bag"
+        linkedArticles={linkedArticles}
+      />
+    </>
   );
 }

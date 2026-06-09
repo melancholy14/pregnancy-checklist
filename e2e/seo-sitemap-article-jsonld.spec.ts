@@ -26,10 +26,16 @@ function extractUrlEntries(xml: string): Array<{ loc: string; lastmod: string }>
 
 async function getArticleJsonLd(page: import("@playwright/test").Page, slug: string) {
   await page.goto(`/articles/${slug}`);
-  const handle = await page.locator('script[type="application/ld+json"]').first();
-  const json = await handle.textContent();
-  expect(json).toBeTruthy();
-  return JSON.parse(json!);
+  const handles = await page.locator('script[type="application/ld+json"]').all();
+  const articles: Record<string, unknown>[] = [];
+  for (const h of handles) {
+    const text = await h.textContent();
+    if (!text) continue;
+    const parsed = JSON.parse(text) as Record<string, unknown>;
+    if (parsed["@type"] === "Article") articles.push(parsed);
+  }
+  expect(articles).toHaveLength(1);
+  return articles[0];
 }
 
 test.describe("seo-sitemap-article-jsonld", () => {

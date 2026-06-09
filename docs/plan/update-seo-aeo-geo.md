@@ -1,8 +1,22 @@
 # 콘텐츠 SEO/AEO/GEO 보강 계획
 
 > 작성일: 2026-06-03
+> 진행 갱신: 2026-06-08
 > 대상: pregnancy-checklist.com
 > 컨텍스트: GA4 트래픽이 기대치 대비 낮음 → 진단 결과 sitemap absolute URL 버그 발견, 1단계 fix 완료. 2단계로 콘텐츠 SEO/AEO/GEO 마크업 보강 필요.
+
+## 진행 현황 (2026-06-08 기준)
+
+| PR | 항목 | 상태 | 머지 커밋 / 문서 |
+|----|------|------|------------------|
+| PR-A | Sitemap 누락 라우트 + BUILD_TIME | ✅ 완료 | `5317686` · [seo-sitemap-article-jsonld](../seo-sitemap-article-jsonld/README.md) |
+| PR-B | BreadcrumbList JSON-LD | ⬜ 미착수 | — |
+| PR-C | FAQPage JSON-LD | ✅ 완료 | (PR pending) · [faq-jsonld](../faq-jsonld/README.md) |
+| PR-D | Article JSON-LD 5필드 보강 | ✅ 완료 | `5317686` · [seo-sitemap-article-jsonld](../seo-sitemap-article-jsonld/README.md) |
+| PR-E | WebSite + Person JSON-LD | ⬜ 미착수 | — |
+| PR-F | llms.txt + AI 크롤러 정책 | ⬜ 미착수 | — robots.ts 에 명시 allow 없음, `public/llms.txt` 없음 |
+
+**잔여 작업**: PR-B · PR-E · PR-F (3개). 산후 휴면(2026-08 ~) 진입 전 PR-B 우선 권장 (사이트 전체 일관 마크업의 마지막 한 조각).
 
 ---
 
@@ -19,103 +33,109 @@
 
 ## 2단계: 콘텐츠 SEO/AEO/GEO 작업 묶음
 
-### PR-A. Sitemap 누락 라우트 + lastModified 정합성 🔴
+### PR-A. Sitemap 누락 라우트 + lastModified 정합성 ✅ 완료
 
 **효과**: 색인 가능한 URL 자체를 늘림. lastModified 신뢰도 ↑ (현재는 매 빌드 `new Date()` → Google이 신선도 신호를 신뢰 안 함)
 
 **작업**
-- [src/app/sitemap.ts](../../src/app/sitemap.ts)에 누락 라우트 추가
-  - `/info`, `/guides/hospital-bag`, `/guides/weekly-prep`
-  - `/videos` (빌드 출력에는 있는데 sitemap·콘텐츠 모두 비어있다면 라우트 제거 쪽이 깔끔 — 확인 필요)
-- 정적 페이지 `lastModified: new Date()` → 빌드 시점에 고정된 한 번의 값 또는 git mtime 사용
-- Article은 이미 `a.updated ?? a.date` 쓰고 있음 ✅
+- [x] [src/app/sitemap.ts](../../src/app/sitemap.ts)에 누락 라우트 추가
+  - [x] `/info`, `/guides/hospital-bag`, `/guides/weekly-prep`
+  - [x] `/videos` — sitemap 미등재 + robots meta noindex 결합으로 결정 (`e2e/seo-sitemap-article-jsonld.spec.ts` 가드)
+- [x] 정적 페이지 `BUILD_TIME` 상수 도입 — 한 빌드 안 모든 정적 라우트의 lastmod 동일 (관련 회귀 가드 e2e)
+- [x] Article은 이미 `a.updated ?? a.date` 쓰고 있음
 
-**공수**: 30분
-**의존**: 없음 (단독 머지 가능)
+**머지 커밋**: `5317686` (2026-06-07)
+**산출물**: [docs/seo-sitemap-article-jsonld/README.md](../seo-sitemap-article-jsonld/README.md)
 
 ---
 
-### PR-B. BreadcrumbList JSON-LD 🔴
+### PR-B. BreadcrumbList JSON-LD ⬜ 미착수
 
 **효과**: Google 검색결과에 빵부스러기 노출. 사이트 구조 이해도 ↑. 모든 페이지에 한 번 박으면 끝.
 
 **작업**
-- 공통 `<BreadcrumbJsonLd items={...} />` 컴포넌트 작성
-- 글 페이지: `홈 > 아티클 > {title}`
-- 체크리스트/가이드 페이지: `홈 > 체크리스트 > {sub}`, `홈 > 가이드 > {sub}`
-- 정적 페이지: `홈 > {label}`
+- [ ] 공통 `<BreadcrumbJsonLd items={...} />` 컴포넌트 작성
+- [ ] 글 페이지: `홈 > 아티클 > {title}`
+- [ ] 체크리스트/가이드 페이지: `홈 > 체크리스트 > {sub}`, `홈 > 가이드 > {sub}`
+- [ ] 정적 페이지: `홈 > {label}`
 
 **공수**: 1~2시간
 **의존**: 없음
 
 ---
 
-### PR-C. FAQPage JSON-LD 🔴 (AEO 핵심)
+### PR-C. FAQPage JSON-LD ✅ 완료 (AEO 핵심)
 
 **효과**: AI Overview·Featured Snippet·"사람들이 묻는 질문" 노출. **AEO에서 가장 큰 한 방.**
 
-**현재 FAQ 있는 글** (`grep "^## FAQ\\|^## 자주" src/content/articles/*.md` 기준)
-- [early-pregnancy-tests](../../src/content/articles/early-pregnancy-tests.md)
-- [early-pregnancy-fatigue-reasons](../../src/content/articles/early-pregnancy-fatigue-reasons.md)
-- [2026-parental-leave-guide](../../src/content/articles/2026-parental-leave-guide.md)
-- [babyfair-survival-guide](../../src/content/articles/babyfair-survival-guide.md)
-- [pregnancy-foods-to-avoid](../../src/content/articles/pregnancy-foods-to-avoid.md)
-- (외 추가 글 검수 필요)
+**backfill 완료 글** (frontmatter `faq:` 박혀 있고 빌드 산출물에 `"@type":"FAQPage"` 1회 주입 확인)
+- [x] [early-pregnancy-tests](../../src/content/articles/early-pregnancy-tests.md) (5문항)
+- [x] [early-pregnancy-fatigue-reasons](../../src/content/articles/early-pregnancy-fatigue-reasons.md) (5문항)
+- [x] [2026-parental-leave-guide](../../src/content/articles/2026-parental-leave-guide.md) (5문항)
+- [x] [babyfair-survival-guide](../../src/content/articles/babyfair-survival-guide.md) (6문항)
+- [x] [pregnancy-foods-to-avoid](../../src/content/articles/pregnancy-foods-to-avoid.md) (5문항)
 
 **작업**
-- 글 frontmatter에 `faq: [{q, a}]` 필드 신설 (마크다운 자동 파싱은 추출 실패·중복 위험 → frontmatter 명시가 안전)
-- 글 페이지에서 `faq`가 있으면 FAQPage JSON-LD 주입
-- 작성 페르소나 [docs/content/blog-writer-persona.md](../content/blog-writer-persona.md)에 "FAQ는 frontmatter에 구조화 입력" 룰 추가 → 신규 글부터 자동 적용
-- 기존 5개 글 backfill
+- [x] 글 frontmatter에 `faq: [{q, a}]` 필드 신설 + `parseArticleMeta` strict validation (malformed → throw)
+- [x] 글 페이지에서 `faq` 있으면 FAQPage JSON-LD 주입 + `ArticleDetail` 가 본문 영역에 자동 렌더 (SSOT)
+- [x] 작성 페르소나 [docs/content/blog-writer-persona.md](../content/blog-writer-persona.md) 에 FAQ 룰 5건 추가 (입력 위치·1차 소스 게이트·인라인 마크다운·⚠️ 금지·`→` 금지)
+- [x] 기존 5개 글 backfill (본문 `## 자주 묻는 질문` 제거)
 
-**공수**: 2~3시간
-**의존**: 없음
+**머지 커밋**: PR pending (이 세션에서 완료)
+**산출물**: [docs/faq-jsonld/README.md](../faq-jsonld/README.md)
 
 ---
 
-### PR-D. Article JSON-LD 필드 보강 🟡
+### PR-D. Article JSON-LD 필드 보강 ✅ 완료
 
 **효과**: Google에 글 메타 정보 풍부하게 전달. 미세하지만 누적 효과.
 
-**현재** [src/app/articles/[slug]/page.tsx:62-81](../../src/app/articles/[slug]/page.tsx#L62-L81) 누락:
-- `image` (글마다 `/articles/{slug}.webp` 존재함)
-- `mainEntityOfPage`
-- `keywords` (frontmatter `tags` 활용)
-- `articleSection` (frontmatter 카테고리 신설 또는 첫 tag)
-- `wordCount` (자동 계산)
+**구현 완료 필드** ([src/app/articles/[slug]/page.tsx](../../src/app/articles/[slug]/page.tsx) `ArticleJsonLd`)
+- [x] `image` — `${BASE_URL}/articles/${slug}.webp`
+- [x] `mainEntityOfPage` — WebPage `@id` = canonical
+- [x] `keywords` — `tags.join(", ")`
+- [x] `articleSection` — `tags[0]` (별도 카테고리 필드 신설 X)
+- [x] `wordCount` — `countWords(mainContent)` 자동 계산
 
-**Skip 권장**: `MedicalWebPage`/`HealthTopic` — 임상 출처 마크업·전문가 검수 필드까지 채워야 신뢰도 ↑, 부실하면 역효과. 본인 검수만으로는 부적절.
+**Skip 결정 유지**: `MedicalWebPage`/`HealthTopic` — 임상 출처 마크업·전문가 검수 필드까지 채워야 신뢰도 ↑, 부실하면 역효과.
 
-**공수**: 30분
-**의존**: 없음
+**머지 커밋**: `5317686` (2026-06-07)
+**산출물**: [docs/seo-sitemap-article-jsonld/README.md](../seo-sitemap-article-jsonld/README.md)
 
 ---
 
-### PR-E. WebSite + Person JSON-LD (루트 레이아웃) 🟡
+### PR-E. WebSite + Person JSON-LD (루트 레이아웃) ⬜ 미착수
 
-**효과**: 사이트링크 검색박스 노출. E-E-A-T의 "Identity" 신호.
+**효과**: site name 표시 (WebSite name+url+alternateName). E-E-A-T의 "Identity" 신호는 sameAs 없는 Person 으로는 거의 활용 안 됨 — 후속 보강 필요.
+
+> Sitelinks Search Box 는 2026 기준 Google 글로벌 retire (deprecated 2024-11-21). `SearchAction` 필드는 더 이상 효과 없으므로 영구 배제. — jsonld-breadcrumb-identity PR 에서 결정.
 
 **작업**
-- [src/app/layout.tsx](../../src/app/layout.tsx)에 한 번만 주입:
-  - `WebSite` + `SearchAction` (사이트 내 검색 → 모달 트리거 URL)
-  - `Person` (뿌까뽀까) + `sameAs` (운영하는 SNS·외부 프로필 있다면)
-- `Person.url = /about`, `image`, `description`
+- [ ] [src/app/layout.tsx](../../src/app/layout.tsx)에 한 번만 주입:
+  - [ ] `WebSite` — `name + url + alternateName` 3 필드만
+  - [ ] `Person` (뿌까뽀까) 최소판 — `name + url` 만. `sameAs` 는 SNS 공개 결정 후 후속 PR 에서 보강
+- [ ] (후속 PR) `Person.sameAs` / `image` / `description` 보강 — 운영자 SNS 공개 결정 시
 
 **공수**: 1시간
-**의존**: 없음. SNS 링크 있을 때 더 강력 — 없으면 일단 `Person` 기본만.
+**의존**: 없음. SNS 링크 있을 때 더 강력 — 없으면 일단 `Person` 최소판만.
 
 ---
 
-### PR-F. llms.txt + AI 크롤러 정책 🟢 (GEO)
+### PR-F. llms.txt + AI 크롤러 정책 ⬜ 미착수 (GEO)
 
 **효과**: ChatGPT Search·Perplexity·Claude가 사이트를 학습/인용할 때 어떤 페이지를 우선할지 가이드. 신생 컨벤션이라 보장은 없지만 비용 0.
 
+**현재 상태 점검** (2026-06-08):
+- `public/llms.txt` 없음 (`public/` 에 CNAME, ads.txt, og-image.png, articles/ 만 존재)
+- [src/app/robots.ts](../../src/app/robots.ts) 는 `userAgent: "*", allow: "/"` 만. AI 크롤러 명시 allow 없음 — 와일드카드로 허용되긴 하지만 의도 표명 강도 낮음
+- 5317686 커밋 메시지에 "AI 크롤러" 언급은 sitemap 색인 측면이고 robots.ts 직접 명시는 미완
+
 **작업**
-- `public/llms.txt` 생성: 사이트 소개 + 핵심 아티클·체크리스트 URL 목록 + 라이선스 안내
-- `public/llms-full.txt` (선택): 핵심 콘텐츠 마크다운 통째로
-- [src/app/robots.ts](../../src/app/robots.ts)에 AI 크롤러 정책 명시:
-  - `GPTBot`, `ClaudeBot`, `PerplexityBot`, `Google-Extended`, `CCBot` — **allow** (인용 받으려면 막으면 안 됨)
-  - 명시적 allow가 의도 표명에 가까움
+- [ ] `public/llms.txt` 생성: 사이트 소개 + 핵심 아티클·체크리스트 URL 목록 + 라이선스 안내
+- [ ] `public/llms-full.txt` (선택): 핵심 콘텐츠 마크다운 통째로
+- [ ] [src/app/robots.ts](../../src/app/robots.ts)에 AI 크롤러 정책 명시:
+  - [ ] `GPTBot`, `ClaudeBot`, `PerplexityBot`, `Google-Extended`, `CCBot` — **allow** (인용 받으려면 막으면 안 됨)
+  - [ ] 명시적 allow가 의도 표명에 가까움
 
 **공수**: 1~2시간
 **의존**: 없음
@@ -124,12 +144,12 @@
 
 ## 권장 실행 순서
 
-| 주차 | PR 묶음 | 비고 |
-|------|---------|------|
-| 1주차 (6월 1주) | **PR-A + PR-D** | 단순·낮은 리스크, 한 PR로 묶기 추천 (공수 1시간) |
-| 2주차 (6월 2주) | **PR-C** | AEO 큰 한 방. frontmatter 스키마 변경이 핵심 |
-| 3주차 (6월 3주) | **PR-B + PR-E** | 사이트 전체 일관 마크업 마무리 |
-| 4주차 (6월 4주) | **PR-F** | 산후 휴면 들어가기 전 마무리 |
+| 주차 | PR 묶음 | 상태 | 비고 |
+|------|---------|------|------|
+| 1주차 (6월 1주) | **PR-A + PR-D** | ✅ 완료 (5317686, 2026-06-07) | 단순·낮은 리스크, 한 PR로 묶기 추천 (공수 1시간) |
+| 2주차 (6월 2주) | **PR-C** | ✅ 완료 (이번 세션) | AEO 큰 한 방. frontmatter 스키마 변경이 핵심 |
+| 3주차 (6월 3주) | **PR-B + PR-E** | ⬜ 미착수 | 사이트 전체 일관 마크업 마무리 |
+| 4주차 (6월 4주) | **PR-F** | ⬜ 미착수 | 산후 휴면 들어가기 전 마무리 |
 
 ---
 

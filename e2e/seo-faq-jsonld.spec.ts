@@ -139,16 +139,21 @@ test.describe("seo-faq-jsonld", () => {
       expect(faqPages).toHaveLength(0);
     });
 
-    test("5개 글 모두 첫 번째 ld+json script 는 Article 타입 유지 (주입 순서 가드)", async ({
+    test("5개 글 모두 Article 타입 ld+json script 가 정확히 1개 존재 (주입 순서 가정 제거, @type filter)", async ({
       page,
     }) => {
-      // 무엇을: page.tsx 가 ArticleJsonLd 를 먼저 렌더해 .first() 가 Article 을 가리키는지
-      // 왜: seo-sitemap-article-jsonld.spec.ts:29 의 .first() 동작 호환. 순서가 뒤집히면 회귀.
+      // 무엇을: ArticleJsonLd 가 정확히 1개 박혀 있는지 (배열 위치 가정 X)
+      // 왜: layout 의 WebSite/Person + BreadcrumbList JSON-LD 가 추가되면서 주입 순서가 더 이상 안정 가정이 아님.
+      //     순서가 아닌 @type filter 기반으로 검증 — strict 강화 방향(약화 X).
       for (const slug of BACKFILL_SLUGS) {
         const scripts = await getLdJsonScripts(page, slug);
-        expect(scripts.length).toBeGreaterThanOrEqual(2);
-        const first = scripts[0] as Record<string, unknown>;
-        expect(first["@type"]).toBe("Article");
+        const articles = scripts.filter(
+          (s) =>
+            !!s &&
+            typeof s === "object" &&
+            (s as Record<string, unknown>)["@type"] === "Article",
+        );
+        expect(articles).toHaveLength(1);
       }
     });
 
