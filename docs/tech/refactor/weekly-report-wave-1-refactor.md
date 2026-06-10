@@ -1,7 +1,7 @@
 # weekly-report-wave-1 리팩토링
 
 > 작업일: 2026-06-07
-> Plan: [docs/plan/weekly-report-wave-1-plan.md](../plan/weekly-report-wave-1-plan.md)
+> Plan: [docs/plan/weekly-report-wave-1-plan.md](../../plan/weekly-report-wave-1-plan.md)
 > 리뷰: [docs/review/weekly-report-wave-1-review.md](../review/weekly-report-wave-1-review.md)
 
 ## 리팩토링한 파일 목록

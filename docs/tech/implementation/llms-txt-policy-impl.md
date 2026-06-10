@@ -1,6 +1,6 @@
 # llms-txt-policy Implementation
 
-> 출처: [docs/features/llms-txt-policy/spec.md](../features/llms-txt-policy/spec.md)
+> 출처: [docs/features/llms-txt-policy/spec.md](../../features/llms-txt-policy/spec.md)
 > 구현일: 2026-06-10
 
 ## 완료 조건 충족 여부
@@ -17,7 +17,7 @@
 ### 신규 생성
 
 - `public/llms.txt` — 사이트 한 줄 소개 + 운영자 단락 + Articles 15개 + Checklists 4개 + Hubs 5개 + License 4섹션을 갖춘 정적 파일. NoIndex 페이지(`/info`, `/videos`, `/guides/hospital-bag`, `/guides/weekly-prep`)는 제외.
-- `docs/implementation/llms-txt-policy-impl.md` — 본 문서.
+- `docs/tech/implementation/llms-txt-policy-impl.md` — 본 문서.
 
 ### 수정
 

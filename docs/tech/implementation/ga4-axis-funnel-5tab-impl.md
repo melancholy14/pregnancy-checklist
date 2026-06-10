@@ -1,6 +1,6 @@
 # ga4-axis-funnel-5tab Implementation
 
-> Plan: [docs/plan/ga4-axis-funnel-5tab-plan.md](../plan/ga4-axis-funnel-5tab-plan.md)
+> Plan: [docs/plan/ga4-axis-funnel-5tab-plan.md](../../plan/ga4-axis-funnel-5tab-plan.md)
 > phase-4.6 §5 라운드 — 2026-06-03
 
 ## 완료 조건 충족 여부

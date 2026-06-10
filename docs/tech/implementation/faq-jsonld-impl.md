@@ -18,7 +18,7 @@
 
 ### 신규 생성
 
-- `docs/implementation/faq-jsonld-impl.md` — 이 문서
+- `docs/tech/implementation/faq-jsonld-impl.md` — 이 문서
 
 ### 수정
 

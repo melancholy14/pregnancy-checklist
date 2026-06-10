@@ -2,7 +2,7 @@
 
 > 작성일: 2026-06-08
 > 관련 리뷰: [docs/review/faq-jsonld-review.md](../review/faq-jsonld-review.md)
-> 관련 기획: [docs/features/faq-jsonld/spec.md](../features/faq-jsonld/spec.md)
+> 관련 기획: [docs/features/faq-jsonld/spec.md](../../features/faq-jsonld/spec.md)
 
 ## 리팩토링한 파일 목록
 

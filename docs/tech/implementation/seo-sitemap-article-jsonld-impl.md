@@ -1,7 +1,7 @@
 # seo-sitemap-article-jsonld Implementation
 
-원 spec: [docs/features/seo-sitemap-article-jsonld/spec.md](../features/seo-sitemap-article-jsonld/spec.md)
-원 plan: [docs/plan/update-seo-aeo-geo.md](../plan/update-seo-aeo-geo.md) PR-A + PR-D
+원 spec: [docs/features/seo-sitemap-article-jsonld/spec.md](../../features/seo-sitemap-article-jsonld/spec.md)
+원 plan: [docs/plan/update-seo-aeo-geo.md](../../plan/update-seo-aeo-geo.md) PR-A + PR-D
 구현일: 2026-06-07
 
 ## 완료 조건 충족 여부

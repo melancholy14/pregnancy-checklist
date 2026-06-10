@@ -1,7 +1,7 @@
 # jsonld-breadcrumb-identity 코드 리뷰
 
 > 리뷰일: 2026-06-09
-> 관련 spec: [docs/features/jsonld-breadcrumb-identity/spec.md](../features/jsonld-breadcrumb-identity/spec.md)
+> 관련 spec: [docs/features/jsonld-breadcrumb-identity/spec.md](../../features/jsonld-breadcrumb-identity/spec.md)
 > 관련 impl: [docs/implementation/jsonld-breadcrumb-identity-impl.md](../implementation/jsonld-breadcrumb-identity-impl.md)
 
 ## 리뷰 대상 파일

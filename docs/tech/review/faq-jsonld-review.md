@@ -2,7 +2,7 @@
 
 > 리뷰 일자: 2026-06-08
 > 리뷰 범위: 코드 4파일 (콘텐츠/문서는 리뷰 대상 제외)
-> 관련 기획: [docs/features/faq-jsonld/spec.md](../features/faq-jsonld/spec.md)
+> 관련 기획: [docs/features/faq-jsonld/spec.md](../../features/faq-jsonld/spec.md)
 > 구현 기록: [docs/implementation/faq-jsonld-impl.md](../implementation/faq-jsonld-impl.md)
 
 ## 리뷰 대상 파일

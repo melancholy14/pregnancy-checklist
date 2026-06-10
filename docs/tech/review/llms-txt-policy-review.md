@@ -1,6 +1,6 @@
 # llms-txt-policy 코드 리뷰
 
-> 리뷰 대상: [docs/features/llms-txt-policy/spec.md](../features/llms-txt-policy/spec.md)
+> 리뷰 대상: [docs/features/llms-txt-policy/spec.md](../../features/llms-txt-policy/spec.md)
 > 구현 산출물: [docs/implementation/llms-txt-policy-impl.md](../implementation/llms-txt-policy-impl.md)
 > 리뷰일: 2026-06-10
 

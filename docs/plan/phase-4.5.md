@@ -15,7 +15,7 @@
 >   **P1·P5 묶음 완료** ([checklist-data-model-bundle](../features/checklist-data-model-bundle/spec.md), 2026-06-06)
 >   — custom 항목 priority/note 편집 + 4개 store schema versioning + GA4 4종(`custom_item_priority_set`·`custom_item_note_set`·`schema_migration_run`·`schema_migration_failed`) +
 >   e2e 시드 헬퍼 신설 및 기존 spec 6건 이관 + design-bundle-b-i fs 가드 강화.
->   최종 README: [docs/checklist-data-model-bundle/README.md](../checklist-data-model-bundle/README.md).
+>   최종 구현 기록: [docs/tech/implementation/checklist-data-model-bundle-impl.md](../tech/implementation/checklist-data-model-bundle-impl.md).
 >   P11 spec·결정 완료, vault 매트릭스 1차 sketch 작성 완료
 >   (`~/Documents/pregnancy-checklist/30-domain/content-matrix.md`, 2026-06-03).
 >   이연 사유였던 타임라인 흡수·4축 정합은 [phase-4.6.md](phase-4.6.md)
@@ -669,7 +669,7 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 #### P1. 편집 모드에서 priority/note 수정 허용 여부
 
-> **상태 (2026-06-06)**: ✅ **완료** — 허용 결정 (4.2=A). custom 항목 한정으로 편집 모드에 title + priority + note 한 폼 노출 (4.6=A). 기본 항목은 편집 버튼 비노출 (4.3=A). `custom_item_priority_set`/`custom_item_note_set` GA4 신설 + 변경 필드별 발사. [checklist-data-model-bundle](../features/checklist-data-model-bundle/spec.md) / [구현 기록](../implementation/checklist-data-model-bundle-impl.md).
+> **상태 (2026-06-06)**: ✅ **완료** — 허용 결정 (4.2=A). custom 항목 한정으로 편집 모드에 title + priority + note 한 폼 노출 (4.6=A). 기본 항목은 편집 버튼 비노출 (4.3=A). `custom_item_priority_set`/`custom_item_note_set` GA4 신설 + 변경 필드별 발사. [checklist-data-model-bundle](../features/checklist-data-model-bundle/spec.md) / [구현 기록](../tech/implementation/checklist-data-model-bundle-impl.md).
 
 - [x] **결정**: 허용 (custom 한정)
 - **현황**: [ChecklistItemRow.tsx:42-73](../../src/components/checklist/ChecklistItemRow.tsx#L42-L73) 편집 모드는 **title만** 수정 가능. 추가 폼([ChecklistAddForm.tsx:43](../../src/components/checklist/ChecklistAddForm.tsx#L43))도 priority를 받지 않고 `medium` 하드코딩.
@@ -1054,7 +1054,7 @@ Phase 4까지 기능은 모두 들어왔으나 다음 3개 영역에 부채가 �
 |------|------|---------|------|------|
 | **D-A** AdSense 인프라 마감 | D-C1, D-C2 | 즉시 | — | ✅ 완료 |
 | **D-B** 자동화·회귀 안전망 | D-M1, D-M2, D-M3 | 다음 | GitHub Secrets 등록 | ✅ 완료 |
-| **D-C** 코드 정돈 (의존성 다이어트) | D-Mn1, D-Mn2 | D-B 후 | — | ✅ 완료 (2026-06-03) — D-Mn1 일괄 제거(번들 −44 KB·node_modules −7.79 MB, [bundle-size-d-c-2026-06-03.md](../lighthouse-seo/bundle-size-d-c-2026-06-03.md)), D-Mn2는 phase-4.6 §1 영상 폐기로 자연 소멸 |
+| **D-C** 코드 정돈 (의존성 다이어트) | D-Mn1, D-Mn2 | D-B 후 | — | ✅ 완료 (2026-06-03) — D-Mn1 일괄 제거(번들 −44 KB·node_modules −7.79 MB, [tech/technical-debt.md 변경 이력 2026-06-03](../tech/technical-debt.md#변경-이력)), D-Mn2는 phase-4.6 §1 영상 폐기로 자연 소멸 |
 | **D-D** 리뷰 잔불 일괄 | D-Mn3 ~ D-Mn16 | 시간 날 때 | 없음 (개별 처리 가능) | ✅ 9건 완료 / ✅ 3건 자연 소멸 / 🟡 D-Mn14 부분 (priority만 흡수, note 의도적 제외) / ⏳ 2건 기획 §3 대기 (2026-06-06 갱신) — 완료: D-Mn4·5·6·7·8·9·10·11·13. 자연 소멸: D-Mn3·15(phase-4.6 §1), D-Mn2(D-C). 부분: D-Mn14 (`checklist-data-model-bundle` 묶음 흡수). 대기: D-Mn12·16 |
 | **D-E** 트리거 대기 (의도적 보류) | D-Mn17, D-Mn18, D-Mn19, D-Mn20 | 트리거 도달 시 | D-Mn20 vitest 의존 해소(2026-06-06) | 🟡 D-Mn20 트리거 도달 / 나머지 3건 대기 |
 
@@ -1065,7 +1065,7 @@ Phase 4까지 기능은 모두 들어왔으나 다음 3개 영역에 부채가 �
 - 모든 D-Mn 처리 시 e2e 회귀 통과 확인.
 - D-A 처리 후 AdSense 콘솔 크롤링 통과 확인.
 - D-B 도입 후 main 푸시로 자동 배포 1회 동작 검증.
-- D-C 처리 후 번들 사이즈 비교 리포트 [docs/lighthouse-seo/](../lighthouse-seo/)에 기록.
+- D-C 처리 후 번들 사이즈 비교 리포트 [docs/tech/technical-debt.md](../tech/technical-debt.md) 변경 이력에 한 줄로 기록.
 
 ---
 

@@ -1,8 +1,8 @@
 # weekly-report-wave-1 Implementation
 
 > 구현일: 2026-06-07
-> Plan: [docs/plan/weekly-report-wave-1-plan.md](../plan/weekly-report-wave-1-plan.md)
-> Wave: [weekly-report-improvement.md](../plan/weekly-report-improvement.md) §Wave 1
+> Plan: [docs/plan/weekly-report-wave-1-plan.md](../../plan/weekly-report-wave-1-plan.md)
+> Wave: [weekly-report-improvement.md](../../plan/weekly-report-improvement.md) §Wave 1
 
 ## 완료 조건 충족 여부
 
@@ -18,14 +18,14 @@
 ## 생성/수정 파일 목록
 
 ### 수정
-- [scripts/weekly-report/types.ts](../../scripts/weekly-report/types.ts) — `CoreBehaviorRow.wowDelta`: `number | null` → `number | "new" | null`, 주석에 3-way 의미 명시.
-- [scripts/weekly-report/ga4-queries.ts](../../scripts/weekly-report/ga4-queries.ts) — 4개 변경:
+- [scripts/weekly-report/types.ts](../../../scripts/weekly-report/types.ts) — `CoreBehaviorRow.wowDelta`: `number | null` → `number | "new" | null`, 주석에 3-way 의미 명시.
+- [scripts/weekly-report/ga4-queries.ts](../../../scripts/weekly-report/ga4-queries.ts) — 4개 변경:
   - 파일 상단에 `SELF_DOMAINS` Set 상수 추가.
   - `runCohortViaSpec`: 각 cohort 블록에 `dimension: "firstSessionDate"` 추가 (string literal).
   - `runCohortViaManual`: `customUser:cohort_join_week` → 표준 차원 `firstSessionDate` 기반으로 재작성. `parseCohortJoinWeek` → `firstSessionDateToMonday`로 교체. (cohortJoinWeek, nthWeek) 키로 Map 집계.
   - `queryCoreBehaviorReach`: wowDelta 3-way 분기 (`prev>0` 숫자 / `prev=0 && cur>0` `"new"` / else `null`).
   - `queryExternalDomainOutflow`: filter chain에 `!SELF_DOMAINS.has(r.domain)` 추가.
-- [scripts/weekly-report/prompt-shared.ts](../../scripts/weekly-report/prompt-shared.ts) — SYSTEM_PROMPT "데이터 부족 처리" 블록 끝에 `wowDelta="new"는 신규 발현…` 한 줄 추가.
+- [scripts/weekly-report/prompt-shared.ts](../../../scripts/weekly-report/prompt-shared.ts) — SYSTEM_PROMPT "데이터 부족 처리" 블록 끝에 `wowDelta="new"는 신규 발현…` 한 줄 추가.
 
 ### 신규 생성
 없음.

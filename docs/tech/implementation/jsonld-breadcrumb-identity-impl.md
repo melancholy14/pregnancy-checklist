@@ -1,8 +1,8 @@
 # jsonld-breadcrumb-identity Implementation
 
 > 구현일: 2026-06-09
-> 관련 기획: [spec.md](../features/jsonld-breadcrumb-identity/spec.md)
-> 관련 QA: [qa.md](../features/jsonld-breadcrumb-identity/qa.md)
+> 관련 기획: [spec.md](../../features/jsonld-breadcrumb-identity/spec.md)
+> 관련 QA: [qa.md](../../features/jsonld-breadcrumb-identity/qa.md)
 
 ## 완료 조건 충족 여부
 
