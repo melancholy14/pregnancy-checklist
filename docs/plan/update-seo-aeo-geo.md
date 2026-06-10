@@ -1,11 +1,11 @@
 # 콘텐츠 SEO/AEO/GEO 보강 계획
 
 > 작성일: 2026-06-03
-> 진행 갱신: 2026-06-09
+> 진행 갱신: 2026-06-10
 > 대상: pregnancy-checklist.com
-> 컨텍스트: GA4 트래픽이 기대치 대비 낮음 → 진단 결과 sitemap absolute URL 버그 발견, 1단계 fix 완료. 2단계로 콘텐츠 SEO/AEO/GEO 마크업 보강 필요.
+> 컨텍스트: GA4 트래픽이 기대치 대비 낮음 → 진단 결과 sitemap absolute URL 버그 발견, 1단계 fix 완료. 2단계로 콘텐츠 SEO/AEO/GEO 마크업 보강 완료.
 
-## 진행 현황 (2026-06-09 기준)
+## 진행 현황 (2026-06-10 기준)
 
 | PR | 항목 | 상태 | 머지 커밋 / 문서 |
 |----|------|------|------------------|
@@ -14,9 +14,9 @@
 | PR-C | FAQPage JSON-LD | ✅ 완료 | (PR pending) · [faq-jsonld](../faq-jsonld/README.md) |
 | PR-D | Article JSON-LD 5필드 보강 | ✅ 완료 | `5317686` · [seo-sitemap-article-jsonld](../seo-sitemap-article-jsonld/README.md) |
 | PR-E | WebSite + Person JSON-LD (최소판) | ✅ 완료 | PR pending (2026-06-09 세션, PR-B와 같이) · [jsonld-breadcrumb-identity](../jsonld-breadcrumb-identity/README.md) |
-| PR-F | llms.txt + AI 크롤러 정책 | ⬜ 미착수 | — robots.ts 에 명시 allow 없음, `public/llms.txt` 없음 |
+| PR-F | llms.txt + AI 크롤러 정책 | ✅ 완료 | PR pending (2026-06-10 세션) · [llms-txt-policy](../llms-txt-policy/README.md) |
 
-**잔여 작업**: PR-F (1개). 산후 휴면(2026-08 ~) 진입 전 마무리. 추가로 [후속 작업 (휴면 전후)](#후속-작업-휴면-전후) 3건 — sameAs 보강 · JSON-LD XSS hardening · about 페이지 JSON-LD 통합.
+**메인 PR 6개 모두 완료** ✅. 잔여는 [후속 작업 (휴면 전후)](#후속-작업-휴면-전후) 3건 + [신규 글 작성 시 갱신 필요 항목](#신규-글-작성-시-갱신-필요-항목) 2건뿐.
 
 ---
 
@@ -130,24 +130,25 @@
 
 ---
 
-### PR-F. llms.txt + AI 크롤러 정책 ⬜ 미착수 (GEO)
+### PR-F. llms.txt + AI 크롤러 정책 ✅ 완료 (GEO)
 
-**효과**: ChatGPT Search·Perplexity·Claude가 사이트를 학습/인용할 때 어떤 페이지를 우선할지 가이드. 신생 컨벤션이라 보장은 없지만 비용 0.
+**효과**: ChatGPT Search·Perplexity·Claude·Google AI Overview 가 사이트에 도달했을 때 인용할 핵심 페이지를 명시적으로 안내. 신생 컨벤션이라 보장은 없지만 비용 0·downside 0.
 
-**현재 상태 점검** (2026-06-08):
-- `public/llms.txt` 없음 (`public/` 에 CNAME, ads.txt, og-image.png, articles/ 만 존재)
-- [src/app/robots.ts](../../src/app/robots.ts) 는 `userAgent: "*", allow: "/"` 만. AI 크롤러 명시 allow 없음 — 와일드카드로 허용되긴 하지만 의도 표명 강도 낮음
-- 5317686 커밋 메시지에 "AI 크롤러" 언급은 sitemap 색인 측면이고 robots.ts 직접 명시는 미완
+**구현 완료** ([public/llms.txt](../../public/llms.txt) · [src/app/robots.ts](../../src/app/robots.ts))
+- [x] `public/llms.txt` 생성 — 사이트 소개 + Articles 15개 + Checklists 4개 + Hubs 5개 + License 5섹션 (47줄)
+- [x] [src/app/robots.ts](../../src/app/robots.ts) 에 AI 크롤러 5개 명시 `allow: "/"` — `GPTBot`, `ClaudeBot`, `PerplexityBot`, `Google-Extended`, `CCBot`
+- [x] `AI_CRAWLER_USER_AGENTS` 상수 `as const` — 향후 user-agent 오타·중복을 컴파일 타임에서 차단
+- [x] NoIndex 4 페이지 (`/info`, `/videos`, `/guides/hospital-bag`, `/guides/weekly-prep`) 는 llms.txt 에서도 제외 — robots noindex 정책과 일관
 
-**작업**
-- [ ] `public/llms.txt` 생성: 사이트 소개 + 핵심 아티클·체크리스트 URL 목록 + 라이선스 안내
-- [ ] `public/llms-full.txt` (선택): 핵심 콘텐츠 마크다운 통째로
-- [ ] [src/app/robots.ts](../../src/app/robots.ts)에 AI 크롤러 정책 명시:
-  - [ ] `GPTBot`, `ClaudeBot`, `PerplexityBot`, `Google-Extended`, `CCBot` — **allow** (인용 받으려면 막으면 안 됨)
-  - [ ] 명시적 allow가 의도 표명에 가까움
+**Skip 결정**:
+- `public/llms-full.txt` — 본문 통째 노출은 학습 데이터 재배포 우려. License 에서 명시적으로 거절.
+- AI 크롤러 disallow / GA4 이벤트 — spec §won't 로 결정.
+- 빌드 타임 동적 생성 — 글 30개 넘어가는 시점에 옵션 B(스크립트 생성) 재검토. 현재 15개 → 옵션 A(수동) 유지.
 
-**공수**: 1~2시간
-**의존**: 없음
+**테스트**: e2e 9 passed (llms.txt 200/text-plain · 5 섹션 · 15 articles · checklists+hubs · robots 5 블록 · NoIndex 4 제외 · llms-full.txt 404 · AI 크롤러 Disallow 부재 · Sitemap 라인). 회귀 19 passed.
+
+**머지 커밋**: PR pending (2026-06-10 세션)
+**산출물**: [docs/llms-txt-policy/README.md](../llms-txt-policy/README.md)
 
 ---
 
@@ -158,7 +159,7 @@
 | 1주차 (6월 1주) | **PR-A + PR-D** | ✅ 완료 (5317686, 2026-06-07) | 단순·낮은 리스크, 한 PR로 묶기 추천 (공수 1시간) |
 | 2주차 (6월 2주) | **PR-C** | ✅ 완료 (이전 세션) | AEO 큰 한 방. frontmatter 스키마 변경이 핵심 |
 | 3주차 (6월 3주) | **PR-B + PR-E** | ✅ 완료 (2026-06-09 세션) | 사이트 전체 일관 마크업 마무리. WebSite/Person 은 최소판 (sameAs 후속) |
-| 4주차 (6월 4주) | **PR-F** | ⬜ 미착수 | 산후 휴면 들어가기 전 마무리 |
+| 4주차 (6월 4주) | **PR-F** | ✅ 완료 (2026-06-10 세션) | llms.txt + AI 크롤러 정책 — 산후 휴면 들어가기 전 마무리 완료 |
 
 ---
 
@@ -224,6 +225,57 @@ GA4와 Search Console을 연동했다면 GSC 데이터를 GA4 Explorations에서
   - 옵션 B — about 페이지 `AboutJsonLd` 유지(@graph 형식이 보강된 형태), layout 의 about 경로에만 Person 주입 안 하도록 분기 추가.
 - **공수**: 30분~1시간.
 - **의존**: §1 sameAs 보강과 같이 처리 권장 (운영자 SNS 결정과 묶음).
+
+---
+
+## 신규 글 작성 시 갱신 필요 항목
+
+PR-A ~ PR-F 가 도입한 산출물 중 **새 글 1편이 추가될 때마다 갱신이 필요한 항목**을 정리. blog-pipeline-2 / blog-publish 스킬 또는 운영자 체크리스트에 반영 검토 대상.
+
+### 자동 (스킬 변경 불필요)
+
+| 산출물 | 자동 갱신 메커니즘 |
+|--------|---------------------|
+| sitemap.xml article entry | `getAllArticles()` 가 `src/content/articles/*.md` 를 빌드 시점에 스캔 → 자동 추가 |
+| Article JSON-LD (`image`/`mainEntityOfPage`/`keywords`/`articleSection`/`wordCount`) | frontmatter `slug`·`tags`·본문에서 자동 계산 |
+| BreadcrumbList | pathname 기반 자동 (`getBreadcrumbForPath` pure function) |
+| FAQPage JSON-LD | frontmatter `faq:` 있으면 `ArticleDetail` 가 자동 렌더 + JSON-LD 주입 |
+| WebSite + Person JSON-LD | layout 단 1회, 글 추가와 무관 |
+| BUILD_TIME lastModified | 빌드 시점에 한 번 자동 |
+
+### 수동 (스킬·체크리스트 갱신 필요) ⚠️
+
+**1. `public/llms.txt` Articles 섹션 — 글 1편당 1줄 entry**
+
+- 현재 [llms.txt](../../public/llms.txt) 는 수동 작성(옵션 A) 채택. 글 15개 → 자동화 비용 대비 효익 낮음.
+- **누락 시 영향**: AI 크롤러(ChatGPT Search·Perplexity·Claude·Google AI Overview) 가 신규 글을 인용 후보에서 누락. sitemap 으로는 색인되지만 LLM 인용 가이드에서 빠짐.
+- **형식**: `- [제목](https://pregnancy-checklist.com/articles/<slug>): 1~2문장 요약`
+- **재검토 트리거**: 글 30개 도달 시점 → 빌드 타임 스크립트(옵션 B) 전환 검토. [llms-txt-policy README §주요 결정 사항](../llms-txt-policy/README.md) 명시.
+
+**2. frontmatter `faq:` 필드 — FAQ 있는 글은 본문이 아닌 frontmatter 에 구조화 입력**
+
+- 본문 `## 자주 묻는 질문` 섹션은 SSOT 위반 (frontmatter ↔ 본문 중복). [PR-C backfill](../faq-jsonld/README.md) 에서 본문 FAQ 섹션 전부 제거.
+- **누락 시 영향**: FAQPage JSON-LD 주입 안 됨 → AI Overview·Featured Snippet·"사람들이 묻는 질문" 노출 기회 손실 (AEO 핵심).
+- **형식**:
+
+  ```yaml
+  faq:
+    - q: "질문 1?"
+      a: "답변 1."
+    - q: "질문 2?"
+      a: "답변 2."
+  ```
+
+- **검증**: `parseArticleMeta` strict validation — malformed `faq` 는 빌드 throw. 빈 배열·미입력은 허용 (FAQ 없는 글도 가능).
+- **작성 페르소나 룰**: [blog-writer-persona.md](../content/blog-writer-persona.md) 에 5건 추가 완료 (입력 위치·1차 소스 게이트·인라인 마크다운·⚠️ 금지·`→` 금지) → blog-pipeline-1 출력 시점에 이미 반영됨.
+
+### blog-pipeline-2 스킬 갱신 권고
+
+- **PHASE 3 검증 E (FAQ 품질)**: 현재 "FAQ 없으면 3~5개 생성" 만 명시. → "FAQ 가 본문이 아니라 frontmatter `faq:` 에 들어가 있는지" 검증 항목 추가 필요.
+- **PHASE 4 STEP 2 (YAML Front Matter)**: 현재 템플릿에 `faq:` 필드 없음 → 추가 필요.
+- **PHASE 4 완료 — 배포 전 운영자 체크리스트**: `public/llms.txt` 에 새 글 entry 1줄 추가 항목 신설 필요.
+
+상세 적용 방안은 본 plan 외 별도 PR (`docs/skills/blog-pipeline-2-seo-sync.md` 또는 in-place 스킬 수정) 로 처리 권장.
 
 ---
 
