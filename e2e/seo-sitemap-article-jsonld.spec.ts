@@ -63,9 +63,9 @@ test.describe("seo-sitemap-article-jsonld", () => {
         "@id": `${BASE}/articles/${SAMPLE_SLUG}`,
       });
       expect(typeof jsonLd.keywords).toBe("string");
-      expect(jsonLd.keywords.length).toBeGreaterThan(0);
+      expect((jsonLd.keywords as string).length).toBeGreaterThan(0);
       expect(typeof jsonLd.articleSection).toBe("string");
-      expect(jsonLd.articleSection.length).toBeGreaterThan(0);
+      expect((jsonLd.articleSection as string).length).toBeGreaterThan(0);
       expect(typeof jsonLd.wordCount).toBe("number");
       expect(jsonLd.wordCount).toBeGreaterThan(0);
     });
@@ -74,7 +74,7 @@ test.describe("seo-sitemap-article-jsonld", () => {
       // 무엇을: articleSection = tags 첫 번째 값, keywords = tags 전체 join
       // 왜: spec 결정 사항 — category 필드 신규 도입하지 않고 tags[0] 그대로 매핑.
       const jsonLd = await getArticleJsonLd(page, SAMPLE_SLUG);
-      const tags = jsonLd.keywords.split(", ");
+      const tags = (jsonLd.keywords as string).split(", ");
       expect(tags.length).toBeGreaterThan(0);
       expect(jsonLd.articleSection).toBe(tags[0]);
     });
