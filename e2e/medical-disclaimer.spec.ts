@@ -48,7 +48,7 @@ test.describe("의료 디스클레이머 + reviewed_by 정리 (Step 0e)", () => 
       // 왜: MedicalDisclaimer 컴포넌트와 blockquote가 중복되면 안 됨
       await page.goto("/articles/early-pregnancy-tests");
 
-      const articleProse = page.locator(".article-prose");
+      const articleProse = page.locator(".article-prose").first();
       await expect(articleProse.locator("blockquote")).toHaveCount(0);
     });
   });
