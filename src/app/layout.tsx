@@ -38,6 +38,22 @@ export const metadata: Metadata = {
   },
 };
 
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "출산 준비 체크리스트",
+  url: BASE_URL,
+  alternateName: "뿌까뽀까 출산 준비",
+};
+
+// TODO(jsonld-breadcrumb-identity): sameAs 보강 후속 PR 필요 — review.md §4 항목 1 옵션 A 컨텍스트
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "뿌까뽀까",
+  url: `${BASE_URL}/about`,
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -48,6 +64,14 @@ export default function RootLayout({
   return (
     <html lang="ko" className={poppins.className}>
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
         {process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID && (
           <meta name="google-adsense-account" content={process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID} />
         )}

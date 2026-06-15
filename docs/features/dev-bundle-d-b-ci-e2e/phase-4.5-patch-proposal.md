@@ -63,7 +63,7 @@
 ```markdown
 - **검증 잔여**:
   - `adsbygoogle.js` 동의 수락 시 200 OK / 거부 시 미주입 — D-M3 e2e 자동화로 흡수 예정 (그 전까지 수동 1회 권장)
-  - AdSense 콘솔 사이트 상태 = "준비됨" — AdSense 6월 신청 후 24~48시간 내 확인 ([phase-4.6](phase-4.6.md) 영역)
+  - AdSense 콘솔 사이트 상태 = "준비됨" — AdSense 6월 신청 후 24~48시간 내 확인 ([phase-4.6](../../plan/phase-4.6.md) 영역)
 ```
 
 ### 갱신 후 텍스트
@@ -71,7 +71,7 @@
 ```markdown
 - **검증 잔여**:
   - [x] `adsbygoogle.js` 동의 수락 시 외부 요청 발생 / 거부 시 미주입 — **D-M3 e2e 자동화로 흡수 완료 (2026-05-17)**. [e2e/consent-rejection.spec.ts](../../e2e/consent-rejection.spec.ts) 4/4 pass.
-  - AdSense 콘솔 사이트 상태 = "준비됨" — AdSense 6월 신청 후 24~48시간 내 확인 ([phase-4.6](phase-4.6.md) 영역)
+  - AdSense 콘솔 사이트 상태 = "준비됨" — AdSense 6월 신청 후 24~48시간 내 확인 ([phase-4.6](../../plan/phase-4.6.md) 영역)
 ```
 
 ---

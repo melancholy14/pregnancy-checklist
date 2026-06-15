@@ -1,10 +1,10 @@
 # checklist-data-model-bundle Implementation
 
 > 작성일: 2026-06-05
-> 기획서: [docs/features/checklist-data-model-bundle/spec.md](../features/checklist-data-model-bundle/spec.md)
-> 디자인: [docs/features/checklist-data-model-bundle/design.md](../features/checklist-data-model-bundle/design.md)
-> 측정: [docs/features/checklist-data-model-bundle/ga4.md](../features/checklist-data-model-bundle/ga4.md)
-> QA 전략: [docs/features/checklist-data-model-bundle/qa.md](../features/checklist-data-model-bundle/qa.md)
+> 기획서: [docs/features/checklist-data-model-bundle/spec.md](../../features/checklist-data-model-bundle/spec.md)
+> 디자인: [docs/features/checklist-data-model-bundle/design.md](../../features/checklist-data-model-bundle/design.md)
+> 측정: [docs/features/checklist-data-model-bundle/ga4.md](../../features/checklist-data-model-bundle/ga4.md)
+> QA 전략: [docs/features/checklist-data-model-bundle/qa.md](../../features/checklist-data-model-bundle/qa.md)
 
 ## 완료 조건 충족 여부
 

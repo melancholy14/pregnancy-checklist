@@ -37,7 +37,10 @@ export type CoreBehaviorRow = {
   totalUsers: number;
   previousEventCount: number;
   previousTotalUsers: number;
-  wowDelta: number | null; // percent, e.g. +12.5 or -3.1; null when previous=0
+  // percent (e.g. +12.5 / -3.1) when previous>0;
+  // "new" when previous=0 && current>0 (신규 발현 — % 비교 불가);
+  // null when previous=0 && current=0 (양주 모두 0 — 신호 없음).
+  wowDelta: number | "new" | null;
 };
 
 export type CoreBehaviorReach = {

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
+import { getBreadcrumbForPath } from "@/lib/breadcrumb-labels";
 import { BASE_URL } from "@/lib/constants";
 import { CreatorWeekBadge } from "@/app/about/CreatorWeekBadge";
 
@@ -61,6 +63,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen pb-24 px-4">
       <AboutJsonLd />
+      <BreadcrumbJsonLd items={getBreadcrumbForPath("/about")} />
       <div className="pt-8 max-w-lg mx-auto">
         <h1 className="text-center text-xl font-bold mb-2">만든 사람</h1>
         <p className="text-center text-sm text-muted-foreground mb-8">

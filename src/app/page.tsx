@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { HomeContent } from "@/components/home/HomeContent";
+import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
 import { getAllArticles } from "@/lib/articles";
+import { getBreadcrumbForPath } from "@/lib/breadcrumb-labels";
 import { BASE_URL, OG_IMAGE } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -19,5 +21,10 @@ export const metadata: Metadata = {
 
 export default function Home() {
   const articles = getAllArticles().map(({ title, slug }) => ({ title, slug }));
-  return <HomeContent articles={articles} />;
+  return (
+    <>
+      <BreadcrumbJsonLd items={getBreadcrumbForPath("/")} />
+      <HomeContent articles={articles} />
+    </>
+  );
 }

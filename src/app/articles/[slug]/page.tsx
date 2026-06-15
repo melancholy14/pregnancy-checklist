@@ -1,16 +1,23 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getAllArticles, getArticleBySlug } from "@/lib/articles";
+import {
+  getAllArticles,
+  getArticleBySlug,
+  faqAnswerToPlainText,
+} from "@/lib/articles";
 import {
   getRelatedArticles,
   getRelatedChecklists,
 } from "@/lib/related-content";
 import { ArticleDetail } from "@/components/articles/ArticleDetail";
+import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
+import { getBreadcrumbForPath } from "@/lib/breadcrumb-labels";
 import { BASE_URL, OG_IMAGE } from "@/lib/constants";
 import hospitalBag from "@/data/hospital_bag_checklist.json";
 import partnerPrep from "@/data/partner_prep_checklist.json";
 import pregnancyPrep from "@/data/pregnancy_prep_checklist.json";
 import type { ChecklistData } from "@/types/checklist";
+import type { Article, FaqItem } from "@/types/article";
 
 const allChecklistMetas = [
   (hospitalBag as ChecklistData).meta,
@@ -46,19 +53,28 @@ export async function generateMetadata({
   };
 }
 
+type ArticleJsonLdProps = Pick<
+  Article,
+  | "title"
+  | "description"
+  | "canonical"
+  | "date"
+  | "updated"
+  | "slug"
+  | "tags"
+  | "wordCount"
+>;
+
 function ArticleJsonLd({
   title,
   description,
   canonical,
   date,
   updated,
-}: {
-  title: string;
-  description: string;
-  canonical: string;
-  date: string;
-  updated?: string;
-}) {
+  slug,
+  tags,
+  wordCount,
+}: ArticleJsonLdProps) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -67,6 +83,16 @@ function ArticleJsonLd({
     url: canonical,
     datePublished: date,
     ...(updated && { dateModified: updated }),
+    image: `${BASE_URL}/articles/${slug}.webp`,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": canonical,
+    },
+    ...(tags.length > 0 && {
+      keywords: tags.join(", "),
+      articleSection: tags[0],
+    }),
+    wordCount,
     author: {
       "@type": "Person",
       name: "뿌까뽀까",
@@ -78,6 +104,28 @@ function ArticleJsonLd({
       url: `${BASE_URL}/about`,
     },
     inLanguage: "ko-KR",
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}
+
+function FaqPageJsonLd({ faq }: { faq: FaqItem[] }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faqAnswerToPlainText(item.a),
+      },
+    })),
   };
 
   return (
@@ -112,6 +160,18 @@ export default async function ArticlePage({
         canonical={article.canonical}
         date={article.date}
         updated={article.updated}
+        slug={article.slug}
+        tags={article.tags}
+        wordCount={article.wordCount}
+      />
+      {article.faq && article.faq.length > 0 && (
+        <FaqPageJsonLd faq={article.faq} />
+      )}
+      <BreadcrumbJsonLd
+        items={getBreadcrumbForPath(`/articles/${article.slug}`, {
+          title: article.title,
+          slug: article.slug,
+        })}
       />
       <ArticleDetail
         article={article}

@@ -26,7 +26,7 @@ test.describe("아티클 authorNote 카드 (Step 14)", () => {
       // 왜: PRD에서 제목과 본문 사이에 삽입 요구
       await page.goto("/articles/babyfair-survival-guide");
       const card = page.locator("text=만든이의 한마디");
-      const prose = page.locator(".article-prose");
+      const prose = page.locator(".article-prose").first();
       await expect(card).toBeVisible();
       await expect(prose).toBeVisible();
 

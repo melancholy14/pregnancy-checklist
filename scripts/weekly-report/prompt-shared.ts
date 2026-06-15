@@ -63,6 +63,7 @@ ga4_property: <id>
 - 코호트 totalCohorts < 4 또는 anomaly.comparable=false 등은 해당 섹션 상단에
   "> 데이터 누적 N주차 — 추세 판단은 4주 이후부터 유효" disclaimer를 1줄 삽입.
 - rows=0인 섹션은 "데이터 없음 — N" 한 줄로 명시. 빈 표나 빈 리스트는 금지.
+- Q2 wowDelta="new"는 신규 발현(직전주=0, 이번주>0). %를 비우지 말고 "(신규)"로 표기. wowDelta=null은 양주 모두 0 → "데이터 없음".
 
 ## 작성 원칙
 - raw 검색어/도메인을 인용 부호 안에서 그대로 옮기되, PII·식별자·이메일은 절대 만들어내지 말 것.

@@ -116,3 +116,4 @@
 | 2026-05-03 | P1 5건 → [phase-4.5/plan.md §4](../plan/phase-4.5.md): E-13a AdSense 스크립트·ads.txt, E-13b reviewed_by 빈 필드, C-10 GitHub Actions CI/CD, D-12 E2E webServer 자동화, F-19 쿠키 동의 회귀 테스트. |
 | 2026-05-03 | Phase 5로 이전: D-11 vitest 도입(첫 라운드), Video 타입 정비/zod, BMI 차트. 이 문서엔 P2 확장 분량만 잔존. |
 | 2026-05-03 | Phase 6으로 이전: F-17 에러 모니터링 SaaS(Sentry/Cloud Error Reporting). |
+| 2026-06-03 | phase-4.5 D-Mn1 번들 사이즈 측정(`fcd3b85` → `fc4ff76`): `.next/static/chunks` −44 KB(−2.7 %), `node_modules` −7.79 MB(−0.80 %). turbopack 트리쉐이킹이 미사용 export를 이미 잘라내고 있어 프로덕션 페이로드 영향은 작음. node_modules 절감(CI/install/audit)이 실효. (원 보고서 git history) |

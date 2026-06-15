@@ -64,11 +64,11 @@
 
 > 셋 다 운영자 단독 작업. 작업 완료 후 GA4가 데이터를 채우려면 24~48시간 소요됨. **빨리 등록할수록 W23부터 깨끗한 데이터가 누적.**
 
-**Wave 0 완료 조건**
+**Wave 0 완료 조건** (2026-06-07 완료)
 
-- [ ] GA4 admin에서 internal traffic 필터 active
-- [ ] `current_pregnancy_week`이 GA4 보고서 차원 선택 UI에 노출
-- [ ] GA4 보고서에서 Search Console 카드 노출
+- [x] GA4 admin에서 internal traffic 필터 active
+- [x] `current_pregnancy_week`이 GA4 보고서 차원 선택 UI에 노출
+- [x] GA4 보고서에서 Search Console 카드 노출
 
 ### 🔴 Wave 1 — 휴면 전 필수 (6월 첫째~둘째 주, 1 PR)
 

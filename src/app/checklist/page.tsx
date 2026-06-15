@@ -4,6 +4,8 @@ import partnerPrep from "@/data/partner_prep_checklist.json";
 import pregnancyPrep from "@/data/pregnancy_prep_checklist.json";
 import checklistItems from "@/data/checklist_items.json";
 import { ChecklistHub } from "@/components/checklist/ChecklistHub";
+import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
+import { getBreadcrumbForPath } from "@/lib/breadcrumb-labels";
 import { BASE_URL, OG_IMAGE } from "@/lib/constants";
 import type { ChecklistData } from "@/types/checklist";
 
@@ -25,11 +27,14 @@ export const metadata: Metadata = {
 
 export default function ChecklistHubPage() {
   return (
-    <ChecklistHub
-      hospitalBag={hospitalBag as ChecklistData}
-      partnerPrep={partnerPrep as ChecklistData}
-      pregnancyPrep={pregnancyPrep as ChecklistData}
-      timelineChecklistTotal={checklistItems.length}
-    />
+    <>
+      <BreadcrumbJsonLd items={getBreadcrumbForPath("/checklist")} />
+      <ChecklistHub
+        hospitalBag={hospitalBag as ChecklistData}
+        partnerPrep={partnerPrep as ChecklistData}
+        pregnancyPrep={pregnancyPrep as ChecklistData}
+        timelineChecklistTotal={checklistItems.length}
+      />
+    </>
   );
 }

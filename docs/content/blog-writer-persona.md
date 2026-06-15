@@ -364,6 +364,11 @@ crowded layout, English-only labels.
 | 공포 마케팅 | 금지. 불안 자극 카피 X | `persona.md §7.7` |
 | AdSense 정책 | 클릭 유도·콘텐츠 위장·low-value 금지 | `persona.md §7.8` |
 | 체크리스트 CTA | 모든 정보성 글 끝에 관련 체크리스트 1개 이상 | `persona.md §4.4` |
+| FAQ 입력 위치 | frontmatter `faq:` 에만 작성. 본문에 `## 자주 묻는 질문` 헤더 직접 작성 금지 (SSOT — ArticleDetail이 frontmatter 배열을 본문 영역에 렌더) | `docs/features/faq-jsonld/spec.md §3` |
+| FAQ 1차 소스 게이트 | 답변은 1차 소스 검수 후 추가. 미확인 글은 frontmatter `faq:` 자체를 비워둠 (`test.skip` 등 우회 금지) | `docs/features/faq-jsonld/review.md §5 항목 3` |
+| FAQ 인라인 마크다운 | 답변에 링크 `[text](url)` · 강조 `**bold**` 허용. JSON-LD 출력 시 plain text로 stripping 됨 | `docs/features/faq-jsonld/spec.md §3` |
+| FAQ ⚠️ 그림문자 금지 | 답변 안에 `⚠️` 사용 금지 — disclaimer로 오인 추출 위험. 강조가 필요하면 💡/📌/🔔 사용 | `feedback_warning_emoji_rule.md` |
+| FAQ `→` 외부 링크 화살표 금지 | 답변에 ` → ` 패턴 사용 금지. 외부 출처는 마크다운 링크(`[보건복지부](https://...)`) 또는 평문 흐름 문장으로 작성 | `design-bundle-o-external-link.spec.ts` 정책 확장 |
 
 위 룰 중 **하나라도 충돌할 때 본 문서가 양보한다.** (메모리 + persona.md가 SoT)
 

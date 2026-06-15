@@ -7,10 +7,18 @@ import remarkRehype from "remark-rehype";
 import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 import rehypeStringify from "rehype-stringify";
 import { rehypeArticleFigure } from "@/lib/markdown/rehype-article-figure";
-import type { ArticleMeta, Article } from "@/types/article";
+import type { ArticleMeta, Article, FaqItem } from "@/types/article";
 import { BASE_URL } from "@/lib/constants";
 
 const ARTICLES_DIR = path.join(process.cwd(), "src/content/articles");
+
+export function countWords(markdown: string): number {
+  const withoutCodeFences = markdown.replace(/```[\s\S]*?```/g, " ");
+  const withoutInlineCode = withoutCodeFences.replace(/`[^`]*`/g, " ");
+  const withoutImages = withoutInlineCode.replace(/!\[[^\]]*\]\([^)]*\)/g, " ");
+  const tokens = withoutImages.split(/\s+/).filter(Boolean);
+  return tokens.length;
+}
 
 const sanitizeSchema = {
   ...defaultSchema,
@@ -20,7 +28,75 @@ const sanitizeSchema = {
   },
 };
 
-function parseArticleMeta(data: Record<string, unknown>): ArticleMeta {
+const faqAnswerProcessor = remark()
+  .use(remarkGfm)
+  .use(remarkRehype)
+  .use(rehypeSanitize, sanitizeSchema)
+  .use(rehypeStringify)
+  .freeze();
+
+function parseFaq(
+  raw: unknown,
+  slug: string,
+): FaqItem[] | undefined {
+  if (raw === undefined || raw === null) return undefined;
+  if (!Array.isArray(raw)) {
+    throw new Error(
+      `Article ${slug}: faq invalid — expected array, got ${typeof raw}`,
+    );
+  }
+  if (raw.length === 0) return undefined;
+
+  return raw.map((item, i) => {
+    if (item === null || typeof item !== "object" || Array.isArray(item)) {
+      throw new Error(
+        `Article ${slug}: faq[${i}] invalid — expected object with q and a, got ${item === null ? "null" : typeof item}`,
+      );
+    }
+    const record = item as Record<string, unknown>;
+    const q = record.q;
+    const a = record.a;
+    if (typeof q !== "string") {
+      throw new Error(
+        `Article ${slug}: faq[${i}].q invalid — expected non-empty string, got ${typeof q}`,
+      );
+    }
+    if (q.trim().length === 0) {
+      throw new Error(
+        `Article ${slug}: faq[${i}].q invalid — empty string after trim`,
+      );
+    }
+    if (typeof a !== "string") {
+      throw new Error(
+        `Article ${slug}: faq[${i}].a invalid — expected non-empty string, got ${typeof a}`,
+      );
+    }
+    if (a.trim().length === 0) {
+      throw new Error(
+        `Article ${slug}: faq[${i}].a invalid — empty string after trim`,
+      );
+    }
+    return { q, a };
+  });
+}
+
+export function faqAnswerToPlainText(markdown: string): string {
+  if (typeof markdown !== "string" || markdown.length === 0) return "";
+
+  let text = markdown;
+  text = text.replace(/`([^`]*)`/g, "$1");
+  text = text.replace(/!\[[^\]]*\]\([^)]*\)/g, "");
+  text = text.replace(/\[([^\]]+)\]\([^)]*\)/g, "$1");
+  text = text.replace(/\*\*([^*]+)\*\*/g, "$1");
+  text = text.replace(/__([^_]+)__/g, "$1");
+  text = text.replace(/(^|[^*])\*(?!\s)([^*\n]+?)\*/g, "$1$2");
+  text = text.replace(/(^|[^_])_(?!\s)([^_\n]+?)_/g, "$1$2");
+  text = text.replace(/<[^>]+>/g, "");
+  text = text.replace(/\s+/g, " ").trim();
+  return text;
+}
+
+export function parseArticleMeta(data: Record<string, unknown>): ArticleMeta {
   const slug = String(data.slug ?? "");
   return {
     title: String(data.title ?? ""),
@@ -36,6 +112,7 @@ function parseArticleMeta(data: Record<string, unknown>): ArticleMeta {
     canonical: data.canonical
       ? String(data.canonical)
       : `${BASE_URL}/articles/${slug}`,
+    faq: parseFaq(data.faq, slug),
   };
 }
 
@@ -92,17 +169,33 @@ export async function getArticleBySlug(
     ? disclaimerLines.join(" ")
     : undefined;
 
+  const mainContent = contentLines.join("\n");
+
   const result = await remark()
     .use(remarkGfm)
     .use(remarkRehype)
     .use(rehypeSanitize, sanitizeSchema)
     .use(rehypeArticleFigure)
     .use(rehypeStringify)
-    .process(contentLines.join("\n"));
+    .process(mainContent);
+
+  const meta = parseArticleMeta(data);
+
+  let faqHtmlAnswers: string[] | undefined;
+  if (meta.faq && meta.faq.length > 0) {
+    faqHtmlAnswers = await Promise.all(
+      meta.faq.map(async (item) => {
+        const processed = await faqAnswerProcessor.process(item.a);
+        return processed.toString();
+      }),
+    );
+  }
 
   return {
-    ...parseArticleMeta(data),
+    ...meta,
     content: result.toString(),
     disclaimer,
+    wordCount: countWords(mainContent),
+    faqHtmlAnswers,
   };
 }

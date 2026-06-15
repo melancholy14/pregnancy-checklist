@@ -95,6 +95,22 @@ export function ArticleDetail({
           dangerouslySetInnerHTML={{ __html: article.content }}
         />
 
+        {article.faq && article.faq.length > 0 && (
+          <section className="article-prose mt-8" aria-label="자주 묻는 질문">
+            <h2>자주 묻는 질문</h2>
+            {article.faq.map((item, i) => (
+              <div key={i}>
+                <h3>{item.q}</h3>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: article.faqHtmlAnswers?.[i] ?? "",
+                  }}
+                />
+              </div>
+            ))}
+          </section>
+        )}
+
         {article.linked_timeline_weeks && article.linked_timeline_weeks.length > 0 && (
           <TimelineCTA weeks={article.linked_timeline_weeks} />
         )}

@@ -1,6 +1,6 @@
 # BottomNav 5탭 코드 리뷰
 
-> 출처 plan: [bottomnav-weight-tab-plan.md](../plan/bottomnav-weight-tab-plan.md)
+> 출처 plan: [bottomnav-weight-tab-plan.md](../../plan/bottomnav-weight-tab-plan.md)
 > impl: [bottomnav-weight-tab-impl.md](../implementation/bottomnav-weight-tab-impl.md)
 > 작성일: 2026-06-02
 

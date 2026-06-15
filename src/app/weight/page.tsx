@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { WeightContainer } from "@/components/weight/WeightContainer";
+import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
+import { getBreadcrumbForPath } from "@/lib/breadcrumb-labels";
 import { BASE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -16,5 +18,10 @@ export const metadata: Metadata = {
 };
 
 export default function WeightPage() {
-  return <WeightContainer />;
+  return (
+    <>
+      <BreadcrumbJsonLd items={getBreadcrumbForPath("/weight")} />
+      <WeightContainer />
+    </>
+  );
 }

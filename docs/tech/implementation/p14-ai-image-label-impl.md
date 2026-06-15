@@ -18,7 +18,7 @@
 ### 신규 생성
 - [src/lib/markdown/rehype-article-figure.ts](../../../src/lib/markdown/rehype-article-figure.ts) — rehype 플러그인. hast 트리에서 image-only 단락(`<p><img></p>`)을 찾아 `<figure class="article-figure">` 구조로 치환. alt에 `(AI 생성 이미지)` 마커가 있으면 워터마크 칩 + figcaption 자동 부착. alt 누락 시 콘솔 경고, 외부 절대 URL 이미지도 경고.
 - [docs/content/image-sop.md](../../content/image-sop.md) — 운영자 이미지 SOP. 표시 트리거 1줄 룰, 도구별 분류 표(빈 칸 락인 회피), 신규 도구 도입 시 IPTC 검증 절차, 광고 슬롯 충돌 회피, 발행 체크리스트.
-- [docs/implementation/p14-ai-image-label-impl.md](./p14-ai-image-label-impl.md) — 본 문서.
+- [docs/tech/implementation/p14-ai-image-label-impl.md](./p14-ai-image-label-impl.md) — 본 문서.
 
 ### 수정
 - [src/lib/articles.ts](../../../src/lib/articles.ts) — `getArticleBySlug` remark 파이프라인에 `rehypeArticleFigure`를 추가. `rehypeSanitize` **뒤**에 위치(이유: §주요 결정 사항 1).

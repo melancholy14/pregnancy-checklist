@@ -1,7 +1,7 @@
 # checklist-data-model-bundle 코드 리뷰
 
 > 작성일: 2026-06-06
-> 관련 spec: [docs/features/checklist-data-model-bundle/spec.md](../features/checklist-data-model-bundle/spec.md)
+> 관련 spec: [docs/features/checklist-data-model-bundle/spec.md](../../features/checklist-data-model-bundle/spec.md)
 > 관련 impl: [docs/implementation/checklist-data-model-bundle-impl.md](../implementation/checklist-data-model-bundle-impl.md)
 
 ## 리뷰 대상 파일

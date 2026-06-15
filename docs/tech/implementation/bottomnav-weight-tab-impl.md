@@ -1,6 +1,6 @@
 # BottomNav 5탭 (체중 추가 + 순서 정렬) Implementation
 
-> 출처 plan: [bottomnav-weight-tab-plan.md](../plan/bottomnav-weight-tab-plan.md)
+> 출처 plan: [bottomnav-weight-tab-plan.md](../../plan/bottomnav-weight-tab-plan.md)
 > 작성일: 2026-06-02
 
 ## 완료 조건 충족 여부
@@ -17,11 +17,11 @@
 ## 생성/수정 파일 목록
 
 ### 수정
-- [src/components/layout/BottomNav.tsx](../../src/components/layout/BottomNav.tsx)
+- [src/components/layout/BottomNav.tsx](../../../src/components/layout/BottomNav.tsx)
   - lucide-react import에 `Scale` 추가
   - navItems에 `{ path: "/weight", icon: Scale, label: "체중", match: "prefix" }` 추가
   - 배열 순서를 `홈 → 체크리스트 → 체중 → 베이비페어 → 정보`로 재정렬
-- [e2e/navigation.spec.ts](../../e2e/navigation.spec.ts)
+- [e2e/navigation.spec.ts](../../../e2e/navigation.spec.ts)
   - "4개 네비게이션 항목" → "5개 네비게이션 항목이 순서대로 보인다"로 재작성, 라벨 배열 단언으로 순서까지 검증
   - "영상" 0건 가드 삭제 (V1=A로 의미 잃음)
   - 이동 테스트에 체중·베이비페어 클릭 단언 추가 (4 → 5경로)
