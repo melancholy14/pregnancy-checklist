@@ -22,6 +22,7 @@ import {
 
 import type {
   AnomalyRow,
+  ChannelGroupAcquisition,
   CohortRetention,
   CohortRow,
   CoreBehaviorReach,
@@ -29,6 +30,7 @@ import type {
   ExternalDomainOutflow,
   Ga4Result,
   IsoWeek,
+  LandingPageEntry,
   WeekOverWeekAnomaly,
   WeeklyDateRange,
   ZeroResultSearch,
@@ -58,6 +60,12 @@ const ANOMALY_EVENTS = [
 
 const COHORT_LOOKBACK_WEEKS = 8;
 const TOP_N = 10;
+
+// Q6/Q7 (Wave 2) 모집단 가드 기본값. spec §3.1: previousCount < threshold → noise.
+// 임계값 10은 W22~W24 실데이터 관찰 후 조정 가능. config 상수 한 줄 수정으로 끝나는 구조.
+const POPULATION_GUARD_THRESHOLD = 10;
+const CHANNEL_GROUP_TOP_N = 5;
+const LANDING_PAGE_TOP_N = 10;
 
 // Q4 자체 도메인 거짓 양성 제거 — pregnancy-checklist.com 변종을 자체화 후보에서 제외.
 // CNAME은 `pregnancy-checklist.com` 단일이지만 enhanced measurement의 linkDomain은
@@ -415,7 +423,18 @@ export async function queryExternalDomainOutflow(
 }
 
 // ── Q5. Week-over-week anomaly (±5/10/20/30 bands) ──────────────────
-function bandForDelta(deltaPercent: number | null): AnomalyRow["band"] {
+// Wave 2 #6: 모집단 가드 — previousCount < threshold 인 이벤트는 큰 WoW가 잡혀도
+// 모집단 자체가 너무 작아 통계적 신호가 아니므로 "noise" 로 강제 다운그레이드한다.
+// W24(active users=0) 같은 휴면기 incident 도배 시나리오를 차단.
+// 단 previousCount === 0 && currentCount > 0 인 "new 발현" 케이스는 §2 핵심 행동의
+// wowDelta="new" 경로에서 별도 처리되므로 본 함수 책임 밖. 본 함수에 들어오는 prev=0
+// 케이스는 anomaly 쿼리가 deltaPercent=null 로 넘긴 것 → noise (모집단 0).
+export function bandForDelta(
+  deltaPercent: number | null,
+  opts: { previousCount: number; threshold?: number },
+): AnomalyRow["band"] {
+  const threshold = opts.threshold ?? POPULATION_GUARD_THRESHOLD;
+  if (opts.previousCount < threshold) return "noise";
   if (deltaPercent === null) return "hypothesis";
   const abs = Math.abs(deltaPercent);
   if (abs >= 30) return "incident";
@@ -473,7 +492,7 @@ export async function queryWeekOverWeekAnomaly(
       currentCount: cur,
       previousCount: prev,
       deltaPercent,
-      band: bandForDelta(deltaPercent),
+      band: bandForDelta(deltaPercent, { previousCount: prev }),
     };
   })
     .filter((r) => {
@@ -484,6 +503,61 @@ export async function queryWeekOverWeekAnomaly(
     });
 
   return { rows, comparable };
+}
+
+// ── Q6. Acquisition channel groups (Wave 2 M1) ───────────────────────
+// GA4 표준 차원 `sessionDefaultChannelGroup` 기반. organic vs direct vs referral
+// 분리 가시성을 위해 TOP N 세션 집계. `(not set)` 은 §4 외부 유출 필터와 동일 패턴 제외.
+export async function queryChannelGroupAcquisition(
+  client: BetaAnalyticsDataClient,
+  propertyId: string,
+  range: WeeklyDateRange,
+): Promise<ChannelGroupAcquisition> {
+  const [response] = await client.runReport({
+    property: propertyPath(propertyId),
+    dimensions: [{ name: "sessionDefaultChannelGroup" }],
+    metrics: [{ name: "sessions" }],
+    dateRanges: [{ startDate: range.startDate, endDate: range.endDate }],
+    orderBys: [{ metric: { metricName: "sessions" }, desc: true }],
+    limit: CHANNEL_GROUP_TOP_N,
+  });
+
+  const rows = (response.rows ?? [])
+    .map((row) => ({
+      channelGroup: readString(row.dimensionValues?.[0]?.value),
+      sessions: readNumber(row.metricValues?.[0]?.value),
+    }))
+    .filter((r) => r.channelGroup !== "" && r.channelGroup !== "(not set)");
+
+  return { rows };
+}
+
+// ── Q7. Landing page entry (Wave 2 M2) ───────────────────────────────
+// GA4 표준 차원 `landingPagePlusQueryString`. 첫 진입점 = SEO 우선순위 신호.
+// 본문 표 노출 시 query string 의 raw 검색어/내부 입력값 PII 마스킹은 fixture 생성
+// (anonymize.ts) 단계에서 처리되며, 라이브 GA4 응답은 운영자 단독 vault 에만 저장된다.
+export async function queryLandingPageEntry(
+  client: BetaAnalyticsDataClient,
+  propertyId: string,
+  range: WeeklyDateRange,
+): Promise<LandingPageEntry> {
+  const [response] = await client.runReport({
+    property: propertyPath(propertyId),
+    dimensions: [{ name: "landingPagePlusQueryString" }],
+    metrics: [{ name: "sessions" }],
+    dateRanges: [{ startDate: range.startDate, endDate: range.endDate }],
+    orderBys: [{ metric: { metricName: "sessions" }, desc: true }],
+    limit: LANDING_PAGE_TOP_N,
+  });
+
+  const rows = (response.rows ?? [])
+    .map((row) => ({
+      landingPage: readString(row.dimensionValues?.[0]?.value),
+      sessions: readNumber(row.metricValues?.[0]?.value),
+    }))
+    .filter((r) => r.landingPage !== "" && r.landingPage !== "(not set)");
+
+  return { rows };
 }
 
 // ── Aggregator ───────────────────────────────────────────────────────
@@ -531,7 +605,7 @@ export async function collectGa4Result(params: {
 }): Promise<Ga4Result> {
   const { client, propertyId, range, previous, isoWeek, trendWeeks } = params;
 
-  // 5개 쿼리를 동시 발사 — 하나가 실패해도 나머지 결과를 모두 수집해서 진단이 1회로 끝나도록 한다.
+  // 7개 쿼리를 동시 발사 — 하나가 실패해도 나머지 결과를 모두 수집해서 진단이 1회로 끝나도록 한다.
   const settled = await Promise.allSettled([
     labelQuery("Q1 cohort_retention", () => queryCohortRetention(client, propertyId, range)),
     labelQuery("Q2 core_behavior_reach", () =>
@@ -544,6 +618,10 @@ export async function collectGa4Result(params: {
     labelQuery("Q5 anomaly", () =>
       queryWeekOverWeekAnomaly(client, propertyId, range, previous),
     ),
+    labelQuery("Q6 channel_group_acquisition", () =>
+      queryChannelGroupAcquisition(client, propertyId, range),
+    ),
+    labelQuery("Q7 landing_page_entry", () => queryLandingPageEntry(client, propertyId, range)),
   ]);
 
   const failures = settled
@@ -554,18 +632,19 @@ export async function collectGa4Result(params: {
       const m = f.reason instanceof Error ? f.reason.message : String(f.reason);
       return m;
     });
-    throw new Error(`GA4 queries failed (${failures.length}/5):\n  - ${messages.join("\n  - ")}`);
+    throw new Error(`GA4 queries failed (${failures.length}/7):\n  - ${messages.join("\n  - ")}`);
   }
 
-  const [cohort, coreBehavior, zeroResultSearch, externalDomain, anomaly] = settled.map(
-    (r) => (r as PromiseFulfilledResult<unknown>).value,
-  ) as [
-    CohortRetention,
-    CoreBehaviorReach,
-    ZeroResultSearch,
-    ExternalDomainOutflow,
-    WeekOverWeekAnomaly,
-  ];
+  const [cohort, coreBehavior, zeroResultSearch, externalDomain, anomaly, channelGroup, landingPage] =
+    settled.map((r) => (r as PromiseFulfilledResult<unknown>).value) as [
+      CohortRetention,
+      CoreBehaviorReach,
+      ZeroResultSearch,
+      ExternalDomainOutflow,
+      WeekOverWeekAnomaly,
+      ChannelGroupAcquisition,
+      LandingPageEntry,
+    ];
 
   return {
     propertyId,
@@ -576,6 +655,8 @@ export async function collectGa4Result(params: {
     zeroResultSearch,
     externalDomain,
     anomaly,
+    channelGroup,
+    landingPage,
     trendWeeks,
   };
 }

@@ -1,12 +1,14 @@
 /**
  * Shared types for the weekly report pipeline.
  *
- * Mapping to spec §1.9 / ga4.md Q1~Q5:
+ * Mapping to spec §1.9 / ga4.md Q1~Q7:
  *   Q1 → CohortRetention
  *   Q2 → CoreBehaviorReach
  *   Q3 → ZeroResultSearch
  *   Q4 → ExternalDomainOutflow
  *   Q5 → WeekOverWeekAnomaly
+ *   Q6 → ChannelGroupAcquisition (Wave 2 M1)
+ *   Q7 → LandingPageEntry (Wave 2 M2)
  */
 
 export type IsoWeek = `${number}-W${number}`;
@@ -83,6 +85,26 @@ export type WeekOverWeekAnomaly = {
   comparable: boolean; // false when no previous week data
 };
 
+// ── Q6. Acquisition channel groups (Wave 2 M1) ───────────────────────
+export type ChannelGroupRow = {
+  channelGroup: string; // GA4 표준 차원 sessionDefaultChannelGroup 값 (e.g. "Organic Search")
+  sessions: number;
+};
+
+export type ChannelGroupAcquisition = {
+  rows: ChannelGroupRow[];
+};
+
+// ── Q7. Landing page entry (Wave 2 M2) ───────────────────────────────
+export type LandingPageRow = {
+  landingPage: string; // landingPagePlusQueryString — query string PII는 anonymize.ts에서 마스킹.
+  sessions: number;
+};
+
+export type LandingPageEntry = {
+  rows: LandingPageRow[];
+};
+
 // ── Aggregate GA4 result ─────────────────────────────────────────────
 export type Ga4Result = {
   propertyId: string;
@@ -93,6 +115,8 @@ export type Ga4Result = {
   zeroResultSearch: ZeroResultSearch;
   externalDomain: ExternalDomainOutflow;
   anomaly: WeekOverWeekAnomaly;
+  channelGroup: ChannelGroupAcquisition;
+  landingPage: LandingPageEntry;
   // Last 4 ISO-week labels (oldest → current) for trend hint to Claude.
   trendWeeks: IsoWeek[];
 };

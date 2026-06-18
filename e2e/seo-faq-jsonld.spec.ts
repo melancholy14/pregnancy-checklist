@@ -30,7 +30,7 @@ const BACKFILL_SLUGS = [
   "pregnancy-foods-to-avoid",
 ] as const;
 
-const FAQLESS_SAMPLE_SLUG = "weekly-prenatal-checklist";
+const FAQLESS_SAMPLE_SLUG = "pregnancy-exercise-starter-guide";
 
 type FaqItem = { q: string; a: string };
 

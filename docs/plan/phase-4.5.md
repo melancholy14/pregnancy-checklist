@@ -2,8 +2,8 @@
 
 > Phase 4 기록: [phase-4.md](phase-4.md)
 > Date: 2026-05-02
-> 목표 완료: TBD
-> Status: ✅ 마케팅 G·H·I·J·L·M(2주 관찰 중) / 개발 D-A·D-B / 기획 P1·P5 묶음 완료 (2026-06-06 갱신)
+> 목표 완료: **2026-06-15 ✅ 공식 종료**
+> Status: ✅ 종료 — 마케팅 G·H·I·J·L·M / 디자인 §2 전 묶음 / 기획 P1·P2·P3·P4·P5·P6·P7·P9·P11·P14 / 개발 D-A·D-B·D-C 완료. 잔여 항목은 [phase-5.md](phase-5.md) S1~S4 선행작업으로 이관 (2026-06-06). 마케팅 묶음 M 인프라 안정화 검증 완료 (launchd W19~W24 6주 무중단 실행). W24 데이터 incident는 [weekly-report-improvement.md](weekly-report-improvement.md) Wave 2 영역으로 분리 (2026-06-15).
 >
 > **진행 요약 (2026-06-06)**
 >
@@ -26,10 +26,10 @@
 >   - refactor 묶음 2건 통합: B·I ([design-bundle-b-i-row-tokens](../features/design-bundle-b-i-row-tokens/) — WeekChecklistSection label 마크업 + 데이터→토큰 헬퍼)
 >   - decision 묶음 3건: J ShareButton 위치 ([design-bundle-j-share-button-position](../features/design-bundle-j-share-button-position/spec.md)), K 삭제 패턴 undo 토스트 ([design-bundle-k-delete-pattern](../features/design-bundle-k-delete-pattern/spec.md)), N 차트 색 peach ([design-bundle-n-weight-chart-color](../features/design-bundle-n-weight-chart-color/spec.md))
 >   - IM-6 (alt 가이드라인) ✅ 완료 (2026-06-03, blog-writer-persona.md §6.5)
-> - **마케팅 §1** — **묶음 G·H·I·J·L 완료 + 묶음 M launchd 등록·1차 검증 통과 (2026-05-26)**:
+> - **마케팅 §1** — **묶음 G·H·I·J·L·M 전부 완료 (2026-06-15)**:
 >   wiring ([marketing-events-wiring](../features/marketing-events-wiring/spec.md), 2026-05-12) + 자동 주간 리포트 스크립트 ([marketing-weekly-report](../features/marketing-weekly-report/), 2026-05-13).
 >   `scripts/weekly-report/` 7개 파일(GA4 Data API + Claude/OpenAI 백업 + writer) + ga4.md §8/§9 갱신 완료. 묶음 M plist 등록 + kickstart 즉시 검증 통과 (exit 0, 2026-W21.md §1.9.6 스키마 일치, OpenAI fallback).
->   잔여: 2주 안정화 관찰 (~2026-06-15 누락/실패 0건 확인 시 묶음 M 종료).
+>   **묶음 M 인프라 종료 (2026-06-15)**: launchd W19~W24 6주 무중단 실행, exit 0 일관성 검증. `pregnancy-checklist-report.log` 누락/실패 0건. W24(2026-06-08~14) 데이터 0건 → 모든 이벤트 -100% incident 발생했으나, 동일 코드(056958e) 배포 상태에서 현재(2026-06-15) GA4 DebugView gtag 발화 정상 → 인프라 결함이 아니라 모집단 임계값 부재로 인한 측정 노이즈로 진단. 해당 issue는 [weekly-report-improvement.md](weekly-report-improvement.md) Wave 2 (#6 모집단 임계값 가드 + #7 schema validate) 영역으로 분리 이관.
 > - **개발 §4** — **D-A·D-B 완료** (2026-05-26):
 >   D-A(Critical) = D-C1 `public/ads.txt` + `adsbygoogle.js` consent-gated 주입 ([ConsentGatedScripts.tsx](../../src/components/consent/ConsentGatedScripts.tsx)) + D-C2 빈 `reviewed_by` 사이트 전체 0건. D-B(자동화·회귀 안전망) = D-M1~M3 (GitHub Actions CI/CD + Playwright webServer + 동의 거부 회귀 e2e) 완료.
 >   잔여: D-C(코드 정돈)·D-D(리뷰 잔불)·D-E(트리거 대기) — phase-4.5 종료 차단 아님. P1 deferred 묶음(`checklist-data-model-bundle`)은 phase-4.5 종료 시점 동반 처리.

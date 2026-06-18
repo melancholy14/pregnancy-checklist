@@ -1,0 +1,119 @@
+{
+  "propertyId": "000000000",
+  "isoWeek": "2026-W24",
+  "range": {
+    "startDate": "2026-06-08",
+    "endDate": "2026-06-14"
+  },
+  "cohort": {
+    "approach": "cohortSpec",
+    "rows": [
+      {
+        "cohortJoinWeek": "2026-W17",
+        "nthWeek": 0,
+        "activeUsers": 2
+      },
+      {
+        "cohortJoinWeek": "2026-W19",
+        "nthWeek": 0,
+        "activeUsers": 1
+      }
+    ],
+    "totalCohorts": 2
+  },
+  "coreBehavior": {
+    "totalActiveUsers": 0,
+    "previousTotalActiveUsers": 1,
+    "rows": [
+      {
+        "eventName": "checklist_item_toggle",
+        "eventCount": 0,
+        "totalUsers": 0,
+        "previousEventCount": 4,
+        "previousTotalUsers": 1,
+        "wowDelta": -100
+      },
+      {
+        "eventName": "article_read_complete",
+        "eventCount": 0,
+        "totalUsers": 0,
+        "previousEventCount": 0,
+        "previousTotalUsers": 0,
+        "wowDelta": null
+      },
+      {
+        "eventName": "weight_log",
+        "eventCount": 0,
+        "totalUsers": 0,
+        "previousEventCount": 1,
+        "previousTotalUsers": 1,
+        "wowDelta": -100
+      }
+    ]
+  },
+  "zeroResultSearch": {
+    "rows": []
+  },
+  "externalDomain": {
+    "rows": []
+  },
+  "anomaly": {
+    "rows": [
+      {
+        "eventName": "page_view",
+        "currentCount": 0,
+        "previousCount": 66,
+        "deltaPercent": -100,
+        "band": "incident"
+      },
+      {
+        "eventName": "checklist_item_toggle",
+        "currentCount": 0,
+        "previousCount": 4,
+        "deltaPercent": -100,
+        "band": "incident"
+      },
+      {
+        "eventName": "weight_log",
+        "currentCount": 0,
+        "previousCount": 1,
+        "deltaPercent": -100,
+        "band": "incident"
+      },
+      {
+        "eventName": "empty_state_view",
+        "currentCount": 0,
+        "previousCount": 2,
+        "deltaPercent": -100,
+        "band": "incident"
+      },
+      {
+        "eventName": "axis_enter",
+        "currentCount": 0,
+        "previousCount": 2,
+        "deltaPercent": -100,
+        "band": "incident"
+      },
+      {
+        "eventName": "axis_cross_link",
+        "currentCount": 0,
+        "previousCount": 2,
+        "deltaPercent": -100,
+        "band": "incident"
+      }
+    ],
+    "comparable": true
+  },
+  "trendWeeks": [
+    "2026-W20",
+    "2026-W21",
+    "2026-W22",
+    "2026-W23"
+  ],
+  "channelGroup": {
+    "rows": []
+  },
+  "landingPage": {
+    "rows": []
+  }
+}
