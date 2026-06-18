@@ -257,16 +257,16 @@ A와 C는 부부 모두 6개월 이상 써서 6+6을 풀로 활용하기 때문�
 
 ## 참고 자료
 
-- 법제처 — 고용보험법 시행령 제95조의3 (6+6 부모육아휴직제 근거) — [국가법령정보센터](https://www.law.go.kr/LSW//lumLsLinkPop.do?chrClsCd=010202&lspttninfSeq=106251)
-- 고용노동부 — 육아휴직급여 제도안내 (2025~2026) — [고용24](https://m.work24.go.kr/cm/c/f/1100/selecSystInfo.do?systClId=SC00000251&systId=SI00000402)
-- 고용노동부 — 6+6 실무 지급 관련 상담 답변 — [빠른인터넷상담](https://www.moel.go.kr/minwon/fastcounsel/fastcounselView.do?inetDcssMngId=202407311014074950417)
-- 법제처 — 출산휴가·육아휴직 생활법령 (2026) — [찾기쉬운 생활법령정보](https://easylaw.go.kr/CSP/CnpClsMain.laf?popMenu=ov&csmSeq=1112&ccfNo=5&cciNo=2&cnpClsNo=2)
-- 고용평등 — 육아휴직급여 총정리 2024~2026 — [nodong.kr](https://www.nodong.kr/equl/403834)
-- 현대캐피탈 — 2026 육아지원제도 정리 — [브런치](https://brunch.co.kr/@hyundaicapital/297)
-- 고용노동부 — 「2026년 달라지는 육아지원제도」 보도자료 (2026.1) — [고용노동부 서울청 보도자료](https://www.moel.go.kr/local/seoul/news/reportexplan/view.do?bbs_seq=20260100574)
-- 송나리 노무사 — 「육아 지원 3법 개정 내용과 실무 적용」 (2025.1) — [워크로우](https://www.worklaw.co.kr/main2022/view/view.asp?bi_pidx=37480)
-- 보건복지부 — 아동수당 지급 (2026.4 확대) — [보건복지부 아동복지정책](https://www.mohw.go.kr/menu.es?mid=a10711030100)
-- [육아 지원 3법 개정 내용과 실무 적용](https://www.worklaw.co.kr/ja_data/intranet/contents/N202501_130R_%EC%9D%B8%EB%A0%A5%EC%9A%B4%EC%98%81_%EC%86%A1%EB%82%98%EB%A6%AC.pdf)
+- [국가법령정보센터, 「고용보험법 시행령 제95조의3」 — 6+6 부모육아휴직제 근거](https://www.law.go.kr/LSW//lumLsLinkPop.do?chrClsCd=010202&lspttninfSeq=106251)
+- [고용노동부 고용24, 「육아휴직급여 제도안내」 (2025~2026)](https://m.work24.go.kr/cm/c/f/1100/selecSystInfo.do?systClId=SC00000251&systId=SI00000402)
+- [고용노동부, 「6+6 실무 지급 관련 상담 답변」 빠른인터넷상담 (2024)](https://www.moel.go.kr/minwon/fastcounsel/fastcounselView.do?inetDcssMngId=202407311014074950417)
+- [법제처 찾기쉬운 생활법령정보, 「출산휴가·육아휴직 생활법령」 (2026)](https://easylaw.go.kr/CSP/CnpClsMain.laf?popMenu=ov&csmSeq=1112&ccfNo=5&cciNo=2&cnpClsNo=2)
+- [nodong.kr, 「육아휴직급여 총정리 2024~2026」](https://www.nodong.kr/equl/403834)
+- [현대캐피탈 브런치, 「2026 육아지원제도 정리」 (2026)](https://brunch.co.kr/@hyundaicapital/297)
+- [고용노동부 서울청, 「2026년 달라지는 육아지원제도」 보도자료 (2026.1)](https://www.moel.go.kr/local/seoul/news/reportexplan/view.do?bbs_seq=20260100574)
+- [워크로우 (송나리 노무사), 「육아 지원 3법 개정 내용과 실무 적용」 (2025.1)](https://www.worklaw.co.kr/main2022/view/view.asp?bi_pidx=37480)
+- [워크로우 (송나리 노무사), 「육아 지원 3법 개정 내용과 실무 적용」 PDF (2025.1)](https://www.worklaw.co.kr/ja_data/intranet/contents/N202501_130R_%EC%9D%B8%EB%A0%A5%EC%9A%B4%EC%98%81_%EC%86%A1%EB%82%98%EB%A6%AC.pdf)
+- [보건복지부, 「아동수당 지급」 (2026.4 확대)](https://www.mohw.go.kr/menu.es?mid=a10711030100)
 
 ---
 

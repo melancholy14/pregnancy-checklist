@@ -117,15 +117,10 @@ faq:
 
 ## 참고 자료
 
-### 정부·공공 기관
-
 - [보건복지부, 「OECD Health Statistics 2024 요약본」](https://www.mohw.go.kr/board.es?mid=a10411010100&bid=0019&act=view&list_no=1483195) — 2022년 OECD 회원국 제왕절개율 비교(한국 출생아 1,000명당 약 610.6건, OECD 2위)
 - [임신육아종합포털 아이사랑, 「임신 후기(28~40주) 이해」](https://www.childcare.go.kr/?menuno=256) — 분만 계획서 작성 시기(28~36주) 가이드
 - [임신육아종합포털 아이사랑, 「통증관리」](https://www.childcare.go.kr/?menuno=272) — 라마즈 호흡법·분만 자세 등 비약물적 진통 관리법 종합 안내
 - [대한민국 정책브리핑, 「산모님? 자연주의 출산 어떠십니까」](https://www.korea.kr/news/cultureColumnView.do?newsId=148842499) — 자연주의 분만 한국 도입 시점(2001년)·르봐이예 분만 유래
-
-### 상급 종합병원·전문병원 1차 자료
-
 - [서울대학교병원, 「자연 분만」](https://www.snuh.org/health/nMedInfo/nView.do?category=TREAT&medid=BB000059) — 분만 단계(개구기·만출기·후산기) 시간 범위
 - [서울대학교병원, 「제왕절개 분만」](https://www.snuh.org/health/nMedInfo/nView.do?category=TREAT&medid=BB000056) — 제왕절개 후 합병증 없을 시 4~7일 입원
 - [서울아산병원, 「분만 후 출혈(Postpartum hemorrhage)」](https://www.amc.seoul.kr/asan/healthinfo/disease/diseaseDetail.do?contentId=31951) — 산후출혈 정의(질식 분만 후 500mL 이상, 제왕절개 후 1,000mL 이상)
@@ -136,15 +131,9 @@ faq:
 - [강남차병원, 「분만관리 FAQ」](https://gangnam.chamc.co.kr/health/culturecenter/childbirth/FAQ.cha) — 초산/경산 진통 간격 기준
 - [강남차병원, 「무통분만」](https://gangnam.chamc.co.kr/health/guide/columnView.cha?idx=111&menuCode=1740&search=UH_TITLE&keyword&page=14) — 경막외 마취 부작용·금기 사항
 - [분당차병원, 「분만 진통 — 언제 병원에 가야 할까」](https://bundangcheil.com/bbs/board.php?bo_table=column&wr_id=97) — 5-1-1 룰 등 진통 시작 시 병원 방문 기준
-
-### 학회·논문
-
 - [American Society of Anesthesiologists, 「Cesarean Delivery Linked to Higher Risk of Pain and Sleep Problems After Childbirth」 (ANESTHESIOLOGY 2025)](https://www.asahq.org/about-asa/newsroom/news-releases/2025/10/cesarean-delivery-linked-to-higher-risk-of-pain-and-sleep-problems-after-childbirth) — 스탠퍼드대 의대 발표 연구, 자연분만 8% vs 계획 제왕절개 73% / 응급 제왕절개 67% 산후 통증·수면장애 비교(인터뷰 41명 + 보험 데이터 150만 명, 2008~2021). 학회 발표 단계라 정식 논문은 아직 — 정확한 %보다는 차이가 크다는 흐름으로만 봐주세요
-- [ACOG Practice Bulletin No. 205, 「Vaginal Birth After Cesarean Delivery」 (2019)](https://www.acog.org/clinical/clinical-guidance/practice-bulletin/articles/2019/02/vaginal-birth-after-cesarean-delivery) — VBAC 성공률 60~80% 국제 가이드라인 기준
-- [모자보건학회지, 르봐이예 분만 vs 일반 질식 분만 만족도 비교 연구](https://www.e-mch.org/upload/pdf/001790634.pdf) — 르봐이예 분만 산모 만족도
-
-### 보조 보도 자료
-
+- [ACOG, 「Practice Bulletin No. 205: Vaginal Birth After Cesarean Delivery」 (2019)](https://www.acog.org/clinical/clinical-guidance/practice-bulletin/articles/2019/02/vaginal-birth-after-cesarean-delivery) — VBAC 성공률 60~80% 국제 가이드라인 기준
+- [모자보건학회지, 「르봐이예 분만 vs 일반 질식 분만 만족도 비교 연구」](https://www.e-mch.org/upload/pdf/001790634.pdf) — 르봐이예 분만 산모 만족도
 - [경향신문, 「자연분만 vs 제왕절개, 미리 결정하지 마세요」 (2021)](https://www.khan.co.kr/article/202103241728002) — 산모 선호 제왕절개·골반저근 약화 등 정성 비교
 - [한국경제, 「제왕절개 산모, 자연분만 산모보다… 놀라운 결과 나왔다」 (2025)](https://www.hankyung.com/article/2025101641807) — 스탠퍼드 연구 국내 보도(원문은 위 ASA 자료 참조)
 - [베이비뉴스, 「'이번엔 자연분만!' 브이백, 성공할 수 있을까?」](https://www.ibabynews.com/news/articleView.html?idxno=87989) — 국내 VBAC 성공률 75~85% 보도

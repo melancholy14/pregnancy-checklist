@@ -263,8 +263,10 @@ NIPT는 주로 다운증후군(21번), 에드워즈증후군(18번),
 - [보건복지부, 「임신·출산진료비 지원사업」](https://www.mohw.go.kr/menu.es?mid=a10705020100)
 - [아이사랑 포털, 「산전검사와 예방접종 — 임신초기」](https://www.childcare.go.kr/?menuno=361)
 - [메디칼업저버, 「산전 기형아 검사 NIPT, 진료비 지역별 차이」](https://www.monews.co.kr/news/articleView.html?idxno=307476)
-- [ACOG Practice Bulletin No. 226, Screening for Fetal Chromosomal Abnormalities (2020)](https://publications.smfm.org/publications/328-acog-practice-bulletin-226-screening-for-chromosomal-abnormalities/)
+- [ACOG, 「Practice Bulletin No. 226: Screening for Fetal Chromosomal Abnormalities」 (2020)](https://publications.smfm.org/publications/328-acog-practice-bulletin-226-screening-for-chromosomal-abnormalities/)
+
 ---
+
 > ⚠️ 이 글은 일반적인 임신·출산 정보를 제공하며, 의학적 조언을 대체하지 않습니다.
 > 검사 선택과 결과 해석은 담당 산부인과 전문의와 상담하세요.
 > 정부 지원 정책(국민행복카드, 보건소 지원 등)은 연도별로 변경될 수 있으므로,

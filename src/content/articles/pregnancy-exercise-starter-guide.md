@@ -124,13 +124,13 @@ A. 임신 전부터 했다면 강도를 낮춰 유지할 수 있어요. 누워�
 ## 참고 자료
 
 - [서울대학교 국민건강지식센터, 「임산부를 위한 운동 가이드라인」](https://hqcenter.snu.ac.kr/archives/jiphyunjeon/%EC%9E%84%EC%82%B0%EB%B6%80%EB%A5%BC-%EC%9C%84%ED%95%9C-%EC%9A%B4%EB%8F%99-%EA%B0%80%EC%9D%B4%EB%93%9C%EB%9D%BC%EC%9D%B8-2)
-- [미국산부인과학회(ACOG), Committee Opinion No. 804 「Physical Activity and Exercise During Pregnancy and the Postpartum Period」 (2020)](https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2020/04/physical-activity-and-exercise-during-pregnancy-and-the-postpartum-period)
+- [미국산부인과학회(ACOG), 「Committee Opinion No. 804: Physical Activity and Exercise During Pregnancy and the Postpartum Period」 (2020)](https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2020/04/physical-activity-and-exercise-during-pregnancy-and-the-postpartum-period)
 - [대한의사협회지(JKMA), 「임신 중 운동지침」 (2016)](https://synapse.koreamed.org/upload/synapsedata/pdfdata/0119jkma/jkma-59-514.pdf)
-- [차의과학대학교 강남차병원, 산부인과 김수현 교수 칼럼 「움직여라, 임산부여!」](https://gangnam.chamc.co.kr/health/guide/columnView.cha?idx=314&menuCode=1740&search=UH_TITLE&page=3)
+- [차의과학대학교 강남차병원 (김수현 교수 칼럼), 「움직여라, 임산부여!」](https://gangnam.chamc.co.kr/health/guide/columnView.cha?idx=314&menuCode=1740&search=UH_TITLE&page=3)
 - [대한간호협회 가정간호, 「임신 중 운동」](https://www.khna.or.kr/homecare/11_pregn/pregnancy07.php)
-- [Davenport MH et al., 「Prenatal exercise for the prevention of gestational diabetes mellitus and hypertensive disorders of pregnancy: a systematic review and meta-analysis」, *Br J Sports Med* (2018)](https://bjsm.bmj.com/content/52/21/1367)
-- [Mottola MF et al., 「2019 Canadian guideline for physical activity throughout pregnancy」, *Br J Sports Med* 53(21) (2018) — Get Active Questionnaire for Pregnancy 채택](https://bjsm.bmj.com/content/52/21/1339)
-- [캐나다 운동생리학회(CSEP), Get Active Questionnaire for Pregnancy (2019, 구 PARmed-X for Pregnancy)](https://csep.ca/2021/01/20/pre-screening-for-physical-activity/)
+- [Davenport MH et al., 「Prenatal exercise for the prevention of gestational diabetes mellitus and hypertensive disorders of pregnancy: a systematic review and meta-analysis」, Br J Sports Med (2018)](https://bjsm.bmj.com/content/52/21/1367)
+- [Mottola MF et al., 「2019 Canadian guideline for physical activity throughout pregnancy」, Br J Sports Med 53(21) (2018)](https://bjsm.bmj.com/content/52/21/1339)
+- [캐나다 운동생리학회(CSEP), 「Get Active Questionnaire for Pregnancy」 (2019, 구 PARmed-X for Pregnancy)](https://csep.ca/2021/01/20/pre-screening-for-physical-activity/)
 
 ---
 > ⚠️ 이 글은 일반적인 임신 정보를 제공하며, 의학적 조언을 대체하지 않습니다.
