@@ -169,7 +169,7 @@ export const rehypeArticleFigure: Plugin<[RehypeArticleFigureOptions?], Root> = 
     return typeof value === "string" ? value : "";
   }
 
-  function buildFigure(img: Element): Element {
+  function buildFigure(img: Element, isFirst: boolean): Element {
     const alt = getStringProp(img, "alt");
     const src = getStringProp(img, "src");
     const caption = getStringProp(img, "title").trim();
@@ -192,9 +192,12 @@ export const rehypeArticleFigure: Plugin<[RehypeArticleFigureOptions?], Root> = 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { title: _droppedTitle, ...imgPropsWithoutTitle } =
       img.properties ?? {};
+    // 첫 이미지(fold 위 인포그래픽)는 LCP candidate — eager + fetchpriority=high.
+    // 나머지는 lazy 유지로 후순위 로딩 비용 절감.
     const cleanImgProps: Properties = {
       ...imgPropsWithoutTitle,
-      loading: "lazy",
+      loading: isFirst ? "eager" : "lazy",
+      ...(isFirst ? { fetchpriority: "high" } : {}),
     };
     if (dimensions) {
       cleanImgProps.width = dimensions.width;
@@ -273,39 +276,42 @@ export const rehypeArticleFigure: Plugin<[RehypeArticleFigureOptions?], Root> = 
     };
   }
 
-  function transformChildren(nodes: ElementContent[]): ElementContent[] {
-    const result: ElementContent[] = [];
+  return (tree: Root) => {
+    let figureCount = 0;
 
-    for (const node of nodes) {
-      if (node.type === "element" && node.tagName === "p") {
-        const meaningful = node.children.filter(
-          (child) => !isWhitespaceText(child as ElementContent),
-        );
-        if (
-          meaningful.length === 1 &&
-          meaningful[0].type === "element" &&
-          (meaningful[0] as Element).tagName === "img"
-        ) {
-          result.push(buildFigure(meaningful[0] as Element));
+    function transformChildren(nodes: ElementContent[]): ElementContent[] {
+      const result: ElementContent[] = [];
+
+      for (const node of nodes) {
+        if (node.type === "element" && node.tagName === "p") {
+          const meaningful = node.children.filter(
+            (child) => !isWhitespaceText(child as ElementContent),
+          );
+          if (
+            meaningful.length === 1 &&
+            meaningful[0].type === "element" &&
+            (meaningful[0] as Element).tagName === "img"
+          ) {
+            result.push(buildFigure(meaningful[0] as Element, figureCount === 0));
+            figureCount += 1;
+            continue;
+          }
+        }
+
+        if (node.type === "element") {
+          result.push({
+            ...node,
+            children: transformChildren(node.children) as Element["children"],
+          });
           continue;
         }
+
+        result.push(node);
       }
 
-      if (node.type === "element") {
-        result.push({
-          ...node,
-          children: transformChildren(node.children) as Element["children"],
-        });
-        continue;
-      }
-
-      result.push(node);
+      return result;
     }
 
-    return result;
-  }
-
-  return (tree: Root) => {
     tree.children = transformChildren(
       tree.children as ElementContent[],
     ) as RootContent[];

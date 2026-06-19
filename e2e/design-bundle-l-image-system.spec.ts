@@ -62,15 +62,16 @@ test.describe("design-bundle-l-image-system: article 이미지 새 탭 열기 + 
       expect(src).toMatch(/weekly-prenatal-checklist\.webp$/);
     });
 
-    test("img에 loading=lazy + width/height attribute가 자동 부착된다", async ({
+    test("첫 이미지에 loading=eager + fetchpriority=high + width/height attribute가 자동 부착된다", async ({
       page,
     }) => {
-      // 무엇을: 빌드 타임 image-size 추출이 width/height 숫자를 박고, lazy 로딩이 일괄 적용되는지
-      // 왜: spec.md M3 (lazy 일괄) + IM-3 (CLS 0 — width/height로 layout reservation)
+      // 무엇을: 본문 첫 이미지(LCP candidate)에 eager + fetchpriority + dimensions 부착
+      // 왜: phase-4.7 R1-B — fold 위 인포그래픽 LCP 최적화. 나머지 이미지는 lazy 유지.
       await page.goto("/articles/weekly-prenatal-checklist");
 
-      const img = page.locator(".article-prose .article-figure img");
-      await expect(img).toHaveAttribute("loading", "lazy");
+      const img = page.locator(".article-prose .article-figure img").first();
+      await expect(img).toHaveAttribute("loading", "eager");
+      await expect(img).toHaveAttribute("fetchpriority", "high");
 
       const width = await img.getAttribute("width");
       const height = await img.getAttribute("height");
@@ -174,7 +175,8 @@ test.describe("design-bundle-l-image-system: article 이미지 새 탭 열기 + 
         "원본 이미지 새 창에서 보기",
       );
       const img = link.locator("> img");
-      await expect(img).toHaveAttribute("loading", "lazy");
+      // 본문 첫 이미지 = LCP candidate → eager (phase-4.7 R1-B)
+      await expect(img).toHaveAttribute("loading", "eager");
 
       await context.close();
     });
