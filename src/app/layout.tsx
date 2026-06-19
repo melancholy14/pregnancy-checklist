@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Toaster } from "sonner";
-import { Poppins } from "next/font/google";
 import { BottomNav } from "@/components/layout/BottomNav";
 import { Footer } from "@/components/layout/Footer";
 import { StickyHeader } from "@/components/layout/StickyHeader";
@@ -9,16 +9,10 @@ import { CookieConsentBanner } from "@/components/consent/CookieConsentBanner";
 import { PageviewTracker } from "@/components/analytics/PageviewTracker";
 import { OnboardingBannerProvider } from "@/components/providers/OnboardingBannerProvider";
 import { MigrationFlushClient } from "@/components/providers/MigrationFlushClient";
-import { SearchModal } from "@/components/search/SearchModal";
+import { SearchModalGate } from "@/components/search/SearchModalGate";
 import { getAllArticles } from "@/lib/articles";
 import { BASE_URL, OG_IMAGE } from "@/lib/constants";
 import "./globals.css";
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -62,7 +56,7 @@ export default function RootLayout({
   const articles = getAllArticles();
 
   return (
-    <html lang="ko" className={poppins.className}>
+    <html lang="ko">
       <head>
         <script
           type="application/ld+json"
@@ -77,10 +71,9 @@ export default function RootLayout({
         )}
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
           <>
-            <script
-              async
-              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
-            />
+            {/* lazyOnload로 미루는 gtag.js와 page_view ping 핸드셰이크 사전 워밍 */}
+            <link rel="preconnect" href="https://www.googletagmanager.com" />
+            <link rel="preconnect" href="https://www.google-analytics.com" />
             <script
               dangerouslySetInnerHTML={{
                 __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});try{if(localStorage.getItem('cookie-consent')==='accepted'){gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'})}}catch(e){}gtag('js',new Date());gtag('config','${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}',{send_page_view:false});`,
@@ -102,7 +95,13 @@ export default function RootLayout({
         <ConsentGatedScripts />
         <CookieConsentBanner />
         <PageviewTracker />
-        <SearchModal articles={articles} />
+        <SearchModalGate articles={articles} />
+        {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
+            strategy="lazyOnload"
+          />
+        )}
       </body>
     </html>
   );
