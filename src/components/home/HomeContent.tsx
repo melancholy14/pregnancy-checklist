@@ -174,7 +174,7 @@ export function HomeContent({ articles = [] }: HomeContentProps) {
       <div className="pt-14 pb-8 text-center">
         <div className="mb-8 relative">
           <div className="w-24 h-24 mx-auto rounded-full bg-linear-to-br from-pastel-pink via-pastel-lavender to-pastel-mint flex items-center justify-center shadow-lg overflow-hidden">
-            <Image src="/home.webp" alt="출산 준비" width={96} height={96} className="object-cover" />
+            <Image src="/home.webp" alt="출산 준비" width={96} height={96} priority className="object-cover" />
           </div>
         </div>
         <h1 className="mb-3">출산 준비 체크리스트</h1>
