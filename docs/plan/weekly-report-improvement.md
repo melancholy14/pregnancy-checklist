@@ -70,9 +70,11 @@
 - [x] `current_pregnancy_week`이 GA4 보고서 차원 선택 UI에 노출
 - [x] GA4 보고서에서 Search Console 카드 노출
 
-### 🔴 Wave 1 — 휴면 전 필수 (6월 첫째~둘째 주, 1 PR)
+### 🔴 Wave 1 — 휴면 전 필수 (6월 첫째~둘째 주, 1 PR) — ✅ 머지 완료 (2026-06-15)
 
 **"측정 신뢰성 회복" 한 묶음.** 작업이 다 작고 카테고리가 같아 한 PR로 묶는 게 효율적.
+
+PR: be99cc3 (2026-06-15) — "SEO/AEO/GEO 강화: sitemap·JSON-LD 5종 + llms.txt + GA4 weekly-report Wave 1 (#19)".
 
 1. **#1 cohortSpec 복구** — `firstSessionDate` 한 줄로 북극성 부활.
    - manual fallback도 같은 표준 차원으로 다시 작성 → #4 자동 해소.
@@ -81,21 +83,27 @@
 
 > **왜 묶나**: 모두 "GA4에서 잘못 들어오거나 잘못 표시되던 것" 카테고리. 따로 PR 내면 리뷰·머지 오버헤드만 늘어남.
 
-**Wave 1 완료 조건**
+**Wave 1 완료 조건 (W25 ~ 2026-06-22 리포트로 최종 검증 예정)**
 
-- [ ] 다음 주(W24) 리포트의 §1 북극성에 실제 cohort 행이 1개 이상 채워짐
+- [ ] 다음 주(W25) 리포트의 §1 북극성에 실제 cohort 행이 1개 이상 채워짐
 - [ ] §4 자체화 후보에 `pregnancy-checklist.com` 등장 X
 - [ ] 핵심 행동 도달률에 `±%` 빈 자리 없음 (`(신규)` 또는 실제 %로 채워짐)
 
-### 🟡 Wave 2 — 휴면 전 권장 (6월 셋째~넷째 주, 1 PR)
+> ⚠️ **W24(2026-06-08~14) 관찰 결과 (2026-06-15)**: Wave 1 머지가 W24 리포트 생성(00:02 UTC) 이후라 본 사이클은 pre-Wave1 로직으로 처리됨 — 완료 조건 검증은 W25로 이관. 또한 W24 자체가 incident 레벨(모든 이벤트 -100%, raw count 0건)로 노출되어 **Wave 2의 #6·#7 필요성을 실데이터로 입증**. Wave 2 즉시 진입 권장.
+
+### 🟡 Wave 2 — 휴면 전 권장 (6월 셋째~넷째 주, 1 PR) — ⏳ 진입 권장 (2026-06-15~)
 
 **"잡음 솎기 + 마케터 축 시드"** Wave 1 머지 후 한 사이클(W24) 돌려본 다음 진행.
 
+**🚨 진입 신호 (2026-06-15)**: W24 리포트가 모든 이벤트 -100% incident로 노출 — 같은 코드 배포 상태에서 현재 gtag 발화 정상. 즉 **실제로는 모집단이 작아서 발생한 측정 노이즈가 incident로 잘못 보고된 케이스**. Wave 2의 #6·#7이 정확히 이 시나리오를 회귀 가드로 막는다. 실데이터 기준 임계값 결정에 필요한 W22~W24 raw JSON 3주분 누적 완료 → unit test 작성 환경 준비됨.
+
 1. **#6 모집단 임계값 가드** — `previousCount < 10` → noise 다운그레이드.
-   - W22 raw JSON으로 unit test 작성 (`src/lib/` 단위 테스트 인프라 활용).
-   - 임계값 자체는 W23~W24 실데이터 본 다음 결정 (10이 적정한지 검증).
+   - W22 raw JSON으로 unit test 작성 (`src/lib/` 단위 테스트 인프라 활용 — `checklist-data-model-bundle` 묶음에서 vitest 156개 통과로 인프라 검증 완료).
+   - 임계값 자체는 W22~W24 실데이터 본 다음 결정 (10이 적정한지 검증).
+   - **W24 케이스**: previousCount=0 또는 매우 작음 → 모든 -100% 가 noise로 다운그레이드돼야 함.
 2. **#7 스키마 검증 강화** — placeholder 통과 막기.
    - Wave 1에서 도입한 `"new"` sentinel도 검증 대상에 포함.
+   - **W24 케이스**: §1 북극성 테이블이 `| cohort_join_week | W+1 | W+4 |\n| ... | ... | ... |` 형태로 placeholder만 노출됨 → validateSchema가 잡아내야 함.
 3. **M1 유입 채널 Q6 신설** — `sessionDefaultChannelGroup` TOP. GA4 표준 차원이라 추가 등록 불필요.
 4. **M2 랜딩 페이지 Q7 신설** — `landingPagePlusQueryString` TOP. SEO 최적화 우선순위 신호.
 

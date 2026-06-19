@@ -58,11 +58,24 @@ Phase 4.6에서 4축(체크리스트·베이비페어·블로그·체중)으로 
 | **D-Mn19** | `related-content.ts` Jaccard 단일 패스 | ❌ 관련 콘텐츠 알고리즘 확장 시 | 트리거 도달 시 |
 | **D-Mn20** | crosslinks front matter 파서 단위 테스트 | ✅ **2026-06-06 도달** (vitest 본격 활용 — `checklist-data-model-bundle` 묶음에서 unit 156개) | 즉시 가능 (1~2시간). phase-5 진입 첫 sweep 또는 별도 PR |
 
-### S4. 외부 관찰 잔여
+### S4. 외부 관찰 잔여 — ✅ 종료 (2026-06-15)
 
-| 항목 | 마감일 | 권장 처리 |
-|------|-------|----------|
-| 마케팅 묶음 M 안정화 — launchd 2주 관찰 | 2026-06-15 (현재 2026-06-06 → 9일 남음) | 누락/실패 0건 확인 시 phase-4.5 공식 종료 선언 |
+| 항목 | 결과 |
+|------|------|
+| 마케팅 묶음 M 안정화 — launchd 2주 관찰 | ✅ 종료. W19~W24 6주 무중단 실행, exit 0 일관성, `pregnancy-checklist-report.log` 누락/실패 0건 → 인프라 측면 종료 완료 (2026-06-15). 부수 incident: W24(2026-06-08~14) 데이터 0건 모든 이벤트 -100% — 같은 코드 배포 + 현재 gtag 정상 발화 → 인프라 결함이 아니라 모집단 임계값 부재가 원인. → [weekly-report-improvement.md](weekly-report-improvement.md) Wave 2 (#6 모집단 임계값 + #7 schema validate)로 분리 이관 |
+
+### S5. 측정 신뢰성 강화 — Wave 2 즉시 진입 권장 (별도 트랙)
+
+W24 incident (모든 이벤트 0건 → -100% incident 오인 신호)가 정확히 Wave 2에서 해결할 케이스. Wave 1(be99cc3, 2026-06-15) 머지 직후 한 사이클(W24) 결과로 임계값 검증할 데이터가 이미 손에 있음 → 휴면 진입(2026-08) 전 처리 권장.
+
+| 항목 | 출처 | 권장 처리 |
+|------|------|----------|
+| #6 모집단 임계값 가드 (`previousCount < 10` → noise 다운그레이드) | [weekly-report-improvement.md](weekly-report-improvement.md) §Wave 2 | W22~W24 raw JSON으로 unit test. 임계값 자체는 실데이터 본 다음 확정 |
+| #7 스키마 검증 강화 (placeholder `\| ... \|` 통과 차단) | 같음 | Wave 1 `"new"` sentinel 검증 포함 |
+| M1 유입 채널 Q6 (sessionDefaultChannelGroup TOP) | 같음 | GA4 표준 차원, 추가 등록 불필요 |
+| M2 랜딩 페이지 Q7 (landingPagePlusQueryString TOP) | 같음 | SEO 최적화 우선순위 신호 |
+
+> Wave 2 자체는 phase-4.5의 부산물이 아니라 별도 트랙. 본 섹션은 W24 incident 처리 경로를 명시하기 위한 포인터 — 본문은 `weekly-report-improvement.md` Wave 2 SoT.
 
 ### 권장 진입 sweep (phase-5 첫 라운드)
 

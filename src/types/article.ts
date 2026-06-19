@@ -18,6 +18,7 @@ export type ArticleMeta = {
 
 export type Article = ArticleMeta & {
   content: string;
+  references?: string;
   disclaimer?: string;
   wordCount: number;
   faqHtmlAnswers?: string[];

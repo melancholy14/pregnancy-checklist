@@ -29,7 +29,7 @@ const sanitizeSchema = {
 };
 
 const faqAnswerProcessor = remark()
-  .use(remarkGfm)
+  .use(remarkGfm, { singleTilde: false })
   .use(remarkRehype)
   .use(rehypeSanitize, sanitizeSchema)
   .use(rehypeStringify)
@@ -171,13 +171,32 @@ export async function getArticleBySlug(
 
   const mainContent = contentLines.join("\n");
 
-  const result = await remark()
-    .use(remarkGfm)
+  // ## 참고 자료 헤딩으로 본문/참고자료를 분리해서 별도 렌더 (본문 → FAQ → 참고자료 순서)
+  const referencesHeadingRe = /^##\s+참고\s*자료\s*$/;
+  const mainLines = mainContent.split("\n");
+  const referencesStart = mainLines.findIndex((l) => referencesHeadingRe.test(l));
+
+  const bodyMarkdown =
+    referencesStart === -1
+      ? mainContent
+      : mainLines.slice(0, referencesStart).join("\n");
+  const referencesMarkdown =
+    referencesStart === -1
+      ? ""
+      : mainLines.slice(referencesStart).join("\n");
+
+  const articleProcessor = remark()
+    .use(remarkGfm, { singleTilde: false })
     .use(remarkRehype)
     .use(rehypeSanitize, sanitizeSchema)
     .use(rehypeArticleFigure)
     .use(rehypeStringify)
-    .process(mainContent);
+    .freeze();
+
+  const result = await articleProcessor.process(bodyMarkdown);
+  const referencesHtml = referencesMarkdown
+    ? (await articleProcessor.process(referencesMarkdown)).toString()
+    : undefined;
 
   const meta = parseArticleMeta(data);
 
@@ -194,6 +213,7 @@ export async function getArticleBySlug(
   return {
     ...meta,
     content: result.toString(),
+    references: referencesHtml,
     disclaimer,
     wordCount: countWords(mainContent),
     faqHtmlAnswers,

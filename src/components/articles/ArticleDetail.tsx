@@ -111,6 +111,13 @@ export function ArticleDetail({
           </section>
         )}
 
+        {article.references && (
+          <div
+            className="article-prose mt-8"
+            dangerouslySetInnerHTML={{ __html: article.references }}
+          />
+        )}
+
         {article.linked_timeline_weeks && article.linked_timeline_weeks.length > 0 && (
           <TimelineCTA weeks={article.linked_timeline_weeks} />
         )}

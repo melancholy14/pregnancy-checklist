@@ -14,6 +14,15 @@ tags:
 date: "2026-05-09"
 linked_timeline_weeks: [10, 14, 16]
 authorNote: "산후조리원 알아보다 보니 어떤 글은 시설을 강조하고, 어떤 글은 가격을 강조하더라고요. 정작 '언제 뭘 해야 하는지'를 주차별로 정리해 둔 글이 없어서 직접 정리했어요."
+faq:
+  - q: "산후조리원 예약은 임신 몇 주차에 해야 하나요?"
+    a: "인기 조리원 기준 임신 8~12주차에 시장조사를 시작해서 16주 전에 예약 확정하는 흐름이 안전해요. 그 이후엔 1순위 자리가 마감되고 후순위 대기로 시작해야 해요 [비행테라스, 2025]. 비인기 시즌(7~8월 출산 예정)은 좀 더 여유 있는 편이에요."
+  - q: "예약금 걸었는데 취소하면 환불 받을 수 있나요?"
+    a: "예약금은 보통 30~50만원이고 환불 규정은 조리원마다 천차만별이에요. 조기 진통·조기 분만·유산 등 의학적 사유에 한해 전액 환불해주는 곳도 있고, 입소 30일 전 기준으로 차등 환불하는 곳도 있어요. 계약서 작성 전에 환불 조항 부분을 사진으로 저장해두세요."
+  - q: "모자동실 vs 신생아실, 첫째 출산이라면 뭐가 좋을까요?"
+    a: "정답은 없는데, 첫째 출산은 산모가 회복도 어렵고 신생아 케어 자신감도 낮은 시기라 \"기본 신생아실 + 원할 때 모자동실 전환\" 옵션이 있는 곳을 추천드려요."
+  - q: "서울형 산후조리경비 100만원은 어떻게 받나요?"
+    a: "출산 후 180일 이내에 **몽땅정보통(umppa.seoul.go.kr)** 또는 거주지 동주민센터에서 신청하면 협약카드사 5개사(신한·삼성·KB국민·우리·BC) 중 한 곳의 산모 본인 명의 신용 또는 체크카드에 바우처 포인트로 지급돼요. 자녀 수에 따라 100만/120만/150만으로 차등되고(2026년 5월 기준), 별도 소득 기준이나 거주 기간 요건 없이 서울 거주 산모면 누구나 신청 가능하며, 첫만남이용권·부모급여 등 다른 정부 지원과 중복 수급도 가능해요 [서울시 임신·출산 정보센터, 2026]."
 ---
 
 # 산후조리원 어떻게 고르지? 비교 기준 7가지와 임신 주차별 예약 캘린더
@@ -132,24 +141,6 @@ authorNote: "산후조리원 알아보다 보니 어떤 글은 시설을 강조�
 
 결정 변수는 회복 우선순위, 모유수유 의지, 가족 동반 필요성 세 가지예요. **모유든 분유든 산모와 아기에게 맞는 방식이 최선**이라는 전제에서 — 완모 의지가 강한 산모는 모자동실(rooming-in)이 모유 정착에 유리하고(WHO/ABM 권고), 회복이 우선이거나 분유·혼합 수유 계획이라면 신생아실 + 수유 시간 합방이 적합해요. 어느 쪽이든 투어 때 **"수유 신호가 있을 때 즉시 합방 가능한가요?"**, **"산모가 부담될 때 즉시 신생아실로 보낼 수 있는 유연 시스템인가요?"** — 두 질문을 명시적으로 물어보세요.
 
-## 자주 묻는 질문 (FAQ)
-
-**Q. 산후조리원 예약은 임신 몇 주차에 해야 하나요?**
-
-A. 인기 조리원 기준 임신 8\~12주차에 시장조사를 시작해서 16주 전에 예약 확정하는 흐름이 안전해요. 그 이후엔 1순위 자리가 마감되고 후순위 대기로 시작해야 해요 [비행테라스, 2025]. 비인기 시즌(7\~8월 출산 예정)은 좀 더 여유 있는 편이에요.
-
-**Q. 예약금 걸었는데 취소하면 환불 받을 수 있나요?**
-
-A. 예약금은 보통 30\~50만원이고 환불 규정은 조리원마다 천차만별이에요. 조기 진통·조기 분만·유산 등 의학적 사유에 한해 전액 환불해주는 곳도 있고, 입소 30일 전 기준으로 차등 환불하는 곳도 있어요. 계약서 작성 전에 환불 조항 부분을 사진으로 저장해두세요.
-
-**Q. 모자동실 vs 신생아실, 첫째 출산이라면 뭐가 좋을까요?**
-
-A. 정답은 없는데, 첫째 출산은 산모가 회복도 어렵고 신생아 케어 자신감도 낮은 시기라 "기본 신생아실 + 원할 때 모자동실 전환" 옵션이 있는 곳을 추천드려요.
-
-**Q. 서울형 산후조리경비 100만원은 어떻게 받나요?**
-
-A. 출산 후 180일 이내에 **몽땅정보통(umppa.seoul.go.kr)** 또는 거주지 동주민센터에서 신청하면 협약카드사 5개사(신한·삼성·KB국민·우리·BC) 중 한 곳의 산모 본인 명의 신용 또는 체크카드에 바우처 포인트로 지급돼요. 자녀 수에 따라 100만/120만/150만으로 차등되고(2026년 5월 기준), 별도 소득 기준이나 거주 기간 요건 없이 서울 거주 산모면 누구나 신청 가능하며, 첫만남이용권·부모급여 등 다른 정부 지원과 중복 수급도 가능해요 [서울시 임신·출산 정보센터, 2026].
-
 ## 마무리 — 핵심 3줄 요약
 
 1. **시설만큼 인력이 중요해요.** 신생아실 간호사 1인당 아기 비율을 투어 때 직접 물어보세요.
@@ -161,15 +152,15 @@ A. 출산 후 180일 이내에 **몽땅정보통(umppa.seoul.go.kr)** 또는 거
 - [매일신문, 「산후조리원 평균 372만원 시대」 (2026)](https://www.imaeil.com/page/view/2026031419140703819)
 - [뉴시스, 「서울 산후조리원 특실 평균 810만, 강남 1,732만」 (2026)](https://www.newsis.com/view/NISX20260312_0003546373)
 - [서울시 임신·출산 정보센터, 「서울형 산후조리경비 지원」 (2026)](https://seoul-agi.seoul.go.kr/postpartum-care)
-- [몽땅정보통(서울시), 산후조리경비 신청](https://umppa.seoul.go.kr/)
+- [몽땅정보통(서울시), 「산후조리경비 신청」](https://umppa.seoul.go.kr/)
 - [강남구보건소, 「서울시 산모 산후조리경비 지원사업」 (2026)](https://health.gangnam.go.kr/web/business/moja/sub04.do)
-- [정부24, 출산·육아 통합 지원 안내](https://www.gov.kr/)
-- [복지로, 산후조리 지원 검색](https://www.bokjiro.go.kr/)
+- [정부24, 「출산·육아 통합 지원 안내」](https://www.gov.kr/)
+- [복지로, 「산후조리 지원 검색」](https://www.bokjiro.go.kr/)
 - [국가법령정보센터, 「모자보건법 시행규칙」 별표 3 — 산후조리원의 인력 및 시설기준](https://www.law.go.kr/LSW/lsBylInfoPLinkR.do?bylBrNo=00&lsNm=%EB%AA%A8%EC%9E%90%EB%B3%B4%EA%B1%B4%EB%B2%95+%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99&bylCls=BE&bylNo=0003)
-- [WHO/UNICEF, Implementation Guidance: Protecting, promoting and supporting breastfeeding in facilities providing maternity and newborn services — the revised Baby-Friendly Hospital Initiative (2018)](https://www.who.int/publications/i/item/9789241513807)
-- [Academy of Breastfeeding Medicine, Clinical Protocol #7: Model Maternity Policy Supportive of Breastfeeding (2018)](https://www.bfmed.org/protocols)
-- [Jaafar SH, Ho JJ, Lee KS. Rooming-in for new mother and infant versus separate care for increasing the duration of breastfeeding. Cochrane Database Syst Rev. 2016;(8):CD006641](https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD006641.pub3/full)
-- [American Academy of Pediatrics, Safe Sleep and the Baby-Friendly Hospital](https://www.aap.org/en/patient-care/safe-sleep/)
+- [WHO/UNICEF, 「Implementation Guidance: Protecting, promoting and supporting breastfeeding in facilities providing maternity and newborn services — the revised Baby-Friendly Hospital Initiative」 (2018)](https://www.who.int/publications/i/item/9789241513807)
+- [Academy of Breastfeeding Medicine, 「Clinical Protocol #7: Model Maternity Policy Supportive of Breastfeeding」 (2018)](https://www.bfmed.org/protocols)
+- [Jaafar SH et al., 「Rooming-in for new mother and infant versus separate care for increasing the duration of breastfeeding」, Cochrane Database Syst Rev (2016)](https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD006641.pub3/full)
+- [American Academy of Pediatrics, 「Safe Sleep and the Baby-Friendly Hospital」](https://www.aap.org/en/patient-care/safe-sleep/)
 - [질병관리청, 「의료감염관리 지침·안내서 가이드맵 안내」 (2026)](https://www.kdca.go.kr/kdca/2847/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGa2RjYSUyRjQxJTJGMzEwNDcxJTJGYXJ0Y2xWaWV3LmRvJTNG)
 - [비행테라스, 「산후조리원 선택 기준 7가지, 가격대별 비교와 체크리스트」 (2025)](https://baby.tali.kr/postpartum-care-center-guide)
 
