@@ -1,3 +1,5 @@
+import fs from "node:fs";
+import path from "node:path";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import {
@@ -24,6 +26,14 @@ const allChecklistMetas = [
   (partnerPrep as ChecklistData).meta,
   (pregnancyPrep as ChecklistData).meta,
 ];
+
+function getArticleImageUrl(slug: string): string {
+  const webpPath = path.join(process.cwd(), "public", "articles", `${slug}.webp`);
+  if (fs.existsSync(webpPath)) {
+    return `${BASE_URL}/articles/${slug}.webp`;
+  }
+  return `${BASE_URL}${OG_IMAGE.url}`;
+}
 
 export function generateStaticParams() {
   return getAllArticles().map((a) => ({ slug: a.slug }));
@@ -83,7 +93,7 @@ function ArticleJsonLd({
     url: canonical,
     datePublished: date,
     ...(updated && { dateModified: updated }),
-    image: `${BASE_URL}/articles/${slug}.webp`,
+    image: getArticleImageUrl(slug),
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": canonical,
