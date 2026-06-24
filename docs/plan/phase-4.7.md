@@ -2,8 +2,10 @@
 
 > Phase 4.6 기록: [phase-4.6.md](phase-4.6.md)
 > Date: 2026-06-06
-> 목표 완료: AdSense 신청 직전
-> Status: 📝 진단 완료, R1·R2 구현 미착수
+> 종료: **2026-06-24** — AdSense 신청 완료(2026-06-19) + R1·R2·R3 누적 반영 후
+> 운영자 페르소나 판정으로 종료. 잔여는 산후 복귀 후 정식 LCP 라운드로 이관.
+> Status: ✅ R1 머지(PR #22)·R2 자연 해소·R3 머지(PR #23). DoD `<4s` 일부 미달
+> 인정 하에 종료. 트래픽 2~3명/주·휴가 임박·산후 휴면 진입 임박 정합.
 > Trigger: phase-4.6 종료 후 [adsense-application-checklist.md](../ops/adsense-application-checklist.md) §1.4 PageSpeed 측정 결과 fail + §1.3 재진단 시 광고 슬롯 미배치 발견
 
 ## Overview
@@ -159,3 +161,73 @@ AdSense 승인 후:
 - [adsense-infra-finalize/spec.md:38](../features/adsense-infra-finalize/spec.md#L38) W1 "슬롯 배치는 D-A 범위 외, 별건 기능으로 분리"
 - [adsense-application-checklist.md:107](../ops/adsense-application-checklist.md#L107) "신청 시 추가 작업 불필요"
 - 결정: 4월 audit는 수동 슬롯 모델 가정으로 작성됨. Auto Ads 채택 후 4월 audit CRITICAL #2는 obsolete — 광고 슬롯 코드 배치 자체가 불필요해짐.
+
+---
+
+## 종료 기록 (2026-06-24)
+
+### 측정 timeline
+
+세 PSI Lab 측정 비교 — `https://pagespeed.web.dev/` Mobile.
+
+| 페이지 | 6/6 (R1 전) | 6/19 (R1 후) | 6/19 (R3 후) | 종료 시점 누적 Δ |
+|---|---|---|---|---|
+| 홈 | LCP 7.7 / CLS 0 | FCP 3.9 / LCP 5.7 / CLS 0 | FCP **3.0** / LCP 5.7 / CLS 0 | LCP **-2.0s**, FCP -0.9s |
+| 허브 (`/checklist`) | LCP 3.6 / CLS 0.095 | FCP 3.3 / LCP 5.7 / CLS 0.094 | FCP 3.2 / LCP **4.4** / CLS 0.094 | LCP +0.8s (6/6 대비 회귀) |
+| 발행 글 | LCP 6.8 / CLS **0.176** | FCP 4.2 / LCP 8.1 / CLS 0 | FCP 4.2 / LCP **5.6** / CLS 0.094 | LCP **-1.2s**, CLS **-0.082** |
+
+### 머지된 변경
+
+- **R1 — LCP 이미지 최적화** (PR #22, merged 2026-06-19)
+  - `/home.png` → `/home.webp` 변환은 이전 #18에 선반영. R1에서 [HomeContent.tsx](../../src/components/home/HomeContent.tsx) hero `<Image>`에 `priority` 부여 → head에 `<link rel=preload as=image href=/home.webp>` 주입
+  - [rehype-article-figure.ts](../../src/lib/markdown/rehype-article-figure.ts): 문서 내 첫 이미지(LCP candidate)만 `loading="eager"` + `fetchpriority="high"` 부여, 나머지는 `loading="lazy"` 유지. webp dimensions 추출 정상 동작 (1536×1024)
+- **R2 — 발행 글 CLS** (자연 해소)
+  - 6/6 0.176 → 6/19 (R1 후) 0 → 6/24 (R3 후) 0.094. PSI 단일 런 변동성 + 인포그래픽 dimensions 빌드 타임 박힘이 누적 효과. 별도 코드 작업 없이 DoD `<0.1` 통과 마진 확보
+- **R3 — FCP 정공법** (PR #23, merged 2026-06-19)
+  - Poppins 제거 (`globals.css`가 전역에서 Pretendard로 덮어쓰므로 실사용 0건이었음). head preload `<link as=font>` 4건 + woff2 ~80~120KB 다운로드 제거
+  - GA4 `gtag/js`를 head async → body 끝 `<Script strategy="lazyOnload">`로 이전. 초기 네트워크 우선순위에서 3rd-party 해방. consent default-deny 인라인은 head 유지 (Consent Mode v2 정합)
+  - `<link rel=preconnect>` 2건 (googletagmanager.com / google-analytics.com) — gtag.js lazy 로드 시 핸드셰이크 사전 워밍
+  - [SearchModalGate.tsx](../../src/components/search/SearchModalGate.tsx) 신규: `useSearchStore.isOpen` true일 때만 dynamic import + `ssr:false`. fuse.js + timeline JSON + 모달 코드 (~39KB 합계) 별도 chunk로 분리 → 초기 번들에서 제거
+
+### DoD 평가
+
+R1 DoD ([§R1](#r1-이미지-lcp-최적화)) + R2 DoD ([§R2](#r2-발행-글-cls-0176-원인-식별수정)):
+
+- [x] `/home.png` → WebP 변환 + next/image priority — `home.webp` + `priority` 머지
+- [x] 발행 글 첫 이미지 eager + fetchpriority — rehype 플러그인 머지
+- [x] 발행 글 CLS `<0.1` — 0.094 통과
+- [ ] PageSpeed 홈 LCP `<4s` (목표 `<2.5s`) — **5.7s 미달**
+- [ ] 발행 글 LCP `<4s` — **5.6s 미달**
+
+LCP `<4s` 두 페이지 미달이 종료 시점 미해소 잔여. 허브만 4.4s로 턱밑.
+
+### 미달 인정 + 종료 결정
+
+DoD `<4s`는 phase-4.7 자체 기준이지 AdSense 정책 강제 아님 ([adsense-application-checklist.md §1.4](../ops/adsense-application-checklist.md#14)는 운영자 자체 작성). AdSense는 LCP 명문 거절 사유 없음.
+
+운영자 페르소나 4단서로 종료 판정:
+
+1. **AdSense 신청 완료** — 2026-06-19. phase-4.7의 트리거 자체가 신청 보류 해소였는데 이미 신청됐으니 게이트 의미 소멸. Auto Ads 채택 정합 ([§의사결정 2026-06-06](#2026-06-06-광고-게재-방식--auto-ads-1차-수동-슬롯--마케터-페르소나-재검토-후-정정)) 그대로 적용
+2. **트래픽 floor 미도달** — 주당 활성 사용자 2~3명. LCP 5.6~5.7s vs 4s 차이가 1~2명 사용자 체감에 미치는 영향 무의미. ROI 정당화 불가 (마케터 페르소나 §1.2 결정 라운드 동일 논리)
+3. **휴가·산후 임박** — 운영자 휴가 7월 중순, 출산 예정일 2026-08-13, 산후 3개월 휴면. 진짜 병목인 FCP 4초대는 gh-pages CDN(US 엣지 → 한국 RTT) + CSS 80KB + 초기 JS 815KB 합인데, gh-pages 한계 + 큰 위험 작업이라 휴가 직전 착수 부적합
+4. **데이터 부재** — PSI Diagnostics "LCP element" 미확보 상태로 추가 최적화는 추정 작업. 산후 복귀 후 실측 데이터 수집부터 다시 시작이 정합
+
+→ **phase-4.7 종료. R1·R2·R3 누적 머지분 + DoD `<4s` 일부 미달을 history 보존**
+
+### 산후 복귀 후 후속 (phase-4.7 범위 밖)
+
+phase-5 또는 별도 phase로 재진입할 항목 — [phase-5.md](phase-5.md)에 이관 후보:
+
+| 항목 | 트리거 | 작업 후보 |
+|---|---|---|
+| **LCP `<4s` 본격 라운드** | 트래픽 floor 도달 (월 100+ MAU) 또는 산후 복귀 시점 | PSI Diagnostics "LCP element" 캡쳐 → 페이지별 LCP candidate 정조준. 홈 5.7s 의심: H1 텍스트·DueDateInput 카드·dashboard 카드 |
+| **FCP 4초대 병목** | LCP 라운드 동시 진행 | gh-pages → Vercel/Cloudflare Pages (한국 엣지) 마이그 검토, 또는 critical CSS inline·초기 JS chunk 추가 분할 |
+| **CLS 0.094 재현 확인** | LCP 라운드 직전 | PSI 3회 연속 측정 후 평균값으로 회귀 vs 노이즈 판정. 회귀 확정 시 sticky header·BottomNav·OnboardingBanner shift 의심 |
+
+### 종료 기준 영향받는 다른 문서
+
+| 문서 | 갱신 |
+|---|---|
+| [adsense-application-checklist.md §1.4](../ops/adsense-application-checklist.md#14) | LCP `<2.5s` 기준은 운영자 자체 작성 — phase-4.7 종료 정합으로 "신청 후 후속 라운드에서 재평가" 마킹 후보 |
+| [phase-5.md](phase-5.md) | LCP `<4s` 본격 라운드 항목 추가 (산후 복귀 후) |
+| [adsense-audit.md](adsense-audit.md) | CRITICAL/HIGH 0건 유지 (성능 항목 별도 트랙) |
