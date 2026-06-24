@@ -171,9 +171,12 @@ export async function getArticleBySlug(
 
   const mainContent = contentLines.join("\n");
 
+  // 본문 맨 앞의 H1은 frontmatter title과 중복(페이지가 별도로 <h1>을 렌더)되므로 제거
+  const dedupedContent = mainContent.replace(/^\s*#\s+.*(?:\r?\n)?/, "");
+
   // ## 참고 자료 헤딩으로 본문/참고자료를 분리해서 별도 렌더 (본문 → FAQ → 참고자료 순서)
   const referencesHeadingRe = /^##\s+참고\s*자료\s*$/;
-  const mainLines = mainContent.split("\n");
+  const mainLines = dedupedContent.split("\n");
   const referencesStart = mainLines.findIndex((l) => referencesHeadingRe.test(l));
 
   const bodyMarkdown =
