@@ -231,3 +231,18 @@ phase-5 또는 별도 phase로 재진입할 항목 — [phase-5.md](phase-5.md)�
 | [adsense-application-checklist.md §1.4](../ops/adsense-application-checklist.md#14) | LCP `<2.5s` 기준은 운영자 자체 작성 — phase-4.7 종료 정합으로 "신청 후 후속 라운드에서 재평가" 마킹 후보 |
 | [phase-5.md](phase-5.md) | LCP `<4s` 본격 라운드 항목 추가 (산후 복귀 후) |
 | [adsense-audit.md](adsense-audit.md) | CRITICAL/HIGH 0건 유지 (성능 항목 별도 트랙) |
+
+---
+
+## 사후 정정 (2026-06-28): AdSense 1차 거절
+
+phase-4.7 종료 정합으로 2026-06-19 AdSense 신청 → 9일 뒤 거절
+("Low value content"). 양적 콘텐츠 기준은 모두 충족했으나 **Search
+Console 색인 6/17 (21%)** 이 진짜 차단 사유였음.
+
+phase-4.7 범위는 PageSpeed 차단 항목 해소였고 indexing 진단은 범위 밖이라
+phase-4.7 자체의 종료 판정은 정합. 거절 후속 사이클은 별도 phase로 분리.
+
+→ **[phase-4.8.md](phase-4.8.md) 로 인계**. 인덱싱 시그널 보강 + 인스타
+제한 활성화 + 2026-07-15 전후 재신청. phase-4.7 §"산후 복귀 후 후속"의
+LCP `<4s` 본격 라운드는 phase-5 인계분 유지 (재신청 사이클과 별도 트랙).
