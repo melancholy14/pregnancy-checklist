@@ -1,12 +1,22 @@
 # 구글 애드센스 승인 분석 리포트
 
 > 작성일: 2026-04-13 · 재진단: 2026-06-07 (phase-4.6 QA 정합)
+> 거절 후 진단: 2026-06-28
 > 대상: pregnancy-checklist.com
 >
+> **현재 SoT**: [phase-4.8.md](phase-4.8.md) (재신청 사이클)
 > **재진단 요약 (2026-06-07)**: CRITICAL 4건 + HIGH 5건 + MEDIUM 3건
-> 모두 해소. item 6 도구 페이지 설명 텍스트는 `/weight` empty state
-> onboarding + 활용 팁 yellow 카드 + `/baby-fair` "처음이세요?" 안내
-> 박스 추가로 보강 완료. AdSense 신청(목표 2026-06-15) 차단 항목 0건.
+> 모두 해소. AdSense 신청(2026-06-19) 차단 항목 0건 판정 후 실제 신청 진행.
+>
+> ## ⚠️ 2026-06-28 거절 후 정정 (Low value content)
+>
+> 2026-06-19 신청 → 9일 뒤 거절.
+> 양적 기준(글 17편, 평균 1,800단어, About/Privacy/Contact/Terms 모두 존재)은
+> 모두 충족했으나 **실제 차단 사유는 Search Console 색인 6/17 (21%)**.
+> 본 audit 의 양적 기준만으로는 indexing 차단을 사전 잡지 못했음.
+>
+> 거절 진단·재신청 plan 전체는 [phase-4.8.md](phase-4.8.md) 로 이관.
+> 본 문서는 4월 시점 audit history + 우선순위 목록 보존용으로 유지.
 
 ## 현재 상태 요약
 
