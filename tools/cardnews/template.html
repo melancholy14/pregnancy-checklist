@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>카드뉴스 미리보기 — 출산 준비 체크리스트</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<!-- 카드 디자인은 styles.css 하나에서만 관리 (export.mjs와 공유) -->
+<link rel="stylesheet" href="styles.css" />
+<style>
+  /* 미리보기 작업대 전용 (스크린샷 대상 아님) */
+  body { background: #EDE9E5; padding: 48px; }
+  .card { margin: 0 auto 48px; }
+  .toolbar {
+    max-width: 1080px; margin: 0 auto 32px; font-size: 15px; color: #6b6b6b;
+    line-height: 1.7; background: #fff; border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px 24px;
+  }
+  .toolbar b { color: var(--foreground); }
+  .toolbar code { background: #f3f0ec; padding: 2px 6px; border-radius: 6px; font-size: 13px; }
+</style>
+</head>
+<body>
+
+  <div class="toolbar">
+    <b>카드뉴스 미리보기</b> — 아래는 예시 카드입니다. 실제 내용은 <code>decks/*.json</code>에서 편집하세요.<br />
+    <b>PNG 뽑기:</b> <code>node tools/cardnews/export.mjs decks/hospital-bag.json</code> → <code>out/&lt;slug&gt;/NN.png</code><br />
+    <b>구조:</b> 표지 1 → 본문 4~6(한 장 = 한 메시지) → CTA 1. 콜아웃(tip/data/ok)·스탯은 필요한 카드에만.
+  </div>
+
+  <!-- 표지 -->
+  <section class="card cover">
+    <div class="runhead"><span class="dot"></span>출산 준비 체크리스트</div>
+    <span class="kicker">초산맘 입원가방</span>
+    <h1>이거 빠뜨리면<br /><span class="hl">병원에서 삽니다</span></h1>
+    <p class="sub">개발자 초산맘이 직접 싸본<br />입원가방 필수템 총정리</p>
+    <div class="swipe">넘겨서 확인 →</div>
+  </section>
+
+  <!-- 본문 (텍스트 + 콜아웃) -->
+  <section class="card body">
+    <div class="runhead"><span class="dot"></span>출산 준비 체크리스트</div>
+    <h2><span class="num">01.</span> 산모 패드는<br />생각보다 많이 씁니다</h2>
+    <p>병원에서 몇 개 주긴 하는데, 그걸로는 하루도 안 돼요. 대형 사이즈로 넉넉히 챙기는 게 마음 편합니다.</p>
+    <div class="callout tip">
+      <span class="label">💡 TIP</span>
+      대형·중형을 섞어서. 오로 양이 줄면 중형으로 갈아타요.
+    </div>
+    <div class="pageno">2 / 6</div>
+  </section>
+
+  <!-- 본문 (스탯) -->
+  <section class="card body">
+    <div class="runhead"><span class="dot"></span>출산 준비 체크리스트</div>
+    <h2><span class="num">02.</span> 입원 기간부터<br />역산하세요</h2>
+    <p>자연분만이냐 제왕절개냐에 따라 챙길 양이 달라져요. 기간을 먼저 잡고 개수를 정하면 과·부족이 없습니다.</p>
+    <div class="stat">
+      <div class="box"><div class="big">2~3일</div><div class="cap">자연분만 입원</div></div>
+      <div class="box"><div class="big">5~7일</div><div class="cap">제왕절개 입원</div></div>
+    </div>
+    <div class="pageno">3 / 6</div>
+  </section>
+
+  <!-- CTA -->
+  <section class="card cta">
+    <div class="mark">📋 출산 준비 체크리스트</div>
+    <h2>전체 입원가방<br />체크리스트는?</h2>
+    <div class="link">프로필 링크에서 확인 👆</div>
+    <div class="handle">@pregnancy.checklist</div>
+  </section>
+
+</body>
+</html>
