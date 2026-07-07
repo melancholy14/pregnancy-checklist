@@ -170,6 +170,8 @@ NT 수치가 높게 나왔다고 너무 불안해하지 마세요. 선별 검사
 검사 외에도 슬슬 움직여야 할 것들이 있어요:
 
 - **유모차·카시트 비교** — 베이비페어에서 실물을 비교해보는 걸 추천해요.
+  충동구매 없이 알차게 다녀오는 법은
+  [베이비페어 200% 활용법 체크리스트](https://pregnancy-checklist.com/articles/babyfair-survival-guide)에 정리해뒀어요.
   출산 준비물 비용이 궁금하다면
   [아기 용품 비용 총정리](https://pregnancy-checklist.com/articles/baby-items-cost)도 참고하세요.
   다가오는 베이비페어 일정은

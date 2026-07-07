@@ -1,0 +1,170 @@
+/* 카드뉴스 디자인 시스템 — globals.css 토큰 미러 (편집 금지: 사이트 값과 1:1) */
+:root {
+  --background: #FFFAF7;
+  --foreground: #3D4447;
+  --muted-foreground: #9CA0A4;
+  --card: #ffffff;
+
+  --pastel-pink: #FFD4DE;      /* primary CTA */
+  --pastel-lavender: #E4D6F0;  /* secondary / editorial */
+  --pastel-mint: #D0EDE2;      /* success */
+  --pastel-peach: #FFE0CC;     /* data / tracking */
+  --pastel-yellow: #FFF4D4;    /* info / tip */
+
+  --accent-purple: #6B5A80;
+  --accent-green: #2D6B4F;
+  --accent-olive: #8B7520;
+
+  --border: rgba(0, 0, 0, 0.05);
+
+  --cw: 1080px;   /* 캔버스 폭 */
+  --ch: 1350px;   /* 캔버스 높이 (4:5) */
+  --safe: 96px;   /* 안전 여백 */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;   /* 한글 줄바꿈 필수 */
+}
+
+/* 캡처 단위: .card 하나 = 1080×1350 한 장 */
+.card {
+  width: var(--cw);
+  height: var(--ch);
+  background: var(--background);
+  position: relative;
+  overflow: hidden;
+  padding: var(--safe);
+  display: flex;
+  flex-direction: column;
+}
+
+/* 상단 브랜드 러닝헤드 */
+.runhead {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 30px;
+  font-weight: 600;
+  color: var(--accent-purple);
+}
+.runhead .dot { width: 22px; height: 22px; border-radius: 50%; background: var(--pastel-pink); }
+
+/* 하단 페이지 인디케이터 */
+.pageno {
+  position: absolute;
+  bottom: var(--safe);
+  right: var(--safe);
+  font-size: 28px;
+  color: var(--muted-foreground);
+  font-weight: 600;
+}
+
+/* ---------- 1) 표지 (COVER) ---------- */
+.cover { justify-content: center; }
+.cover .runhead { position: absolute; top: var(--safe); left: var(--safe); }
+.cover .kicker {
+  display: inline-block;
+  align-self: flex-start;
+  background: var(--pastel-lavender);
+  color: var(--accent-purple);
+  font-size: 30px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 999px;
+  margin-bottom: 36px;
+}
+.cover h1 {
+  font-size: 96px;
+  line-height: 1.22;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.cover h1 .hl {
+  background: linear-gradient(transparent 62%, var(--pastel-pink) 62%);
+  padding: 0 4px;
+}
+.cover .sub {
+  margin-top: 40px;
+  font-size: 40px;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+  font-weight: 500;
+}
+.cover .swipe {
+  position: absolute;
+  bottom: var(--safe);
+  left: var(--safe);
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--accent-purple);
+}
+
+/* ---------- 2) 본문 (BODY) ---------- */
+.body { justify-content: flex-start; }
+.body .runhead { margin-bottom: 72px; }
+.body h2 {
+  font-size: 68px;
+  line-height: 1.3;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 44px;
+}
+.body h2 .num { color: var(--pastel-pink); filter: brightness(0.86); }
+.body p {
+  font-size: 44px;
+  line-height: 1.62;
+  font-weight: 500;
+  color: #55595c;
+}
+.body p + p { margin-top: 32px; }
+
+/* 강조 콜아웃 (파스텔 역할별) */
+.callout {
+  margin-top: 52px;
+  border-radius: 24px;
+  padding: 40px 44px;
+  font-size: 40px;
+  line-height: 1.5;
+  font-weight: 600;
+}
+.callout .label { display: block; font-size: 30px; font-weight: 700; margin-bottom: 12px; letter-spacing: 0.02em; }
+.callout.tip  { background: var(--pastel-yellow); }
+.callout.tip .label  { color: var(--accent-olive); }
+.callout.data { background: var(--pastel-peach); }
+.callout.data .label { color: #B05A2C; }
+.callout.ok   { background: var(--pastel-mint); }
+.callout.ok .label   { color: var(--accent-green); }
+
+/* 숫자/스탯 박스 */
+.stat { margin-top: 52px; display: flex; gap: 28px; }
+.stat .box {
+  flex: 1;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 40px 32px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+.stat .box .big { font-size: 76px; font-weight: 800; color: var(--accent-purple); letter-spacing: -0.02em; }
+.stat .box .cap { font-size: 32px; color: var(--muted-foreground); margin-top: 8px; font-weight: 600; }
+
+/* ---------- 3) 마무리 (CTA) ---------- */
+.cta { justify-content: center; align-items: center; text-align: center; background: var(--pastel-pink); }
+.cta .mark { font-size: 40px; font-weight: 700; color: var(--accent-purple); margin-bottom: 28px; }
+.cta h2 { font-size: 80px; line-height: 1.3; font-weight: 800; letter-spacing: -0.02em; }
+.cta .link {
+  margin-top: 56px;
+  background: var(--card);
+  border-radius: 999px;
+  padding: 28px 52px;
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--foreground);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+}
+.cta .handle { margin-top: 40px; font-size: 34px; font-weight: 600; color: var(--accent-purple); }

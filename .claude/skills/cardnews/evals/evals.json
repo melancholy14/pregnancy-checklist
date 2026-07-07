@@ -1,0 +1,62 @@
+{
+  "skill_name": "cardnews",
+  "evals": [
+    {
+      "id": 0,
+      "name": "foods-to-avoid-cardnews",
+      "prompt": "src/content/articles/pregnancy-foods-to-avoid.md 이 글로 인스타그램 카드뉴스 만들어줘. 캡션이랑 해시태그도 같이.",
+      "expected_output": "tools/cardnews/decks/ 에 deck JSON 생성 후 export.mjs 실행 → out/<slug>/ 에 6~8장 PNG + INDEX.txt(캡션·해시태그). 절대금지/양조절/미신 3분류가 카드로 반영, 카페인 200mg·생선 주 400g 등 수치 정확, 공포 마케팅 없음.",
+      "files": [],
+      "assertions": [
+        "6~8장 PNG가 outputs에 생성됨",
+        "PNG가 4:5 비율(2160×2700 또는 1080×1350)",
+        "deck JSON이 유효하고 cards 배열 존재",
+        "카드 6~8장, 첫 장 type=cover·마지막 type=cta",
+        "캡션이 비어있지 않음",
+        "해시태그 15~20개 (대형+니치 혼합)",
+        "⚠️ 경고 이모지가 캡션·카드 텍스트에 없음",
+        "핵심 수치(카페인 200mg, 생선 주 400g)가 카드에 정확히 반영",
+        "절대금지/양조절/미신 3분류 구조가 카드에 반영",
+        "공포 마케팅('안 하면 큰일/후회') 표현 없음, 옆집 언니 톤"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "postpartum-center-carousel",
+      "prompt": "산후조리원 고르는 글(postpartum-care-center-guide) 캐러셀로 만들어줘. 피드에 올릴 캡션까지.",
+      "expected_output": "deck JSON + PNG 6~8장. 비교 기준 7가지 중 핵심을 카드로, 서울 특실 810만원·전국 평균 372만원·서울형 100만원 등 수치 정확. CTA가 홈에 없는 개인화 기능을 약속하지 않음.",
+      "files": [],
+      "assertions": [
+        "6~8장 PNG가 outputs에 생성됨",
+        "PNG가 4:5 비율(2160×2700 또는 1080×1350)",
+        "deck JSON이 유효하고 cards 배열 존재",
+        "카드 6~8장, 첫 장 type=cover·마지막 type=cta",
+        "캡션이 비어있지 않음",
+        "해시태그 15~20개 (대형+니치 혼합)",
+        "⚠️ 경고 이모지가 캡션·카드 텍스트에 없음",
+        "핵심 수치(서울 특실 810만원, 전국 평균 372만원, 서울형 100만원) 정확 반영",
+        "비교 기준(간호사 대 아기 비율 등)이 카드에 반영",
+        "CTA가 홈에 없는 개인화 조회 기능을 약속하지 않음(정직한 CTA)"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "babyfair-instagram",
+      "prompt": "베이비페어 활용법 글 인스타용으로 카드 쪼개줘. slug는 babyfair-survival-guide.",
+      "expected_output": "deck JSON + PNG 6~8장. 사전등록 무료입장·사면 후회 품목 등 글 핵심을 표지/본문/CTA로, 옆집 언니 톤. INDEX.txt에 캡션·해시태그.",
+      "files": [],
+      "assertions": [
+        "6~8장 PNG가 outputs에 생성됨",
+        "PNG가 4:5 비율(2160×2700 또는 1080×1350)",
+        "deck JSON이 유효하고 cards 배열 존재",
+        "카드 6~8장, 첫 장 type=cover·마지막 type=cta",
+        "캡션이 비어있지 않음",
+        "해시태그 15~20개 (대형+니치 혼합)",
+        "⚠️ 경고 이모지가 캡션·카드 텍스트에 없음",
+        "핵심 정보(사전등록 무료입장, 사면 후회 품목)가 카드에 반영",
+        "옆집 언니 톤(공포 마케팅 없음)",
+        "CTA가 프로필 링크 유도 + 핸들 @pregnancy.checklist"
+      ]
+    }
+  ]
+}
