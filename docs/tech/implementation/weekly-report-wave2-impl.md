@@ -1,9 +1,9 @@
 # weekly-report-wave2 Implementation
 
 > 구현일: 2026-06-18
-> spec: [docs/features/weekly-report-wave2/spec.md](../features/weekly-report-wave2/spec.md)
-> qa: [docs/features/weekly-report-wave2/qa.md](../features/weekly-report-wave2/qa.md)
-> 상위 plan: [docs/plan/weekly-report-improvement.md](../plan/weekly-report-improvement.md) §Wave 2
+> spec: [docs/features/weekly-report-wave2/spec.md](../../features/weekly-report-wave2/spec.md)
+> qa: [docs/features/weekly-report-wave2/qa.md](../../features/weekly-report-wave2/qa.md)
+> 상위 plan: [docs/plan/weekly-report-improvement.md](../../plan/weekly-report-improvement.md) §Wave 2
 
 ## 완료 조건 충족 여부
 

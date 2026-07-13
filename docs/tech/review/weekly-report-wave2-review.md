@@ -1,8 +1,8 @@
 # weekly-report-wave2 코드 리뷰
 
 > 리뷰일: 2026-06-18
-> 대상 spec: [docs/features/weekly-report-wave2/spec.md](../features/weekly-report-wave2/spec.md)
-> 구현 문서: [docs/implementation/weekly-report-wave2-impl.md](../implementation/weekly-report-wave2-impl.md)
+> 대상 spec: [docs/features/weekly-report-wave2/spec.md](../../features/weekly-report-wave2/spec.md)
+> 구현 문서: [docs/tech/implementation/weekly-report-wave2-impl.md](../implementation/weekly-report-wave2-impl.md)
 
 ## 리뷰 대상 파일
 
@@ -46,7 +46,7 @@ W22~W24 fixture 3주분이 spec §2 시나리오 1~7 을 매핑 누락 없이 �
 
 ### W1. `anonymize.ts` — `import.meta.url` pathname 직접 사용은 path 에 spaces 가 있으면 깨짐
 
-- **위치**: [scripts/weekly-report/__fixtures__/anonymize.ts:39](../../scripts/weekly-report/__fixtures__/anonymize.ts#L39)
+- **위치**: [scripts/weekly-report/__fixtures__/anonymize.ts:39](../../../scripts/weekly-report/__fixtures__/anonymize.ts#L39)
 - **현재**: `const FIXTURE_DIR = path.dirname(new URL(import.meta.url).pathname);`
 - **문제**: `URL.pathname` 은 URL-encoded — `/Users/foo bar/...` 같은 경로에서 `/Users/foo%20bar/...` 가 되어 `fs.writeFileSync` 가 실패. 운영자 현재 경로 `~/Documents/melancholy14/pregnancy-checklist` 에 spaces 가 없어 정상 동작하지만, 다른 머신·경로로 이전 시 1회 깨질 위험.
 - **권장 수정**: `import { fileURLToPath } from "node:url"` 도입 후 `path.dirname(fileURLToPath(import.meta.url))`.
@@ -54,7 +54,7 @@ W22~W24 fixture 3주분이 spec §2 시나리오 1~7 을 매핑 누락 없이 �
 
 ### W2. `prompt-shared.ts::validateSchema` — `extractSection` body 가 헤더 부속 텍스트를 포함
 
-- **위치**: [scripts/weekly-report/prompt-shared.ts:167-177](../../scripts/weekly-report/prompt-shared.ts#L167-L177)
+- **위치**: [scripts/weekly-report/prompt-shared.ts:167-177](../../../scripts/weekly-report/prompt-shared.ts#L167-L177)
 - **문제**: `## 6. 유입 채널 (sessionDefaultChannelGroup TOP)` 같은 헤더 line 에서 `## 6. 유입 채널` 다음 문자열(` (sessionDefaultChannelGroup TOP)`)이 body 시작에 포함됨. 결과적으로:
   - "empty body" 분기는 실질적으로 도달 불가 (헤더 부속 텍스트가 항상 body 첫 줄에 들어옴).
   - "no data row" 분기는 의도대로 동작 (헤더 부속 텍스트 행이 `|` / 리스트 마커가 아니라 데이터 행으로 카운트 안 됨).
@@ -64,7 +64,7 @@ W22~W24 fixture 3주분이 spec §2 시나리오 1~7 을 매핑 누락 없이 �
 
 ### W3. `prompt-shared.ts::validateSchema` — `hasRow` 계산 중복 표현
 
-- **위치**: [scripts/weekly-report/prompt-shared.ts:221-226](../../scripts/weekly-report/prompt-shared.ts#L221-L226)
+- **위치**: [scripts/weekly-report/prompt-shared.ts:221-226](../../../scripts/weekly-report/prompt-shared.ts#L221-L226)
 - **현재**:
   ```ts
   const hasRow = lines
@@ -83,21 +83,21 @@ W22~W24 fixture 3주분이 spec §2 시나리오 1~7 을 매핑 누락 없이 �
 
 ### S1. `ga4-queries.ts::queryChannelGroupAcquisition` / `queryLandingPageEntry` — limit-before-filter 패턴
 
-- **위치**: [scripts/weekly-report/ga4-queries.ts:493-518](../../scripts/weekly-report/ga4-queries.ts#L493-L518), Q7 유사.
+- **위치**: [scripts/weekly-report/ga4-queries.ts:493-518](../../../scripts/weekly-report/ga4-queries.ts#L493-L518), Q7 유사.
 - **현황**: `limit: 5` (Q6) / `10` (Q7) 로 fetch 후 `(not set)` / `""` 필터. 만약 TOP 5 안에 `(not set)` 이 1행 있으면 결과는 4행만 노출.
 - **검토**: 기존 `queryZeroResultSearch`·`queryExternalDomainOutflow` 가 동일 패턴 — 일관성 유지 가치 ≥ 행 수 보장 가치. 휴면기 active users 작은 모집단에서 TOP N 정확도 차이가 의사결정에 영향 거의 없음.
 - **결정**: 본 PR 범위 밖, 일관성 유지. 향후 모집단 커진 후 #8 trend window 확장과 함께 재검토.
 
 ### S2. `prompt-shared.ts::validateSchema` — 동일 라인에 placeholder + sentinel 동시 → sentinel 화이트리스트로 통과
 
-- **위치**: [scripts/weekly-report/prompt-shared.ts:200-202](../../scripts/weekly-report/prompt-shared.ts#L200-L202)
+- **위치**: [scripts/weekly-report/prompt-shared.ts:200-202](../../../scripts/weekly-report/prompt-shared.ts#L200-L202)
 - **현황**: 단일 라인 `| ... | (신규) |` 같은 패턴은 `NEW_SENTINEL_PATTERN` 매치 우선으로 placeholder 검출 제외. 다른 라인에서 placeholder 가 또 나오면 검출됨 (test 로 검증).
 - **검토**: SYSTEM_PROMPT 가 placeholder 작성 자체를 금지 + `(신규)` 셀이 들어간 행은 의미상 "직전주 0 → 비교 불가" 라 데이터 없음 표현이 자연스러움. 가능성 낮은 corner case.
 - **결정**: 본 PR 디자인 그대로 유지. test 가 동작 명세화.
 
 ### S3. `ga4-queries.ts` — `POPULATION_GUARD_THRESHOLD = 10` config 노출 위치
 
-- **위치**: [scripts/weekly-report/ga4-queries.ts:66](../../scripts/weekly-report/ga4-queries.ts#L66)
+- **위치**: [scripts/weekly-report/ga4-queries.ts:66](../../../scripts/weekly-report/ga4-queries.ts#L66)
 - **검토**: plan §Wave 2 메모 "10이 적정한지 W25~W27 실데이터 후 확정" — config 1줄 수정으로 끝나는 구조가 목표. 현재 module-local 상수. 추후 `.env` 또는 별도 config 파일로 분리하면 환경별 조정 가능. 단 1인 운영 환경에서는 module 상수 1줄 수정도 PR 비용 차이 없음.
 - **결정**: 본 PR 그대로 유지. 운영자가 임계값 확정 시 한 줄 수정.
 
