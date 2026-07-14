@@ -13,9 +13,7 @@ docs/
 │   ├── impl.md                 구현 인덱스 (검색·스크립트 상세)
 │   ├── review.md               리팩토링 미완료 항목 인덱스
 │   ├── technical-debt.md       살아있는 기술 부채만
-│   ├── implementation/         feature별 구현 보고서
-│   ├── review/                 feature별 코드 리뷰 결과
-│   └── refactor/               feature별 리팩토링 결과
+│   └── builds/                 feature별 구현·리뷰·리팩토링 통합 문서
 ├── marketing/                  마케팅 단일 진실
 │   ├── persona.md              마케터 페르소나·룰
 │   └── ga4.md                  GA4 이벤트 카탈로그

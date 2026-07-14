@@ -78,7 +78,7 @@
 
 ### 4.1 PRD/impl.md 읽기
 
-`/write-unit-tests` 또는 `/write-e2e-tests` 호출 시 [docs/tech/implementation/<feature-name>-impl.md](../tech/implementation/) 우선 확인. PRD와 다른 결정이 여기 기록됨.
+`/write-unit-tests` 또는 `/write-e2e-tests` 호출 시 [docs/tech/builds/<feature-name>.md](../tech/builds/) `## 구현` 섹션 우선 확인. PRD와 다른 결정이 여기 기록됨.
 
 ### 4.2 작성 순서
 

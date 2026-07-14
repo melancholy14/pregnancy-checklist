@@ -1,6 +1,6 @@
 # 구현 요약
 
-> 지금까지 구현된 기능을 한 곳에. 자세한 phase별 구현 보고서는 [docs/tech/implementation/](implementation/), 각 phase plan은 [docs/plan/phase-*.md](../plan/).
+> 지금까지 구현된 기능을 한 곳에. feature별 구현·리뷰·리팩토링 통합 문서는 [docs/tech/builds/](builds/), 각 phase plan은 [docs/plan/phase-*.md](../plan/).
 > 이 문서는 "어디 가면 그 코드를 읽을 수 있는지" 인덱스 역할.
 
 ---
