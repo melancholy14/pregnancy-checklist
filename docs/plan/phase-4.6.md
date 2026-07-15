@@ -383,7 +383,7 @@ W19~W21 3주치 GA4 weekly report 분석 결과 V1·T1 데이터 의사결정 �
 | DESIGN.md 영향 | 5탭 탭당 폭 ~64px 검증, 라벨 줄바꿈 검증 | ✅ |
 | 활성 상태 시각 | 인접 active 시각 충돌 없음 검증 | ✅ |
 
-산출물: [docs/tech/implementation/bottomnav-weight-tab-impl.md](../tech/implementation/bottomnav-weight-tab-impl.md)
+산출물: [docs/tech/builds/bottomnav-weight-tab.md#구현](../tech/builds/bottomnav-weight-tab.md#구현)
 (plan·impl·review·refactor 5축 문서)
 
 ---
@@ -391,7 +391,7 @@ W19~W21 3주치 GA4 weekly report 분석 결과 V1·T1 데이터 의사결정 �
 ## 5. GA4 이벤트 카탈로그 4축 기준 재정의
 
 > ✅ **2026-06-03 완료** — ga4-axis-funnel-5tab 라운드.
-> [docs/tech/implementation/ga4-axis-funnel-5tab-impl.md](../tech/implementation/ga4-axis-funnel-5tab-impl.md)
+> [docs/tech/builds/ga4-axis-funnel-5tab.md#구현](../tech/builds/ga4-axis-funnel-5tab.md#구현)
 > 산출물: `axis_enter`·`axis_cross_link` 신규 wiring +
 > [ga4.md](../marketing/ga4.md) §3.E 등재 + §5.3 5탭 funnel +
 > ANOMALY_EVENTS 확장 + `e2e/axis-funnel.spec.ts` 신규 (5 테스트) +

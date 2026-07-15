@@ -9,12 +9,12 @@
 
 | PR | 항목 | 상태 | 머지 커밋 / 문서 |
 |----|------|------|------------------|
-| PR-A | Sitemap 누락 라우트 + BUILD_TIME | ✅ 완료 | `5317686` · [seo-sitemap-article-jsonld](../tech/implementation/seo-sitemap-article-jsonld-impl.md) |
-| PR-B | BreadcrumbList JSON-LD | ✅ 완료 | PR pending (2026-06-09 세션) · [jsonld-breadcrumb-identity](../tech/implementation/jsonld-breadcrumb-identity-impl.md) |
-| PR-C | FAQPage JSON-LD | ✅ 완료 | (PR pending) · [faq-jsonld](../tech/implementation/faq-jsonld-impl.md) |
-| PR-D | Article JSON-LD 5필드 보강 | ✅ 완료 | `5317686` · [seo-sitemap-article-jsonld](../tech/implementation/seo-sitemap-article-jsonld-impl.md) |
-| PR-E | WebSite + Person JSON-LD (최소판) | ✅ 완료 | PR pending (2026-06-09 세션, PR-B와 같이) · [jsonld-breadcrumb-identity](../tech/implementation/jsonld-breadcrumb-identity-impl.md) |
-| PR-F | llms.txt + AI 크롤러 정책 | ✅ 완료 | PR pending (2026-06-10 세션) · [llms-txt-policy](../tech/implementation/llms-txt-policy-impl.md) |
+| PR-A | Sitemap 누락 라우트 + BUILD_TIME | ✅ 완료 | `5317686` · [seo-sitemap-article-jsonld](../tech/builds/seo-sitemap-article-jsonld.md#구현) |
+| PR-B | BreadcrumbList JSON-LD | ✅ 완료 | PR pending (2026-06-09 세션) · [jsonld-breadcrumb-identity](../tech/builds/jsonld-breadcrumb-identity.md#구현) |
+| PR-C | FAQPage JSON-LD | ✅ 완료 | (PR pending) · [faq-jsonld](../tech/builds/faq-jsonld.md#구현) |
+| PR-D | Article JSON-LD 5필드 보강 | ✅ 완료 | `5317686` · [seo-sitemap-article-jsonld](../tech/builds/seo-sitemap-article-jsonld.md#구현) |
+| PR-E | WebSite + Person JSON-LD (최소판) | ✅ 완료 | PR pending (2026-06-09 세션, PR-B와 같이) · [jsonld-breadcrumb-identity](../tech/builds/jsonld-breadcrumb-identity.md#구현) |
+| PR-F | llms.txt + AI 크롤러 정책 | ✅ 완료 | PR pending (2026-06-10 세션) · [llms-txt-policy](../tech/builds/llms-txt-policy.md#구현) |
 
 **메인 PR 6개 모두 완료** ✅. 잔여는 [후속 작업 (휴면 전후)](#후속-작업-휴면-전후) 3건 + [신규 글 작성 시 갱신 필요 항목](#신규-글-작성-시-갱신-필요-항목) 2건뿐.
 
@@ -45,7 +45,7 @@
 - [x] Article은 이미 `a.updated ?? a.date` 쓰고 있음
 
 **머지 커밋**: `5317686` (2026-06-07)
-**산출물**: [docs/tech/implementation/seo-sitemap-article-jsonld-impl.md](../tech/implementation/seo-sitemap-article-jsonld-impl.md)
+**산출물**: [docs/tech/builds/seo-sitemap-article-jsonld.md#구현](../tech/builds/seo-sitemap-article-jsonld.md#구현)
 
 ---
 
@@ -65,7 +65,7 @@
 **테스트**: unit 20/20 (pure function 시그니처 + 4 케이스 유형) · e2e 신규 11/11 + 갱신 spec 2개 회귀 0 · fs-level grep 가드 (13 indexable html 1회 / redirect 4 html 0회).
 
 **머지 커밋**: PR pending (2026-06-09 세션에서 PR-E 와 함께 완료)
-**산출물**: [docs/tech/implementation/jsonld-breadcrumb-identity-impl.md](../tech/implementation/jsonld-breadcrumb-identity-impl.md)
+**산출물**: [docs/tech/builds/jsonld-breadcrumb-identity.md#구현](../tech/builds/jsonld-breadcrumb-identity.md#구현)
 
 ---
 
@@ -87,7 +87,7 @@
 - [x] 기존 5개 글 backfill (본문 `## 자주 묻는 질문` 제거)
 
 **머지 커밋**: PR pending (이 세션에서 완료)
-**산출물**: [docs/tech/implementation/faq-jsonld-impl.md](../tech/implementation/faq-jsonld-impl.md)
+**산출물**: [docs/tech/builds/faq-jsonld.md#구현](../tech/builds/faq-jsonld.md#구현)
 
 ---
 
@@ -105,7 +105,7 @@
 **Skip 결정 유지**: `MedicalWebPage`/`HealthTopic` — 임상 출처 마크업·전문가 검수 필드까지 채워야 신뢰도 ↑, 부실하면 역효과.
 
 **머지 커밋**: `5317686` (2026-06-07)
-**산출물**: [docs/tech/implementation/seo-sitemap-article-jsonld-impl.md](../tech/implementation/seo-sitemap-article-jsonld-impl.md)
+**산출물**: [docs/tech/builds/seo-sitemap-article-jsonld.md#구현](../tech/builds/seo-sitemap-article-jsonld.md#구현)
 
 ---
 
@@ -126,7 +126,7 @@
 - [ ] `Person.sameAs` / `image` / `description` 보강 — 운영자 SNS 공개 결정 시.
 
 **머지 커밋**: PR pending (2026-06-09 세션에서 PR-B 와 함께 완료)
-**산출물**: [docs/tech/implementation/jsonld-breadcrumb-identity-impl.md](../tech/implementation/jsonld-breadcrumb-identity-impl.md)
+**산출물**: [docs/tech/builds/jsonld-breadcrumb-identity.md#구현](../tech/builds/jsonld-breadcrumb-identity.md#구현)
 
 ---
 
@@ -148,7 +148,7 @@
 **테스트**: e2e 9 passed (llms.txt 200/text-plain · 5 섹션 · 15 articles · checklists+hubs · robots 5 블록 · NoIndex 4 제외 · llms-full.txt 404 · AI 크롤러 Disallow 부재 · Sitemap 라인). 회귀 19 passed.
 
 **머지 커밋**: PR pending (2026-06-10 세션)
-**산출물**: [docs/tech/implementation/llms-txt-policy-impl.md](../tech/implementation/llms-txt-policy-impl.md)
+**산출물**: [docs/tech/builds/llms-txt-policy.md#구현](../tech/builds/llms-txt-policy.md#구현)
 
 ---
 
@@ -187,7 +187,7 @@ GA4와 Search Console을 연동했다면 GSC 데이터를 GA4 Explorations에서
 
 ## 후속 작업 (휴면 전후)
 
-본 계획 PR 외에 [jsonld-breadcrumb-identity](../tech/implementation/jsonld-breadcrumb-identity-impl.md) PR 에서 발견된 후속 정리 대상. 모두 본 PR scope 밖이라 별도 PR 로 분리. 산후 휴면 진입 전(7월 중) 또는 휴면 후(2026-11~) 우선순위 결정.
+본 계획 PR 외에 [jsonld-breadcrumb-identity](../tech/builds/jsonld-breadcrumb-identity.md#구현) PR 에서 발견된 후속 정리 대상. 모두 본 PR scope 밖이라 별도 PR 로 분리. 산후 휴면 진입 전(7월 중) 또는 휴면 후(2026-11~) 우선순위 결정.
 
 ### 1. `Person.sameAs` 보강 — 운영자 SNS 공개 결정 후
 
@@ -250,11 +250,11 @@ PR-A ~ PR-F 가 도입한 산출물 중 **새 글 1편이 추가될 때마다 �
 - 현재 [llms.txt](../../public/llms.txt) 는 수동 작성(옵션 A) 채택. 글 15개 → 자동화 비용 대비 효익 낮음.
 - **누락 시 영향**: AI 크롤러(ChatGPT Search·Perplexity·Claude·Google AI Overview) 가 신규 글을 인용 후보에서 누락. sitemap 으로는 색인되지만 LLM 인용 가이드에서 빠짐.
 - **형식**: `- [제목](https://pregnancy-checklist.com/articles/<slug>): 1~2문장 요약`
-- **재검토 트리거**: 글 30개 도달 시점 → 빌드 타임 스크립트(옵션 B) 전환 검토. [llms-txt-policy README §주요 결정 사항](../tech/implementation/llms-txt-policy-impl.md) 명시.
+- **재검토 트리거**: 글 30개 도달 시점 → 빌드 타임 스크립트(옵션 B) 전환 검토. [llms-txt-policy README §주요 결정 사항](../tech/builds/llms-txt-policy.md#구현) 명시.
 
 **2. frontmatter `faq:` 필드 — FAQ 있는 글은 본문이 아닌 frontmatter 에 구조화 입력**
 
-- 본문 `## 자주 묻는 질문` 섹션은 SSOT 위반 (frontmatter ↔ 본문 중복). [PR-C backfill](../tech/implementation/faq-jsonld-impl.md) 에서 본문 FAQ 섹션 전부 제거.
+- 본문 `## 자주 묻는 질문` 섹션은 SSOT 위반 (frontmatter ↔ 본문 중복). [PR-C backfill](../tech/builds/faq-jsonld.md#구현) 에서 본문 FAQ 섹션 전부 제거.
 - **누락 시 영향**: FAQPage JSON-LD 주입 안 됨 → AI Overview·Featured Snippet·"사람들이 묻는 질문" 노출 기회 손실 (AEO 핵심).
 - **형식**:
 

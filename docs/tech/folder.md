@@ -180,9 +180,7 @@ docs/
 ├── tech/                       # 기술 단일 진실 (이 폴더)
 │   ├── persona.md  folder.md  spec.md  design.md
 │   ├── infra.md    impl.md    review.md  technical-debt.md
-│   ├── implementation/         # feature별 구현 보고서
-│   ├── review/                 # feature별 코드 리뷰 결과
-│   └── refactor/               # feature별 리팩토링 결과
+│   └── builds/                 # feature별 구현·리뷰·리팩토링 통합 (스텝별 섹션)
 ├── marketing/                  # 측정·운영 SoT (마케터 시각)
 ├── design/                     # 디자인 시스템 SoT (디자이너 시각)
 ├── content/                    # 기획·콘텐츠 SoT (기획자 시각)
@@ -200,8 +198,8 @@ docs/
 
 - 페르소나 시각이 있는 결정은 `tech/`·`marketing/`·`design/`·`content/` 중 해당 폴더로.
 - 4축 횡단(PRD, phase plan, 외부 스펙)은 `plan/`으로.
-- 새 기능 추가 시: `plan/phase-N.md`에 plan → `tech/implementation/` impl → `tech/review/` 리뷰 → `tech/refactor/` 리팩토링 → 완료 시 `tech/impl.md` 인덱스 갱신.
-- feature/step 산출물의 SoT는 `tech/{implementation,review,refactor}/` 분산형. 종합 README는 만들지 않음 (중복 회피).
+- 새 기능 추가 시: `plan/phase-N.md`에 plan → `tech/builds/<name>.md`에 스텝별 섹션 append (구현 → 코드 리뷰 → 리팩토링 → E2E) → 완료 시 `tech/impl.md` 인덱스 갱신.
+- feature 산출물의 SoT는 `tech/builds/<name>.md` **feature당 1문서**. 각 파이프라인 스텝이 `<!-- STEP:x -->` 마커로 자기 섹션만 채운다(재실행 시 해당 섹션만 교체). 종합 README·분산형 복제본은 만들지 않음 (중복 회피).
 - feature-plan으로 만든 사전 산출물(spec·meta·design·ga4·review)은 `features/<slug>/`. 횡단 4 페르소나가 한 feature 안에 모이는 자리이지만, 5축 페르소나 SoT를 대체하지는 않음.
 - `ops/`는 운영(operating-model·secrets·신청 체크리스트) — 페르소나 시각 없이 절차만 다루는 문서를 모은다.
 

@@ -34,7 +34,7 @@
 
 기각 사유:
 - **B (Codex 추가)** — 기존 7개 modular skill + `/feature-pipeline` orchestrator의 implementation 책임을 Codex로 옮기면 자체 자산 무력화. AGENTS.md ↔ CLAUDE.md 직무 분리 패턴은 자기모순(`/ai/core/*` 단일 진실 주장과 충돌). 셋업/sync 마찰이 집중 개발 기간 직전에 부담됨.
-- **graphify** — Next.js 모노레포(50x 절약 사례)와 PoC 규모(< 100파일) ROI 차이가 superlinear. PoC 규모에서는 셋업 비용 + graph staleness 비용 > 절약 토큰. `docs/tech/implementation/<name>-impl.md`가 사실상 수동 knowledge graph 역할 중.
+- **graphify** — Next.js 모노레포(50x 절약 사례)와 PoC 규모(< 100파일) ROI 차이가 superlinear. PoC 규모에서는 셋업 비용 + graph staleness 비용 > 절약 토큰. `docs/tech/builds/<name>.md`가 사실상 수동 knowledge graph 역할 중.
 
 ## 재평가 트리거
 

@@ -15,7 +15,7 @@
 >   **P1·P5 묶음 완료** ([checklist-data-model-bundle](../features/checklist-data-model-bundle/spec.md), 2026-06-06)
 >   — custom 항목 priority/note 편집 + 4개 store schema versioning + GA4 4종(`custom_item_priority_set`·`custom_item_note_set`·`schema_migration_run`·`schema_migration_failed`) +
 >   e2e 시드 헬퍼 신설 및 기존 spec 6건 이관 + design-bundle-b-i fs 가드 강화.
->   최종 구현 기록: [docs/tech/implementation/checklist-data-model-bundle-impl.md](../tech/implementation/checklist-data-model-bundle-impl.md).
+>   최종 구현 기록: [docs/tech/builds/checklist-data-model-bundle.md#구현](../tech/builds/checklist-data-model-bundle.md#구현).
 >   P11 spec·결정 완료, vault 매트릭스 1차 sketch 작성 완료
 >   (`~/Documents/pregnancy-checklist/30-domain/content-matrix.md`, 2026-06-03).
 >   이연 사유였던 타임라인 흡수·4축 정합은 [phase-4.6.md](phase-4.6.md)
@@ -669,7 +669,7 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 #### P1. 편집 모드에서 priority/note 수정 허용 여부
 
-> **상태 (2026-06-06)**: ✅ **완료** — 허용 결정 (4.2=A). custom 항목 한정으로 편집 모드에 title + priority + note 한 폼 노출 (4.6=A). 기본 항목은 편집 버튼 비노출 (4.3=A). `custom_item_priority_set`/`custom_item_note_set` GA4 신설 + 변경 필드별 발사. [checklist-data-model-bundle](../features/checklist-data-model-bundle/spec.md) / [구현 기록](../tech/implementation/checklist-data-model-bundle-impl.md).
+> **상태 (2026-06-06)**: ✅ **완료** — 허용 결정 (4.2=A). custom 항목 한정으로 편집 모드에 title + priority + note 한 폼 노출 (4.6=A). 기본 항목은 편집 버튼 비노출 (4.3=A). `custom_item_priority_set`/`custom_item_note_set` GA4 신설 + 변경 필드별 발사. [checklist-data-model-bundle](../features/checklist-data-model-bundle/spec.md) / [구현 기록](../tech/builds/checklist-data-model-bundle.md#구현).
 
 - [x] **결정**: 허용 (custom 한정)
 - **현황**: [ChecklistItemRow.tsx:42-73](../../src/components/checklist/ChecklistItemRow.tsx#L42-L73) 편집 모드는 **title만** 수정 가능. 추가 폼([ChecklistAddForm.tsx:43](../../src/components/checklist/ChecklistAddForm.tsx#L43))도 priority를 받지 않고 `medium` 하드코딩.
