@@ -766,9 +766,10 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 
 #### P10. 운영자 가이드 — 체크리스트 데이터 변경 룰
 
-> **상태 (2026-05-09)**: ⚠️ **부분 완료** — [docs/content/image-sop.md](../content/image-sop.md) §8에 "체크리스트 데이터 변경 룰" 한 줄 흡수 (P14 산출). 통합 운영자 가이드 본체는 미작성.
+> **상태 (2026-07-30)**: ✅ **완료** — 통합 운영자 가이드 본체 발행: [docs/ops/operator-guide.md](../ops/operator-guide.md). §1 체크리스트 데이터 변경 룰(ID 불변·삭제 정책 확정) + §2 신규 글 작성 SOP + §3 AI 이미지 SOP(구 image-sop.md 흡수) 합본. 삭제 정책: `deprecated` 플래그 후 **12주** 물리 삭제 + 은퇴 ID 원장(dangling 무시).
+> 이전 상태 (2026-05-09): ⚠️ 부분 완료 — image-sop.md §8에 한 줄 흡수만 됨.
 
-- [ ] **결정**: ID 변경 금지 규칙 명문화 (추가 자유, 삭제는 deprecated 플래그 후 N주)
+- [x] **결정 (2026-07-30)**: ID 변경 금지 규칙 명문화 — ID 불변, 추가 자유(max+1), 삭제는 deprecated 플래그 후 12주 물리 삭제([operator-guide.md §1.2~§1.4](../ops/operator-guide.md))
 - [x] **결정**: 가이드 문서 위치 — `docs/content/` / `AGENTS.md` / 별도 (`docs/content/image-sop.md`로 임시 흡수, 통합 가이드 분리 도입은 phase-5)
 - **현황**: Phase 4 Step 5의 운영 절차는 자동 크로스링크 영역만 다룸. 체크리스트 항목 ID 변경/삭제 시 사용자 localStorage에 dangling reference 발생하지만 가이드 부재
 - **연결**: P5 schema versioning과 함께 도입하면 일관
@@ -885,7 +886,7 @@ DESIGN.md 1·10항 — "Don't use pure white as the page background. The cream i
 | P7 | note_type 필드 | 낮음 | UX #5 진행 시 | ✅ 부분 (패턴 분류, 필드는 phase-5) |
 | P8 | 카테고리 체계 | 낮음 | Phase 5 통합 검색 | ⚠️ 미결 |
 | P9 | 빈 상태 명세 | 보통 | 묶음 J 측정 의미 | ✅ 완료 |
-| P10 | 운영자 가이드 | 낮음 | 데이터 변경 사고 예방 | 🟡 부분 (image-sop §8 흡수) |
+| P10 | 운영자 가이드 | 낮음 | 데이터 변경 사고 예방 | ✅ 완료 (2026-07-30, `ops/operator-guide.md`) |
 | P11 | 콘텐츠 매트릭스 | 보통 | 콘텐츠 백로그 사전 정리 | ✅ 완료 (2026-06-03, `30-domain/content-matrix.md`) |
 | P12 | 양방향 크로스링크 | 보통 | 유입→도구 흐름 | ⚠️ 미결 |
 | P13 | 외부 링크 인벤토리 | 낮음 | 묶음 J 사전 작업 | ⚠️ 미결 |

@@ -20,23 +20,26 @@
 
 ## §1. 필수 항목 (1~2순위)
 
-### 1.1 P10 운영자 통합 가이드 작성 (예상 2~3시간, 최고 ROI)
+### 1.1 P10 운영자 통합 가이드 작성 — ✅ 완료 (2026-07-30)
 
 산후 복귀 시 "이거 어떻게 하는 거였지" 잊지 않게 하는 SoT 하나.
 
-- [ ] 새 세션 열고 "P10 운영자 통합 가이드 초안 작성해줘" 요청
-- [ ] Claude가 생성한 초안 검토
-- [ ] 실제 운영 흐름과 어긋난 부분 정정 요청 (필요시)
-- [ ] 최종 파일 저장: `docs/ops/operator-runbook.md` (또는 유사 경로)
+- [x] 새 세션 열고 "P10 운영자 통합 가이드 초안 작성해줘" 요청
+- [x] Claude가 생성한 초안 검토
+- [x] 실제 운영 흐름과 어긋난 부분 정정 (§1.4 삭제 정책 확정 — deprecated 12주 후 물리 삭제 + dangling 무시)
+- [x] 최종 파일 저장: **[docs/ops/operator-guide.md](operator-guide.md)** (예상 경로 `operator-runbook.md`에서 변경) + image-sop.md 흡수 + phase-4.5/5 상태 갱신
 
-**포함되어야 할 항목**:
+**포함되어야 할 항목** (커버리지):
 
-- 체크리스트 JSON 데이터 변경 SOP (안전 편집 순서, 검증 방법)
-- 신규 블로그 글 작성 SOP (blog-pipeline-1 → 운영자 PE 교체 → blog-pipeline-2)
-- AI 이미지 생성 SOP (프롬프트 규칙, 저장 경로, 파일 명명)
-- 주간 리포트 launchd 상태 확인 방법
-- 대시보드 링크 (Search Console / AdSense / GA4)
-- 배포 흐름 (git push → GitHub Actions → gh-pages)
+- [x] 체크리스트 JSON 데이터 변경 SOP (안전 편집 순서, 검증 방법) — §1 (ID 불변·삭제 정책·dangling 방어)
+- [x] 신규 블로그 글 작성 SOP (blog-pipeline-1 → 운영자 PE 교체 → blog-pipeline-2) — §2
+- [x] AI 이미지 생성 SOP (프롬프트 규칙, 저장 경로, 파일 명명) — §3 (image-sop.md 흡수)
+- [x] 주간 리포트 launchd 상태 확인 방법 — §5.1 (launchctl·로그·재등록 절차)
+- [x] 대시보드 링크 (Search Console / AdSense / GA4) — §5.2
+- [x] 배포 흐름 (git push → GitHub Actions → gh-pages) — §5.3
+
+> **범위 메모**: 6항목 전부 커버 완료 (2026-07-30). 콘텐츠 3종 SOP는 §1~3, 운영 런북 3항목은 §5로 추가.
+> **🔐 보안 발견**: 주간 리포트 plist(`~/Library/LaunchAgents/…weekly-report.plist`)에 `OPENAI_API_KEY` 평문 노출 확인 (git 미포함이라 커밋 유출은 아님). → 키 rotate + 외부 파일 참조 이관 TODO를 operator-guide §5.1에 기록. **복귀 후 우선 처리 권장.**
 
 ### 1.2 PSI Diagnostics LCP element 캡쳐 (예상 30분)
 
@@ -102,7 +105,7 @@
 
 | 주차 | 기간 | 진행 |
 |---|---|---|
-| **주 1** | 2026-07-24 ~ 07-30 | §1.1 P10 통합 가이드 초안 요청 + 검토 |
+| **주 1** | 2026-07-24 ~ 07-30 | ✅ §1.1 P10 통합 가이드 작성·정본화 완료 (2026-07-30) |
 | **주 2** | 2026-07-31 ~ 08-06 | §1.2 PSI 데이터 수집 + §2.1 미색인 확인 |
 | **주 3** | 2026-08-07 ~ 08-13 | 컨디션 좋으면 §2.2, 아니면 완전 휴식 |
 
@@ -135,9 +138,9 @@
 
 ### 주 1 (07-24 ~ 07-30)
 
-- [ ] P10 가이드 초안 생성:
-- [ ] P10 가이드 검토·정정:
-- [ ] P10 가이드 최종 저장:
+- [x] P10 가이드 초안 생성: 2026-07-30, `docs/ops/operator-guide.md`
+- [x] P10 가이드 검토·정정: §1.4 삭제 정책 확정 (deprecated 12주 후 물리 삭제 + 은퇴 ID 원장, dangling 무시)
+- [x] P10 가이드 최종 저장: 정본 발행 + image-sop.md 흡수(stub화) + phase-4.5/5 상태 갱신 + persona·adsense·README 리포인트. **미포함**: launchd·대시보드·배포 흐름(별도 런북 트랙)
 
 ### 주 2 (07-31 ~ 08-06)
 

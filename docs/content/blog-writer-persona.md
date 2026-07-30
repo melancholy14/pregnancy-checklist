@@ -312,7 +312,7 @@ crowded layout, English-only labels.
 
 - **헤더 이미지(필수):** H1 직후 `![alt (AI 생성 이미지)](/articles/<slug>.webp)` 마크다운 라인을 박는다. 위 IMAGE-PROMPT 주석은 그 **위쪽**에 둔다(운영자가 프롬프트 확인 후 ChatGPT로 PNG 생성 → WebP 변환).
 - **본문 보조 이미지(선택):** 글 중간에 모드 B 인포그래픽이 더 필요한 경우 `<!-- image: [설명] -->` 주석으로 자리만 잡고, 별도 IMAGE-PROMPT 블록을 같이 두면 됨.
-- `alt` 텍스트 끝에 ` (AI 생성 이미지)` 후행 표기 필수 ([image-sop.md](image-sop.md) §1 참조).
+- `alt` 텍스트 끝에 ` (AI 생성 이미지)` 후행 표기 필수 ([operator-guide.md §3.1](../ops/operator-guide.md) 참조).
 
 ### 6.4 일관성 점검 체크리스트 (운영자 작업)
 
@@ -323,7 +323,7 @@ crowded layout, English-only labels.
 - [ ] 인물 등장 시 30대 한국 여성 + 차분한 표정 + 임부 느낌이 유지되는가
 - [ ] 모드 A/B 중 글 성격에 맞는 모드를 골랐는가
 - [ ] 한글 텍스트가 들어갔다면 오타·자간 깨짐 없는가
-- [ ] 우상단·우하단에 핵심 텍스트를 두지 않았는가 (워터마크/ExternalLink 회피, [image-sop.md](image-sop.md) §4.1)
+- [ ] 우상단·우하단에 핵심 텍스트를 두지 않았는가 (워터마크/ExternalLink 회피, [operator-guide.md §3.4](../ops/operator-guide.md))
 
 ### 6.5 이미지 alt 작성 룰 (IM-6, 접근성)
 
@@ -384,7 +384,7 @@ crowded layout, English-only labels.
 - [ ] FAQ가 "병원에 확인하세요"로만 끝나지 않는가
 - [ ] 헤더 이미지가 모드 A/B 컨벤션을 따르는가 (생성 전이라도 IMAGE-PROMPT 블록 박혀 있는가)
 - [ ] 면책 문구가 글 주제에 맞는가 (의학 글에 재무 면책, 보험 글에 의학 면책 같은 오매핑 X)
-- [ ] `reviewed_by` 빈 문자열 없음 ([image-sop.md](image-sop.md) §9 — 빈 값이면 키 자체 제거)
+- [ ] `reviewed_by` 빈 문자열 없음 ([operator-guide.md §2.2](../ops/operator-guide.md) — 빈 값이면 키 자체 제거)
 
 ---
 
