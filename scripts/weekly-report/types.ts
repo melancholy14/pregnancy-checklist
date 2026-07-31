@@ -83,6 +83,10 @@ export type AnomalyRow = {
 export type WeekOverWeekAnomaly = {
   rows: AnomalyRow[];
   comparable: boolean; // false when no previous week data
+  // true when 직전주 실사용자 수(previousTotalActiveUsers) < AUDIENCE_GUARD_THRESHOLD.
+  // 이 경우 baseline 오디언스가 dogfooding 수준(1~3명)이라 모든 WoW %가 통계적
+  // 신호가 아니므로 전 행 band 를 noise 로 강등한 상태. LLM 에 incident 서술 금지 신호.
+  audienceFloored?: boolean;
 };
 
 // ── Q6. Acquisition channel groups (Wave 2 M1) ───────────────────────
