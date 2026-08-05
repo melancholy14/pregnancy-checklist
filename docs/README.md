@@ -26,7 +26,7 @@ docs/
 │   ├── plan.md                 미구현 영역 (기획 시각)
 │   ├── backlog.md              이월·보류 항목
 │   ├── blog-writer-persona.md  블로그 작성 페르소나 SoT
-│   └── image-sop.md            AI 이미지 운영 SOP
+│   └── image-sop.md            (이전됨 → ops/operator-guide.md §3)
 ├── qa/                         QA 단일 진실
 │   └── persona.md              QA 페르소나 (write-unit/e2e/run-e2e 스킬이 로드)
 ├── plan/                       5축 횡단 plan + PRD
@@ -35,7 +35,9 @@ docs/
 │   ├── adsense-audit.md        AdSense 신청 직전 체크리스트
 │   └── specs/babyfair_crawler_spec.md  Phase 5 크롤러 스펙
 ├── features/                   feature-plan 산출물 (spec·meta·design·ga4·qa·review)
-├── ops/                        운영 문서 (operating-model·github-secrets·adsense-application-checklist)
+├── ops/                        운영 문서
+│   ├── operator-guide.md       운영자 통합 가이드 (P10 — 체크리스트 데이터·글 작성·AI 이미지 SOP)
+│   └── operating-model·github-secrets·adsense-application-checklist ...
 └── README.md                   이 인덱스
 ```
 

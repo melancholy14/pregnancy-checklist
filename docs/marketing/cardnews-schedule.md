@@ -23,8 +23,8 @@
 | # | 발행일 | slug | 주제 | 카드 포맷 근거 | 상태 |
 |---|---|---|---|---|---|
 | 1 | 2026-07-24 (금) 제작완료 | `2026-parental-leave-guide` | 출산휴가·육아휴직 정책 | 급여·기간 표 + 정부혜택 세트 시너지 | ✅ (deck: `parental-leave-2026`, 9장) |
-| 2 | 2026-07-23 (목) | `pregnancy-supplements-by-week` | 임산부 영양제 주차별 | 주차별 복용 타임라인 표 | ⬜ |
-| 3 | 2026-07-30 (목) | `weekly-prenatal-checklist` | 주차별 검사 총정리 | 체크리스트 정석 | ⬜ |
+| 2 | 2026-07-23 (목) 발행완료 | `pregnancy-supplements-by-week` | 임산부 영양제 주차별 | 주차별 복용 타임라인 표 | ✅ (deck: `supplements-by-week`, 7장) |
+| 3 | 2026-07-30 (목) 발행완료 | `weekly-prenatal-checklist` | 주차별 검사 총정리 | 체크리스트 정석 | ✅ (deck: `prenatal-checklist`, 8장) |
 | 4 | 2026-08-06 (목) | `pregnancy-childcare-reduced-work-hours` | 임신기 단축근무 | 제도 조건 표, 워킹맘 저장각 | ⬜ |
 | — | **2026-08-13** | 🍼 **출산 예정일 · 산후 3개월 휴면 시작** | | 아래부터는 수동 발행 불가 → 예약 발행 필요 | |
 | 5 | 2026-08-13 (목) | `preeclampsia-symptoms-prevention` | 임신중독증 | 증상·위험군 안전 정보 | ⬜ |

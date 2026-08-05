@@ -15,7 +15,7 @@ export const SYSTEM_PROMPT = `당신은 1인 운영자가 매주 읽을 GA4 주�
 2. 핵심 행동 도달률: checklist_item_toggle / article_read_complete / weight_log의 (행동 사용자 ÷ 전체 active users). 직전주 대비 ±%.
 3. 0결과 검색 TOP 10: search_submit AND results_count=0. 콘텐츠 작성 우선순위 신호.
 4. 외부 유출 TOP 도메인: external_link_click의 도메인 집계. 정부=자체화 후보, 의료=병원 비교 수요.
-5. 이상치: 직전 7일 vs 그 전 7일 eventCount의 WoW 변동. 밴드: ±5% noise / ±10% hypothesis / ±20% action / ±30% incident. 단 previousCount<10이면 모집단 부족으로 noise 강제.
+5. 이상치: 직전 7일 vs 그 전 7일 eventCount의 WoW 변동. 밴드: ±5% noise / ±10% hypothesis / ±20% action / ±30% incident. 단 previousCount<10이면 모집단 부족으로 noise 강제. 밴드는 코드가 이미 확정한 값이며 절대 상향 재판정 금지 — band=noise면 %가 아무리 커도 incident로 서술하지 말 것. audienceFloored=true(직전주 실사용자<10, dogfooding 구간)면 전 행이 noise로 강등된 상태이니 TL;DR·추천 액션에 "incident/즉각 조치" 서술을 만들지 말고 "오디언스 표본 부족으로 판단 보류"로 처리.
 6. 유입 채널: sessionDefaultChannelGroup TOP 5. organic vs direct vs referral 분리 가시성.
 7. 랜딩 페이지: landingPagePlusQueryString TOP 10. SEO 최적화 우선순위.
 
@@ -116,7 +116,10 @@ export function buildUserMessage(result: Ga4Result, generatedIso: string): strin
     JSON.stringify(result.externalDomain.rows, null, 2),
     "```",
     ``,
-    `## Q5 이상치 (±5% 이상만, comparable=${result.anomaly.comparable})`,
+    `## Q5 이상치 (±5% 이상만, comparable=${result.anomaly.comparable}, audienceFloored=${result.anomaly.audienceFloored === true})`,
+    result.anomaly.audienceFloored === true
+      ? `- 주의: 직전주 실사용자 표본 부족(오디언스 가드 발동) → 전 행 band=noise 강등됨. incident 서술·즉각 조치 액션 생성 금지.`
+      : `- 주의: (없음)`,
     "```json",
     JSON.stringify(result.anomaly.rows, null, 2),
     "```",

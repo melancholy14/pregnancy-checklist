@@ -27,7 +27,7 @@
 ### 1.3 광고 슬롯 DOM 존재
 
 - [ ] 발행 글 1편 시크릿 브라우저로 열어 DevTools Elements → `<ins class="adsbygoogle">` 존재 확인
-- [ ] AdUnit 컴포넌트가 박힌 위치 1회 시각 점검 — 본문 흐름과 자연스러운지, 광고 슬롯이 인포그래픽 직후가 아닌지 ([image-sop.md §4](../content/image-sop.md))
+- [ ] AdUnit 컴포넌트가 박힌 위치 1회 시각 점검 — 본문 흐름과 자연스러운지, 광고 슬롯이 인포그래픽 직후가 아닌지 ([operator-guide.md §3.4](operator-guide.md))
 
 ### 1.4 성능 점수
 
@@ -47,7 +47,7 @@ Google AdSense Program Policies + Publisher Policies 정합.
 
 ### 2.2 검수자 표기 (E-E-A-T)
 
-- [ ] `grep -l 'reviewed_by: ""' src/content/articles/*.md` → 0건 (D-C2 회귀 방지, [image-sop.md §9](../content/image-sop.md))
+- [ ] `grep -l 'reviewed_by: ""' src/content/articles/*.md` → 0건 (D-C2 회귀 방지, [operator-guide.md §2.2](operator-guide.md))
 - [ ] 검수 받은 글은 frontmatter에 검수자 명시되어 있는지 sample 1회
 
 ### 2.3 필수 페이지 존재
@@ -58,7 +58,7 @@ Google AdSense Program Policies + Publisher Policies 정합.
 
 ### 2.4 이미지·출처
 
-- [ ] AI 생성 이미지에 `(AI 생성 이미지)` 후행 표기 + `Imagined with AI` 워터마크 칩 확인 ([image-sop.md §1](../content/image-sop.md))
+- [ ] AI 생성 이미지에 `(AI 생성 이미지)` 후행 표기 + `Imagined with AI` 워터마크 칩 확인 ([operator-guide.md §3.1](operator-guide.md))
 - [ ] 인포그래픽·통계 이미지 출처 명시
 - [ ] 외부 절대 URL 이미지 0건 (sample 글 1편 grep `'!\['` 후 패턴 점검)
 

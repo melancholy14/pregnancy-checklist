@@ -64,6 +64,15 @@ const TOP_N = 10;
 // Q6/Q7 (Wave 2) 모집단 가드 기본값. spec §3.1: previousCount < threshold → noise.
 // 임계값 10은 W22~W24 실데이터 관찰 후 조정 가능. config 상수 한 줄 수정으로 끝나는 구조.
 const POPULATION_GUARD_THRESHOLD = 10;
+
+// 오디언스 가드 기본값 (Wave 3). previousCount(이벤트 수) 가드는 page_view·axis_enter
+// 처럼 사용자 1명이 수십 건 찍는 고빈도 이벤트를 못 막는다 — W28(실사용자 2명 · page_view
+// 153 vs 31 → +393% incident)·W30(실사용자 1명 · -84% incident) 오탐이 그 증거.
+// 진짜 모집단은 이벤트 수가 아니라 실사용자 수(active users)이므로, 직전주 실사용자가
+// 이 값 미만이면 baseline 자체가 신뢰 불가 → 그 주 전 밴드를 noise 로 강등한다.
+// pre-launch dogfooding(실사용자 1~3명) 구간을 통째로 침묵시키고, 실런칭 후 오디언스가
+// 커지면 자동 해제된다. 임계값은 실런칭 트래픽 관찰 후 조정 가능.
+const AUDIENCE_GUARD_THRESHOLD = 10;
 const CHANNEL_GROUP_TOP_N = 5;
 const LANDING_PAGE_TOP_N = 10;
 
@@ -443,6 +452,27 @@ export function bandForDelta(
   return "noise";
 }
 
+// 오디언스 가드 — 직전주 실사용자(previousActiveUsers)가 floor 미만이면 baseline 이
+// dogfooding 수준이라 WoW %가 신호가 아니므로 전 행 band 를 noise 로 강등한다.
+// bandForDelta 의 previousCount(이벤트 수) 가드가 못 잡는 고빈도 이벤트 오탐을 차단.
+// 게이트는 "직전주(baseline)" 기준 — 직전주 오디언스가 크면 이번 주 급감(오디언스 붕괴)
+// 은 진짜 신호이므로 강등하지 않는다. anomaly 쿼리와 coreBehavior 쿼리는 병렬 발사되어
+// 쿼리 시점엔 실사용자 수를 모르므로, 두 결과가 모인 collectGa4Result 에서 후처리한다.
+export function applyAudienceGuard(
+  anomaly: WeekOverWeekAnomaly,
+  previousActiveUsers: number,
+  threshold: number = AUDIENCE_GUARD_THRESHOLD,
+): WeekOverWeekAnomaly {
+  if (previousActiveUsers >= threshold) return anomaly;
+  return {
+    ...anomaly,
+    audienceFloored: true,
+    rows: anomaly.rows.map((r) =>
+      r.band === "noise" ? r : { ...r, band: "noise" },
+    ),
+  };
+}
+
 async function queryAnomalyWindow(
   client: BetaAnalyticsDataClient,
   propertyId: string,
@@ -646,6 +676,13 @@ export async function collectGa4Result(params: {
       LandingPageEntry,
     ];
 
+  // 오디언스 가드 후처리 — anomaly 는 자체 쿼리에서 실사용자 수를 모르므로, coreBehavior 가
+  // 집계한 직전주 실사용자(previousTotalActiveUsers) 기준으로 여기서 밴드를 재조정한다.
+  const anomalyGuarded = applyAudienceGuard(
+    anomaly,
+    coreBehavior.previousTotalActiveUsers,
+  );
+
   return {
     propertyId,
     isoWeek,
@@ -654,7 +691,7 @@ export async function collectGa4Result(params: {
     coreBehavior,
     zeroResultSearch,
     externalDomain,
-    anomaly,
+    anomaly: anomalyGuarded,
     channelGroup,
     landingPage,
     trendWeeks,

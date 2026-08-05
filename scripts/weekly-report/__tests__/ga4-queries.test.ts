@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { bandForDelta } from '../ga4-queries.js';
+import { bandForDelta, applyAudienceGuard } from '../ga4-queries.js';
+import type { WeekOverWeekAnomaly } from '../types.js';
 
 // qa.md §3.2 의 bandForDelta 매트릭스. 케이스 분류 우선:
 // - Happy: 표준 prev=100 에서 ±5/10/20/30 밴드 분기.
@@ -108,5 +109,60 @@ describe('bandForDelta', () => {
         expect(bandForDelta(-cur.delta, { previousCount: 100 })).toBe(curBand);
       }
     });
+  });
+});
+
+// 오디언스 가드 — previousCount(이벤트 수) 가드가 못 잡는 고빈도 이벤트 오탐 차단.
+// W28(실사용자 2, 직전 3 · page_view 153 vs 31 = +393% incident)·W30(실사용자 1,
+// 직전 1 · page_view 3 vs 19 = -84% incident) 회귀 케이스를 실데이터로 고정한다.
+describe('applyAudienceGuard', () => {
+  // page_view 는 previousCount(31/19) ≥ 10 이라 bandForDelta 를 통과해 incident 로 계산된다.
+  const w28: WeekOverWeekAnomaly = {
+    comparable: true,
+    rows: [
+      { eventName: 'page_view', currentCount: 153, previousCount: 31, deltaPercent: 393.5, band: 'incident' },
+      { eventName: 'axis_enter', currentCount: 87, previousCount: 18, deltaPercent: 383.3, band: 'incident' },
+      { eventName: 'article_read_complete', currentCount: 2, previousCount: 1, deltaPercent: 100, band: 'noise' },
+    ],
+  };
+
+  it('직전주 실사용자 < floor → 전 행 noise 강등 + audienceFloored=true (W28 회귀)', () => {
+    const guarded = applyAudienceGuard(w28, 3); // 직전주 실사용자 3명
+    expect(guarded.audienceFloored).toBe(true);
+    expect(guarded.rows.every((r) => r.band === 'noise')).toBe(true);
+    // deltaPercent·count 등 원본 수치는 보존 — 밴드만 바뀐다.
+    expect(guarded.rows[0].deltaPercent).toBe(393.5);
+    expect(guarded.rows[0].currentCount).toBe(153);
+  });
+
+  it('실사용자 1명(운영자 dogfooding)도 동일하게 강등 (W30 회귀)', () => {
+    const w30: WeekOverWeekAnomaly = {
+      comparable: true,
+      rows: [
+        { eventName: 'page_view', currentCount: 3, previousCount: 19, deltaPercent: -84.2, band: 'incident' },
+        { eventName: 'axis_enter', currentCount: 2, previousCount: 10, deltaPercent: -80, band: 'incident' },
+      ],
+    };
+    const guarded = applyAudienceGuard(w30, 1);
+    expect(guarded.audienceFloored).toBe(true);
+    expect(guarded.rows.every((r) => r.band === 'noise')).toBe(true);
+  });
+
+  it('직전주 실사용자 ≥ floor → 강등 없이 원본 그대로 통과 (post-launch)', () => {
+    const guarded = applyAudienceGuard(w28, 50);
+    expect(guarded.audienceFloored).toBeUndefined();
+    expect(guarded.rows[0].band).toBe('incident');
+    expect(guarded).toBe(w28); // 참조 동일 — 불필요한 복제 없음
+  });
+
+  it('경계값 — floor 직전(9)은 강등, floor(10)은 통과', () => {
+    expect(applyAudienceGuard(w28, 9).audienceFloored).toBe(true);
+    expect(applyAudienceGuard(w28, 10).audienceFloored).toBeUndefined();
+  });
+
+  it('threshold 옵션 — config 1줄로 임계값 조정 가능', () => {
+    // threshold=5 로 낮추면 직전주 실사용자 6명은 통과.
+    expect(applyAudienceGuard(w28, 6, 5).audienceFloored).toBeUndefined();
+    expect(applyAudienceGuard(w28, 4, 5).audienceFloored).toBe(true);
   });
 });
