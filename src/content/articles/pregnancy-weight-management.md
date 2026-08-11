@@ -1,6 +1,6 @@
 ---
 title: "임신 중 체중관리 완전 정리 — BMI별 권장 증가량부터 주차별 자가 확인표, 체중 불안 다루기까지"
-description: "임신 중 체중 증가, 어디까지 정상일까요? ACOG 기준 BMI별 권장 증가량 표와 주차별 자가 확인표로 내 체중이 정상 범위인지 바로 확인하세요. 전자간증 위험 신호, 임신성 당뇨 식단 관리법, 체중계 불안 다루기까지, 임산부 체중관리에서 궁금한 걸 한 번에 짚어드릴게요."
+description: "임신 중 체중은 ACOG 기준으로 BMI별 권장 증가량이 달라요. 내 BMI에 맞는 증가 범위와 주차별 자가 확인표, 전자간증을 의심해야 할 급격한 증가 신호, 임신성 당뇨 식단 관리와 체중계 불안 다루는 법까지 정리했어요."
 author: "출산 준비 체크리스트 제작자 뿌까뽀까"
 last_updated: "2026-04-26"
 canonical: "https://pregnancy-checklist.com/articles/pregnancy-weight-management"

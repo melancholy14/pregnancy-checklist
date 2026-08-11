@@ -1,6 +1,6 @@
 ---
 title: "운동 안 하던 임산부도 안전하게 시작하는 4주 플랜 — 강도, 시기, 중단 신호까지"
-description: "임산부 운동, 어디서부터 시작해야 할지 막막하다면. 운동 안 하던 분도 따라 할 4주 점진 시작 플랜으로 주 150분 도달, 대화 가능 테스트로 강도 자가 측정, 의사에게 꼭 물어야 할 5가지 질문, 시기별 주의·즉시 중단 신호까지 ACOG·JKMA 권고에 맞춰 행동 가능한 형태로 정리했어요."
+description: "운동 안 하던 임산부도 하루 15분부터 4주에 걸쳐 주 150분에 닿는 점진 플랜이에요. 대화 가능 테스트로 강도를 자가 측정하는 법, 의사에게 꼭 물어야 할 5가지 질문, 시기별 주의점과 즉시 중단해야 할 신호까지 담았어요."
 canonical: "https://pregnancy-checklist.com/articles/pregnancy-exercise-starter-guide"
 slug: "pregnancy-exercise-starter-guide"
 tags:
