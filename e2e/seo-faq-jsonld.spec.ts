@@ -13,7 +13,8 @@ import matter from "gray-matter";
  * AEO 신호: 5개 backfill 글에 FAQPage JSON-LD 주입 (frontmatter `faq:` SSOT).
  * 회귀 가드:
  *   - Article JSON-LD 가 첫 번째 script[type=application/ld+json] 위치 유지 (seo-sitemap-article-jsonld.spec.ts 의 .first() 호환)
- *   - FAQ-less 글에는 FAQPage 미주입
+ *   - FAQ-less 글에는 FAQPage 미주입 (대상 slug 는 하드코딩하지 않고 frontmatter 에서 동적 발견)
+ *   - 전체 글 fs-level: out HTML 의 FAQPage 수 == frontmatter faq 유무 (조건부 분기 양방향 전수 가드)
  *   - fs-level: 5개 글 frontmatter faq 키 + 빌드 산출물 "@type":"FAQPage" 5건
  *   - FAQ 답변 안에 ⚠️ 와 ` → ` 패턴 부재 (blog-writer-persona.md 룰의 자동 강제)
  */
@@ -30,8 +31,6 @@ const BACKFILL_SLUGS = [
   "pregnancy-foods-to-avoid",
 ] as const;
 
-const FAQLESS_SAMPLE_SLUG = "pregnancy-exercise-starter-guide";
-
 type FaqItem = { q: string; a: string };
 
 function readFrontmatterFaq(slug: string): FaqItem[] {
@@ -43,6 +42,24 @@ function readFrontmatterFaq(slug: string): FaqItem[] {
   }
   return data.faq as FaqItem[];
 }
+
+function listArticleSlugs(): string[] {
+  return fs
+    .readdirSync(ARTICLES_DIR)
+    .filter((f) => f.endsWith(".md"))
+    .map((f) => f.replace(/\.md$/, ""))
+    .sort();
+}
+
+function hasFrontmatterFaq(slug: string): boolean {
+  const raw = fs.readFileSync(path.join(ARTICLES_DIR, `${slug}.md`), "utf-8");
+  const { data } = matter(raw);
+  return Array.isArray(data.faq) && data.faq.length > 0;
+}
+
+// FAQ-less 대상은 하드코딩하지 않는다. 특정 글에 faq 를 추가하는 순간 가드가 stale 로 깨지기 때문
+// (실제로 pregnancy-exercise-starter-guide 에 faq 가 붙으면서 고정 fixture 가 무너졌음).
+const FAQLESS_SLUGS = listArticleSlugs().filter((s) => !hasFrontmatterFaq(s));
 
 async function getLdJsonScripts(page: Page, slug: string): Promise<unknown[]> {
   await page.goto(`/articles/${slug}`);
@@ -124,19 +141,25 @@ test.describe("seo-faq-jsonld", () => {
   });
 
   test.describe("Error / Validation (회귀 가드)", () => {
-    test(`FAQ-less 글 (${FAQLESS_SAMPLE_SLUG}) 에는 FAQPage JSON-LD 가 주입되지 않는다`, async ({
+    test(`FAQ-less 글에는 FAQPage JSON-LD 가 주입되지 않는다 (현재 ${FAQLESS_SLUGS.length}건)`, async ({
       page,
     }) => {
       // 무엇을: frontmatter `faq:` 가 없는 글은 FAQPage script 부재
       // 왜: 조건부 주입 분기 회귀 가드. 잘못 누락된 FAQPage 가 빈 mainEntity 로 나가면 SERP 페널티.
-      const scripts = await getLdJsonScripts(page, FAQLESS_SAMPLE_SLUG);
-      const faqPages = scripts.filter(
-        (s) =>
-          !!s &&
-          typeof s === "object" &&
-          (s as Record<string, unknown>)["@type"] === "FAQPage",
+      test.skip(
+        FAQLESS_SLUGS.length === 0,
+        "현재 모든 글에 frontmatter faq 존재 — 아래 fs-level 전수 가드가 조건부 분기를 커버한다",
       );
-      expect(faqPages).toHaveLength(0);
+      for (const slug of FAQLESS_SLUGS) {
+        const scripts = await getLdJsonScripts(page, slug);
+        const faqPages = scripts.filter(
+          (s) =>
+            !!s &&
+            typeof s === "object" &&
+            (s as Record<string, unknown>)["@type"] === "FAQPage",
+        );
+        expect(faqPages, `${slug}: FAQPage 미주입 기대`).toHaveLength(0);
+      }
     });
 
     test("5개 글 모두 Article 타입 ld+json script 가 정확히 1개 존재 (주입 순서 가정 제거, @type filter)", async ({
@@ -182,6 +205,22 @@ test.describe("seo-faq-jsonld", () => {
         expect(faqPageMatches.length).toBe(1);
         const questionMatches = html.match(/"@type":"Question"/g) ?? [];
         expect(questionMatches.length).toBeGreaterThanOrEqual(1);
+      }
+    });
+
+    test('fs-level: 전체 글의 out HTML FAQPage 수가 frontmatter faq 유무와 1:1 로 일치한다', async () => {
+      // 무엇을: 모든 아티클에 대해 FAQPage script 수 == (faq 있으면 1, 없으면 0)
+      // 왜: 5개 backfill 고정 목록 밖의 글이 늘어나도 조건부 주입 분기가 양방향으로 계속 검증된다.
+      //     FAQ-less 고정 slug 가 콘텐츠 수정으로 stale 되는 문제를 구조적으로 제거.
+      for (const slug of listArticleSlugs()) {
+        const html = fs.readFileSync(
+          path.join(OUT_DIR, `${slug}.html`),
+          "utf-8",
+        );
+        const faqPageMatches = html.match(/"@type":"FAQPage"/g) ?? [];
+        expect(faqPageMatches.length, `${slug}: FAQPage 주입 수`).toBe(
+          hasFrontmatterFaq(slug) ? 1 : 0,
+        );
       }
     });
 
