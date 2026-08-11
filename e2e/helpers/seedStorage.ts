@@ -125,10 +125,16 @@ function buildPayload(input: SeedStorageInput): SeedPayload {
 /**
  * Playwright 페이지의 navigate 이전에 호출하면 localStorage 시드.
  * 다음 schema 버전 변경 시 본 헬퍼 한 곳만 갱신하면 모든 spec이 따라간다.
+ *
+ * top frame 가드: addInitScript 는 새로 붙는 child frame 마다 재실행된다.
+ * consent=accepted + AdSense client id 가 있는 빌드(= CI)에서 광고가 about:blank
+ * iframe 을 붙이면 시드가 다시 돌면서, 앱이 그 사이 갱신해둔 storage 를 시드값으로
+ * 되돌려 놓는다. 시드는 최초 문서에만 필요하므로 top frame 으로 제한한다.
  */
 export async function seedStorage(page: Page, input: SeedStorageInput): Promise<void> {
   const payload = buildPayload(input);
   await page.addInitScript((serialized: SeedPayload) => {
+    if (window.top !== window.self) return;
     try {
       if (serialized.consent) {
         window.localStorage.setItem("cookie-consent", serialized.consent);

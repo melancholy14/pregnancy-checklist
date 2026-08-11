@@ -26,9 +26,17 @@ const hbData = JSON.parse(
 
 const ALL_HB_IDS: string[] = hbData.items.map((i) => i.id);
 
+/**
+ * addInitScript 는 메인 문서뿐 아니라 "새로 붙는 child frame" 에서도 매번 재실행된다.
+ * consent=accepted + NEXT_PUBLIC_ADSENSE_CLIENT_ID 가 baked-in 된 빌드(= CI)에서는
+ * AdSense 가 about:blank iframe 을 붙이는데, 그 시점에 시드 스크립트가 다시 돌면서
+ * 앱이 이미 정상화해둔 localStorage 를 시드값으로 되돌려 놓는다.
+ * 시드는 최초 문서에만 필요하므로 top frame 에서만 실행한다.
+ */
 /** 동의·체크리스트·예정일 storage 모두 초기화 */
 async function clearStorage(page: Page) {
   await page.addInitScript((key) => {
+    if (window.top !== window.self) return;
     localStorage.setItem("cookie-consent", "accepted");
     localStorage.removeItem(key);
   }, HB_STORAGE_KEY);
@@ -50,9 +58,14 @@ async function seedStore(
   });
 }
 
-/** 손상된 JSON을 storage에 박아 hydration 실패를 유도 */
+/**
+ * 손상된 JSON을 storage에 박아 hydration 실패를 유도.
+ * top frame 가드 필수 — 앱은 이 손상값을 정상 JSON으로 덮어쓰는 것이 정상 동작이므로,
+ * child frame 에서 재실행되면 그 복구 결과를 다시 손상값으로 되돌려 검증을 무너뜨린다.
+ */
 async function seedCorruptStorage(page: Page) {
   await page.addInitScript((key) => {
+    if (window.top !== window.self) return;
     localStorage.setItem("cookie-consent", "accepted");
     localStorage.setItem(key, "{this is not valid json");
   }, HB_STORAGE_KEY);
