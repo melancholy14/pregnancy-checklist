@@ -50,7 +50,7 @@ test.describe("베이비페어 페이지", () => {
       await page.getByRole("tab", { name: "지난 행사" }).click();
       await page.getByRole("button", { name: "서울", exact: true }).click();
       await page.getByRole("button", { name: "전체" }).click();
-      await expect(page.getByText("대전 베이비페어")).toBeVisible();
+      await expect(page.getByText("대전 베이비페어", { exact: true })).toBeVisible();
     });
 
     test("참관 팁이 표시된다", async ({ page }) => {
@@ -111,7 +111,7 @@ test.describe("베이비페어 페이지", () => {
       // 무엇을: 지난 행사 탭 전환 동작
       // 왜: 지난 행사 데이터가 있으면 표시, 없으면 빈 상태
       await page.getByRole("tab", { name: "지난 행사" }).click();
-      await expect(page.getByText("대전 베이비페어")).toBeVisible();
+      await expect(page.getByText("대전 베이비페어", { exact: true })).toBeVisible();
     });
 
     test("탭 전환 시 이전 탭의 항목이 사라진다", async ({ page }) => {

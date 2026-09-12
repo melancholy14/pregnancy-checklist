@@ -41,17 +41,19 @@
 > **범위 메모**: 6항목 전부 커버 완료 (2026-07-30). 콘텐츠 3종 SOP는 §1~3, 운영 런북 3항목은 §5로 추가.
 > **🔐 보안 발견**: 주간 리포트 plist(`~/Library/LaunchAgents/…weekly-report.plist`)에 `OPENAI_API_KEY` 평문 노출 확인 (git 미포함이라 커밋 유출은 아님). → 키 rotate + 외부 파일 참조 이관 TODO를 operator-guide §5.1에 기록. **복귀 후 우선 처리 권장.**
 
-### 1.2 PSI Diagnostics LCP element 캡쳐 (예상 30분)
+### 1.2 PSI Diagnostics LCP element 캡쳐 — ✅ 완료 (2026-08-22)
 
 [phase-4.7 산후 후속](../plan/phase-4.7.md#산후-복귀-후-후속-phase-47-범위-밖)의 LCP `<4s` 라운드 준비 데이터. 지금 안 잡아두면 산후 복귀 시 처음부터 다시 측정.
 
-- [ ] https://pagespeed.web.dev/ 접속 → Mobile 측정 (3개 URL)
-  - [ ] `https://pregnancy-checklist.com/`
-  - [ ] `https://pregnancy-checklist.com/checklist`
-  - [ ] `https://pregnancy-checklist.com/articles/postpartum-care-center-guide`
-- [ ] 각 결과 페이지 "Diagnostics" 섹션 스크롤 → **"Largest Contentful Paint element"** 스크린샷 저장
-- [ ] 새 파일 `docs/plan/phase-4.7-lcp-data-2026-07.md` 생성 후 스크린샷 붙여넣기
-- [ ] FCP·LCP·CLS 수치도 같이 기록
+- [x] https://pagespeed.web.dev/ 접속 → Mobile 측정 (3개 URL)
+  - [x] `https://pregnancy-checklist.com/`
+  - [x] `https://pregnancy-checklist.com/checklist`
+  - [x] `https://pregnancy-checklist.com/articles/postpartum-care-center-guide`
+- [x] 각 결과 페이지 "Diagnostics" 섹션 스크롤 → **"Largest Contentful Paint element"** 스크린샷 저장
+- [x] 새 파일 `docs/plan/phase-4.7-lcp-data-2026-07.md` 생성 후 스크린샷 붙여넣기
+- [x] FCP·LCP·CLS 수치도 같이 기록
+
+> **결과 요약**: 3개 페이지 모두 LCP 요소가 본문 `<p>` 텍스트로 확인 (baseline 시점 추정했던 H1/DueDateInput/dashboard 카드와 다름). 상세: [phase-4.7-lcp-data-2026-07.md](../plan/phase-4.7-lcp-data-2026-07.md)
 
 ---
 
@@ -144,10 +146,10 @@
 
 ### 주 2 (07-31 ~ 08-06)
 
-- [ ] PSI 홈 캡쳐:
-- [ ] PSI 허브 캡쳐:
-- [ ] PSI 발행글 캡쳐:
-- [ ] phase-4.7-lcp-data-2026-07.md 생성:
+- [x] PSI 홈 캡쳐: 2026-08-22, FCP 3.3s / LCP 6.3s / CLS 0
+- [x] PSI 허브 캡쳐: 2026-08-22, FCP 3.2s / LCP 3.8s / CLS 0.095
+- [x] PSI 발행글 캡쳐: 2026-08-22, FCP 4.1s / LCP 5.7s / CLS 0.319
+- [x] phase-4.7-lcp-data-2026-07.md 생성: 2026-08-22, `docs/plan/phase-4.7-lcp-data-2026-07.md`
 - [ ] 미색인 URL 2개 식별:
 
 ### 주 3 (08-07 ~ 08-13)
