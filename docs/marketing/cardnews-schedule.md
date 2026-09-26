@@ -29,10 +29,10 @@
 | — | **2026-08-13** | 🍼 **출산 예정일 · 산후 3개월 휴면 시작** | | #5·#6은 수동 발행, #7부터 예약 발행 | |
 | 5 | 2026-08-25 (화) 제작완료 | `preeclampsia-symptoms-prevention` | 임신중독증 | 증상·위험군 안전 정보 | ✅ (deck: `preeclampsia`, 8장, 오늘 수동 발행 예정) |
 | 6 | 2026-08-25 (화) 제작완료 | `late-pregnancy-common-symptoms` | 후기 흔한 증상 TOP5 | 정상 vs 병원 신호 대조 카드 | ✅ (deck: `late-symptoms`, 8장, 오늘 수동 발행 예정) |
-| 7 | 2026-08-27 (목) | `early-pregnancy-tests` | 초기 필수검사 | 검사 항목 리스트 | ⬜ (Meta 예약 발행 1호) |
-| 8 | 2026-09-03 (목) | `prenatal-insurance-preparation-guide` | 태아보험 5가지 | "22주 데드라인" 후킹 | ⬜ |
-| 9 | 2026-09-10 (목) | `postpartum-care-center-guide` | 산후조리원 고르기 | 비교기준 7 + 예약 캘린더 | ⬜ |
-| 10 | 2026-09-17 (목) | `birth-methods-32-weeks` | 분만 방법 비교 | 자연·제왕·자연주의 비교표 | ⬜ |
+| 7 | 2026-08-27 (목) | `early-pregnancy-tests` | 초기 필수검사 | 검사 항목 리스트 | ✅ (deck: `early-pregnancy-tests`, 8장, 2026-09-18 업로드 완료) |
+| 8 | 2026-09-03 (목) | `prenatal-insurance-preparation-guide` | 태아보험 5가지 | "22주 데드라인" 후킹 | ✅ (deck: `prenatal-insurance-preparation-guide`, 8장, 2026-09-18 업로드 완료) |
+| 9 | 2026-09-10 (목) | `postpartum-care-center-guide` | 산후조리원 고르기 | 비교기준 7 + 예약 캘린더 | ✅ (deck: `postpartum-care-center-guide`, 8장, 2026-09-19 업로드 완료) |
+| 10 | 2026-09-17 (목) | `birth-methods-32-weeks` | 분만 방법 비교 | 자연·제왕·자연주의 비교표 | ✅ (deck: `birth-methods-32-weeks`, 8장, 2026-09-19 업로드 완료) |
 | 11 | 2026-09-24 (목) | `pregnancy-exercise-starter-guide` | 임산부 운동 4주 플랜 | 4주 단계 플랜 | ⬜ |
 | 12 | 2026-10-01 (목) | `pregnancy-sleep-positions-guide` | 임산부 수면 자세 | 자세 비교 시각화 | ⬜ |
 | 13 | 2026-10-08 (목) | `mid-pregnancy-lifestyle-guide` | 중기 생활 가이드 | 운동·영양·검사 종합 | ⬜ |
@@ -41,13 +41,11 @@
 
 ## ⚠️ 수동 발행 vs 산후 휴면 충돌
 
-- **수동으로 실제 발행 가능한 건 #1~#6** — #5·#6은 예정보다 늦었지만(8/25) 운영자가 직접 오늘 수동 발행.
-- **#7(8/27)부터는 산후 휴면기에 걸림** → 수동으로는 못 올림. 두 갈래 중 택1:
-  1. **#7~#15를 미리 배치 제작해두고 Meta Business Suite에 주 1회 예약 발행** → 휴면기 내내 자동 발행, 손 안 댐 (채택)
-  2. #6까지만 올리고 나머지는 산후 복귀 후 재개 → 계정 정지 기간 발생 (AdSense 시그널·알고리즘 관점 불리)
-- 제작 자체는 집중 개발 4주 안에 미리 몰아서 끝내두는 게 안전.
+- **인스타 계정이 개인 계정** → Meta Business Suite 예약 발행 불가 (비즈니스/크리에이터 계정 전환 필요, 보류). **자동화 트랙은 당분간 미채택.**
+- 대신 #7~#10 카드뉴스는 미리 제작해두고, 발행은 운영자가 직접 수동으로 진행 (산후 휴면기 중 짬 날 때 또는 복귀 후).
+- 아래 "Meta Business Suite 예약 발행 방법" 섹션은 계정을 비즈니스 전환하기 전까지는 참고용 보류 상태.
 
-## 🛠 Meta Business Suite 예약 발행 방법 (#7부터 적용)
+## 🛠 Meta Business Suite 예약 발행 방법 (계정 전환 전까지 보류)
 
 **사전 조건** (한 번만 세팅하면 됨):
 - 인스타그램 계정이 **비즈니스/크리에이터 계정**이어야 함 (개인 계정은 예약 발행 불가).

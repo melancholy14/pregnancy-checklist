@@ -27,18 +27,19 @@
       40
     ],
     "linked_article_slugs": [
-      "weekly-prenatal-checklist"
+      "weekly-prenatal-checklist",
+      "husband-postpartum-checklist"
     ]
   },
   "items": [
     {
       "id": "pp_before_01",
-      "title": "출산 휴가 / 배우자 출산휴가 신청",
+      "title": "배우자 출산전후휴가 신청",
       "category": "partner_before",
       "categoryName": "출산 전",
       "recommendedWeek": 0,
       "priority": "high",
-      "note": "회사 인사팀에 미리 신청 — 최대 10일 유급"
+      "note": "회사 인사팀에 미리 신청 — 20일 전액 유급, 2026.9.18부터 출산예정일 50일 전부터도 사용 가능"
     },
     {
       "id": "pp_before_02",

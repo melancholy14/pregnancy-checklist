@@ -1,5 +1,24 @@
 import { test, expect } from "@playwright/test";
+import fs from "node:fs";
+import path from "node:path";
+import matter from "gray-matter";
 import { acceptCookieConsent } from "./helpers/consent";
+
+const ARTICLES_DIR = path.resolve(__dirname, "../src/content/articles");
+
+// authorNote 미설정 글은 하드코딩하지 않고 frontmatter 에서 동적 발견한다.
+// (글이 발행되며 authorNote 가 붙는 순간 fixture 가 stale 되는 것을 방지)
+// 렌더 조건은 ArticleDetail 의 `article.authorNote &&` 와 동일하게 truthy 기준.
+const NOTELESS_SLUGS = fs
+  .readdirSync(ARTICLES_DIR)
+  .filter((f) => f.endsWith(".md"))
+  .map((f) => f.replace(/\.md$/, ""))
+  .filter((slug) => {
+    const { data } = matter(
+      fs.readFileSync(path.join(ARTICLES_DIR, `${slug}.md`), "utf-8"),
+    );
+    return !data.authorNote;
+  });
 
 test.describe("아티클 authorNote 카드 (Step 14)", () => {
   test.beforeEach(async ({ context }) => {
@@ -96,23 +115,23 @@ test.describe("아티클 authorNote 카드 (Step 14)", () => {
   });
 
   test.describe("Error / Validation", () => {
-    test("authorNote가 없는 아티클에서는 카드가 표시되지 않는다", async ({
-      page,
-    }) => {
-      // 무엇을: authorNote 미설정 아티클에서 카드 미렌더링 확인
-      // 왜: authorNote가 없는 아티클에서 빈 카드가 보이면 안 됨
-      await page.goto("/articles/infant-vaccination-schedule");
-      await expect(page.getByText("만든이의 한마디")).not.toBeVisible();
-    });
+    // 전 글에 authorNote 가 붙어 fixture 가 0건이면 실패 대신 스킵으로 표시
+    if (NOTELESS_SLUGS.length === 0) {
+      test.skip("authorNote 미설정 아티클이 없어 미렌더링 케이스 스킵", () => {});
+    }
 
-    test("authorNote가 없는 newborn-bath-tips에서도 카드가 없다", async ({
-      page,
-    }) => {
-      // 무엇을: 또 다른 미설정 아티클 확인
-      // 왜: 복수 아티클에서 미렌더링 일관성 검증
-      await page.goto("/articles/newborn-bath-tips");
-      await expect(page.getByText("만든이의 한마디")).not.toBeVisible();
-    });
+    for (const slug of NOTELESS_SLUGS) {
+      test(`authorNote가 없는 ${slug}에서는 카드가 표시되지 않는다`, async ({
+        page,
+      }) => {
+        // 무엇을: authorNote 미설정 아티클에서 카드 미렌더링 확인
+        // 왜: authorNote가 없는 아티클에서 빈 카드가 보이면 안 됨
+        await page.goto(`/articles/${slug}`);
+        // 404 페이지에서 "카드 없음"이 공허하게 통과하는 것을 방지
+        await expect(page.locator(".article-prose").first()).toBeVisible();
+        await expect(page.getByText("만든이의 한마디")).not.toBeVisible();
+      });
+    }
   });
 
   test.describe("반응형 (Mobile 375px)", () => {
@@ -128,13 +147,16 @@ test.describe("아티클 authorNote 카드 (Step 14)", () => {
       ).toBeVisible();
     });
 
-    test("모바일: authorNote가 없는 아티클에서는 카드 미표시", async ({
-      page,
-    }) => {
-      // 무엇을: 모바일에서도 미설정 아티클의 카드 미렌더링 확인
-      // 왜: 반응형에서도 조건부 렌더링 동작 검증
-      await page.goto("/articles/infant-vaccination-schedule");
-      await expect(page.getByText("만든이의 한마디")).not.toBeVisible();
-    });
+    for (const slug of NOTELESS_SLUGS) {
+      test(`모바일: authorNote가 없는 ${slug}에서는 카드 미표시`, async ({
+        page,
+      }) => {
+        // 무엇을: 모바일에서도 미설정 아티클의 카드 미렌더링 확인
+        // 왜: 반응형에서도 조건부 렌더링 동작 검증
+        await page.goto(`/articles/${slug}`);
+        await expect(page.locator(".article-prose").first()).toBeVisible();
+        await expect(page.getByText("만든이의 한마디")).not.toBeVisible();
+      });
+    }
   });
 });
